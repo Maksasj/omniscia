@@ -1,4 +1,3 @@
 cmake --build build
-cd build
-Omniscia
-cd ..
+
+build\Omniscia.exe
