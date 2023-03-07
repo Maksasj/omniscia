@@ -6,7 +6,7 @@
 namespace omniscia::core {
     class Properties {
         public:
-            static const u32 screen_width = 800; 
+            static const u32 screen_width = 600; 
             static const u32 screen_height = 600; 
     };
 }

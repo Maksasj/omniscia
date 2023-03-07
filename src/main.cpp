@@ -10,6 +10,8 @@
 #include <iostream>
 
 #include <cmath>
+// #include <fstream>
+// #include <nlohmann/json.hpp>
 
 void framebuffer_size_callback(GLFWwindow* window, i32 width, i32 height);
 void processInput(GLFWwindow *window);
@@ -52,16 +54,15 @@ int main() {
     using namespace omniscia::renderer::sprite;
     Sprite sprite;
 
-
     FrameBuffer framebuffer1;
         framebuffer1.bind();
-        TextureBuffer texture1(300, 200);
+        TextureBuffer texture1(600, 600);
         framebuffer1.bind_target_texture_buffer(texture1);
     framebuffer1.unbind();
 
     FrameBuffer framebuffer2;
         framebuffer2.bind();
-        TextureBuffer texture2(300, 200);
+        TextureBuffer texture2(600, 600);
         framebuffer2.bind_target_texture_buffer(texture2);
     framebuffer2.unbind();
 

@@ -7,3 +7,6 @@
 [submodule "3dparty/stb"]
 	path = 3dparty/stb
 	url = https://github.com/nothings/stb
+[submodule "3dparty/json"]
+	path = 3dparty/json
+	url = https://github.com/nlohmann/json
