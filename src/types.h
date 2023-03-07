@@ -16,4 +16,24 @@ typedef int64_t     i64;
 typedef float       f32; 
 typedef double      f64; 
 
+namespace omniscia::core {
+    struct Vec2f {
+        f32 x;
+        f32 y;
+    };
+
+    struct Vec3f : Vec2f {
+        f32 z;
+    };
+
+    struct Vec2i {
+        i32 x;
+        i32 y;
+    };
+
+    struct Vec3i : Vec2i {
+        i32 z;
+    };
+}
+
 #endif

@@ -1,14 +1,11 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "bufferObjects.h"
 #include "shader.h"
 #include "properties.h"
 #include "renderer.h"
-
-
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
+#include "sprite.h"
+#include "frame_buffer.h"
 
 #include <iostream>
 
@@ -39,73 +36,75 @@ int main() {
 
     Renderer::loadGL();
 
-    Shader shader;
+    Shader shader1;
+    Shader shader2;
+    Shader shader3;
 
-    if(shader.try_compile("assets/vert.glsl", "assets/frag.glsl")) {
-        shader.compile();    
-    }
+    if(shader1.try_compile("assets/shaders/vert_stage_1.glsl", "assets/shaders/frag_stage_1.glsl"))
+        shader1.compile();    
 
-    BufferObject obb;
-    obb.initBuffers();
+    if(shader2.try_compile("assets/shaders/vert_stage_2.glsl", "assets/shaders/frag_stage_2.glsl"))
+        shader2.compile();    
 
+    if(shader3.try_compile("assets/shaders/vert_stage_3.glsl", "assets/shaders/frag_stage_3.glsl"))
+        shader3.compile();   
 
-
-
-    u32 texture;
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
-    // set the texture wrapping/filtering options (on the currently bound texture object)
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    // load and generate the texture
-    i32 width, height, nrChannels;
-    
-    u8 *data = stbi_load("assets/container.jpg", &width, &height, &nrChannels, 0);
-    if (data)
-    {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-        glGenerateMipmap(GL_TEXTURE_2D);
-    }
-    else
-    {
-        std::cout << "Failed to load texture" << std::endl;
-    }
-    stbi_image_free(data);
+    using namespace omniscia::renderer::sprite;
+    Sprite sprite;
 
 
+    FrameBuffer framebuffer1;
+        framebuffer1.bind();
+        TextureBuffer texture1(300, 200);
+        framebuffer1.bind_target_texture_buffer(texture1);
+    framebuffer1.unbind();
 
+    FrameBuffer framebuffer2;
+        framebuffer2.bind();
+        TextureBuffer texture2(300, 200);
+        framebuffer2.bind_target_texture_buffer(texture2);
+    framebuffer2.unbind();
 
     while (!glfwWindowShouldClose(window)) {
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        {
+            framebuffer1.bind();
+                glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+                glClear(GL_COLOR_BUFFER_BIT);
+        
+                shader1.activate();
+                sprite.bind(); 
 
-        if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-            if(shader.try_compile("assets/vert.glsl", "assets/frag.glsl")) {
-                shader.compile();    
-            } else {
-                std::cout << "Error could not compile shader\n";
-            }
+                glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            framebuffer1.unbind();
+        }
+        
+        {
+            framebuffer2.bind();
+                glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+                glClear(GL_COLOR_BUFFER_BIT);
+        
+                shader2.activate();
+                texture1.bind();
+
+                glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            framebuffer2.unbind();
         }
 
-        glBindTexture(GL_TEXTURE_2D, texture);
+        {
+            glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+            glClear(GL_COLOR_BUFFER_BIT);
+            
+            shader3.activate();
+            texture2.bind();
 
-        static f64 value = 0;
-        ++value;
-        shader.set_uniform_f32("tmp_uniform", (sin((value / 100.0)) + 1.0 / 2.0));
-        shader.activate();
-        
-        obb.bind();
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        }
 
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
- 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 
-
-    shader.terminate();
+    shader2.terminate();
 
     glfwTerminate();
     return 0;
