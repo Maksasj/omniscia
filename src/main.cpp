@@ -6,6 +6,7 @@
 #include "renderer.h"
 #include "sprite.h"
 #include "frame_buffer.h"
+#include "texture_manager.h"
 
 #include <iostream>
 
@@ -13,8 +14,8 @@
 // #include <fstream>
 // #include <nlohmann/json.hpp>
 
-void framebuffer_size_callback(GLFWwindow* window, i32 width, i32 height);
-void processInput(GLFWwindow *window);
+//void framebuffer_size_callback(GLFWwindow* window, i32 width, i32 height);
+//void processInput(GLFWwindow *window);
 
 int main() {
     using namespace omniscia::core;
@@ -38,9 +39,7 @@ int main() {
 
     Renderer::loadGL();
 
-    Shader shader1;
-    Shader shader2;
-    Shader shader3;
+    Shader shader1, shader2, shader3;
 
     if(shader1.try_compile("assets/shaders/vert_stage_1.glsl", "assets/shaders/frag_stage_1.glsl"))
         shader1.compile();    
@@ -52,7 +51,14 @@ int main() {
         shader3.compile();   
 
     using namespace omniscia::renderer::sprite;
-    Sprite sprite;
+
+    TextureManager::add_asset("assets/texture.png", "factorio_girl_texture");
+    TextureManager::add_asset("assets/jojo_texture.png", "jojo_texture");
+    TextureManager::load_assets();
+
+    //Sprite sprite1("jojo_texture", Vec3f{0.5f, 0.5f, 1.0f});
+    Sprite sprite1("jojo_texture");
+    Sprite sprite2("factorio_girl_texture");
 
     FrameBuffer framebuffer1;
         framebuffer1.bind();
@@ -66,44 +72,49 @@ int main() {
         framebuffer2.bind_target_texture_buffer(texture2);
     framebuffer2.unbind();
 
+    //glEnable(GL_BLEND);
+    //glDisable(GL_DEPTH_TEST);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable( GL_BLEND );
     while (!glfwWindowShouldClose(window)) {
         {
             framebuffer1.bind();
-                glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+                glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
                 glClear(GL_COLOR_BUFFER_BIT);
         
                 shader1.activate();
-                sprite.bind(); 
 
-                glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+                sprite1.draw();
+
             framebuffer1.unbind();
         }
-        
         {
             framebuffer2.bind();
-                glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+                glClearColor(1.0f, 1.0f, 0.0f, 1.0f);
                 glClear(GL_COLOR_BUFFER_BIT);
         
                 shader2.activate();
-                texture1.bind();
 
+                sprite2.draw();
+                texture1.bind();
                 glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+                
             framebuffer2.unbind();
         }
-
         {
-            glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+            glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT);
             
             shader3.activate();
             texture2.bind();
-
             glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         }
 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+
+    glDisable(GL_BLEND);
 
     shader2.terminate();
 

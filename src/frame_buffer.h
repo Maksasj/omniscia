@@ -13,10 +13,10 @@ namespace omniscia::renderer {
         public:
             FrameBuffer();
             
-            void bind() override;
-            void unbind() override;
+            void bind() const override;
+            void unbind() const override;
 
-            void terminate() override;
+            void terminate() const override;
 
             void bind_target_texture_buffer(const omniscia::renderer::texture::TextureBuffer& textureBuffer);
     };

@@ -9,9 +9,6 @@ namespace omniscia::renderer::texture {
     class Texture : public TextureBuffer {
         public:
             Texture();
-
-            //void bind() override;
-            //void unbind() override;
     };
 }
 

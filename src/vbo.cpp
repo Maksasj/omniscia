@@ -7,14 +7,14 @@ omniscia::renderer::VBO::VBO(const std::vector<Vertex>& vertices) {
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
 }
 
-void omniscia::renderer::VBO::bind() {
+void omniscia::renderer::VBO::bind() const {
     glBindBuffer(GL_ARRAY_BUFFER, _ID);
 }
 
-void omniscia::renderer::VBO::unbind() {
+void omniscia::renderer::VBO::unbind() const {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void omniscia::renderer::VBO::terminate() {
+void omniscia::renderer::VBO::terminate() const {
     glDeleteBuffers(1, &_ID);
 }

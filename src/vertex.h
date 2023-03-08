@@ -2,6 +2,7 @@
 #define _VERTEX_H_
 
 #include <glad/glad.h>
+#include <sstream>
 
 #include "types.h"
 
@@ -13,10 +14,26 @@ namespace omniscia::renderer {
         Vec3f color;
         Vec2f texPos;
 
-        Vertex(Vec3f _pos, Vec3f _color, Vec2f _texPos) {
+        Vertex(const Vec3f& _pos, const Vec3f& _color, const Vec2f& _texPos) {
             pos = _pos;
             color = _color;
             texPos = _texPos;
+        }
+
+        void scale(const Vec3f& scale) {
+            pos.x *= scale.x;
+            pos.y *= scale.y;
+            pos.z *= scale.z;
+        }
+
+        std::string to_string() {
+            std::stringstream ss;
+
+            ss << pos.x << ' ' << pos.y << ' ' << pos.z << ' ';
+            ss << color.x << ' ' << color.y << ' ' << color.z << ' ';
+            ss << texPos.x << ' ' << texPos.y;
+
+            return ss.str();
         }
     };
 }

@@ -10,12 +10,13 @@ namespace omniscia::renderer {
         protected:
             u32 _ID;
         public:
-            virtual void bind() {};
-            virtual void unbind() {};
+            virtual void bind() const {};
+            virtual void unbind() const {};
 
-            virtual void terminate() {};
+            virtual void terminate() const {};
 
             u32 get_id() const;
+            u32* get_id_ref();
     };
 }
 

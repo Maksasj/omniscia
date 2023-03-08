@@ -9,14 +9,14 @@ void omniscia::renderer::VAO::link_attribute(u32 index, u32 componentsNumber, u3
     glEnableVertexAttribArray(index);
 }
 
-void omniscia::renderer::VAO::bind() {
+void omniscia::renderer::VAO::bind() const {
     glBindVertexArray(_ID);
 }
 
-void omniscia::renderer::VAO::unbind() {
+void omniscia::renderer::VAO::unbind() const {
     glBindVertexArray(0);
 }
 
-void omniscia::renderer::VAO::terminate() {
+void omniscia::renderer::VAO::terminate() const {
     glDeleteVertexArrays(1, &_ID);
 }

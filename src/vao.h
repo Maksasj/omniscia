@@ -17,10 +17,10 @@ namespace omniscia::renderer {
 
             void link_attribute(u32 index, u32 componentsNumber, u32 type, u32 strideSize, void* offset);
 
-            void bind() override;
-            void unbind() override;
+            void bind() const override;
+            void unbind() const override;
 
-            void terminate() override;
+            void terminate() const override;
     };
 }
 

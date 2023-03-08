@@ -12,10 +12,10 @@ namespace omniscia::renderer {
         public:
             EBO(const std::vector<u32>& indices);
 
-            void bind() override;
-            void unbind() override;
+            void bind() const override;
+            void unbind() const override;
 
-            void terminate() override;
+            void terminate() const override;
     };
 }
 

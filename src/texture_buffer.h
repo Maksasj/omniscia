@@ -19,8 +19,8 @@ namespace omniscia::renderer::texture {
             TextureBuffer();
             TextureBuffer(const u32& width, const u32& height);
 
-            void bind() override;
-            void unbind() override;
+            void bind() const override;
+            void unbind() const override;
     };
 }
 

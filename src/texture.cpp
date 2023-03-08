@@ -1,6 +1,12 @@
 #include "texture.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 omniscia::renderer::texture::Texture::Texture() {
+    /*
+    stbi_set_flip_vertically_on_load(true);
+
     glGenTextures(1, &_ID);
     glBindTexture(GL_TEXTURE_2D, _ID);
     // set the texture wrapping/filtering options (on the currently bound texture object)
@@ -22,4 +28,5 @@ omniscia::renderer::texture::Texture::Texture() {
         std::cout << "Failed to load texture" << std::endl;
     }
     stbi_image_free(data);
+    */
 }

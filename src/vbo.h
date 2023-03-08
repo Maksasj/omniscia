@@ -15,10 +15,10 @@ namespace omniscia::renderer {
         public:
             VBO(const std::vector<Vertex>& vertices);
 
-            void bind() override;
-            void unbind() override;
+            void bind() const override;
+            void unbind() const override;
 
-            void terminate() override;
+            void terminate() const override;
     };
 }
 

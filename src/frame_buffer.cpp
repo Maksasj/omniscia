@@ -5,15 +5,15 @@ omniscia::renderer::FrameBuffer::FrameBuffer() {
     glBindFramebuffer(GL_FRAMEBUFFER, _ID);
 }
 
-void omniscia::renderer::FrameBuffer::bind() {
+void omniscia::renderer::FrameBuffer::bind() const {
     glBindFramebuffer(GL_FRAMEBUFFER, _ID);
 }
 
-void omniscia::renderer::FrameBuffer::unbind() {
+void omniscia::renderer::FrameBuffer::unbind() const {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void omniscia::renderer::FrameBuffer::terminate() {
+void omniscia::renderer::FrameBuffer::terminate() const {
 
 }
 
