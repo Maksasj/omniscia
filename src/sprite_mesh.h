@@ -25,11 +25,11 @@ namespace omniscia::renderer::sprite {
 
             VAO _vao;
         public:
+            SpriteMesh();
             SpriteMesh(RawMeshData rawMeshData);
-
             SpriteMesh(RawMeshData rawMeshData, const Vec3f& scale);
 
-            void bind();
+            void bind() const;
     };
 }
 

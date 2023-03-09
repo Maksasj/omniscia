@@ -7,15 +7,11 @@
 #include "sprite.h"
 #include "frame_buffer.h"
 #include "texture_manager.h"
+#include "render_stage.h"
 
 #include <iostream>
 
 #include <cmath>
-// #include <fstream>
-// #include <nlohmann/json.hpp>
-
-//void framebuffer_size_callback(GLFWwindow* window, i32 width, i32 height);
-//void processInput(GLFWwindow *window);
 
 int main() {
     using namespace omniscia::core;
@@ -39,6 +35,15 @@ int main() {
 
     Renderer::loadGL();
 
+    using namespace omniscia::renderer::sprite;
+    TextureManager::add_asset("assets/texture.png", "factorio_girl_texture");
+    TextureManager::add_asset("assets/jojo_texture.png", "jojo_texture");
+    
+    TextureManager::load_assets();
+
+    Sprite sprite1("jojo_texture", Vec3f{0.5f, 0.5f, 1.0f});
+    Sprite sprite2("factorio_girl_texture");
+
     ShaderManager shaderManager;
     shaderManager.add_asset("assets/shaders/frag_stage_1.glsl", "frag_stage_1", FRAGMENT_SHADER);
     shaderManager.add_asset("assets/shaders/frag_stage_2.glsl", "frag_stage_2", FRAGMENT_SHADER);
@@ -51,74 +56,39 @@ int main() {
     Shader shader2("vert_stage_2", "frag_stage_2");
     Shader shader3("vert_stage_3", "frag_stage_3");
 
-    if(shader1.try_compile())
-        shader1.compile();    
+    if(shader1.try_compile()) shader1.compile();
+    if(shader2.try_compile()) shader2.compile();
+    if(shader3.try_compile()) shader3.compile();
 
-    if(shader2.try_compile())
-        shader2.compile();    
+    RenderStage renderStage1;
+        renderStage1.bind_target_texture_buffer(new TextureBuffer(600, 600));
+        renderStage1.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
+        renderStage1.bind_default_shader(&shader1);
 
-    if(shader3.try_compile())
-        shader3.compile();   
+    RenderStage renderStage2;
+        renderStage2.bind_target_texture_buffer(new TextureBuffer(600, 600));
+        renderStage2.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
+        renderStage2.bind_default_shader(&shader2);
 
-    using namespace omniscia::renderer::sprite;
-
-    TextureManager::add_asset("assets/texture.png", "factorio_girl_texture");
-    TextureManager::add_asset("assets/jojo_texture.png", "jojo_texture");
-    TextureManager::load_assets();
-
-    Sprite sprite1("jojo_texture", Vec3f{0.5f, 0.5f, 1.0f});
-    //Sprite sprite1("jojo_texture");
-    Sprite sprite2("factorio_girl_texture");
-
-    FrameBuffer framebuffer1;
-        framebuffer1.bind();
-        TextureBuffer texture1(600, 600);
-        framebuffer1.bind_target_texture_buffer(texture1);
-    framebuffer1.unbind();
-
-    FrameBuffer framebuffer2;
-        framebuffer2.bind();
-        TextureBuffer texture2(600, 600);
-        framebuffer2.bind_target_texture_buffer(texture2);
-    framebuffer2.unbind();
-
-    //glEnable(GL_BLEND);
-    //glDisable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable( GL_BLEND );
+
     while (!glfwWindowShouldClose(window)) {
-        {
-            framebuffer1.bind();
-                //glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
-                //glClear(GL_COLOR_BUFFER_BIT);
         
-                shader1.activate();
-
-                sprite1.draw();
-
-            framebuffer1.unbind();
-        }
-        {
-            framebuffer2.bind();
-                //glClearColor(1.0f, 1.0f, 0.0f, 1.0f);
-                //glClear(GL_COLOR_BUFFER_BIT);
+        renderStage1.render_stage_lambda([&](){ 
+            sprite1.draw();
+        });
         
-                shader2.activate();
-
-                sprite2.draw();
-                texture1.bind();
-                glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-                
-            framebuffer2.unbind();
-        }
-        {
-            //glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
-            //glClear(GL_COLOR_BUFFER_BIT);
-            
+        renderStage2.render_stage_lambda([&](){ 
+            sprite2.draw();
+            renderStage1.present_as_texture();
+        });
+        
+        RenderStage::render_anonymous_stage_lambda([&]() {
+            Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 1.0});
             shader3.activate();
-            texture2.bind();
-            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        }
+            renderStage2.present_as_texture();
+        });
 
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -131,22 +101,3 @@ int main() {
     glfwTerminate();
     return 0;
 }
-
-/*
-// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
-// ---------------------------------------------------------------------------------------------------------
-void processInput(GLFWwindow *window)
-{
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
-}
-
-// glfw: whenever the window size changed (by OS or user resize) this callback function executes
-// ---------------------------------------------------------------------------------------------
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-    // make sure the viewport matches the new window dimensions; note that width and 
-    // height will be significantly larger than specified on retina displays.
-    glViewport(0, 0, width, height);
-}
-*/

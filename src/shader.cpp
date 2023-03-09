@@ -18,8 +18,8 @@ std::string omniscia::renderer::Shader::load_from_file(std::string path) {
 }
 
 i32 omniscia::renderer::Shader::try_compile() {
-    std::cout << _shaderAssetVertex->get_file_path() << "\n";
-    std::cout << _shaderAssetFragment->get_file_path() << "\n";
+    //std::cout << _shaderAssetVertex->get_file_path() << "\n";
+    //std::cout << _shaderAssetFragment->get_file_path() << "\n";
 
     std::string vertSource = load_from_file(_shaderAssetVertex->get_file_path());
     const char* vertexShaderSource = vertSource.c_str();
@@ -30,7 +30,7 @@ i32 omniscia::renderer::Shader::try_compile() {
     _vertexShaderTmp = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(_vertexShaderTmp, 1, &vertexShaderSource, NULL);
     glCompileShader(_vertexShaderTmp);
-    // check for shader compile errors
+
     i32 success;
     char infoLog[512];
     glGetShaderiv(_vertexShaderTmp, GL_COMPILE_STATUS, &success);
@@ -38,8 +38,6 @@ i32 omniscia::renderer::Shader::try_compile() {
         glGetShaderInfoLog(_vertexShaderTmp, 512, NULL, infoLog);
         std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
         return 0;
-    } else {
-        std::cout << "Succesfully compiled shader \n";
     }
 
     // fragment shader
@@ -52,8 +50,6 @@ i32 omniscia::renderer::Shader::try_compile() {
         glGetShaderInfoLog(_fragmentShaderTmp, 512, NULL, infoLog);
         std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
         return 0;
-    } else {
-        std::cout << "Succesfully compiled shader \n";
     }
 
     return 1;

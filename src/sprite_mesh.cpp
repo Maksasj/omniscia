@@ -1,5 +1,9 @@
 #include "sprite_mesh.h"
 
+omniscia::renderer::sprite::SpriteMesh::SpriteMesh() {
+
+}
+
 omniscia::renderer::sprite::SpriteMesh::SpriteMesh(RawMeshData rawMeshData) : _vao() {
     _vertices = rawMeshData.get_vetices();
     _indices = rawMeshData.get_indices();
@@ -40,6 +44,6 @@ omniscia::renderer::sprite::SpriteMesh::SpriteMesh(RawMeshData rawMeshData, cons
     ebo.unbind();
 }
 
-void omniscia::renderer::sprite::SpriteMesh::bind() {
+void omniscia::renderer::sprite::SpriteMesh::bind() const {
     _vao.bind();
 }

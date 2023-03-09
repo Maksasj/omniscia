@@ -13,3 +13,8 @@ void omniscia::renderer::Renderer::loadGL() {
         std::cout << "Failed to initialize GLAD" << std::endl;
     }
 }
+
+void omniscia::renderer::Renderer::clearBuffer(const Vec4f& color) {
+    glClearColor(color.x, color.y, color.z, color.w);
+    glClear(GL_COLOR_BUFFER_BIT);
+}

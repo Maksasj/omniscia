@@ -19,6 +19,5 @@ void omniscia::renderer::FrameBuffer::terminate() const {
 
 void omniscia::renderer::FrameBuffer::bind_target_texture_buffer(const omniscia::renderer::texture::TextureBuffer& textureBuffer) {
     bind();
-
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureBuffer.get_id(), 0);
 }

@@ -26,6 +26,10 @@ namespace omniscia::core {
         f32 z;
     };
 
+    struct Vec4f : Vec3f {
+        f32 w;
+    };
+
     struct Vec2i {
         i32 x;
         i32 y;
