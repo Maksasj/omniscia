@@ -39,15 +39,25 @@ int main() {
 
     Renderer::loadGL();
 
-    Shader shader1, shader2, shader3;
+    ShaderManager shaderManager;
+    shaderManager.add_asset("assets/shaders/frag_stage_1.glsl", "frag_stage_1", FRAGMENT_SHADER);
+    shaderManager.add_asset("assets/shaders/frag_stage_2.glsl", "frag_stage_2", FRAGMENT_SHADER);
+    shaderManager.add_asset("assets/shaders/frag_stage_3.glsl", "frag_stage_3", FRAGMENT_SHADER);
+    shaderManager.add_asset("assets/shaders/vert_stage_1.glsl", "vert_stage_1", VERTEX_SHADER);
+    shaderManager.add_asset("assets/shaders/vert_stage_2.glsl", "vert_stage_2", VERTEX_SHADER);
+    shaderManager.add_asset("assets/shaders/vert_stage_3.glsl", "vert_stage_3", VERTEX_SHADER);
 
-    if(shader1.try_compile("assets/shaders/vert_stage_1.glsl", "assets/shaders/frag_stage_1.glsl"))
+    Shader shader1("vert_stage_1", "frag_stage_1");
+    Shader shader2("vert_stage_2", "frag_stage_2");
+    Shader shader3("vert_stage_3", "frag_stage_3");
+
+    if(shader1.try_compile())
         shader1.compile();    
 
-    if(shader2.try_compile("assets/shaders/vert_stage_2.glsl", "assets/shaders/frag_stage_2.glsl"))
+    if(shader2.try_compile())
         shader2.compile();    
 
-    if(shader3.try_compile("assets/shaders/vert_stage_3.glsl", "assets/shaders/frag_stage_3.glsl"))
+    if(shader3.try_compile())
         shader3.compile();   
 
     using namespace omniscia::renderer::sprite;
@@ -56,8 +66,8 @@ int main() {
     TextureManager::add_asset("assets/jojo_texture.png", "jojo_texture");
     TextureManager::load_assets();
 
-    //Sprite sprite1("jojo_texture", Vec3f{0.5f, 0.5f, 1.0f});
-    Sprite sprite1("jojo_texture");
+    Sprite sprite1("jojo_texture", Vec3f{0.5f, 0.5f, 1.0f});
+    //Sprite sprite1("jojo_texture");
     Sprite sprite2("factorio_girl_texture");
 
     FrameBuffer framebuffer1;
@@ -79,8 +89,8 @@ int main() {
     while (!glfwWindowShouldClose(window)) {
         {
             framebuffer1.bind();
-                glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
-                glClear(GL_COLOR_BUFFER_BIT);
+                //glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+                //glClear(GL_COLOR_BUFFER_BIT);
         
                 shader1.activate();
 
@@ -90,8 +100,8 @@ int main() {
         }
         {
             framebuffer2.bind();
-                glClearColor(1.0f, 1.0f, 0.0f, 1.0f);
-                glClear(GL_COLOR_BUFFER_BIT);
+                //glClearColor(1.0f, 1.0f, 0.0f, 1.0f);
+                //glClear(GL_COLOR_BUFFER_BIT);
         
                 shader2.activate();
 
@@ -102,8 +112,8 @@ int main() {
             framebuffer2.unbind();
         }
         {
-            glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
-            glClear(GL_COLOR_BUFFER_BIT);
+            //glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+            //glClear(GL_COLOR_BUFFER_BIT);
             
             shader3.activate();
             texture2.bind();

@@ -19,37 +19,16 @@ namespace omniscia::renderer::sprite {
             SpriteMesh spriteMesh;
             Texture *texture;
         public:
-            Sprite(const std::string& texture_id) : spriteMesh(BuildInMeshData::QUAD_MESH_DATA) {
-                texture = TextureManager::get(texture_id).get_asset();
-            }
+            Sprite(const std::string& texture_id);
+            Sprite(const std::string& texture_id, const Vec3f& scale);
 
-            Sprite(const std::string& texture_id, const Vec3f& scale) : spriteMesh(BuildInMeshData::QUAD_MESH_DATA, scale) {
-                texture = TextureManager::get(texture_id).get_asset();
-            }
-
-            void set_texture_by_id(const std::string& texture_id) {
-                texture = TextureManager::get(texture_id).get_asset();
-            }
-
-            void bind() {
-                texture->bind();
-                spriteMesh.bind();
-            }
-
-            void unbind() {
-                texture->unbind();
-                //spriteMesh.unbind();
-            }
+            void bind();
+            void unbind();
             
-            SpriteMesh& get_mesh() {
-                return spriteMesh;
-            }
-
-            void draw() {
-                bind(); 
-                glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-                unbind();
-            }
+            void draw();
+            
+            void set_texture_by_id(const std::string& texture_id);
+            SpriteMesh& get_mesh();
     };
 }
 
