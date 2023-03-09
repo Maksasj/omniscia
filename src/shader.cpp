@@ -81,14 +81,38 @@ void omniscia::renderer::Shader::terminate() {
     glDeleteProgram(_shaderProgram);
 }
 
-void omniscia::renderer::Shader::set_uniform_f32(const char *uniform, f32 value) {
+void omniscia::renderer::Shader::set_uniform_f32(const char *uniform, f32 value) const {
     i32 vertexColorLocation = glGetUniformLocation(_shaderProgram, uniform);
     glUseProgram(_shaderProgram);
     glUniform1f(vertexColorLocation, value);
 }
 
-void omniscia::renderer::Shader::set_uniform_i32(const char *uniform, i32 value) {
+void omniscia::renderer::Shader::set_uniform_i32(const char *uniform, i32 value) const {
     i32 vertexColorLocation = glGetUniformLocation(_shaderProgram, uniform);
     glUseProgram(_shaderProgram);
     glUniform1i(vertexColorLocation, value);
+}
+
+void omniscia::renderer::Shader::set_uniform_vec2f(const char *uniform, Vec2f value) const {
+    i32 vertexColorLocation = glGetUniformLocation(_shaderProgram, uniform);
+    glUseProgram(_shaderProgram);
+    glUniform2f(vertexColorLocation, value.x, value.y);
+}
+
+void omniscia::renderer::Shader::set_uniform_vec2i(const char *uniform, Vec2i value) const {
+    i32 vertexColorLocation = glGetUniformLocation(_shaderProgram, uniform);
+    glUseProgram(_shaderProgram);
+    glUniform2i(vertexColorLocation, value.x, value.y);
+}
+
+void omniscia::renderer::Shader::set_uniform_vec3f(const char *uniform, Vec3f value) const {
+    i32 vertexColorLocation = glGetUniformLocation(_shaderProgram, uniform);
+    glUseProgram(_shaderProgram);
+    glUniform3f(vertexColorLocation, value.x, value.y, value.z);
+}
+
+void omniscia::renderer::Shader::set_uniform_vec3i(const char *uniform, Vec3i value) const {
+    i32 vertexColorLocation = glGetUniformLocation(_shaderProgram, uniform);
+    glUseProgram(_shaderProgram);
+    glUniform3i(vertexColorLocation, value.x, value.y, value.z);
 }

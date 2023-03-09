@@ -41,7 +41,7 @@ int main() {
     
     TextureManager::load_assets();
 
-    Sprite sprite1("jojo_texture", Vec3f{0.5f, 0.5f, 1.0f});
+    Sprite sprite1("jojo_texture");
     Sprite sprite2("factorio_girl_texture");
 
     ShaderManager shaderManager;
@@ -61,31 +61,38 @@ int main() {
     if(shader3.try_compile()) shader3.compile();
 
     RenderStage renderStage1;
-        renderStage1.bind_target_texture_buffer(new TextureBuffer(600, 600));
-        renderStage1.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
-        renderStage1.bind_default_shader(&shader1);
+    renderStage1.bind_target_texture_buffer(new TextureBuffer(600, 600));
+    renderStage1.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
+    renderStage1.bind_default_shader(&shader1);
 
     RenderStage renderStage2;
-        renderStage2.bind_target_texture_buffer(new TextureBuffer(600, 600));
-        renderStage2.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
-        renderStage2.bind_default_shader(&shader2);
+    renderStage2.bind_target_texture_buffer(new TextureBuffer(600, 600));
+    renderStage2.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
+    renderStage2.bind_default_shader(&shader2);
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     while (!glfwWindowShouldClose(window)) {
-        
+        static float f = 0;
+        f += 0.01f;
+
         renderStage1.render_stage_lambda([&](){ 
-            sprite1.draw();
+            Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
+
+            sprite1.render(&shader1, Vec2f{0.0f, 0.0f}, f, Vec2f{0.5f, 0.5f});
         });
         
         renderStage2.render_stage_lambda([&](){ 
-            sprite2.draw();
+            Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
+
+            sprite2.render(&shader2, Vec2f{0.0f, 0.0f}, -f*0.1);
             renderStage1.present_as_texture();
         });
-        
+
         RenderStage::render_anonymous_stage_lambda([&]() {
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 1.0});
+
             shader3.activate();
             renderStage2.present_as_texture();
         });

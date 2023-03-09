@@ -16,6 +16,7 @@ namespace omniscia::renderer {
     using namespace omniscia::core;
 
     class Shader {
+        u32 _shaderProgram;
 
         u32 _vertexShaderTmp;
         u32 _fragmentShaderTmp;
@@ -26,7 +27,6 @@ namespace omniscia::renderer {
         static std::string load_from_file(std::string path);
 
         public:
-        u32 _shaderProgram;
             Shader(const std::string& shaderVertId, const std::string& shaderFragId);
 
             i32 try_compile();
@@ -35,9 +35,13 @@ namespace omniscia::renderer {
 
             void activate();
 
-            void set_uniform_f32(const char *uniform, f32 value);
-            void set_uniform_i32(const char *uniform, i32 value);
-            
+            void set_uniform_f32(const char *uniform, f32 value) const;
+            void set_uniform_i32(const char *uniform, i32 value) const;
+            void set_uniform_vec2f(const char *uniform, Vec2f value) const;
+            void set_uniform_vec2i(const char *uniform, Vec2i value) const;
+            void set_uniform_vec3f(const char *uniform, Vec3f value) const;
+            void set_uniform_vec3i(const char *uniform, Vec3i value) const;
+
             void terminate();
     };
 }
