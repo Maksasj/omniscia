@@ -4,6 +4,7 @@
 #include <glad/glad.h>
 
 #include <vector>
+#include <algorithm>
 
 #include "vertex.h"
 
@@ -24,6 +25,8 @@ namespace omniscia::renderer::sprite {
             std::vector<Vertex>& get_vetices();
 
             std::vector<u32>& get_indices();
+
+            static RawMeshData combine(const RawMeshData& first, const RawMeshData& second);
     };
 }
 
