@@ -7,10 +7,14 @@ std::unordered_map<omniscia::core::PlayerController, bool> omniscia::core::Contr
 };
 
 std::unordered_map<u8, omniscia::core::PlayerController> omniscia::core::Controls::keyBindigs = {
-    {'w', omniscia::core::PlayerController::JUMP},
-    {'a', omniscia::core::PlayerController::LEFT},
-    {'d', omniscia::core::PlayerController::RIGHT}
+    {'W', omniscia::core::PlayerController::JUMP},
+    {'A', omniscia::core::PlayerController::LEFT},
+    {'D', omniscia::core::PlayerController::RIGHT}
 };
+
+bool omniscia::core::Controls::get(const PlayerController& action) {
+    return controlStates[action];
+}
 
 void omniscia::core::Controls::handle_input(GLFWwindow *window) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)

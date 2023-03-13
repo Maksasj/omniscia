@@ -2,6 +2,7 @@
 #define _CONTROLS_H_
 
 #include <GLFW/glfw3.h>
+#include <iostream>
 
 #include "unordered_map"
 
@@ -23,7 +24,7 @@ namespace omniscia::core {
         static std::unordered_map<u8, PlayerController> keyBindigs;
 
         public:
-            static void get();
+            static bool get(const PlayerController& action);
             static void handle_input(GLFWwindow *window);
     };
 }

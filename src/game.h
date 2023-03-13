@@ -11,6 +11,7 @@
 #include "texture_manager.h"
 #include "sprite.h" 
 #include "controls.h"
+#include "player.h"
 
 namespace omniscia {
     using namespace omniscia::core;

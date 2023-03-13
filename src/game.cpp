@@ -15,6 +15,7 @@ int omniscia::Game::load() {
     }
 
     glfwMakeContextCurrent(window);
+    glfwSwapInterval(1);
     //glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     Renderer::loadGL();
@@ -59,10 +60,27 @@ int omniscia::Game::run() {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+    Player player;
+    player.update();
+    std::cout << "1: "<< player.read() << "\n";
+
+    Player another = player.clone<Player>();
+    //another.update();
+    //another.update();
+    //another.update();
+    std::cout << "2: "<< another.read() << "\n";
+    std::cout << "3: "<< player.read() << "\n";
+    //std::vector<Player> vec;
+
     while (!glfwWindowShouldClose(window)) {
         Controls::handle_input(window);
         static float f = 0;
         f += 0.01f;
+        
+        //pp.push_back(player);
+
+        //player.update();
+        //vec.push_back(player);
 
         renderStage1.render_stage_lambda([&](){ 
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});

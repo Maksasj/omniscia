@@ -1,0 +1,10 @@
+
+C:\Programming\c++\omniscia>cmake --build build 
+[1/3] Building CXX object CMakeFiles/Omniscia.dir/src/main.cpp.obj
+[2/3] Building CXX object CMakeFiles/Omniscia.dir/src/game.cpp.obj
+[3/3] Linking CXX executable Omniscia.exe
+
+C:\Programming\c++\omniscia>build\Omniscia.exe
+1: 0
+2: 0
+3: 0

@@ -2,7 +2,7 @@
 
 int main() {
     using namespace omniscia;
-
+    
     Game game;
     game.load();
     game.run();

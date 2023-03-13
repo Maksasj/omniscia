@@ -3,9 +3,10 @@
 
 namespace omniscia::core {
     class GameObject {
-        GameObject() {
-            
-        }
+        public:
+            GameObject() {
+                
+            }
     };
 }
 
