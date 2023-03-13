@@ -62,15 +62,14 @@ int omniscia::Game::run() {
 
     Player player;
     player.update();
-    std::cout << "1: "<< player.read() << "\n";
+    std::cout << "First player: "<< player.read() << "\n";
 
-    Player another = player.clone<Player>();
-    //another.update();
-    //another.update();
-    //another.update();
-    std::cout << "2: "<< another.read() << "\n";
-    std::cout << "3: "<< player.read() << "\n";
-    //std::vector<Player> vec;
+    Player another = player.clone();
+    another.update();
+    another.update();
+    another.update();
+    std::cout << "Second player: "<< another.read() << "\n";
+    std::cout << "First player: "<< player.read() << "\n";
 
     while (!glfwWindowShouldClose(window)) {
         Controls::handle_input(window);

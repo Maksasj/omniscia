@@ -9,15 +9,14 @@
 #include "controls.h"
 
 namespace omniscia::core::ecs {
+    using namespace omniscia::core;
+
     class ECS_PlayerController : public ECS_Component {
         private:
 
         public:
             int pp;
-
-            ECS_PlayerController() {
-                pp = 0;
-            }
+            ECS_PlayerController() : pp(0) {}
 
             void lets_control() {
                 if(Controls::get(PlayerController::JUMP))
@@ -28,6 +27,10 @@ namespace omniscia::core::ecs {
 
                 if(Controls::get(PlayerController::RIGHT))
                     std::cout << "Right \n";
+            }
+
+            std::shared_ptr<ECS_Component> clone() override {
+                return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_PlayerController>(*this));
             }
     };
 }

@@ -1,10 +1,84 @@
 
 C:\Programming\c++\omniscia>cmake --build build 
 [1/3] Building CXX object CMakeFiles/Omniscia.dir/src/main.cpp.obj
+FAILED: CMakeFiles/Omniscia.dir/src/main.cpp.obj 
+C:\PROGRA~1\LLVM\bin\CLANG_~1.EXE  -IC:/Programming/c++/omniscia/3dparty/stb -IC:/Programming/c++/omniscia/3dparty/glfw/include -IC:/Programming/c++/omniscia/3dparty/glad/include -std=c++20 -g -Xclang -gcodeview -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -std=gnu++20 -MD -MT CMakeFiles/Omniscia.dir/src/main.cpp.obj -MF CMakeFiles\Omniscia.dir\src\main.cpp.obj.d -o CMakeFiles/Omniscia.dir/src/main.cpp.obj -c C:/Programming/c++/omniscia/src/main.cpp
+In file included from C:/Programming/c++/omniscia/src/main.cpp:1:
+In file included from C:/Programming/c++/omniscia/src/game.h:14:
+In file included from C:/Programming/c++/omniscia/src/player.h:4:
+C:/Programming/c++/omniscia/src/entity.h:56:24: error: no viable conversion from returned value of type 'std::optional<std::shared_ptr<ECS_PlayerController>>' to function return type 'std::shared_ptr<ECS_PlayerController>'
+                return _component_сontainer.get<T>(index.get());
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Programming/c++/omniscia/src/player.h:24:60: note: in instantiation of function template specialization 'omniscia::core::Entity::ref_at<omniscia::core::ecs::ECS_PlayerController>' requested here
+                std::shared_ptr<ECS_PlayerController> pc = ref_at<ECS_PlayerController>(pcIndex1);
+                                                           ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1506:15: note: candidate constructor not viable: no known conversion from 'std::optional<std::shared_ptr<ECS_PlayerController>>' to 'std::nullptr_t' for 1st argument
+    constexpr shared_ptr(nullptr_t) noexcept {} // construct empty shared_ptr
+              ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1562:5: note: candidate constructor not viable: no known conversion from 'std::optional<std::shared_ptr<ECS_PlayerController>>' to 'const std::shared_ptr<omniscia::core::ecs::ECS_PlayerController> &' for 1st argument
+    shared_ptr(const shared_ptr& _Other) noexcept { // construct shared_ptr object that owns same resource as _Other
+    ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1572:5: note: candidate constructor not viable: no known conversion from 'std::optional<std::shared_ptr<ECS_PlayerController>>' to 'std::shared_ptr<omniscia::core::ecs::ECS_PlayerController> &&' for 1st argument
+    shared_ptr(shared_ptr&& _Right) noexcept { // construct shared_ptr object that takes resource from _Right
+    ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1567:5: note: candidate template ignored: could not match 'shared_ptr' against 'optional'
+    shared_ptr(const shared_ptr<_Ty2>& _Other) noexcept {
+    ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1577:5: note: candidate template ignored: could not match 'shared_ptr' against 'optional'
+    shared_ptr(shared_ptr<_Ty2>&& _Right) noexcept { // construct shared_ptr object that takes resource from _Right
+    ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1601:5: note: candidate template ignored: could not match 'unique_ptr' against 'optional'
+    shared_ptr(unique_ptr<_Ux, _Dx>&& _Other) {
+    ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1512:14: note: explicit constructor is not a candidate
+    explicit shared_ptr(_Ux* _Px) { // construct shared_ptr object that owns _Px
+             ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1582:14: note: explicit constructor is not a candidate
+    explicit shared_ptr(const weak_ptr<_Ty2>& _Other) { // construct shared_ptr object that owns resource *_Other
+             ^
+1 error generated.
 [2/3] Building CXX object CMakeFiles/Omniscia.dir/src/game.cpp.obj
-[3/3] Linking CXX executable Omniscia.exe
+FAILED: CMakeFiles/Omniscia.dir/src/game.cpp.obj 
+C:\PROGRA~1\LLVM\bin\CLANG_~1.EXE  -IC:/Programming/c++/omniscia/3dparty/stb -IC:/Programming/c++/omniscia/3dparty/glfw/include -IC:/Programming/c++/omniscia/3dparty/glad/include -std=c++20 -g -Xclang -gcodeview -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -std=gnu++20 -MD -MT CMakeFiles/Omniscia.dir/src/game.cpp.obj -MF CMakeFiles\Omniscia.dir\src\game.cpp.obj.d -o CMakeFiles/Omniscia.dir/src/game.cpp.obj -c C:/Programming/c++/omniscia/src/game.cpp
+In file included from C:/Programming/c++/omniscia/src/game.cpp:1:
+In file included from C:/Programming/c++/omniscia/src/game.h:14:
+In file included from C:/Programming/c++/omniscia/src/player.h:4:
+C:/Programming/c++/omniscia/src/entity.h:56:24: error: no viable conversion from returned value of type 'std::optional<std::shared_ptr<ECS_PlayerController>>' to function return type 'std::shared_ptr<ECS_PlayerController>'
+                return _component_сontainer.get<T>(index.get());
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Programming/c++/omniscia/src/player.h:24:60: note: in instantiation of function template specialization 'omniscia::core::Entity::ref_at<omniscia::core::ecs::ECS_PlayerController>' requested here
+                std::shared_ptr<ECS_PlayerController> pc = ref_at<ECS_PlayerController>(pcIndex1);
+                                                           ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1506:15: note: candidate constructor not viable: no known conversion from 'std::optional<std::shared_ptr<ECS_PlayerController>>' to 'std::nullptr_t' for 1st argument
+    constexpr shared_ptr(nullptr_t) noexcept {} // construct empty shared_ptr
+              ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1562:5: note: candidate constructor not viable: no known conversion from 'std::optional<std::shared_ptr<ECS_PlayerController>>' to 'const std::shared_ptr<omniscia::core::ecs::ECS_PlayerController> &' for 1st argument
+    shared_ptr(const shared_ptr& _Other) noexcept { // construct shared_ptr object that owns same resource as _Other
+    ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1572:5: note: candidate constructor not viable: no known conversion from 'std::optional<std::shared_ptr<ECS_PlayerController>>' to 'std::shared_ptr<omniscia::core::ecs::ECS_PlayerController> &&' for 1st argument
+    shared_ptr(shared_ptr&& _Right) noexcept { // construct shared_ptr object that takes resource from _Right
+    ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1567:5: note: candidate template ignored: could not match 'shared_ptr' against 'optional'
+    shared_ptr(const shared_ptr<_Ty2>& _Other) noexcept {
+    ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1577:5: note: candidate template ignored: could not match 'shared_ptr' against 'optional'
+    shared_ptr(shared_ptr<_Ty2>&& _Right) noexcept { // construct shared_ptr object that takes resource from _Right
+    ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1601:5: note: candidate template ignored: could not match 'unique_ptr' against 'optional'
+    shared_ptr(unique_ptr<_Ux, _Dx>&& _Other) {
+    ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1512:14: note: explicit constructor is not a candidate
+    explicit shared_ptr(_Ux* _Px) { // construct shared_ptr object that owns _Px
+             ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1582:14: note: explicit constructor is not a candidate
+    explicit shared_ptr(const weak_ptr<_Ty2>& _Other) { // construct shared_ptr object that owns resource *_Other
+             ^
+1 error generated.
+ninja: build stopped: subcommand failed.
 
 C:\Programming\c++\omniscia>build\Omniscia.exe
-1: 0
-2: 0
-3: 0
+ECS_PlayerController exist: 1
+ECS_Positioned exist: 0
+First player: 1
+Second player: 4
+First player: 1
