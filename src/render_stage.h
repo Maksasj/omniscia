@@ -38,9 +38,23 @@ namespace omniscia::renderer {
             
             void render_stage_lambda(const std::function<void(void)> rendering_lambda) const;
             void render_stage_lambda_default(const std::function<void(void)> rendering_lambda) const;
+            void render_stage_lambda(const std::function<void(const Shader* shader)> rendering_lambda) const;        
+
             static void render_anonymous_stage_lambda(const std::function<void(void)> rendering_lambda);
 
             void present_as_texture() const;
+
+            void present_as_texture(const Shader *shader, const Vec2f &position) const;
+            void present_as_texture(const Shader *shader, const float &rotation) const;
+            void present_as_texture(const Shader *shader, const Vec2f &position, const Vec2f &scale) const;
+            void present_as_texture(const Shader *shader, const Vec2f &position, const float &rotation) const;
+            void present_as_texture(const Shader *shader, const Vec2f &position, const float &rotation, const Vec2f &scale) const;
+
+            void present_as_texture(const Vec2f &position) const;
+            void present_as_texture(const float &rotation) const;
+            void present_as_texture(const Vec2f &position, const Vec2f &scale) const;
+            void present_as_texture(const Vec2f &position, const float &rotation) const;
+            void present_as_texture(const Vec2f &position, const float &rotation, const Vec2f &scale) const;
     };
 }
 

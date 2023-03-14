@@ -11,6 +11,55 @@ void omniscia::renderer::RenderStage::present_as_texture() const {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
+void omniscia::renderer::RenderStage::present_as_texture(const Shader *shader, const Vec2f &position) const {
+    _textureBuffer->bind();
+    _spriteMesh.bind();
+
+    shader->set_uniform_vec2f("transform", position);
+    
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+}
+
+void omniscia::renderer::RenderStage::present_as_texture(const Shader *shader, const float &rotation) const {
+    _textureBuffer->bind();
+    _spriteMesh.bind();
+
+    shader->set_uniform_f32("rotation", rotation);
+
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+}
+
+void omniscia::renderer::RenderStage::present_as_texture(const Shader *shader, const Vec2f &position, const float &rotation) const {
+    _textureBuffer->bind();
+    _spriteMesh.bind();
+
+    shader->set_uniform_vec2f("transform", position);
+    shader->set_uniform_f32("rotation", rotation);
+    
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+}
+
+void omniscia::renderer::RenderStage::present_as_texture(const Shader *shader, const Vec2f &position, const Vec2f &scale) const {
+    _textureBuffer->bind();
+    _spriteMesh.bind();
+
+    shader->set_uniform_vec2f("transform", position);
+    shader->set_uniform_vec2f("scale", scale);
+
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+}
+
+void omniscia::renderer::RenderStage::present_as_texture(const Shader *shader, const Vec2f &position, const float &rotation, const Vec2f &scale) const {
+    _textureBuffer->bind();
+    _spriteMesh.bind();
+
+    shader->set_uniform_vec2f("transform", position);
+    shader->set_uniform_f32("rotation", rotation);
+    shader->set_uniform_vec2f("scale", scale);
+
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+}
+
 void omniscia::renderer::RenderStage::bind_target_mesh(const RawMeshData& rawMeshData) {
     _spriteMesh = SpriteMesh(rawMeshData);
 }
@@ -48,6 +97,15 @@ void omniscia::renderer::RenderStage::render_stage_lambda(const std::function<vo
 
         rendering_lambda();
     
+    unbind();
+}
+
+void omniscia::renderer::RenderStage::render_stage_lambda(const std::function<void(const Shader* shader)> rendering_lambda) const {        
+    bind();
+        if(_shader != nullptr)
+            _shader->activate();
+
+        rendering_lambda(_shader);
     unbind();
 }
 

@@ -9,7 +9,7 @@
 
 namespace omniscia::core::ecs {
     class ECS_Component {
-        protected:
+        private:
 
         public:
             virtual ~ECS_Component() = default;

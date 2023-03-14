@@ -25,6 +25,10 @@ namespace omniscia::core::ecs {
                 _pos = newPos;
             }
             
+            void move_pos(const Vec3f& movedPos) {
+                _pos += movedPos;
+            }
+
             std::shared_ptr<ECS_Component> clone() override {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_Positioned>(*this));
             }

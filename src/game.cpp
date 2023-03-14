@@ -29,7 +29,7 @@ int omniscia::Game::run() {
     TextureManager::add_asset("assets/jojo_texture.png", "jojo_texture");
     TextureManager::load_assets();
 
-    Sprite sprite1("jojo_texture");
+    //Sprite sprite1("jojo_texture");
     Sprite sprite2("factorio_girl_texture");
 
     ShaderManager::add_asset("assets/shaders/frag_stage_1.glsl", "frag_stage_1", FRAGMENT_SHADER);
@@ -61,49 +61,66 @@ int omniscia::Game::run() {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     Player player;
-    player.update();
-    std::cout << "First player: "<< player.read() << "\n";
 
-    Player another = player.clone();
-    another.update();
-    another.update();
-    another.update();
-    std::cout << "Second player: "<< another.read() << "\n";
-    std::cout << "First player: "<< player.read() << "\n";
+    /* ImGui */
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGui::StyleColorsDark();
+	ImGui_ImplGlfw_InitForOpenGL(window, true);
+	ImGui_ImplOpenGL3_Init("#version 330");
 
-    while (!glfwWindowShouldClose(window)) {
+    while (!glfwWindowShouldClose(window)) {   
+        // Tell OpenGL a new frame is about to begin
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+
         Controls::handle_input(window);
-        static float f = 0;
-        f += 0.01f;
-        
-        //pp.push_back(player);
 
-        //player.update();
-        //vec.push_back(player);
+        player.update();
 
         renderStage1.render_stage_lambda([&](){ 
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
 
-            sprite1.render(&shader1, Vec2f{0.0f, 0.0f}, f, Vec2f{0.5f, 0.5f});
+            player.render(&shader1);
         });
         
-        renderStage2.render_stage_lambda([&](){ 
+        renderStage2.render_stage_lambda([&](const Shader* stage_shader){ 
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
 
-            sprite2.render(&shader2, Vec2f{0.0f, 0.0f}, -f*0.1);
-            renderStage1.present_as_texture();
+            sprite2.render(stage_shader, Vec2f{0.0f, 0.0f}, 0.1);
+            renderStage1.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
         });
 
+        /* screen buffer */
         RenderStage::render_anonymous_stage_lambda([&]() {
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 1.0});
+
+            //ImGui_ImplOpenGL3_NewFrame();
+            //ImGui_ImplGlfw_NewFrame();
+            //ImGui::NewFrame();
 
             shader3.activate();
             renderStage2.present_as_texture();
         });
 
+
+
+        //ImGui::Begin("Poggers");
+        ImGui::ShowDemoWindow();
+        //ImGui::End();
+
+        ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
 
     glDisable(GL_BLEND);
 
