@@ -1,5 +1,9 @@
 #include "sprite.h"
 
+omniscia::renderer::sprite::Sprite::Sprite() : spriteMesh(BuildInMeshData::QUAD_MESH_DATA) {
+    texture = nullptr;
+}
+
 omniscia::renderer::sprite::Sprite::Sprite(const std::string& texture_id) : spriteMesh(BuildInMeshData::QUAD_MESH_DATA) {
     texture = TextureManager::get(texture_id).get_asset();
 }

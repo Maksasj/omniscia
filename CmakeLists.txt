@@ -11,9 +11,12 @@ find_package( OpenGL REQUIRED )
 include_directories( ${OPENGL_INCLUDE_DIRS} )
 
 include_directories("3dparty/stb")
+include_directories("3dparty/imgui")
+include_directories("3dparty/imgui/backends")
+
 add_subdirectory("3dparty")
 
-file(GLOB OMNISCIA-SRC "src/*.cpp")
+file(GLOB OMNISCIA-SRC "src/*.cpp" "3dparty/imgui/*.cpp" "3dparty/imgui/backends/imgui_impl_glfw.cpp" "3dparty/imgui/backends/imgui_impl_opengl3.cpp")
 
 add_executable( Omniscia ${OMNISCIA-SRC} )
 

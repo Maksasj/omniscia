@@ -21,6 +21,7 @@ namespace omniscia::renderer::sprite {
             SpriteMesh spriteMesh;
             Texture *texture;
         public:
+            Sprite();
             Sprite(const std::string& texture_id);
             Sprite(const std::string& texture_id, const Vec3f& scale);
 
@@ -36,6 +37,7 @@ namespace omniscia::renderer::sprite {
             void render(const Shader *shader, const Vec2f &position, const float &rotation, const Vec2f &scale) const;
             
             void set_texture_by_id(const std::string& texture_id);
+
             SpriteMesh& get_mesh();
     };
 }
