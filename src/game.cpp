@@ -28,10 +28,8 @@ int omniscia::Game::run() {
     using namespace omniscia::renderer::sprite;
     TextureManager::add_asset("assets/texture.png", "factorio_girl_texture");
     TextureManager::add_asset("assets/jojo_texture.png", "jojo_texture");
+    TextureManager::add_asset("assets/player.png", "player");
     TextureManager::load_assets();
-
-    //Sprite sprite1("jojo_texture");
-    Sprite sprite2("factorio_girl_texture");
 
     ShaderManager::add_asset("assets/shaders/frag_stage_1.glsl", "frag_stage_1", FRAGMENT_SHADER);
     ShaderManager::add_asset("assets/shaders/frag_stage_2.glsl", "frag_stage_2", FRAGMENT_SHADER);
@@ -49,41 +47,40 @@ int omniscia::Game::run() {
     if(shader3.try_compile()) shader3.compile();
 
     RenderStage renderStage1;
-    renderStage1.bind_target_texture_buffer(new TextureBuffer(600, 600));
+    renderStage1.bind_target_texture_buffer(new TextureBuffer(Properties::screen_width, Properties::screen_height));
     renderStage1.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
     renderStage1.bind_default_shader(&shader1);
 
     RenderStage renderStage2;
-    renderStage2.bind_target_texture_buffer(new TextureBuffer(600, 600));
+    renderStage2.bind_target_texture_buffer(new TextureBuffer(Properties::screen_width, Properties::screen_height));
     renderStage2.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
     renderStage2.bind_default_shader(&shader2);
 
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
     struct Level {
         Player player;
+        std::vector<Entity> entities;
 
         Level clone() {
-            return { player.clone() };
+            return {player.clone(), entities};
         }
     } level;
 
     //Level active;
     std::deque<Level> timeLine;
+    
+    for(int i = 0; i < 1; ++i) {
+        Entity wall = Entity();
+        wall.add(new ECS_Positioned());
+        wall.add(new ECS_SpriteRenderer("factorio_girl_texture", wall, 0));
+        level.entities.push_back(wall);
+    }
 
-    //Entity wall = Entity();
-    //wall.add(new ECS_Positioned());
-    //wall.add(new ECS_SpriteRenderer("factorio_girl_texture", wall));
-    //wall.add(new ECS_PlayerController(wall));
-//
-    //Entity player = Entity();
-    //player.add(new ECS_Positioned());
-    //player.add(new ECS_SpriteRenderer("jojo_texture", player));
-    //player.add(new ECS_PlayerController(player));
+    for(auto &p : level.entities) {
+        p.time_sync();
+    }
 
-    //Player player1 = player.clone();
-    //player1.time_sync();
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     /* ImGui */
 	IMGUI_CHECKVERSION();
@@ -94,7 +91,6 @@ int omniscia::Game::run() {
 	ImGui_ImplOpenGL3_Init("#version 330");
 
     u64 frame = 0;
-
     while (!glfwWindowShouldClose(window)) {   
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
@@ -103,11 +99,11 @@ int omniscia::Game::run() {
         ++frame;
 
         Controls::handle_input(window);
-
-
-
-        if(!Controls::get(PlayerController::TIME_JUMP)) {
-            if(frame % 5 == 0) {
+        
+        static f32 timeLineManipulationTime = 0;
+        if(frame % 5 == 0) {
+            std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+            if(!Controls::get(PlayerController::TIME_JUMP)) {
                 if(timeLine.size() > 0) {
                     level = timeLine[timeLine.size() - 1];
                     timeLine.pop_back();
@@ -116,19 +112,20 @@ int omniscia::Game::run() {
                     ECS_PlayerControllerSystem::get_instance().time_sync();
                     level.player.time_sync();
 
-                    //std::cout << "Tried to time jump\n";
+                    for(auto &p : level.entities) {
+                        p.time_sync();
+                    }
                 }
-            }
-        } else {
-            if(frame % 5 == 0) {
+            } else {
                 timeLine.push_back(level.clone());
 
                 if(timeLine.size() >= 5000) {
                     timeLine.pop_front();
                 }
-
-                //std::cout << "Time buffering\n";
             }
+
+            std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+            timeLineManipulationTime = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count() / 1000000.0;
         }
 
         renderStage1.render_stage_lambda([&](){ 
@@ -141,7 +138,6 @@ int omniscia::Game::run() {
         renderStage2.render_stage_lambda([&](const Shader* stage_shader){ 
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
 
-            //sprite2.render(stage_shader, Vec2f{0.0f, 0.0f}, 0.1);
             renderStage1.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
         });
 
@@ -155,7 +151,34 @@ int omniscia::Game::run() {
 
 
         /* ImGui */
-        ImGui::ShowDemoWindow();
+        {
+            ImGuiWindowFlags window_flags = 
+                ImGuiWindowFlags_NoDecoration | 
+                ImGuiWindowFlags_NoMove |
+                ImGuiWindowFlags_AlwaysAutoResize | 
+                ImGuiWindowFlags_NoSavedSettings | 
+                ImGuiWindowFlags_NoFocusOnAppearing | 
+                ImGuiWindowFlags_NoNav;
+
+            ImGui::SetNextWindowPos({10.0f, 10.0f}, 0, {0.0f, 0.0f});
+            ImGui::SetNextWindowBgAlpha(0.35f);
+            if (ImGui::Begin("Example: Simple overlay", nullptr, window_flags)) {
+                
+                ImGui::Text("Frames buffered %llu / %llu", timeLine.size(), (u64)5000);
+                ImGui::Text("Time manipulation time %f [ms]", timeLineManipulationTime);
+                ImGui::Separator();
+
+                ImGui::Text("Application average %.3f [ms/frame] (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
+                ImGui::Separator();
+
+                if (ImGui::IsMousePosValid())
+                    ImGui::Text("Mouse Position: (%.1f,%.1f)", io.MousePos.x, io.MousePos.y);
+                else
+                    ImGui::Text("Mouse Position: <invalid>");
+
+                ImGui::End();
+            }
+        }
 
         ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

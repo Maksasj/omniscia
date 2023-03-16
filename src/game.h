@@ -9,6 +9,7 @@
 #include <GLFW/glfw3.h>
 
 #include <deque>
+#include <chrono>
 
 #include "types.h"
 #include "render_stage.h"

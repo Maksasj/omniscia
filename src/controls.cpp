@@ -21,9 +21,6 @@ bool omniscia::core::Controls::get(const PlayerController& action) {
 }
 
 void omniscia::core::Controls::handle_input(GLFWwindow *window) {
-    //if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-    //    glfwSetWindowShouldClose(window, true);
-    
     for(auto &key : keyBindigs) {
         auto actionType = key.second.second;
 

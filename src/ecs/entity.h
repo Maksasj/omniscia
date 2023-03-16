@@ -18,6 +18,12 @@ namespace omniscia::core {
                 entity._component_сontainer = _component_сontainer.clone();
             }
             
+            Entity clone() {
+                Entity tmpEntity = *this;
+                clone_container_to(tmpEntity);
+                return tmpEntity;
+            }
+
             template<typename T>
             Entity& add(T* component) {
                 _component_сontainer.add(component, this);

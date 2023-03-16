@@ -21,22 +21,27 @@ namespace omniscia::core::ecs {
 
     class ECS_SpriteRenderer : public ECS_Component {
         private:
+            u32 _layer;
             std::reference_wrapper<Entity> _parent;
 
-            ECS_Index<ECS_Positioned> posIndex;
+            ECS_Index<ECS_Positioned> _posIndex;
             Sprite _sprite;
         public:
             void reindex(void* parent) override {
                 _parent = *(Entity*)parent;
-                posIndex = _parent.get().index<ECS_Positioned>();
+                _posIndex = _parent.get().index<ECS_Positioned>();
             }
 
             void time_sync() override;
 
-            ECS_SpriteRenderer(const std::string& texture_id, Entity& parent);
+            u32 get_layer() const {
+                return _layer;
+            }
+
+            ECS_SpriteRenderer(const std::string& texture_id, Entity& parent, const u32& layer);
 
             void render(const Shader *shader) {
-                ECS_Positioned &position = _parent.get().ref_unsafe(posIndex);
+                ECS_Positioned &position = _parent.get().ref_unsafe(_posIndex);
                 _sprite.render(shader, position.get_pos());
             }
 

@@ -12,7 +12,7 @@ namespace omniscia::core {
         public:
             Player() {
                 add(new ECS_Positioned(*this));
-                add(new ECS_SpriteRenderer("jojo_texture", *this));
+                add(new ECS_SpriteRenderer("player", *this, 1));
                 add(new ECS_PlayerController(*this));
             }
 
