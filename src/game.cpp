@@ -15,7 +15,8 @@ int omniscia::Game::load() {
     }
 
     glfwMakeContextCurrent(window);
-    glfwSwapInterval(1);
+
+    //glfwSwapInterval(1);
     //glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     Renderer::loadGL();
@@ -60,7 +61,29 @@ int omniscia::Game::run() {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    Player player;
+    struct Level {
+        Player player;
+
+        Level clone() {
+            return { player.clone() };
+        }
+    } level;
+
+    //Level active;
+    std::deque<Level> timeLine;
+
+    //Entity wall = Entity();
+    //wall.add(new ECS_Positioned());
+    //wall.add(new ECS_SpriteRenderer("factorio_girl_texture", wall));
+    //wall.add(new ECS_PlayerController(wall));
+//
+    //Entity player = Entity();
+    //player.add(new ECS_Positioned());
+    //player.add(new ECS_SpriteRenderer("jojo_texture", player));
+    //player.add(new ECS_PlayerController(player));
+
+    //Player player1 = player.clone();
+    //player1.time_sync();
 
     /* ImGui */
 	IMGUI_CHECKVERSION();
@@ -70,26 +93,55 @@ int omniscia::Game::run() {
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
 
+    u64 frame = 0;
+
     while (!glfwWindowShouldClose(window)) {   
-        // Tell OpenGL a new frame is about to begin
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
+        ++frame;
+
         Controls::handle_input(window);
 
-        player.update();
+
+
+        if(!Controls::get(PlayerController::TIME_JUMP)) {
+            if(frame % 5 == 0) {
+                if(timeLine.size() > 0) {
+                    level = timeLine[timeLine.size() - 1];
+                    timeLine.pop_back();
+
+                    ECS_SpriteRendererSystem::get_instance().time_sync();
+                    ECS_PlayerControllerSystem::get_instance().time_sync();
+                    level.player.time_sync();
+
+                    //std::cout << "Tried to time jump\n";
+                }
+            }
+        } else {
+            if(frame % 5 == 0) {
+                timeLine.push_back(level.clone());
+
+                if(timeLine.size() >= 5000) {
+                    timeLine.pop_front();
+                }
+
+                //std::cout << "Time buffering\n";
+            }
+        }
 
         renderStage1.render_stage_lambda([&](){ 
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
 
-            player.render(&shader1);
+            ECS_SpriteRendererSystem::get_instance().render(&shader1);
+            ECS_PlayerControllerSystem::get_instance().update();
         });
         
         renderStage2.render_stage_lambda([&](const Shader* stage_shader){ 
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
 
-            sprite2.render(stage_shader, Vec2f{0.0f, 0.0f}, 0.1);
+            //sprite2.render(stage_shader, Vec2f{0.0f, 0.0f}, 0.1);
             renderStage1.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
         });
 
@@ -97,19 +149,13 @@ int omniscia::Game::run() {
         RenderStage::render_anonymous_stage_lambda([&]() {
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 1.0});
 
-            //ImGui_ImplOpenGL3_NewFrame();
-            //ImGui_ImplGlfw_NewFrame();
-            //ImGui::NewFrame();
-
             shader3.activate();
             renderStage2.present_as_texture();
         });
 
 
-
-        //ImGui::Begin("Poggers");
+        /* ImGui */
         ImGui::ShowDemoWindow();
-        //ImGui::End();
 
         ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

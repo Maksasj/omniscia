@@ -8,6 +8,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include <deque>
+
 #include "types.h"
 #include "render_stage.h"
 #include "renderer.h"

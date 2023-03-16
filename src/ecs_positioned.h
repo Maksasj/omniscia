@@ -17,6 +17,12 @@ namespace omniscia::core::ecs {
                 _pos = Vec3f{0.0f, 0.0f, 0.0f};
             }
 
+            ECS_Positioned(const Entity& entity) {
+                _pos = Vec3f{0.0f, 0.0f, 0.0f};
+            }
+
+            void reindex(void* parent) override {}
+
             Vec3f get_pos() const {
                 return _pos;
             }
@@ -30,6 +36,7 @@ namespace omniscia::core::ecs {
             }
 
             std::shared_ptr<ECS_Component> clone() override {
+                //std::cout << "Yes i guess ?\n";
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_Positioned>(*this));
             }
     };
