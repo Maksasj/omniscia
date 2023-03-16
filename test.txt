@@ -1,10 +1,264 @@
 
 C:\Programming\c++\omniscia>cmake --build build 
-[1/3] Building CXX object CMakeFiles/Omniscia.dir/src/main.cpp.obj
-[2/3] Building CXX object CMakeFiles/Omniscia.dir/src/game.cpp.obj
-[3/3] Linking CXX executable Omniscia.exe
+[1/3] Building CXX object CMakeFiles/Omniscia.dir/src/game.cpp.obj
+FAILED: CMakeFiles/Omniscia.dir/src/game.cpp.obj 
+C:\PROGRA~1\LLVM\bin\CLANG_~1.EXE  -IC:/Programming/c++/omniscia/3dparty/stb -IC:/Programming/c++/omniscia/3dparty/imgui -IC:/Programming/c++/omniscia/3dparty/imgui/backends -IC:/Programming/c++/omniscia/3dparty/glfw/include -IC:/Programming/c++/omniscia/3dparty/glad/include -std=c++20 -O3 -std=gnu++20 -MD -MT CMakeFiles/Omniscia.dir/src/game.cpp.obj -MF CMakeFiles\Omniscia.dir\src\game.cpp.obj.d -o CMakeFiles/Omniscia.dir/src/game.cpp.obj -c C:/Programming/c++/omniscia/src/game.cpp
+In file included from C:/Programming/c++/omniscia/src/game.cpp:1:
+In file included from C:/Programming/c++/omniscia/src/game.h:12:
+In file included from C:/Programming/c++/omniscia/src/render_stage.h:5:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\functional:12:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\tuple:15:
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:145:9: error: no matching function for call to 'construct_at'
+        _STD construct_at(_STD addressof(_Obj), _STD forward<_Types>(_Args)...);
+        ^~~~~~~~~~~~~~~~~
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\yvals_core.h:1443:20: note: expanded from macro '_STD'
+#define _STD       ::std::
+                   ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:2018:13: note: in instantiation of function template specialization 'std::_Construct_in_place<omniscia::core::ecs::ECS_Component, omniscia::core::ecs::ECS_Component *&>' requested here
+            _Construct_in_place(_Storage._Value, _STD forward<_Types>(_Args)...);
+            ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:2730:26: note: in instantiation of function template specialization 'std::_Ref_count_obj2<omniscia::core::ecs::ECS_Component>::_Ref_count_obj2<omniscia::core::ecs::ECS_Component *&>' requested here
+    const auto _Rx = new _Ref_count_obj2<_Ty>(_STD forward<_Types>(_Args)...);
+                         ^
+C:/Programming/c++/omniscia/src/ecs_component_сontainer.tpp:67:47: note: in instantiation of function template specialization 'std::make_shared<omniscia::core::ecs::ECS_Component, omniscia::core::ecs::ECS_Component *&>' requested here
+                std::shared_ptr<T> ptr = std::make_shared<T>(component);
+                                              ^
+C:/Programming/c++/omniscia/src/entity.h:50:39: note: in instantiation of function template specialization 'omniscia::core::ecs::ECS_ComponentContainer::add<omniscia::core::ecs::ECS_Component>' requested here
+                _component_сontainer.add(component, this);
+                                     ^
+C:/Programming/c++/omniscia/src/player.h:18:17: note: in instantiation of function template specialization 'omniscia::core::Entity::add<omniscia::core::ecs::ECS_Component>' requested here
+                add(new ECS_Component());
+                ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:134:16: note: candidate template ignored: substitution failure [with _Ty = omniscia::core::ecs::ECS_Component, _Types = <omniscia::core::ecs::ECS_Component *&>]: no matching constructor for initialization of 'omniscia::core::ecs::ECS_Component'
+constexpr _Ty* construct_at(_Ty* const _Location, _Types&&... _Args) noexcept(
+               ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:149:53: error: no matching constructor for initialization of 'omniscia::core::ecs::ECS_Component'
+        ::new (_Voidify_iter(_STD addressof(_Obj))) _Ty(_STD forward<_Types>(_Args)...);
+                                                    ^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Programming/c++/omniscia/src/ecs_component.tpp:13:11: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'omniscia::core::ecs::ECS_Component *' to 'const omniscia::core::ecs::ECS_Component' for 1st argument; dereference the argument with *
+    class ECS_Component {
+          ^
+C:/Programming/c++/omniscia/src/ecs_component.tpp:13:11: note: candidate constructor (the implicit default constructor) not viable: requires 0 arguments, but 1 was provided
+In file included from C:/Programming/c++/omniscia/src/game.cpp:1:
+In file included from C:/Programming/c++/omniscia/src/game.h:12:
+In file included from C:/Programming/c++/omniscia/src/render_stage.h:5:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\functional:12:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\tuple:15:
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:145:9: error: no matching function for call to 'construct_at'
+        _STD construct_at(_STD addressof(_Obj), _STD forward<_Types>(_Args)...);
+        ^~~~~~~~~~~~~~~~~
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\yvals_core.h:1443:20: note: expanded from macro '_STD'
+#define _STD       ::std::
+                   ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:2018:13: note: in instantiation of function template specialization 'std::_Construct_in_place<omniscia::core::ecs::ECS_Positioned, omniscia::core::ecs::ECS_Positioned *&>' requested here
+            _Construct_in_place(_Storage._Value, _STD forward<_Types>(_Args)...);
+            ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:2730:26: note: in instantiation of function template specialization 'std::_Ref_count_obj2<omniscia::core::ecs::ECS_Positioned>::_Ref_count_obj2<omniscia::core::ecs::ECS_Positioned *&>' requested here
+    const auto _Rx = new _Ref_count_obj2<_Ty>(_STD forward<_Types>(_Args)...);
+                         ^
+C:/Programming/c++/omniscia/src/ecs_component_сontainer.tpp:67:47: note: in instantiation of function template specialization 'std::make_shared<omniscia::core::ecs::ECS_Positioned, omniscia::core::ecs::ECS_Positioned *&>' requested here
+                std::shared_ptr<T> ptr = std::make_shared<T>(component);
+                                              ^
+C:/Programming/c++/omniscia/src/entity.h:50:39: note: in instantiation of function template specialization 'omniscia::core::ecs::ECS_ComponentContainer::add<omniscia::core::ecs::ECS_Positioned>' requested here
+                _component_сontainer.add(component, this);
+                                     ^
+C:/Programming/c++/omniscia/src/player.h:19:17: note: in instantiation of function template specialization 'omniscia::core::Entity::add<omniscia::core::ecs::ECS_Positioned>' requested here
+                add(new ECS_Positioned(*this));
+                ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:134:16: note: candidate template ignored: substitution failure [with _Ty = omniscia::core::ecs::ECS_Positioned, _Types = <omniscia::core::ecs::ECS_Positioned *&>]: no matching constructor for initialization of 'omniscia::core::ecs::ECS_Positioned'
+constexpr _Ty* construct_at(_Ty* const _Location, _Types&&... _Args) noexcept(
+               ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:149:53: error: no matching constructor for initialization of 'omniscia::core::ecs::ECS_Positioned'
+        ::new (_Voidify_iter(_STD addressof(_Obj))) _Ty(_STD forward<_Types>(_Args)...);
+                                                    ^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Programming/c++/omniscia/src/ecs_positioned.h:12:11: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'omniscia::core::ecs::ECS_Positioned *' to 'const omniscia::core::ecs::ECS_Positioned' for 1st argument; dereference the argument with *
+    class ECS_Positioned : public ECS_Component {
+          ^
+C:/Programming/c++/omniscia/src/ecs_positioned.h:12:11: note: candidate constructor (the implicit move constructor) not viable: no known conversion from 'omniscia::core::ecs::ECS_Positioned *' to 'omniscia::core::ecs::ECS_Positioned' for 1st argument; dereference the argument with *
+C:/Programming/c++/omniscia/src/ecs_positioned.h:20:13: note: candidate constructor not viable: no known conversion from 'omniscia::core::ecs::ECS_Positioned *' to 'const omniscia::core::Entity' for 1st argument
+            ECS_Positioned(const Entity& entity) {
+            ^
+C:/Programming/c++/omniscia/src/ecs_positioned.h:16:13: note: candidate constructor not viable: requires 0 arguments, but 1 was provided
+            ECS_Positioned() {
+            ^
+In file included from C:/Programming/c++/omniscia/src/game.cpp:1:
+In file included from C:/Programming/c++/omniscia/src/game.h:12:
+In file included from C:/Programming/c++/omniscia/src/render_stage.h:5:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\functional:12:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\tuple:15:
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:145:9: error: no matching function for call to 'construct_at'
+        _STD construct_at(_STD addressof(_Obj), _STD forward<_Types>(_Args)...);
+        ^~~~~~~~~~~~~~~~~
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\yvals_core.h:1443:20: note: expanded from macro '_STD'
+#define _STD       ::std::
+                   ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:2018:13: note: in instantiation of function template specialization 'std::_Construct_in_place<omniscia::core::ecs::ECS_SpriteRenderer, omniscia::core::ecs::ECS_SpriteRenderer *&>' requested here
+            _Construct_in_place(_Storage._Value, _STD forward<_Types>(_Args)...);
+            ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:2730:26: note: in instantiation of function template specialization 'std::_Ref_count_obj2<omniscia::core::ecs::ECS_SpriteRenderer>::_Ref_count_obj2<omniscia::core::ecs::ECS_SpriteRenderer *&>' requested here
+    const auto _Rx = new _Ref_count_obj2<_Ty>(_STD forward<_Types>(_Args)...);
+                         ^
+C:/Programming/c++/omniscia/src/ecs_component_сontainer.tpp:67:47: note: in instantiation of function template specialization 'std::make_shared<omniscia::core::ecs::ECS_SpriteRenderer, omniscia::core::ecs::ECS_SpriteRenderer *&>' requested here
+                std::shared_ptr<T> ptr = std::make_shared<T>(component);
+                                              ^
+C:/Programming/c++/omniscia/src/entity.h:50:39: note: in instantiation of function template specialization 'omniscia::core::ecs::ECS_ComponentContainer::add<omniscia::core::ecs::ECS_SpriteRenderer>' requested here
+                _component_сontainer.add(component, this);
+                                     ^
+C:/Programming/c++/omniscia/src/player.h:20:17: note: in instantiation of function template specialization 'omniscia::core::Entity::add<omniscia::core::ecs::ECS_SpriteRenderer>' requested here
+                add(new ECS_SpriteRenderer("jojo_texture", *this));
+                ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:134:16: note: candidate template ignored: substitution failure [with _Ty = omniscia::core::ecs::ECS_SpriteRenderer, _Types = <omniscia::core::ecs::ECS_SpriteRenderer *&>]: no matching constructor for initialization of 'omniscia::core::ecs::ECS_SpriteRenderer'
+constexpr _Ty* construct_at(_Ty* const _Location, _Types&&... _Args) noexcept(
+               ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:149:53: error: no matching constructor for initialization of 'omniscia::core::ecs::ECS_SpriteRenderer'
+        ::new (_Voidify_iter(_STD addressof(_Obj))) _Ty(_STD forward<_Types>(_Args)...);
+                                                    ^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Programming/c++/omniscia/src/ecs_sprite_renderer.h:22:11: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'omniscia::core::ecs::ECS_SpriteRenderer *' to 'const omniscia::core::ecs::ECS_SpriteRenderer' for 1st argument; dereference the argument with *
+    class ECS_SpriteRenderer : public ECS_Component {
+          ^
+C:/Programming/c++/omniscia/src/ecs_sprite_renderer.h:22:11: note: candidate constructor (the implicit move constructor) not viable: no known conversion from 'omniscia::core::ecs::ECS_SpriteRenderer *' to 'omniscia::core::ecs::ECS_SpriteRenderer' for 1st argument; dereference the argument with *
+C:/Programming/c++/omniscia/src/ecs_sprite_renderer.h:34:13: note: candidate constructor not viable: requires 2 arguments, but 1 was provided
+            ECS_SpriteRenderer(const std::string& texture_id, Entity& parent);
+            ^
+6 errors generated.
+[2/3] Building CXX object CMakeFiles/Omniscia.dir/src/main.cpp.obj
+FAILED: CMakeFiles/Omniscia.dir/src/main.cpp.obj 
+C:\PROGRA~1\LLVM\bin\CLANG_~1.EXE  -IC:/Programming/c++/omniscia/3dparty/stb -IC:/Programming/c++/omniscia/3dparty/imgui -IC:/Programming/c++/omniscia/3dparty/imgui/backends -IC:/Programming/c++/omniscia/3dparty/glfw/include -IC:/Programming/c++/omniscia/3dparty/glad/include -std=c++20 -O3 -std=gnu++20 -MD -MT CMakeFiles/Omniscia.dir/src/main.cpp.obj -MF CMakeFiles\Omniscia.dir\src\main.cpp.obj.d -o CMakeFiles/Omniscia.dir/src/main.cpp.obj -c C:/Programming/c++/omniscia/src/main.cpp
+In file included from C:/Programming/c++/omniscia/src/main.cpp:1:
+In file included from C:/Programming/c++/omniscia/src/game.h:12:
+In file included from C:/Programming/c++/omniscia/src/render_stage.h:5:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\functional:12:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\tuple:15:
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:145:9: error: no matching function for call to 'construct_at'
+        _STD construct_at(_STD addressof(_Obj), _STD forward<_Types>(_Args)...);
+        ^~~~~~~~~~~~~~~~~
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\yvals_core.h:1443:20: note: expanded from macro '_STD'
+#define _STD       ::std::
+                   ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:2018:13: note: in instantiation of function template specialization 'std::_Construct_in_place<omniscia::core::ecs::ECS_Component, omniscia::core::ecs::ECS_Component *&>' requested here
+            _Construct_in_place(_Storage._Value, _STD forward<_Types>(_Args)...);
+            ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:2730:26: note: in instantiation of function template specialization 'std::_Ref_count_obj2<omniscia::core::ecs::ECS_Component>::_Ref_count_obj2<omniscia::core::ecs::ECS_Component *&>' requested here
+    const auto _Rx = new _Ref_count_obj2<_Ty>(_STD forward<_Types>(_Args)...);
+                         ^
+C:/Programming/c++/omniscia/src/ecs_component_сontainer.tpp:67:47: note: in instantiation of function template specialization 'std::make_shared<omniscia::core::ecs::ECS_Component, omniscia::core::ecs::ECS_Component *&>' requested here
+                std::shared_ptr<T> ptr = std::make_shared<T>(component);
+                                              ^
+C:/Programming/c++/omniscia/src/entity.h:50:39: note: in instantiation of function template specialization 'omniscia::core::ecs::ECS_ComponentContainer::add<omniscia::core::ecs::ECS_Component>' requested here
+                _component_сontainer.add(component, this);
+                                     ^
+C:/Programming/c++/omniscia/src/player.h:18:17: note: in instantiation of function template specialization 'omniscia::core::Entity::add<omniscia::core::ecs::ECS_Component>' requested here
+                add(new ECS_Component());
+                ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:134:16: note: candidate template ignored: substitution failure [with _Ty = omniscia::core::ecs::ECS_Component, _Types = <omniscia::core::ecs::ECS_Component *&>]: no matching constructor for initialization of 'omniscia::core::ecs::ECS_Component'
+constexpr _Ty* construct_at(_Ty* const _Location, _Types&&... _Args) noexcept(
+               ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:149:53: error: no matching constructor for initialization of 'omniscia::core::ecs::ECS_Component'
+        ::new (_Voidify_iter(_STD addressof(_Obj))) _Ty(_STD forward<_Types>(_Args)...);
+                                                    ^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Programming/c++/omniscia/src/ecs_component.tpp:13:11: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'omniscia::core::ecs::ECS_Component *' to 'const omniscia::core::ecs::ECS_Component' for 1st argument; dereference the argument with *
+    class ECS_Component {
+          ^
+C:/Programming/c++/omniscia/src/ecs_component.tpp:13:11: note: candidate constructor (the implicit default constructor) not viable: requires 0 arguments, but 1 was provided
+In file included from C:/Programming/c++/omniscia/src/main.cpp:1:
+In file included from C:/Programming/c++/omniscia/src/game.h:12:
+In file included from C:/Programming/c++/omniscia/src/render_stage.h:5:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\functional:12:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\tuple:15:
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:145:9: error: no matching function for call to 'construct_at'
+        _STD construct_at(_STD addressof(_Obj), _STD forward<_Types>(_Args)...);
+        ^~~~~~~~~~~~~~~~~
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\yvals_core.h:1443:20: note: expanded from macro '_STD'
+#define _STD       ::std::
+                   ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:2018:13: note: in instantiation of function template specialization 'std::_Construct_in_place<omniscia::core::ecs::ECS_Positioned, omniscia::core::ecs::ECS_Positioned *&>' requested here
+            _Construct_in_place(_Storage._Value, _STD forward<_Types>(_Args)...);
+            ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:2730:26: note: in instantiation of function template specialization 'std::_Ref_count_obj2<omniscia::core::ecs::ECS_Positioned>::_Ref_count_obj2<omniscia::core::ecs::ECS_Positioned *&>' requested here
+    const auto _Rx = new _Ref_count_obj2<_Ty>(_STD forward<_Types>(_Args)...);
+                         ^
+C:/Programming/c++/omniscia/src/ecs_component_сontainer.tpp:67:47: note: in instantiation of function template specialization 'std::make_shared<omniscia::core::ecs::ECS_Positioned, omniscia::core::ecs::ECS_Positioned *&>' requested here
+                std::shared_ptr<T> ptr = std::make_shared<T>(component);
+                                              ^
+C:/Programming/c++/omniscia/src/entity.h:50:39: note: in instantiation of function template specialization 'omniscia::core::ecs::ECS_ComponentContainer::add<omniscia::core::ecs::ECS_Positioned>' requested here
+                _component_сontainer.add(component, this);
+                                     ^
+C:/Programming/c++/omniscia/src/player.h:19:17: note: in instantiation of function template specialization 'omniscia::core::Entity::add<omniscia::core::ecs::ECS_Positioned>' requested here
+                add(new ECS_Positioned(*this));
+                ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:134:16: note: candidate template ignored: substitution failure [with _Ty = omniscia::core::ecs::ECS_Positioned, _Types = <omniscia::core::ecs::ECS_Positioned *&>]: no matching constructor for initialization of 'omniscia::core::ecs::ECS_Positioned'
+constexpr _Ty* construct_at(_Ty* const _Location, _Types&&... _Args) noexcept(
+               ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:149:53: error: no matching constructor for initialization of 'omniscia::core::ecs::ECS_Positioned'
+        ::new (_Voidify_iter(_STD addressof(_Obj))) _Ty(_STD forward<_Types>(_Args)...);
+                                                    ^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Programming/c++/omniscia/src/ecs_positioned.h:12:11: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'omniscia::core::ecs::ECS_Positioned *' to 'const omniscia::core::ecs::ECS_Positioned' for 1st argument; dereference the argument with *
+    class ECS_Positioned : public ECS_Component {
+          ^
+C:/Programming/c++/omniscia/src/ecs_positioned.h:12:11: note: candidate constructor (the implicit move constructor) not viable: no known conversion from 'omniscia::core::ecs::ECS_Positioned *' to 'omniscia::core::ecs::ECS_Positioned' for 1st argument; dereference the argument with *
+C:/Programming/c++/omniscia/src/ecs_positioned.h:20:13: note: candidate constructor not viable: no known conversion from 'omniscia::core::ecs::ECS_Positioned *' to 'const omniscia::core::Entity' for 1st argument
+            ECS_Positioned(const Entity& entity) {
+            ^
+C:/Programming/c++/omniscia/src/ecs_positioned.h:16:13: note: candidate constructor not viable: requires 0 arguments, but 1 was provided
+            ECS_Positioned() {
+            ^
+In file included from C:/Programming/c++/omniscia/src/main.cpp:1:
+In file included from C:/Programming/c++/omniscia/src/game.h:12:
+In file included from C:/Programming/c++/omniscia/src/render_stage.h:5:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\functional:12:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\tuple:15:
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:145:9: error: no matching function for call to 'construct_at'
+        _STD construct_at(_STD addressof(_Obj), _STD forward<_Types>(_Args)...);
+        ^~~~~~~~~~~~~~~~~
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\yvals_core.h:1443:20: note: expanded from macro '_STD'
+#define _STD       ::std::
+                   ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:2018:13: note: in instantiation of function template specialization 'std::_Construct_in_place<omniscia::core::ecs::ECS_SpriteRenderer, omniscia::core::ecs::ECS_SpriteRenderer *&>' requested here
+            _Construct_in_place(_Storage._Value, _STD forward<_Types>(_Args)...);
+            ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:2730:26: note: in instantiation of function template specialization 'std::_Ref_count_obj2<omniscia::core::ecs::ECS_SpriteRenderer>::_Ref_count_obj2<omniscia::core::ecs::ECS_SpriteRenderer *&>' requested here
+    const auto _Rx = new _Ref_count_obj2<_Ty>(_STD forward<_Types>(_Args)...);
+                         ^
+C:/Programming/c++/omniscia/src/ecs_component_сontainer.tpp:67:47: note: in instantiation of function template specialization 'std::make_shared<omniscia::core::ecs::ECS_SpriteRenderer, omniscia::core::ecs::ECS_SpriteRenderer *&>' requested here
+                std::shared_ptr<T> ptr = std::make_shared<T>(component);
+                                              ^
+C:/Programming/c++/omniscia/src/entity.h:50:39: note: in instantiation of function template specialization 'omniscia::core::ecs::ECS_ComponentContainer::add<omniscia::core::ecs::ECS_SpriteRenderer>' requested here
+                _component_сontainer.add(component, this);
+                                     ^
+C:/Programming/c++/omniscia/src/player.h:20:17: note: in instantiation of function template specialization 'omniscia::core::Entity::add<omniscia::core::ecs::ECS_SpriteRenderer>' requested here
+                add(new ECS_SpriteRenderer("jojo_texture", *this));
+                ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:134:16: note: candidate template ignored: substitution failure [with _Ty = omniscia::core::ecs::ECS_SpriteRenderer, _Types = <omniscia::core::ecs::ECS_SpriteRenderer *&>]: no matching constructor for initialization of 'omniscia::core::ecs::ECS_SpriteRenderer'
+constexpr _Ty* construct_at(_Ty* const _Location, _Types&&... _Args) noexcept(
+               ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:149:53: error: no matching constructor for initialization of 'omniscia::core::ecs::ECS_SpriteRenderer'
+        ::new (_Voidify_iter(_STD addressof(_Obj))) _Ty(_STD forward<_Types>(_Args)...);
+                                                    ^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Programming/c++/omniscia/src/ecs_sprite_renderer.h:22:11: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'omniscia::core::ecs::ECS_SpriteRenderer *' to 'const omniscia::core::ecs::ECS_SpriteRenderer' for 1st argument; dereference the argument with *
+    class ECS_SpriteRenderer : public ECS_Component {
+          ^
+C:/Programming/c++/omniscia/src/ecs_sprite_renderer.h:22:11: note: candidate constructor (the implicit move constructor) not viable: no known conversion from 'omniscia::core::ecs::ECS_SpriteRenderer *' to 'omniscia::core::ecs::ECS_SpriteRenderer' for 1st argument; dereference the argument with *
+C:/Programming/c++/omniscia/src/ecs_sprite_renderer.h:34:13: note: candidate constructor not viable: requires 2 arguments, but 1 was provided
+            ECS_SpriteRenderer(const std::string& texture_id, Entity& parent);
+            ^
+6 errors generated.
+ninja: build stopped: subcommand failed.
 
 C:\Programming\c++\omniscia>build\Omniscia.exe
-1: 0
-2: 0
-3: 0
+1 actual: 000000720456F8D0
+2 actual: 0000025F8C32D610
+selfish0000025F8C32D610
+Let's go i guess
+1 actual: 000000720456F8D0
+2 actual: 0000025F8C5D9B60
+selfish0000025F8C5D9B60
+Let's go i guess
+11
+self: 000000720456F8D0
+1 actual: 000000720456F8D0
+2 actual: 0000025F8C5E4FA0
+selfish0000025F8C5E4FA0
+Let's go i guess
+Let's go i guess
+Let's go i guess
+Let's go i guess

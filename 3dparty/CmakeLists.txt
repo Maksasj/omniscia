@@ -2,6 +2,20 @@ set( GLFW_BUILD_DOCS OFF CACHE BOOL  "" FORCE)
 set( GLFW_INSTALL OFF CACHE BOOL  "" FORCE)
 set( GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
-add_subdirectory("glad")
-add_subdirectory("glfw")
-add_subdirectory("json")
+add_subdirectory("3dparty/glad")
+add_subdirectory("3dparty/glfw")
+add_subdirectory("3dparty/json")
+
+# Handle includes
+include_directories("3dparty/stb")
+include_directories("3dparty/imgui")
+include_directories("3dparty/imgui/backends")
+
+# Add imgui source files
+file(GLOB IMGUI-SRC
+    "3dparty/imgui/*.cpp"
+    "3dparty/imgui/backends/imgui_impl_glfw.cpp"
+    "3dparty/imgui/backends/imgui_impl_opengl3.cpp"
+)
+
+list (APPEND OMNISCIA-SRC ${IMGUI-SRC})

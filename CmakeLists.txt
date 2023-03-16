@@ -1,19 +1,21 @@
 cmake_minimum_required( VERSION 3.1 )
+project( Omniscia )
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_BUILD_TYPE debug)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 
-project( Omniscia )
-
 find_package( OpenGL REQUIRED )
 include_directories( ${OPENGL_INCLUDE_DIRS} )
 
-include_directories("3dparty/stb")
-add_subdirectory("3dparty")
+file(GLOB_RECURSE OMNISCIA-SRC "src/*.cpp")
 
-file(GLOB OMNISCIA-SRC "src/*.cpp")
+# includes for all files in src(recusively)
+include("src/CmakeLists.txt")
+
+# handle 3dparty lib includes and etc.
+include("3dparty/CmakeLists.txt")
 
 add_executable( Omniscia ${OMNISCIA-SRC} )
 

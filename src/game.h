@@ -1,8 +1,15 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+
+#include <deque>
+#include <chrono>
 
 #include "types.h"
 #include "render_stage.h"
