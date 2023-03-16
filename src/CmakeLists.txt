@@ -1,0 +1,13 @@
+include_directories("src")
+
+# Entity component system
+include_directories("src/ecs")
+
+# Graphics
+include_directories("src/gfx")
+
+# ImGui
+include_directories("src/imgui")
+
+# Asset managment
+include_directories("src/asset")
