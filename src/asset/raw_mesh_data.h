@@ -4,6 +4,7 @@
 #include <glad/glad.h>
 
 #include <vector>
+#include <iostream>
 #include <algorithm>
 
 #include "vertex.h"

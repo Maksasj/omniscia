@@ -3,8 +3,8 @@
 omniscia::renderer::Shader::Shader(const std::string& shaderVertId, const std::string& shaderFragId) {
     using namespace omniscia::core;
     
-    _shaderAssetVertex = ShaderManager::get(shaderVertId);
-    _shaderAssetFragment = ShaderManager::get(shaderFragId);
+    _shaderAssetVertex = ShaderManager::get_instance().get(shaderVertId);
+    _shaderAssetFragment = ShaderManager::get_instance().get(shaderFragId);
 }
 
 

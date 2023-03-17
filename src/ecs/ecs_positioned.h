@@ -13,13 +13,10 @@ namespace omniscia::core::ecs {
         private:
             Vec3f _pos;
         public:
-            ECS_Positioned() {
-                _pos = Vec3f{0.0f, 0.0f, 0.0f};
-            }
-
-            ECS_Positioned(const Entity& entity) {
-                _pos = Vec3f{0.0f, 0.0f, 0.0f};
-            }
+            ECS_Positioned() { _pos = Vec3f{0.0f, 0.0f, 0.0f}; }
+            ECS_Positioned(const Entity& entity) { _pos = Vec3f{0.0f, 0.0f, 0.0f}; }
+            ECS_Positioned(const Vec3f& pos) { _pos = pos; }
+            ECS_Positioned(const Vec3f& pos, const Entity& entity) { _pos = pos; }
 
             void reindex(void* parent) override {}
 

@@ -11,9 +11,12 @@ uniform vec2 transform = vec2(0.0, 0.0);
 uniform float rotation = 0;
 uniform vec2 scale = vec2(1.0, 1.0);
 
+uniform float screen_aspect = 0.625;
+
 void main() {
    vec4 pos = vec4(vec4(aPos, 1.0f));
-   
+
+   pos.x *= screen_aspect;
    pos.xy *= scale;
    pos.xy += transform.xy;
 

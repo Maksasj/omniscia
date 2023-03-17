@@ -7,7 +7,7 @@
 
 namespace omniscia::renderer::sprite {
     struct BuildInMeshData {
-        static const RawMeshData QUAD_MESH_DATA;
+        static RawMeshData QUAD_MESH_DATA;
     };
 }
 

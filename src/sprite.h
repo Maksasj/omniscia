@@ -8,6 +8,7 @@
 #include "texture_manager.h"
 #include "texture.h"
 
+#include "properties.h"
 #include "shader.h"
 
 #include "types.h"
@@ -28,13 +29,16 @@ namespace omniscia::renderer::sprite {
             void bind() const;
             void unbind() const;
             
-            void render();
+            //void render();
 
+            void render(const Shader *shader) const;
             void render(const Shader *shader, const Vec2f &position) const;
             void render(const Shader *shader, const float &rotation) const;
             void render(const Shader *shader, const Vec2f &position, const Vec2f &scale) const;
             void render(const Shader *shader, const Vec2f &position, const float &rotation) const;
             void render(const Shader *shader, const Vec2f &position, const float &rotation, const Vec2f &scale) const;
+            
+            void render(const Shader *shader, const Vec2f &position, const float &rotation, const Vec2f &scale, const Vec2f &spriteFrameSize, const Vec2f &spriteSheetOffset) const;
             
             void set_texture_by_id(const std::string& texture_id);
 
