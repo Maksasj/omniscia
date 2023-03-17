@@ -26,17 +26,23 @@ int omniscia::Game::load() {
 
 int omniscia::Game::run() {
     using namespace omniscia::renderer::sprite;
-    TextureManager::add_asset("assets/texture.png", "factorio_girl_texture");
-    TextureManager::add_asset("assets/jojo_texture.png", "jojo_texture");
-    TextureManager::add_asset("assets/player.png", "player");
-    TextureManager::load_assets();
+    TextureManager::get_instance().add_asset("assets/texture.png", "factorio_girl_texture");
+    TextureManager::get_instance().add_asset("assets/jojo_texture.png", "jojo_texture");
+    TextureManager::get_instance().add_asset("assets/player.png", "player");
+    TextureManager::get_instance().add_asset("assets/player-spritesheet.png", "player-spritesheet");
 
-    ShaderManager::add_asset("assets/shaders/frag_stage_1.glsl", "frag_stage_1", FRAGMENT_SHADER);
-    ShaderManager::add_asset("assets/shaders/frag_stage_2.glsl", "frag_stage_2", FRAGMENT_SHADER);
-    ShaderManager::add_asset("assets/shaders/frag_stage_3.glsl", "frag_stage_3", FRAGMENT_SHADER);
-    ShaderManager::add_asset("assets/shaders/vert_stage_1.glsl", "vert_stage_1", VERTEX_SHADER);
-    ShaderManager::add_asset("assets/shaders/vert_stage_2.glsl", "vert_stage_2", VERTEX_SHADER);
-    ShaderManager::add_asset("assets/shaders/vert_stage_3.glsl", "vert_stage_3", VERTEX_SHADER);
+    TextureManager::get_instance().load_assets();
+
+    //Spritesheet::get_instance().add_asset("player-spritesheet", "player_run", Vec2i);
+
+    Sprite sprite1("factorio_girl_texture");
+
+    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_1.glsl", "frag_stage_1", FRAGMENT_SHADER);
+    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_2.glsl", "frag_stage_2", FRAGMENT_SHADER);
+    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_3.glsl", "frag_stage_3", FRAGMENT_SHADER);
+    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_1.glsl", "vert_stage_1", VERTEX_SHADER);
+    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_2.glsl", "vert_stage_2", VERTEX_SHADER);
+    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_3.glsl", "vert_stage_3", VERTEX_SHADER);
 
     Shader shader1("vert_stage_1", "frag_stage_1");
     Shader shader2("vert_stage_2", "frag_stage_2");
@@ -58,9 +64,11 @@ int omniscia::Game::run() {
 
     struct Level {
         Player player;
+        //std::array<Entity, 1000> entities;
         std::vector<Entity> entities;
 
         Level clone() {
+            //return {};
             return {player.clone(), entities};
         }
     } level;
@@ -98,6 +106,10 @@ int omniscia::Game::run() {
 
         ++frame;
 
+        if(glfwGetKey(window, 'C') == GLFW_PRESS) {
+            if(shader1.try_compile()) shader1.compile();
+        }
+
         Controls::handle_input(window);
         
         static f32 timeLineManipulationTime = 0;
@@ -108,8 +120,11 @@ int omniscia::Game::run() {
                     level = timeLine[timeLine.size() - 1];
                     timeLine.pop_back();
 
+                    ECS_SpriteSheetRendererSystem::get_instance().time_sync();
                     ECS_SpriteRendererSystem::get_instance().time_sync();
                     ECS_PlayerControllerSystem::get_instance().time_sync();
+                    ECS_SpriteAnimationSystem::get_instance().time_sync();
+                    
                     level.player.time_sync();
 
                     for(auto &p : level.entities) {
@@ -130,22 +145,27 @@ int omniscia::Game::run() {
 
         renderStage1.render_stage_lambda([&](){ 
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
+            
+            shader1.set_uniform_f32("screen_aspect", (Properties::screen_height / (float) Properties::screen_width));
 
             ECS_SpriteRendererSystem::get_instance().render(&shader1);
+            ECS_SpriteSheetRendererSystem::get_instance().render(&shader1);
             ECS_PlayerControllerSystem::get_instance().update();
+            ECS_SpriteAnimationSystem::get_instance().update();
         });
         
         renderStage2.render_stage_lambda([&](const Shader* stage_shader){ 
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
-
+            stage_shader->set_uniform_f32("screen_aspect", (Properties::screen_height / (float) Properties::screen_width));
             renderStage1.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
         });
 
         /* screen buffer */
         RenderStage::render_anonymous_stage_lambda([&]() {
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 1.0});
-
             shader3.activate();
+            shader3.set_uniform_f32("screen_aspect", (Properties::screen_height / (float) Properties::screen_width));
+
             renderStage2.present_as_texture();
         });
 

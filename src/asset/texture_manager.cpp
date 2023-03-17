@@ -1,7 +1,5 @@
 #include "texture_manager.h"
 
-std::unordered_map<std::string, omniscia::core::TextureAsset> omniscia::core::TextureManager::_data;
-
 omniscia::core::TextureAsset& omniscia::core::TextureManager::get(const std::string& key) {
     return _data[key];
 }

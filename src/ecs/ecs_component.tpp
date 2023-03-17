@@ -7,8 +7,6 @@
 
 #include "types.h"
 
-
-
 namespace omniscia::core::ecs {
     class ECS_Component {
         protected:

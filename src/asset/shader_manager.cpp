@@ -1,7 +1,5 @@
 #include "shader_manager.h"
 
-std::unordered_map<std::string, omniscia::core::ShaderAsset> omniscia::core::ShaderManager::_data;
-
 omniscia::core::ShaderAsset* omniscia::core::ShaderManager::get(const std::string& key) {
     return &_data[key];
 }

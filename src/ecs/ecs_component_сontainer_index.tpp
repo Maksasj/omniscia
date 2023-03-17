@@ -11,9 +11,23 @@ namespace omniscia::core::ecs {
     class ECS_Index {
         private:
             u32 _index;
+
+            bool _success;
         public:
-            ECS_Index() : _index(0) {}
-            ECS_Index(u32 index) : _index(index) {}
+            ECS_Index() : _index(0) { _success = false; }
+            ECS_Index(u32 index) : _index(index) { _success = true; }
+
+            ECS_Index(bool success) {
+                _success = success;
+            }
+
+            ECS_Index(void*) {
+                _success = false;
+            }
+
+            bool is_success() {
+                return _success;
+            }
 
             u32 get() const {
                 return _index;

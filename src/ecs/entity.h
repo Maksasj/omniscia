@@ -35,7 +35,6 @@ namespace omniscia::core {
                 return _component_сontainer.ref_unsafe<T>(__index.get());
             }
             
-            
             void time_sync() {
                 _component_сontainer.time_sync(this);
             }

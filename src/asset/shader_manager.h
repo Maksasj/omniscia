@@ -8,12 +8,23 @@
 
 namespace omniscia::core {
     class ShaderManager : Manager<ShaderAsset> {
+        private:
+            ShaderManager() {};
+            ShaderManager(ShaderManager const&) {};
+            void operator=(ShaderManager const&) {};
+
         protected:
-            static std::unordered_map<std::string, ShaderAsset> _data;
+            std::unordered_map<std::string, ShaderAsset> _data;
+        
         public:
-            static ShaderAsset* get(const std::string& key);
-            static void add_asset(const std::string& file_path, const std::string& key, const ShaderAssetType& shaderType);
-            static void load_assets();
+            ShaderAsset* get(const std::string& key);
+            void add_asset(const std::string& file_path, const std::string& key, const ShaderAssetType& shaderType);
+            void load_assets();
+
+            static ShaderManager& get_instance() {
+                static ShaderManager instance;
+                return instance;
+            }
     };
 };
 

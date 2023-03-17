@@ -56,7 +56,7 @@ namespace omniscia::core::ecs {
                     }
                 }
 
-                return ECS_Index<T>(-1);
+                return ECS_Index<T>(nullptr);
             }
 
             /* Utils */
