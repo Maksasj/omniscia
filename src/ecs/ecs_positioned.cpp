@@ -4,15 +4,7 @@ omniscia::core::ecs::ECS_Positioned::ECS_Positioned() {
     _pos = Vec3f{0.0f, 0.0f, 0.0f}; 
 }
 
-omniscia::core::ecs::ECS_Positioned::ECS_Positioned(const Entity& entity) {
-    _pos = Vec3f{0.0f, 0.0f, 0.0f};
-}
-
 omniscia::core::ecs::ECS_Positioned::ECS_Positioned(const Vec3f& pos) {
-    _pos = pos;
-}
-
-omniscia::core::ecs::ECS_Positioned::ECS_Positioned(const Vec3f& pos, const Entity& entity) {
     _pos = pos;
 }
 

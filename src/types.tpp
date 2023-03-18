@@ -2,6 +2,7 @@
 #define _OMMNISCIA_TYPES_H_
 
 #include <cstdint>
+#include <sstream>
 
 typedef uint8_t     u8;
 typedef uint16_t    u16;
@@ -26,6 +27,17 @@ namespace omniscia::core {
         Vec2 operator-(const Vec2& vec) { return Vec2{x - vec.x, y - vec.y }; }
         Vec2 operator*(const Vec2& vec) { return Vec2{x * vec.x, y * vec.y }; }
         Vec2 operator/(const Vec2& vec) { return Vec2{x / vec.x, y / vec.y }; }
+
+        Vec2<T>& operator+=(const T& other) { this->x += other; this->y += other; return *this; }
+        Vec2<T>& operator-=(const T& other) { this->x -= other; this->y -= other; return *this; }
+        Vec2<T>& operator*=(const T& other) { this->x *= other; this->y *= other; return *this; }
+        Vec2<T>& operator/=(const T& other) { this->x /= other; this->y /= other; return *this; }
+
+        std::string to_string() const {
+            std::stringstream ss;
+            ss << x << ' ' << y;
+            return ss.str();
+        }
     };
 
     template<typename T>
@@ -37,18 +49,17 @@ namespace omniscia::core {
         Vec3 operator*(const Vec3& vec) { return Vec3{x * vec.x, y * vec.y, z * vec.z}; }
         Vec3 operator/(const Vec3& vec) { return Vec3{x / vec.x, y / vec.y, z / vec.z}; }
 
-        Vec3& operator+=(const Vec3& vec){
-            this->x += vec.x;
-            this->y += vec.y;
-            this->z += vec.z;
-            return *this;
-        }
+        Vec3<T>& operator+=(const Vec3<T>& other) { this->x += other.x; this->y += other.y; this->z += other.z; return *this; }
+        
+        Vec3<T>& operator+=(const T& other) { this->x += other; this->y += other; this->z += other; return *this; }
+        Vec3<T>& operator-=(const T& other) { this->x -= other; this->y -= other; this->z -= other; return *this; }
+        Vec3<T>& operator*=(const T& other) { this->x *= other; this->y *= other; this->z *= other; return *this; }
+        Vec3<T>& operator/=(const T& other) { this->x /= other; this->y /= other; this->z /= other; return *this; }
 
-        Vec3& operator-=(const Vec3& vec){
-            this->x -= vec.x;
-            this->y -= vec.y;
-            this->z -= vec.z;
-            return *this;
+        std::string to_string() const {
+            std::stringstream ss;
+            ss << this->x << ' ' << this->y << ' ' << z;
+            return ss.str();
         }
     };
 
@@ -60,6 +71,17 @@ namespace omniscia::core {
         Vec4 operator-(const Vec4& vec) { return Vec4{x - vec.x, y - vec.y, z - vec.z, w - vec.w}; }
         Vec4 operator*(const Vec4& vec) { return Vec4{x * vec.x, y * vec.y, z * vec.z, w * vec.w}; }
         Vec4 operator/(const Vec4& vec) { return Vec4{x / vec.x, y / vec.y, z / vec.z, w / vec.w}; }
+
+        Vec4<T>& operator+=(const T& other) { this->x += other; this->y += other; this->z += other; this->w += other; return *this; }
+        Vec4<T>& operator-=(const T& other) { this->x -= other; this->y -= other; this->z -= other; this->w -= other; return *this; }
+        Vec4<T>& operator*=(const T& other) { this->x *= other; this->y *= other; this->z *= other; this->w *= other; return *this; }
+        Vec4<T>& operator/=(const T& other) { this->x /= other; this->y /= other; this->z /= other; this->w /= other; return *this; }
+
+        std::string to_string() const {
+            std::stringstream ss;
+            ss << this->x << ' ' << this->y << ' ' << this->z << ' ' << w; 
+            return ss.str();
+        }
     };
 
 

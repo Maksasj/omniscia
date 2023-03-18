@@ -15,9 +15,7 @@ namespace omniscia::core::ecs {
             Vec3f _pos;
         public:
             ECS_Positioned();
-            ECS_Positioned(const Entity& entity);
             ECS_Positioned(const Vec3f& pos);
-            ECS_Positioned(const Vec3f& pos, const Entity& entity);
 
             void reindex(void* parent) override;
 

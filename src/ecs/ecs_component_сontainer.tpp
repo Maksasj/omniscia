@@ -42,7 +42,6 @@ namespace omniscia::core::ecs {
 
             void time_sync(void* parent) {
                 for(auto &c : _components) {
-                    //std::cout << _components.size() << "\n";
                     c->reindex(parent);
                     c->time_sync();
                 }

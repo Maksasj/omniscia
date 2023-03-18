@@ -11,21 +11,37 @@ void omniscia::core::ecs::ECS_PlayerController::time_sync() {
 void  omniscia::core::ecs::ECS_PlayerController::reindex(void* parent) {
     _parent = *(Entity*)parent;
 
-    posIndex = _parent.get().index<ECS_Positioned>();
+    velocityIndex = _parent.get().index<ECS_Velocity>();
+    spriteFlipIndex = _parent.get().index<ECS_SpriteFlip>();
 }
 
 void  omniscia::core::ecs::ECS_PlayerController::control() {
-    ECS_Positioned &position = _parent.get().ref_unsafe(posIndex);
+    ECS_Velocity &velocityComp = _parent.get().ref_unsafe(velocityIndex);
+    Vec3f velocity = velocityComp.get_velocity();
 
-    if(Controls::get(PlayerController::JUMP))
-        position.move_pos(Vec3f{0.0f, 0.001f, 0.0f});
-    
-    if(Controls::get(PlayerController::DOWN))
-        position.move_pos(Vec3f{0.0f, -0.001f, 0.0f});
+    if(Controls::get(PlayerController::JUMP)) {
+        if(velocity.y == 0) {
+            velocityComp.add_velocity(Vec3f{0.0f, 0.02f, 0.0f});
+        }
+    }
         
-    if(Controls::get(PlayerController::LEFT))
-        position.move_pos(Vec3f{-0.001f, 0.0f, 0.0f});
+    if(Controls::get(PlayerController::LEFT)) {
+        velocityComp.add_velocity(Vec3f{-0.00005f, 0.0f, 0.0f});
+
+        if(spriteFlipIndex.is_success()) {
+            ECS_SpriteFlip& spriteFlip = _parent.get().ref_unsafe(spriteFlipIndex);
+            spriteFlip.set_vertical_flip(true);
+        }
+    }
     
-    if(Controls::get(PlayerController::RIGHT))
-        position.move_pos(Vec3f{0.001f, 0.0f, 0.0f});
+    if(Controls::get(PlayerController::RIGHT)) {
+        velocityComp.add_velocity(Vec3f{0.00005f, 0.0f, 0.0f});
+
+        if(spriteFlipIndex.is_success()) {
+            ECS_SpriteFlip& spriteFlip = _parent.get().ref_unsafe(spriteFlipIndex);
+            spriteFlip.set_vertical_flip(false);
+        }
+    }
+
+    velocityComp.clamp_velocity();
 }

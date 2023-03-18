@@ -16,6 +16,7 @@
 #include "ecs_positioned.h"
 #include "ecs_scaled.h"
 #include "ecs_sprite_animation.h"
+#include "ecs_sprite_flip.h"
 
 namespace omniscia::core::ecs {
     using namespace omniscia::renderer::sprite;
@@ -26,6 +27,7 @@ namespace omniscia::core::ecs {
             u32 _layer;
             std::reference_wrapper<Entity> _parent;
 
+            ECS_Index<ECS_SpriteFlip> _spriteFlipIndex;
             ECS_Index<ECS_SpriteAnimation> _animationIndex;
             ECS_Index<ECS_Positioned> _posIndex;
             ECS_Index<ECS_Scaled> _scaleIndex;

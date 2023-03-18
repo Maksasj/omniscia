@@ -42,6 +42,8 @@ namespace omniscia::renderer::sprite {
             void render(const Shader *shader, const Vec2f &position, const Matrix<f32, 2, 2> &rotation, const Vec2f &scale) const;
             void render(const Shader *shader, const Vec2f &position, const Matrix<f32, 2, 2> &rotation, const Vec2f &scale, const Vec2f &spriteFrameSize, const Vec2f &spriteSheetOffset) const;
             
+            void render(const Shader *shader, const Vec2f &position, const float &rotationAngle, const Vec2f &scale, const Vec2f &spriteFrameSize, const Vec2f &spriteSheetOffset,const bool& horizontalFlip,const bool& verticalFlip) const;
+
             void set_texture_by_id(const std::string& texture_id);
 
             SpriteMesh& get_mesh();

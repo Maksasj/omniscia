@@ -81,15 +81,29 @@ int omniscia::Game::run() {
     
     for(int i = 0; i < 1; ++i) {
         Entity wall = Entity();
-        wall.add(new ECS_Positioned());
+        wall.add(new ECS_Positioned({0.0, -0.7}));
+        wall.add(new ECS_Scaled({1.0, 0.25}, wall));
         wall.add(new ECS_SpriteRenderer("factorio_girl_texture", wall, 0));
+        wall.add(new ECS_AABBCollider(wall));
         level.entities.push_back(wall);
     }
 
+    /* Components binded twise, because of this we need to time sync imideialty */
+    ECS_SpriteSheetRendererSystem::get_instance().time_sync();
+    ECS_SpriteRendererSystem::get_instance().time_sync();
+    ECS_PlayerControllerSystem::get_instance().time_sync();
+    ECS_SpriteAnimationSystem::get_instance().time_sync();
+    ECS_AABBColliderSystem::get_instance().time_sync();
+    ECS_2DPhysicsRigidbodySystem::get_instance().time_sync();
+    ECS_GravitySystem::get_instance().time_sync();
+    ECS_VelocitySlowdownSystem::get_instance().time_sync();
+
+    level.player.time_sync();
     for(auto &p : level.entities) {
         p.time_sync();
     }
-
+    /* ======================================================================== */
+    
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -127,7 +141,11 @@ int omniscia::Game::run() {
                     ECS_SpriteRendererSystem::get_instance().time_sync();
                     ECS_PlayerControllerSystem::get_instance().time_sync();
                     ECS_SpriteAnimationSystem::get_instance().time_sync();
-                    
+                    ECS_AABBColliderSystem::get_instance().time_sync();
+                    ECS_2DPhysicsRigidbodySystem::get_instance().time_sync();
+                    ECS_GravitySystem::get_instance().time_sync();
+                    ECS_VelocitySlowdownSystem::get_instance().time_sync();
+
                     level.player.time_sync();
 
                     for(auto &p : level.entities) {
@@ -149,17 +167,21 @@ int omniscia::Game::run() {
         renderStage1.render_stage_lambda([&](){ 
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
             
-            shader1.set_uniform_f32("screen_aspect", (Properties::screen_height / (float) Properties::screen_width));
+            shader1.set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
 
             ECS_SpriteRendererSystem::get_instance().render(&shader1);
             ECS_SpriteSheetRendererSystem::get_instance().render(&shader1);
             ECS_PlayerControllerSystem::get_instance().update();
             ECS_SpriteAnimationSystem::get_instance().update();
+            ECS_GravitySystem::get_instance().update();
+            ECS_AABBColliderSystem::get_instance().update();
+            ECS_VelocitySlowdownSystem::get_instance().update();
+            ECS_2DPhysicsRigidbodySystem::get_instance().update();
         });
         
         renderStage2.render_stage_lambda([&](const Shader* stage_shader){ 
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
-            stage_shader->set_uniform_f32("screen_aspect", (Properties::screen_height / (float) Properties::screen_width));
+            stage_shader->set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
             renderStage1.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
         });
 
@@ -167,7 +189,7 @@ int omniscia::Game::run() {
         RenderStage::render_anonymous_stage_lambda([&]() {
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 1.0});
             shader3.activate();
-            shader3.set_uniform_f32("screen_aspect", (Properties::screen_height / (float) Properties::screen_width));
+            shader3.set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
 
             renderStage2.present_as_texture();
         });
