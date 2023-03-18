@@ -6,6 +6,7 @@
 #include <iostream>
 
 #include "ecs_component.tpp"
+#include "entity.h"
 #include "controls.h"
 
 namespace omniscia::core::ecs {
@@ -13,27 +14,18 @@ namespace omniscia::core::ecs {
         private:
             Vec3f _pos;
         public:
-            ECS_Positioned() { _pos = Vec3f{0.0f, 0.0f, 0.0f}; }
-            ECS_Positioned(const Entity& entity) { _pos = Vec3f{0.0f, 0.0f, 0.0f}; }
-            ECS_Positioned(const Vec3f& pos) { _pos = pos; }
-            ECS_Positioned(const Vec3f& pos, const Entity& entity) { _pos = pos; }
+            ECS_Positioned();
+            ECS_Positioned(const Entity& entity);
+            ECS_Positioned(const Vec3f& pos);
+            ECS_Positioned(const Vec3f& pos, const Entity& entity);
 
-            void reindex(void* parent) override {}
+            void reindex(void* parent) override;
 
-            Vec3f get_pos() const {
-                return _pos;
-            }
-
-            void set_pos(const Vec3f& newPos) {
-                _pos = newPos;
-            }
-            
-            void move_pos(const Vec3f& movedPos) {
-                _pos += movedPos;
-            }
+            Vec3f get_pos() const;
+            void set_pos(const Vec3f& newPos);
+            void move_pos(const Vec3f& movedPos);
 
             std::shared_ptr<ECS_Component> clone() override {
-                //std::cout << "Yes i guess ?\n";
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_Positioned>(*this));
             }
     };

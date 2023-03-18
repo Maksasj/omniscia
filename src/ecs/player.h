@@ -16,7 +16,7 @@ namespace omniscia::core {
             Player() {
                 add(new ECS_Positioned());
                 add(new ECS_Scaled({0.25, 0.25}));
-                add(new ECS_SpriteAnimation({1.0, 1.0}, {0.2, 0.2}, {0.0, 0.6}, 5, true));
+                add(new ECS_SpriteAnimation("player-run-animation"));
                 add(new ECS_SpriteSheetRenderer("player-spritesheet", *this, 1));
                 add(new ECS_PlayerController(*this));
             }

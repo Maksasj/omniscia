@@ -23,30 +23,10 @@ namespace omniscia::core::ecs {
         public:
             ECS_PlayerController(Entity& parent);
 
-            void reindex(void* parent) override {
-                _parent = *(Entity*)parent;
-
-                posIndex = _parent.get().index<ECS_Positioned>();
-            }
-
+            void reindex(void* parent) override;
             void time_sync() override;
 
-            void control() {
-                ECS_Positioned &position = _parent.get().ref_unsafe(posIndex);
-
-                if(Controls::get(PlayerController::JUMP))
-                    position.move_pos(Vec3f{0.0f, 0.001f, 0.0f});
-                
-                if(Controls::get(PlayerController::DOWN))
-                    position.move_pos(Vec3f{0.0f, -0.001f, 0.0f});
-                    
-                if(Controls::get(PlayerController::LEFT))
-                    position.move_pos(Vec3f{-0.001f, 0.0f, 0.0f});
-                
-                if(Controls::get(PlayerController::RIGHT))
-                    position.move_pos(Vec3f{0.001f, 0.0f, 0.0f});
-                
-            }
+            void control();
 
             std::shared_ptr<ECS_Component> clone() override {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_PlayerController>(*this));

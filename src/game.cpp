@@ -26,6 +26,9 @@ int omniscia::Game::load() {
 
 int omniscia::Game::run() {
     using namespace omniscia::renderer::sprite;
+
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.2, 0.2}, {0.0, 0.6}, 5, true}), "player-run-animation");
+
     TextureManager::get_instance().add_asset("assets/texture.png", "factorio_girl_texture");
     TextureManager::get_instance().add_asset("assets/jojo_texture.png", "jojo_texture");
     TextureManager::get_instance().add_asset("assets/player.png", "player");

@@ -1,224 +1,51 @@
 
 C:\Programming\c++\omniscia>cmake --build build 
-[1/4] Building CXX object CMakeFiles/Omniscia.dir/src/ecs/ecs_spritesheet_renderer.cpp.obj
-FAILED: CMakeFiles/Omniscia.dir/src/ecs/ecs_spritesheet_renderer.cpp.obj 
-C:\PROGRA~1\LLVM\bin\CLANG_~1.EXE  -IC:/Programming/c++/omniscia/src -IC:/Programming/c++/omniscia/src/ecs -IC:/Programming/c++/omniscia/src/gfx -IC:/Programming/c++/omniscia/src/imgui -IC:/Programming/c++/omniscia/src/asset -IC:/Programming/c++/omniscia/3dparty/stb -IC:/Programming/c++/omniscia/3dparty/imgui -IC:/Programming/c++/omniscia/3dparty/imgui/backends -IC:/Programming/c++/omniscia/3dparty/glfw/include -IC:/Programming/c++/omniscia/3dparty/glad/include -std=c++20 -g -Xclang -gcodeview -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -std=gnu++20 -MD -MT CMakeFiles/Omniscia.dir/src/ecs/ecs_spritesheet_renderer.cpp.obj -MF CMakeFiles\Omniscia.dir\src\ecs\ecs_spritesheet_renderer.cpp.obj.d -o CMakeFiles/Omniscia.dir/src/ecs/ecs_spritesheet_renderer.cpp.obj -c C:/Programming/c++/omniscia/src/ecs/ecs_spritesheet_renderer.cpp
-In file included from C:/Programming/c++/omniscia/src/ecs/ecs_spritesheet_renderer.cpp:1:
-C:/Programming/c++/omniscia/src/ecs/ecs_spritesheet_renderer.h:32:35: error: duplicate member '_scaleIndex'
-            ECS_Index<ECS_Scaled> _scaleIndex;
-                                  ^
-C:/Programming/c++/omniscia/src/ecs/ecs_spritesheet_renderer.h:31:35: note: previous declaration is here
-            ECS_Index<ECS_Scaled> _scaleIndex;
-                                  ^
-C:/Programming/c++/omniscia/src/ecs/ecs_spritesheet_renderer.h:72:24: error: no matching conversion for static_cast from 'enable_if_t<!is_array_v<omniscia::core::ecs::ECS_SpriteSheetRenderer>, shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>>' (aka 'std::shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>') to 'std::shared_ptr<ECS_Component>'
-                return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_SpriteSheetRenderer>(*this));
-                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1506:15: note: candidate constructor not viable: no known conversion from 'enable_if_t<!is_array_v<omniscia::core::ecs::ECS_SpriteSheetRenderer>, shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>>' (aka 'std::shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>') to 'std::nullptr_t' for 1st argument
-    constexpr shared_ptr(nullptr_t) noexcept {} // construct empty shared_ptr
-              ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1562:5: note: candidate constructor not viable: no known conversion from 'enable_if_t<!is_array_v<omniscia::core::ecs::ECS_SpriteSheetRenderer>, shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>>' (aka 'std::shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>') to 'const std::shared_ptr<omniscia::core::ecs::ECS_Component>' for 1st argument
-    shared_ptr(const shared_ptr& _Other) noexcept { // construct shared_ptr object that owns same resource as _Other
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1572:5: note: candidate constructor not viable: no known conversion from 'enable_if_t<!is_array_v<omniscia::core::ecs::ECS_SpriteSheetRenderer>, shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>>' (aka 'std::shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>') to 'std::shared_ptr<omniscia::core::ecs::ECS_Component>' for 1st argument
-    shared_ptr(shared_ptr&& _Right) noexcept { // construct shared_ptr object that takes resource from _Right
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1512:14: note: candidate template ignored: could not match '_Ux *' against 'enable_if_t<!is_array_v<omniscia::core::ecs::ECS_SpriteSheetRenderer>, shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>>' (aka 'std::shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>')
-    explicit shared_ptr(_Ux* _Px) { // construct shared_ptr object that owns _Px
-             ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1567:5: note: candidate template ignored: requirement '_SP_pointer_compatible<omniscia::core::ecs::ECS_SpriteSheetRenderer, omniscia::core::ecs::ECS_Component>::value' was not satisfied [with _Ty2 = omniscia::core::ecs::ECS_SpriteSheetRenderer]
-    shared_ptr(const shared_ptr<_Ty2>& _Other) noexcept {
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1577:5: note: candidate template ignored: requirement '_SP_pointer_compatible<omniscia::core::ecs::ECS_SpriteSheetRenderer, omniscia::core::ecs::ECS_Component>::value' was not satisfied [with _Ty2 = omniscia::core::ecs::ECS_SpriteSheetRenderer]
-    shared_ptr(shared_ptr<_Ty2>&& _Right) noexcept { // construct shared_ptr object that takes resource from _Right
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1582:14: note: candidate template ignored: could not match 'weak_ptr' against 'shared_ptr'
-    explicit shared_ptr(const weak_ptr<_Ty2>& _Other) { // construct shared_ptr object that owns resource *_Other
-             ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1601:5: note: candidate template ignored: could not match 'unique_ptr' against 'shared_ptr'
-    shared_ptr(unique_ptr<_Ux, _Dx>&& _Other) {
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1504:15: note: candidate constructor not viable: requires 0 arguments, but 1 was provided
-    constexpr shared_ptr() noexcept = default;
-              ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1526:5: note: candidate constructor template not viable: requires 2 arguments, but 1 was provided
-    shared_ptr(_Ux* _Px, _Dx _Dt) { // construct with _Px, deleter
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1540:5: note: candidate constructor template not viable: requires 2 arguments, but 1 was provided
-    shared_ptr(nullptr_t, _Dx _Dt) { // construct with nullptr, deleter
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1551:5: note: candidate constructor template not viable: requires 2 arguments, but 1 was provided
-    shared_ptr(const shared_ptr<_Ty2>& _Right, element_type* _Px) noexcept {
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1557:5: note: candidate constructor template not viable: requires 2 arguments, but 1 was provided
-    shared_ptr(shared_ptr<_Ty2>&& _Right, element_type* _Px) noexcept {
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1534:5: note: candidate constructor template not viable: requires 3 arguments, but 1 was provided
-    shared_ptr(_Ux* _Px, _Dx _Dt, _Alloc _Ax) { // construct with _Px, deleter, allocator
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1546:5: note: candidate constructor template not viable: requires 3 arguments, but 1 was provided
-    shared_ptr(nullptr_t, _Dx _Dt, _Alloc _Ax) { // construct with nullptr, deleter, allocator
-    ^
-2 errors generated.
+[1/4] Building CXX object CMakeFiles/Omniscia.dir/src/asset/animation_manager.cpp.obj
+FAILED: CMakeFiles/Omniscia.dir/src/asset/animation_manager.cpp.obj 
+C:\PROGRA~1\LLVM\bin\CLANG_~1.EXE  -IC:/Programming/c++/omniscia/src -IC:/Programming/c++/omniscia/src/ecs -IC:/Programming/c++/omniscia/src/gfx -IC:/Programming/c++/omniscia/src/imgui -IC:/Programming/c++/omniscia/src/asset -IC:/Programming/c++/omniscia/3dparty/stb -IC:/Programming/c++/omniscia/3dparty/imgui -IC:/Programming/c++/omniscia/3dparty/imgui/backends -IC:/Programming/c++/omniscia/3dparty/glfw/include -IC:/Programming/c++/omniscia/3dparty/glad/include -std=c++20 -g -Xclang -gcodeview -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -std=gnu++20 -MD -MT CMakeFiles/Omniscia.dir/src/asset/animation_manager.cpp.obj -MF CMakeFiles\Omniscia.dir\src\asset\animation_manager.cpp.obj.d -o CMakeFiles/Omniscia.dir/src/asset/animation_manager.cpp.obj -c C:/Programming/c++/omniscia/src/asset/animation_manager.cpp
+In file included from C:/Programming/c++/omniscia/src/asset/animation_manager.cpp:1:
+In file included from C:/Programming/c++/omniscia/src/asset/animation_manager.h:4:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\iostream:11:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\istream:11:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\ostream:11:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\ios:11:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xlocnum:12:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\cmath:26:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:15:
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\utility:268:62: error: no matching constructor for initialization of 'omniscia::core::AnimationAsset'
+        : first(_Tuple_get<_Indexes1>(_STD move(_Val1))...), second(_Tuple_get<_Indexes2>(_STD move(_Val2))...) {}
+                                                             ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\utility:272:11: note: in instantiation of function template specialization 'std::pair<const std::basic_string<char>, omniscia::core::AnimationAsset>::pair<std::tuple<const std::basic_string<char> &>, std::tuple<>, 0ULL>' requested here
+        : pair(_Val1, _Val2, index_sequence_for<_Types1...>{}, index_sequence_for<_Types2...>{}) {}
+          ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:136:45: note: in instantiation of function template specialization 'std::pair<const std::basic_string<char>, omniscia::core::AnimationAsset>::pair<const std::basic_string<char> &>' requested here
+    return ::new (_Voidify_iter(_Location)) _Ty(_STD forward<_Types>(_Args)...);
+                                            ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xmemory:676:18: note: in instantiation of function template specialization 'std::construct_at<std::pair<const std::basic_string<char>, omniscia::core::AnimationAsset>, const std::piecewise_construct_t &, std::tuple<const std::basic_string<char> &>, std::tuple<>, void>' requested here
+            _STD construct_at(_Ptr, _STD forward<_Types>(_Args)...);
+                 ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\list:584:25: note: in instantiation of function template specialization 'std::_Default_allocator_traits<std::allocator<std::_List_node<std::pair<const std::basic_string<char>, omniscia::core::AnimationAsset>, void *>>>::construct<std::pair<const std::basic_string<char>, omniscia::core::AnimationAsset>, const std::piecewise_construct_t &, std::tuple<const std::basic_string<char> &>, std::tuple<>>' requested here
+        _Alnode_traits::construct(this->_Al, _STD addressof(this->_Ptr->_Myval), _STD forward<_Valtys>(_Vals)...);
+                        ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xhash:684:41: note: in instantiation of function template specialization 'std::_List_node_emplace_op2<std::allocator<std::_List_node<std::pair<const std::basic_string<char>, omniscia::core::AnimationAsset>, void *>>>::_List_node_emplace_op2<const std::piecewise_construct_t &, std::tuple<const std::basic_string<char> &>, std::tuple<>>' requested here
+        _List_node_emplace_op2<_Alnode> _Newnode(_List._Getal(), piecewise_construct,
+                                        ^
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\unordered_map:382:22: note: in instantiation of function template specialization 'std::_Hash<std::_Umap_traits<std::basic_string<char>, omniscia::core::AnimationAsset, std::_Uhash_compare<std::basic_string<char>, std::hash<std::basic_string<char>>, std::equal_to<std::basic_string<char>>>, std::allocator<std::pair<const std::basic_string<char>, omniscia::core::AnimationAsset>>, false>>::_Try_emplace<const std::basic_string<char> &>' requested here
+        return this->_Try_emplace(_Keyval).first->_Myval.second;
+                     ^
+C:/Programming/c++/omniscia/src/asset/animation_manager.cpp:4:17: note: in instantiation of member function 'std::unordered_map<std::basic_string<char>, omniscia::core::AnimationAsset>::operator[]' requested here
+    return _data[key];
+                ^
+C:/Programming/c++/omniscia/src/asset/animation_asset.h:10:13: note: candidate constructor not viable: requires single argument 'animation', but no arguments were provided
+            AnimationAsset(const Animation& animation) {
+            ^
+C:/Programming/c++/omniscia/src/asset/animation_asset.h:8:11: note: candidate constructor (the implicit copy constructor) not viable: requires 1 argument, but 0 were provided
+    class AnimationAsset : public Asset<Animation> {
+          ^
+C:/Programming/c++/omniscia/src/asset/animation_asset.h:8:11: note: candidate constructor (the implicit move constructor) not viable: requires 1 argument, but 0 were provided
+1 error generated.
 [2/4] Building CXX object CMakeFiles/Omniscia.dir/src/main.cpp.obj
-FAILED: CMakeFiles/Omniscia.dir/src/main.cpp.obj 
-C:\PROGRA~1\LLVM\bin\CLANG_~1.EXE  -IC:/Programming/c++/omniscia/src -IC:/Programming/c++/omniscia/src/ecs -IC:/Programming/c++/omniscia/src/gfx -IC:/Programming/c++/omniscia/src/imgui -IC:/Programming/c++/omniscia/src/asset -IC:/Programming/c++/omniscia/3dparty/stb -IC:/Programming/c++/omniscia/3dparty/imgui -IC:/Programming/c++/omniscia/3dparty/imgui/backends -IC:/Programming/c++/omniscia/3dparty/glfw/include -IC:/Programming/c++/omniscia/3dparty/glad/include -std=c++20 -g -Xclang -gcodeview -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -std=gnu++20 -MD -MT CMakeFiles/Omniscia.dir/src/main.cpp.obj -MF CMakeFiles\Omniscia.dir\src\main.cpp.obj.d -o CMakeFiles/Omniscia.dir/src/main.cpp.obj -c C:/Programming/c++/omniscia/src/main.cpp
-In file included from C:/Programming/c++/omniscia/src/main.cpp:1:
-In file included from C:/Programming/c++/omniscia/src/game.h:21:
-In file included from C:/Programming/c++/omniscia/src/ecs\player.h:9:
-C:/Programming/c++/omniscia/src/ecs/ecs_spritesheet_renderer.h:32:35: error: duplicate member '_scaleIndex'
-            ECS_Index<ECS_Scaled> _scaleIndex;
-                                  ^
-C:/Programming/c++/omniscia/src/ecs/ecs_spritesheet_renderer.h:31:35: note: previous declaration is here
-            ECS_Index<ECS_Scaled> _scaleIndex;
-                                  ^
-C:/Programming/c++/omniscia/src/ecs/ecs_spritesheet_renderer.h:72:24: error: no matching conversion for static_cast from 'enable_if_t<!is_array_v<omniscia::core::ecs::ECS_SpriteSheetRenderer>, shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>>' (aka 'std::shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>') to 'std::shared_ptr<ECS_Component>'
-                return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_SpriteSheetRenderer>(*this));
-                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1506:15: note: candidate constructor not viable: no known conversion from 'enable_if_t<!is_array_v<omniscia::core::ecs::ECS_SpriteSheetRenderer>, shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>>' (aka 'std::shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>') to 'std::nullptr_t' for 1st argument
-    constexpr shared_ptr(nullptr_t) noexcept {} // construct empty shared_ptr
-              ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1562:5: note: candidate constructor not viable: no known conversion from 'enable_if_t<!is_array_v<omniscia::core::ecs::ECS_SpriteSheetRenderer>, shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>>' (aka 'std::shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>') to 'const std::shared_ptr<omniscia::core::ecs::ECS_Component>' for 1st argument
-    shared_ptr(const shared_ptr& _Other) noexcept { // construct shared_ptr object that owns same resource as _Other
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1572:5: note: candidate constructor not viable: no known conversion from 'enable_if_t<!is_array_v<omniscia::core::ecs::ECS_SpriteSheetRenderer>, shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>>' (aka 'std::shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>') to 'std::shared_ptr<omniscia::core::ecs::ECS_Component>' for 1st argument
-    shared_ptr(shared_ptr&& _Right) noexcept { // construct shared_ptr object that takes resource from _Right
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1512:14: note: candidate template ignored: could not match '_Ux *' against 'enable_if_t<!is_array_v<omniscia::core::ecs::ECS_SpriteSheetRenderer>, shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>>' (aka 'std::shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>')
-    explicit shared_ptr(_Ux* _Px) { // construct shared_ptr object that owns _Px
-             ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1567:5: note: candidate template ignored: requirement '_SP_pointer_compatible<omniscia::core::ecs::ECS_SpriteSheetRenderer, omniscia::core::ecs::ECS_Component>::value' was not satisfied [with _Ty2 = omniscia::core::ecs::ECS_SpriteSheetRenderer]
-    shared_ptr(const shared_ptr<_Ty2>& _Other) noexcept {
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1577:5: note: candidate template ignored: requirement '_SP_pointer_compatible<omniscia::core::ecs::ECS_SpriteSheetRenderer, omniscia::core::ecs::ECS_Component>::value' was not satisfied [with _Ty2 = omniscia::core::ecs::ECS_SpriteSheetRenderer]
-    shared_ptr(shared_ptr<_Ty2>&& _Right) noexcept { // construct shared_ptr object that takes resource from _Right
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1582:14: note: candidate template ignored: could not match 'weak_ptr' against 'shared_ptr'
-    explicit shared_ptr(const weak_ptr<_Ty2>& _Other) { // construct shared_ptr object that owns resource *_Other
-             ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1601:5: note: candidate template ignored: could not match 'unique_ptr' against 'shared_ptr'
-    shared_ptr(unique_ptr<_Ux, _Dx>&& _Other) {
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1504:15: note: candidate constructor not viable: requires 0 arguments, but 1 was provided
-    constexpr shared_ptr() noexcept = default;
-              ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1526:5: note: candidate constructor template not viable: requires 2 arguments, but 1 was provided
-    shared_ptr(_Ux* _Px, _Dx _Dt) { // construct with _Px, deleter
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1540:5: note: candidate constructor template not viable: requires 2 arguments, but 1 was provided
-    shared_ptr(nullptr_t, _Dx _Dt) { // construct with nullptr, deleter
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1551:5: note: candidate constructor template not viable: requires 2 arguments, but 1 was provided
-    shared_ptr(const shared_ptr<_Ty2>& _Right, element_type* _Px) noexcept {
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1557:5: note: candidate constructor template not viable: requires 2 arguments, but 1 was provided
-    shared_ptr(shared_ptr<_Ty2>&& _Right, element_type* _Px) noexcept {
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1534:5: note: candidate constructor template not viable: requires 3 arguments, but 1 was provided
-    shared_ptr(_Ux* _Px, _Dx _Dt, _Alloc _Ax) { // construct with _Px, deleter, allocator
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1546:5: note: candidate constructor template not viable: requires 3 arguments, but 1 was provided
-    shared_ptr(nullptr_t, _Dx _Dt, _Alloc _Ax) { // construct with nullptr, deleter, allocator
-    ^
-In file included from C:/Programming/c++/omniscia/src/main.cpp:1:
-In file included from C:/Programming/c++/omniscia/src/game.h:21:
-In file included from C:/Programming/c++/omniscia/src/ecs\player.h:4:
-In file included from C:/Programming/c++/omniscia/src/ecs/entity.h:4:
-C:/Programming/c++/omniscia/src/ecs/ecs_component_сontainer.tpp:40:29: error: no matching member function for call to 'push_back'
-                _components.push_back(ptr);
-                ~~~~~~~~~~~~^~~~~~~~~
-C:/Programming/c++/omniscia/src/ecs/entity.h:29:39: note: in instantiation of function template specialization 'omniscia::core::ecs::ECS_ComponentContainer::add<omniscia::core::ecs::ECS_SpriteSheetRenderer>' requested here
-                _component_сontainer.add(component, this);
-                                     ^
-C:/Programming/c++/omniscia/src/ecs\player.h:20:17: note: in instantiation of function template specialization 'omniscia::core::Entity::add<omniscia::core::ecs::ECS_SpriteSheetRenderer>' requested here
-                add(new ECS_SpriteSheetRenderer("player-spritesheet", *this, 1));
-                ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\vector:896:23: note: candidate function not viable: no known conversion from 'shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>' to 'const shared_ptr<omniscia::core::ecs::ECS_Component>' for 1st argument
-    _CONSTEXPR20 void push_back(const _Ty& _Val) { // insert element at end, provide strong guarantee
-                      ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\vector:900:23: note: candidate function not viable: no known conversion from 'shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>' to 'shared_ptr<omniscia::core::ecs::ECS_Component>' for 1st argument
-    _CONSTEXPR20 void push_back(_Ty&& _Val) {
-                      ^
-3 errors generated.
 [3/4] Building CXX object CMakeFiles/Omniscia.dir/src/game.cpp.obj
-FAILED: CMakeFiles/Omniscia.dir/src/game.cpp.obj 
-C:\PROGRA~1\LLVM\bin\CLANG_~1.EXE  -IC:/Programming/c++/omniscia/src -IC:/Programming/c++/omniscia/src/ecs -IC:/Programming/c++/omniscia/src/gfx -IC:/Programming/c++/omniscia/src/imgui -IC:/Programming/c++/omniscia/src/asset -IC:/Programming/c++/omniscia/3dparty/stb -IC:/Programming/c++/omniscia/3dparty/imgui -IC:/Programming/c++/omniscia/3dparty/imgui/backends -IC:/Programming/c++/omniscia/3dparty/glfw/include -IC:/Programming/c++/omniscia/3dparty/glad/include -std=c++20 -g -Xclang -gcodeview -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -std=gnu++20 -MD -MT CMakeFiles/Omniscia.dir/src/game.cpp.obj -MF CMakeFiles\Omniscia.dir\src\game.cpp.obj.d -o CMakeFiles/Omniscia.dir/src/game.cpp.obj -c C:/Programming/c++/omniscia/src/game.cpp
-In file included from C:/Programming/c++/omniscia/src/game.cpp:1:
-In file included from C:/Programming/c++/omniscia/src/game.h:21:
-In file included from C:/Programming/c++/omniscia/src/ecs\player.h:9:
-C:/Programming/c++/omniscia/src/ecs/ecs_spritesheet_renderer.h:32:35: error: duplicate member '_scaleIndex'
-            ECS_Index<ECS_Scaled> _scaleIndex;
-                                  ^
-C:/Programming/c++/omniscia/src/ecs/ecs_spritesheet_renderer.h:31:35: note: previous declaration is here
-            ECS_Index<ECS_Scaled> _scaleIndex;
-                                  ^
-C:/Programming/c++/omniscia/src/ecs/ecs_spritesheet_renderer.h:72:24: error: no matching conversion for static_cast from 'enable_if_t<!is_array_v<omniscia::core::ecs::ECS_SpriteSheetRenderer>, shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>>' (aka 'std::shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>') to 'std::shared_ptr<ECS_Component>'
-                return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_SpriteSheetRenderer>(*this));
-                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1506:15: note: candidate constructor not viable: no known conversion from 'enable_if_t<!is_array_v<omniscia::core::ecs::ECS_SpriteSheetRenderer>, shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>>' (aka 'std::shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>') to 'std::nullptr_t' for 1st argument
-    constexpr shared_ptr(nullptr_t) noexcept {} // construct empty shared_ptr
-              ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1562:5: note: candidate constructor not viable: no known conversion from 'enable_if_t<!is_array_v<omniscia::core::ecs::ECS_SpriteSheetRenderer>, shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>>' (aka 'std::shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>') to 'const std::shared_ptr<omniscia::core::ecs::ECS_Component>' for 1st argument
-    shared_ptr(const shared_ptr& _Other) noexcept { // construct shared_ptr object that owns same resource as _Other
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1572:5: note: candidate constructor not viable: no known conversion from 'enable_if_t<!is_array_v<omniscia::core::ecs::ECS_SpriteSheetRenderer>, shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>>' (aka 'std::shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>') to 'std::shared_ptr<omniscia::core::ecs::ECS_Component>' for 1st argument
-    shared_ptr(shared_ptr&& _Right) noexcept { // construct shared_ptr object that takes resource from _Right
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1512:14: note: candidate template ignored: could not match '_Ux *' against 'enable_if_t<!is_array_v<omniscia::core::ecs::ECS_SpriteSheetRenderer>, shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>>' (aka 'std::shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>')
-    explicit shared_ptr(_Ux* _Px) { // construct shared_ptr object that owns _Px
-             ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1567:5: note: candidate template ignored: requirement '_SP_pointer_compatible<omniscia::core::ecs::ECS_SpriteSheetRenderer, omniscia::core::ecs::ECS_Component>::value' was not satisfied [with _Ty2 = omniscia::core::ecs::ECS_SpriteSheetRenderer]
-    shared_ptr(const shared_ptr<_Ty2>& _Other) noexcept {
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1577:5: note: candidate template ignored: requirement '_SP_pointer_compatible<omniscia::core::ecs::ECS_SpriteSheetRenderer, omniscia::core::ecs::ECS_Component>::value' was not satisfied [with _Ty2 = omniscia::core::ecs::ECS_SpriteSheetRenderer]
-    shared_ptr(shared_ptr<_Ty2>&& _Right) noexcept { // construct shared_ptr object that takes resource from _Right
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1582:14: note: candidate template ignored: could not match 'weak_ptr' against 'shared_ptr'
-    explicit shared_ptr(const weak_ptr<_Ty2>& _Other) { // construct shared_ptr object that owns resource *_Other
-             ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1601:5: note: candidate template ignored: could not match 'unique_ptr' against 'shared_ptr'
-    shared_ptr(unique_ptr<_Ux, _Dx>&& _Other) {
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1504:15: note: candidate constructor not viable: requires 0 arguments, but 1 was provided
-    constexpr shared_ptr() noexcept = default;
-              ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1526:5: note: candidate constructor template not viable: requires 2 arguments, but 1 was provided
-    shared_ptr(_Ux* _Px, _Dx _Dt) { // construct with _Px, deleter
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1540:5: note: candidate constructor template not viable: requires 2 arguments, but 1 was provided
-    shared_ptr(nullptr_t, _Dx _Dt) { // construct with nullptr, deleter
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1551:5: note: candidate constructor template not viable: requires 2 arguments, but 1 was provided
-    shared_ptr(const shared_ptr<_Ty2>& _Right, element_type* _Px) noexcept {
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1557:5: note: candidate constructor template not viable: requires 2 arguments, but 1 was provided
-    shared_ptr(shared_ptr<_Ty2>&& _Right, element_type* _Px) noexcept {
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1534:5: note: candidate constructor template not viable: requires 3 arguments, but 1 was provided
-    shared_ptr(_Ux* _Px, _Dx _Dt, _Alloc _Ax) { // construct with _Px, deleter, allocator
-    ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\memory:1546:5: note: candidate constructor template not viable: requires 3 arguments, but 1 was provided
-    shared_ptr(nullptr_t, _Dx _Dt, _Alloc _Ax) { // construct with nullptr, deleter, allocator
-    ^
-In file included from C:/Programming/c++/omniscia/src/game.cpp:1:
-In file included from C:/Programming/c++/omniscia/src/game.h:21:
-In file included from C:/Programming/c++/omniscia/src/ecs\player.h:4:
-In file included from C:/Programming/c++/omniscia/src/ecs/entity.h:4:
-C:/Programming/c++/omniscia/src/ecs/ecs_component_сontainer.tpp:40:29: error: no matching member function for call to 'push_back'
-                _components.push_back(ptr);
-                ~~~~~~~~~~~~^~~~~~~~~
-C:/Programming/c++/omniscia/src/ecs/entity.h:29:39: note: in instantiation of function template specialization 'omniscia::core::ecs::ECS_ComponentContainer::add<omniscia::core::ecs::ECS_SpriteSheetRenderer>' requested here
-                _component_сontainer.add(component, this);
-                                     ^
-C:/Programming/c++/omniscia/src/ecs\player.h:20:17: note: in instantiation of function template specialization 'omniscia::core::Entity::add<omniscia::core::ecs::ECS_SpriteSheetRenderer>' requested here
-                add(new ECS_SpriteSheetRenderer("player-spritesheet", *this, 1));
-                ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\vector:896:23: note: candidate function not viable: no known conversion from 'shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>' to 'const shared_ptr<omniscia::core::ecs::ECS_Component>' for 1st argument
-    _CONSTEXPR20 void push_back(const _Ty& _Val) { // insert element at end, provide strong guarantee
-                      ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\vector:900:23: note: candidate function not viable: no known conversion from 'shared_ptr<omniscia::core::ecs::ECS_SpriteSheetRenderer>' to 'shared_ptr<omniscia::core::ecs::ECS_Component>' for 1st argument
-    _CONSTEXPR20 void push_back(_Ty&& _Val) {
-                      ^
-3 errors generated.
 ninja: build stopped: subcommand failed.
 
 C:\Programming\c++\omniscia>build\Omniscia.exe

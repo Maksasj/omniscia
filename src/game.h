@@ -16,6 +16,7 @@
 #include "renderer.h"
 #include "properties.h"
 #include "texture_manager.h"
+#include "animation_manager.h"
 #include "sprite.h" 
 #include "controls.h"
 #include "player.h"
