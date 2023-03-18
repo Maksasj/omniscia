@@ -7,7 +7,7 @@
 
 #include "ecs_component_сontainer_index.tpp"
 #include "ecs_component.tpp"
-#include "types.h"
+#include "types.tpp"
 
 namespace omniscia::core::ecs {
     class ECS_ComponentContainer {

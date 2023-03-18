@@ -1,7 +1,7 @@
 #ifndef _OMMNISCIA_PROPERTIES_H_
 #define _OMMNISCIA_PROPERTIES_H_
 
-#include "types.h"
+#include "types.tpp"
 
 namespace omniscia::core {
     class Properties {

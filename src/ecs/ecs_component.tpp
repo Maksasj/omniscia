@@ -5,7 +5,7 @@
 #include <memory>
 #include <iostream>
 
-#include "types.h"
+#include "types.tpp"
 
 namespace omniscia::core::ecs {
     class ECS_Component {

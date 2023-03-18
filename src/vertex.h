@@ -4,7 +4,7 @@
 #include <glad/glad.h>
 #include <sstream>
 
-#include "types.h"
+#include "types.tpp"
 
 namespace omniscia::renderer {
     using namespace omniscia::core;

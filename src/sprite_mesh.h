@@ -13,7 +13,7 @@
 
 #include "raw_mesh_data.h"
 
-#include "types.h"
+#include "types.tpp"
 
 namespace omniscia::renderer::sprite {
     using namespace omniscia::core;

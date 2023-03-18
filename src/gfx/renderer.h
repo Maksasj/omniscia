@@ -5,7 +5,7 @@
 #include <GLFW/glfw3.h>
 
 #include <iostream>
-#include "types.h"
+#include "types.tpp"
 
 namespace omniscia::renderer {
     using namespace omniscia::core;

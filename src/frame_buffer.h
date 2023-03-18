@@ -6,7 +6,7 @@
 #include "texture_buffer.h"
 
 #include "bo.h"
-#include "types.h"
+#include "types.tpp"
 
 namespace omniscia::renderer {
     class FrameBuffer : BO {

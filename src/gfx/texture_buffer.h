@@ -9,7 +9,7 @@
 #include "stb_image.h"
 
 #include "bo.h"
-#include "types.h"
+#include "types.tpp"
 
 namespace omniscia::renderer::texture {
     using namespace omniscia::core;

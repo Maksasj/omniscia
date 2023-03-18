@@ -11,7 +11,7 @@
 #include <deque>
 #include <chrono>
 
-#include "types.h"
+#include "types.tpp"
 #include "render_stage.h"
 #include "renderer.h"
 #include "properties.h"

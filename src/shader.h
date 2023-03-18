@@ -7,7 +7,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "types.h"
+#include "types.tpp"
 
 #include "shader_manager.h"
 #include "shader_asset.h"
@@ -41,6 +41,8 @@ namespace omniscia::renderer {
             void set_uniform_vec2i(const char *uniform, Vec2i value) const;
             void set_uniform_vec3f(const char *uniform, Vec3f value) const;
             void set_uniform_vec3i(const char *uniform, Vec3i value) const;
+
+            void set_uniform_mat2x2f(const char *uniform, Matrix<f32, 2, 2> value) const;
 
             void terminate();
     };

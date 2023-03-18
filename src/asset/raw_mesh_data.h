@@ -13,7 +13,7 @@
 #include "vbo.h"
 #include "ebo.h"
 
-#include "types.h"
+#include "types.tpp"
 
 namespace omniscia::renderer::sprite {
     class RawMeshData {

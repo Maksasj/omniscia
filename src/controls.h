@@ -6,7 +6,7 @@
 
 #include "unordered_map"
 
-#include "types.h"
+#include "types.tpp"
 
 namespace omniscia::core {
     enum PlayerController {

@@ -1,7 +1,7 @@
 #ifndef _BO_H_
 #define _BO_H_
 
-#include "types.h"
+#include "types.tpp"
 
 namespace omniscia::renderer {
     

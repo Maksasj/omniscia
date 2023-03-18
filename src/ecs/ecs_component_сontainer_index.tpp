@@ -4,7 +4,7 @@
 #include <array>
 
 #include "ecs_component.tpp"
-#include "types.h"
+#include "types.tpp"
 
 namespace omniscia::core::ecs {
     template<typename T> 

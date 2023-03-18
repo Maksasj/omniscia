@@ -8,7 +8,7 @@
 #include "bo.h"
 
 #include "vertex.h"
-#include "types.h"
+#include "types.tpp"
 
 namespace omniscia::renderer {
     class VBO : private BO {

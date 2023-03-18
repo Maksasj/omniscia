@@ -116,3 +116,9 @@ void omniscia::renderer::Shader::set_uniform_vec3i(const char *uniform, Vec3i va
     glUseProgram(_shaderProgram);
     glUniform3i(vertexColorLocation, value.x, value.y, value.z);
 }
+
+void omniscia::renderer::Shader::set_uniform_mat2x2f(const char *uniform, Matrix<f32, 2, 2> value) const {
+    i32 vertexColorLocation = glGetUniformLocation(_shaderProgram, uniform);
+    glUseProgram(_shaderProgram);
+    glUniformMatrix2fv(vertexColorLocation, 1, GL_FALSE, value.e);
+}
