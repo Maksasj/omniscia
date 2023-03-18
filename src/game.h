@@ -20,6 +20,7 @@
 #include "sprite.h" 
 #include "controls.h"
 #include "player.h"
+#include "timesystem.h"
 
 namespace omniscia {
     using namespace omniscia::core;

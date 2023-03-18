@@ -27,7 +27,7 @@ void omniscia::core::ecs::ECS_SpriteAnimation::update() {
     static u64 tick = 0;
     ++tick;
 
-    if(tick % 120 == 0) {
+    if(tick % animation->_animationSpeed == 0) {
         ++_currentFrame;
 
         if(_currentFrame >= animation->get_frame_count()) {

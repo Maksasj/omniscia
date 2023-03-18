@@ -27,18 +27,17 @@ void omniscia::core::ecs::ECS_2DPhysicsRigidbody::update() {
 
     Vec3 velocity = velocityComp.get_velocity();
     Vec3 possition = posComp.get_pos();
+    f32 deltaTime = Time::get_instance().get_delta_time();
 
     if(!colliderComp.get_colliding_with_by_x()) { 
-        posComp.move_pos({velocity.x, 0.0, 0.0}); 
+        posComp.move_pos({velocity.x * deltaTime, 0.0, 0.0}); 
     } else {
-        //posComp.set_pos({colliderComp.get_collision_point_by_x().x, possition.y, possition.z});
         velocityComp.set_velocity({0.0, velocity.x, velocity.y});
     }
 
     if(!colliderComp.get_colliding_with_by_y()) { 
-        posComp.move_pos({0.0, velocity.y, 0.0});
+        posComp.move_pos({0.0, velocity.y * deltaTime, 0.0});
     } else {
-        //posComp.set_pos({possition.x, colliderComp.get_collision_point_by_y().y, possition.z});
         velocityComp.set_velocity({velocity.x, 0.0, velocity.y});
     } 
 }

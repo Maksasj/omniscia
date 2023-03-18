@@ -20,9 +20,15 @@ void  omniscia::core::ecs::ECS_PlayerController::control() {
     Vec3f velocity = velocityComp.get_velocity();
 
     if(Controls::get(PlayerController::JUMP)) {
-        if(velocity.y == 0) {
-            velocityComp.add_velocity(Vec3f{0.0f, 0.02f, 0.0f});
-        }
+        //if(velocity.y == 0) {
+            velocityComp.add_velocity(Vec3f{0.0f, 0.00005f, 0.0f});
+        //}
+    }
+
+    if(Controls::get(PlayerController::DOWN)) {
+        //if(velocity.y == 0) {
+            velocityComp.add_velocity(Vec3f{0.0f, -0.00005f, 0.0f});
+        //}
     }
         
     if(Controls::get(PlayerController::LEFT)) {

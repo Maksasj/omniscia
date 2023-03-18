@@ -15,6 +15,8 @@
 #include "ecs_positioned.h"
 #include "ecs_velocity.h"
 
+#include "timesystem.h"
+
 namespace omniscia::core::ecs {
     class ECS_2DPhysicsRigidbody : public ECS_Component {
         private:

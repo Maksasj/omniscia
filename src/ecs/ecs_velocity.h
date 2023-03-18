@@ -21,6 +21,7 @@ namespace omniscia::core::ecs {
             ECS_Velocity(const Vec3f& vel);
             ECS_Velocity(const Vec3f& vel, const f32& maxVelocity);
             ECS_Velocity(const Vec3f& vel, const f32& maxVelocity, const f32& minVelocity);
+            ECS_Velocity(const f32& maxVelocity, const f32& minVelocity);
 
             void reindex(void* parent) override;
 

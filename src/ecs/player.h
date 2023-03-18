@@ -21,15 +21,16 @@ namespace omniscia::core {
     class Player : public Entity {
         public:
             Player() {
-                add(new ECS_Positioned({0.0, 1.0}));
-                add(new ECS_Velocity());
-                add(new ECS_Scaled({0.25, 0.25}));
+                add(new ECS_Positioned({0.0f, 1.0f}));
+                ///add(new ECS_Velocity(0.1f, 0.1f));
+                add(new ECS_Velocity(0.1f, -0.1f));
+                add(new ECS_Scaled({0.25f, 0.25f}));
                 
                 add(new ECS_SpriteFlip(false, false));
                 add(new ECS_SpriteAnimation("player-run-animation"));
                 add(new ECS_SpriteSheetRenderer("player-spritesheet", *this, 1));
                 
-                add(new ECS_Gravity(*this));
+                //add(new ECS_Gravity(*this));
                 add(new ECS_VelocitySlowdown(*this));
                 
                 add(new ECS_PlayerController(*this));

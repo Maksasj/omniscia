@@ -19,5 +19,5 @@ void  omniscia::core::ecs::ECS_VelocitySlowdown::update() {
     
     Vec3f velocity = velocityComp.get_velocity();
 
-    velocityComp.set_velocity({velocity.x*0.99f, velocity.y, velocity.z*0.99f});
+    velocityComp.set_velocity({velocity.x*0.98f, velocity.y*0.98f, velocity.z*0.98f});
 }

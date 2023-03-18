@@ -12,6 +12,7 @@
 #include "ecs_component.tpp"
 #include "controls.h"
 #include "ecs_sprite_flip.h"
+#include "timesystem.h"
 
 namespace omniscia::core::ecs {
     using namespace omniscia::core;

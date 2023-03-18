@@ -11,6 +11,7 @@
 #include "ecs_velocity.h"
 #include "ecs_component.tpp"
 #include "controls.h"
+#include "timesystem.h"
 
 #define DEFAULT_GRAVITATION_ACCELERATION 9.8
 

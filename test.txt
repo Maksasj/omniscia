@@ -1,51 +1,23 @@
 
 C:\Programming\c++\omniscia>cmake --build build 
-[1/4] Building CXX object CMakeFiles/Omniscia.dir/src/asset/animation_manager.cpp.obj
-FAILED: CMakeFiles/Omniscia.dir/src/asset/animation_manager.cpp.obj 
-C:\PROGRA~1\LLVM\bin\CLANG_~1.EXE  -IC:/Programming/c++/omniscia/src -IC:/Programming/c++/omniscia/src/ecs -IC:/Programming/c++/omniscia/src/gfx -IC:/Programming/c++/omniscia/src/imgui -IC:/Programming/c++/omniscia/src/asset -IC:/Programming/c++/omniscia/3dparty/stb -IC:/Programming/c++/omniscia/3dparty/imgui -IC:/Programming/c++/omniscia/3dparty/imgui/backends -IC:/Programming/c++/omniscia/3dparty/glfw/include -IC:/Programming/c++/omniscia/3dparty/glad/include -std=c++20 -g -Xclang -gcodeview -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -std=gnu++20 -MD -MT CMakeFiles/Omniscia.dir/src/asset/animation_manager.cpp.obj -MF CMakeFiles\Omniscia.dir\src\asset\animation_manager.cpp.obj.d -o CMakeFiles/Omniscia.dir/src/asset/animation_manager.cpp.obj -c C:/Programming/c++/omniscia/src/asset/animation_manager.cpp
-In file included from C:/Programming/c++/omniscia/src/asset/animation_manager.cpp:1:
-In file included from C:/Programming/c++/omniscia/src/asset/animation_manager.h:4:
-In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\iostream:11:
-In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\istream:11:
-In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\ostream:11:
-In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\ios:11:
-In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xlocnum:12:
-In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\cmath:26:
-In file included from C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:15:
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\utility:268:62: error: no matching constructor for initialization of 'omniscia::core::AnimationAsset'
-        : first(_Tuple_get<_Indexes1>(_STD move(_Val1))...), second(_Tuple_get<_Indexes2>(_STD move(_Val2))...) {}
-                                                             ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\utility:272:11: note: in instantiation of function template specialization 'std::pair<const std::basic_string<char>, omniscia::core::AnimationAsset>::pair<std::tuple<const std::basic_string<char> &>, std::tuple<>, 0ULL>' requested here
-        : pair(_Val1, _Val2, index_sequence_for<_Types1...>{}, index_sequence_for<_Types2...>{}) {}
-          ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xutility:136:45: note: in instantiation of function template specialization 'std::pair<const std::basic_string<char>, omniscia::core::AnimationAsset>::pair<const std::basic_string<char> &>' requested here
-    return ::new (_Voidify_iter(_Location)) _Ty(_STD forward<_Types>(_Args)...);
-                                            ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xmemory:676:18: note: in instantiation of function template specialization 'std::construct_at<std::pair<const std::basic_string<char>, omniscia::core::AnimationAsset>, const std::piecewise_construct_t &, std::tuple<const std::basic_string<char> &>, std::tuple<>, void>' requested here
-            _STD construct_at(_Ptr, _STD forward<_Types>(_Args)...);
-                 ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\list:584:25: note: in instantiation of function template specialization 'std::_Default_allocator_traits<std::allocator<std::_List_node<std::pair<const std::basic_string<char>, omniscia::core::AnimationAsset>, void *>>>::construct<std::pair<const std::basic_string<char>, omniscia::core::AnimationAsset>, const std::piecewise_construct_t &, std::tuple<const std::basic_string<char> &>, std::tuple<>>' requested here
-        _Alnode_traits::construct(this->_Al, _STD addressof(this->_Ptr->_Myval), _STD forward<_Valtys>(_Vals)...);
-                        ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xhash:684:41: note: in instantiation of function template specialization 'std::_List_node_emplace_op2<std::allocator<std::_List_node<std::pair<const std::basic_string<char>, omniscia::core::AnimationAsset>, void *>>>::_List_node_emplace_op2<const std::piecewise_construct_t &, std::tuple<const std::basic_string<char> &>, std::tuple<>>' requested here
-        _List_node_emplace_op2<_Alnode> _Newnode(_List._Getal(), piecewise_construct,
-                                        ^
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\unordered_map:382:22: note: in instantiation of function template specialization 'std::_Hash<std::_Umap_traits<std::basic_string<char>, omniscia::core::AnimationAsset, std::_Uhash_compare<std::basic_string<char>, std::hash<std::basic_string<char>>, std::equal_to<std::basic_string<char>>>, std::allocator<std::pair<const std::basic_string<char>, omniscia::core::AnimationAsset>>, false>>::_Try_emplace<const std::basic_string<char> &>' requested here
-        return this->_Try_emplace(_Keyval).first->_Myval.second;
-                     ^
-C:/Programming/c++/omniscia/src/asset/animation_manager.cpp:4:17: note: in instantiation of member function 'std::unordered_map<std::basic_string<char>, omniscia::core::AnimationAsset>::operator[]' requested here
-    return _data[key];
-                ^
-C:/Programming/c++/omniscia/src/asset/animation_asset.h:10:13: note: candidate constructor not viable: requires single argument 'animation', but no arguments were provided
-            AnimationAsset(const Animation& animation) {
-            ^
-C:/Programming/c++/omniscia/src/asset/animation_asset.h:8:11: note: candidate constructor (the implicit copy constructor) not viable: requires 1 argument, but 0 were provided
-    class AnimationAsset : public Asset<Animation> {
-          ^
-C:/Programming/c++/omniscia/src/asset/animation_asset.h:8:11: note: candidate constructor (the implicit move constructor) not viable: requires 1 argument, but 0 were provided
-1 error generated.
+[1/4] Building CXX object CMakeFiles/Omniscia.dir/src/ecs/ecs_2d_physics_rigidbody.cpp.obj
 [2/4] Building CXX object CMakeFiles/Omniscia.dir/src/main.cpp.obj
 [3/4] Building CXX object CMakeFiles/Omniscia.dir/src/game.cpp.obj
+[4/4] Linking CXX executable Omniscia.exe
+FAILED: Omniscia.exe 
+cmd.exe /C "cd . && C:\PROGRA~1\LLVM\bin\CLANG_~1.EXE -fuse-ld=lld-link -nostartfiles -nostdlib -std=c++20 -g -Xclang -gcodeview -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console CMakeFiles/Omniscia.dir/src/asset/animation_manager.cpp.obj CMakeFiles/Omniscia.dir/src/asset/build_in_mesh_data.cpp.obj CMakeFiles/Omniscia.dir/src/asset/raw_mesh_data.cpp.obj CMakeFiles/Omniscia.dir/src/asset/shader_asset.cpp.obj CMakeFiles/Omniscia.dir/src/asset/shader_manager.cpp.obj CMakeFiles/Omniscia.dir/src/asset/texture_asset.cpp.obj CMakeFiles/Omniscia.dir/src/asset/texture_manager.cpp.obj CMakeFiles/Omniscia.dir/src/controls.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_2d_physics_rigidbody.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_aabb_collider.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_gravity.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_movable_aabb_collider.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_player_controller.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_positioned.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_scaled.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_sprite_animation.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_sprite_flip.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_sprite_renderer.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_spritesheet_renderer.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_velocity.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_velocity_slowdown.cpp.obj CMakeFiles/Omniscia.dir/src/game.cpp.obj CMakeFiles/Omniscia.dir/src/gfx/bo.cpp.obj CMakeFiles/Omniscia.dir/src/gfx/ebo.cpp.obj CMakeFiles/Omniscia.dir/src/gfx/frame_buffer.cpp.obj CMakeFiles/Omniscia.dir/src/gfx/render_stage.cpp.obj CMakeFiles/Omniscia.dir/src/gfx/renderer.cpp.obj CMakeFiles/Omniscia.dir/src/gfx/texture_buffer.cpp.obj CMakeFiles/Omniscia.dir/src/gfx/vao.cpp.obj CMakeFiles/Omniscia.dir/src/gfx/vbo.cpp.obj CMakeFiles/Omniscia.dir/src/main.cpp.obj CMakeFiles/Omniscia.dir/src/shader.cpp.obj CMakeFiles/Omniscia.dir/src/sprite.cpp.obj CMakeFiles/Omniscia.dir/src/sprite_mesh.cpp.obj CMakeFiles/Omniscia.dir/src/texture.cpp.obj CMakeFiles/Omniscia.dir/3dparty/imgui/backends/imgui_impl_glfw.cpp.obj CMakeFiles/Omniscia.dir/3dparty/imgui/backends/imgui_impl_opengl3.cpp.obj CMakeFiles/Omniscia.dir/3dparty/imgui/imgui.cpp.obj CMakeFiles/Omniscia.dir/3dparty/imgui/imgui_demo.cpp.obj CMakeFiles/Omniscia.dir/3dparty/imgui/imgui_draw.cpp.obj CMakeFiles/Omniscia.dir/3dparty/imgui/imgui_tables.cpp.obj CMakeFiles/Omniscia.dir/3dparty/imgui/imgui_widgets.cpp.obj -o Omniscia.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:Omniscia.lib -Xlinker /pdb:Omniscia.pdb -Xlinker /version:0.0   -lopengl32.lib  -lglu32.lib  3dparty/glfw/src/glfw3.lib  3dparty/glad/glad.lib  -lopengl32.lib  -lglu32.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
+lld-link: error: undefined symbol: private: static class std::chrono::time_point<struct std::chrono::steady_clock, class std::chrono::duration<__int64, struct std::ratio<1, 1000000000>>> omniscia::core::Time::_firstTime
+>>> referenced by C:\Programming\c++\omniscia\src\timesystem.h:35
+>>>               CMakeFiles/Omniscia.dir/src/game.cpp.obj:(public: static void __cdecl omniscia::core::Time::start_delta_time_clock(void))
+>>> referenced by C:\Programming\c++\omniscia\src\timesystem.h:40
+>>>               CMakeFiles/Omniscia.dir/src/game.cpp.obj:(public: static void __cdecl omniscia::core::Time::stop_delta_time_clock(void))
+
+lld-link: error: undefined symbol: private: static class std::chrono::time_point<struct std::chrono::steady_clock, class std::chrono::duration<__int64, struct std::ratio<1, 1000000000>>> omniscia::core::Time::_secondTime
+>>> referenced by C:\Programming\c++\omniscia\src\timesystem.h:39
+>>>               CMakeFiles/Omniscia.dir/src/game.cpp.obj:(public: static void __cdecl omniscia::core::Time::stop_delta_time_clock(void))
+>>> referenced by C:\Programming\c++\omniscia\src\timesystem.h:40
+>>>               CMakeFiles/Omniscia.dir/src/game.cpp.obj:(public: static void __cdecl omniscia::core::Time::stop_delta_time_clock(void))
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
 ninja: build stopped: subcommand failed.
 
 C:\Programming\c++\omniscia>build\Omniscia.exe

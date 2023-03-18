@@ -24,6 +24,12 @@ omniscia::core::ecs::ECS_Velocity::ECS_Velocity(const Vec3f& vel, const f32& max
     _minVelocity = minVelocity;
 }
 
+omniscia::core::ecs::ECS_Velocity::ECS_Velocity(const f32& maxVelocity, const f32& minVelocity) { 
+    _vel = Vec3f{0.0f, 0.0f, 0.0f}; 
+    _maxVelocity = maxVelocity;
+    _minVelocity = minVelocity;
+}
+
 void omniscia::core::ecs::ECS_Velocity::reindex(void* parent) {
 
 }
