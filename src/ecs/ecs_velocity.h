@@ -33,6 +33,7 @@ namespace omniscia::core::ecs {
                 if(_vel.x > _maxVelocity) _vel.x = _maxVelocity;
                 if(_vel.y > _maxVelocity) _vel.y = _maxVelocity;
                 if(_vel.z > _maxVelocity) _vel.z = _maxVelocity;
+                
                 if(_vel.x < _minVelocity) _vel.x = _minVelocity;
                 if(_vel.y < _minVelocity) _vel.y = _minVelocity;
                 if(_vel.z < _minVelocity) _vel.z = _minVelocity;

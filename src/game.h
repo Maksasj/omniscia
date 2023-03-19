@@ -22,6 +22,8 @@
 #include "player.h"
 #include "timesystem.h"
 
+#include "ecs_components.h"
+
 namespace omniscia {
     using namespace omniscia::core;
     using namespace omniscia::renderer;

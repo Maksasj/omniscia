@@ -14,6 +14,8 @@
 #include "ecs_movable_aabb_collider.h"
 #include "ecs_positioned.h"
 #include "ecs_velocity.h"
+#include "ecs_friction.h"
+#include "ecs_acceleration.h"
 
 #include "timesystem.h"
 
@@ -23,8 +25,11 @@ namespace omniscia::core::ecs {
             std::reference_wrapper<Entity> _parent;
 
             ECS_Index<ECS_Positioned> _posIndex;
-            ECS_Index<ECS_Velocity> _velocityIndex;
             ECS_Index<ECS_MovableAABBCollider> _colliderIndex;
+
+            ECS_Index<ECS_Velocity> _velocityIndex;
+            ECS_Index<ECS_Acceleration> _accelerationIndex;
+            ECS_Index<ECS_Friction> _frictionIndex;
         public:
             void time_sync() override;
             void reindex(void* parent) override;

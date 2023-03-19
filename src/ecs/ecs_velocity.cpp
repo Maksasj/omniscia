@@ -8,14 +8,14 @@ omniscia::core::ecs::ECS_Velocity::ECS_Velocity() {
 
 omniscia::core::ecs::ECS_Velocity::ECS_Velocity(const Vec3f& vel) {
     _vel = vel;
-    _maxVelocity = 1.0;
-    _minVelocity = -1.0;
+    _maxVelocity = 0.0;
+    _minVelocity = 0.0;
 }
 
 omniscia::core::ecs::ECS_Velocity::ECS_Velocity(const Vec3f& vel, const f32& maxVelocity) {
     _vel = vel;
     _maxVelocity = maxVelocity;
-    _minVelocity = -1.0;
+    _minVelocity = 0.0;
 }
 
 omniscia::core::ecs::ECS_Velocity::ECS_Velocity(const Vec3f& vel, const f32& maxVelocity, const f32& minVelocity) {

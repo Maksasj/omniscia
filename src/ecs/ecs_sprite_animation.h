@@ -26,13 +26,15 @@ namespace omniscia::core::ecs {
     class ECS_SpriteAnimation : public ECS_Component {
         private:
             u64 _currentFrame;
-
+            std::string _animationId;
+            
             Animation* animation;
         public:
             void time_sync() override;
 
             ECS_SpriteAnimation(const std::string &animationId);
             void set_animation(const std::string &animationId);
+            std::string get_animation() const;
 
             Vec2f get_frame_size() const;
             Vec2f get_frame_offset() const;

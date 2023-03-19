@@ -28,6 +28,7 @@ int omniscia::Game::run() {
     using namespace omniscia::renderer::sprite;
 
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.2, 0.2}, {0.0, 0.6}, 5, true, 4}), "player-run-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.2, 0.2}, {0.0, 0.8}, 3, true, 24}), "player-idle-animation");
 
     TextureManager::get_instance().add_asset("assets/texture.png", "factorio_girl_texture");
     TextureManager::get_instance().add_asset("assets/jojo_texture.png", "jojo_texture");
@@ -79,14 +80,14 @@ int omniscia::Game::run() {
     //Level active;
     std::deque<Level> timeLine;
     
-    //for(int i = 0; i < 1; ++i) {
-    //    Entity wall = Entity();
-    //    wall.add(new ECS_Positioned({0.0, -0.7}));
-    //    wall.add(new ECS_Scaled({1.0, 0.25}, wall));
-    //    wall.add(new ECS_SpriteRenderer("factorio_girl_texture", wall, 0));
-    //    wall.add(new ECS_AABBCollider(wall));
-    //    level.entities.push_back(wall);
-    //}
+    for(int i = 0; i < 1; ++i) {
+        Entity wall = Entity();
+        wall.add(new ECS_Positioned({0.0, -0.7}));
+        wall.add(new ECS_Scaled({1.0, 0.25}, wall));
+        wall.add(new ECS_SpriteRenderer("factorio_girl_texture", wall, 0));
+        wall.add(new ECS_AABBCollider(wall));
+        level.entities.push_back(wall);
+    }
 
     /* Components binded twise, because of this we need to time sync imideialty */
     ECS_SpriteSheetRendererSystem::get_instance().time_sync();
@@ -96,7 +97,6 @@ int omniscia::Game::run() {
     ECS_AABBColliderSystem::get_instance().time_sync();
     ECS_2DPhysicsRigidbodySystem::get_instance().time_sync();
     ECS_GravitySystem::get_instance().time_sync();
-    ECS_VelocitySlowdownSystem::get_instance().time_sync();
 
     level.player.time_sync();
     for(auto &p : level.entities) {
@@ -117,7 +117,7 @@ int omniscia::Game::run() {
 
     u64 frame = 0;
     while (!glfwWindowShouldClose(window)) {   
-        Time::get_instance().start_delta_time_clock();
+        Time::get_instance().update_delta_time_clock();
 
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
@@ -146,7 +146,6 @@ int omniscia::Game::run() {
                     ECS_AABBColliderSystem::get_instance().time_sync();
                     ECS_2DPhysicsRigidbodySystem::get_instance().time_sync();
                     ECS_GravitySystem::get_instance().time_sync();
-                    ECS_VelocitySlowdownSystem::get_instance().time_sync();
 
                     level.player.time_sync();
 
@@ -183,7 +182,6 @@ int omniscia::Game::run() {
             
             ECS_GravitySystem::get_instance().update();
             ECS_AABBColliderSystem::get_instance().update();
-            ECS_VelocitySlowdownSystem::get_instance().update();
             ECS_2DPhysicsRigidbodySystem::get_instance().update();
         });
         
@@ -235,8 +233,6 @@ int omniscia::Game::run() {
 
         ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-        Time::get_instance().stop_delta_time_clock();
-        //std::cout << Time::get_instance().get_delta_time() << "\n";
 
         glfwSwapBuffers(window);
         glfwPollEvents();

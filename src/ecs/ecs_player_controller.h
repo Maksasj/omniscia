@@ -7,8 +7,10 @@
 
 #include "entity.h"
 
+#include "ecs_sprite_animation.h"
 #include "ecs_system.h"
 #include "ecs_velocity.h"
+#include "ecs_acceleration.h"
 #include "ecs_component.tpp"
 #include "controls.h"
 #include "ecs_sprite_flip.h"
@@ -22,7 +24,9 @@ namespace omniscia::core::ecs {
             std::reference_wrapper<Entity> _parent;
 
             ECS_Index<ECS_Velocity> velocityIndex;
+            ECS_Index<ECS_Acceleration> accelerationIndex;
             ECS_Index<ECS_SpriteFlip> spriteFlipIndex;
+            ECS_Index<ECS_SpriteAnimation> spriteAnimationIndex;
         public:
             ECS_PlayerController(Entity& parent);
 

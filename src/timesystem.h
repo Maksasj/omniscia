@@ -10,9 +10,9 @@ namespace omniscia::core {
     using namespace std::chrono;
     struct Time {
         private:
-            steady_clock::time_point _firstTime;
-            steady_clock::time_point _secondTime;
-            f32 _deltaTime;
+            f64 _firstTime;
+            f64 _secondTime;
+            f64 _deltaTime;
         public:
             template<u32 _milliseconds>
             static void run_every_n_milliseconds(const std::function<void()> lambda) {
@@ -28,16 +28,13 @@ namespace omniscia::core {
             }
 
             f32 get_delta_time() {
-                return _deltaTime;
+                return _deltaTime * 1000.0;
             }
 
-            void start_delta_time_clock() {
-                _firstTime = high_resolution_clock::now();
-            }
-
-            void stop_delta_time_clock() {
-                _secondTime = high_resolution_clock::now();
-                _deltaTime = duration_cast<nanoseconds>(_secondTime - _firstTime).count() * 0.000001f;
+            void update_delta_time_clock() {
+                _firstTime = glfwGetTime();
+                _deltaTime = _firstTime - _secondTime;
+                _secondTime = _firstTime;
             }
 
             static Time& get_instance() {
