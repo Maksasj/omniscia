@@ -38,6 +38,10 @@ omniscia::core::Vec3f omniscia::core::ecs::ECS_Velocity::get_velocity() const {
     return _vel;
 }
 
+omniscia::core::Vec3f& omniscia::core::ecs::ECS_Velocity::ref_velocity() {
+    return _vel;
+}
+
 void omniscia::core::ecs::ECS_Velocity::add_velocity(Vec3f force) {
     _vel += force;
 }

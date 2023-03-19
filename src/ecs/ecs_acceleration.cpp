@@ -16,6 +16,10 @@ omniscia::core::Vec3f omniscia::core::ecs::ECS_Acceleration::get_acceleration() 
     return _acl;
 }
 
+omniscia::core::Vec3f& omniscia::core::ecs::ECS_Acceleration::ref_acceleration() {
+    return _acl;
+}
+
 void omniscia::core::ecs::ECS_Acceleration::add_acceleration(Vec3f force) {
     _acl += force;
 }

@@ -26,6 +26,7 @@ namespace omniscia::core::ecs {
             void reindex(void* parent) override;
 
             Vec3f get_velocity() const;
+            Vec3f& ref_velocity();
             void add_velocity(Vec3f force);
             void set_velocity(Vec3f velocity);
 

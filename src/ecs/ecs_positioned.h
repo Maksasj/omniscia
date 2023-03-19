@@ -20,6 +20,7 @@ namespace omniscia::core::ecs {
             void reindex(void* parent) override;
 
             Vec3f get_pos() const;
+            Vec3f& ref_pos();
             void set_pos(const Vec3f& newPos);
             void move_pos(const Vec3f& movedPos);
 

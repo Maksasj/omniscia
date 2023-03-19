@@ -13,6 +13,7 @@ void omniscia::core::ecs::ECS_2DPhysicsRigidbody::reindex(void* parent) {
 
     _frictionIndex = _parent.get().index<ECS_Friction>();
     _accelerationIndex = _parent.get().index<ECS_Acceleration>();
+    _physicsPositionedIndex = _parent.get().index<ECS_PhysicsPositioned>();
 }
 
 void omniscia::core::ecs::ECS_2DPhysicsRigidbody::time_sync() {
@@ -22,28 +23,50 @@ void omniscia::core::ecs::ECS_2DPhysicsRigidbody::time_sync() {
 void omniscia::core::ecs::ECS_2DPhysicsRigidbody::update() {
     if(!_posIndex.is_success()) return;
     if(!_velocityIndex.is_success()) return;
-    if(!_colliderIndex.is_success()) return;
+    if(!_frictionIndex.is_success()) return;
     if(!_accelerationIndex.is_success()) return;
-    if(!_colliderIndex.is_success()) return;
-
-    f32 deltaTime = Time::get_instance().get_delta_time();
 
     ECS_Positioned& posComp = _parent.get().ref_unsafe(_posIndex);
     ECS_Velocity& velocityComp = _parent.get().ref_unsafe(_velocityIndex);
     ECS_Friction& frictionComp = _parent.get().ref_unsafe(_frictionIndex);
     ECS_Acceleration& accelerationComp = _parent.get().ref_unsafe(_accelerationIndex);
-    ECS_MovableAABBCollider& colliderComp = _parent.get().ref_unsafe(_colliderIndex);
+    ECS_PhysicsPositioned& physicsPositioneComp = _parent.get().ref_unsafe(_physicsPositionedIndex);
 
-    Vec3f velocity = velocityComp.get_velocity();
-    f32 friction = frictionComp.get_friction();
+    Vec3f position = posComp.ref_pos();
+    Vec3f& velocity = velocityComp.ref_velocity();
+    f32& friction = frictionComp.ref_friction();
+    Vec3f& acceleration = accelerationComp.ref_acceleration();
 
-    accelerationComp.add_acceleration({velocity.x * friction, 0.0, 0.0});
-    Vec3f acceleration = accelerationComp.get_acceleration();
+    f32 dt = Time::get_instance().get_delta_time();
 
-    velocityComp.add_velocity({acceleration.x * deltaTime, 0.0f, 0.0f});
+    physicsPositioneComp.set_old_position(position);
+
+    acceleration.x += velocity.x * friction;
+    velocity.x += acceleration.x * dt;
     velocityComp.clamp_velocity();
 
-    velocity = velocityComp.get_velocity();
+    position.x += velocity.x * dt + acceleration.x * 0.5 * dt * dt;
+    position.y += velocity.y * dt - acceleration.y * 0.5 * dt * dt;
 
-    posComp.move_pos({velocity.x * deltaTime - acceleration.x * 0.5f * (deltaTime * deltaTime), 0.0f, 0.0f});
+    physicsPositioneComp.set_new_position(position);
+}
+
+void omniscia::core::ecs::ECS_2DPhysicsRigidbody::late_update() {
+    if(!_posIndex.is_success()) return;
+    if(!_colliderIndex.is_success()) return;
+    if(!_physicsPositionedIndex.is_success()) return;
+
+    ECS_Positioned& posComp = _parent.get().ref_unsafe(_posIndex);
+    ECS_MovableAABBCollider& colliderComp = _parent.get().ref_unsafe(_colliderIndex);
+    ECS_PhysicsPositioned& physicsPosComp = _parent.get().ref_unsafe(_physicsPositionedIndex);
+
+    Vec3f& position = posComp.ref_pos();
+
+    if(!colliderComp.is_colliding_by_x()) {
+        position.x = physicsPosComp.get_new_position().x;
+    }
+
+    if(!colliderComp.is_colliding_by_y()) {
+        position.y = physicsPosComp.get_new_position().y;
+    }
 }

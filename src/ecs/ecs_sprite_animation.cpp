@@ -29,6 +29,10 @@ void omniscia::core::ecs::ECS_SpriteAnimation::set_animation(const std::string &
     _animationId = animationId;
 }
 
+void omniscia::core::ecs::ECS_SpriteAnimation::reset_animation() {
+    _currentFrame = 0;
+}
+
 void omniscia::core::ecs::ECS_SpriteAnimation::update() {
     static u64 tick = 0;
     ++tick;

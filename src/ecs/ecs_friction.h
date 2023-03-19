@@ -21,6 +21,7 @@ namespace omniscia::core::ecs {
             void reindex(void* parent) override;
 
             f32 get_friction() const;
+            f32& ref_friction();
             void set_friction(const f32& friction);
 
             std::shared_ptr<ECS_Component> clone() override {

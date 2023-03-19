@@ -27,8 +27,9 @@ int omniscia::Game::load() {
 int omniscia::Game::run() {
     using namespace omniscia::renderer::sprite;
 
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.2, 0.2}, {0.0, 0.6}, 5, true, 4}), "player-run-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.2, 0.2}, {0.0, 0.6}, 5, true, 6}), "player-run-animation");
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.2, 0.2}, {0.0, 0.8}, 3, true, 24}), "player-idle-animation");
+    //AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.2, 0.2}, {0.0, 0.4}, 3, true, 6}), "player-jump-animation");
 
     TextureManager::get_instance().add_asset("assets/texture.png", "factorio_girl_texture");
     TextureManager::get_instance().add_asset("assets/jojo_texture.png", "jojo_texture");
@@ -181,8 +182,9 @@ int omniscia::Game::run() {
             ECS_PlayerControllerSystem::get_instance().update();
             
             ECS_GravitySystem::get_instance().update();
-            ECS_AABBColliderSystem::get_instance().update();
             ECS_2DPhysicsRigidbodySystem::get_instance().update();
+            ECS_AABBColliderSystem::get_instance().update();
+            ECS_2DPhysicsRigidbodySystem::get_instance().late_update();
         });
         
         renderStage2.render_stage_lambda([&](const Shader* stage_shader){ 

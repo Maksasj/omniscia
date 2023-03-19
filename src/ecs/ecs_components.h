@@ -15,5 +15,6 @@
 #include "ecs_sprite_renderer.h"
 #include "ecs_spritesheet_renderer.h"
 #include "ecs_velocity.h"
+#include "ecs_physics_positioned.h"
 
 #endif

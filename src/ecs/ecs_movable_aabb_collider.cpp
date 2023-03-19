@@ -23,15 +23,21 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::reindex(void* parent) {
 
     posIndex = _parent.get().index<ECS_Positioned>();
     scaleIndex = _parent.get().index<ECS_Scaled>();
-    velocityIndex = _parent.get().index<ECS_Velocity>();
+    _velocityIndex = _parent.get().index<ECS_Velocity>();
+    _physicsPositioned = _parent.get().index<ECS_PhysicsPositioned>();
 }
 
 void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* another) {
     Vec2f selfScale = Vec2f{1.0, 1.0}; 
     Vec3f selfOldPosition = Vec3f{0.0, 0.0, 0.0}; 
+    Vec3f selfNewPosition = Vec3f{0.0, 0.0, 0.0}; 
     Vec3f selfVelocity = Vec3f{0.0, 0.0, 0.0};
 
-    if(posIndex.is_success()) {
+    if(_physicsPositioned.is_success()) {
+        ECS_PhysicsPositioned &physicsPositionedComp = _parent.get().ref_unsafe(_physicsPositioned);
+        selfOldPosition = physicsPositionedComp.get_old_position();
+        selfNewPosition = physicsPositionedComp.get_new_position();
+    } else if(posIndex.is_success()) {
         ECS_Positioned &positionComp = _parent.get().ref_unsafe(posIndex);
         selfOldPosition = positionComp.get_pos();
     }
@@ -39,11 +45,6 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* ano
     if(scaleIndex.is_success()) {
         ECS_Scaled &scaleComp = _parent.get().ref_unsafe(scaleIndex);
         selfScale = scaleComp.get_scale();
-    }
-
-    if(velocityIndex.is_success()) {
-        ECS_Velocity &velocityComp = _parent.get().ref_unsafe(velocityIndex);
-        selfVelocity = velocityComp.get_velocity();
     }
 
     Vec2f anotherScale = Vec2f{1.0, 1.0}; 
@@ -59,7 +60,7 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* ano
         anotherScale = scaleComp.get_scale();
     }
 
-    Vec3f selfPosition = { selfOldPosition.x + selfVelocity.x, selfOldPosition.y, selfOldPosition.z };
+    Vec3f selfPosition = { selfNewPosition.x, selfOldPosition.y, selfOldPosition.z };
 
     {   //X axis collision
         f32 minX1 = selfPosition.x - selfScale.x;
@@ -82,20 +83,20 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* ano
         }
 
         /* Calculate collision point */
-        float intersectionX1 = std::max(minX1, minX2);
-        float intersectionX2 = std::min(maxX1, maxX2);
-        float intersectionY1 = std::max(minY1, minY2);
-        float intersectionY2 = std::min(maxY1, maxY2);
-        float intersectionCenterX = (intersectionX1 + intersectionX2) / 2.0f;
-        float intersectionCenterY = (intersectionY1 + intersectionY2) / 2.0f;
+        f32 intersectionX1 = std::max(minX1, minX2);
+        f32 intersectionX2 = std::min(maxX1, maxX2);
+        f32 intersectionY1 = std::max(minY1, minY2);
+        f32 intersectionY2 = std::min(maxY1, maxY2);
+        f32 intersectionCenterX = (intersectionX1 + intersectionX2) / 2.0f;
+        f32 intersectionCenterY = (intersectionY1 + intersectionY2) / 2.0f;
 
         /* Calculate collision side */
         CollisionSide tmpCollsionSide = NONE;
-        float xOverlapDistLeft = maxX2 - minX1;
-        float xOverlapDistRight = maxX1 - minX2;
-        float yOverlapDistTop = maxY2 - minY1;
-        float yOverlapDistBottom = maxY1 - minY2;
-        float minOverlap = std::min({xOverlapDistLeft, xOverlapDistRight, yOverlapDistTop, yOverlapDistBottom});
+        f32 xOverlapDistLeft = maxX2 - minX1;
+        f32 xOverlapDistRight = maxX1 - minX2;
+        f32 yOverlapDistTop = maxY2 - minY1;
+        f32 yOverlapDistBottom = maxY1 - minY2;
+        f32 minOverlap = std::min({xOverlapDistLeft, xOverlapDistRight, yOverlapDistTop, yOverlapDistBottom});
 
         if (minOverlap == xOverlapDistLeft) {
             tmpCollsionSide = CollisionSide::LEFT;
@@ -114,7 +115,7 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* ano
     }
 
     checkYCollision:
-    selfPosition = { selfOldPosition.x, selfOldPosition.y + selfVelocity.y, selfOldPosition.z };
+    selfPosition = { selfOldPosition.x, selfNewPosition.y, selfOldPosition.z };
     {   //Y axis collision
         f32 minX1 = selfPosition.x - selfScale.x;
         f32 maxX1 = selfPosition.x + selfScale.x;
@@ -136,20 +137,20 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* ano
         }
 
         /* Calculate collision point */
-        float intersectionX1 = std::max(minX1, minX2);
-        float intersectionX2 = std::min(maxX1, maxX2);
-        float intersectionY1 = std::max(minY1, minY2);
-        float intersectionY2 = std::min(maxY1, maxY2);
-        float intersectionCenterX = (intersectionX1 + intersectionX2) / 2.0f;
-        float intersectionCenterY = (intersectionY1 + intersectionY2) / 2.0f;
+        f32 intersectionX1 = std::max(minX1, minX2);
+        f32 intersectionX2 = std::min(maxX1, maxX2);
+        f32 intersectionY1 = std::max(minY1, minY2);
+        f32 intersectionY2 = std::min(maxY1, maxY2);
+        f32 intersectionCenterX = (intersectionX1 + intersectionX2) / 2.0f;
+        f32 intersectionCenterY = (intersectionY1 + intersectionY2) / 2.0f;
 
         /* Calculate collision side */
         CollisionSide tmpCollsionSide = NONE;
-        float xOverlapDistLeft = maxX2 - minX1;
-        float xOverlapDistRight = maxX1 - minX2;
-        float yOverlapDistTop = maxY2 - minY1;
-        float yOverlapDistBottom = maxY1 - minY2;
-        float minOverlap = std::min({xOverlapDistLeft, xOverlapDistRight, yOverlapDistTop, yOverlapDistBottom});
+        f32 xOverlapDistLeft = maxX2 - minX1;
+        f32 xOverlapDistRight = maxX1 - minX2;
+        f32 yOverlapDistTop = maxY2 - minY1;
+        f32 yOverlapDistBottom = maxY1 - minY2;
+        f32 minOverlap = std::min({xOverlapDistLeft, xOverlapDistRight, yOverlapDistTop, yOverlapDistBottom});
 
         if (minOverlap == xOverlapDistLeft) {
             tmpCollsionSide = CollisionSide::LEFT;

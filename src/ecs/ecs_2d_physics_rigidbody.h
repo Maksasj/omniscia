@@ -16,6 +16,7 @@
 #include "ecs_velocity.h"
 #include "ecs_friction.h"
 #include "ecs_acceleration.h"
+#include "ecs_physics_positioned.h"
 
 #include "timesystem.h"
 
@@ -26,10 +27,10 @@ namespace omniscia::core::ecs {
 
             ECS_Index<ECS_Positioned> _posIndex;
             ECS_Index<ECS_MovableAABBCollider> _colliderIndex;
-
             ECS_Index<ECS_Velocity> _velocityIndex;
             ECS_Index<ECS_Acceleration> _accelerationIndex;
             ECS_Index<ECS_Friction> _frictionIndex;
+            ECS_Index<ECS_PhysicsPositioned> _physicsPositionedIndex;
         public:
             void time_sync() override;
             void reindex(void* parent) override;
@@ -37,6 +38,10 @@ namespace omniscia::core::ecs {
             ECS_2DPhysicsRigidbody(Entity& parent);
 
             void update();
+            void late_update();
+
+            Vec3f get_old_position() const;
+            Vec3f get_new_position() const;
 
             std::shared_ptr<ECS_Component> clone() override {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_2DPhysicsRigidbody>(*this));
@@ -52,6 +57,12 @@ namespace omniscia::core::ecs {
             void update() {
                 for(ECS_2DPhysicsRigidbody* comp : _components) {
                     comp->update();
+                }
+            }
+
+            void late_update() {
+                for(ECS_2DPhysicsRigidbody* comp : _components) {
+                    comp->late_update();
                 }
             }
 

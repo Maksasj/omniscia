@@ -15,5 +15,6 @@ make.bat
 - [ ] Texture cords calculator
 - [x] Upate texute asset meta data(size, channels, etc)
 - [x] Collisions, Rigidbody
-- [X] Const time systems
-- [ ] Delta time physics
+- [x] Const time systems
+- [x] Delta time physics
+- [ ] Some systems should stop updating during time jump(controls)))

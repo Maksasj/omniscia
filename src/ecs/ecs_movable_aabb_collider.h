@@ -3,13 +3,15 @@
 
 #include "ecs_aabb_collider.h"
 #include "ecs_velocity.h"
+#include "ecs_physics_positioned.h"
 
 namespace omniscia::core::ecs {
     using namespace omniscia::core;
 
     class ECS_MovableAABBCollider : public ECS_AABBCollider {
         private:
-            ECS_Index<ECS_Velocity> velocityIndex;
+            ECS_Index<ECS_Velocity> _velocityIndex;
+            ECS_Index<ECS_PhysicsPositioned> _physicsPositioned;
         
             /* Collider variables */
             bool _collidingY;

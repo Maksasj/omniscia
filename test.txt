@@ -1,23 +1,18 @@
 
 C:\Programming\c++\omniscia>cmake --build build 
-[1/4] Building CXX object CMakeFiles/Omniscia.dir/src/ecs/ecs_2d_physics_rigidbody.cpp.obj
-[2/4] Building CXX object CMakeFiles/Omniscia.dir/src/main.cpp.obj
-[3/4] Building CXX object CMakeFiles/Omniscia.dir/src/game.cpp.obj
-[4/4] Linking CXX executable Omniscia.exe
-FAILED: Omniscia.exe 
-cmd.exe /C "cd . && C:\PROGRA~1\LLVM\bin\CLANG_~1.EXE -fuse-ld=lld-link -nostartfiles -nostdlib -std=c++20 -g -Xclang -gcodeview -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console CMakeFiles/Omniscia.dir/src/asset/animation_manager.cpp.obj CMakeFiles/Omniscia.dir/src/asset/build_in_mesh_data.cpp.obj CMakeFiles/Omniscia.dir/src/asset/raw_mesh_data.cpp.obj CMakeFiles/Omniscia.dir/src/asset/shader_asset.cpp.obj CMakeFiles/Omniscia.dir/src/asset/shader_manager.cpp.obj CMakeFiles/Omniscia.dir/src/asset/texture_asset.cpp.obj CMakeFiles/Omniscia.dir/src/asset/texture_manager.cpp.obj CMakeFiles/Omniscia.dir/src/controls.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_2d_physics_rigidbody.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_aabb_collider.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_gravity.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_movable_aabb_collider.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_player_controller.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_positioned.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_scaled.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_sprite_animation.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_sprite_flip.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_sprite_renderer.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_spritesheet_renderer.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_velocity.cpp.obj CMakeFiles/Omniscia.dir/src/ecs/ecs_velocity_slowdown.cpp.obj CMakeFiles/Omniscia.dir/src/game.cpp.obj CMakeFiles/Omniscia.dir/src/gfx/bo.cpp.obj CMakeFiles/Omniscia.dir/src/gfx/ebo.cpp.obj CMakeFiles/Omniscia.dir/src/gfx/frame_buffer.cpp.obj CMakeFiles/Omniscia.dir/src/gfx/render_stage.cpp.obj CMakeFiles/Omniscia.dir/src/gfx/renderer.cpp.obj CMakeFiles/Omniscia.dir/src/gfx/texture_buffer.cpp.obj CMakeFiles/Omniscia.dir/src/gfx/vao.cpp.obj CMakeFiles/Omniscia.dir/src/gfx/vbo.cpp.obj CMakeFiles/Omniscia.dir/src/main.cpp.obj CMakeFiles/Omniscia.dir/src/shader.cpp.obj CMakeFiles/Omniscia.dir/src/sprite.cpp.obj CMakeFiles/Omniscia.dir/src/sprite_mesh.cpp.obj CMakeFiles/Omniscia.dir/src/texture.cpp.obj CMakeFiles/Omniscia.dir/3dparty/imgui/backends/imgui_impl_glfw.cpp.obj CMakeFiles/Omniscia.dir/3dparty/imgui/backends/imgui_impl_opengl3.cpp.obj CMakeFiles/Omniscia.dir/3dparty/imgui/imgui.cpp.obj CMakeFiles/Omniscia.dir/3dparty/imgui/imgui_demo.cpp.obj CMakeFiles/Omniscia.dir/3dparty/imgui/imgui_draw.cpp.obj CMakeFiles/Omniscia.dir/3dparty/imgui/imgui_tables.cpp.obj CMakeFiles/Omniscia.dir/3dparty/imgui/imgui_widgets.cpp.obj -o Omniscia.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:Omniscia.lib -Xlinker /pdb:Omniscia.pdb -Xlinker /version:0.0   -lopengl32.lib  -lglu32.lib  3dparty/glfw/src/glfw3.lib  3dparty/glad/glad.lib  -lopengl32.lib  -lglu32.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
-lld-link: error: undefined symbol: private: static class std::chrono::time_point<struct std::chrono::steady_clock, class std::chrono::duration<__int64, struct std::ratio<1, 1000000000>>> omniscia::core::Time::_firstTime
->>> referenced by C:\Programming\c++\omniscia\src\timesystem.h:35
->>>               CMakeFiles/Omniscia.dir/src/game.cpp.obj:(public: static void __cdecl omniscia::core::Time::start_delta_time_clock(void))
->>> referenced by C:\Programming\c++\omniscia\src\timesystem.h:40
->>>               CMakeFiles/Omniscia.dir/src/game.cpp.obj:(public: static void __cdecl omniscia::core::Time::stop_delta_time_clock(void))
-
-lld-link: error: undefined symbol: private: static class std::chrono::time_point<struct std::chrono::steady_clock, class std::chrono::duration<__int64, struct std::ratio<1, 1000000000>>> omniscia::core::Time::_secondTime
->>> referenced by C:\Programming\c++\omniscia\src\timesystem.h:39
->>>               CMakeFiles/Omniscia.dir/src/game.cpp.obj:(public: static void __cdecl omniscia::core::Time::stop_delta_time_clock(void))
->>> referenced by C:\Programming\c++\omniscia\src\timesystem.h:40
->>>               CMakeFiles/Omniscia.dir/src/game.cpp.obj:(public: static void __cdecl omniscia::core::Time::stop_delta_time_clock(void))
-clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[1/2] Building CXX object CMakeFiles/Omniscia.dir/src/ecs/ecs_physics_positioned.cpp.obj
+FAILED: CMakeFiles/Omniscia.dir/src/ecs/ecs_physics_positioned.cpp.obj 
+C:\PROGRA~1\LLVM\bin\CLANG_~1.EXE  -IC:/Programming/c++/omniscia/src -IC:/Programming/c++/omniscia/src/ecs -IC:/Programming/c++/omniscia/src/gfx -IC:/Programming/c++/omniscia/src/imgui -IC:/Programming/c++/omniscia/src/asset -IC:/Programming/c++/omniscia/3dparty/stb -IC:/Programming/c++/omniscia/3dparty/imgui -IC:/Programming/c++/omniscia/3dparty/imgui/backends -IC:/Programming/c++/omniscia/3dparty/glfw/include -IC:/Programming/c++/omniscia/3dparty/glad/include -std=c++20 -g -Xclang -gcodeview -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -std=gnu++20 -MD -MT CMakeFiles/Omniscia.dir/src/ecs/ecs_physics_positioned.cpp.obj -MF CMakeFiles\Omniscia.dir\src\ecs\ecs_physics_positioned.cpp.obj.d -o CMakeFiles/Omniscia.dir/src/ecs/ecs_physics_positioned.cpp.obj -c C:/Programming/c++/omniscia/src/ecs/ecs_physics_positioned.cpp
+In file included from C:/Programming/c++/omniscia/src/ecs/ecs_physics_positioned.cpp:1:
+In file included from C:/Programming/c++/omniscia/src/ecs/ecs_physics_positioned.h:14:
+C:/Programming/c++/omniscia/src/ecs/ecs_movable_aabb_collider.h:14:23: error: unknown type name 'ECS_PhysicsPositioned'; did you mean 'ECS_Positioned'?
+            ECS_Index<ECS_PhysicsPositioned> _physicsPositioned;
+                      ^~~~~~~~~~~~~~~~~~~~~
+                      ECS_Positioned
+C:/Programming/c++/omniscia/src/ecs/ecs_positioned.h:13:11: note: 'ECS_Positioned' declared here
+    class ECS_Positioned : public ECS_Component {
+          ^
+1 error generated.
 ninja: build stopped: subcommand failed.
 
 C:\Programming\c++\omniscia>build\Omniscia.exe
