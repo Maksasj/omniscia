@@ -63,6 +63,8 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* ano
     Vec3f selfPosition = { selfNewPosition.x, selfOldPosition.y, selfOldPosition.z };
 
     {   //X axis collision
+        if(_colliding == true) goto checkYCollision;
+
         f32 minX1 = selfPosition.x - selfScale.x;
         f32 maxX1 = selfPosition.x + selfScale.x;
         f32 minY1 = selfPosition.y - selfScale.y;
@@ -117,6 +119,8 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* ano
     checkYCollision:
     selfPosition = { selfOldPosition.x, selfNewPosition.y, selfOldPosition.z };
     {   //Y axis collision
+        if(_collidingY == true) return;
+
         f32 minX1 = selfPosition.x - selfScale.x;
         f32 maxX1 = selfPosition.x + selfScale.x;
         f32 minY1 = selfPosition.y - selfScale.y;
@@ -129,7 +133,7 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* ano
 
         u8 xOverlap = (minX1 <= maxX2) && (maxX1 >= minX2);
         u8 yOverlap = (minY1 <= maxY2) && (maxY1 >= minY2);
-
+        
         if(!(xOverlap && yOverlap)) {
             _collidingY = false;
             _collidedWithY = nullptr;
@@ -167,6 +171,11 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* ano
         _collisionPointY = { intersectionCenterX, intersectionCenterY };
         _collisionSideY = tmpCollsionSide;
     }
+}
+
+void omniscia::core::ecs::ECS_MovableAABBCollider::reset_collisions() {
+    _colliding = false;
+    _collidingY = false;
 }
 
 bool omniscia::core::ecs::ECS_MovableAABBCollider::is_colliding_by_x() const {

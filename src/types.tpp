@@ -25,8 +25,9 @@ namespace omniscia::core {
 
         Vec2 operator+(const Vec2& vec) { return Vec2{x + vec.x, y + vec.y }; }
         Vec2 operator-(const Vec2& vec) { return Vec2{x - vec.x, y - vec.y }; }
-        Vec2 operator*(const Vec2& vec) { return Vec2{x * vec.x, y * vec.y }; }
-        Vec2 operator/(const Vec2& vec) { return Vec2{x / vec.x, y / vec.y }; }
+
+        Vec2 operator*(const T& value) { return Vec2{x * value, y * value }; }
+        Vec2 operator/(const T& value) { return Vec2{x / value, y / value }; }
 
         Vec2<T>& operator+=(const T& other) { this->x += other; this->y += other; return *this; }
         Vec2<T>& operator-=(const T& other) { this->x -= other; this->y -= other; return *this; }
@@ -44,10 +45,13 @@ namespace omniscia::core {
     struct Vec3 : Vec2<T> {
         T z;
 
-        Vec3 operator+(const Vec3& vec) { return Vec3{x + vec.x, y + vec.y, z + vec.z}; }
-        Vec3 operator-(const Vec3& vec) { return Vec3{x - vec.x, y - vec.y, z - vec.z}; }
-        Vec3 operator*(const Vec3& vec) { return Vec3{x * vec.x, y * vec.y, z * vec.z}; }
-        Vec3 operator/(const Vec3& vec) { return Vec3{x / vec.x, y / vec.y, z / vec.z}; }
+        Vec3 operator+(const Vec3& vec) { return Vec3{this->x + vec.x, this->y + vec.y, z + vec.z}; }
+        Vec3 operator-(const Vec3& vec) { return Vec3{this->x - vec.x, this->y - vec.y, z - vec.z}; }
+        Vec3 operator*(const Vec3& vec) { return Vec3{this->x * vec.x, this->y * vec.y, z * vec.z}; }
+        Vec3 operator/(const Vec3& vec) { return Vec3{this->x / vec.x, this->y / vec.y, z / vec.z}; }
+
+        Vec3 operator*(const T& value) { return Vec3{this->x * value, this->y * value, this->z * value }; }
+        Vec3 operator/(const T& value) { return Vec3{this->x / value, this->y / value, this->z / value }; }
 
         Vec3<T>& operator+=(const Vec3<T>& other) { this->x += other.x; this->y += other.y; this->z += other.z; return *this; }
         
@@ -61,16 +65,30 @@ namespace omniscia::core {
             ss << this->x << ' ' << this->y << ' ' << z;
             return ss.str();
         }
+
+        Vec3<T>& abs() {
+            if(this->x < 0) this->x = -this->x;
+            if(this->y < 0) this->y = -this->y;
+            if(this->z < 0) this->z = -this->z;
+            return *this;
+        }
+
+        f32 length() {
+            return sqrtf(this->x * this->x + this->y * this->y + this->z * this->z);
+        }
     };
 
     template<typename T>
     struct Vec4 : Vec3<T> {
         f32 w;
 
-        Vec4 operator+(const Vec4& vec) { return Vec4{x + vec.x, y + vec.y, z + vec.z, w + vec.w}; }
-        Vec4 operator-(const Vec4& vec) { return Vec4{x - vec.x, y - vec.y, z - vec.z, w - vec.w}; }
-        Vec4 operator*(const Vec4& vec) { return Vec4{x * vec.x, y * vec.y, z * vec.z, w * vec.w}; }
-        Vec4 operator/(const Vec4& vec) { return Vec4{x / vec.x, y / vec.y, z / vec.z, w / vec.w}; }
+        Vec4 operator+(const Vec4& vec) { return Vec4{this->x + vec.x, this->y + vec.y, this->z + vec.z, w + vec.w}; }
+        Vec4 operator-(const Vec4& vec) { return Vec4{this->x - vec.x, this->y - vec.y, this->z - vec.z, w - vec.w}; }
+        Vec4 operator*(const Vec4& vec) { return Vec4{this->x * vec.x, this->y * vec.y, this->z * vec.z, w * vec.w}; }
+        Vec4 operator/(const Vec4& vec) { return Vec4{this->x / vec.x, this->y / vec.y, this->z / vec.z, w / vec.w}; }
+
+        Vec4 operator*(const T& value) { return Vec4{this->x * value, this->y * value, this->z * value, this->w * value }; }
+        Vec4 operator/(const T& value) { return Vec4{this->x / value, this->y / value, this->z / value, this->w / value }; }
 
         Vec4<T>& operator+=(const T& other) { this->x += other; this->y += other; this->z += other; this->w += other; return *this; }
         Vec4<T>& operator-=(const T& other) { this->x -= other; this->y -= other; this->z -= other; this->w -= other; return *this; }

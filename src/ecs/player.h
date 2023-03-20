@@ -22,6 +22,8 @@ namespace omniscia::core {
                 add(new ECS_SpriteSheetRenderer("player-spritesheet", *this, 1));
                 
                 add(new ECS_Gravity(*this));
+
+                add(new ECS_CameraFollow(0.005f, *this));
                 //add(new ECS_VelocitySlowdown(*this));
                 
                 add(new ECS_PlayerController(*this));

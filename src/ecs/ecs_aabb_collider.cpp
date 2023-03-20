@@ -60,7 +60,7 @@ void omniscia::core::ecs::ECS_AABBCollider::collide(ECS_AABBCollider* another) {
     u8 xOverlap = (minX1 <= maxX2) && (maxX1 >= minX2);
     u8 yOverlap = (minY1 <= maxY2) && (maxY1 >= minY2);
 
-    if(!(xOverlap && yOverlap)) {
+    if(!(xOverlap && yOverlap) && _colliding != true) {
         _colliding = false;
         _collidedWith = nullptr;
         return;
@@ -96,6 +96,10 @@ void omniscia::core::ecs::ECS_AABBCollider::collide(ECS_AABBCollider* another) {
     _collidedWith = another;
     _collisionPoint = { intersectionCenterX, intersectionCenterY };
     _collisionSide = tmpCollsionSide;
+}
+
+void omniscia::core::ecs::ECS_AABBCollider::reset_collisions() {
+    _colliding = false;
 }
 
 bool omniscia::core::ecs::ECS_AABBCollider::is_colliding() const {

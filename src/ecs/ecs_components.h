@@ -16,5 +16,6 @@
 #include "ecs_spritesheet_renderer.h"
 #include "ecs_velocity.h"
 #include "ecs_physics_positioned.h"
+#include "ecs_camera_follow.h"
 
 #endif

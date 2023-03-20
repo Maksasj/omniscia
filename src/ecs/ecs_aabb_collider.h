@@ -39,6 +39,7 @@ namespace omniscia::core::ecs {
             void time_sync() override;
 
             virtual void collide(ECS_AABBCollider* another);
+            virtual void reset_collisions();
 
             bool is_colliding() const;
             ECS_AABBCollider* get_colliding_with() const;
@@ -61,9 +62,15 @@ namespace omniscia::core::ecs {
                     for(int j = 0; j < _components.size(); ++j) { 
                         if(i == j) continue;
     
-                        _components[j]->collide(_components[i]);
+                        _components[i]->collide(_components[j]);
                     }
                 }
+            }
+
+            void reset() {
+                for(int i = 0; i < _components.size(); ++i) {
+                    _components[i]->reset_collisions();
+                }  
             }
 
             static ECS_AABBColliderSystem& get_instance() {

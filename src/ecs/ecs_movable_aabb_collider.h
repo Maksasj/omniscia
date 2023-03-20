@@ -25,6 +25,7 @@ namespace omniscia::core::ecs {
             void time_sync() override;
 
             void collide(ECS_AABBCollider* another) override;
+            void reset_collisions() override;
 
             bool is_colliding_by_x() const;
             ECS_AABBCollider* get_colliding_with_by_x() const;
