@@ -3,7 +3,7 @@
 
 #include "types.tpp"
 
-namespace omniscia::renderer {
+namespace omniscia::gfx {
     
     //Buffer object
     class BO {

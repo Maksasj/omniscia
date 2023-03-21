@@ -20,8 +20,8 @@
 #include "animation.h"
 
 namespace omniscia::core::ecs {
-    using namespace omniscia::renderer::sprite;
-    using namespace omniscia::renderer; 
+    using namespace omniscia::gfx::sprite;
+    using namespace omniscia::gfx; 
 
     class ECS_SpriteAnimation : public ECS_Component {
         private:

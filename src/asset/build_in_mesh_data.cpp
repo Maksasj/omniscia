@@ -1,6 +1,6 @@
 #include "build_in_mesh_data.h"
 
-namespace omniscia::renderer::sprite {
+namespace omniscia::gfx {
     RawMeshData BuildInMeshData::QUAD_MESH_DATA = RawMeshData(
         {
             Vertex({ 1.0f,  1.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f}),   // top right

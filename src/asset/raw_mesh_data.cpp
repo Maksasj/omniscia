@@ -1,6 +1,6 @@
 #include "raw_mesh_data.h"
 
-namespace omniscia::renderer::sprite {
+namespace omniscia::gfx::sprite {
     RawMeshData::RawMeshData(const std::vector<Vertex>& vertices, const std::vector<u32>& indices) {
         _vertices = vertices;
         _indices = indices;

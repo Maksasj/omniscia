@@ -19,8 +19,8 @@
 #include "ecs_sprite_flip.h"
 
 namespace omniscia::core::ecs {
-    using namespace omniscia::renderer::sprite;
-    using namespace omniscia::renderer; 
+    using namespace omniscia::gfx::sprite;
+    using namespace omniscia::gfx; 
 
     class ECS_SpriteSheetRenderer : public ECS_Component {
         private:

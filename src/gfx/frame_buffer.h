@@ -8,7 +8,7 @@
 #include "bo.h"
 #include "types.tpp"
 
-namespace omniscia::renderer {
+namespace omniscia::gfx {
     class FrameBuffer : BO {
         public:
             FrameBuffer();
@@ -18,7 +18,7 @@ namespace omniscia::renderer {
 
             void terminate() const override;
 
-            void bind_target_texture_buffer(const omniscia::renderer::texture::TextureBuffer& textureBuffer);
+            void bind_target_texture_buffer(const omniscia::gfx::texture::TextureBuffer& textureBuffer);
     };
 }
 

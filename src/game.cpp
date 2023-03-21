@@ -25,7 +25,7 @@ int omniscia::Game::load() {
 }
 
 int omniscia::Game::run() {
-    using namespace omniscia::renderer::sprite;
+    using namespace omniscia::gfx::sprite;
 
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.2, 0.2}, {0.0, 0.6}, 5, true, 6}), "player-run-animation");
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.2, 0.2}, {0.0, 0.8}, 3, true, 24}), "player-idle-animation");

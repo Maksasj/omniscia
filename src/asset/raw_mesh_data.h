@@ -15,7 +15,7 @@
 
 #include "types.tpp"
 
-namespace omniscia::renderer::sprite {
+namespace omniscia::gfx::sprite {
     class RawMeshData {
         std::vector<Vertex> _vertices;
         std::vector<u32> _indices;

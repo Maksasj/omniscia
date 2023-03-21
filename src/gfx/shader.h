@@ -12,7 +12,7 @@
 #include "shader_manager.h"
 #include "shader_asset.h"
 
-namespace omniscia::renderer {
+namespace omniscia::gfx {
     using namespace omniscia::core;
 
     class Shader {

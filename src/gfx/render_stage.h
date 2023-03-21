@@ -11,9 +11,9 @@
 #include "build_in_mesh_data.h"
 #include "shader.h"
 
-namespace omniscia::renderer {
-    using namespace omniscia::renderer::sprite;
-    using namespace omniscia::renderer::texture;
+namespace omniscia::gfx {
+    using namespace omniscia::gfx::sprite;
+    using namespace omniscia::gfx::texture;
 
     class RenderStage : public FrameBuffer {
         private:

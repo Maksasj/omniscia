@@ -11,7 +11,7 @@
 #include "bo.h"
 #include "types.tpp"
 
-namespace omniscia::renderer::texture {
+namespace omniscia::gfx::texture {
     using namespace omniscia::core;
 
     class TextureBuffer : public BO {

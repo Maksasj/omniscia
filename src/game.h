@@ -29,7 +29,7 @@
 
 namespace omniscia {
     using namespace omniscia::core;
-    using namespace omniscia::renderer;
+    using namespace omniscia::gfx;
 
     class Game {
         private:

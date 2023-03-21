@@ -5,7 +5,7 @@
 
 #include "texture_buffer.h"
 
-namespace omniscia::renderer::texture {
+namespace omniscia::gfx::texture {
     class Texture : public TextureBuffer {
         protected:
             u32 _width;

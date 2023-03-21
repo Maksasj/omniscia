@@ -6,7 +6,7 @@
 
 #include "types.tpp"
 
-namespace omniscia::renderer {
+namespace omniscia::gfx {
     using namespace omniscia::core;
 
     struct Vertex {

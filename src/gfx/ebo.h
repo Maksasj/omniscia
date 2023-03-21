@@ -7,7 +7,7 @@
 
 #include "bo.h"
 
-namespace omniscia::renderer {
+namespace omniscia::gfx {
     class EBO : BO {
         public:
             EBO(const std::vector<u32>& indices);

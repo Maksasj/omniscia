@@ -15,7 +15,7 @@
 
 #include "types.tpp"
 
-namespace omniscia::renderer::sprite {
+namespace omniscia::gfx::sprite {
     using namespace omniscia::core;
 
     class SpriteMesh {

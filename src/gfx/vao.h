@@ -10,7 +10,7 @@
 #include "vertex.h"
 #include "types.tpp"
 
-namespace omniscia::renderer {
+namespace omniscia::gfx {
     class VAO : BO {
         public:
             VAO();

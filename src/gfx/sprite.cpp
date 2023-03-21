@@ -1,36 +1,36 @@
 #include "sprite.h"
 
-omniscia::renderer::sprite::Sprite::Sprite() : spriteMesh(BuildInMeshData::QUAD_MESH_DATA) {
+omniscia::gfx::sprite::Sprite::Sprite() : spriteMesh(BuildInMeshData::QUAD_MESH_DATA) {
     texture = nullptr;
 }
 
-omniscia::renderer::sprite::Sprite::Sprite(const std::string& texture_id) : spriteMesh(BuildInMeshData::QUAD_MESH_DATA) {
+omniscia::gfx::sprite::Sprite::Sprite(const std::string& texture_id) : spriteMesh(BuildInMeshData::QUAD_MESH_DATA) {
     texture = TextureManager::get_instance().get(texture_id).get_asset();
 }
 
-omniscia::renderer::sprite::Sprite::Sprite(const std::string& texture_id, const Vec3f& scale) : spriteMesh(BuildInMeshData::QUAD_MESH_DATA, scale) {
+omniscia::gfx::sprite::Sprite::Sprite(const std::string& texture_id, const Vec3f& scale) : spriteMesh(BuildInMeshData::QUAD_MESH_DATA, scale) {
     texture = TextureManager::get_instance().get(texture_id).get_asset();
 }
 
-void omniscia::renderer::sprite::Sprite::set_texture_by_id(const std::string& texture_id) {
+void omniscia::gfx::sprite::Sprite::set_texture_by_id(const std::string& texture_id) {
     texture = TextureManager::get_instance().get(texture_id).get_asset();
 }
 
-void omniscia::renderer::sprite::Sprite::bind() const {
+void omniscia::gfx::sprite::Sprite::bind() const {
     texture->bind();
     spriteMesh.bind();
 }
 
-void omniscia::renderer::sprite::Sprite::unbind() const {
-    omniscia::renderer::sprite::Sprite::texture->unbind();
+void omniscia::gfx::sprite::Sprite::unbind() const {
+    omniscia::gfx::sprite::Sprite::texture->unbind();
     //spriteMesh.unbind();
 }
 
-omniscia::renderer::sprite::SpriteMesh& omniscia::renderer::sprite::Sprite::get_mesh() {
+omniscia::gfx::sprite::SpriteMesh& omniscia::gfx::sprite::Sprite::get_mesh() {
     return spriteMesh;
 }
 
-void omniscia::renderer::sprite::Sprite::render(const Shader *shader) const {
+void omniscia::gfx::sprite::Sprite::render(const Shader *shader) const {
     shader->set_uniform_vec2f("transform", Vec2f{0.0, 0.0});
     shader->set_uniform_vec2f("scale", Vec2f{1.0, 1.0});
     shader->set_uniform_mat2x2f("rotation", Matrix<f32, 2, 2>::get_zero_rotation_matrix());
@@ -46,7 +46,7 @@ void omniscia::renderer::sprite::Sprite::render(const Shader *shader) const {
     unbind();
 }
 
-void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2f &position) const {
+void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &position) const {
     shader->set_uniform_vec2f("transform", position);
     shader->set_uniform_vec2f("scale", Vec2f{1.0, 1.0});
     shader->set_uniform_mat2x2f("rotation", Matrix<f32, 2, 2>::get_zero_rotation_matrix());
@@ -62,7 +62,7 @@ void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2
     unbind();
 }
 
-void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const float &rotationAngle) const {
+void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const float &rotationAngle) const {
     shader->set_uniform_vec2f("transform", Vec2f{0.0, 0.0});
     shader->set_uniform_vec2f("scale", Vec2f{1.0, 1.0});
     shader->set_uniform_mat2x2f("rotation", Matrix<f32, 2, 2>::get_rotation_matrix(rotationAngle));
@@ -78,7 +78,7 @@ void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const floa
     unbind();
 }
 
-void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const Vec2f &scale) const {    
+void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const Vec2f &scale) const {    
     shader->set_uniform_vec2f("transform", position);
     shader->set_uniform_vec2f("scale", scale);
     shader->set_uniform_mat2x2f("rotation", Matrix<f32, 2, 2>::get_zero_rotation_matrix());
@@ -94,7 +94,7 @@ void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2
     unbind();
 }
 
-void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const float &rotationAngle) const { 
+void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const float &rotationAngle) const { 
     shader->set_uniform_vec2f("transform", position);
     shader->set_uniform_vec2f("scale", Vec2f{1.0, 1.0});
     shader->set_uniform_mat2x2f("rotation", Matrix<f32, 2, 2>::get_rotation_matrix(rotationAngle));
@@ -110,7 +110,7 @@ void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2
     unbind();
 }
 
-void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const float &rotation, const Vec2f &scale) const {
+void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const float &rotation, const Vec2f &scale) const {
     shader->set_uniform_vec2f("transform", position);
     shader->set_uniform_vec2f("scale", scale);
     shader->set_uniform_f32("rotation", rotation);
@@ -126,7 +126,7 @@ void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2
     unbind();
 }
 
-void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const float &rotation, const Vec2f &scale, const Vec2f &spriteFrameSize, const Vec2f &spriteFrameOffset) const {
+void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const float &rotation, const Vec2f &scale, const Vec2f &spriteFrameSize, const Vec2f &spriteFrameOffset) const {
     shader->set_uniform_vec2f("transform", position);
     shader->set_uniform_vec2f("scale", scale);
     shader->set_uniform_mat2x2f("rotation", Matrix<f32, 2, 2>::get_rotation_matrix(rotation));
@@ -142,7 +142,7 @@ void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2
     unbind();
 }
 
-void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Matrix<f32, 2, 2> &rotation) const {
+void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Matrix<f32, 2, 2> &rotation) const {
     shader->set_uniform_vec2f("transform", Vec2f{0.0, 0.0});
     shader->set_uniform_vec2f("scale", Vec2f{1.0, 1.0});
     shader->set_uniform_mat2x2f("rotation", rotation);
@@ -158,7 +158,7 @@ void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Matr
     unbind();
 }
 
-void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const Matrix<f32, 2, 2> &rotation) const { 
+void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const Matrix<f32, 2, 2> &rotation) const { 
     shader->set_uniform_vec2f("transform", position);
     shader->set_uniform_vec2f("scale", Vec2f{1.0, 1.0});
     shader->set_uniform_mat2x2f("rotation", rotation);
@@ -174,7 +174,7 @@ void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2
     unbind();
 }
 
-void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const Matrix<f32, 2, 2> &rotation, const Vec2f &scale) const {
+void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const Matrix<f32, 2, 2> &rotation, const Vec2f &scale) const {
     shader->set_uniform_vec2f("transform", position);
     shader->set_uniform_vec2f("scale", scale);
     shader->set_uniform_mat2x2f("rotation", rotation);
@@ -190,7 +190,7 @@ void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2
     unbind();
 }
 
-void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const Matrix<f32, 2u, 2u> &rotation, const Vec2f &scale, const Vec2f &spriteFrameSize, const Vec2f &spriteFrameOffset) const {
+void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const Matrix<f32, 2u, 2u> &rotation, const Vec2f &scale, const Vec2f &spriteFrameSize, const Vec2f &spriteFrameOffset) const {
     shader->set_uniform_vec2f("transform", position);
     shader->set_uniform_vec2f("scale", scale);
     shader->set_uniform_mat2x2f("rotation", rotation);
@@ -206,7 +206,7 @@ void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2
     unbind();
 }
 
-void omniscia::renderer::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const float &rotationAngle, const Vec2f &scale, const Vec2f &spriteFrameSize, const Vec2f &spriteSheetOffset, const bool& horizontalFlip, const bool& verticalFlip) const {
+void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const float &rotationAngle, const Vec2f &scale, const Vec2f &spriteFrameSize, const Vec2f &spriteSheetOffset, const bool& horizontalFlip, const bool& verticalFlip) const {
     shader->set_uniform_vec2f("transform", position);
     shader->set_uniform_vec2f("scale", scale);
     shader->set_uniform_mat2x2f("rotation", Matrix<f32, 2, 2>::get_rotation_matrix(rotationAngle));

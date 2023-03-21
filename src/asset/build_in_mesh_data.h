@@ -5,8 +5,11 @@
 
 #include "raw_mesh_data.h"
 
-namespace omniscia::renderer::sprite {
+namespace omniscia::gfx {
+    using namespace sprite;
+    
     struct BuildInMeshData {
+
         static RawMeshData QUAD_MESH_DATA;
     };
 }

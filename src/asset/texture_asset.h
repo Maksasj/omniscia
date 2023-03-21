@@ -6,7 +6,7 @@
 #include "texture.h"
 
 namespace omniscia::core {
-    using namespace omniscia::renderer::texture;
+    using namespace omniscia::gfx::texture;
 
     class TextureAsset : public Asset<Texture> {
         public:

@@ -13,8 +13,8 @@
 
 #include "types.tpp"
 
-namespace omniscia::renderer::sprite {
-    using namespace omniscia::renderer::texture;
+namespace omniscia::gfx::sprite {
+    using namespace omniscia::gfx::texture;
     using namespace omniscia::core;
     
     class Sprite {
