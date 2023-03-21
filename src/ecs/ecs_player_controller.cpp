@@ -24,17 +24,10 @@ void  omniscia::core::ecs::ECS_PlayerController::control() {
     Vec3f& velocity = velocityComp.ref_velocity();
     acceleration.x = 0.0f;
 
-    bool isJumping = false;
     bool isMoving = false;
 
-    if(Controls::get(PlayerController::JUMP)) {
-        velocity.y += 0.08;
-
-        isJumping = true;
-    }
-
     if(Controls::get(PlayerController::LEFT)) {
-        acceleration.x += -0.0001f;
+        acceleration.x -= 0.0001f;
 
         if(spriteFlipIndex.is_success()) {
             ECS_SpriteFlip& spriteFlip = _parent.get().ref_unsafe(spriteFlipIndex);

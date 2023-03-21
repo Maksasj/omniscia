@@ -10,7 +10,7 @@ namespace omniscia::core {
             Player() {
                 //add(new ECS_Positioned({0.0f, 1.0f}));
                 add(new ECS_Positioned({0.0f, 0.0f}));
-                add(new ECS_Velocity(0.003f, -0.003f));
+                add(new ECS_Velocity(Vec2f{0.002f, -0.002f}, Vec2f{0.0035f, -0.0035f}));
                 add(new ECS_PhysicsPositioned());
                 add(new ECS_Acceleration());
                 add(new ECS_Friction(-0.01));
@@ -27,6 +27,8 @@ namespace omniscia::core {
                 //add(new ECS_VelocitySlowdown(*this));
                 
                 add(new ECS_PlayerController(*this));
+                add(new ECS_PlayerJump(*this));
+
                 add(new ECS_MovableAABBCollider(*this));
                 add(new ECS_2DPhysicsRigidbody(*this));
             }

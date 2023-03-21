@@ -9,19 +9,20 @@
 #include "ecs_component.tpp"
 #include "entity.h"
 #include "controls.h"
-
+ 
 namespace omniscia::core::ecs {
     class ECS_Velocity : public ECS_Component {
         private:
             Vec3f _vel;
-            f32 _maxVelocity;
-            f32 _minVelocity;
+
+            Vec2f _velocityRangesX;
+            Vec2f _velocityRangesY;
         public:
             ECS_Velocity();
             ECS_Velocity(const Vec3f& vel);
-            ECS_Velocity(const Vec3f& vel, const f32& maxVelocity);
-            ECS_Velocity(const Vec3f& vel, const f32& maxVelocity, const f32& minVelocity);
-            ECS_Velocity(const f32& maxVelocity, const f32& minVelocity);
+            ECS_Velocity(const Vec3f& vel, const Vec2f& velocityRangesX);
+            ECS_Velocity(const Vec3f& vel, const Vec2f& velocityRangesX, const Vec2f& velocityRangesY);
+            ECS_Velocity(const Vec2f& velocityRangesX, const Vec2f& velocityRangesY);
 
             void reindex(void* parent) override;
 
@@ -31,13 +32,13 @@ namespace omniscia::core::ecs {
             void set_velocity(Vec3f velocity);
 
             void clamp_velocity() {
-                if(_vel.x > _maxVelocity) _vel.x = _maxVelocity;
-                if(_vel.y > _maxVelocity) _vel.y = _maxVelocity;
-                if(_vel.z > _maxVelocity) _vel.z = _maxVelocity;
+                if(_vel.x > _velocityRangesX.x) _vel.x = _velocityRangesX.x;
+                if(_vel.y > _velocityRangesY.x) _vel.y = _velocityRangesY.x;
+                //if(_vel.z > _maxVelocityZ) _vel.z = _maxVelocityZ;
                 
-                if(_vel.x < _minVelocity) _vel.x = _minVelocity;
-                if(_vel.y < _minVelocity) _vel.y = _minVelocity;
-                if(_vel.z < _minVelocity) _vel.z = _minVelocity;
+                if(_vel.x < _velocityRangesX.y) _vel.x = _velocityRangesX.y;
+                if(_vel.y < _velocityRangesY.y) _vel.y = _velocityRangesY.y;
+                //if(_vel.z < _minVelocityZ) _vel.z = _minVelocityZ;
             }
 
             std::shared_ptr<ECS_Component> clone() override {

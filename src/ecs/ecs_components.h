@@ -17,5 +17,6 @@
 #include "ecs_velocity.h"
 #include "ecs_physics_positioned.h"
 #include "ecs_camera_follow.h"
+#include "ecs_player_jump.h"
 
 #endif

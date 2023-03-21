@@ -43,10 +43,11 @@ void omniscia::core::ecs::ECS_2DPhysicsRigidbody::update() {
 
     acceleration.x += velocity.x * friction;
     velocity.x += acceleration.x * dt;
+
     velocityComp.clamp_velocity();
 
     position.x += velocity.x * dt + acceleration.x * 0.5 * dt * dt;
-    position.y += velocity.y * dt - acceleration.y * 0.5 * dt * dt;
+    position.y += velocity.y * dt + acceleration.y * 0.5 * dt * dt;
 
     physicsPositioneComp.set_new_position(position);
 }

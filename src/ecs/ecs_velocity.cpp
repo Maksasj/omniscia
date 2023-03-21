@@ -2,32 +2,33 @@
 
 omniscia::core::ecs::ECS_Velocity::ECS_Velocity() { 
     _vel = Vec3f{0.0f, 0.0f, 0.0f}; 
-    _maxVelocity = 1.0;
-    _minVelocity = -1.0;
+    _velocityRangesX = Vec2f{1.0, -1.0};
+    _velocityRangesY = Vec2f{1.0, -1.0};
 }
 
 omniscia::core::ecs::ECS_Velocity::ECS_Velocity(const Vec3f& vel) {
     _vel = vel;
-    _maxVelocity = 0.0;
-    _minVelocity = 0.0;
+    _velocityRangesX = Vec2f{1.0, -1.0};
+    _velocityRangesY = Vec2f{1.0, -1.0};
 }
 
-omniscia::core::ecs::ECS_Velocity::ECS_Velocity(const Vec3f& vel, const f32& maxVelocity) {
+omniscia::core::ecs::ECS_Velocity::ECS_Velocity(const Vec3f& vel, const Vec2f& velocityRangesX) {
     _vel = vel;
-    _maxVelocity = maxVelocity;
-    _minVelocity = 0.0;
+    _velocityRangesX = velocityRangesX;
+    _velocityRangesY = Vec2f{1.0, -1.0};
 }
 
-omniscia::core::ecs::ECS_Velocity::ECS_Velocity(const Vec3f& vel, const f32& maxVelocity, const f32& minVelocity) {
+omniscia::core::ecs::ECS_Velocity::ECS_Velocity(const Vec3f& vel, const Vec2f& velocityRangesX, const Vec2f& velocityRangesY) {
     _vel = vel;
-    _maxVelocity = maxVelocity;
-    _minVelocity = minVelocity;
+    _velocityRangesX = velocityRangesX;
+    _velocityRangesY = velocityRangesY;
 }
 
-omniscia::core::ecs::ECS_Velocity::ECS_Velocity(const f32& maxVelocity, const f32& minVelocity) { 
+omniscia::core::ecs::ECS_Velocity::ECS_Velocity(const Vec2f& velocityRangesX, const Vec2f& velocityRangesY) { 
     _vel = Vec3f{0.0f, 0.0f, 0.0f}; 
-    _maxVelocity = maxVelocity;
-    _minVelocity = minVelocity;
+    
+    _velocityRangesX = velocityRangesX;
+    _velocityRangesY = velocityRangesY;
 }
 
 void omniscia::core::ecs::ECS_Velocity::reindex(void* parent) {

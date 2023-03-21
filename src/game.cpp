@@ -15,8 +15,8 @@ int omniscia::Game::load() {
     }
 
     glfwMakeContextCurrent(window);
+    glfwSwapInterval(0);
 
-    //glfwSwapInterval(1);
     //glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     Renderer::loadGL();
@@ -67,19 +67,8 @@ int omniscia::Game::run() {
     renderStage2.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
     renderStage2.bind_default_shader(&shader2);
 
-    struct Level {
-        Player player;
-        //std::array<Entity, 1000> entities;
-        std::vector<Entity> entities;
-
-        Level clone() {
-            //return {};
-            return {player.clone(), entities};
-        }
-    } level;
-
-    //Level active;
-    std::deque<Level> timeLine;
+    Level level;
+    std::deque<Level::LevelDynamic> timeLine;
 
     for(int i = 0; i < 2; ++i) {
         Entity wall = Entity();
@@ -87,23 +76,11 @@ int omniscia::Game::run() {
         wall.add(new ECS_Scaled({1.0, 0.25}, wall));
         wall.add(new ECS_SpriteRenderer("factorio_girl_texture", wall, 0));
         wall.add(new ECS_AABBCollider(wall));
-        level.entities.push_back(wall);
+        level.staticPart.staticEntities.push_back(wall);
     }
 
     /* Components binded twise, because of this we need to time sync imideialty */
-    ECS_SpriteSheetRendererSystem::get_instance().time_sync();
-    ECS_SpriteRendererSystem::get_instance().time_sync();
-    ECS_PlayerControllerSystem::get_instance().time_sync();
-    ECS_SpriteAnimationSystem::get_instance().time_sync();
-    ECS_AABBColliderSystem::get_instance().time_sync();
-    ECS_2DPhysicsRigidbodySystem::get_instance().time_sync();
-    ECS_GravitySystem::get_instance().time_sync();
-    ECS_CameraFollowSystem::get_instance().time_sync();
-
-    level.player.time_sync();
-    for(auto &p : level.entities) {
-        p.time_sync();
-    }
+    level.time_sync();
     /* ======================================================================== */
     
     glEnable(GL_BLEND);
@@ -117,11 +94,10 @@ int omniscia::Game::run() {
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
 
-
     u64 frame = 0;
+    Time::get_instance().update_delta_time_clock();
     while (!glfwWindowShouldClose(window)) {   
         Time::get_instance().update_delta_time_clock();
-
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
@@ -140,23 +116,9 @@ int omniscia::Game::run() {
             //std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
             if(frame % 5 == 0) {
                 if(timeLine.size() > 0) {
-                    level = timeLine[timeLine.size() - 1];
+                    level.dynamicPart = timeLine[timeLine.size() - 1];
                     timeLine.pop_back();
-
-                    ECS_SpriteSheetRendererSystem::get_instance().time_sync();
-                    ECS_SpriteRendererSystem::get_instance().time_sync();
-                    ECS_PlayerControllerSystem::get_instance().time_sync();
-                    ECS_SpriteAnimationSystem::get_instance().time_sync();
-                    ECS_AABBColliderSystem::get_instance().time_sync();
-                    ECS_2DPhysicsRigidbodySystem::get_instance().time_sync();
-                    ECS_GravitySystem::get_instance().time_sync();
-                    ECS_CameraFollowSystem::get_instance().time_sync();
-
-                    level.player.time_sync();
-
-                    for(auto &p : level.entities) {
-                        p.time_sync();
-                    }
+                    level.time_sync();
                 }
             }
 
@@ -182,17 +144,17 @@ int omniscia::Game::run() {
         ECS_CameraFollowSystem::get_instance().update(&shader1);
 
         if(!isTimeJump) {
-            ECS_PlayerControllerSystem::get_instance().update();
             ECS_GravitySystem::get_instance().update();
             ECS_2DPhysicsRigidbodySystem::get_instance().update();
             ECS_AABBColliderSystem::get_instance().update();
             ECS_2DPhysicsRigidbodySystem::get_instance().late_update();
+            ECS_PlayerControllerSystem::get_instance().update(); /* Need to be between collider updates, since should now is player standing */
+            ECS_PlayerJumpSystem::get_instance().update();
             ECS_AABBColliderSystem::get_instance().reset();
         }
 
         renderStage1.render_stage_lambda([&](){ 
             Renderer::clearBuffer(Vec4f{0.1, 0.1, 0.1, 1.0});
-            
             shader1.set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
 
             ECS_SpriteRendererSystem::get_instance().render(&shader1);

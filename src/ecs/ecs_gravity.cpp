@@ -27,8 +27,10 @@ void  omniscia::core::ecs::ECS_Gravity::update() {
 
     f32 dt = Time::get_instance().get_delta_time();
 
-    static const f32 gravitation = -0.0002f;
+    //if(velocity.y > 0.0001f) {
+    //    velocity.y *= 0.991;
+    //    return;
+    //}
 
-    velocity.y += gravitation * dt;
-    velocityComp.clamp_velocity();
+    velocity.y -= 0.00001 * dt;
 }
