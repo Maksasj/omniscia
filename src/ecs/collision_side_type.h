@@ -4,7 +4,7 @@
 namespace omniscia::core::ecs {
     enum CollisionSide {
         NONE,
-      
+
         LEFT,
         RIGHT,
         TOP,

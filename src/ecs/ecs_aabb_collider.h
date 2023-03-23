@@ -6,14 +6,13 @@
 #include <iostream>
 #include <algorithm>
 
-#include "entity.h"
-
-#include "ecs_system.h"
-#include "ecs_positioned.h"
-#include "ecs_scaled.h"
-#include "ecs_component.tpp"
-#include "controls.h"
 #include "collision_side_type.h"
+#include "ecs_component.tpp"
+#include "ecs_positioned.h"
+#include "ecs_system.h"
+#include "ecs_scaled.h"
+#include "controls.h"
+#include "entity.h"
 
 namespace omniscia::core::ecs {
     using namespace omniscia::core;

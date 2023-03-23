@@ -1,19 +1,16 @@
 #ifndef _RAW_MESH_DATA_H_
 #define _RAW_MESH_DATA_H_
 
-#include <glad/glad.h>
-
 #include <vector>
 #include <iostream>
 #include <algorithm>
 
+#include "types.tpp"
 #include "vertex.h"
-
 #include "vao.h"
 #include "vbo.h"
 #include "ebo.h"
-
-#include "types.tpp"
+#include "gfx.h"
 
 namespace omniscia::gfx::sprite {
     class RawMeshData {

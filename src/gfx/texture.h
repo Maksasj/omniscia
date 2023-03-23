@@ -1,9 +1,8 @@
 #ifndef _TEXTURE_H_
 #define _TEXTURE_H_
 
-#include <glad/glad.h>
-
 #include "texture_buffer.h"
+#include "gfx.h"
 
 namespace omniscia::gfx::texture {
     class Texture : public TextureBuffer {

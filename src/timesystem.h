@@ -4,6 +4,7 @@
 #include <functional>
 #include <chrono>
 
+#include "gfx.h"
 #include "types.tpp"
 
 namespace omniscia::core {
@@ -27,20 +28,9 @@ namespace omniscia::core {
                 }
             }
 
-            f32 get_delta_time() {
-                return _deltaTime * 1000.0;
-            }
-
-            void update_delta_time_clock() {
-                _firstTime = glfwGetTime();
-                _deltaTime = _firstTime - _secondTime;
-                _secondTime = _firstTime;
-            }
-
-            static Time& get_instance() {
-                static Time instace;
-                return instace;
-            }
+            f32 get_delta_time();
+            void update_delta_time_clock();
+            static Time& get_instance();
     };
 }
 

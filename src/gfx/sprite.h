@@ -1,17 +1,14 @@
 #ifndef _SPRITE_H_
 #define _SPRITE_H_
 
-#include <glad/glad.h>
-
 #include "sprite_mesh.h"
 #include "build_in_mesh_data.h"
 #include "texture_manager.h"
 #include "texture.h"
-
 #include "properties.h"
-#include "shader.h"
-
 #include "types.tpp"
+#include "shader.h"
+#include "gfx.h"
 
 namespace omniscia::gfx::sprite {
     using namespace omniscia::gfx::texture;

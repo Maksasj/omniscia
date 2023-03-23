@@ -1,12 +1,11 @@
 #include "texture_asset.h"
 
-omniscia::core::TextureAsset::TextureAsset() {
+u32 omniscia::core::TextureAsset::_count = 0;
 
-}
 
-omniscia::core::TextureAsset::TextureAsset(const std::string& file_path) : Asset(file_path) {
+omniscia::core::TextureAsset::TextureAsset() { ++_count; }
 
-}
+omniscia::core::TextureAsset::TextureAsset(const std::string& file_path) : Asset(file_path) { ++_count; }
 
 void omniscia::core::TextureAsset::load_asset() {
     stbi_set_flip_vertically_on_load(true);
@@ -37,4 +36,8 @@ void omniscia::core::TextureAsset::load_asset() {
     stbi_image_free(data);
 
     _asset.unbind();
+}
+
+u32 omniscia::core::TextureAsset::get_count() {
+    return _count;
 }

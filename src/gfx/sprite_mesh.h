@@ -1,19 +1,15 @@
 #ifndef _SPRITE_MESH_H_
 #define _SPRITE_MESH_H_
 
-#include <glad/glad.h>
-
 #include <vector>
 
+#include "raw_mesh_data.h"
+#include "types.tpp"
 #include "vertex.h"
-
 #include "vao.h"
 #include "vbo.h"
 #include "ebo.h"
-
-#include "raw_mesh_data.h"
-
-#include "types.tpp"
+#include "gfx.h"
 
 namespace omniscia::gfx::sprite {
     using namespace omniscia::core;

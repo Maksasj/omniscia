@@ -1,12 +1,11 @@
 #ifndef _CONTROLS_H_
 #define _CONTROLS_H_
 
-#include <GLFW/glfw3.h>
 #include <iostream>
-
-#include "unordered_map"
+#include <unordered_map>
 
 #include "types.tpp"
+#include "gfx.h"
 
 namespace omniscia::core {
     enum PlayerController {

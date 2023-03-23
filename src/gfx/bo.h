@@ -4,8 +4,6 @@
 #include "types.tpp"
 
 namespace omniscia::gfx {
-    
-    //Buffer object
     class BO {
         protected:
             u32 _ID;

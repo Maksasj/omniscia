@@ -5,10 +5,10 @@
 #include <memory>
 #include <iostream>
 
-#include "types.tpp"
 #include "ecs_component.tpp"
-#include "entity.h"
 #include "controls.h"
+#include "types.tpp"
+#include "entity.h"
  
 namespace omniscia::core::ecs {
     class ECS_Velocity : public ECS_Component {

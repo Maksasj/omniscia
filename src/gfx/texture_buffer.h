@@ -3,13 +3,10 @@
 
 #include <iostream>
 
-#include <glad/glad.h>
-
-//#define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
-
-#include "bo.h"
 #include "types.tpp"
+#include "gfx.h"
+#include "bo.h"
 
 namespace omniscia::gfx::texture {
     using namespace omniscia::core;

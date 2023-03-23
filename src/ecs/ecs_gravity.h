@@ -5,16 +5,13 @@
 #include <memory>
 #include <iostream>
 
-#include "entity.h"
-
-#include "ecs_system.h"
-#include "ecs_velocity.h"
 #include "ecs_acceleration.h"
 #include "ecs_component.tpp"
-#include "controls.h"
+#include "ecs_velocity.h"
 #include "timesystem.h"
-
-#define DEFAULT_GRAVITATION_ACCELERATION 9.8
+#include "ecs_system.h"
+#include "controls.h"
+#include "entity.h"
 
 namespace omniscia::core::ecs {
     using namespace omniscia::core;

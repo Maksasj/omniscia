@@ -6,8 +6,8 @@
 #include <iostream>
 
 #include "ecs_component.tpp"
-#include "entity.h"
 #include "controls.h"
+#include "entity.h"
 
 namespace omniscia::core::ecs {
     class ECS_Positioned : public ECS_Component {

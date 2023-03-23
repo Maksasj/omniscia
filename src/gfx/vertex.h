@@ -1,10 +1,10 @@
 #ifndef _VERTEX_H_
 #define _VERTEX_H_
 
-#include <glad/glad.h>
 #include <sstream>
 
 #include "types.tpp"
+#include "gfx.h"
 
 namespace omniscia::gfx {
     using namespace omniscia::core;

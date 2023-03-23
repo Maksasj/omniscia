@@ -57,6 +57,11 @@ int omniscia::Game::run() {
     if(shader2.try_compile()) shader2.compile();
     if(shader3.try_compile()) shader3.compile();
 
+    std::cout << "Animation asset count: "<< AnimationAsset::get_count() << "\n";
+    std::cout << "Texture asset count: "<< TextureAsset::get_count() << "\n";
+    std::cout << "Shader asset count: "<< ShaderAsset::get_count() << "\n";
+
+
     RenderStage renderStage1;
     renderStage1.bind_target_texture_buffer(new TextureBuffer(Properties::screen_width, Properties::screen_height));
     renderStage1.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
@@ -148,8 +153,8 @@ int omniscia::Game::run() {
             ECS_2DPhysicsRigidbodySystem::get_instance().update();
             ECS_AABBColliderSystem::get_instance().update();
             ECS_2DPhysicsRigidbodySystem::get_instance().late_update();
-            ECS_PlayerControllerSystem::get_instance().update(); /* Need to be between collider updates, since should now is player standing */
-            ECS_PlayerJumpSystem::get_instance().update();
+            ECS_PlayerControllerSystem::get_instance().update();
+            ECS_PlayerJumpSystem::get_instance().update(); /* Need to be between collider updates, since should know is player standing */
             ECS_AABBColliderSystem::get_instance().reset();
         }
 
@@ -175,7 +180,6 @@ int omniscia::Game::run() {
 
             renderStage2.present_as_texture();
         });
-
 
         /* ImGui */
         {
@@ -220,8 +224,11 @@ int omniscia::Game::run() {
 
     glDisable(GL_BLEND);
 
+    shader1.terminate();
     shader2.terminate();
+    shader3.terminate();
 
     glfwTerminate();
+
     return 0;
 }

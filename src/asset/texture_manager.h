@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-#include "manager.h"
 #include "texture_asset.h"
+#include "manager.h"
 
 namespace omniscia::core {
     class TextureManager : Manager<TextureAsset> {

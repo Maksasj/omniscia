@@ -5,18 +5,16 @@
 #include <memory>
 #include <iostream>
 
+#include "ecs_sprite_animation.h"
+#include "ecs_component.tpp"
+#include "ecs_sprite_flip.h"
+#include "ecs_positioned.h"
+#include "ecs_system.h"
+#include "ecs_scaled.h"
+#include "controls.h"
 #include "entity.h"
-
-#include "ecs_system.h" 
-
 #include "sprite.h"
 #include "shader.h"
-#include "ecs_component.tpp"
-#include "controls.h"
-#include "ecs_positioned.h"
-#include "ecs_scaled.h"
-#include "ecs_sprite_animation.h"
-#include "ecs_sprite_flip.h"
 
 namespace omniscia::core::ecs {
     using namespace omniscia::gfx::sprite;

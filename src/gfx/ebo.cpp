@@ -8,6 +8,10 @@ omniscia::gfx::EBO::EBO(const std::vector<u32>& indices) {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(Vec3i), indices.data(), GL_STATIC_DRAW);
 }
 
+omniscia::gfx::EBO::~EBO() {
+    
+}
+
 void omniscia::gfx::EBO::bind() const {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ID);
 }

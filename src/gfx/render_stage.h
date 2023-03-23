@@ -1,15 +1,15 @@
 #ifndef _RENDER_STAGE_H_
 #define _RENDER_STAGE_H_
 
-#include <glad/glad.h>
 #include <functional>
 
-#include "frame_buffer.h"
+#include "build_in_mesh_data.h"
 #include "texture_buffer.h"
 #include "raw_mesh_data.h"
+#include "frame_buffer.h"
 #include "sprite_mesh.h"
-#include "build_in_mesh_data.h"
 #include "shader.h"
+#include "gfx.h"
 
 namespace omniscia::gfx {
     using namespace omniscia::gfx::sprite;

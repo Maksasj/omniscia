@@ -5,8 +5,8 @@
 #include <memory>
 #include <iostream>
 
-#include "ecs_system.h" 
 #include "ecs_component.tpp"
+#include "ecs_system.h" 
 
 namespace omniscia::core::ecs {
     class ECS_PhysicsPositioned : public ECS_Component {

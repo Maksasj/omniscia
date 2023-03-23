@@ -3,19 +3,20 @@
 
 #include <cstdint>
 #include <sstream>
+#include <iostream>
 
-typedef uint8_t     u8;
-typedef uint16_t    u16;
-typedef uint32_t    u32;
-typedef uint64_t    u64;
+using u8 = unsigned char;
+using u16 = unsigned short;
+using u32 = unsigned int;
+using u64 = unsigned long long;
 
-typedef int8_t      i8;
-typedef int16_t     i16;
-typedef int32_t     i32;
-typedef int64_t     i64;
+using i8 = signed char;
+using i16 = signed short;
+using i32 = signed int;
+using i64 = signed long long;
 
-typedef float       f32; 
-typedef double      f64; 
+using f32 = float;
+using f64 = double;
 
 namespace omniscia::core {
     template<typename T>
@@ -29,15 +30,40 @@ namespace omniscia::core {
         Vec2 operator*(const T& value) { return Vec2{x * value, y * value }; }
         Vec2 operator/(const T& value) { return Vec2{x / value, y / value }; }
 
+        /* Vector x= Vector */
+        Vec2<T>& operator+=(const Vec2<T>& other) { this->x += other.x; this->y += other.y; return *this; }
+        Vec2<T>& operator-=(const Vec2<T>& other) { this->x -= other.x; this->y -= other.y; return *this; }
+        Vec2<T>& operator*=(const Vec2<T>& other) { this->x *= other.x; this->y *= other.y; return *this; }
+        Vec2<T>& operator/=(const Vec2<T>& other) { this->x /= other.x; this->y /= other.y; return *this; }
+
+        /* Vector x= arbirary values */
         Vec2<T>& operator+=(const T& other) { this->x += other; this->y += other; return *this; }
         Vec2<T>& operator-=(const T& other) { this->x -= other; this->y -= other; return *this; }
         Vec2<T>& operator*=(const T& other) { this->x *= other; this->y *= other; return *this; }
         Vec2<T>& operator/=(const T& other) { this->x /= other; this->y /= other; return *this; }
 
+        bool operator==(const Vec2<T> other) { return this->x == other.x && this->y == other.y; }
+        bool operator!=(const Vec2<T> other) { return !this == other; }
+
+        friend std::ostream& operator<<(std::ostream& os, const Vec2<T>& vec) {
+            os << vec.x << " " << vec.y;
+            return os;
+        }
+
         std::string to_string() const {
             std::stringstream ss;
             ss << x << ' ' << y;
             return ss.str();
+        }
+        
+        Vec2<T>& abs() {
+            if(this->x < 0) this->x = -this->x;
+            if(this->y < 0) this->y = -this->y;
+            return *this;
+        }
+
+        f32 length() {
+            return sqrtf(this->x * this->x + this->y);
         }
     };
 
@@ -53,12 +79,25 @@ namespace omniscia::core {
         Vec3 operator*(const T& value) { return Vec3{this->x * value, this->y * value, this->z * value }; }
         Vec3 operator/(const T& value) { return Vec3{this->x / value, this->y / value, this->z / value }; }
 
+        /* Vector x= Vector */
         Vec3<T>& operator+=(const Vec3<T>& other) { this->x += other.x; this->y += other.y; this->z += other.z; return *this; }
+        Vec3<T>& operator-=(const Vec3<T>& other) { this->x -= other.x; this->y -= other.y; this->z -= other.z; return *this; }
+        Vec3<T>& operator*=(const Vec3<T>& other) { this->x *= other.x; this->y *= other.y; this->z *= other.z; return *this; }
+        Vec3<T>& operator/=(const Vec3<T>& other) { this->x /= other.x; this->y /= other.y; this->z /= other.z; return *this; }
         
+        /* Vector x= arbirary values */
         Vec3<T>& operator+=(const T& other) { this->x += other; this->y += other; this->z += other; return *this; }
         Vec3<T>& operator-=(const T& other) { this->x -= other; this->y -= other; this->z -= other; return *this; }
         Vec3<T>& operator*=(const T& other) { this->x *= other; this->y *= other; this->z *= other; return *this; }
         Vec3<T>& operator/=(const T& other) { this->x /= other; this->y /= other; this->z /= other; return *this; }
+
+        bool operator==(const Vec3<T> other) { return this->x == other.x && this->y == other.y && this->z == other.z; }
+        bool operator!=(const Vec3<T> other) { return !this == other; }
+
+        friend std::ostream& operator<<(std::ostream& os, const Vec3<T>& vec) {
+            os << vec.x << " " << vec.y << " " << vec.z;
+            return os;
+        }
 
         std::string to_string() const {
             std::stringstream ss;
@@ -90,15 +129,42 @@ namespace omniscia::core {
         Vec4 operator*(const T& value) { return Vec4{this->x * value, this->y * value, this->z * value, this->w * value }; }
         Vec4 operator/(const T& value) { return Vec4{this->x / value, this->y / value, this->z / value, this->w / value }; }
 
+        /* Vector x= Vector */
+        Vec4<T>& operator+=(const Vec4<T>& other) { this->x += other.x; this->y += other.y; this->z += other.z; this->w += other.w; return *this; }
+        Vec4<T>& operator-=(const Vec4<T>& other) { this->x -= other.x; this->y -= other.y; this->z -= other.z; this->w -= other.w; return *this; }
+        Vec4<T>& operator*=(const Vec4<T>& other) { this->x *= other.x; this->y *= other.y; this->z *= other.z; this->w *= other.w; return *this; }
+        Vec4<T>& operator/=(const Vec4<T>& other) { this->x /= other.x; this->y /= other.y; this->z /= other.z; this->w /= other.w; return *this; }
+
+        /* Vector x= arbirary values */
         Vec4<T>& operator+=(const T& other) { this->x += other; this->y += other; this->z += other; this->w += other; return *this; }
         Vec4<T>& operator-=(const T& other) { this->x -= other; this->y -= other; this->z -= other; this->w -= other; return *this; }
         Vec4<T>& operator*=(const T& other) { this->x *= other; this->y *= other; this->z *= other; this->w *= other; return *this; }
         Vec4<T>& operator/=(const T& other) { this->x /= other; this->y /= other; this->z /= other; this->w /= other; return *this; }
 
+        bool operator==(const Vec4<T> other) { return this->x == other.x && this->y == other.y && this->z == other.z && this->w == other.w; }
+        bool operator!=(const Vec4<T> other) { return !this == other; }
+
+        friend std::ostream& operator<<(std::ostream& os, const Vec4<T>& vec) {
+            os << vec.x << " " << vec.y << " " << vec.z << " " << vec.w; 
+            return os;
+        }
+
         std::string to_string() const {
             std::stringstream ss;
             ss << this->x << ' ' << this->y << ' ' << this->z << ' ' << w; 
             return ss.str();
+        }
+
+        Vec4<T>& abs() {
+            if(this->x < 0) this->x = -this->x;
+            if(this->y < 0) this->y = -this->y;
+            if(this->z < 0) this->z = -this->z;
+            if(this->w < 0) this->z = -this->w;
+            return *this;
+        }
+
+        f32 length() {
+            return sqrtf(this->x * this->x + this->y * this->y + this->z * this->z,  + this->w * this->w);
         }
     };
 

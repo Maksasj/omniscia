@@ -1,16 +1,14 @@
 #ifndef _SHADER_H_
 #define _SHADER_H_
 
-#include <glad/glad.h>
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
 
-#include "types.tpp"
-
 #include "shader_manager.h"
 #include "shader_asset.h"
+#include "types.tpp"
+#include "gfx.h"
 
 namespace omniscia::gfx {
     using namespace omniscia::core;

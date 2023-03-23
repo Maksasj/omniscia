@@ -7,4 +7,3 @@ u32 omniscia::gfx::BO::get_id() const {
 u32* omniscia::gfx::BO::get_id_ref() {
     return &_ID; 
 }
-

@@ -1,11 +1,10 @@
 #ifndef _OMMNISCIA_RENDERER_H_
 #define _OMMNISCIA_RENDERER_H_
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
 #include <iostream>
+
 #include "types.tpp"
+#include "gfx.h"
 
 namespace omniscia::gfx {
     using namespace omniscia::core;

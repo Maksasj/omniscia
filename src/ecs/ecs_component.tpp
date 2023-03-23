@@ -21,7 +21,6 @@ namespace omniscia::core::ecs {
             virtual void time_sync() {}
 
             virtual std::shared_ptr<ECS_Component> clone() { 
-                std::cout << "WTF\n";
                 return std::shared_ptr<ECS_Component>(NULL);
             }
     };

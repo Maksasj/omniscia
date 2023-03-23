@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-#include "manager.h"
 #include "shader_asset.h"
+#include "manager.h"
 
 namespace omniscia::core {
     class ShaderManager : Manager<ShaderAsset> {

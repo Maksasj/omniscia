@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "types.tpp"
+
 namespace omniscia::core {
     template<typename T>
     class Asset {
@@ -23,6 +25,8 @@ namespace omniscia::core {
             T* get_asset() {
                 return &_asset;
             }
+
+            static u32 get_count() { return 0; }
     };
 }
 

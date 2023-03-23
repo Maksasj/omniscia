@@ -1,8 +1,8 @@
 #ifndef _ENTITY_H_
 #define _ENTITY_H_
 
-#include "ecs_component_сontainer.tpp"
 #include "ecs_component_сontainer_index.tpp"
+#include "ecs_component_сontainer.tpp"
 #include "dynamic_object.h"
 
 namespace omniscia::core {
