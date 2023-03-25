@@ -1,20 +1,30 @@
-# Omniscia
+<div>
+  <img align="left" src="https://github.com/Maksasj/omniscia/blob/master/docs/readme_icon.png" width="288px">
 
-## Build:
+  # Omniscia
+  Omnisicia - 2D platformer game, with the main mechanic time manipulation (traveling to the past, future, speed up and slow down time)
+
+  Omnisicia highly inspired by [Celeste](https://store.steampowered.com/app/504230/Celeste/) as well as by [Braid](https://store.steampowered.com/app/26800/Braid/)
+
+  *Note game is an under development, wait for realeses under realease page*
+
+  <img src="https://img.shields.io/github/stars/Maksasj/omniscia" alt="stars">
+  <img src="https://img.shields.io/github/license/Maksasj/omniscia" alt="license">
+</div>
+
+---
+
+## Todo List
+- [ ] *Todo*
+- [ ] *Todo*
+- [ ] *Todo*
+
+## Build
 ```bash
 cmake -B build -G Ninja
 
 make.bat
 ```
 
-### Todo
-- [x] Sprite sheets animation
-- [x] Scale component
-- [x] Matrices for rotation
-- [ ] Quad mesh building, with custom texture cords
-- [ ] Texture cords calculator
-- [x] Upate texute asset meta data(size, channels, etc)
-- [x] Collisions, Rigidbody
-- [x] Const time systems
-- [x] Delta time physics
-- [ ] Some systems should stop updating during time jump(controls)))
+## License
+*Todo*
