@@ -13,6 +13,7 @@ omniscia::core::Player::Player() {
     add(new ECS_Gravity(*this));
     add(new ECS_CameraFollow(0.005f, *this));
     add(new ECS_PlayerController(*this));
+    add(new ECS_PlayerDebugMetrics(*this));
     add(new ECS_PlayerJump(*this));
     add(new ECS_MovableAABBCollider(*this));
     add(new ECS_2DPhysicsRigidbody(*this));

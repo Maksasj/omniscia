@@ -1,10 +1,6 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
-#include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
-
 #include <deque>
 #include <chrono>
 
@@ -20,6 +16,7 @@
 #include "sprite.h" 
 #include "player.h"
 #include "gfx.h"
+#include "debug_ui.h"
 
 namespace omniscia {
     using namespace omniscia::core;
@@ -58,6 +55,7 @@ namespace omniscia {
             ECS_GravitySystem::get_instance().time_sync();
             ECS_CameraFollowSystem::get_instance().time_sync();
             ECS_PlayerJumpSystem::get_instance().time_sync();
+            ECS_PlayerDebugMetricsSystem::get_instance().time_sync();
 
             dynamicPart.player.time_sync();
             for(auto &e : dynamicPart.dynamicEntities)

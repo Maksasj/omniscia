@@ -36,11 +36,19 @@ int omniscia::Game::run() {
     TextureManager::get_instance().add_asset("assets/player.png", "player");
     TextureManager::get_instance().add_asset("assets/player-spritesheet.png", "player-spritesheet");
 
+    TextureManager::get_instance().add_asset("assets/background/1_layer.png", "1_layer");
+    TextureManager::get_instance().add_asset("assets/background/2_layer.png", "2_layer");
+    TextureManager::get_instance().add_asset("assets/background/3_layer.png", "3_layer");
+    TextureManager::get_instance().add_asset("assets/background/4_layer.png", "4_layer");
+
     TextureManager::get_instance().load_assets();
 
     //Spritesheet::get_instance().add_asset("player-spritesheet", "player_run", Vec2i);
 
-    Sprite sprite1("factorio_girl_texture");
+    Sprite backGround1Layer1("1_layer");
+    Sprite backGround2Layer1("2_layer");
+    Sprite backGround3Layer1("3_layer");
+    Sprite backGround4Layer1("4_layer");
 
     ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_1.glsl", "frag_stage_1", FRAGMENT_SHADER);
     ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_2.glsl", "frag_stage_2", FRAGMENT_SHADER);
@@ -49,18 +57,23 @@ int omniscia::Game::run() {
     ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_2.glsl", "vert_stage_2", VERTEX_SHADER);
     ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_3.glsl", "vert_stage_3", VERTEX_SHADER);
 
+    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_background.glsl", "frag_stage_background", FRAGMENT_SHADER);
+    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_background.glsl", "vert_stage_background", VERTEX_SHADER);
+
     Shader shader1("vert_stage_1", "frag_stage_1");
     Shader shader2("vert_stage_2", "frag_stage_2");
     Shader shader3("vert_stage_3", "frag_stage_3");
+    Shader shaderBackground("vert_stage_background", "frag_stage_background");
 
     if(shader1.try_compile()) shader1.compile();
     if(shader2.try_compile()) shader2.compile();
     if(shader3.try_compile()) shader3.compile();
-
-    std::cout << "Animation asset count: "<< AnimationAsset::get_count() << "\n";
-    std::cout << "Texture asset count: "<< TextureAsset::get_count() << "\n";
-    std::cout << "Shader asset count: "<< ShaderAsset::get_count() << "\n";
-
+    if(shaderBackground.try_compile()) shaderBackground.compile();
+    
+    RenderStage renderBackgroundStage;
+    renderBackgroundStage.bind_target_texture_buffer(new TextureBuffer(Properties::screen_width, Properties::screen_height));
+    renderBackgroundStage.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
+    renderBackgroundStage.bind_default_shader(&shaderBackground);
 
     RenderStage renderStage1;
     renderStage1.bind_target_texture_buffer(new TextureBuffer(Properties::screen_width, Properties::screen_height));
@@ -74,6 +87,8 @@ int omniscia::Game::run() {
 
     Level level;
     std::deque<Level::LevelDynamic> timeLine;
+
+    DebugUI::get_instance().get_metrics()._timeMaxLineLength = 5000;
 
     for(int i = 0; i < 2; ++i) {
         Entity wall = Entity();
@@ -92,20 +107,12 @@ int omniscia::Game::run() {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     /* ImGui */
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	ImGui::StyleColorsDark();
-	ImGui_ImplGlfw_InitForOpenGL(window, true);
-	ImGui_ImplOpenGL3_Init("#version 330");
+    DebugUI::get_instance().init(window);
 
     u64 frame = 0;
     Time::get_instance().update_delta_time_clock();
     while (!glfwWindowShouldClose(window)) {   
         Time::get_instance().update_delta_time_clock();
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
 
         ++frame;
 
@@ -147,6 +154,7 @@ int omniscia::Game::run() {
         }
 
         ECS_CameraFollowSystem::get_instance().update(&shader1);
+        ECS_PlayerDebugMetricsSystem::get_instance().update();
 
         if(!isTimeJump) {
             ECS_GravitySystem::get_instance().update();
@@ -158,8 +166,30 @@ int omniscia::Game::run() {
             ECS_AABBColliderSystem::get_instance().reset();
         }
 
+        renderBackgroundStage.render_stage_lambda([&](const Shader* stage_shader){ 
+            Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
+            stage_shader->set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
+
+            f32 dt = Time::get_instance().get_delta_time();
+            Vec2f playerPos = DebugUI::get_instance().get_metrics()._playerPos;
+            playerPos /= 500.0f;
+
+            stage_shader->set_uniform_f32("layerOffset", playerPos.x);
+            backGround1Layer1.render(stage_shader);
+
+            stage_shader->set_uniform_f32("layerOffset", playerPos.x * 15.0f);
+            backGround4Layer1.render(stage_shader);
+
+            stage_shader->set_uniform_f32("layerOffset", playerPos.x * 10.5f);
+            backGround2Layer1.render(stage_shader);
+
+            stage_shader->set_uniform_f32("layerOffset", playerPos.x * 21.0f);
+            backGround3Layer1.render(stage_shader);
+        });
+
         renderStage1.render_stage_lambda([&](){ 
-            Renderer::clearBuffer(Vec4f{0.1, 0.1, 0.1, 1.0});
+            Renderer::clearBuffer(Vec4f{0.0, 0.0, 0.0, 0.0});
+
             shader1.set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
 
             ECS_SpriteRendererSystem::get_instance().render(&shader1);
@@ -169,6 +199,8 @@ int omniscia::Game::run() {
         renderStage2.render_stage_lambda([&](const Shader* stage_shader){ 
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
             stage_shader->set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
+
+            renderBackgroundStage.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
             renderStage1.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
         });
 
@@ -181,38 +213,9 @@ int omniscia::Game::run() {
             renderStage2.present_as_texture();
         });
 
-        /* ImGui */
-        {
-            ImGuiWindowFlags window_flags = 
-                ImGuiWindowFlags_NoDecoration | 
-                ImGuiWindowFlags_NoMove |
-                ImGuiWindowFlags_AlwaysAutoResize | 
-                ImGuiWindowFlags_NoSavedSettings | 
-                ImGuiWindowFlags_NoFocusOnAppearing | 
-                ImGuiWindowFlags_NoNav;
-
-            ImGui::SetNextWindowPos({10.0f, 10.0f}, 0, {0.0f, 0.0f});
-            ImGui::SetNextWindowBgAlpha(0.35f);
-            if (ImGui::Begin("Example: Simple overlay", nullptr, window_flags)) {
-                
-                ImGui::Text("Frames buffered %llu / %llu", timeLine.size(), (u64)5000);
-                ImGui::Text("Time manipulation time %f [ms]", timeLineManipulationTime);
-                ImGui::Separator();
-
-                ImGui::Text("Application average %.3f [ms/frame] (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
-                ImGui::Separator();
-
-                if (ImGui::IsMousePosValid())
-                    ImGui::Text("Mouse Position: (%.1f,%.1f)", io.MousePos.x, io.MousePos.y);
-                else
-                    ImGui::Text("Mouse Position: <invalid>");
-                
-                ImGui::End();
-            }
-        }
-
-        ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        DebugUI::get_instance().get_metrics()._timeCurrentLineLength = timeLine.size();
+        DebugUI::get_instance().get_metrics()._timeManipulationTime = timeLineManipulationTime;
+        DebugUI::get_instance().render();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
