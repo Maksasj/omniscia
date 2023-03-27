@@ -15,9 +15,21 @@
 ---
 
 ## Todo List
-- [ ] *Todo*
-- [ ] *Todo*
-- [ ] *Todo*
+- ### Core
+  - System system manager
+  - Level managee
+- ### ECS
+  - Box Collider Component
+  - Tile component
+  - Prototypes
+    - Prototype serialization
+- ### GFX
+  - Better rendering stages
+  - Rendering stage configuration
+  - Sprite mesh merging
+  - Batch rendering
+  - Instancing
+- ### Editor *(Out of scope)*
 
 ## Build
 ```bash
