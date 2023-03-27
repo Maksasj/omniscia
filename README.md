@@ -17,7 +17,7 @@
 ## Todo List
 - ### Core
   - System system manager
-  - Level managee
+  - Level manager
 - ### ECS
   - Box Collider Component
   - Tile component
