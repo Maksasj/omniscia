@@ -83,11 +83,9 @@ int omniscia::Game::run() {
         
         RawMeshDataBuilder builder;
 
-        for(auto x = -2; x < 2; ++x) {
-            for(auto y = -2; y < 2; ++y) {
+        for(auto x = -2; x < 2; ++x)
+            for(auto y = -2; y < 2; ++y)
                 builder.append(BuildInMeshData::QUAD_MESH_DATA, {x * 2.0f,y * 2.0f}); 
-            }
-        }
         
         auto aa = builder.get();
 

@@ -26,8 +26,15 @@ namespace omniscia::gfx {
             _pos.z *= scale.z;
         }
 
-        void translate(const Vec3f& pos = Vec3f{0.0f, 0.0f, 0.0f}) {
+        void transform(const Vec3f& pos = Vec3f{0.0f, 0.0f, 0.0f}) {
             _pos += pos;
+        }
+
+        void rotate(const f32& angle) {
+            auto mat = Matrix<f32, 2, 2>::get_rotation_matrix(angle);
+
+            _pos.x = _pos.x * mat.e[0] - _pos.y * mat.e[1];
+            _pos.y = _pos.x * mat.e[2] + _pos.y * mat.e[3];
         }
 
         std::string to_string() {
