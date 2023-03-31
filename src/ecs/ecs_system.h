@@ -7,7 +7,7 @@
 
 namespace omniscia::core::ecs {
     template<typename T>
-    void nearSortedSort(std::vector<T>& arr, const std::function<bool(T, T)> cmp) {
+    void near_sorted_sort(std::vector<T>& arr, const std::function<bool(T, T)> cmp) {
         for(int i = 1; i < arr.size(); i++) {
             T key = arr[i];
             int j;
@@ -31,7 +31,7 @@ namespace omniscia::core::ecs {
             }
 
             void sort_components(const std::function<bool(const T*,const T*)> cmp) {
-                nearSortedSort<T*>(_components, cmp);
+                near_sorted_sort<T*>(_components, cmp);
             }
             
             void time_sync() {

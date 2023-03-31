@@ -15,10 +15,10 @@ namespace omniscia::core::ecs {
             bool _horizontalFlip;
             bool _verticalFlip;
         public:
+            void reindex(void* parent) override;
+            
             ECS_SpriteFlip();
             ECS_SpriteFlip(const bool& horizontalFlip, const bool& verticalFlip);
-
-            void reindex(void* parent) override;
 
             bool get_horizontal_flip() const;
             bool get_vertical_flip() const;

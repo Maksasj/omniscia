@@ -14,13 +14,11 @@ namespace omniscia::core::ecs {
         private:
             Vec2f _scale;
         public:
-            ECS_Scaled();
-            ECS_Scaled(const Entity& entity);
-            ECS_Scaled(const Vec2f& scale);
-            ECS_Scaled(const Vec2f& scale, const Entity& entity);
-
             void reindex(void* parent) override;
 
+            ECS_Scaled(const f32& scaleX = 0.0f, const f32& scaleY = 0.0f);
+            ECS_Scaled(const Vec2f& scale);
+            
             Vec2f get_scale() const;
             void set_scale(const Vec2f& newScale);
 

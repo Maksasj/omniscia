@@ -27,10 +27,11 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_Scaled> _scaleIndex;
             Sprite _sprite;
         public:
-            ECS_SpriteRenderer(const std::string& texture_id, const u32& layer);
             void reindex(void* parent) override;
             void time_sync() override;
 
+            ECS_SpriteRenderer(const std::string& texture_id, const u32& layer);
+            
             u32 get_layer() const;
 
             void render(const Shader *shader);

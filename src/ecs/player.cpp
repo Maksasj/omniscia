@@ -1,12 +1,14 @@
 #include "player.h"
 
 omniscia::core::Player::Player() {
-    add<ECS_Positioned>(Vec3f{0.0f, 0.0f});
-    add<ECS_Velocity>(Vec2f{0.002f, -0.002f}, Vec2f{0.0035f, -0.0035f});
+    add<ECS_Positioned>(0.0f, 0.0f);
+    add<ECS_Velocity>(
+        Vec2f{0.002f, -0.002f}, 
+        Vec2f{0.0035f, -0.0035f});
     add<ECS_PhysicsPositioned>();
     add<ECS_Acceleration>();
     add<ECS_Friction>();
-    add<ECS_Scaled>(Vec2f{0.2f, 0.2f});
+    add<ECS_Scaled>(0.2f, 0.2f);
     add<ECS_SpriteFlip>(false, false);
     add<ECS_SpriteAnimation>("player-idle-animation");
     add<ECS_SpriteSheetRenderer>("player-spritesheet", 1);

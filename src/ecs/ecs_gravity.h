@@ -25,10 +25,10 @@ namespace omniscia::core::ecs {
 
             f32 _gravitationalAcceleration;
         public:
-            ECS_Gravity();
-
             void reindex(void* parent) override;
             void time_sync() override;
+
+            ECS_Gravity();
 
             void update();
 

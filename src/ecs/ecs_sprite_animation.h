@@ -30,6 +30,7 @@ namespace omniscia::core::ecs {
             void time_sync() override;
 
             ECS_SpriteAnimation(const std::string &animationId);
+            
             void set_animation(const std::string &animationId);
             std::string get_animation() const;
             void reset_animation();

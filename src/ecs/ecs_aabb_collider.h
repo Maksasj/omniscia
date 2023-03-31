@@ -32,10 +32,10 @@ namespace omniscia::core::ecs {
         public:
             friend class ECS_MovableAABBCollider;
 
-            ECS_AABBCollider();
-
             void reindex(void* parent) override;
             void time_sync() override;
+
+            ECS_AABBCollider();
 
             virtual void collide(ECS_AABBCollider* another);
             virtual void reset_collisions();

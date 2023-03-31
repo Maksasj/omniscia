@@ -33,9 +33,10 @@ namespace omniscia::core::ecs {
 
             Sprite _sprite;
         public:
-            ECS_SpriteSheetRenderer(const std::string& texture_id, const u32& layer);
             void reindex(void* parent) override;
             void time_sync() override;
+            
+            ECS_SpriteSheetRenderer(const std::string& texture_id, const u32& layer);
 
             u32 get_layer() const;
 

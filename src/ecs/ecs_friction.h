@@ -15,12 +15,13 @@ namespace omniscia::core::ecs {
         private:
             f32 _friction;
         public:
-            ECS_Friction(const f32& friction = -0.01f);
-
             void reindex(void* parent) override;
+
+            ECS_Friction(const f32& friction = -0.01f);
 
             f32 get_friction() const;
             f32& ref_friction();
+            
             void set_friction(const f32& friction);
 
             std::shared_ptr<ECS_Component> clone() override {

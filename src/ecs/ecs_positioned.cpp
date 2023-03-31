@@ -1,7 +1,7 @@
 #include "ecs_positioned.h"
 
-omniscia::core::ecs::ECS_Positioned::ECS_Positioned() { 
-    _pos = Vec3f{0.0f, 0.0f, 0.0f}; 
+omniscia::core::ecs::ECS_Positioned::ECS_Positioned(const f32& x, const f32& y, const f32& z) { 
+    _pos = Vec3f{x, y, z}; 
 }
 
 omniscia::core::ecs::ECS_Positioned::ECS_Positioned(const Vec3f& pos) {

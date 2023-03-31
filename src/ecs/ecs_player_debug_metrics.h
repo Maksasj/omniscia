@@ -19,10 +19,10 @@ namespace omniscia::core::ecs {
 
             ECS_Index<ECS_Positioned> _posIndex;
         public:
-            ECS_PlayerDebugMetrics();
-
             void reindex(void* parent) override;
             void time_sync() override;
+
+            ECS_PlayerDebugMetrics();
 
             void update();
 

@@ -18,8 +18,7 @@ namespace omniscia::core::ecs {
             Vec2f _velocityRangesX;
             Vec2f _velocityRangesY;
         public:
-            ECS_Velocity();
-            ECS_Velocity(const Vec3f& vel);
+            ECS_Velocity(const f32& velX = 0.0f, const f32& velY = 0.0f, const f32& velZ = 0.0f);
             ECS_Velocity(const Vec3f& vel, const Vec2f& velocityRangesX);
             ECS_Velocity(const Vec3f& vel, const Vec2f& velocityRangesX, const Vec2f& velocityRangesY);
             ECS_Velocity(const Vec2f& velocityRangesX, const Vec2f& velocityRangesY);

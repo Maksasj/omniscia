@@ -27,10 +27,10 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_SpriteFlip> spriteFlipIndex;
             ECS_Index<ECS_SpriteAnimation> spriteAnimationIndex;
         public:
-            ECS_PlayerController();
-
             void reindex(void* parent) override;
             void time_sync() override;
+
+            ECS_PlayerController();
 
             void control();
 

@@ -14,13 +14,14 @@ namespace omniscia::core::ecs {
         private:
             Vec3f _pos;
         public:
-            ECS_Positioned();
-            ECS_Positioned(const Vec3f& pos);
-
             void reindex(void* parent) override;
 
+            ECS_Positioned(const f32& x = 0.0f, const f32& y = 0.0f, const f32& z = 0.0f);
+            ECS_Positioned(const Vec3f& pos);
+            
             Vec3f get_pos() const;
             Vec3f& ref_pos();
+            
             void set_pos(const Vec3f& newPos);
             void move_pos(const Vec3f& movedPos);
 

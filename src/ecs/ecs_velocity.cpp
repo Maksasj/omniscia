@@ -1,13 +1,7 @@
 #include "ecs_velocity.h"
 
-omniscia::core::ecs::ECS_Velocity::ECS_Velocity() { 
-    _vel = Vec3f{0.0f, 0.0f, 0.0f}; 
-    _velocityRangesX = Vec2f{1.0, -1.0};
-    _velocityRangesY = Vec2f{1.0, -1.0};
-}
-
-omniscia::core::ecs::ECS_Velocity::ECS_Velocity(const Vec3f& vel) {
-    _vel = vel;
+omniscia::core::ecs::ECS_Velocity::ECS_Velocity(const f32& velX, const f32& velY, const f32& velZ) {
+    _vel = Vec3f{velX, velY, velZ};
     _velocityRangesX = Vec2f{1.0, -1.0};
     _velocityRangesY = Vec2f{1.0, -1.0};
 }

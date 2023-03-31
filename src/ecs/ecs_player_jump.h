@@ -24,10 +24,10 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_Velocity> velocityIndex;
             ECS_Index<ECS_MovableAABBCollider> movableAABBColliderIndex;
         public:
-            ECS_PlayerJump();
-
             void reindex(void* parent) override;
             void time_sync() override;
+
+            ECS_PlayerJump();
 
             void update();
 

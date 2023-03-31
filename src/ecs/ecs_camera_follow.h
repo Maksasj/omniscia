@@ -28,10 +28,10 @@ namespace omniscia::core::ecs {
 
             ECS_Index<ECS_Positioned> posIndex;
         public:
-            ECS_CameraFollow(const f32& cameraFollowSpeed = 0.005f);
-
             void reindex(void* parent) override;
             void time_sync() override;
+
+            ECS_CameraFollow(const f32& cameraFollowSpeed = 0.005f);
 
             void update(Shader* shader);
 

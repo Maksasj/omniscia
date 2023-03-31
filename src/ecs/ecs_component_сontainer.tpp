@@ -33,15 +33,6 @@ namespace omniscia::core::ecs {
                 return *std::dynamic_pointer_cast<T>(_components[index]);
             }
 
-            /*
-            template<class T>
-            void add(void* parent) {
-                std::shared_ptr<T> ptr(T());
-                //ptr->reindex(parent);               
-                _components.push_back(ptr);
-            }
-            */
-
             template<class T>
             void add(void* parent) {
                 std::shared_ptr<T> ptr(new T());
@@ -55,20 +46,6 @@ namespace omniscia::core::ecs {
                 ptr->reindex(parent);
                 _components.push_back(ptr);
             }
-
-            //template<typename T>
-            //void add() {
-            //    std::shared_ptr<T> ptr(component); //TODO better to replace with referencing but need to fing how, since std::make_shared creates new instance
-            //    ptr->reindex(parent);               
-            //    _components.push_back(ptr);
-            //}
-//
-            //template<typename T>
-            //void add(T* component, void* parent) {
-            //    std::shared_ptr<T> ptr(component); //TODO better to replace with referencing but need to fing how, since std::make_shared creates new instance
-            //    ptr->reindex(parent);               
-            //    _components.push_back(ptr);
-            //}
 
             void time_sync(void* parent) {
                 for(auto &c : _components) {
