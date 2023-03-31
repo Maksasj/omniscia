@@ -15,3 +15,13 @@ void omniscia::core::TextureManager::load_assets() {
         asset.second.load_asset();
     }
 }
+
+void omniscia::core::TextureManager::check_assets() const {
+    for(auto& asset : _data) {
+        std::string filePath = asset.second.get_file_path();
+        
+        if(!file_exist(filePath)) {
+            std::cout << "File '" << filePath << "' do not exist\n"; 
+        }
+    }
+}

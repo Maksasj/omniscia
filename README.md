@@ -20,16 +20,17 @@
   - [ ] Level manager
 - ### ECS
   - [x] Templated constructors
-  - [ ] Box Collider Component
-  - [ ] Tile component
+  - [x] Box Collider Component
+  - [x] Tile renderer component
+  - [x] Mesh builder
   - Prototypes
     - [ ] Prototype serialization
 - ### GFX
-  - [ ]Better rendering stages
-  - [ ]Rendering stage configuration
-  - [ ]Sprite mesh merging
-  - [ ]Batch rendering
-  - [ ]Instancing
+  - [ ] Better rendering stages
+  - [ ] Rendering stage configuration
+  - [x] Sprite mesh merging
+  - [x] Batch rendering
+  - [ ] Instancing
 - ### Editor *(Out of scope)*
 
 ## Build

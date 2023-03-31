@@ -1,14 +1,18 @@
 #include "sprite.h"
 
-omniscia::gfx::sprite::Sprite::Sprite() : spriteMesh(BuildInMeshData::QUAD_MESH_DATA) {
-    texture = nullptr;
-}
-
 omniscia::gfx::sprite::Sprite::Sprite(const std::string& texture_id) : spriteMesh(BuildInMeshData::QUAD_MESH_DATA) {
     texture = TextureManager::get_instance().get(texture_id).get_asset();
 }
 
 omniscia::gfx::sprite::Sprite::Sprite(const std::string& texture_id, const Vec3f& scale) : spriteMesh(BuildInMeshData::QUAD_MESH_DATA, scale) {
+    texture = TextureManager::get_instance().get(texture_id).get_asset();
+}
+
+omniscia::gfx::sprite::Sprite::Sprite(const RawMeshData& spriteMesh, const std::string& texture_id) : spriteMesh(spriteMesh) {
+    texture = TextureManager::get_instance().get(texture_id).get_asset();
+}
+
+omniscia::gfx::sprite::Sprite::Sprite(const RawMeshData& spriteMesh, const std::string& texture_id, const Vec3f& scale) : spriteMesh(spriteMesh, scale) {
     texture = TextureManager::get_instance().get(texture_id).get_asset();
 }
 
@@ -216,8 +220,7 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
 
     shader->set_uniform_i32("textureFlipHorizontal", horizontalFlip);
     shader->set_uniform_i32("textureFlipVertical", verticalFlip);
-
     bind(); 
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, spriteMesh.get_indices_count(), GL_UNSIGNED_INT, 0);
     unbind();
 }

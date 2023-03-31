@@ -19,5 +19,7 @@
 #include "ecs_camera_follow.h"
 #include "ecs_player_jump.h"
 #include "ecs_player_debug_metrics.h"
+#include "ecs_box_collider_mesh.h"
+#include "ecs_tilemap_renderer.h"
 
 #endif

@@ -25,6 +25,7 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::reindex(void* parent) {
     scaleIndex = _parent->index<ECS_Scaled>();
     _velocityIndex = _parent->index<ECS_Velocity>();
     _physicsPositioned = _parent->index<ECS_PhysicsPositioned>();
+    colliderMeshIndex = _parent->index<ECS_BoxColliderMesh>();
 }
 
 void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* another) {
@@ -32,6 +33,8 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* ano
     Vec3f selfOldPosition = Vec3f{0.0, 0.0, 0.0}; 
     Vec3f selfNewPosition = Vec3f{0.0, 0.0, 0.0}; 
     Vec3f selfVelocity = Vec3f{0.0, 0.0, 0.0};
+    Vec2f selfCollisionXRanges = Vec2f{1.0f, 1.0f};
+    Vec2f selfCollisionYRanges = Vec2f{1.0f, 1.0f};
 
     if(_physicsPositioned.is_success()) {
         ECS_PhysicsPositioned &physicsPositionedComp = _parent->ref_unsafe(_physicsPositioned);
@@ -47,8 +50,16 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* ano
         selfScale = scaleComp.get_scale();
     }
 
+    if(colliderMeshIndex.is_success()) {
+        ECS_BoxColliderMesh &boxColliderMeshComp = _parent->ref_unsafe(colliderMeshIndex);
+        selfCollisionXRanges = boxColliderMeshComp.get_x_collision_ranges();
+        selfCollisionYRanges = boxColliderMeshComp.get_y_collision_ranges();
+    }
+
     Vec2f anotherScale = Vec2f{1.0, 1.0}; 
     Vec3f anotherPosition = Vec3f{0.0, 0.0, 0.0}; 
+    Vec2f anotherCollisionXRanges = Vec2f{1.0f, 1.0f};
+    Vec2f anotherCollisionYRanges = Vec2f{1.0f, 1.0f};
 
     if(another->posIndex.is_success()) {
         ECS_Positioned &positionComp = another->_parent->ref_unsafe(another->posIndex);
@@ -60,20 +71,26 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* ano
         anotherScale = scaleComp.get_scale();
     }
 
+    if(another->colliderMeshIndex.is_success()) {
+        ECS_BoxColliderMesh &boxColliderMeshComp = another->_parent->ref_unsafe(another->colliderMeshIndex);
+        anotherCollisionXRanges = boxColliderMeshComp.get_x_collision_ranges();
+        anotherCollisionYRanges = boxColliderMeshComp.get_y_collision_ranges();
+    }
+
     Vec3f selfPosition = { selfNewPosition.x, selfOldPosition.y, selfOldPosition.z };
 
     {   //X axis collision
         if(_colliding == true) goto checkYCollision;
 
-        f32 minX1 = selfPosition.x - selfScale.x;
-        f32 maxX1 = selfPosition.x + selfScale.x;
-        f32 minY1 = selfPosition.y - selfScale.y;
-        f32 maxY1 = selfPosition.y + selfScale.y;
+        f32 minX1 = selfPosition.x - selfScale.x * selfCollisionXRanges.x;
+        f32 maxX1 = selfPosition.x + selfScale.x * selfCollisionXRanges.y;
+        f32 minY1 = selfPosition.y - selfScale.y * selfCollisionYRanges.x;
+        f32 maxY1 = selfPosition.y + selfScale.y * selfCollisionYRanges.y;
 
-        f32 minX2 = anotherPosition.x - anotherScale.x;
-        f32 maxX2 = anotherPosition.x + anotherScale.x;
-        f32 minY2 = anotherPosition.y - anotherScale.y;
-        f32 maxY2 = anotherPosition.y + anotherScale.y;
+        f32 minX2 = anotherPosition.x - anotherScale.x * anotherCollisionXRanges.x;
+        f32 maxX2 = anotherPosition.x + anotherScale.x * anotherCollisionXRanges.y;
+        f32 minY2 = anotherPosition.y - anotherScale.y * anotherCollisionYRanges.x;
+        f32 maxY2 = anotherPosition.y + anotherScale.y * anotherCollisionYRanges.y;
 
         u8 xOverlap = (minX1 <= maxX2) && (maxX1 >= minX2);
         u8 yOverlap = (minY1 <= maxY2) && (maxY1 >= minY2);
@@ -121,15 +138,15 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* ano
     {   //Y axis collision
         if(_collidingY == true) return;
 
-        f32 minX1 = selfPosition.x - selfScale.x;
-        f32 maxX1 = selfPosition.x + selfScale.x;
-        f32 minY1 = selfPosition.y - selfScale.y;
-        f32 maxY1 = selfPosition.y + selfScale.y;
+        f32 minX1 = selfPosition.x - selfScale.x * selfCollisionXRanges.x;
+        f32 maxX1 = selfPosition.x + selfScale.x * selfCollisionXRanges.y;
+        f32 minY1 = selfPosition.y - selfScale.y * selfCollisionYRanges.x;
+        f32 maxY1 = selfPosition.y + selfScale.y * selfCollisionYRanges.y;
 
-        f32 minX2 = anotherPosition.x - anotherScale.x;
-        f32 maxX2 = anotherPosition.x + anotherScale.x;
-        f32 minY2 = anotherPosition.y - anotherScale.y;
-        f32 maxY2 = anotherPosition.y + anotherScale.y;
+        f32 minX2 = anotherPosition.x - anotherScale.x * anotherCollisionXRanges.x;
+        f32 maxX2 = anotherPosition.x + anotherScale.x * anotherCollisionXRanges.y;
+        f32 minY2 = anotherPosition.y - anotherScale.y * anotherCollisionYRanges.x;
+        f32 maxY2 = anotherPosition.y + anotherScale.y * anotherCollisionYRanges.y;
 
         u8 xOverlap = (minX1 <= maxX2) && (maxX1 >= minX2);
         u8 yOverlap = (minY1 <= maxY2) && (maxY1 >= minY2);

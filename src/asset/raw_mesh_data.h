@@ -18,6 +18,7 @@ namespace omniscia::gfx::sprite {
         std::vector<u32> _indices;
 
         public:
+            RawMeshData();
             RawMeshData(const std::vector<Vertex>& vertices, const std::vector<u32>& indices);
 
             std::vector<Vertex>& get_vetices();

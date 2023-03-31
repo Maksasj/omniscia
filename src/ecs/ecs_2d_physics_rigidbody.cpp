@@ -56,10 +56,12 @@ void omniscia::core::ecs::ECS_2DPhysicsRigidbody::late_update() {
     if(!_posIndex.is_success()) return;
     if(!_colliderIndex.is_success()) return;
     if(!_physicsPositionedIndex.is_success()) return;
+    if(!_velocityIndex.is_success()) return;
 
     ECS_Positioned& posComp = _parent->ref_unsafe(_posIndex);
     ECS_MovableAABBCollider& colliderComp = _parent->ref_unsafe(_colliderIndex);
     ECS_PhysicsPositioned& physicsPosComp = _parent->ref_unsafe(_physicsPositionedIndex);
+    ECS_Velocity& velocityComp = _parent->ref_unsafe(_velocityIndex);
 
     Vec3f& position = posComp.ref_pos();
 
@@ -69,5 +71,7 @@ void omniscia::core::ecs::ECS_2DPhysicsRigidbody::late_update() {
 
     if(!colliderComp.is_colliding_by_y()) {
         position.y = physicsPosComp.get_new_position().y;
+    } else {
+        velocityComp.ref_velocity().y = 0.0f;
     }
 }

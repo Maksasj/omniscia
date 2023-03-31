@@ -46,6 +46,7 @@ namespace omniscia {
         }
 
         void time_sync() {
+            ECS_TilemapRendererSystem::get_instance().time_sync();
             ECS_SpriteSheetRendererSystem::get_instance().time_sync();
             ECS_SpriteRendererSystem::get_instance().time_sync();
             ECS_PlayerControllerSystem::get_instance().time_sync();

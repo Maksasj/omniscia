@@ -10,28 +10,32 @@ namespace omniscia::gfx {
     using namespace omniscia::core;
 
     struct Vertex {
-        Vec3f pos;
-        Vec3f color;
-        Vec2f texPos;
+        Vec3f _pos;
+        Vec3f _color;
+        Vec2f _texPos;
 
-        Vertex(const Vec3f& _pos, const Vec3f& _color, const Vec2f& _texPos) {
-            pos = _pos;
-            color = _color;
-            texPos = _texPos;
+        Vertex(const Vec3f& pos, const Vec3f& color, const Vec2f& texPos) {
+            _pos = pos;
+            _color = color;
+            _texPos = texPos;
         }
 
         void scale(const Vec3f& scale) {
-            pos.x *= scale.x;
-            pos.y *= scale.y;
-            pos.z *= scale.z;
+            _pos.x *= scale.x;
+            _pos.y *= scale.y;
+            _pos.z *= scale.z;
+        }
+
+        void translate(const Vec3f& pos = Vec3f{0.0f, 0.0f, 0.0f}) {
+            _pos += pos;
         }
 
         std::string to_string() {
             std::stringstream ss;
 
-            ss << pos.x << ' ' << pos.y << ' ' << pos.z << ' ';
-            ss << color.x << ' ' << color.y << ' ' << color.z << ' ';
-            ss << texPos.x << ' ' << texPos.y;
+            ss << _pos.x << ' ' << _pos.y << ' ' << _pos.z << ' ';
+            ss << _color.x << ' ' << _color.y << ' ' << _color.z << ' ';
+            ss << _texPos.x << ' ' << _texPos.y;
 
             return ss.str();
         }

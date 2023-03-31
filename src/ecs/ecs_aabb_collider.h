@@ -7,6 +7,7 @@
 #include <algorithm>
 
 #include "collision_side_type.h"
+#include "ecs_box_collider_mesh.h"
 #include "ecs_component.tpp"
 #include "ecs_positioned.h"
 #include "ecs_system.h"
@@ -23,6 +24,7 @@ namespace omniscia::core::ecs {
 
             ECS_Index<ECS_Positioned> posIndex;
             ECS_Index<ECS_Scaled> scaleIndex;
+            ECS_Index<ECS_BoxColliderMesh> colliderMeshIndex;
 
             /* Collider variables */
             bool _colliding;

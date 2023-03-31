@@ -29,36 +29,13 @@ int omniscia::Game::run() {
 
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.2, 0.2}, {0.0, 0.6}, 5, true, 6}), "player-run-animation");
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.2, 0.2}, {0.0, 0.8}, 3, true, 24}), "player-idle-animation");
-    //AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.2, 0.2}, {0.0, 0.4}, 3, true, 6}), "player-jump-animation");
-
-    TextureManager::get_instance().add_asset("assets/texture.png", "factorio_girl_texture");
-    TextureManager::get_instance().add_asset("assets/jojo_texture.png", "jojo_texture");
-    TextureManager::get_instance().add_asset("assets/player.png", "player");
-    TextureManager::get_instance().add_asset("assets/player-spritesheet.png", "player-spritesheet");
-
-    TextureManager::get_instance().add_asset("assets/background/1_layer.png", "1_layer");
-    TextureManager::get_instance().add_asset("assets/background/2_layer.png", "2_layer");
-    TextureManager::get_instance().add_asset("assets/background/3_layer.png", "3_layer");
-    TextureManager::get_instance().add_asset("assets/background/4_layer.png", "4_layer");
 
     TextureManager::get_instance().load_assets();
-
-    //Spritesheet::get_instance().add_asset("player-spritesheet", "player_run", Vec2i);
 
     Sprite backGround1Layer1("1_layer");
     Sprite backGround2Layer1("2_layer");
     Sprite backGround3Layer1("3_layer");
     Sprite backGround4Layer1("4_layer");
-
-    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_1.glsl", "frag_stage_1", FRAGMENT_SHADER);
-    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_2.glsl", "frag_stage_2", FRAGMENT_SHADER);
-    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_3.glsl", "frag_stage_3", FRAGMENT_SHADER);
-    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_1.glsl", "vert_stage_1", VERTEX_SHADER);
-    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_2.glsl", "vert_stage_2", VERTEX_SHADER);
-    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_3.glsl", "vert_stage_3", VERTEX_SHADER);
-
-    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_background.glsl", "frag_stage_background", FRAGMENT_SHADER);
-    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_background.glsl", "vert_stage_background", VERTEX_SHADER);
 
     Shader shader1("vert_stage_1", "frag_stage_1");
     Shader shader2("vert_stage_2", "frag_stage_2");
@@ -98,6 +75,27 @@ int omniscia::Game::run() {
         wall.add<ECS_AABBCollider>();
         level.staticPart.staticEntities.push_back(wall);
     }
+
+    {
+        Entity wall = Entity();
+        wall.add<ECS_Positioned>(0.0f, 0.0f);
+        wall.add<ECS_Scaled>(0.1, 0.1);
+        
+        RawMeshDataBuilder builder;
+
+        for(auto x = -2; x < 2; ++x) {
+            for(auto y = -2; y < 2; ++y) {
+                builder.append(BuildInMeshData::QUAD_MESH_DATA, {x * 2.0f,y * 2.0f}); 
+            }
+        }
+        
+        auto aa = builder.get();
+
+        wall.add<ECS_TilemapRenderer>(aa, "factorio_girl_texture", 0);
+
+        level.staticPart.staticEntities.push_back(wall);
+    }
+
 
     /* Components binded twise, because of this we need to time sync imideialty */
     level.time_sync();
@@ -192,6 +190,7 @@ int omniscia::Game::run() {
 
             shader1.set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
 
+            ECS_TilemapRendererSystem::get_instance().render(&shader1);
             ECS_SpriteRendererSystem::get_instance().render(&shader1);
             ECS_SpriteSheetRendererSystem::get_instance().render(&shader1);
         });

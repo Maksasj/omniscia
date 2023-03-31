@@ -7,7 +7,6 @@ omniscia::gfx::sprite::SpriteMesh::SpriteMesh() {
 omniscia::gfx::sprite::SpriteMesh::SpriteMesh(RawMeshData rawMeshData) : _vao() {
     _vertices = rawMeshData.get_vetices();
     _indices = rawMeshData.get_indices();
-    
     _vao.bind();
         VBO vbo(_vertices);
         EBO ebo(_indices);
@@ -46,4 +45,8 @@ omniscia::gfx::sprite::SpriteMesh::SpriteMesh(RawMeshData rawMeshData, const Vec
 
 void omniscia::gfx::sprite::SpriteMesh::bind() const {
     _vao.bind();
+}
+
+u32 omniscia::gfx::sprite::SpriteMesh::get_indices_count() const {
+    return _indices.size();
 }

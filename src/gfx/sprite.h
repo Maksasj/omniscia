@@ -19,9 +19,10 @@ namespace omniscia::gfx::sprite {
             SpriteMesh spriteMesh;
             Texture *texture;
         public:
-            Sprite();
             Sprite(const std::string& texture_id);
             Sprite(const std::string& texture_id, const Vec3f& scale);
+            Sprite(const RawMeshData& spriteMesh, const std::string& texture_id);
+            Sprite(const RawMeshData& spriteMesh, const std::string& texture_id, const Vec3f& scale);
 
             void bind() const;
             void unbind() const;

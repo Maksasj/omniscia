@@ -2,6 +2,7 @@ include_directories("src")
 
 # Entity component system
 include_directories("src/ecs")
+include_directories("src/ecs/prototypes")
 
 # Graphics
 include_directories("src/gfx")

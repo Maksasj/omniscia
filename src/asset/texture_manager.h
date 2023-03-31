@@ -19,6 +19,7 @@ namespace omniscia::core {
         public:
             TextureAsset& get(const std::string& key);
             void add_asset(const std::string& file_path, const std::string& key);
+            void check_assets() const;
             void load_assets();
 
             static TextureManager& get_instance() {

@@ -26,6 +26,7 @@ namespace omniscia::gfx::sprite {
             SpriteMesh(RawMeshData rawMeshData, const Vec3f& scale);
 
             void bind() const;
+            u32 get_indices_count() const;
     };
 }
 

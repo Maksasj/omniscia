@@ -19,6 +19,7 @@ namespace omniscia::core {
         public:
             ShaderAsset* get(const std::string& key);
             void add_asset(const std::string& file_path, const std::string& key, const ShaderAssetType& shaderType);
+            void check_assets() const;
             void load_assets();
 
             static ShaderManager& get_instance() {
