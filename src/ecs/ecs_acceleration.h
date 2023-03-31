@@ -15,8 +15,7 @@ namespace omniscia::core::ecs {
         private:
             Vec3f _acl;
         public:
-            ECS_Acceleration();
-            ECS_Acceleration(const Vec3f& _acl);
+            ECS_Acceleration(const Vec3f& _acl = Vec3f{0.0f, 0.0f, 0.0f});
 
             void reindex(void* parent) override;
 

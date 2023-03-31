@@ -21,13 +21,13 @@ namespace omniscia::core::ecs {
     class ECS_SpriteRenderer : public ECS_Component {
         private:
             u32 _layer;
-            std::reference_wrapper<Entity> _parent;
+            Entity* _parent;
 
             ECS_Index<ECS_Positioned> _posIndex;
             ECS_Index<ECS_Scaled> _scaleIndex;
             Sprite _sprite;
         public:
-            ECS_SpriteRenderer(const std::string& texture_id, Entity& parent, const u32& layer);
+            ECS_SpriteRenderer(const std::string& texture_id, const u32& layer);
             void reindex(void* parent) override;
             void time_sync() override;
 

@@ -21,15 +21,14 @@ namespace omniscia::core::ecs {
 
     class ECS_CameraFollow : public ECS_Component {
         private:
-            std::reference_wrapper<Entity> _parent;
+            Entity* _parent;
 
             Vec3f _camPos;
             f32 _cameraFollowSpeed;
 
             ECS_Index<ECS_Positioned> posIndex;
         public:
-            ECS_CameraFollow(Entity& parent);
-            ECS_CameraFollow(const f32& cameraFollowSpeed, Entity& parent);
+            ECS_CameraFollow(const f32& cameraFollowSpeed = 0.005f);
 
             void reindex(void* parent) override;
             void time_sync() override;

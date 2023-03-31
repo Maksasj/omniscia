@@ -19,12 +19,12 @@ namespace omniscia::core::ecs {
 
     class ECS_PlayerJump : public ECS_Component {
         private:
-            std::reference_wrapper<Entity> _parent;
+            Entity* _parent;
             
             ECS_Index<ECS_Velocity> velocityIndex;
             ECS_Index<ECS_MovableAABBCollider> movableAABBColliderIndex;
         public:
-            ECS_PlayerJump(Entity& parent);
+            ECS_PlayerJump();
 
             void reindex(void* parent) override;
             void time_sync() override;

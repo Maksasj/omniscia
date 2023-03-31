@@ -15,11 +15,11 @@ namespace omniscia::core::ecs {
 
     class ECS_PlayerDebugMetrics : public ECS_Component {
         private:
-            std::reference_wrapper<Entity> _parent;
+            Entity* _parent;
 
             ECS_Index<ECS_Positioned> _posIndex;
         public:
-            ECS_PlayerDebugMetrics(Entity& parent);
+            ECS_PlayerDebugMetrics();
 
             void reindex(void* parent) override;
             void time_sync() override;

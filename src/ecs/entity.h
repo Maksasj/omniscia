@@ -5,6 +5,8 @@
 #include "ecs_component_сontainer.tpp"
 #include "dynamic_object.h"
 
+#define NULL_REFERENCE (*(Entity*)nullptr)
+
 namespace omniscia::core {
     using namespace omniscia::core::ecs;
 
@@ -24,11 +26,23 @@ namespace omniscia::core {
                 return tmpEntity;
             }
 
-            template<typename T>
-            Entity& add(T* component) {
-                _component_сontainer.add(component, this);
+            template<class T>
+            Entity& add() {
+                _component_сontainer.add<T>(this);
                 return *this;
             }
+
+            template<class T, class... Args>
+            Entity& add(Args&&... args) {
+                _component_сontainer.add<T>(this, std::forward<Args>(args)...);
+                return *this;
+            }
+
+            //template<typename T>
+            //Entity& add(T* component) {
+            //    _component_сontainer.add(component, this);
+            //    return *this;
+            //}
 
             template<typename T>
             T& ref_unsafe(ECS_Index<T> __index) const {

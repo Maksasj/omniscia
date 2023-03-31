@@ -19,7 +19,7 @@ namespace omniscia::core::ecs {
             Vec2f _collisionPointY;
             CollisionSide _collisionSideY;
         public:
-            ECS_MovableAABBCollider(Entity& parent);
+            ECS_MovableAABBCollider();
 
             void reindex(void* parent) override;
             void time_sync() override;

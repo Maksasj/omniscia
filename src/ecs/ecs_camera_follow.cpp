@@ -1,13 +1,6 @@
 #include "ecs_camera_follow.h"
 
-omniscia::core::ecs::ECS_CameraFollow::ECS_CameraFollow(Entity& parent) : _parent(parent) {
-    ECS_CameraFollowSystem::get_instance().bind_component(this);
-    
-    _camPos = Vec3f{0.0, 0.0, 0.0};
-    _cameraFollowSpeed = 0.01f;
-};
-
-omniscia::core::ecs::ECS_CameraFollow::ECS_CameraFollow(const f32& cameraFollowSpeed, Entity& parent) : _parent(parent) {
+omniscia::core::ecs::ECS_CameraFollow::ECS_CameraFollow(const f32& cameraFollowSpeed) {
     ECS_CameraFollowSystem::get_instance().bind_component(this);
     
     _camPos = Vec3f{0.0, 0.0, 0.0};
@@ -19,15 +12,15 @@ void omniscia::core::ecs::ECS_CameraFollow::time_sync() {
 }
 
 void omniscia::core::ecs::ECS_CameraFollow::reindex(void* parent) {
-    _parent = *(Entity*)parent;
+    _parent = (Entity*)parent;
 
-    posIndex = _parent.get().index<ECS_Positioned>();
+    posIndex = _parent->index<ECS_Positioned>();
 }
 
 void omniscia::core::ecs::ECS_CameraFollow::update(Shader* shader) {
     if(!posIndex.is_success()) return;
 
-    ECS_Positioned& posComp = _parent.get().ref_unsafe(posIndex);
+    ECS_Positioned& posComp = _parent->ref_unsafe(posIndex);
     Vec3f& position = posComp.ref_pos();
     Vec3f delta = position - _camPos;
 

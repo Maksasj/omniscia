@@ -20,14 +20,14 @@ namespace omniscia::core::ecs {
 
     class ECS_PlayerController : public ECS_Component {
         private:
-            std::reference_wrapper<Entity> _parent;
+            Entity* _parent;
 
             ECS_Index<ECS_Velocity> velocityIndex;
             ECS_Index<ECS_Acceleration> accelerationIndex;
             ECS_Index<ECS_SpriteFlip> spriteFlipIndex;
             ECS_Index<ECS_SpriteAnimation> spriteAnimationIndex;
         public:
-            ECS_PlayerController(Entity& parent);
+            ECS_PlayerController();
 
             void reindex(void* parent) override;
             void time_sync() override;

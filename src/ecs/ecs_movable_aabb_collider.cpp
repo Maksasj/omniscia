@@ -1,6 +1,6 @@
 #include "ecs_movable_aabb_collider.h"
 
-omniscia::core::ecs::ECS_MovableAABBCollider::ECS_MovableAABBCollider(Entity& parent) : ECS_AABBCollider(parent) {
+omniscia::core::ecs::ECS_MovableAABBCollider::ECS_MovableAABBCollider() : ECS_AABBCollider() {
     _colliding = false;
     _collidedWith = nullptr;
     _collisionPoint = Vec2f{0.0, 0.0};
@@ -19,12 +19,12 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::time_sync() {
 }
 
 void omniscia::core::ecs::ECS_MovableAABBCollider::reindex(void* parent) {
-    _parent = *(Entity*)parent;
+    _parent = (Entity*)parent;
 
-    posIndex = _parent.get().index<ECS_Positioned>();
-    scaleIndex = _parent.get().index<ECS_Scaled>();
-    _velocityIndex = _parent.get().index<ECS_Velocity>();
-    _physicsPositioned = _parent.get().index<ECS_PhysicsPositioned>();
+    posIndex = _parent->index<ECS_Positioned>();
+    scaleIndex = _parent->index<ECS_Scaled>();
+    _velocityIndex = _parent->index<ECS_Velocity>();
+    _physicsPositioned = _parent->index<ECS_PhysicsPositioned>();
 }
 
 void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* another) {
@@ -34,16 +34,16 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* ano
     Vec3f selfVelocity = Vec3f{0.0, 0.0, 0.0};
 
     if(_physicsPositioned.is_success()) {
-        ECS_PhysicsPositioned &physicsPositionedComp = _parent.get().ref_unsafe(_physicsPositioned);
+        ECS_PhysicsPositioned &physicsPositionedComp = _parent->ref_unsafe(_physicsPositioned);
         selfOldPosition = physicsPositionedComp.get_old_position();
         selfNewPosition = physicsPositionedComp.get_new_position();
     } else if(posIndex.is_success()) {
-        ECS_Positioned &positionComp = _parent.get().ref_unsafe(posIndex);
+        ECS_Positioned &positionComp = _parent->ref_unsafe(posIndex);
         selfOldPosition = positionComp.get_pos();
     }
 
     if(scaleIndex.is_success()) {
-        ECS_Scaled &scaleComp = _parent.get().ref_unsafe(scaleIndex);
+        ECS_Scaled &scaleComp = _parent->ref_unsafe(scaleIndex);
         selfScale = scaleComp.get_scale();
     }
 
@@ -51,12 +51,12 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* ano
     Vec3f anotherPosition = Vec3f{0.0, 0.0, 0.0}; 
 
     if(another->posIndex.is_success()) {
-        ECS_Positioned &positionComp = another->_parent.get().ref_unsafe(another->posIndex);
+        ECS_Positioned &positionComp = another->_parent->ref_unsafe(another->posIndex);
         anotherPosition = positionComp.get_pos();
     }
 
     if(another->scaleIndex.is_success()) {
-        ECS_Scaled &scaleComp = another->_parent.get().ref_unsafe(another->scaleIndex);
+        ECS_Scaled &scaleComp = another->_parent->ref_unsafe(another->scaleIndex);
         anotherScale = scaleComp.get_scale();
     }
 

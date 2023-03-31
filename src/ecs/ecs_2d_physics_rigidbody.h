@@ -19,7 +19,7 @@
 namespace omniscia::core::ecs {
     class ECS_2DPhysicsRigidbody : public ECS_Component {
         private:
-            std::reference_wrapper<Entity> _parent;
+            Entity* _parent;
 
             ECS_Index<ECS_Positioned> _posIndex;
             ECS_Index<ECS_MovableAABBCollider> _colliderIndex;
@@ -31,7 +31,7 @@ namespace omniscia::core::ecs {
             void time_sync() override;
             void reindex(void* parent) override;
 
-            ECS_2DPhysicsRigidbody(Entity& parent);
+            ECS_2DPhysicsRigidbody();
 
             void update();
             void late_update();

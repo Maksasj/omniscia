@@ -1,9 +1,5 @@
 #include "ecs_acceleration.h"
 
-omniscia::core::ecs::ECS_Acceleration::ECS_Acceleration() { 
-    _acl = Vec3f{0.0f, 0.0f, 0.0f}; 
-}
-
 omniscia::core::ecs::ECS_Acceleration::ECS_Acceleration(const Vec3f& acl) {
     _acl = acl;
 }

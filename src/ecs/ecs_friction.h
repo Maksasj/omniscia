@@ -15,8 +15,7 @@ namespace omniscia::core::ecs {
         private:
             f32 _friction;
         public:
-            ECS_Friction();
-            ECS_Friction(const f32& vel);
+            ECS_Friction(const f32& friction = -0.01f);
 
             void reindex(void* parent) override;
 

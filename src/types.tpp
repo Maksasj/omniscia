@@ -112,14 +112,14 @@ namespace omniscia::core {
             return *this;
         }
 
-        f32 length() {
+        T length() {
             return sqrtf(this->x * this->x + this->y * this->y + this->z * this->z);
         }
     };
 
     template<typename T>
     struct Vec4 : Vec3<T> {
-        f32 w;
+        T w;
 
         Vec4 operator+(const Vec4& vec) { return Vec4{this->x + vec.x, this->y + vec.y, this->z + vec.z, w + vec.w}; }
         Vec4 operator-(const Vec4& vec) { return Vec4{this->x - vec.x, this->y - vec.y, this->z - vec.z, w - vec.w}; }

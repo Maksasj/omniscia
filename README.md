@@ -16,19 +16,20 @@
 
 ## Todo List
 - ### Core
-  - System system manager
-  - Level managee
+  - [ ] System system manager
+  - [ ] Level manager
 - ### ECS
-  - Box Collider Component
-  - Tile component
+  - [x] Templated constructors
+  - [ ] Box Collider Component
+  - [ ] Tile component
   - Prototypes
-    - Prototype serialization
+    - [ ] Prototype serialization
 - ### GFX
-  - Better rendering stages
-  - Rendering stage configuration
-  - Sprite mesh merging
-  - Batch rendering
-  - Instancing
+  - [ ]Better rendering stages
+  - [ ]Rendering stage configuration
+  - [ ]Sprite mesh merging
+  - [ ]Batch rendering
+  - [ ]Instancing
 - ### Editor *(Out of scope)*
 
 ## Build

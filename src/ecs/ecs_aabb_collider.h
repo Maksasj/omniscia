@@ -19,7 +19,7 @@ namespace omniscia::core::ecs {
 
     class ECS_AABBCollider : public ECS_Component {
         protected:
-            std::reference_wrapper<Entity> _parent;
+            Entity* _parent;
 
             ECS_Index<ECS_Positioned> posIndex;
             ECS_Index<ECS_Scaled> scaleIndex;
@@ -32,7 +32,7 @@ namespace omniscia::core::ecs {
         public:
             friend class ECS_MovableAABBCollider;
 
-            ECS_AABBCollider(Entity& parent);
+            ECS_AABBCollider();
 
             void reindex(void* parent) override;
             void time_sync() override;
