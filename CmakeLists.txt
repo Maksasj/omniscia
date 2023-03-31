@@ -10,6 +10,7 @@ find_package( OpenGL REQUIRED )
 include_directories( ${OPENGL_INCLUDE_DIRS} )
 
 file(GLOB_RECURSE OMNISCIA-SRC "src/*.cpp")
+file(GLOB_RECURSE OMNISCIA-EDITOR-SRC "editor/*.cpp")
 
 # includes for all files in src(recusively)
 include("src/CmakeLists.txt")
@@ -18,8 +19,13 @@ include("src/CmakeLists.txt")
 include("3dparty/CmakeLists.txt")
 
 add_executable( Omniscia ${OMNISCIA-SRC} )
-
 target_link_libraries(Omniscia ${OPENGL_LIBRARIES})
 target_link_libraries(Omniscia glfw)
 target_link_libraries(Omniscia glad)
 target_link_libraries(Omniscia opengl32)
+
+add_executable( OmnisciaEditor ${OMNISCIA-EDITOR-SRC} )
+target_link_libraries(OmnisciaEditor ${OPENGL_LIBRARIES})
+target_link_libraries(OmnisciaEditor glfw)
+target_link_libraries(OmnisciaEditor glad)
+target_link_libraries(OmnisciaEditor opengl32)

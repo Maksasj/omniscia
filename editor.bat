@@ -2,4 +2,4 @@
 
 cmake --build build
 
-build\Omniscia.exe
+build\OmnisciaEditor.exe
