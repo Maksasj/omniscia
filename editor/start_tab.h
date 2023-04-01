@@ -22,6 +22,7 @@ namespace omniscia_editor::editor {
                 ImGui::TextWrapped("%s", text);
                 ImGui::PopTextWrapPos();
             }
+            
         public:
             void render_tab() const {
                 if(ImGui::BeginTabItem("Main")) {

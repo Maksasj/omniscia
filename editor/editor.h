@@ -15,7 +15,6 @@ namespace omniscia_editor::editor {
         public:
             Editor() {
                 auto& style = ImGui::GetStyle();
-
             }
 
             void render(GLFWwindow *window) {
@@ -30,6 +29,7 @@ namespace omniscia_editor::editor {
                 int sizeX; int sizeY;
                 glfwGetWindowSize(window, &sizeX, &sizeY);
                 ImGui::SetNextWindowSize({(float)sizeX, (float)sizeY});
+                ImGui::SetNextWindowPos({0, 0});
                 ImGui::Begin("Omniscia Editor", NULL, flags);
                     ImGui::BeginTabBar("Omniscia Editor Tabs");
                         using namespace omniscia_editor::editor;
