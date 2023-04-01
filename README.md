@@ -31,7 +31,8 @@
   - [x] Sprite mesh merging
   - [x] Batch rendering
   - [ ] Instancing
-- ### Editor *(Out of scope)*
+- ### Editor
+  - [ ] Use tile groups instead of tile grid
 
 ## Build
 ```bash
