@@ -22,7 +22,8 @@ namespace omniscia_editor::level_editor {
             inline void render_tab() {
                 if(ImGui::BeginTabItem("Level")) {
                     ImGuiIO& io = ImGui::GetIO(); 
-                    
+                    ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+
                     if(ImGui::BeginChild("left pane", ImVec2(150, 0), true)) {
                         ImGui::SeparatorText("Editor");
                         ImGui::Checkbox("Render grid", &_renderGrid);

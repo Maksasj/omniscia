@@ -23,6 +23,8 @@ namespace omniscia_editor::editor {
                 ImGui_ImplGlfw_NewFrame();
                 ImGui::NewFrame();
 
+                ImGui::ShowDemoWindow();
+
                 auto flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoResize |ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoMove;
 
                 int sizeX; int sizeY;
