@@ -22,8 +22,6 @@ namespace omniscia_editor::editor {
                 ImGui_ImplGlfw_NewFrame();
                 ImGui::NewFrame();
 
-                ImGui::ShowDemoWindow();
-
                 auto flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoResize |ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoMove;
 
                 int sizeX; int sizeY;
@@ -35,13 +33,13 @@ namespace omniscia_editor::editor {
                         using namespace omniscia_editor::editor;
 
                         _startTab.render_tab();
-                        _levelEditor.render_tab();
+                        _levelEditor.render_tab(window);
                     
                     ImGui::EndTabBar();
                 ImGui::End();
 
                 ImGui::Render();
-                ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+                ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());               
             };
         
         static Editor& get_instance() {
