@@ -71,7 +71,6 @@ namespace omniscia_editor::level_editor {
             }
 
             inline void render_tab(GLFWwindow *window) {
-                ImGui::ShowDemoWindow();
                 if(ImGui::BeginTabItem("Level")) {
                     ImGuiIO& io = ImGui::GetIO(); 
 
