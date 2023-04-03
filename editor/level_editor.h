@@ -82,6 +82,33 @@ namespace omniscia_editor::level_editor {
                     ImGuiIO& io = ImGui::GetIO(); 
 
                     if(ImGui::BeginChild("left pane", ImVec2(260, 0), true)) {
+                        ImGui::SeparatorText("File");
+
+                        static i32 importButtonClicked = 0;
+                        if (ImGui::Button("Import level"))
+                            importButtonClicked++;
+
+                        ImGui::SameLine();                       
+                        static i32 exportButtonClicked = 0;
+                        if (ImGui::Button("Export level"))
+                            exportButtonClicked++;
+
+                        if((exportButtonClicked & 1) || (importButtonClicked & 1)) {
+                            auto p = omniscia_editor::editor::FileExplorer::get_instance().render();
+                            if(p._selected == true) {
+                                using namespace editor;
+
+                                if(exportButtonClicked & 1 && p._type == _DIRECTORY) {
+                                    _levelData.exportFromFile(p._path);
+                                } else if(importButtonClicked & 1 && p._type == _FILE) {
+                                    _levelData.loadToFile(p._path);
+                                }
+
+                                exportButtonClicked = 0;
+                                importButtonClicked = 0;
+                            }
+                        }
+
                         ImGui::SeparatorText("Editor");
                         
                         ImGui::Checkbox("Render grid", &_renderGrid);
@@ -106,11 +133,6 @@ namespace omniscia_editor::level_editor {
                             glfwGetWindowSize(window, &width, &height);
                             _scroll.x = width / 2.0;
                             _scroll.y = height / 2.0;
-                        }
-
-                        auto p = omniscia_editor::editor::FileExplorer::get_instance().render();
-                        if(p._selected == true) {
-                            std::cout << "Selected " << p._type << " " << p._path << "\n";
                         }
 
                         ImGui::Text("Zoom");

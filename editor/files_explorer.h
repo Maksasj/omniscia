@@ -9,14 +9,15 @@
 #include <functional>
 #include <sstream>
 #include <fstream>
+#include <iostream>
 
 #include "gfx.h"
 #include "types.h"
 
 namespace omniscia_editor::editor {
     enum FileEntryType {
-        FILE,
-        DIRECTORY
+        _FILE,
+        _DIRECTORY
     };
 
     struct FileEntry {
@@ -35,7 +36,7 @@ namespace omniscia_editor::editor {
         FileEntryType _type;
         std::string _path;
 
-        FileExplorerResult(bool selected, FileEntryType type = FILE, std::string path = "") {
+        FileExplorerResult(bool selected, FileEntryType type = _FILE, std::string path = "") {
             _selected = selected;
             _type = type;
             _path = path;
@@ -60,10 +61,10 @@ namespace omniscia_editor::editor {
                         if (attributes & FILE_ATTRIBUTE_HIDDEN) continue;
                     }
 
-                    FileEntryType type = FILE;
+                    FileEntryType type = _FILE;
 
                     if(entry.is_directory()) {
-                        type = DIRECTORY;
+                        type = _DIRECTORY;
                     }
 
                     FileEntry file = (FileEntry) {
@@ -92,13 +93,13 @@ namespace omniscia_editor::editor {
             }
         public:
             static FileExplorer& get_instance() {
-                static FileExplorer fileExplorer("C:\\"); //C:\\Programming\\c++\\omniscia\\assets
+                static FileExplorer fileExplorer(fs::current_path().string()); //C:\\Programming\\c++\\omniscia\\assets
 
                 return fileExplorer;
             } 
 
             FileExplorerResult render() {
-                auto flag = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar;
+                auto flag = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse;
 
                 auto returnValue = FileExplorerResult(false);
 
@@ -121,10 +122,10 @@ namespace omniscia_editor::editor {
 
                     std::stringstream ss;
 
-                    if(file._type == DIRECTORY) {
+                    if(file._type == _DIRECTORY) {
                         ss << "[DIR] ";
-                    } else if(file._type == FILE) {
-                        ss << "[FILE] ";
+                    } else if(file._type == _FILE) {
+                        ss << "[_FILE] ";
                     }
 
                     ss << file._fileName;
@@ -156,9 +157,9 @@ namespace omniscia_editor::editor {
                     if(std::filesystem::exists(buf1)) {
                         std::filesystem::directory_entry entry(buf1);
 
-                        FileEntryType type = FILE;
+                        FileEntryType type = _FILE;
                         if(entry.is_directory())
-                            type = DIRECTORY;
+                            type = _DIRECTORY;
 
                         returnValue = FileExplorerResult(true, type, buf1);
                     }
@@ -183,12 +184,12 @@ namespace omniscia_editor::editor {
                 if(_selectedFile < _files.size()) {
                     auto& file = _files[_selectedFile];
 
-                    if(file._type == DIRECTORY) {
+                    if(file._type == _DIRECTORY) {
                         if(ImGui::Button("Open")) {
                             _currentPath = file._filePath;
                             reaload_files();
                         }
-                    } else if(file._type == FILE) {
+                    } else if(file._type == _FILE) {
                         ImGui::Text("File size: %llu [bytes]", file._fileSize);
                         ImGui::SameLine();
                         ImGui::Text(", extension: '%s'", file._fileExtension.c_str());
