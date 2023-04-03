@@ -32,7 +32,7 @@
   - [x] Batch rendering
   - [ ] Instancing
 - ### Editor
-  - [ ] Use tile groups instead of tile grid
+  - [x] Use tile groups instead of tile grid
 
 ## Build
 ```bash

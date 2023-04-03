@@ -6,6 +6,7 @@
 #include <iomanip>
 
 #include "level_data.h"
+#include "files_explorer.h"
 #include "gfx.h"
 
 namespace omniscia_editor::level_editor {
@@ -17,6 +18,10 @@ namespace omniscia_editor::level_editor {
             bool _renderAxis;
 
             bool _gridSnap;
+            f32 _gridSize;
+            f32 _gridSizeMin;
+            f32 _gridSizeMax;
+
             f32 _interactionRadius;
             f32 _interactionRadiusMin;
             f32 _interactionRadiusMax;
@@ -37,12 +42,18 @@ namespace omniscia_editor::level_editor {
             f32 _zoomSpeed;
             f32 _zoom;
 
+            bool _renderPlayerCameraBox;
+            f32 _playerScreenWidth;
+            f32 _playerScreenHeight;
         public:
             LevelEditor() {
                 _renderGrid = true;
                 _renderAxis = true;
 
                 _gridSnap = true;
+                _gridSize = 50.0f;
+                _gridSizeMin = 5.0f;
+                _gridSizeMax = 500.0f;
 
                 _selectedTileGroup = 0;
                 _interactionRadius = 10.0f;
@@ -62,12 +73,8 @@ namespace omniscia_editor::level_editor {
                 _brushSizeMin = 1;
                 _brushType = 0;
 
-                // _levelData.tileGroups.push_back(TileGroup("Test group"));
-                // for(f32 x = -2500.0f; x < 2500.0f; x += 50.0f) {
-                //     for(f32 y = -2500.0f; y < 2500.0f; y += 50.0f) {
-                //         _levelData.tileGroups[0].tiles.push_back(omniscia::core::Vec2f{x, y});
-                //     }
-                // }
+                _playerScreenWidth = 1280;
+                _playerScreenHeight = 800;
             }
 
             inline void render_tab(GLFWwindow *window) {
@@ -79,16 +86,20 @@ namespace omniscia_editor::level_editor {
                         
                         ImGui::Checkbox("Render grid", &_renderGrid);
                         if(_renderGrid) {
-                            ImGui::SameLine();
-                            ImGui::Checkbox("Render axis", &_renderAxis);
+                            ImGui::SameLine();                          
+                            ImGui::Checkbox("Render axis", &_renderAxis); 
                         }
 
                         ImGui::Checkbox("Grid snap", &_gridSnap);
                         if(!_gridSnap) {
                             ImGui::Text("Interaction radius");
                             ImGui::SliderFloat("##Interaction radius slider ", &_interactionRadius, _interactionRadiusMin, _interactionRadiusMax, "%.3f");
+                        } else {
+                            ImGui::SameLine();
                         }
-                        ImGui::SameLine();
+
+                        ImGui::Checkbox("Player Screen box", &_renderPlayerCameraBox);
+ 
                         if(ImGui::Button("Align center")) {
                             i32 width;
                             i32 height;
@@ -97,8 +108,20 @@ namespace omniscia_editor::level_editor {
                             _scroll.y = height / 2.0;
                         }
 
+                        auto p = omniscia_editor::editor::FileExplorer::get_instance().render();
+                        if(p._selected == true) {
+                            std::cout << "Selected " << p._type << " " << p._path << "\n";
+                        }
+
                         ImGui::Text("Zoom");
                         ImGui::SliderFloat("##Zoom: ", &_zoom, _minZoom, _maxZoom, "%.3f");
+                        
+                        ImGui::Text("Grid size");
+                        ImGui::SliderFloat("##Grid size: ", &_gridSize, _gridSizeMin, _gridSizeMax, "%.3f");
+                        ImGui::SameLine();
+                        if(ImGui::Button("Default")) {
+                            _gridSize = 50.0f;
+                        }
 
                         ImGui::SeparatorText("Level");
                         ImGui::Text("Tile group count: %llu", _levelData.tileGroups.size());
@@ -302,8 +325,8 @@ namespace omniscia_editor::level_editor {
                                         placePosY -= fmodf(placePosY, _zoom);
                                     }
 
-                                    placePosX /= (_zoom / 50.0);
-                                    placePosY /= (_zoom / 50.0);
+                                    placePosX /= (_zoom / _gridSize);
+                                    placePosY /= (_zoom / _gridSize);
 
                                     static f32 lastPlacePosX = 0;
                                     static f32 lastPlacePosY = 0;
@@ -321,19 +344,19 @@ namespace omniscia_editor::level_editor {
                                             if(_brushModeTilePerfect) {
                                                 _levelData.tileGroups[_selectedTileGroup].tiles.push_back({placePosX, placePosY});
                                             } else {
-                                                f32 radius = 50.0 * (_brushSize / 2);
+                                                f32 radius = _gridSize * (_brushSize / 2);
 
                                                 if(_brushType == 0) {
-                                                    for(f32 x = placePosX - radius; x < placePosX + radius; x += 50.0f) {
-                                                        for(f32 y = placePosY - radius; y < placePosY + radius; y += 50.0f) {
+                                                    for(f32 x = placePosX - radius; x < placePosX + radius; x += _gridSize) {
+                                                        for(f32 y = placePosY - radius; y < placePosY + radius; y += _gridSize) {
                                                             if((placePosX - x)*(placePosX - x) + (placePosY - y)*(placePosY - y) > radius*radius) continue;
 
                                                             _levelData.tileGroups[_selectedTileGroup].tiles.push_back({x, y});
                                                         }
                                                     }
                                                 } else if(_brushType == 1) {
-                                                    for(f32 x = placePosX - radius; x < placePosX + radius; x += 50.0f) {
-                                                        for(f32 y = placePosY - radius; y < placePosY + radius; y += 50.0f) {
+                                                    for(f32 x = placePosX - radius; x < placePosX + radius; x += _gridSize) {
+                                                        for(f32 y = placePosY - radius; y < placePosY + radius; y += _gridSize) {
                                                             _levelData.tileGroups[_selectedTileGroup].tiles.push_back({x, y});
                                                         }
                                                     }
@@ -370,8 +393,8 @@ namespace omniscia_editor::level_editor {
                                     auto& color = tileGroup._associatedColor;
 
                                     draw_list->AddRectFilled(
-                                        {xStart + (f32)tile.x * (_zoom / 50), yStart + (f32)tile.y * (_zoom / 50)}, 
-                                        {xStart + ((f32)tile.x * (_zoom / 50) + _zoom), yStart + ((f32)tile.y * (_zoom / 50) + _zoom)}, 
+                                        {xStart + (f32)tile.x * (_zoom / _gridSize), yStart + (f32)tile.y * (_zoom / _gridSize)}, 
+                                        {xStart + ((f32)tile.x * (_zoom / _gridSize) + _zoom), yStart + ((f32)tile.y * (_zoom / _gridSize) + _zoom)}, 
                                         IM_COL32(color.x * 255, color.y * 255, color.z * 255, color.w * 255));
                                 }
                             }
@@ -401,6 +424,23 @@ namespace omniscia_editor::level_editor {
                             for(f32 y = startY; y > canvas_p0.y; y -= _zoom) {
                                 draw_list->AddLine(ImVec2(canvas_p0.x, y), ImVec2(canvas_p1.x, y), IM_COL32(200, 200, 200, 40));
                             }
+                        }
+
+                        if(_renderPlayerCameraBox) {
+                            f32 radiusX = _playerScreenWidth / 2.0; 
+                            f32 radiusY = _playerScreenHeight / 2.0; 
+
+                            radiusX *= (_zoom / _gridSize);
+                            radiusY *= (_zoom / _gridSize);
+
+                            ImVec2 firstPoint = ImVec2{ _scroll.x - radiusX, _scroll.y - radiusY };
+                            ImVec2 secondPoint = ImVec2{ _scroll.x + radiusX, _scroll.y + radiusY };
+
+                            ImVec2 uvFirstPoint = ImVec2{ _scroll.x - radiusY, _scroll.y - radiusY };
+                            ImVec2 uvSecondPoint = ImVec2{ _scroll.x + radiusY, _scroll.y + radiusY };
+
+                            draw_list->AddRect(uvFirstPoint, uvSecondPoint, IM_COL32(255, 255, 0, 120));
+                            draw_list->AddRect(firstPoint, secondPoint, IM_COL32(255, 255, 0, 255));
                         }
 
                         draw_list->PopClipRect();

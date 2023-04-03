@@ -29,6 +29,8 @@ namespace omniscia_editor::editor {
                 ImGui::SetNextWindowSize({(float)sizeX, (float)sizeY});
                 ImGui::SetNextWindowPos({0, 0});
                 ImGui::Begin("Omniscia Editor", NULL, flags);
+                    ImGui::ShowDemoWindow();
+
                     ImGui::BeginTabBar("Omniscia Editor Tabs");
                         using namespace omniscia_editor::editor;
 
