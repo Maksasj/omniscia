@@ -63,6 +63,8 @@ int omniscia::Game::run() {
     renderStage2.bind_default_shader(&shader2);
 
     Level level;
+    LevelLoader::get_instance().load_level(level);
+
     std::deque<Level::LevelDynamic> timeLine;
 
     DebugUI::get_instance().get_metrics()._timeMaxLineLength = 5000;
@@ -76,6 +78,7 @@ int omniscia::Game::run() {
         level.staticPart.staticEntities.push_back(wall);
     }
 
+    /*
     {
         Entity wall = Entity();
         wall.add<ECS_Positioned>(0.0f, 0.0f);
@@ -93,6 +96,7 @@ int omniscia::Game::run() {
 
         level.staticPart.staticEntities.push_back(wall);
     }
+    */
 
 
     /* Components binded twise, because of this we need to time sync imideialty */
