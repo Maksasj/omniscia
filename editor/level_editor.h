@@ -35,6 +35,15 @@ namespace omniscia_editor::level_editor {
             i32 _brushSizeMin;
             i32 _brushType;
 
+            f32 _brushTileWidth;
+            f32 _brushTileHeight;
+            f32 _brushTileWidthMax;
+            f32 _brushTileWidthMin;
+            f32 _brushTileHeightMax;
+            f32 _brushTileHeightMin;
+            f32 _brushTileDefaultWidth;
+            f32 _brushTileDefaultHeight;
+
             i32 _selectedTileGroup;
 
             f32 _minZoom;
@@ -72,6 +81,14 @@ namespace omniscia_editor::level_editor {
                 _brushSizeMax = 100;
                 _brushSizeMin = 1;
                 _brushType = 0;
+                _brushTileWidth = 50.0f;
+                _brushTileHeight = 50.0f;
+                _brushTileWidthMin = 5.0f;
+                _brushTileWidthMax = 250.0f;
+                _brushTileHeightMin = 5.0f;
+                _brushTileHeightMax = 250.0f;
+                _brushTileDefaultWidth = 50.0f;
+                _brushTileDefaultHeight = 50.0f;
 
                 _playerScreenWidth = 1280;
                 _playerScreenHeight = 800;
@@ -167,6 +184,19 @@ namespace omniscia_editor::level_editor {
                                 ImGui::Text("Brush size");
                                 ImGui::SameLine();
                                 ImGui::SliderInt("##Brush size slider ", &_brushSize, _brushSizeMin, _brushSizeMax);
+                            } else {
+                                ImGui::Text("Tile size");
+                                ImGui::Text("Width  ");
+                                ImGui::SameLine();
+                                ImGui::SliderFloat("## Tile width: ", &_brushTileWidth, _brushTileWidthMin, _brushTileWidthMax, "%.3f");
+                                ImGui::Text("Height ");
+                                ImGui::SameLine();
+                                ImGui::SliderFloat("## Tile height: ", &_brushTileHeight, _brushTileHeightMin, _brushTileHeightMax, "%.3f");
+                            
+                                if(ImGui::Button("Set default size")) {
+                                    _brushTileWidth = _brushTileDefaultWidth;
+                                    _brushTileHeight = _brushTileDefaultHeight;
+                                }
                             }
                         }
 
@@ -364,7 +394,7 @@ namespace omniscia_editor::level_editor {
                                     if(!_brushContinuous && ImGui::IsMouseClicked(ImGuiMouseButton_Left) || _brushContinuous && _moved) {
                                         if(_brushMode == 0) {
                                             if(_brushModeTilePerfect) {
-                                                _levelData.tileGroups[_selectedTileGroup].tiles.push_back({placePosX, placePosY});
+                                                _levelData.tileGroups[_selectedTileGroup].tiles.push_back({placePosX, placePosY, _brushTileWidth, _brushTileHeight});
                                             } else {
                                                 f32 radius = _gridSize * (_brushSize / 2);
 
@@ -373,13 +403,13 @@ namespace omniscia_editor::level_editor {
                                                         for(f32 y = placePosY - radius; y < placePosY + radius; y += _gridSize) {
                                                             if((placePosX - x)*(placePosX - x) + (placePosY - y)*(placePosY - y) > radius*radius) continue;
 
-                                                            _levelData.tileGroups[_selectedTileGroup].tiles.push_back({x, y});
+                                                            _levelData.tileGroups[_selectedTileGroup].tiles.push_back({x, y, _brushTileWidth, _brushTileHeight});
                                                         }
                                                     }
                                                 } else if(_brushType == 1) {
                                                     for(f32 x = placePosX - radius; x < placePosX + radius; x += _gridSize) {
                                                         for(f32 y = placePosY - radius; y < placePosY + radius; y += _gridSize) {
-                                                            _levelData.tileGroups[_selectedTileGroup].tiles.push_back({x, y});
+                                                            _levelData.tileGroups[_selectedTileGroup].tiles.push_back({x, y, _brushTileWidth, _brushTileHeight});
                                                         }
                                                     }
                                                 }
@@ -414,9 +444,15 @@ namespace omniscia_editor::level_editor {
 
                                     auto& color = tileGroup._associatedColor;
 
-                                    draw_list->AddRectFilled(
-                                        {xStart + (f32)tile.x * (_zoom / _gridSize), yStart + (f32)tile.y * (_zoom / _gridSize)}, 
-                                        {xStart + ((f32)tile.x * (_zoom / _gridSize) + _zoom), yStart + ((f32)tile.y * (_zoom / _gridSize) + _zoom)}, 
+                                    f32 factor = (_zoom / _gridSize);
+
+                                    f32 firstPointX = xStart + (f32)tile.x * factor;
+                                    f32 firstPointY = yStart + (f32)tile.y * factor;
+
+                                    f32 secondPointX = firstPointX + factor * tile._width;
+                                    f32 secondPointY = firstPointY + factor * tile._height;
+
+                                    draw_list->AddRectFilled({firstPointX, firstPointY}, {secondPointX, secondPointY}, 
                                         IM_COL32(color.x * 255, color.y * 255, color.z * 255, color.w * 255));
                                 }
                             }

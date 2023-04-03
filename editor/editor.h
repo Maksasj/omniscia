@@ -15,6 +15,9 @@ namespace omniscia_editor::editor {
         public:
             Editor() {
                 auto& style = ImGui::GetStyle();
+
+                //style.Colors[ImGuiCol_FrameBg] = ImVec4{1.0, 1.0, 0.0, 0.3};
+                //style.Colors[ImGuiCol_Button] = ImVec4{1.0, 1.0, 0.0, 0.5};
             }
 
             void render(GLFWwindow *window) {
@@ -37,7 +40,7 @@ namespace omniscia_editor::editor {
                         _levelEditor.render_tab(window);
                     
                     ImGui::EndTabBar();
-                    
+
                 ImGui::End();
 
                 ImGui::Render();
