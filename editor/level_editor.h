@@ -110,20 +110,77 @@ namespace omniscia_editor::level_editor {
                         if (ImGui::Button("Export level"))
                             exportButtonClicked++;
 
-                        if((exportButtonClicked & 1) || (importButtonClicked & 1)) {
-                            auto p = omniscia_editor::editor::FileExplorer::get_instance().render();
-                            if(p._selected == true) {
-                                using namespace editor;
+                        //if((exportButtonClicked & 1) || (importButtonClicked & 1)) {
+                        //  auto p = omniscia_editor::editor::FileExplorer::get_instance().render();
+                        //    if(p._selected == true) {
+                        //        using namespace editor;
+//
+                        //        if(exportButtonClicked & 1 && p._type == _DIRECTORY) {
+                        //            _levelData.exportFromFile(p._path);
+                        //        } else if(importButtonClicked & 1 && p._type == _FILE) {
+                        //            _levelData.loadToFile(p._path);
+                        //        }
+//
+                        //        exportButtonClicked = 0;
+                        //        importButtonClicked = 0;
+                        //    }
+                        //}
 
-                                if(exportButtonClicked & 1 && p._type == _DIRECTORY) {
-                                    _levelData.exportFromFile(p._path);
-                                } else if(importButtonClicked & 1 && p._type == _FILE) {
-                                    _levelData.loadToFile(p._path);
+                        if(exportButtonClicked & 1) {
+                            bool tmp = true;
+                            ImGui::Begin("Export level");
+                                ImGui::SeparatorText("Path");
+
+                                const u64 _pathStringMaxSize = 256; 
+                                static char buf1[_pathStringMaxSize] = "C:\\"; 
+                                ImGui::InputText("## Export path", buf1, _pathStringMaxSize);
+                                ImGui::SameLine();
+                                
+                                static i32 fileBrowserOpen = 0;
+                                if(ImGui::Button("Browse"))
+                                    fileBrowserOpen++;
+                                
+                                if(fileBrowserOpen & 1) {
+                                    auto p = omniscia_editor::editor::FileExplorer::get_instance().render();
+                                    if(p._selected == true) {
+                                        using namespace editor;
+
+                                        if(p._type == _FILE) {
+                                            p._path.copy(buf1, p._path.size());
+                                        } else if(p._type == _DIRECTORY) {
+                                            std::string newPath = p._path + "\\level.bin";
+                                            newPath.copy(buf1, newPath.size());
+                                        }
+                                    }
                                 }
 
-                                exportButtonClicked = 0;
-                                importButtonClicked = 0;
-                            }
+                                ImGui::SameLine();
+                                if(ImGui::Button("Export")) {
+                                    _levelData.export_to_file(std::string(buf1));
+                                }
+
+                                ImGui::SeparatorText("Tile groups");
+                                ImGui::Text("Tile group count %llu", _levelData.tileGroups.size());
+
+                                u64 tileCount = 0;
+                                for(const auto& tileGroup : _levelData.tileGroups) {
+                                    tileCount += tileGroup.tiles.size();
+                                }
+
+                                ImGui::Text("Total tile count %llu", tileCount);
+                                ImGui::Checkbox("Export all tile groups ", &tmp);
+                                ImGui::SameLine();
+                                ImGui::TextColored(ImVec4{1.0, 1.0, 1.0, 0.5}, " Recommended");
+
+                                ImGui::SeparatorText("Generall");
+                                ImGui::Checkbox("Opengl coordinates flip ", &tmp);
+                                ImGui::SameLine();
+                                ImGui::TextColored(ImVec4{1.0, 1.0, 1.0, 0.5}, " Recommended");
+
+                                ImGui::Checkbox("UV coordinates scaling ", &tmp);
+                                ImGui::SameLine();
+                                ImGui::TextColored(ImVec4{1.0, 1.0, 1.0, 0.5}, " Recommended");
+                            ImGui::End();
                         }
 
                         ImGui::SeparatorText("Editor");

@@ -62,10 +62,10 @@ namespace omniscia_editor::level_editor {
             }
         }
 
-        void exportFromFile(std::string filePath) {
+        void export_to_file(std::string filePath) {
             std::cout << "Exporting file too " << filePath << "\n"; 
 
-            std::ofstream f(filePath + "\\levelData.data", std::ios::out | std::ios::binary);
+            std::ofstream f(filePath, std::ios::out | std::ios::binary);
 
             u64 tileGroupCount = tileGroups.size();
             f.write((char* )&tileGroupCount, sizeof(u64));

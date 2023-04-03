@@ -36,10 +36,13 @@ namespace omniscia_editor::editor {
         FileEntryType _type;
         std::string _path;
 
+
         FileExplorerResult(bool selected, FileEntryType type = _FILE, std::string path = "") {
             _selected = selected;
             _type = type;
             _path = path;
+
+
         }
     };
 
@@ -50,6 +53,10 @@ namespace omniscia_editor::editor {
             u64 _selectedFile;
 
             bool _hiddenFiles;
+
+            
+            const u64 _pathStringMaxSize = 256; 
+            char textInputFieldBuffer[265];
 
             void reaload_files() {
                 _files.clear();
@@ -90,6 +97,8 @@ namespace omniscia_editor::editor {
                 _hiddenFiles = false;
 
                 reaload_files();
+
+                _startFilePath.copy(textInputFieldBuffer, _startFilePath.size());
             }
         public:
             static FileExplorer& get_instance() {
@@ -136,38 +145,57 @@ namespace omniscia_editor::editor {
 
                         if(selected)
                             ImGui::SetItemDefaultFocus();
+
+                    };
+                    
+                    if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
+                        if(file._type == _FILE) {
+                            /* Select file and return */
+                            if(std::filesystem::exists(_files[_selectedFile]._filePath)) {
+                                std::filesystem::directory_entry entry(_files[_selectedFile]._filePath);
+
+                                FileEntryType type = _FILE;
+                                if(entry.is_directory())
+                                    type = _DIRECTORY;
+
+                                returnValue = FileExplorerResult(true, type, _files[_selectedFile]._filePath);
+                            }
+                        } else if(file._type == _DIRECTORY) {
+                            _currentPath = file._filePath;
+                            reaload_files();
+                        }
                     };
                 }
 
                 ImGui::EndListBox();
                 
-                const u64 _pathStringMaxSize = 256; 
-                static char buf1[_pathStringMaxSize] = ""; 
                 static u64 _prevSelectedFile = 0;
 
                 if(_selectedFile != _prevSelectedFile && _selectedFile < _files.size()) {
-                    std::memset(buf1, 0, _pathStringMaxSize);
-                    _files[_selectedFile]._filePath.copy(buf1, _files[_selectedFile]._filePath.size());
+                    std::memset(textInputFieldBuffer, 0, _pathStringMaxSize);
+                    _files[_selectedFile]._filePath.copy(textInputFieldBuffer, _files[_selectedFile]._filePath.size());
                     _prevSelectedFile = _selectedFile;
                 }
-                ImGui::InputText("## File path", buf1, _pathStringMaxSize);
+                ImGui::InputText("## File path", textInputFieldBuffer, _pathStringMaxSize);
                 
                 ImGui::SameLine();
                 if(ImGui::Button("Select") && _selectedFile < _files.size()) {
-                    if(std::filesystem::exists(buf1)) {
-                        std::filesystem::directory_entry entry(buf1);
+
+                    /* Select file and return */
+                    if(std::filesystem::exists(textInputFieldBuffer)) {
+                        std::filesystem::directory_entry entry(textInputFieldBuffer);
 
                         FileEntryType type = _FILE;
                         if(entry.is_directory())
                             type = _DIRECTORY;
 
-                        returnValue = FileExplorerResult(true, type, buf1);
+                        returnValue = FileExplorerResult(true, type, textInputFieldBuffer);
                     }
                 }
                 
                 ImGui::SameLine();
                 if(ImGui::Button("Clear")) {
-                    std::memset(buf1, 0, 64);
+                    std::memset(textInputFieldBuffer, 0, 64);
                 }
 
                 ImGui::SameLine();
