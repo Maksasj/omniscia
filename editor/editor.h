@@ -1,20 +1,31 @@
 #ifndef _OMNISCIA_EDITOR_EDITOR_H_
 #define _OMNISCIA_EDITOR_EDITOR_H_
 
+#include "themes/themes.h"
+
 #include "start_tab.h"
 #include "level_editor.h"
 
 namespace omniscia_editor::editor {
     using namespace omniscia_editor::level_editor;
+    using namespace omniscia_editor::level_editor::themes;
 
     class Editor {
         private:
+            std::vector<Theme*> themes;
+
             StartTab _startTab;
             LevelEditor _levelEditor;
 
         public:
             Editor() {
-                
+                themes = {
+                    new DeepDarkTheme(),
+                    new DraculaTheme(),
+                    new GreenTheme(),
+                    new RedTheme(),
+                    new SimpleTheme()
+                };
             }
 
             void render(GLFWwindow *window) {

@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include "version.h"
 #include "gfx.h"
 
 namespace omniscia_editor::editor {
@@ -26,10 +27,9 @@ namespace omniscia_editor::editor {
         public:
             void render_tab() const {
                 if(ImGui::BeginTabItem("Main")) {
-                    //text_centered("Hello world!");
-
-                    ImGui::TextColored(ImVec4(1.0, 1.0, 0.1, 1.0), "Hello world!");
+                    ImGui::TextColored(ImVec4(1.0, 1.0, 1.0, 1.0), "Hello world!");
                     ImGui::EndTabItem();
+                    ImGui::TextColored(ImVec4(1.0, 1.0, 1.0, 0.6), "Version 0.0.%d", _OMNISCIA_EDITOR_VERSION_);
                 }
             };
     };
