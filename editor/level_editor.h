@@ -21,6 +21,7 @@ namespace omniscia_editor::level_editor {
             void render_brush_options();
 
             void render_tiles(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1);
+            void render_collision_boxes(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1);
             void render_grid(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1);
             void render_camera_box(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1);
 

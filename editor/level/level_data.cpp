@@ -54,17 +54,29 @@ void omniscia_editor::level_editor::LevelData::export_to_file(std::string filePa
     f.write((char* )&screenBoxWidth, sizeof(u64));
     f.write((char* )&screenBoxHeight, sizeof(u64));
 
-    /* Tile groups */
+    /* Tile groups count */
     u64 tileGroupCount = tileGroups.size();
     f.write((char* )&tileGroupCount, sizeof(u64));
 
+    /* Tile groups */
     for(auto& group : tileGroups) {
+        
+        /* Tiles */
         u64 tileCount = group.tiles.size();
         f.write((char* )&tileCount, sizeof(u64));
 
         for(auto tile : group.tiles) {
             auto cords = tile;
             f.write((char* )&cords, sizeof(Tile));
+        }
+
+        /* Collision boxes */
+        u64 collsionBoxesCount = group._collisionBoxes.size();
+        f.write((char* )&collsionBoxesCount, sizeof(u64));
+
+        for(auto collsionBox : group._collisionBoxes) {
+            auto box = collsionBox;
+            f.write((char* )&box, sizeof(CollisionBox));
         }
     }
 }

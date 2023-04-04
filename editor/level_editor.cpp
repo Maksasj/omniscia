@@ -45,7 +45,7 @@ void omniscia_editor::level_editor::LevelEditor::render_level_options() {
 
 void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
     ImGui::SeparatorText("Tile Groups");
-    if (ImGui::BeginListBox("##tile group list box", ImVec2(-FLT_MIN, 5 * ImGui::GetTextLineHeightWithSpacing()))) {
+    if(ImGui::BeginListBox("##tile group list box", ImVec2(-FLT_MIN, 5 * ImGui::GetTextLineHeightWithSpacing()))) {
         for (i32 n = 0; n < _levelData.tileGroups.size(); ++n) {
             const bool is_selected = (_selectedTileGroup == n);
             if(ImGui::Selectable(_levelData.tileGroups[n]._name.c_str(), is_selected))
@@ -68,9 +68,11 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
             _levelData.tileGroups.erase(_levelData.tileGroups.begin() + _selectedTileGroup);
 
     if(_selectedTileGroup < _levelData.tileGroups.size()) {
+        auto& tileGroup = _levelData.tileGroups[_selectedTileGroup];
+
         ImGui::SeparatorText("Selected Tile Group");
 
-        ImGui::Text("Tile count: %llu", _levelData.tileGroups[_selectedTileGroup].tiles.size());
+        ImGui::Text("Tile count: %llu", tileGroup.tiles.size());
         ImGui::Text("Associated color: ");
         ImGui::SameLine();
         
@@ -144,8 +146,35 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
                 ImGui::EndGroup();
                 ImGui::EndPopup();
 
-                _levelData.tileGroups[_selectedTileGroup]._associatedColor = color;
+                tileGroup._associatedColor = color;
             }
+        }
+
+        ImGui::Text("Collision boxes");
+        if(ImGui::BeginListBox("##Tile group collision box list", ImVec2(-FLT_MIN, 5 * ImGui::GetTextLineHeightWithSpacing()))) {
+            for(u32 i = 0; i < tileGroup._collisionBoxes.size(); ++i) {
+                ImGui::Selectable("Collsion box 1", false);
+            }
+            
+            //for (i32 n = 0; n < _levelData.tileGroups.size(); ++n) {
+            //    const bool is_selected = (_selectedTileGroup == n);
+            //    if(ImGui::Selectable(_levelData.tileGroups[n]._name.c_str(), is_selected))
+            //        _selectedTileGroup = n;
+//
+            //    if(is_selected)
+            //        ImGui::SetItemDefaultFocus();
+            //}
+            ImGui::EndListBox();
+        }
+
+        if(ImGui::Button("Add Collsion Box")) {
+            tileGroup._collisionBoxes.push_back((CollisionBox){
+                .x = 0.0f,
+                .y = 0.0f,
+
+                .rangesX = omniscia::core::Vec2f{50.0f, 50.0f},
+                .rangesY = omniscia::core::Vec2f{50.0f, 50.0f},
+            });
         }
     }
 }
@@ -246,6 +275,25 @@ void omniscia_editor::level_editor::LevelEditor::render_tiles(ImDrawList* drawLi
             f32 secondPointY = firstPointY + factor * tile._height;
 
             drawList->AddRectFilled({firstPointX, firstPointY}, {secondPointX, secondPointY}, 
+                IM_COL32(color.x * 255, color.y * 255, color.z * 255, color.w * 255));
+        }
+    }
+}
+
+void omniscia_editor::level_editor::LevelEditor::render_collision_boxes(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
+    for(auto& tileGroup : _levelData.tileGroups) {
+        for(auto tile : tileGroup._collisionBoxes) {
+            auto& color = tileGroup._associatedColor;
+
+            f32 factor = (_zoom / _gridSize);
+
+            f32 firstPointX = _scroll.x + factor * ((f32)tile.x - tile.rangesX.x);
+            f32 firstPointY = _scroll.y + factor * ((f32)tile.y - tile.rangesX.x);
+
+            f32 secondPointX = _scroll.x + factor * ((f32)tile.x + tile.rangesX.x);
+            f32 secondPointY = _scroll.y + factor * ((f32)tile.y + tile.rangesX.x);
+
+            drawList->AddRect({firstPointX, firstPointY}, {secondPointX, secondPointY}, 
                 IM_COL32(color.x * 255, color.y * 255, color.z * 255, color.w * 255));
         }
     }
@@ -529,6 +577,7 @@ void omniscia_editor::level_editor::LevelEditor::render_tab(GLFWwindow *window) 
 
             /* Render tiles */
             render_tiles(draw_list, canvas_p0, canvas_p1);
+            render_collision_boxes(draw_list, canvas_p0, canvas_p1);
 
             /* Render grid */
             if (_renderGrid) {

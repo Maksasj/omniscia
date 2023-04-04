@@ -3,6 +3,7 @@
 
 #include <vector>
 
+#include "collsion_box_data.h"
 #include "tile_data.h"
 #include "../types.h"
 #include "../gfx.h"
@@ -12,8 +13,11 @@ namespace omniscia_editor::level_editor {
         std::string _name;
         ImVec4 _associatedColor;
         std::vector<Tile> tiles;
+        std::vector<CollisionBox> _collisionBoxes;
 
         TileGroup(std::string name);
+
+        void clear();
     };
 }
 
