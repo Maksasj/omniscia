@@ -48,7 +48,7 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
     if(ImGui::BeginListBox("##tile group list box", ImVec2(-FLT_MIN, 5 * ImGui::GetTextLineHeightWithSpacing()))) {
         for (i32 n = 0; n < _levelData.tileGroups.size(); ++n) {
             const bool is_selected = (_selectedTileGroup == n);
-            if(ImGui::Selectable(_levelData.tileGroups[n]._name.c_str(), is_selected))
+            if(ImGui::Selectable(_levelData.tileGroups[n]._name, is_selected))
                 _selectedTileGroup = n;
 
             if(is_selected)
@@ -76,105 +76,86 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
         ImGui::Text("Associated color: ");
         ImGui::SameLine();
         
-        {   /* Color picker */
-            static bool saved_palette_init = true;
-            static ImVec4 saved_palette[32] = {};
-            if (saved_palette_init)
-            {
-                for (i32 n = 0; n < IM_ARRAYSIZE(saved_palette); n++)
-                {
-                    ImGui::ColorConvertHSVtoRGB(n / 31.0f, 0.8f, 0.8f,
-                        saved_palette[n].x, saved_palette[n].y, saved_palette[n].z);
-                    saved_palette[n].w = 1.0f; // Alpha
-                }
-                saved_palette_init = false;
-            }
-
-            static bool alpha_preview = true;
-            static bool alpha_half_preview = false;
-            static bool drag_and_drop = true;
-            static bool options_menu = true;
-            static bool hdr = false;
-            ImVec4 color = _levelData.tileGroups[_selectedTileGroup]._associatedColor;
-            ImGuiColorEditFlags misc_flags = (hdr ? ImGuiColorEditFlags_HDR : 0) | (drag_and_drop ? 0 : ImGuiColorEditFlags_NoDragDrop) | (alpha_half_preview ? ImGuiColorEditFlags_AlphaPreviewHalf : (alpha_preview ? ImGuiColorEditFlags_AlphaPreview : 0)) | (options_menu ? 0 : ImGuiColorEditFlags_NoOptions);
-            static ImVec4 backup_color;
-
-            bool open_popup = ImGui::ColorButton("MyColor##3b", color, misc_flags);
-            ImGui::SameLine(0, ImGui::GetStyle().ItemInnerSpacing.x);
-            open_popup |= ImGui::Button("Change");
-            if (open_popup)
-            {
-                ImGui::OpenPopup("mypicker");
-                backup_color = color;
-            }
-
-            if (ImGui::BeginPopup("mypicker")) {
-                ImGui::Text("Color Picker");
-                ImGui::Separator();
-                ImGui::ColorPicker4("##picker", (f32*)&color, misc_flags | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_NoSmallPreview);
-                ImGui::SameLine();
-
-                ImGui::BeginGroup(); // Lock X position
-                ImGui::Text("Current");
-                ImGui::ColorButton("##current", color, ImGuiColorEditFlags_NoPicker | ImGuiColorEditFlags_AlphaPreviewHalf, ImVec2(60, 40));
-                ImGui::Text("Previous");
-                if (ImGui::ColorButton("##previous", backup_color, ImGuiColorEditFlags_NoPicker | ImGuiColorEditFlags_AlphaPreviewHalf, ImVec2(60, 40)))
-                    color = backup_color;
-                ImGui::Separator();
-                ImGui::Text("Change");
-                for (i32 n = 0; n < IM_ARRAYSIZE(saved_palette); n++)
-                {
-                    ImGui::PushID(n);
-                    if ((n % 8) != 0)
-                        ImGui::SameLine(0.0f, ImGui::GetStyle().ItemSpacing.y);
-
-                    ImGuiColorEditFlags palette_button_flags = ImGuiColorEditFlags_NoAlpha | ImGuiColorEditFlags_NoPicker | ImGuiColorEditFlags_NoTooltip;
-                    if (ImGui::ColorButton("##palette", saved_palette[n], palette_button_flags, ImVec2(20, 20)))
-                        color = ImVec4(saved_palette[n].x, saved_palette[n].y, saved_palette[n].z, color.w); // Preserve alpha!
-
-                    if (ImGui::BeginDragDropTarget())
-                    {
-                        if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(IMGUI_PAYLOAD_TYPE_COLOR_3F))
-                            memcpy((f32*)&saved_palette[n], payload->Data, sizeof(f32) * 3);
-                        if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(IMGUI_PAYLOAD_TYPE_COLOR_4F))
-                            memcpy((f32*)&saved_palette[n], payload->Data, sizeof(f32) * 4);
-                        ImGui::EndDragDropTarget();
-                    }
-
-                    ImGui::PopID();
-                }
-                ImGui::EndGroup();
-                ImGui::EndPopup();
-
-                tileGroup._associatedColor = color;
-            }
-        }
+        color_picker("Tile group color picker", tileGroup._associatedColor);
 
         ImGui::Text("Collision boxes");
         if(ImGui::BeginListBox("##Tile group collision box list", ImVec2(-FLT_MIN, 5 * ImGui::GetTextLineHeightWithSpacing()))) {
             for(u32 i = 0; i < tileGroup._collisionBoxes.size(); ++i) {
-                ImGui::Selectable("Collsion box 1", false);
+                auto& collisionBox = tileGroup._collisionBoxes[i];
+
+                const bool is_selected = (_selectedCollisionBox == i);
+
+                if(ImGui::Selectable((std::string(collisionBox._name) + "## " + std::to_string(i)).c_str(), is_selected)) 
+                    _selectedCollisionBox = i;
+
+                if(is_selected)
+                    ImGui::SetItemDefaultFocus();
             }
             
-            //for (i32 n = 0; n < _levelData.tileGroups.size(); ++n) {
-            //    const bool is_selected = (_selectedTileGroup == n);
-            //    if(ImGui::Selectable(_levelData.tileGroups[n]._name.c_str(), is_selected))
-            //        _selectedTileGroup = n;
-//
-            //    if(is_selected)
-            //        ImGui::SetItemDefaultFocus();
-            //}
             ImGui::EndListBox();
         }
 
-        if(ImGui::Button("Add Collsion Box")) {
-            tileGroup._collisionBoxes.push_back((CollisionBox){
-                .x = 0.0f,
-                .y = 0.0f,
+        if(ImGui::Button("Create ##Collision Box")) {
+            tileGroup._collisionBoxes.push_back(CollisionBox(
+                "Collision box " + std::to_string(tileGroup._collisionBoxes.size()),
+                0.0f, 0.0f, omniscia::core::Vec2f{50.0f, 50.0f}, omniscia::core::Vec2f{50.0f, 50.0f}
+            ));
+        }
 
-                .rangesX = omniscia::core::Vec2f{50.0f, 50.0f},
-                .rangesY = omniscia::core::Vec2f{50.0f, 50.0f},
-            });
+
+        if(_selectedCollisionBox < tileGroup._collisionBoxes.size()) {
+            ImGui::SameLine();
+            if(ImGui::Button("Delete ##Collision Box") && tileGroup._collisionBoxes.size() > 0) {
+                tileGroup._collisionBoxes.erase(tileGroup._collisionBoxes.begin() + _selectedCollisionBox);
+                _selectedCollisionBox = 0;
+            }
+
+            auto& collisionBox = tileGroup._collisionBoxes[_selectedCollisionBox];
+
+            ImGui::SameLine();
+            if(ImGui::Button("Copy ##Collision Box")) {
+                tileGroup._collisionBoxes.push_back(collisionBox);
+
+                auto& newCollisionBox = tileGroup._collisionBoxes[tileGroup._collisionBoxes.size() - 1];
+                // std::string newName = newCollisionBox._name;
+                // newName += " Copy";
+                // newName.copy(newCollisionBox._name, min(newName.size(), 256u));
+                // std::cout << newCollisionBox._name << "\n";
+            }
+
+            ImGui::SeparatorText("Collision box");
+            
+            ImGui::Text("Name: ");
+            ImGui::SameLine();
+            ImGui::InputText("##Collision Box name input label", collisionBox._name, 256);
+
+            ImGui::Text("Associated color: ");
+            ImGui::SameLine();
+            color_picker("Collision box color picker", collisionBox._associatedColor);
+
+
+            ImGui::Text("Possition");
+            ImGui::Text("X ");
+            ImGui::SameLine();
+            ImGui::InputFloat("## Collision box X", &collisionBox._x, 5.0f, 5.0f, "%.3f");
+            
+            ImGui::Text("Y ");
+            ImGui::SameLine();
+            ImGui::InputFloat("## Collision box Y", &collisionBox._y, 5.0f, 5.0f, "%.3f");
+
+            ImGui::Text("Size");
+            ImGui::Text("Left ");
+            ImGui::SameLine();
+            ImGui::InputFloat("## Collision width X1", &collisionBox._rangesX.x, 5.0f, 5.0f, "%.3f");
+            ImGui::Text("Right");
+            ImGui::SameLine();
+            ImGui::InputFloat("## Collision width X2", &collisionBox._rangesX.y, 5.0f, 5.0f, "%.3f");
+            ImGui::Text("Up   ");
+            ImGui::SameLine();
+            ImGui::InputFloat("## Collision width Y1", &collisionBox._rangesY.x, 5.0f, 5.0f, "%.3f");
+            ImGui::Text("Down ");
+            ImGui::SameLine();
+            ImGui::InputFloat("## Collision width Y2", &collisionBox._rangesY.y, 5.0f, 5.0f, "%.3f");
         }
     }
 }
@@ -226,6 +207,7 @@ omniscia_editor::level_editor::LevelEditor::LevelEditor() {
     _gridSizeMax = 500.0f;
 
     _selectedTileGroup = 0;
+    _selectedCollisionBox = 0;
     _interactionRadius = 10.0f;
     _interactionRadiusMin = 1.0f;
     _interactionRadiusMax = 500.0f;
@@ -282,16 +264,16 @@ void omniscia_editor::level_editor::LevelEditor::render_tiles(ImDrawList* drawLi
 
 void omniscia_editor::level_editor::LevelEditor::render_collision_boxes(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
     for(auto& tileGroup : _levelData.tileGroups) {
-        for(auto tile : tileGroup._collisionBoxes) {
-            auto& color = tileGroup._associatedColor;
+        for(auto collisionBox : tileGroup._collisionBoxes) {
+            auto& color = collisionBox._associatedColor;
 
             f32 factor = (_zoom / _gridSize);
 
-            f32 firstPointX = _scroll.x + factor * ((f32)tile.x - tile.rangesX.x);
-            f32 firstPointY = _scroll.y + factor * ((f32)tile.y - tile.rangesX.x);
+            f32 firstPointX = _scroll.x + factor * ((f32)collisionBox._x - collisionBox._rangesX.x);
+            f32 firstPointY = _scroll.y + factor * ((f32)collisionBox._y - collisionBox._rangesY.x);
 
-            f32 secondPointX = _scroll.x + factor * ((f32)tile.x + tile.rangesX.x);
-            f32 secondPointY = _scroll.y + factor * ((f32)tile.y + tile.rangesX.x);
+            f32 secondPointX = _scroll.x + factor * ((f32)collisionBox._x + collisionBox._rangesX.y);
+            f32 secondPointY = _scroll.y + factor * ((f32)collisionBox._y + collisionBox._rangesY.y);
 
             drawList->AddRect({firstPointX, firstPointY}, {secondPointX, secondPointY}, 
                 IM_COL32(color.x * 255, color.y * 255, color.z * 255, color.w * 255));
@@ -377,6 +359,14 @@ void omniscia_editor::level_editor::LevelEditor::render_tab(GLFWwindow *window) 
             static i32 exportButtonClicked = 0;
             if (ImGui::Button("Export level"))
                 exportButtonClicked++;
+
+            if(importButtonClicked & 1) {
+                std::cout << "Importing map assets\\level.bin \n";
+
+                _levelData.load_from_file("assets\\level.bin", get_properties());
+
+                importButtonClicked = 0;
+            }
 
             if(exportButtonClicked & 1) {
                 bool tmp = true;

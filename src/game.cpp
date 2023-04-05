@@ -69,15 +69,15 @@ int omniscia::Game::run() {
 
     DebugUI::get_instance().get_metrics()._timeMaxLineLength = 5000;
 
-    for(int i = 0; i < 2; ++i) {
-        Entity wall = Entity();
-        wall.add<ECS_Positioned>(2.5f*i, -0.7f + -i*0.5f);
-        wall.add<ECS_Scaled>(1.0, 0.25);
-        wall.add<ECS_SpriteRenderer>("factorio_girl_texture", 0);
-        wall.add<ECS_BoxColliderMesh>(Vec2f{1.0f, 1.0f}, Vec2f{1.0f, 1.0f});
-        wall.add<ECS_AABBCollider>();
-        level.staticPart.staticEntities.push_back(wall);
-    }
+    // for(int i = 0; i < 2; ++i) {
+    //     Entity wall = Entity();
+    //     wall.add<ECS_Positioned>(2.5f*i, -0.7f + -i*0.5f);
+    //     wall.add<ECS_Scaled>(1.0, 0.25);
+    //     wall.add<ECS_SpriteRenderer>("factorio_girl_texture", 0);
+    //     wall.add<ECS_BoxColliderMesh>(Vec2f{1.0f, 1.0f}, Vec2f{1.0f, 1.0f});
+    //     wall.add<ECS_AABBCollider>();
+    //     level.staticPart.staticEntities.push_back(wall);
+    // }
 
     /*
     {

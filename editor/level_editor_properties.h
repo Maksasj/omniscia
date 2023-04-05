@@ -37,6 +37,7 @@ namespace omniscia_editor::level_editor {
         f32 _brushTileDefaultHeight;
 
         i32 _selectedTileGroup;
+        i32 _selectedCollisionBox;
 
         f32 _minZoom;
         f32 _maxZoom;

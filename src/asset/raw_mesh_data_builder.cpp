@@ -93,8 +93,8 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
     auto& incomingIndecies = meshData.get_indices();
 
     for(auto vert : incomingVertices) {
-        vert.transform(Vec3f{transform.x, transform.y, 0.0f});
         vert.scale(Vec3f{scale.x, scale.y, 1.0});
+        vert.transform(Vec3f{transform.x, transform.y, 0.0f});
         vertices.push_back(vert);
     }
 

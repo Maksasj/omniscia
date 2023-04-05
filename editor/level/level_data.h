@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 
 #include "../level_editor_properties.h"
 #include "tile_group_data.h"

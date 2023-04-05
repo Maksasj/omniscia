@@ -1,7 +1,7 @@
 #include "player.h"
 
 omniscia::core::Player::Player() {
-    add<ECS_Positioned>(0.0f, 0.0f);
+    add<ECS_Positioned>(0.0f, 0.3f);
     add<ECS_Velocity>(
         Vec2f{0.002f, -0.002f}, 
         Vec2f{0.0035f, -0.0035f});

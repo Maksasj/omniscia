@@ -4,10 +4,13 @@
 #include <corecrt_math.h>
 #include <sstream>
 #include <iomanip>
+#include <algorithm>
+#include <functional>
 
 #include "level_editor_properties.h"
 #include "level/level_data.h"
 #include "file_explorer/files_explorer.h"
+#include "color_picker.h"
 #include "gfx.h"
 
 namespace omniscia_editor::level_editor {
