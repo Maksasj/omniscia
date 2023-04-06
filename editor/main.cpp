@@ -8,6 +8,10 @@ int main(void) {
     if (!glfwInit())
         return -1;
 
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
     window = glfwCreateWindow(640, 480, "Omniscia Level Editor", NULL, NULL);
     if (!window) {
         glfwTerminate();
@@ -15,6 +19,10 @@ int main(void) {
     }
 
     glfwMakeContextCurrent(window);
+
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        std::cout << "Failed to initialize GLAD" << std::endl;
+    }
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -28,6 +36,7 @@ int main(void) {
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
         using namespace omniscia_editor::editor;
+
         Editor::get_instance().render(window);
 
         glfwSwapBuffers(window);

@@ -21,7 +21,10 @@ void omniscia::core::ecs::ECS_CameraFollow::update(Shader* shader) {
     if(!posIndex.is_success()) return;
 
     ECS_Positioned& posComp = _parent->ref_unsafe(posIndex);
-    Vec3f& position = posComp.ref_pos();
+    Vec3f position = posComp.get_pos();
+    
+    position.y += 0.3;
+
     Vec3f delta = position - _camPos;
 
     f32 dt = Time::get_instance().get_delta_time();

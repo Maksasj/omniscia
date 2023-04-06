@@ -27,15 +27,16 @@ int omniscia::Game::load() {
 int omniscia::Game::run() {
     using namespace omniscia::gfx::sprite;
 
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.2, 0.2}, {0.0, 0.6}, 5, true, 6}), "player-run-animation");
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.2, 0.2}, {0.0, 0.8}, 3, true, 24}), "player-idle-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.75}, 7, true, 5}), "player-run-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.875}, 7, true, 12}), "player-idle-animation");
 
     TextureManager::get_instance().load_assets();
 
-    Sprite backGround1Layer1("1_layer");
-    Sprite backGround2Layer1("2_layer");
-    Sprite backGround3Layer1("3_layer");
-    Sprite backGround4Layer1("4_layer");
+    Sprite beachBackgroundBeachLayer("background_beach_beach_layer");
+    Sprite beachBackgroundGrassOverlayLayer("background_beach_grass_overlay_layer");
+    Sprite beachBackgroundSky1Layer("background_beach_sky1_layer");
+    Sprite beachBackgroundSky2Layer("background_beach_sky2_layer");
+    Sprite beachBackgroundTerrainLayer("background_beach_terrain_layer");
 
     Shader shader1("vert_stage_1", "frag_stage_1");
     Shader shader2("vert_stage_2", "frag_stage_2");
@@ -167,6 +168,7 @@ int omniscia::Game::run() {
             ECS_AABBColliderSystem::get_instance().reset();
         }
 
+        /* Render background */
         renderBackgroundStage.render_stage_lambda([&](const Shader* stage_shader){ 
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
             stage_shader->set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
@@ -175,17 +177,20 @@ int omniscia::Game::run() {
             Vec2f playerPos = DebugUI::get_instance().get_metrics()._playerPos;
             playerPos /= 500.0f;
 
-            stage_shader->set_uniform_f32("layerOffset", playerPos.x);
-            backGround1Layer1.render(stage_shader);
+            static f32 clouds = 0.0f;
+            clouds += dt;
 
-            stage_shader->set_uniform_f32("layerOffset", playerPos.x * 15.0f);
-            backGround4Layer1.render(stage_shader);
+            stage_shader->set_uniform_f32("layerOffset", (clouds / 100000.0f));
+            beachBackgroundSky1Layer.render(stage_shader);
+
+            stage_shader->set_uniform_f32("layerOffset", 2.0f * (clouds / 100000.0f));
+            beachBackgroundSky2Layer.render(stage_shader);
 
             stage_shader->set_uniform_f32("layerOffset", playerPos.x * 10.5f);
-            backGround2Layer1.render(stage_shader);
+            beachBackgroundBeachLayer.render(stage_shader);
 
             stage_shader->set_uniform_f32("layerOffset", playerPos.x * 21.0f);
-            backGround3Layer1.render(stage_shader);
+            beachBackgroundTerrainLayer.render(stage_shader);
         });
 
         renderStage1.render_stage_lambda([&](){ 
@@ -206,6 +211,18 @@ int omniscia::Game::run() {
             renderStage1.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
         });
 
+        renderBackgroundStage.render_stage_lambda([&](const Shader* stage_shader){ 
+            Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
+            stage_shader->set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
+
+            f32 dt = Time::get_instance().get_delta_time();
+            Vec2f playerPos = DebugUI::get_instance().get_metrics()._playerPos;
+            playerPos /= 500.0f;
+
+            stage_shader->set_uniform_f32("layerOffset", playerPos.x * 100.0f);
+            beachBackgroundGrassOverlayLayer.render(stage_shader);
+        });
+
         /* screen buffer */
         RenderStage::render_anonymous_stage_lambda([&]() {
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 1.0});
@@ -213,6 +230,7 @@ int omniscia::Game::run() {
             shader3.set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
 
             renderStage2.present_as_texture();
+            renderBackgroundStage.present_as_texture();
         });
 
         DebugUI::get_instance().get_metrics()._timeCurrentLineLength = timeLine.size();

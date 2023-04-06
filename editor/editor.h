@@ -16,7 +16,6 @@ namespace omniscia_editor::editor {
 
             StartTab _startTab;
             LevelEditor _levelEditor;
-
         public:
             Editor() {
                 themes = {

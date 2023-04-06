@@ -20,6 +20,7 @@ namespace omniscia_editor::level_editor {
 
             void render_editor_options(GLFWwindow* window);
             void render_level_options();
+            void render_tile_texture_coordinate_options(TileGroup& tileGroup);
             void render_tilegroup_options();
             void render_brush_options();
 

@@ -8,6 +8,7 @@ namespace omniscia_editor::level_editor {
     struct LevelEditorProperties {
         bool _renderGrid;
         bool _renderAxis;
+        bool _renderTilesTextures;
 
         bool _gridSnap;
         f32 _gridSize;
@@ -35,6 +36,11 @@ namespace omniscia_editor::level_editor {
         f32 _brushTileHeightMin;
         f32 _brushTileDefaultWidth;
         f32 _brushTileDefaultHeight;
+
+        omniscia::core::Vec2f _brushActiveTileAtlasCordsTopRight;
+        omniscia::core::Vec2f _brushActiveTileAtlasCordsBottomRight;
+        omniscia::core::Vec2f _brushActiveTileAtlasCordsBottomLeft;
+        omniscia::core::Vec2f _brushActiveTileAtlasCordsTopLeft;
 
         i32 _selectedTileGroup;
         i32 _selectedCollisionBox;

@@ -13,6 +13,11 @@ namespace omniscia::core {
 
                 f32 _width;
                 f32 _height;
+
+                Vec2f textureCordsTopRight;
+                Vec2f textureCordsBottomRight;
+                Vec2f textureCordsBottomLeft;
+                Vec2f textureCordsTopLeft;
             };
             
         public:
@@ -67,11 +72,29 @@ namespace omniscia::core {
                         f32 tilePosX = tile.x / (screenBoxHeight / 2.0);
                         f32 tilePosY = tile.y / (screenBoxHeight / 2.0);
 
-                        builder.append(BuildInMeshData::QUAD_MESH_DATA, {tilePosX, tilePosY}, {tileWidth, tileHeight});
+                        /*
+                        Vec2f textureCordsTopRight;
+                        Vec2f textureCordsBottomRight;
+                        Vec2f textureCordsBottomLeft;
+                        Vec2f textureCordsTopLeft;
+                        */
+
+                        omniscia::gfx::sprite::RawMeshData mesh = RawMeshData(
+                            {
+                                Vertex({ 1.0f,  1.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, tile.textureCordsTopRight),       // top right
+                                Vertex({ 1.0f, -1.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, tile.textureCordsBottomRight),     // bottom right
+                                Vertex({-1.0f, -1.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, tile.textureCordsBottomLeft),       // bottom left
+                                Vertex({-1.0f,  1.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, tile.textureCordsTopLeft)          // top left 
+                            },
+                            { 0, 1, 3, 1, 2, 3 }
+                        );
+
+                        builder.append(mesh, {tilePosX, tilePosY}, {tileWidth, tileHeight});
                     }
 
                     tileGroup.add<ECS_Positioned>(0.0f, 0.0f);
-                    tileGroup.add<ECS_TilemapRenderer>(builder.get(), "factorio_girl_texture", 0);
+                    tileGroup.add<ECS_Scaled>(1.6f, 1.6f);
+                    tileGroup.add<ECS_TilemapRenderer>(builder.get(), "test_tiles", 0);
                     staticEntities.push_back(tileGroup);
 
                     u64 collisionBoxCount = 0;
@@ -103,9 +126,10 @@ namespace omniscia::core {
                         x = x / (screenBoxHeight / 2.0);
                         y = y / (screenBoxHeight / 2.0);
 
+                        collisionBox.add<ECS_Scaled>(1.6f, 1.6f);
                         collisionBox.add<ECS_BoxColliderMesh>(newRangesX, newRangesY);
                         collisionBox.add<ECS_AABBCollider>();
-                        collisionBox.add<ECS_Positioned>(x, y);
+                        collisionBox.add<ECS_Positioned>(x * 1.6f, y * 1.6f);
 
                         staticEntities.push_back(collisionBox);
                     } 

@@ -5,11 +5,16 @@
 
 namespace omniscia_editor::level_editor {
     struct Tile {
-       f32 x;
-       f32 y;
+        f32 x;
+        f32 y;
 
-       f32 _width;
-       f32 _height;
+        f32 _width;
+        f32 _height;
+
+        omniscia::core::Vec2f textureCordsTopRight      = {1.0f, 1.0f};
+        omniscia::core::Vec2f textureCordsBottomRight   = {1.0f, 0.0f};
+        omniscia::core::Vec2f textureCordsBottomLeft    = {0.0f, 1.0f};
+        omniscia::core::Vec2f textureCordsTopLeft       = {0.0f, 0.0f};
     };
 }
 

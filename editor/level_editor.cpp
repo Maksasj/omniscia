@@ -19,6 +19,8 @@ void omniscia_editor::level_editor::LevelEditor::render_editor_options(GLFWwindo
 
     ImGui::Checkbox("Player Screen box", &_renderPlayerCameraBox);
 
+    ImGui::Checkbox("Render tile textures", &_renderTilesTextures);
+
     if(ImGui::Button("Align center")) {
         i32 width;
         i32 height;
@@ -41,6 +43,68 @@ void omniscia_editor::level_editor::LevelEditor::render_editor_options(GLFWwindo
 void omniscia_editor::level_editor::LevelEditor::render_level_options() {
     ImGui::SeparatorText("Level");
     ImGui::Text("Tile group count: %llu", _levelData.tileGroups.size());
+}
+
+void omniscia_editor::level_editor::LevelEditor::render_tile_texture_coordinate_options(TileGroup& tileGroup) {
+    ImGui::Begin("Tile atlas");
+        ImGui::Text("Tile atlas size: %d x %d", tileGroup._tileSetImageWidth, tileGroup._tileSetImageHeight);
+        static f32 tileAtlasSize = 1.0f;
+
+        ImVec2 canvas_p0 = ImGui::GetCursorScreenPos();
+        ImVec2 canvas_sz = ImGui::GetContentRegionAvail();
+        if (canvas_sz.x < 50.0f) canvas_sz.x = 50.0f;
+        if (canvas_sz.y < 50.0f) canvas_sz.y = 50.0f;
+        ImVec2 canvas_p1 = ImVec2(canvas_p0.x + canvas_sz.x, canvas_p0.y + canvas_sz.y);
+        ImDrawList* draw_list = ImGui::GetWindowDrawList();
+
+        draw_list->PushClipRect(canvas_p0, canvas_p1, true);
+        draw_list->AddRectFilled(canvas_p0, canvas_p1, IM_COL32(25, 25, 25, 255));
+
+        ImGui::Image(
+            (void*)(intptr_t)tileGroup._tileSetTexture, 
+            ImVec2( tileGroup._tileSetImageWidth * tileAtlasSize, 
+                    tileGroup._tileSetImageHeight * tileAtlasSize));
+
+        draw_list->AddRect(
+            {canvas_p0.x + 0.0f, canvas_p0.y + 0.0f},
+            {canvas_p0.x + tileGroup._tileSetImageWidth * tileAtlasSize, canvas_p0.y + tileGroup._tileSetImageHeight * tileAtlasSize},
+            IM_COL32(200, 200, 200, 255)
+        );
+
+        draw_list->AddRect(
+                {canvas_p0.x + (_brushActiveTileAtlasCordsTopLeft.x) * tileGroup._tileSetImageWidth * tileAtlasSize, 
+                 canvas_p0.y + (1.0f - _brushActiveTileAtlasCordsTopLeft.y) * tileGroup._tileSetImageHeight * tileAtlasSize},
+
+                {canvas_p0.x + (_brushActiveTileAtlasCordsBottomRight.x) * tileGroup._tileSetImageWidth * tileAtlasSize, 
+                 canvas_p0.y + (1.0f - _brushActiveTileAtlasCordsBottomRight.y) * tileGroup._tileSetImageHeight * tileAtlasSize},
+            IM_COL32(255, 255, 20, 255)
+        );
+
+        ImGui::Text("Tile atlas size");
+        ImGui::SameLine();
+        ImGui::SliderFloat("## Tile atlas size slider", &tileAtlasSize, 0.5f, 10.0f);
+
+        ImGui::Text("Top Left");
+        ImGui::InputFloat("## Brush active tile atlas texture cords top left input X", &_brushActiveTileAtlasCordsTopLeft.x, 0.05f, 0.05f, "%.3f");
+        ImGui::SameLine();
+        ImGui::InputFloat("## Brush active tile atlas texture cords top left input Y", &_brushActiveTileAtlasCordsTopLeft.y, 0.05f, 0.05f, "%.3f");
+
+        ImGui::Text("Top Right");
+        ImGui::InputFloat("## Brush active tile atlas texture cords top right input X", &_brushActiveTileAtlasCordsTopRight.x, 0.05f, 0.05f, "%.3f");
+        ImGui::SameLine();
+        ImGui::InputFloat("## Brush active tile atlas texture cords top right input Y", &_brushActiveTileAtlasCordsTopRight.y, 0.05f, 0.05f, "%.3f");
+
+        ImGui::Text("Bottom Right");
+        ImGui::InputFloat("## Brush active tile atlas texture cords bottom right input X", &_brushActiveTileAtlasCordsBottomRight.x, 0.05f, 0.05f, "%.3f");
+        ImGui::SameLine();
+        ImGui::InputFloat("## Brush active tile atlas texture cords bottom right input Y", &_brushActiveTileAtlasCordsBottomRight.y, 0.05f, 0.05f, "%.3f");
+
+        ImGui::Text("Bottom Left");
+        ImGui::InputFloat("## Brush active tile atlas texture cords bottom left input X", &_brushActiveTileAtlasCordsBottomLeft.x, 0.05f, 0.05f, "%.3f");
+        ImGui::SameLine();
+        ImGui::InputFloat("## Brush active tile atlas texture cords bottom left input Y", &_brushActiveTileAtlasCordsBottomLeft.y, 0.05f, 0.05f, "%.3f");
+
+    ImGui::End();
 }
 
 void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
@@ -70,6 +134,10 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
     if(_selectedTileGroup < _levelData.tileGroups.size()) {
         auto& tileGroup = _levelData.tileGroups[_selectedTileGroup];
 
+        if(tileGroup._tileSetLoaded) {
+            render_tile_texture_coordinate_options(tileGroup);
+        }
+
         ImGui::SeparatorText("Selected Tile Group");
 
         ImGui::Text("Tile count: %llu", tileGroup.tiles.size());
@@ -93,6 +161,17 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
             }
             
             ImGui::EndListBox();
+        }
+
+        ImGui::Text("Tile atlas");
+        if(ImGui::Button("Load texture atlas")) {
+
+            load_texture_from_file("assets/tiles/test_tiles.png", 
+                &tileGroup._tileSetTexture,
+                &tileGroup._tileSetImageWidth,
+                &tileGroup._tileSetImageHeight);
+
+            tileGroup._tileSetLoaded = true;            
         }
 
         if(ImGui::Button("Create ##Collision Box")) {
@@ -200,6 +279,7 @@ void omniscia_editor::level_editor::LevelEditor::render_brush_options() {
 omniscia_editor::level_editor::LevelEditor::LevelEditor() {
     _renderGrid = true;
     _renderAxis = true;
+    _renderTilesTextures = false;
 
     _gridSnap = true;
     _gridSize = 50.0f;
@@ -238,10 +318,15 @@ omniscia_editor::level_editor::LevelEditor::LevelEditor() {
 
     _exportAllTileGroups = true;
     _exportOpenglCoordinateFlip = true;
+
+    _brushActiveTileAtlasCordsTopRight =    {0.125f, 1.0f}; // {1.0f, 1.0f};
+    _brushActiveTileAtlasCordsBottomRight = {0.125f, 0.875f}; // {1.0f, 0.0f};
+    _brushActiveTileAtlasCordsBottomLeft =  {0.0f, 0.875f}; // {0.0f, 0.0f};
+    _brushActiveTileAtlasCordsTopLeft =     {0.0f, 1.0f}; // {0.0f, 1.0f};
 }
 
 void omniscia_editor::level_editor::LevelEditor::render_tiles(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
-    for(auto& tileGroup : _levelData.tileGroups) {
+    for(auto& tileGroup : _levelData.tileGroups) {    
         for(auto tile : tileGroup.tiles) {
             i32 xStart = _scroll.x;
             i32 yStart = _scroll.y;
@@ -256,8 +341,24 @@ void omniscia_editor::level_editor::LevelEditor::render_tiles(ImDrawList* drawLi
             f32 secondPointX = firstPointX + factor * tile._width;
             f32 secondPointY = firstPointY + factor * tile._height;
 
-            drawList->AddRectFilled({firstPointX, firstPointY}, {secondPointX, secondPointY}, 
-                IM_COL32(color.x * 255, color.y * 255, color.z * 255, color.w * 255));
+            if(_renderTilesTextures) {
+                if(tileGroup._tileSetLoaded) { 
+                    drawList->AddImageQuad(
+                        (void*)(intptr_t)tileGroup._tileSetTexture, 
+                        {firstPointX, firstPointY}, 
+                        {secondPointX, firstPointY},
+                        {secondPointX, secondPointY},
+                        {firstPointX, secondPointY}, 
+                        
+                        {(tile.textureCordsTopLeft.x),      (1.0f - tile.textureCordsTopLeft.y)},           //  Top Left
+                        {(tile.textureCordsTopRight.x),     (1.0f - tile.textureCordsTopRight.y)},          //  Top Right
+                        {(tile.textureCordsBottomRight.x),  (1.0f - tile.textureCordsBottomRight.y)},       //  Bottom Right
+                        {(tile.textureCordsBottomLeft.x),   (1.0f - tile.textureCordsBottomLeft.y)});       //  Bottom Left
+                }
+            } else {
+                drawList->AddRectFilled({firstPointX, firstPointY}, {secondPointX, secondPointY}, 
+                    IM_COL32(color.x * 255, color.y * 255, color.z * 255, color.w * 255));
+            }
         }
     }
 }
@@ -345,6 +446,8 @@ void omniscia_editor::level_editor::LevelEditor::render_metrics_window() {
 }
 
 void omniscia_editor::level_editor::LevelEditor::render_tab(GLFWwindow *window) {
+    ImGui::ShowDemoWindow();
+
     if(ImGui::BeginTabItem("Level")) {
         ImGuiIO& io = ImGui::GetIO(); 
 
@@ -524,22 +627,46 @@ void omniscia_editor::level_editor::LevelEditor::render_tab(GLFWwindow *window) 
                         if(!_brushContinuous && ImGui::IsMouseClicked(ImGuiMouseButton_Left) || _brushContinuous && _moved) {
                             if(_brushMode == 0) {
                                 if(_brushModeTilePerfect) {
-                                    _levelData.tileGroups[_selectedTileGroup].tiles.push_back({placePosX, placePosY, _brushTileWidth, _brushTileHeight});
+                                    Tile tile = (Tile){
+                                        .x = placePosX,
+                                        .y = placePosY,
+
+                                        ._width = _brushTileWidth,
+                                        ._height = _brushTileWidth,
+
+                                        .textureCordsTopRight =     _brushActiveTileAtlasCordsTopRight,
+                                        .textureCordsBottomRight =  _brushActiveTileAtlasCordsBottomRight,
+                                        .textureCordsBottomLeft =   _brushActiveTileAtlasCordsBottomLeft,
+                                        .textureCordsTopLeft =      _brushActiveTileAtlasCordsTopLeft,
+                                    };
+
+                                    _levelData.tileGroups[_selectedTileGroup].tiles.push_back(tile);
                                 } else {
                                     f32 radius = _gridSize * (_brushSize / 2);
 
-                                    if(_brushType == 0) {
-                                        for(f32 x = placePosX - radius; x < placePosX + radius; x += _gridSize) {
-                                            for(f32 y = placePosY - radius; y < placePosY + radius; y += _gridSize) {
-                                                if((placePosX - x)*(placePosX - x) + (placePosY - y)*(placePosY - y) > radius*radius) continue;
+                                    for(f32 x = placePosX - radius; x < placePosX + radius; x += _gridSize) {
+                                        for(f32 y = placePosY - radius; y < placePosY + radius; y += _gridSize) {
+                                            Tile tile = (Tile){
+                                                .x = x,
+                                                .y = y,
 
-                                                _levelData.tileGroups[_selectedTileGroup].tiles.push_back({x, y, _brushTileWidth, _brushTileHeight});
-                                            }
-                                        }
-                                    } else if(_brushType == 1) {
-                                        for(f32 x = placePosX - radius; x < placePosX + radius; x += _gridSize) {
-                                            for(f32 y = placePosY - radius; y < placePosY + radius; y += _gridSize) {
-                                                _levelData.tileGroups[_selectedTileGroup].tiles.push_back({x, y, _brushTileWidth, _brushTileHeight});
+                                                ._width = _brushTileWidth,
+                                                ._height = _brushTileWidth,
+
+                                                .textureCordsTopRight =     _brushActiveTileAtlasCordsTopRight,
+                                                .textureCordsBottomRight =  _brushActiveTileAtlasCordsBottomRight,
+                                                .textureCordsBottomLeft =   _brushActiveTileAtlasCordsBottomLeft,
+                                                .textureCordsTopLeft =      _brushActiveTileAtlasCordsTopLeft,
+                                            };
+                                            
+                                            if(_brushType == 0) {
+                                                if((placePosX - x)*(placePosX - x) + (placePosY - y)*(placePosY - y) > radius*radius) continue;
+                                                
+                                                _levelData.tileGroups[_selectedTileGroup].tiles.push_back(tile);
+
+                                            } else if(_brushType == 1) {
+                                                
+                                                _levelData.tileGroups[_selectedTileGroup].tiles.push_back(tile);
                                             }
                                         }
                                     }

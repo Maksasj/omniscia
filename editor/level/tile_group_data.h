@@ -7,7 +7,7 @@
 #include "collsion_box_data.h"
 #include "tile_data.h"
 #include "../types.h"
-#include "../gfx.h"
+#include "../image_loading.h"
 
 namespace omniscia_editor::level_editor {
     struct TileGroup {
@@ -15,6 +15,11 @@ namespace omniscia_editor::level_editor {
         ImVec4 _associatedColor;
         std::vector<Tile> tiles;
         std::vector<CollisionBox> _collisionBoxes;
+
+        bool _tileSetLoaded;
+        i32 _tileSetImageWidth;
+        i32 _tileSetImageHeight;
+        GLuint _tileSetTexture;
 
         TileGroup(std::string name);
 
