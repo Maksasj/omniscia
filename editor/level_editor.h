@@ -18,6 +18,15 @@ namespace omniscia_editor::level_editor {
         private:
             LevelData _levelData;
 
+            void render_rect(
+                ImDrawList* drawList, 
+                const ImVec2& topLeft, 
+                const ImVec2& topRight, 
+                const ImVec2& bottomLeft, 
+                const ImVec2& bottomRight,
+                const ImU32& color, 
+                f32 thickness);
+
             void render_editor_options(GLFWwindow* window);
             void render_level_options();
             void render_tile_texture_coordinate_options(TileGroup& tileGroup);

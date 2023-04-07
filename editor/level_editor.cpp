@@ -45,65 +45,116 @@ void omniscia_editor::level_editor::LevelEditor::render_level_options() {
     ImGui::Text("Tile group count: %llu", _levelData.tileGroups.size());
 }
 
+void omniscia_editor::level_editor::LevelEditor::render_rect(ImDrawList* drawList, const ImVec2& topLeft, const ImVec2& topRight, const ImVec2& bottomLeft, const ImVec2& bottomRight, const ImU32& color, f32 thickness) {
+    drawList->AddLine(topLeft, topRight, color, thickness); 
+    drawList->AddLine(bottomLeft, bottomRight, color, thickness);
+    drawList->AddLine(topLeft, bottomLeft, color, thickness);                                                                                                  
+    drawList->AddLine(topRight, bottomRight, color, thickness);
+}
+
 void omniscia_editor::level_editor::LevelEditor::render_tile_texture_coordinate_options(TileGroup& tileGroup) {
-    ImGui::Begin("Tile atlas");
-        ImGui::Text("Tile atlas size: %d x %d", tileGroup._tileSetImageWidth, tileGroup._tileSetImageHeight);
+    auto flag = 
+        ImGuiWindowFlags_NoResize | 
+        ImGuiWindowFlags_NoScrollWithMouse | 
+        ImGuiWindowFlags_NoCollapse | 
+        ImGuiWindowFlags_NoScrollbar;
+    
+    ImGui::SetNextWindowSize({750, 550});
+    ImGui::Begin("Tile atlas", NULL, flag);
         static f32 tileAtlasSize = 1.0f;
+        ImGui::BeginChild("Tile atlas canvas left", {200, 0});
 
-        ImVec2 canvas_p0 = ImGui::GetCursorScreenPos();
-        ImVec2 canvas_sz = ImGui::GetContentRegionAvail();
-        if (canvas_sz.x < 50.0f) canvas_sz.x = 50.0f;
-        if (canvas_sz.y < 50.0f) canvas_sz.y = 50.0f;
-        ImVec2 canvas_p1 = ImVec2(canvas_p0.x + canvas_sz.x, canvas_p0.y + canvas_sz.y);
-        ImDrawList* draw_list = ImGui::GetWindowDrawList();
+            ImGui::SeparatorText("Details");
+            ImGui::Text("Texture dimensions %d x %d", tileGroup._tileSetImageWidth, tileGroup._tileSetImageHeight);
+            ImGui::Text("Width %d", tileGroup._tileSetImageWidth);
+            ImGui::Text("Height %d", tileGroup._tileSetImageHeight);
+            //ImGui::SliderFloat("## Tile atlas size slider", &tileAtlasSize, 0.5f, 10.0f);
 
-        draw_list->PushClipRect(canvas_p0, canvas_p1, true);
-        draw_list->AddRectFilled(canvas_p0, canvas_p1, IM_COL32(25, 25, 25, 255));
+            tileAtlasSize = (550.0f / tileGroup._tileSetImageWidth) * 0.9f;
 
-        ImGui::Image(
-            (void*)(intptr_t)tileGroup._tileSetTexture, 
-            ImVec2( tileGroup._tileSetImageWidth * tileAtlasSize, 
-                    tileGroup._tileSetImageHeight * tileAtlasSize));
+            ImGui::SeparatorText("Frame");
+            ImGui::Text("Top Left");
+            ImGui::InputFloat("## Brush active tile atlas texture cords top left input X", &_brushActiveTileAtlasCordsTopLeft.x, 0.05f, 0.05f, "%.3f");
+            ImGui::InputFloat("## Brush active tile atlas texture cords top left input Y", &_brushActiveTileAtlasCordsTopLeft.y, 0.05f, 0.05f, "%.3f");
 
-        draw_list->AddRect(
-            {canvas_p0.x + 0.0f, canvas_p0.y + 0.0f},
-            {canvas_p0.x + tileGroup._tileSetImageWidth * tileAtlasSize, canvas_p0.y + tileGroup._tileSetImageHeight * tileAtlasSize},
-            IM_COL32(200, 200, 200, 255)
-        );
+            ImGui::Text("Top Right");
+            ImGui::InputFloat("## Brush active tile atlas texture cords top right input X", &_brushActiveTileAtlasCordsTopRight.x, 0.05f, 0.05f, "%.3f");
+            ImGui::InputFloat("## Brush active tile atlas texture cords top right input Y", &_brushActiveTileAtlasCordsTopRight.y, 0.05f, 0.05f, "%.3f");
 
-        draw_list->AddRect(
+            ImGui::Text("Bottom Right");
+            ImGui::InputFloat("## Brush active tile atlas texture cords bottom right input X", &_brushActiveTileAtlasCordsBottomRight.x, 0.05f, 0.05f, "%.3f");
+            ImGui::InputFloat("## Brush active tile atlas texture cords bottom right input Y", &_brushActiveTileAtlasCordsBottomRight.y, 0.05f, 0.05f, "%.3f");
+
+            ImGui::Text("Bottom Left");
+            ImGui::InputFloat("## Brush active tile atlas texture cords bottom left input X", &_brushActiveTileAtlasCordsBottomLeft.x, 0.05f, 0.05f, "%.3f");
+            ImGui::InputFloat("## Brush active tile atlas texture cords bottom left input Y", &_brushActiveTileAtlasCordsBottomLeft.y, 0.05f, 0.05f, "%.3f");
+
+            static f32 frame_moving_speed = 0.125f;
+            ImGui::Text("Move frame");
+
+            ImGui::Text("Speed"); 
+
+            ImGui::InputFloat("## frame moving speed", &frame_moving_speed, 0.05f, 0.05f, "%.3f");
+            ImGui::SameLine();
+            if(ImGui::Button("Negate")) {
+                frame_moving_speed = -frame_moving_speed;
+            }
+
+            if(ImGui::Button("Move by Y")) {
+                _brushActiveTileAtlasCordsTopRight.y += frame_moving_speed;
+                _brushActiveTileAtlasCordsBottomRight.y += frame_moving_speed;
+                _brushActiveTileAtlasCordsBottomLeft.y += frame_moving_speed;
+                _brushActiveTileAtlasCordsTopLeft.y += frame_moving_speed;
+            }
+
+            ImGui::SameLine();
+            if(ImGui::Button("Move by X")) {
+                _brushActiveTileAtlasCordsTopRight.x += frame_moving_speed;
+                _brushActiveTileAtlasCordsBottomRight.x += frame_moving_speed;
+                _brushActiveTileAtlasCordsBottomLeft.x += frame_moving_speed;
+                _brushActiveTileAtlasCordsTopLeft.x += frame_moving_speed;
+            }
+
+        ImGui::EndChild();
+        ImGui::SameLine();
+
+        ImGui::BeginChild("Tile atlas canvas right", {0, 0});
+            ImVec2 canvas_p0 = ImGui::GetCursorScreenPos();
+            ImVec2 canvas_sz = ImGui::GetContentRegionAvail();
+            if (canvas_sz.x < 50.0f) canvas_sz.x = 50.0f;
+            if (canvas_sz.y < 50.0f) canvas_sz.y = 50.0f;
+            ImVec2 canvas_p1 = ImVec2(canvas_p0.x + canvas_sz.x, canvas_p0.y + canvas_sz.y);
+            ImDrawList* draw_list = ImGui::GetWindowDrawList();
+
+            draw_list->PushClipRect(canvas_p0, canvas_p1, true);
+            draw_list->AddRectFilled(canvas_p0, canvas_p1, IM_COL32(25, 25, 25, 255));
+
+            ImGui::Image(
+                (void*)(intptr_t)tileGroup._tileSetTexture, 
+                ImVec2( tileGroup._tileSetImageWidth * tileAtlasSize, 
+                        tileGroup._tileSetImageHeight * tileAtlasSize));
+
+            /* White border */
+            draw_list->AddRect(
+                {canvas_p0.x + 0.0f, canvas_p0.y + 0.0f},
+                {canvas_p0.x + tileGroup._tileSetImageWidth * tileAtlasSize, canvas_p0.y + tileGroup._tileSetImageHeight * tileAtlasSize},
+                IM_COL32(200, 200, 200, 255)
+            );
+
+            /* Selection rectangle */
+            render_rect(
+                draw_list, 
                 {canvas_p0.x + (_brushActiveTileAtlasCordsTopLeft.x) * tileGroup._tileSetImageWidth * tileAtlasSize, 
-                 canvas_p0.y + (1.0f - _brushActiveTileAtlasCordsTopLeft.y) * tileGroup._tileSetImageHeight * tileAtlasSize},
-
+                 canvas_p0.y + (1.0f - _brushActiveTileAtlasCordsTopLeft.y) * tileGroup._tileSetImageHeight * tileAtlasSize}, 
+                {canvas_p0.x + (_brushActiveTileAtlasCordsTopRight.x) * tileGroup._tileSetImageWidth * tileAtlasSize, 
+                 canvas_p0.y + (1.0f - _brushActiveTileAtlasCordsTopRight.y) * tileGroup._tileSetImageHeight * tileAtlasSize}, 
+                {canvas_p0.x + (_brushActiveTileAtlasCordsBottomLeft.x) * tileGroup._tileSetImageWidth * tileAtlasSize, 
+                 canvas_p0.y + (1.0f - _brushActiveTileAtlasCordsBottomLeft.y) * tileGroup._tileSetImageHeight * tileAtlasSize}, 
                 {canvas_p0.x + (_brushActiveTileAtlasCordsBottomRight.x) * tileGroup._tileSetImageWidth * tileAtlasSize, 
-                 canvas_p0.y + (1.0f - _brushActiveTileAtlasCordsBottomRight.y) * tileGroup._tileSetImageHeight * tileAtlasSize},
-            IM_COL32(255, 255, 20, 255)
-        );
+                 canvas_p0.y + (1.0f - _brushActiveTileAtlasCordsBottomRight.y) * tileGroup._tileSetImageHeight * tileAtlasSize}, 
+                IM_COL32(255, 255, 25, 255), 2.0f);
 
-        ImGui::Text("Tile atlas size");
-        ImGui::SameLine();
-        ImGui::SliderFloat("## Tile atlas size slider", &tileAtlasSize, 0.5f, 10.0f);
-
-        ImGui::Text("Top Left");
-        ImGui::InputFloat("## Brush active tile atlas texture cords top left input X", &_brushActiveTileAtlasCordsTopLeft.x, 0.05f, 0.05f, "%.3f");
-        ImGui::SameLine();
-        ImGui::InputFloat("## Brush active tile atlas texture cords top left input Y", &_brushActiveTileAtlasCordsTopLeft.y, 0.05f, 0.05f, "%.3f");
-
-        ImGui::Text("Top Right");
-        ImGui::InputFloat("## Brush active tile atlas texture cords top right input X", &_brushActiveTileAtlasCordsTopRight.x, 0.05f, 0.05f, "%.3f");
-        ImGui::SameLine();
-        ImGui::InputFloat("## Brush active tile atlas texture cords top right input Y", &_brushActiveTileAtlasCordsTopRight.y, 0.05f, 0.05f, "%.3f");
-
-        ImGui::Text("Bottom Right");
-        ImGui::InputFloat("## Brush active tile atlas texture cords bottom right input X", &_brushActiveTileAtlasCordsBottomRight.x, 0.05f, 0.05f, "%.3f");
-        ImGui::SameLine();
-        ImGui::InputFloat("## Brush active tile atlas texture cords bottom right input Y", &_brushActiveTileAtlasCordsBottomRight.y, 0.05f, 0.05f, "%.3f");
-
-        ImGui::Text("Bottom Left");
-        ImGui::InputFloat("## Brush active tile atlas texture cords bottom left input X", &_brushActiveTileAtlasCordsBottomLeft.x, 0.05f, 0.05f, "%.3f");
-        ImGui::SameLine();
-        ImGui::InputFloat("## Brush active tile atlas texture cords bottom left input Y", &_brushActiveTileAtlasCordsBottomLeft.y, 0.05f, 0.05f, "%.3f");
-
+        ImGui::EndChild();
     ImGui::End();
 }
 

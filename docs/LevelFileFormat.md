@@ -1,57 +1,55 @@
 # Level file format
-*Last time updated 2023-04-01*
+*Last time updated 2023-04-08*
 
+## General file structure
 ```c++
-/* General info */
-unsigned long gameVersion; /* Game version target */
-unsigned long editorVersion; /* Editor version target */
-unsigned long long timeEdited; /* Last edited(Unix time stamp)*/
+// Primary used only in editor
+float screenBoxWidth;
+float screenBoxHeight;
 
-/* Level name and description */
-unsigned long levelNameLength 
-char levelName[levelNameLength] /* Level name encoded with ascii*/
-unsigned long levelDescriptionLength 
-char levelDescription[levelDescriptionLength] /* Level description encoded with ascii*/
+unsigned long tileGroupCount;
+TileGroup tileGroups[tileGroupCount];
+```
 
-/* Level data */
-float playerSpawnX;
-float playerSpawnY;
+Further described memory layout / structure of some in game structures.
 
-unsigned long long tileGroupAmount;
-TileGroup group1;
-...
-...
-TileGroup groupI;
-...
-TileGroup groupN;
+### TileGroup structure
+```c++
+// Primary used only in editor
+char tileGroupName[256];
+float associatedColor[4];
 
+unsigned long tileCount;
+Tile tile[tileCount];
 
-{   /* Tile */
-    float posX;
-    float posY;
-    float posZ;
+unsigned long collsionBoxesCount;
+CollisionBox collisionBoxes[collsionBoxesCount];
+```
 
-    float sizeWidth;
-    float sizeHeight;
-}
+### Tile structure
+```c++
+float x;
+float y;
 
-{   /* Collision box */
-    float posX;
-    float posY;
-    float posZ;
+float width;
+float height;
 
-    float rangesXplus;
-    float rangesXMinus;
-    float rangesYplus;
-    float rangesYMinus;
-}
+float textureCordsTopRight[2];
+float textureCordsBottomRight[2];
+float textureCordsBottomLeft[2];
+float textureCordsTopLeft[2];
+```
 
-{   /* Tile group */
-    unsigned long long tileCount;
-    Tile tiles[tileCount];
+### CollisionBox structure
+```c++
+// Primary used only in editor
+char collisionBoxName[256];
+float associatedColor[4];
 
-    unsigned long long collisionBoxCount;
-    CollisionBox collisionBoxes[collisionBoxCount];
-}
+float x;
+float y;
 
+// See ecs_box_collider_mesh.h file, for more info about collision ranges
+float rangesX[2];
+float rangesY[2];
 ```

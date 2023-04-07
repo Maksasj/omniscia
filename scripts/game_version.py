@@ -18,7 +18,7 @@ if version != -1:
         file.write("\n")
         file.write("#endif\n")
     
-    print("Editor version: " + str(version))
+    print("Game version: " + str(version))
     exit();
 else:
     print("Unable to update src version")
