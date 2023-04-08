@@ -12,6 +12,9 @@ void omniscia::gfx::Renderer::loadGL() {
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cout << "Failed to initialize GLAD" << std::endl;
     }
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 void omniscia::gfx::Renderer::clearBuffer(const Vec4f& color) {

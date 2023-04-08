@@ -3,10 +3,7 @@
 int omniscia::Game::load() {
     Renderer::init();
 
-    window = glfwCreateWindow(
-        Properties::screen_width, 
-        Properties::screen_height, 
-        "Omniscia", NULL, NULL);
+    window = glfwCreateWindow(Properties::screen_width, Properties::screen_height, "Omniscia", NULL, NULL);
 
     if (window == NULL) {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -17,8 +14,6 @@ int omniscia::Game::load() {
     glfwMakeContextCurrent(window);
     glfwSwapInterval(0);
 
-    //glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-
     Renderer::loadGL();
 
     return 0;
@@ -26,20 +21,7 @@ int omniscia::Game::load() {
 
 int omniscia::Game::run() {
     using namespace omniscia::gfx::sprite;
-
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.75}, 7, true, 5}), "player-run-animation");
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.875}, 7, true, 12}), "player-idle-animation");
-
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.5}, {0.0, 0.5}, 8, true, 24}), "crab-idle-animation");
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.5}, {0.0, 0.0}, 8, true, 12}), "crab-run-animation");
-
     TextureManager::get_instance().load_assets();
-
-    Sprite beachBackgroundBeachLayer("background_beach_beach_layer");
-    Sprite beachBackgroundGrassOverlayLayer("background_beach_grass_overlay_layer");
-    Sprite beachBackgroundSky1Layer("background_beach_sky1_layer");
-    Sprite beachBackgroundSky2Layer("background_beach_sky2_layer");
-    Sprite beachBackgroundTerrainLayer("background_beach_terrain_layer");
 
     Shader shader1("vert_stage_1", "frag_stage_1");
     Shader shader2("vert_stage_2", "frag_stage_2");
@@ -52,76 +34,49 @@ int omniscia::Game::run() {
     if(shaderBackground.try_compile()) shaderBackground.compile();
     
     RenderStage renderBackgroundStage;
-    renderBackgroundStage.bind_target_texture_buffer(new TextureBuffer(Properties::screen_width, Properties::screen_height));
-    renderBackgroundStage.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
-    renderBackgroundStage.bind_default_shader(&shaderBackground);
+        renderBackgroundStage.bind_target_texture_buffer(new TextureBuffer(Properties::screen_width, Properties::screen_height));
+        renderBackgroundStage.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
+        renderBackgroundStage.bind_default_shader(&shaderBackground);
 
     RenderStage renderStage1;
-    renderStage1.bind_target_texture_buffer(new TextureBuffer(Properties::screen_width, Properties::screen_height));
-    renderStage1.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
-    renderStage1.bind_default_shader(&shader1);
+        renderStage1.bind_target_texture_buffer(new TextureBuffer(Properties::screen_width, Properties::screen_height));
+        renderStage1.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
+        renderStage1.bind_default_shader(&shader1);
 
     RenderStage renderStage2;
-    renderStage2.bind_target_texture_buffer(new TextureBuffer(Properties::screen_width, Properties::screen_height));
-    renderStage2.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
-    renderStage2.bind_default_shader(&shader2);
+        renderStage2.bind_target_texture_buffer(new TextureBuffer(Properties::screen_width, Properties::screen_height));
+        renderStage2.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
+        renderStage2.bind_default_shader(&shader2);
 
-    Level level;
-    LevelLoader::get_instance().load_level(level);
-    level.dynamicPart.dynamicEntities.push_back(Crab());
+    Scene* scene = new Scene();
+    SceneLoader::get_instance().load_scene(*scene);
+    scene->add_dynamic_entity<Crab>();
+    scene->add_dynamic_entity<Player>();
+    scene->add_static_entity<BeachParallaxBackground>();
+    scene->unbind();
+    _scenes["game_scene"] = scene;
 
-    std::deque<Level::LevelDynamic> timeLine;
+    Scene* anotherScene = new Scene();
+    anotherScene->add_dynamic_entity<Crab>();
+    anotherScene->unbind();
+    _scenes["another_scene"] = anotherScene;
+    
+    switch_scene("game_scene");
 
     DebugUI::get_instance().get_metrics()._timeMaxLineLength = 5000;
-
-    /* Components binded twise, because of this we need to time sync imideialty */
-    level.time_sync();
-    /* ======================================================================== */
-    
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     /* ImGui */
     DebugUI::get_instance().init(window);
 
-    u64 frame = 0;
     Time::get_instance().update_delta_time_clock();
     while (!glfwWindowShouldClose(window)) {   
         Time::get_instance().update_delta_time_clock();
 
-        ++frame;
-
-        if(glfwGetKey(window, 'C') == GLFW_PRESS) {
-            if(shader1.try_compile()) shader1.compile();
-        }
-
         Controls::handle_input(window);
-        
-        bool isTimeJump = false;
-        static f32 timeLineManipulationTime = 0;
-        if(!Controls::get(PlayerController::TIME_JUMP)) {
-            //std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-            if(frame % 5 == 0) {
-                if(timeLine.size() > 0) {
-                    level.dynamicPart = timeLine[timeLine.size() - 1];
-                    timeLine.pop_back();
-                    level.time_sync();
-                }
-            }
 
-            isTimeJump = true;
-            //std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-            //timeLineManipulationTime = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count() / 1000000.0;
-        } else {
-            if(frame % 5 == 0) {
-                timeLine.push_back(level.clone());
+        ECS_PlayerTimeJumpControllerSystem::get_instance().update();
 
-                if(timeLine.size() >= 5000) {
-                    timeLine.pop_front();
-                }
-            }
-        }
-
+        auto& isTimeJump = DebugUI::get_instance().get_metrics()._isTimeJump;
         if(!isTimeJump) {
             Time::run_every_n_milliseconds<16u>([]() {
                 ECS_SpriteAnimationSystem::get_instance().update();
@@ -146,30 +101,11 @@ int omniscia::Game::run() {
         renderBackgroundStage.render_stage_lambda([&](const Shader* stage_shader){ 
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
             stage_shader->set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
-
-            f32 dt = Time::get_instance().get_delta_time();
-            Vec2f playerPos = DebugUI::get_instance().get_metrics()._playerPos;
-            playerPos /= 500.0f;
-
-            static f32 clouds = 0.0f;
-            clouds += dt;
-
-            stage_shader->set_uniform_f32("layerOffset", (clouds / 100000.0f));
-            beachBackgroundSky1Layer.render(stage_shader);
-
-            stage_shader->set_uniform_f32("layerOffset", 2.0f * (clouds / 100000.0f));
-            beachBackgroundSky2Layer.render(stage_shader);
-
-            stage_shader->set_uniform_f32("layerOffset", playerPos.x * 10.5f);
-            beachBackgroundBeachLayer.render(stage_shader);
-
-            stage_shader->set_uniform_f32("layerOffset", playerPos.x * 21.0f);
-            beachBackgroundTerrainLayer.render(stage_shader);
+            ECS_ParallaxSpriteRendererBackSystem::get_instance().render(stage_shader);
         });
 
         renderStage1.render_stage_lambda([&](){ 
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 0.0, 0.0});
-
             shader1.set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
 
             ECS_SpriteRendererSystem::get_instance().render(&shader1);
@@ -188,13 +124,7 @@ int omniscia::Game::run() {
         renderBackgroundStage.render_stage_lambda([&](const Shader* stage_shader){ 
             Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
             stage_shader->set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
-
-            f32 dt = Time::get_instance().get_delta_time();
-            Vec2f playerPos = DebugUI::get_instance().get_metrics()._playerPos;
-            playerPos /= 500.0f;
-
-            stage_shader->set_uniform_f32("layerOffset", playerPos.x * 100.0f);
-            beachBackgroundGrassOverlayLayer.render(stage_shader);
+            ECS_ParallaxSpriteRendererFrontSystem::get_instance().render(stage_shader);
         });
 
         /* screen buffer */
@@ -205,11 +135,8 @@ int omniscia::Game::run() {
 
             renderStage2.present_as_texture();
             renderBackgroundStage.present_as_texture();
+            DebugUI::get_instance().render();
         });
-
-        DebugUI::get_instance().get_metrics()._timeCurrentLineLength = timeLine.size();
-        DebugUI::get_instance().get_metrics()._timeManipulationTime = timeLineManipulationTime;
-        DebugUI::get_instance().render();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -228,4 +155,20 @@ int omniscia::Game::run() {
     glfwTerminate();
 
     return 0;
+}
+
+void omniscia::Game::switch_scene(std::string sceneId) {
+    if(_activeScene != nullptr)
+        _activeScene->unbind();
+    
+    _activeScene = _scenes[sceneId];
+    _activeScene->time_sync();
+}
+
+void omniscia::Game::switch_scene(Scene* scenePtr) {
+    if(_activeScene != nullptr)
+        _activeScene->unbind();
+    
+    _activeScene = scenePtr;
+    _activeScene->time_sync();
 }

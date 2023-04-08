@@ -1,11 +1,11 @@
-#ifndef _LEVEL_LOADER_H_
-#define _LEVEL_LOADER_H_
+#ifndef _SCENE_LOADER_H_
+#define _SCENE_LOADER_H_
 
 #include "types.tpp"
-#include "level.h"
+#include "scene.h"
 
 namespace omniscia::core {
-    class LevelLoader {
+    class SceneLoader {
         private:
             struct TileData {
                 f32 x;
@@ -21,7 +21,7 @@ namespace omniscia::core {
             };
             
         public:
-            void load_level(Level& level) {
+            void load_scene(Scene& level) {
                 std::string path = "assets\\level.bin";
                 std::ifstream f(path, std::ios::out | std::ios::binary);
 
@@ -134,9 +134,9 @@ namespace omniscia::core {
                 }
             };
 
-            static LevelLoader& get_instance() {
-                static LevelLoader levelLoader;
-                return levelLoader;
+            static SceneLoader& get_instance() {
+                static SceneLoader sceneLoader;
+                return sceneLoader;
             }
     };
 }

@@ -18,6 +18,7 @@ namespace omniscia::core {
 
                 u64 _timeCurrentLineLength;
                 u64 _timeMaxLineLength;
+                bool _isTimeJump;
 
                 Vec2f _playerPos;
             };

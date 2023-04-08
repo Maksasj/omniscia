@@ -23,5 +23,8 @@
 #include "ecs_tilemap_renderer.h"
 #include "ecs_state_machine_base.h"
 #include "ecs_crab_controller.h"
+#include "ecs_parallax_sprite_renderer_back.h"
+#include "ecs_parallax_sprite_renderer_front.h"
+#include "ecs_player_time_jump_controller.h"
 
 #endif

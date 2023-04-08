@@ -13,12 +13,9 @@ int main() {
     TextureManager::get_instance().add_asset("assets/background/3_layer.png", "3_layer");
     TextureManager::get_instance().add_asset("assets/background/4_layer.png", "4_layer");
     TextureManager::get_instance().add_asset("assets/background/4_layer.png", "4_layer");
-
     TextureManager::get_instance().add_asset("assets/entities/player.png", "player-spritesheet");
     TextureManager::get_instance().add_asset("assets/entities/crab.png", "crab-spritesheet");
-
     TextureManager::get_instance().add_asset("assets/tiles/test_tiles.png", "test_tiles");
-
     TextureManager::get_instance().add_asset("assets/background/beach/beach.png", "background_beach_beach_layer");
     TextureManager::get_instance().add_asset("assets/background/beach/grass_overlay.png", "background_beach_grass_overlay_layer");
     TextureManager::get_instance().add_asset("assets/background/beach/sky1.png", "background_beach_sky1_layer");
@@ -37,9 +34,14 @@ int main() {
     ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_background.glsl", "vert_stage_background", VERTEX_SHADER);
     ShaderManager::get_instance().check_assets();
 
-    Game game;
-    game.load();
-    game.run();
+    /* Animation assets */
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.75}, 7, true, 5}), "player-run-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.875}, 7, true, 12}), "player-idle-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.5}, {0.0, 0.5}, 8, true, 24}), "crab-idle-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.5}, {0.0, 0.0}, 8, true, 12}), "crab-run-animation");
+
+    Game::get_instance().load();
+    Game::get_instance().run();
 
     return 0;
 }
