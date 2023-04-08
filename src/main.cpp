@@ -1,17 +1,21 @@
 #include "game.h"
 
 int main() {
+    srand(time(NULL));
     using namespace omniscia;
     
     /* Texture assets */
     TextureManager::get_instance().add_asset("assets/texture.png", "factorio_girl_texture");
     TextureManager::get_instance().add_asset("assets/jojo_texture.png", "jojo_texture");
     TextureManager::get_instance().add_asset("assets/player.png", "player");
-    TextureManager::get_instance().add_asset("assets/player-spritesheet.png", "player-spritesheet");
     TextureManager::get_instance().add_asset("assets/background/1_layer.png", "1_layer");
     TextureManager::get_instance().add_asset("assets/background/2_layer.png", "2_layer");
     TextureManager::get_instance().add_asset("assets/background/3_layer.png", "3_layer");
     TextureManager::get_instance().add_asset("assets/background/4_layer.png", "4_layer");
+    TextureManager::get_instance().add_asset("assets/background/4_layer.png", "4_layer");
+
+    TextureManager::get_instance().add_asset("assets/entities/player.png", "player-spritesheet");
+    TextureManager::get_instance().add_asset("assets/entities/crab.png", "crab-spritesheet");
 
     TextureManager::get_instance().add_asset("assets/tiles/test_tiles.png", "test_tiles");
 

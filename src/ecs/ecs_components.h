@@ -21,5 +21,7 @@
 #include "ecs_player_debug_metrics.h"
 #include "ecs_box_collider_mesh.h"
 #include "ecs_tilemap_renderer.h"
+#include "ecs_state_machine_base.h"
+#include "ecs_crab_controller.h"
 
 #endif

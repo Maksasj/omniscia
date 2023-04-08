@@ -1,6 +1,6 @@
 #include "ecs_movable_aabb_collider.h"
 
-omniscia::core::ecs::ECS_MovableAABBCollider::ECS_MovableAABBCollider() : ECS_AABBCollider() {
+omniscia::core::ecs::ECS_MovableAABBCollider::ECS_MovableAABBCollider(const u64& collisionLayer, const u64& collisionLayerTarget) : ECS_AABBCollider(collisionLayer, collisionLayerTarget) {
     _colliding = false;
     _collidedWith = nullptr;
     _collisionPoint = Vec2f{0.0, 0.0};
@@ -29,6 +29,9 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::reindex(void* parent) {
 }
 
 void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* another) {
+    if(!(_collisionLayerTarget & another->_collisionLayer)) 
+        return;
+
     Vec2f selfScale = Vec2f{1.0, 1.0}; 
     Vec3f selfOldPosition = Vec3f{0.0, 0.0, 0.0}; 
     Vec3f selfNewPosition = Vec3f{0.0, 0.0, 0.0}; 

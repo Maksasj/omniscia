@@ -22,7 +22,7 @@ namespace omniscia::core::ecs {
             void reindex(void* parent) override;
             void time_sync() override;
 
-            ECS_MovableAABBCollider();
+            ECS_MovableAABBCollider(const u64& collisionLayer = CollisionMask_None, const u64& collisionLayerTarget = CollisionMask_None);
 
             void collide(ECS_AABBCollider* another) override;
             void reset_collisions() override;

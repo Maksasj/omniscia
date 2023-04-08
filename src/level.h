@@ -3,7 +3,6 @@
 
 #include "types.tpp"
 #include "player.h"
-
 namespace omniscia::core {
     struct Level {
         struct LevelDynamic {
@@ -16,7 +15,11 @@ namespace omniscia::core {
         } staticPart;
 
         LevelDynamic clone() {
-            return {dynamicPart.player.clone(), dynamicPart.dynamicEntities};
+            std::vector<Entity> clonedDynamicEntities;
+            for(auto& e : dynamicPart.dynamicEntities)
+                clonedDynamicEntities.push_back(e.clone());
+
+            return {dynamicPart.player.clone(), clonedDynamicEntities};
         }
 
         void time_sync() {
@@ -31,6 +34,7 @@ namespace omniscia::core {
             ECS_CameraFollowSystem::get_instance().time_sync();
             ECS_PlayerJumpSystem::get_instance().time_sync();
             ECS_PlayerDebugMetricsSystem::get_instance().time_sync();
+            ECS_StateMachineBaseSystem::get_instance().time_sync();
 
             dynamicPart.player.time_sync();
             for(auto &e : dynamicPart.dynamicEntities)

@@ -25,6 +25,8 @@ namespace omniscia::core::ecs {
             u64 _currentFrame;
             std::string _animationId;
             
+            u64 _tick;
+
             Animation* animation;
         public:
             void time_sync() override;

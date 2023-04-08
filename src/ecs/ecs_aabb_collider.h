@@ -9,6 +9,7 @@
 #include "collision_side_type.h"
 #include "ecs_box_collider_mesh.h"
 #include "ecs_component.tpp"
+#include "ecs_collision_mask.h"
 #include "ecs_positioned.h"
 #include "ecs_system.h"
 #include "ecs_scaled.h"
@@ -26,6 +27,9 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_Scaled> scaleIndex;
             ECS_Index<ECS_BoxColliderMesh> colliderMeshIndex;
 
+            u64 _collisionLayer;
+            u64 _collisionLayerTarget;
+
             /* Collider variables */
             bool _colliding;
             ECS_AABBCollider* _collidedWith;
@@ -37,12 +41,15 @@ namespace omniscia::core::ecs {
             void reindex(void* parent) override;
             void time_sync() override;
 
-            ECS_AABBCollider();
+            /* First argument is self collision layer, second argument is layers that can trigger collision for this component */
+            ECS_AABBCollider(const u64& collisionLayer = CollisionMask_None, const u64& collisionLayerTarget = CollisionMask_None);
 
             virtual void collide(ECS_AABBCollider* another);
             virtual void reset_collisions();
 
             bool is_colliding() const;
+            u64 get_collision_layer() const;
+
             ECS_AABBCollider* get_colliding_with() const;
             Vec2f get_collision_point() const;
             CollisionSide get_collision_side() const;

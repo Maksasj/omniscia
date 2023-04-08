@@ -5,6 +5,8 @@ omniscia::core::ecs::ECS_SpriteAnimation::ECS_SpriteAnimation(const std::string 
     _currentFrame = 0;
     _animationId = animationId;
 
+    _tick = 0;
+
     ECS_SpriteAnimationSystem::get_instance().bind_component(this);
 }
 
@@ -34,10 +36,9 @@ void omniscia::core::ecs::ECS_SpriteAnimation::reset_animation() {
 }
 
 void omniscia::core::ecs::ECS_SpriteAnimation::update() {
-    static u64 tick = 0;
-    ++tick;
+    ++_tick;
 
-    if(tick % animation->_animationSpeed == 0) {
+    if(_tick % animation->_animationSpeed == 0) {
         ++_currentFrame;
 
         if(_currentFrame >= animation->get_frame_count()) {

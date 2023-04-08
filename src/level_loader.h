@@ -38,11 +38,9 @@ namespace omniscia::core {
                 f32 screenBoxHeight = 0;
                 f.read((char* )&screenBoxWidth, sizeof(f32));
                 f.read((char* )&screenBoxHeight, sizeof(f32));
-                std::cout << "Screen box: " << screenBoxWidth << " " << screenBoxHeight << "\n";
 
                 u64 tileGroupCount = 0;
                 f.read((char *)&tileGroupCount, sizeof(u64));
-                std::cout << "Tile group count: " << tileGroupCount << "\n";
                 
                 for(u64 i = 0; i < tileGroupCount; ++i) {
                     /* Name */
@@ -128,7 +126,7 @@ namespace omniscia::core {
 
                         collisionBox.add<ECS_Scaled>(1.6f, 1.6f);
                         collisionBox.add<ECS_BoxColliderMesh>(newRangesX, newRangesY);
-                        collisionBox.add<ECS_AABBCollider>();
+                        collisionBox.add<ECS_AABBCollider>(CollisionMask_Tiles, CollisionMask_None);
                         collisionBox.add<ECS_Positioned>(x * 1.6f, y * 1.6f);
 
                         staticEntities.push_back(collisionBox);

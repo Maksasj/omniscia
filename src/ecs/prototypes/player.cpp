@@ -18,7 +18,7 @@ omniscia::core::Player::Player() {
     add<ECS_PlayerDebugMetrics>();
     add<ECS_PlayerJump>();
     add<ECS_BoxColliderMesh>(Vec2f{0.5f, 0.5f}, Vec2f{1.0f, 0.5f});
-    add<ECS_MovableAABBCollider>();
+    add<ECS_MovableAABBCollider>(CollisionMask_Player, CollisionMask_Tiles);
     add<ECS_2DPhysicsRigidbody>();
 }
 

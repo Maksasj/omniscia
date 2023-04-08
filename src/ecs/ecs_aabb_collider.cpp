@@ -1,10 +1,13 @@
 #include "ecs_aabb_collider.h"
 
-omniscia::core::ecs::ECS_AABBCollider::ECS_AABBCollider() {
+omniscia::core::ecs::ECS_AABBCollider::ECS_AABBCollider(const u64& collisionLayer, const u64& collisionLayerTarget) {
     _colliding = false;
     _collidedWith = nullptr;
     _collisionPoint = Vec2f{0.0, 0.0};
     _collisionSide = CollisionSide::NONE;
+
+    _collisionLayer = collisionLayer;
+    _collisionLayerTarget = collisionLayerTarget;
     
     ECS_AABBColliderSystem::get_instance().bind_component(this);
 };
@@ -22,6 +25,9 @@ void omniscia::core::ecs::ECS_AABBCollider::reindex(void* parent) {
 }
 
 void omniscia::core::ecs::ECS_AABBCollider::collide(ECS_AABBCollider* another) {
+    if(!(_collisionLayerTarget & another->_collisionLayer)) 
+        return;
+    
     Vec2f selfScale = Vec2f{1.0f, 1.0f}; 
     Vec3f selfPosition = Vec3f{0.0f, 0.0f, 0.0f};
     Vec2f selfCollisionXRanges = Vec2f{1.0f, 1.0f};
@@ -121,6 +127,10 @@ void omniscia::core::ecs::ECS_AABBCollider::reset_collisions() {
 
 bool omniscia::core::ecs::ECS_AABBCollider::is_colliding() const {
     return _colliding;
+}
+
+u64 omniscia::core::ecs::ECS_AABBCollider::get_collision_layer() const {
+    return _collisionLayer;
 }
 
 omniscia::core::ecs::ECS_AABBCollider* omniscia::core::ecs::ECS_AABBCollider::get_colliding_with() const {

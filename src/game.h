@@ -15,6 +15,7 @@
 #include "types.tpp"
 #include "sprite.h" 
 #include "player.h"
+#include "crab.h"
 #include "gfx.h"
 #include "debug_ui.h"
 #include "level.h"

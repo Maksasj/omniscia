@@ -30,6 +30,9 @@ int omniscia::Game::run() {
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.75}, 7, true, 5}), "player-run-animation");
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.875}, 7, true, 12}), "player-idle-animation");
 
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.5}, {0.0, 0.5}, 8, true, 24}), "crab-idle-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.5}, {0.0, 0.0}, 8, true, 12}), "crab-run-animation");
+
     TextureManager::get_instance().load_assets();
 
     Sprite beachBackgroundBeachLayer("background_beach_beach_layer");
@@ -65,41 +68,11 @@ int omniscia::Game::run() {
 
     Level level;
     LevelLoader::get_instance().load_level(level);
+    level.dynamicPart.dynamicEntities.push_back(Crab());
 
     std::deque<Level::LevelDynamic> timeLine;
 
     DebugUI::get_instance().get_metrics()._timeMaxLineLength = 5000;
-
-    // for(int i = 0; i < 2; ++i) {
-    //     Entity wall = Entity();
-    //     wall.add<ECS_Positioned>(2.5f*i, -0.7f + -i*0.5f);
-    //     wall.add<ECS_Scaled>(1.0, 0.25);
-    //     wall.add<ECS_SpriteRenderer>("factorio_girl_texture", 0);
-    //     wall.add<ECS_BoxColliderMesh>(Vec2f{1.0f, 1.0f}, Vec2f{1.0f, 1.0f});
-    //     wall.add<ECS_AABBCollider>();
-    //     level.staticPart.staticEntities.push_back(wall);
-    // }
-
-    /*
-    {
-        Entity wall = Entity();
-        wall.add<ECS_Positioned>(0.0f, 0.0f);
-        wall.add<ECS_Scaled>(0.1, 0.1);
-        
-        RawMeshDataBuilder builder;
-
-        for(auto x = -2; x < 2; ++x)
-            for(auto y = -2; y < 2; ++y)
-                builder.append(BuildInMeshData::QUAD_MESH_DATA, {x * 2.0f,y * 2.0f});
-        
-        auto aa = builder.get();
-
-        wall.add<ECS_TilemapRenderer>(aa, "factorio_girl_texture", 0);
-
-        level.staticPart.staticEntities.push_back(wall);
-    }
-    */
-
 
     /* Components binded twise, because of this we need to time sync imideialty */
     level.time_sync();
@@ -165,6 +138,7 @@ int omniscia::Game::run() {
             ECS_2DPhysicsRigidbodySystem::get_instance().late_update();
             ECS_PlayerControllerSystem::get_instance().update();
             ECS_PlayerJumpSystem::get_instance().update(); /* Need to be between collider updates, since should know is player standing */
+            ECS_StateMachineBaseSystem::get_instance().update();
             ECS_AABBColliderSystem::get_instance().reset();
         }
 
@@ -198,9 +172,9 @@ int omniscia::Game::run() {
 
             shader1.set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
 
-            ECS_TilemapRendererSystem::get_instance().render(&shader1);
             ECS_SpriteRendererSystem::get_instance().render(&shader1);
             ECS_SpriteSheetRendererSystem::get_instance().render(&shader1);
+            ECS_TilemapRendererSystem::get_instance().render(&shader1);
         });
 
         renderStage2.render_stage_lambda([&](const Shader* stage_shader){ 
