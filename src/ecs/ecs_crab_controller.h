@@ -6,6 +6,7 @@
 #include "ecs_sprite_flip.h"
 #include "ecs_sprite_animation.h"
 #include "ecs_movable_aabb_collider.h"
+#include "ecs_sound_emitter.h"
 #include "ecs_velocity.h"
 
 namespace omniscia::core::ecs {
@@ -20,6 +21,7 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_SpriteAnimation> _spriteAnimationIndex;
             ECS_Index<ECS_MovableAABBCollider> _colliderIndex; 
             ECS_Index<ECS_Velocity> _velocityIndex; 
+            ECS_Index<ECS_SoundEmitter> _soundEmitterIndex;
         public:
             void reindex(void* parent) override;
             void time_sync() override;

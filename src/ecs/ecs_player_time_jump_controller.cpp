@@ -14,7 +14,7 @@ void omniscia::core::ecs::ECS_PlayerTimeJumpController::update() {
     auto& gameInstance = Game::get_instance();
     auto& timeLine = gameInstance.ref_time_line();
     bool& isTimeJump = DebugUI::get_instance().get_metrics()._isTimeJump;
-    DebugUI::get_instance().get_metrics()._timeCurrentLineLength = timeLine.size();
+    DebugUI::get_instance().get_metrics()._timeCurrentLineLength = timeLine.get_index();
     isTimeJump = !Controls::get(PlayerController::TIME_JUMP); 
 
     if(frame % 5 != 0) return;
@@ -22,16 +22,17 @@ void omniscia::core::ecs::ECS_PlayerTimeJumpController::update() {
     Scene* activeScene = gameInstance.get_active_scene();
 
     if(isTimeJump) {
-        if(timeLine.size() > 0) {
-            activeScene->ref_dynamic_part() = timeLine[timeLine.size() - 1];
-            activeScene->time_sync();
-            timeLine.pop_back();
-            DebugUI::get_instance().get_metrics()._timeCurrentLineLength = timeLine.size();
-        }
+        std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+
+        activeScene->ref_dynamic_part() = timeLine.get();
+        activeScene->time_sync();
+        timeLine.pop();
+
+        DebugUI::get_instance().get_metrics()._timeCurrentLineLength = timeLine.get_index();
+        std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+
+        DebugUI::get_instance().get_metrics()._timeManipulationTime = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count() * 0.000001;
     } else {
-        timeLine.push_back(activeScene->clone());
-        if(timeLine.size() >= 5000) {
-            timeLine.pop_front();
-        }
+        timeLine.push(activeScene->clone());
     }
 }

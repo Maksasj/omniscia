@@ -22,6 +22,15 @@
 #include "scene.h"
 #include "scene_loader.h"
 
+#include "sound_fx.h"
+
+#include "sound_engine.h"
+#include "sound_manager.h"
+#include "sound_speaker.h"
+#include "sound.h"
+
+#include "timelessness_container.tpp"
+
 namespace omniscia {
     using namespace omniscia::core;
     using namespace omniscia::gfx;
@@ -33,7 +42,8 @@ namespace omniscia {
             Scene* _activeScene;
             std::unordered_map<std::string, Scene*> _scenes;
 
-            std::deque<Scene::SceneDynamic> _timeLine;
+            // std::deque<Scene::SceneDynamic> _timeLine;
+            TimeLessNessContainer<Scene::SceneDynamic, 5000> _timeLine; 
         public:
             int load();
             int run();
@@ -46,7 +56,7 @@ namespace omniscia {
                 return game;
             }
 
-            std::deque<Scene::SceneDynamic>& ref_time_line() {
+            TimeLessNessContainer<Scene::SceneDynamic, 5000>& ref_time_line() {
                 return _timeLine;
             }
 

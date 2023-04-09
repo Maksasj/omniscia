@@ -9,6 +9,21 @@ namespace omniscia::core {
         public:
             struct SceneDynamic {
                 std::vector<Entity> dynamicEntities;
+
+                // SceneDynamic& operator=(const SceneDynamic& other) {
+                //     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+                //     DebugUI::get_instance().get_metrics()._timeMaxLineLength = dynamicEntities.size();
+                //     dynamicEntities.clear();
+                //     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+                //     DebugUI::get_instance().get_metrics()._timeManipulationTime = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count() * 0.000001;
+// 
+                //     for(auto& e : other.dynamicEntities) {
+                //         dynamicEntities.push_back(e);
+                //     }
+// 
+// 
+                //     return *this;
+                // }
             };
 
             struct SceneStatic {

@@ -26,5 +26,6 @@
 #include "ecs_parallax_sprite_renderer_back.h"
 #include "ecs_parallax_sprite_renderer_front.h"
 #include "ecs_player_time_jump_controller.h"
+#include "ecs_sound_emitter.h"
 
 #endif

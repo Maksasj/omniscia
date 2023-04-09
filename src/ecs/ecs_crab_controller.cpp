@@ -17,6 +17,7 @@ void omniscia::core::ecs::ECS_CrabController::reindex(void* parent) {
     _spriteAnimationIndex = _parent->index<ECS_SpriteAnimation>();
     _colliderIndex = _parent->index<ECS_MovableAABBCollider>();
     _velocityIndex = _parent->index<ECS_Velocity>();
+    _soundEmitterIndex = _parent->index<ECS_SoundEmitter>();
 }
 
 void omniscia::core::ecs::ECS_CrabController::crab_run_right_state() {
@@ -25,7 +26,9 @@ void omniscia::core::ecs::ECS_CrabController::crab_run_right_state() {
     if(!_spriteAnimationIndex.is_success()) return;
     if(!_colliderIndex.is_success()) return;
     if(!_velocityIndex.is_success()) return;
+    if(!_soundEmitterIndex.is_success()) return;
 
+    ECS_SoundEmitter& soundEmitterComp = _parent->ref_unsafe(_soundEmitterIndex);
     ECS_MovableAABBCollider& colliderComp = _parent->ref_unsafe(_colliderIndex);
     ECS_Acceleration &accelerationComp = _parent->ref_unsafe(_accelerationIndex);
     ECS_SpriteFlip& spriteFlipComp = _parent->ref_unsafe(_spriteFlipIndex);
@@ -41,6 +44,24 @@ void omniscia::core::ecs::ECS_CrabController::crab_run_right_state() {
     }
 
     const u64 random = rand();
+
+    switch (random % 100) {
+        case 0:
+            soundEmitterComp.play("walk_1");
+            break;
+        case 1:
+            soundEmitterComp.play("walk_2");
+            break;
+        case 2:
+            soundEmitterComp.play("walk_3");
+            break;
+        case 3:
+            soundEmitterComp.play("walk_4");
+            break;
+        default:
+            break;
+    }
+
     if(random % 7000 != 0) return;
 
     spriteAnimationComp.set_animation("crab-idle-animation");
@@ -53,7 +74,9 @@ void omniscia::core::ecs::ECS_CrabController::crab_run_left_state() {
     if(!_spriteAnimationIndex.is_success()) return;
     if(!_colliderIndex.is_success()) return;
     if(!_velocityIndex.is_success()) return;
+    if(!_soundEmitterIndex.is_success()) return;
 
+    ECS_SoundEmitter& soundEmitterComp = _parent->ref_unsafe(_soundEmitterIndex);
     ECS_MovableAABBCollider& colliderComp = _parent->ref_unsafe(_colliderIndex);
     ECS_Acceleration &accelerationComp = _parent->ref_unsafe(_accelerationIndex);
     ECS_SpriteFlip& spriteFlipComp = _parent->ref_unsafe(_spriteFlipIndex);
@@ -69,6 +92,24 @@ void omniscia::core::ecs::ECS_CrabController::crab_run_left_state() {
     }
 
     const u64 random = rand();
+
+    switch (random % 100) {
+        case 0:
+            soundEmitterComp.play("walk_1");
+            break;
+        case 1:
+            soundEmitterComp.play("walk_2");
+            break;
+        case 2:
+            soundEmitterComp.play("walk_3");
+            break;
+        case 3:
+            soundEmitterComp.play("walk_4");
+            break;
+        default:
+            break;
+    }
+
     if(random % 7000 != 0) return;
 
     spriteAnimationComp.set_animation("crab-idle-animation");

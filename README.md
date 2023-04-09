@@ -15,6 +15,10 @@
 ---
 
 ## Todo List
+
+- ### Priority
+  - [ ] Check for memory leaks
+  - [ ] Sound system 
 - ### Core
   - [ ] System system manager
   - [ ] Level manager

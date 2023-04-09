@@ -13,3 +13,6 @@
 [submodule "3dparty/imgui"]
 	path = 3dparty/imgui
 	url = https://github.com/ocornut/imgui
+[submodule "3dparty/miniaudio"]
+	path = 3dparty/miniaudio
+	url = https://github.com/Maksasj/miniaudio

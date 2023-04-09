@@ -23,6 +23,7 @@ void omniscia::core::Scene::unbind() {
     ECS_StateMachineBaseSystem::get_instance().time_sync();
     ECS_ParallaxSpriteRendererBackSystem::get_instance().time_sync();
     ECS_ParallaxSpriteRendererFrontSystem::get_instance().time_sync();
+    ECS_SoundEmitterSystem::get_instance().time_sync();
 }
 
 void omniscia::core::Scene::time_sync() {

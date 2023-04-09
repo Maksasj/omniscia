@@ -12,3 +12,6 @@ include_directories("src/imgui")
 
 # Asset managment
 include_directories("src/asset")
+
+# Sound
+include_directories("src/sound")

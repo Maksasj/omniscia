@@ -13,6 +13,9 @@ omniscia::core::Crab::Crab() {
     add<ECS_SpriteAnimation>("crab-idle-animation");
     add<ECS_SpriteSheetRenderer>("crab-spritesheet", 1);
     add<ECS_Gravity>();
+    
+    add<ECS_SoundEmitter>();
+    
     add<ECS_CrabController>();
     add<ECS_BoxColliderMesh>(Vec2f{0.5f, 0.5f}, Vec2f{0.9f, 0.5f});
     add<ECS_MovableAABBCollider>(CollisionMask_AmbientEntities, CollisionMask_Tiles);

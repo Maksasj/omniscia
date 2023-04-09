@@ -16,12 +16,15 @@ int omniscia::Game::load() {
 
     Renderer::loadGL();
 
+    omniscia::core::SoundEngine::get_instance().initialize();
+
     return 0;
 }
 
 int omniscia::Game::run() {
     using namespace omniscia::gfx::sprite;
     TextureManager::get_instance().load_assets();
+    SoundManager::get_instance().load_assets();
 
     Shader shader1("vert_stage_1", "frag_stage_1");
     Shader shader2("vert_stage_2", "frag_stage_2");
@@ -50,14 +53,19 @@ int omniscia::Game::run() {
 
     Scene* scene = new Scene();
     SceneLoader::get_instance().load_scene(*scene);
-    scene->add_dynamic_entity<Crab>();
+    for(int i = 0; i < 2; ++i) {
+        scene->add_dynamic_entity<Crab>();
+    }
+
+    std::cout << sizeof(Crab) << "\n";
+
     scene->add_dynamic_entity<Player>();
     scene->add_static_entity<BeachParallaxBackground>();
     scene->unbind();
     _scenes["game_scene"] = scene;
 
     Scene* anotherScene = new Scene();
-    anotherScene->add_dynamic_entity<Crab>();
+    // anotherScene->add_dynamic_entity<Crab>();
     anotherScene->unbind();
     _scenes["another_scene"] = anotherScene;
     
@@ -69,7 +77,28 @@ int omniscia::Game::run() {
     DebugUI::get_instance().init(window);
 
     Time::get_instance().update_delta_time_clock();
+
+    // SoundSpeaker speaker;
+    // speaker.play("test_sound");
+// 
+    // SoundSpeaker speaker1;
+    // speaker1.play("test_sound");
+// 
+    // f32 stepAngle = 0.01f;
+    // f32 angle = 0;
+    // f32 distance = 1;
+
     while (!glfwWindowShouldClose(window)) {   
+        // f64 x = std::cos(angle) - std::sin(angle);
+        // f64 y = std::sin(angle) + std::cos(angle);
+// 
+        // speaker.set_pos((f32)x * distance, (f32)y * distance);
+// 
+        // angle += stepAngle;
+// 
+        // speaker.update();
+        // speaker1.update();
+
         Time::get_instance().update_delta_time_clock();
 
         Controls::handle_input(window);
@@ -85,6 +114,7 @@ int omniscia::Game::run() {
 
         ECS_CameraFollowSystem::get_instance().update(&shader1);
         ECS_PlayerDebugMetricsSystem::get_instance().update();
+        ECS_SoundEmitterSystem::get_instance().update();
 
         if(!isTimeJump) {
             ECS_GravitySystem::get_instance().update();
@@ -96,6 +126,7 @@ int omniscia::Game::run() {
             ECS_StateMachineBaseSystem::get_instance().update();
             ECS_AABBColliderSystem::get_instance().reset();
         }
+        
 
         /* Render background */
         renderBackgroundStage.render_stage_lambda([&](const Shader* stage_shader){ 
