@@ -3,12 +3,11 @@
 
 #include "ecs_component_сontainer_index.tpp"
 #include "ecs_component_сontainer.tpp"
-#include "dynamic_object.h"
 
 namespace omniscia::core {
     using namespace omniscia::core::ecs;
 
-    class Entity : public DynamicObject {
+    class Entity {
         private:
             ECS_ComponentContainer _component_сontainer;
         public:
