@@ -45,6 +45,10 @@ namespace omniscia::gfx::sprite {
             void set_texture_by_id(const std::string& texture_id);
 
             SpriteMesh& get_mesh();
+            
+            u64 byte_size() const { 
+                return sizeof(Texture*) + spriteMesh.byte_size();
+            }
     };
 }
 

@@ -79,6 +79,17 @@ namespace omniscia::core::ecs {
             u32 size() const {
                 return _components.size();
             }
+
+            u64 byte_size() const {
+                u64 sum = 0;
+
+                for(auto& comp : _components) {
+                    sum += comp->byte_size();
+                }
+
+                return sum + sizeof(ECS_ComponentContainer); 
+                // return sizeof(ECS_CameraFollow);
+            }
     };
 }
 

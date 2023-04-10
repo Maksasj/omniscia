@@ -26,6 +26,10 @@ namespace omniscia::core::ecs {
             std::shared_ptr<ECS_Component> clone() override {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_StateMachineBase>(*this));
             }
+
+            u64 byte_size() override {
+                return sizeof(ECS_StateMachineBase);
+            }
     };
 
     class ECS_StateMachineBaseSystem : public ECS_System<ECS_StateMachineBase> {

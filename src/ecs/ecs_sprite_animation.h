@@ -45,6 +45,10 @@ namespace omniscia::core::ecs {
             std::shared_ptr<ECS_Component> clone() override {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_SpriteAnimation>(*this));
             }
+
+            u64 byte_size() override {
+                return sizeof(ECS_SpriteAnimation);
+            }
     };
 
     class ECS_SpriteAnimationSystem : public ECS_System<ECS_SpriteAnimation> {

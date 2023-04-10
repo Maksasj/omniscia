@@ -43,6 +43,10 @@ namespace omniscia::core::ecs {
             std::shared_ptr<ECS_Component> clone() override {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_CameraFollow>(*this));
             }
+
+            u64 byte_size() override {
+                return sizeof(ECS_CameraFollow);
+            }
     };
 
     class ECS_CameraFollowSystem : public ECS_System<ECS_CameraFollow> {

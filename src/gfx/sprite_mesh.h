@@ -27,6 +27,10 @@ namespace omniscia::gfx::sprite {
 
             void bind() const;
             u32 get_indices_count() const;
+
+            u64 byte_size() const {
+                return sizeof(Vertex) * _vertices.size() + sizeof(u32) * _indices.size() + sizeof(SpriteMesh);
+            }
     };
 }
 

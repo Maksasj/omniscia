@@ -23,6 +23,10 @@ namespace omniscia::core::ecs {
             virtual std::shared_ptr<ECS_Component> clone() { 
                 return std::shared_ptr<ECS_Component>(NULL);
             }
+
+            virtual u64 byte_size() {
+                return sizeof(ECS_Component);
+            }
     };
 }
 

@@ -49,6 +49,10 @@ namespace omniscia::core {
             ECS_Index<T> index() const {
                 return _component_сontainer.index<T>();
             }
+
+            u64 byte_size() const {
+                return _component_сontainer.byte_size();
+            }
     };
 }
 
