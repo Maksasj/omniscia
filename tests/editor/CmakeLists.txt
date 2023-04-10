@@ -1,0 +1,22 @@
+project(OmnisciaEditorTests)
+cmake_minimum_required(VERSION 3.1)
+
+enable_testing()
+
+include_directories("./")
+include_directories("../../editor")
+
+file(GLOB_RECURSE OMNISCIA-EDITOR-SRC "editor/*.cpp")
+
+function(CREATE_TEST TEST_NAME TEST_FILE)
+    add_executable(${TEST_NAME} ${TEST_FILE})
+    target_link_libraries(${TEST_NAME} ${OPENGL_LIBRARIES})
+    target_link_libraries(${TEST_NAME} ${OMNISCIA-EDITOR-SRC})
+    target_link_libraries(${TEST_NAME} glfw)
+    target_link_libraries(${TEST_NAME} glad)
+    target_link_libraries(${TEST_NAME} opengl32)
+
+    add_test(NAME ${TEST_NAME} COMMAND $<TARGET_FILE:${TEST_NAME}>)
+endfunction()
+
+CREATE_TEST(OmnisiciaEditor_Test1 test_2.cpp)

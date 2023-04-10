@@ -1,5 +1,4 @@
 #include "gfx.h"
-
 #include "editor.h"
 
 int main(void) {

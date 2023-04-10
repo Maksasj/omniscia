@@ -39,7 +39,6 @@ void omniscia::core::Sound::prepare(const std::string& _soundId) {
         unload();
     }
     
-    std::cout << "Trying to copy sound data to active sound\n";
     ma_sound_init_copy(&soundEngine.get_backend(), &soundAsset->get_asset()->get_backend(), 0, NULL, &_sound);
 
     is_loaded = true;
