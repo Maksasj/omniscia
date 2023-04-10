@@ -1,3 +1,14 @@
+/**
+ * @file 
+ * vertex.h
+ * 
+ * @author 
+ * Maksim Jaroslavcevas radioboos@gmail.com
+ * 
+ * @copyright
+ * see LICENSE.md file
+*/
+
 #ifndef _VERTEX_H_
 #define _VERTEX_H_
 
@@ -9,43 +20,56 @@
 namespace omniscia::gfx {
     using namespace omniscia::core;
 
+    /**
+     * @brief Vertex - structure used for storing all 
+     * opengl vertex data(pos, color and texture coordinates) 
+    */
     struct Vertex {
+        /** @brief Position of the vertex */
         Vec3f _pos;
+        
+        /** @brief Color of the vertex */
         Vec3f _color;
+        
+        /** @brief Texture coordinates of the vertex */
         Vec2f _texPos;
 
-        Vertex(const Vec3f& pos, const Vec3f& color, const Vec2f& texPos) {
-            _pos = pos;
-            _color = color;
-            _texPos = texPos;
-        }
+        /**
+         * @brief Default constructor of the vertex structure
+         * 
+         * @param pos position of the vertex
+         * @param color color of the vertex
+         * @param texPos texture coordinates of the vertex
+        */
+        Vertex(const Vec3f& pos, const Vec3f& color, const Vec2f& texPos);
 
-        void scale(const Vec3f& scale) {
-            _pos.x *= scale.x;
-            _pos.y *= scale.y;
-            _pos.z *= scale.z;
-        }
+        /**
+         * @brief Scales Vertex(position) by some value
+         * 
+         * @param scale by which scale vertex position 
+        */
+        void scale(const Vec3f& scale);
 
-        void transform(const Vec3f& pos = Vec3f{0.0f, 0.0f, 0.0f}) {
-            _pos += pos;
-        }
+        /**
+         * @brief Moves Vertex position by specifci value
+         * 
+         * @param pos possition by which to move vertex 
+        */
+        void transform(const Vec3f& pos = Vec3f{0.0f, 0.0f, 0.0f});
 
-        void rotate(const f32& angle) {
-            auto mat = Matrix<f32, 2, 2>::get_rotation_matrix(angle);
+        /**
+         * @brief Rotates vertex by some angle
+         * 
+         * @param angle by which vertex should be rotated 
+        */
+        void rotate(const f32& angle);
 
-            _pos.x = _pos.x * mat.e[0] - _pos.y * mat.e[1];
-            _pos.y = _pos.x * mat.e[2] + _pos.y * mat.e[3];
-        }
-
-        std::string to_string() {
-            std::stringstream ss;
-
-            ss << _pos.x << ' ' << _pos.y << ' ' << _pos.z << ' ';
-            ss << _color.x << ' ' << _color.y << ' ' << _color.z << ' ';
-            ss << _texPos.x << ' ' << _texPos.y;
-
-            return ss.str();
-        }
+        /**
+         * @brief Get string representation of the vertex
+         * 
+         * @return string representation of the vetex
+        */
+        std::string to_string() const;
     };
 }
 

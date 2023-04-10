@@ -1,3 +1,16 @@
+/**
+ * @file 
+ * gfx.h
+ * 
+ * @brief File used only for including glad and glfw
+ * 
+ * @author 
+ * Maksim Jaroslavcevas radioboos@gmail.com
+ * 
+ * @copyright
+ * see LICENSE.md file
+*/
+
 #ifndef _GFX_H_
 #define _GFX_H_
 

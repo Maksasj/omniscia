@@ -14,7 +14,7 @@ int omniscia::Game::load() {
     glfwMakeContextCurrent(window);
     glfwSwapInterval(0);
 
-    Renderer::loadGL();
+    Renderer::load_gl();
 
     omniscia::core::SoundEngine::get_instance().initialize();
 
@@ -129,13 +129,13 @@ int omniscia::Game::run() {
 
         /* Render background */
         renderBackgroundStage.render_stage_lambda([&](const Shader* stage_shader){ 
-            Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
+            Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
             stage_shader->set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
             ECS_ParallaxSpriteRendererBackSystem::get_instance().render(stage_shader);
         });
 
         renderStage1.render_stage_lambda([&](){ 
-            Renderer::clearBuffer(Vec4f{0.0, 0.0, 0.0, 0.0});
+            Renderer::clear_buffer(Vec4f{0.0, 0.0, 0.0, 0.0});
             shader1.set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
 
             ECS_SpriteRendererSystem::get_instance().render(&shader1);
@@ -144,7 +144,7 @@ int omniscia::Game::run() {
         });
 
         renderStage2.render_stage_lambda([&](const Shader* stage_shader){ 
-            Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
+            Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
             stage_shader->set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
 
             renderBackgroundStage.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
@@ -152,14 +152,14 @@ int omniscia::Game::run() {
         });
 
         renderBackgroundStage.render_stage_lambda([&](const Shader* stage_shader){ 
-            Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 0.0});
+            Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
             stage_shader->set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
             ECS_ParallaxSpriteRendererFrontSystem::get_instance().render(stage_shader);
         });
 
         /* screen buffer */
         RenderStage::render_anonymous_stage_lambda([&]() {
-            Renderer::clearBuffer(Vec4f{0.0, 0.0, 1.0, 1.0});
+            Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 1.0});
             shader3.activate();
             shader3.set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
 
