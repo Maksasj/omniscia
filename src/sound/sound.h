@@ -1,9 +1,8 @@
 #ifndef _SOUND_H_
 #define _SOUND_H_
 
+#include "sound_fx.h"
 #include <iostream>
-
-#include "sound_engine.h"
 #include "types.tpp"
 
 namespace omniscia::core {
@@ -14,13 +13,13 @@ namespace omniscia::core {
             ma_sound _sound;
             ma_sound_config _soundConfig;
         public:
-            friend class SoundSpeaker;
 
             Sound();
 
             int load(const std::string& file_path);
             void unload();
 
+            void prepare(const std::string& _soundId);
             void play();
             void stop();
 

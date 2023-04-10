@@ -4,6 +4,7 @@
 #include <vector>
 #include <cassert>
 #include <optional>
+#include <typeinfo>
 
 #include "ecs_component_сontainer_index.tpp"
 #include "ecs_component.tpp"
@@ -37,6 +38,9 @@ namespace omniscia::core::ecs {
             void add(void* parent) {
                 std::shared_ptr<T> ptr(new T());
                 ptr->reindex(parent);
+
+                // std::cout << typeid(T).name() << " " << ptr->byte_size() << "\n";
+
                 _components.push_back(ptr);
             }
 
@@ -44,6 +48,9 @@ namespace omniscia::core::ecs {
             void add(void* parent, Args&&... args) {
                 std::shared_ptr<T> ptr(new T(std::forward<Args>(args)...));
                 ptr->reindex(parent);
+                
+                // std::cout << typeid(T).name() << " " << ptr->byte_size() << "\n";
+
                 _components.push_back(ptr);
             }
 

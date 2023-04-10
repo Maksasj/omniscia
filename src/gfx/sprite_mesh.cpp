@@ -5,8 +5,12 @@ omniscia::gfx::sprite::SpriteMesh::SpriteMesh() {
 }
 
 omniscia::gfx::sprite::SpriteMesh::SpriteMesh(RawMeshData rawMeshData) : _vao() {
-    _vertices = rawMeshData.get_vetices();
-    _indices = rawMeshData.get_indices();
+    std::vector<Vertex>& _vertices = rawMeshData.get_vetices();
+    std::vector<u32>& _indices = rawMeshData.get_indices();
+
+    _verticesSize = _vertices.size();
+    _indicesSize = _indices.size();
+
     _vao.bind();
         VBO vbo(_vertices);
         EBO ebo(_indices);
@@ -22,8 +26,11 @@ omniscia::gfx::sprite::SpriteMesh::SpriteMesh(RawMeshData rawMeshData) : _vao() 
 }
 
 omniscia::gfx::sprite::SpriteMesh::SpriteMesh(RawMeshData rawMeshData, const Vec3f& scale) : _vao()  {
-    _vertices = rawMeshData.get_vetices();
-    _indices = rawMeshData.get_indices();
+    std::vector<Vertex>& _vertices = rawMeshData.get_vetices();
+    std::vector<u32>& _indices = rawMeshData.get_indices();
+
+    _verticesSize = _vertices.size();
+    _indicesSize = _indices.size();
     
     for(auto& vert : _vertices) {
         vert.scale(scale);
@@ -48,5 +55,5 @@ void omniscia::gfx::sprite::SpriteMesh::bind() const {
 }
 
 u32 omniscia::gfx::sprite::SpriteMesh::get_indices_count() const {
-    return _indices.size();
+    return _indicesSize;
 }

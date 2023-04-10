@@ -18,6 +18,7 @@ namespace omniscia::core {
 
                 u64 _timeCurrentLineLength;
                 u64 _timeMaxLineLength;
+                i32 _currentlyPlayingSoundCount;
                 bool _isTimeJump;
 
                 Vec2f _playerPos;
@@ -69,6 +70,9 @@ namespace omniscia::core {
                     ImGui::Separator();
 
                     ImGui::Text("Application average %.3f [ms/frame] (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
+                    ImGui::Separator();
+                    
+                    ImGui::Text("Currently playing %d/64 [sounds]", _metrics._currentlyPlayingSoundCount);
                     ImGui::Separator();
 
                     ImGui::Text("Player position: (x: %.3f, y: %.3f)", _metrics._playerPos.x, _metrics._playerPos.y);

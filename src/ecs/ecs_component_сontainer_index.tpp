@@ -10,7 +10,7 @@ namespace omniscia::core::ecs {
     template<typename T> 
     class ECS_Index {
         private:
-            u32 _index;
+            u8 _index;
 
             bool _success;
         public:

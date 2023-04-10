@@ -13,12 +13,12 @@ namespace omniscia::core {
     class SoundSpeaker {
         Vec2f _soundSourcePos;
 
-        Sound* _soundInstance;
+        i32 _activeSound;
         public:
             SoundSpeaker(Vec2f soundSourcePos = Vec2f{0.0f, 0.0f});
             SoundSpeaker(f32 x, f32 y);
 
-            void play(const std::string& _sound_id);
+            void play(const std::string& _soundId);
             void stop();
 
             void update();

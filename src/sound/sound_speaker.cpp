@@ -2,45 +2,41 @@
 
 omniscia::core::SoundSpeaker::SoundSpeaker(Vec2f soundSourcePos) {
     _soundSourcePos = soundSourcePos;
-
-    _soundInstance = new Sound();
+    _activeSound = -1;
 } 
 
 omniscia::core::SoundSpeaker::SoundSpeaker(f32 x, f32 y) {
     _soundSourcePos = Vec2f{x, y};
-
-    _soundInstance = new Sound();
+    _activeSound = -1;
 }
 
 void omniscia::core::SoundSpeaker::play(const std::string& _sound_id) {
-    if(_soundInstance->is_playing()) return;
+    if(_activeSound != -1) return;
 
-    ma_sound& sound_backend = _soundInstance->get_backend(); 
-    SoundEngine& soundEngine = SoundEngine::get_instance();
-    SoundAsset* soundAsset =  SoundManager::get_instance().get(_sound_id);
+    SoundPool<64>& soundPool = SoundEngine::get_instance().ref_sound_pool();
 
-    if(_soundInstance->is_loaded) {
-        _soundInstance->unload();
-    }
-
-    ma_sound_init_copy(&soundEngine.get_backend(), &soundAsset->get_asset()->get_backend(), 0, NULL, &sound_backend);
-
-    _soundInstance->is_loaded = true;
-    _soundInstance->play();
+    _activeSound = soundPool.invoke_sound(_sound_id);
 }
 
 void omniscia::core::SoundSpeaker::stop() {
-    if(!_soundInstance->is_playing()) return;
-    _soundInstance->stop();
-    _soundInstance->unload();
+    if(_activeSound == -1) return;
+    
+    SoundPool<64>& soundPool = SoundEngine::get_instance().ref_sound_pool();
+
+    soundPool.free_sound(_activeSound);
+    _activeSound = -1;
 }
 
 void omniscia::core::SoundSpeaker::update() {
-    /* Check is sound is currently playing */
-    if(_soundInstance->is_playing()) {
-        _soundInstance->set_pos(_soundSourcePos.x, 0.0f, _soundSourcePos.y);
+    if(_activeSound == -1) return;
+
+    SoundPool<64>& soundPool = SoundEngine::get_instance().ref_sound_pool();
+
+    if(soundPool.is_sound_playing(_activeSound)) {
+        soundPool.position_sound(_activeSound, _soundSourcePos.x, 0.0f, _soundSourcePos.y);
     } else {
-        _soundInstance->unload();
+        soundPool.free_sound(_activeSound);
+        _activeSound = -1;
     }
 }
 

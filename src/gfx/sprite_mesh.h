@@ -16,8 +16,8 @@ namespace omniscia::gfx::sprite {
 
     class SpriteMesh {
         private:
-            std::vector<Vertex> _vertices;
-            std::vector<u32> _indices;
+            u32 _verticesSize;
+            u32 _indicesSize;
 
             VAO _vao;
         public:
@@ -29,7 +29,7 @@ namespace omniscia::gfx::sprite {
             u32 get_indices_count() const;
 
             u64 byte_size() const {
-                return sizeof(Vertex) * _vertices.size() + sizeof(u32) * _indices.size() + sizeof(SpriteMesh);
+                return sizeof(SpriteMesh);
             }
     };
 }
