@@ -70,13 +70,6 @@ namespace omniscia::core {
                         f32 tilePosX = tile.x / (screenBoxHeight / 2.0);
                         f32 tilePosY = tile.y / (screenBoxHeight / 2.0);
 
-                        /*
-                        Vec2f textureCordsTopRight;
-                        Vec2f textureCordsBottomRight;
-                        Vec2f textureCordsBottomLeft;
-                        Vec2f textureCordsTopLeft;
-                        */
-
                         omniscia::gfx::sprite::RawMeshData mesh = RawMeshData(
                             {
                                 Vertex({ 1.0f,  1.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, tile.textureCordsTopRight),       // top right

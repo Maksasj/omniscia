@@ -42,7 +42,6 @@ namespace omniscia {
             Scene* _activeScene;
             std::unordered_map<std::string, Scene*> _scenes;
 
-            // std::deque<Scene::SceneDynamic> _timeLine;
             TimeLessNessContainer<Scene::SceneDynamic, 5000> _timeLine; 
         public:
             int load();

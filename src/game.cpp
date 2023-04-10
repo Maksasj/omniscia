@@ -126,7 +126,6 @@ int omniscia::Game::run() {
             ECS_AABBColliderSystem::get_instance().reset();
         }
         
-
         /* Render background */
         renderBackgroundStage.render_stage_lambda([&](const Shader* stage_shader){ 
             Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
