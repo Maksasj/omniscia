@@ -3,30 +3,30 @@
 #include "sound_manager.h"
 
 omniscia::core::Sound::Sound() {
-    is_loaded = false;
+    _isLoaded = false;
 }
 
-int omniscia::core::Sound::load(const std::string& file_path) {
+int omniscia::core::Sound::load(const std::string& filePath) {
     _soundConfig = ma_sound_config_init();
-    _soundConfig.pFilePath  = file_path.c_str();
+    _soundConfig.pFilePath  = filePath.c_str();
     _soundConfig.pDataSource = NULL;
     _soundConfig.volumeSmoothTimeInPCMFrames = 400; 
 
-    ma_result result = ma_sound_init_from_file(&omniscia::core::SoundEngine::get_instance().get_backend(), file_path.c_str(), 0, NULL, NULL, &_sound);
+    ma_result result = ma_sound_init_from_file(&omniscia::core::SoundEngine::get_instance().get_backend(), filePath.c_str(), 0, NULL, NULL, &_sound);
 
     if (result != MA_SUCCESS) {
         return -1;
     }
 
-    is_loaded = true;
+    _isLoaded = true;
 
     return 0;
 }
 
 void omniscia::core::Sound::unload() {
-    if(!is_loaded) return;
+    if(!_isLoaded) return;
     ma_sound_uninit(&_sound);
-    is_loaded = false;
+    _isLoaded = false;
 }
 
 void omniscia::core::Sound::prepare(const std::string& _soundId) {
@@ -35,23 +35,23 @@ void omniscia::core::Sound::prepare(const std::string& _soundId) {
     omniscia::core::SoundEngine& soundEngine = SoundEngine::get_instance();
     omniscia::core::SoundAsset* soundAsset =  SoundManager::get_instance().get(_soundId);
 
-    if(is_loaded) {
+    if(_isLoaded) {
         unload();
     }
     
     ma_sound_init_copy(&soundEngine.get_backend(), &soundAsset->get_asset()->get_backend(), 0, NULL, &_sound);
 
-    is_loaded = true;
+    _isLoaded = true;
 }
 
 void omniscia::core::Sound::play() {
-    if(!is_loaded) return;
+    if(!_isLoaded) return;
 
     ma_sound_start(&_sound);
 }
 
 bool omniscia::core::Sound::is_playing() {
-    if(!is_loaded) return false;
+    if(!_isLoaded) return false;
 
     return ma_sound_is_playing(&_sound);
 }

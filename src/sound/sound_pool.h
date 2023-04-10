@@ -1,3 +1,14 @@
+/**
+ * @file 
+ * sound_pool.h
+ * 
+ * @author 
+ * Maksim Jaroslavcevas radioboos@gmail.com
+ * 
+ * @copyright
+ * see LICENSE.md file
+*/
+
 #ifndef _SOUND_POOL_H_
 #define _SOUND_POOL_H_
 
@@ -9,13 +20,29 @@
 #include "debug_ui.h"
 
 namespace omniscia::core {
+    /**
+     * @brief SoundPool - class used for storing all sounds, manages
+     * sound play time, positioning, auto loading and unloading
+     * 
+     * @tparam __size - how much sounds can be played simultaneously
+    */
     template<unsigned long __size>
     class SoundPool {
         private:
+            /** @brief Array that stores all sound instances */
             Sound _sounds[__size];
+            
+            /** @brief Array that shows that sound are currently available */
             u8 _availableSounds[__size];
+            
+            /** @brief How much sound is currently playing */
             i8 _currentlyPlayingSoundCount;
             
+            /**
+             * @brief Finds first available sound slot index
+             * 
+             * @return index of the available sound slot | returns __size is there is not available slots
+            */
             i32 find_first_available_sound_slot() {
                 for(auto i = 0; i < __size; ++i)
                     if(_availableSounds[i] == true)
@@ -23,7 +50,9 @@ namespace omniscia::core {
 
                 return __size;
             }
+
         public:
+            /** @brief Construct a new SoundPool instance */
             SoundPool() {
                 for(u32 i = 0; i < __size; ++i)
                     _availableSounds[i] = true;
@@ -31,7 +60,14 @@ namespace omniscia::core {
                 _currentlyPlayingSoundCount = 0;
             }
 
-
+            /**
+             * @brief Invokes sound, starts play it 
+             * if there is an available slot automaticlly 
+             * loads a new miniaudio sound
+             * 
+             * @param soundId id of the sound
+             * @return index of the sound slot that was used by this sound | -1 if sound have not played
+            */
             i32 invoke_sound(const std::string& soundId) {
                 i32 availableSoundIndex = find_first_available_sound_slot();
 
@@ -51,6 +87,11 @@ namespace omniscia::core {
                 return availableSoundIndex;
             }
 
+            /**
+             * @brief Stops sound by it sound slot index
+             * 
+             * @param soundIndex index of the sound that should be stopped
+            */
             void free_sound(const i32& soundIndex) {
                 if(soundIndex >= __size) return;
                 if(soundIndex < 0) return;
@@ -66,6 +107,13 @@ namespace omniscia::core {
                 _availableSounds[soundIndex] = true;
             }
 
+            /**
+             * @brief Check by sound slot id, if it is now playing
+             * 
+             * @param soundIndex index of the sound slot, that need to be checked
+             * @return true - sound is playing
+             * @return false - sound is not playing 
+            */
             bool is_sound_playing(const i32& soundIndex) {
                 if(soundIndex >= __size) return false;
                 if(soundIndex < 0) return false;
@@ -75,6 +123,12 @@ namespace omniscia::core {
                 return sound.is_playing();
             }
 
+            /**
+             * @brief Updates sound possiotiong by sound slot index
+             * 
+             * @param soundIndex index of the sound slot
+             * @param newPos position to be set to the sound
+            */
             void position_sound(const i32& soundIndex, const Vec3f& newPos) {
                 if(soundIndex >= __size) return false;
                 if(soundIndex < 0) return false;
@@ -83,6 +137,14 @@ namespace omniscia::core {
                 sound.set_pos(newPos);
             }
 
+            /**
+             * @brief Updates sound possiotiong by sound slot index
+             * 
+             * @param soundIndex index of the sound slot
+             * @param x coordinate to be set to the sound
+             * @param y coordinate to be set to the sound
+             * @param z coordinate to be set to the sound
+            */
             void position_sound(const i32& soundIndex, const f32& x, const f32& y, const f32& z) {
                 if(soundIndex >= __size) return;
                 if(soundIndex < 0) return;
