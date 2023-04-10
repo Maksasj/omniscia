@@ -6,7 +6,7 @@ omniscia::core::ShaderAsset::ShaderAsset() {
     ++_count;
 }
 
-omniscia::core::ShaderAsset::ShaderAsset(const std::string& file_path, const ShaderAssetType& shaderType) : Asset(file_path) {
+omniscia::core::ShaderAsset::ShaderAsset(const std::string& filePath, const ShaderAssetType& shaderType) : Asset(filePath) {
     _asset = shaderType;
     ++_count;
 }

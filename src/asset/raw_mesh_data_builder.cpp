@@ -1,7 +1,7 @@
 #include "raw_mesh_data_builder.h"
 
 omniscia::gfx::RawMeshDataBuilder::RawMeshDataBuilder() {
-    maxIndex = 0;
+    _maxIndex = 0;
 }
 
 omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(RawMeshData& meshData) {
@@ -15,17 +15,17 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
         vertices.push_back(vert);
     }
 
-    u64 tmpMaxIndex = maxIndex;
+    u64 tmpMaxIndex = _maxIndex;
     for(auto& ind : incomingIndecies) {
-        u64 index = maxIndex + ind;
+        u64 index = _maxIndex + ind;
         indecies.push_back(index);
 
         if(index > tmpMaxIndex)
             tmpMaxIndex = index;
     }
 
-    if(maxIndex < tmpMaxIndex)
-        maxIndex = tmpMaxIndex + 1;
+    if(_maxIndex < tmpMaxIndex)
+        _maxIndex = tmpMaxIndex + 1;
 
     return *this;
 }
@@ -42,17 +42,17 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
         vertices.push_back(vert);
     }
 
-    u64 tmpMaxIndex = maxIndex;
+    u64 tmpMaxIndex = _maxIndex;
     for(auto& ind : incomingIndecies) {
-        u64 index = maxIndex + ind;
+        u64 index = _maxIndex + ind;
         indecies.push_back(index);
 
         if(index > tmpMaxIndex)
             tmpMaxIndex = index;
     }
 
-    if(maxIndex < tmpMaxIndex)
-        maxIndex = tmpMaxIndex + 1;
+    if(_maxIndex < tmpMaxIndex)
+        _maxIndex = tmpMaxIndex + 1;
 
     return *this;
 }
@@ -70,17 +70,17 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
         vertices.push_back(vert);
     }
 
-    u64 tmpMaxIndex = maxIndex;
+    u64 tmpMaxIndex = _maxIndex;
     for(auto& ind : incomingIndecies) {
-        u64 index = maxIndex + ind;
+        u64 index = _maxIndex + ind;
         indecies.push_back(index);
 
         if(index > tmpMaxIndex)
             tmpMaxIndex = index;
     }
 
-    if(maxIndex < tmpMaxIndex)
-        maxIndex = tmpMaxIndex + 1;
+    if(_maxIndex < tmpMaxIndex)
+        _maxIndex = tmpMaxIndex + 1;
 
     return *this;
 }
@@ -98,17 +98,17 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
         vertices.push_back(vert);
     }
 
-    u64 tmpMaxIndex = maxIndex;
+    u64 tmpMaxIndex = _maxIndex;
     for(auto& ind : incomingIndecies) {
-        u64 index = maxIndex + ind;
+        u64 index = _maxIndex + ind;
         indecies.push_back(index);
 
         if(index > tmpMaxIndex)
             tmpMaxIndex = index;
     }
 
-    if(maxIndex < tmpMaxIndex)
-        maxIndex = tmpMaxIndex + 1;
+    if(_maxIndex < tmpMaxIndex)
+        _maxIndex = tmpMaxIndex + 1;
 
     return *this;
 }
@@ -127,17 +127,17 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
         vertices.push_back(vert);
     }
 
-    u64 tmpMaxIndex = maxIndex;
+    u64 tmpMaxIndex = _maxIndex;
     for(auto& ind : incomingIndecies) {
-        u64 index = maxIndex + ind;
+        u64 index = _maxIndex + ind;
         indecies.push_back(index);
 
         if(index > tmpMaxIndex)
             tmpMaxIndex = index;
     }
 
-    if(maxIndex < tmpMaxIndex)
-        maxIndex = tmpMaxIndex + 1;
+    if(_maxIndex < tmpMaxIndex)
+        _maxIndex = tmpMaxIndex + 1;
 
     return *this;
 }
@@ -154,17 +154,17 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
         vertices.push_back(vert);
     }
 
-    u64 tmpMaxIndex = maxIndex;
+    u64 tmpMaxIndex = _maxIndex;
     for(auto& ind : incomingIndecies) {
-        u64 index = maxIndex + ind;
+        u64 index = _maxIndex + ind;
         indecies.push_back(index);
 
         if(index > tmpMaxIndex)
             tmpMaxIndex = index;
     }
 
-    if(maxIndex < tmpMaxIndex)
-        maxIndex = tmpMaxIndex + 1;
+    if(_maxIndex < tmpMaxIndex)
+        _maxIndex = tmpMaxIndex + 1;
 
     return *this;
 }

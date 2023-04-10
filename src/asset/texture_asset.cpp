@@ -5,7 +5,7 @@ u32 omniscia::core::TextureAsset::_count = 0;
 
 omniscia::core::TextureAsset::TextureAsset() { ++_count; }
 
-omniscia::core::TextureAsset::TextureAsset(const std::string& file_path) : Asset(file_path) { ++_count; }
+omniscia::core::TextureAsset::TextureAsset(const std::string& filePath) : Asset(filePath) { ++_count; }
 
 void omniscia::core::TextureAsset::load_asset() {
     stbi_set_flip_vertically_on_load(true);
@@ -20,7 +20,7 @@ void omniscia::core::TextureAsset::load_asset() {
     // load and generate the texture
     i32 width, height, nrChannels;
 
-    u8 *data = stbi_load(_file_path.c_str(), &width, &height, &nrChannels, 0);
+    u8 *data = stbi_load(_filePath.c_str(), &width, &height, &nrChannels, 0);
     if (data) {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
