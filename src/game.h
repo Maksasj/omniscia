@@ -1,3 +1,14 @@
+/**
+ * @file 
+ * game.h
+ * 
+ * @author 
+ * Maksim Jaroslavcevas radioboos@gmail.com
+ * 
+ * @copyright
+ * see LICENSE.md file
+*/
+
 #ifndef _GAME_H_
 #define _GAME_H_
 
@@ -35,33 +46,83 @@ namespace omniscia {
     using namespace omniscia::core;
     using namespace omniscia::gfx;
 
+    /**
+     * @brief Game - main game classes, manages
+     * all other classes, scenes, entities timeline,
+     * rendering, everything. This is an entry point
+     * of the game
+    */
     class Game {
         private:
+            /**
+             * @brief Pointer to GLFWwindow instance
+            */
             GLFWwindow* window;
 
+            /**
+             * @brief Pointer to the active scene
+            */
             Scene* _activeScene;
+
+            /**
+             * @brief Container that stores pointers to active scenes
+            */
             std::unordered_map<std::string, Scene*> _scenes;
 
+            /**
+             * @brief Container that stores dynamic data of the active scene
+            */
             TimeLessNessContainer<Scene::SceneDynamic, 5000> _timeLine; 
+
         public:
+            /**
+             * @brief Method used for loading gfx, sound engine, etc.
+             * 
+             * @return result 
+            */
             int load();
+
+            /**
+             * @brief Runs game, can be runned only after loading game
+             * 
+             * @return result 
+            */
             int run();
 
+            /**
+             * @brief Switches scene by scene id
+             * 
+             * @param sceneId scene id
+            */
             void switch_scene(std::string sceneId);
+            
+            /**
+             * @brief Switches scene by scene pointer
+             * 
+             * @param scenePtr pointer to the scene
+            */
             void switch_scene(Scene* scenePtr);
 
-            static Game& get_instance() {
-                static Game game;
-                return game;
-            }
+            /**
+             * @brief Get singleton instance of the game class
+             * 
+             * @return Game& reference to the active game single ton
+            */
+            static Game& get_instance();
 
-            TimeLessNessContainer<Scene::SceneDynamic, 5000>& ref_time_line() {
-                return _timeLine;
-            }
+            /**
+             * @brief Get reference to time line container
+             * 
+             * @return TimeLessNessContainer<Scene::SceneDynamic, 5000>& reference to the tile line container 
+             */
+            TimeLessNessContainer<Scene::SceneDynamic, 5000>& ref_time_line();
 
-            Scene* get_active_scene() {
-                return _activeScene;
-            }
+            /**
+             * @brief Get the pointer to active scene
+             * 
+             * @return Scene* pointer to the active scene
+            */
+            Scene* get_active_scene();
     };
 }
 

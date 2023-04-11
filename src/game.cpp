@@ -3,7 +3,7 @@
 int omniscia::Game::load() {
     Renderer::init();
 
-    window = glfwCreateWindow(Properties::screen_width, Properties::screen_height, "Omniscia", NULL, NULL);
+    window = glfwCreateWindow(Properties::screenWidth, Properties::screenHeight, "Omniscia", NULL, NULL);
 
     if (window == NULL) {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -37,17 +37,17 @@ int omniscia::Game::run() {
     if(shaderBackground.try_compile()) shaderBackground.compile();
     
     RenderStage renderBackgroundStage;
-        renderBackgroundStage.bind_target_texture_buffer(new TextureBuffer(Properties::screen_width, Properties::screen_height));
+        renderBackgroundStage.bind_target_texture_buffer(new TextureBuffer(Properties::screenWidth, Properties::screenHeight));
         renderBackgroundStage.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
         renderBackgroundStage.bind_default_shader(&shaderBackground);
 
     RenderStage renderStage1;
-        renderStage1.bind_target_texture_buffer(new TextureBuffer(Properties::screen_width, Properties::screen_height));
+        renderStage1.bind_target_texture_buffer(new TextureBuffer(Properties::screenWidth, Properties::screenHeight));
         renderStage1.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
         renderStage1.bind_default_shader(&shader1);
 
     RenderStage renderStage2;
-        renderStage2.bind_target_texture_buffer(new TextureBuffer(Properties::screen_width, Properties::screen_height));
+        renderStage2.bind_target_texture_buffer(new TextureBuffer(Properties::screenWidth, Properties::screenHeight));
         renderStage2.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
         renderStage2.bind_default_shader(&shader2);
 
@@ -129,13 +129,13 @@ int omniscia::Game::run() {
         /* Render background */
         renderBackgroundStage.render_stage_lambda([&](const Shader* stage_shader){ 
             Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
-            stage_shader->set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
+            stage_shader->set_uniform_f32("screen_aspect", (Properties::screenWidth) / (float) Properties::screenHeight);
             ECS_ParallaxSpriteRendererBackSystem::get_instance().render(stage_shader);
         });
 
         renderStage1.render_stage_lambda([&](){ 
             Renderer::clear_buffer(Vec4f{0.0, 0.0, 0.0, 0.0});
-            shader1.set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
+            shader1.set_uniform_f32("screen_aspect", (Properties::screenWidth) / (float) Properties::screenHeight);
 
             ECS_SpriteRendererSystem::get_instance().render(&shader1);
             ECS_SpriteSheetRendererSystem::get_instance().render(&shader1);
@@ -144,7 +144,7 @@ int omniscia::Game::run() {
 
         renderStage2.render_stage_lambda([&](const Shader* stage_shader){ 
             Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
-            stage_shader->set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
+            stage_shader->set_uniform_f32("screen_aspect", (Properties::screenWidth) / (float) Properties::screenHeight);
 
             renderBackgroundStage.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
             renderStage1.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
@@ -152,7 +152,7 @@ int omniscia::Game::run() {
 
         renderBackgroundStage.render_stage_lambda([&](const Shader* stage_shader){ 
             Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
-            stage_shader->set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
+            stage_shader->set_uniform_f32("screen_aspect", (Properties::screenWidth) / (float) Properties::screenHeight);
             ECS_ParallaxSpriteRendererFrontSystem::get_instance().render(stage_shader);
         });
 
@@ -160,7 +160,7 @@ int omniscia::Game::run() {
         RenderStage::render_anonymous_stage_lambda([&]() {
             Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 1.0});
             shader3.activate();
-            shader3.set_uniform_f32("screen_aspect", (Properties::screen_width) / (float) Properties::screen_height);
+            shader3.set_uniform_f32("screen_aspect", (Properties::screenWidth) / (float) Properties::screenHeight);
 
             renderStage2.present_as_texture();
             renderBackgroundStage.present_as_texture();
@@ -200,4 +200,17 @@ void omniscia::Game::switch_scene(Scene* scenePtr) {
     
     _activeScene = scenePtr;
     _activeScene->time_sync();
+}
+
+omniscia::Game& omniscia::Game::get_instance() {
+    static Game game;
+    return game;
+}
+
+omniscia::core::TimeLessNessContainer<omniscia::core::Scene::SceneDynamic, 5000>& omniscia::Game::ref_time_line() {
+    return _timeLine;
+}
+
+omniscia::core::Scene* omniscia::Game::get_active_scene() {
+    return _activeScene;
 }
