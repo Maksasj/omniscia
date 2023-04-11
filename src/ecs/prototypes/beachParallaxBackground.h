@@ -1,3 +1,14 @@
+/**
+ * @file 
+ * beachParallaxBackground.h
+ * 
+ * @author 
+ * Maksim Jaroslavcevas radioboos@gmail.com
+ * 
+ * @copyright
+ * see LICENSE.md file
+*/
+
 #ifndef _BEACH_PARALLAX_BACKGROUND_H_
 #define _BEACH_PARALLAX_BACKGROUND_H_
 
@@ -5,9 +16,23 @@
 #include "entity.h"
 
 namespace omniscia::core {
+    /**
+     * @brief BeachParallaxBackground - prototype class 
+     * used for creating beach parallax background
+     * entity instance
+    */
     class BeachParallaxBackground : public Entity {
+        private:
+
         public:
+            /** @brief Default BeachParallaxBackground constructor */
             BeachParallaxBackground();
+            
+            /**
+             * @brief Clones BeachParallaxBackground entity instance
+             * 
+             * @return BeachParallaxBackground new instance of the BeachParallaxBackground object
+            */
             BeachParallaxBackground clone();
     };
 }
