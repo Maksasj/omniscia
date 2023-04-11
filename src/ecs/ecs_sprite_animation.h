@@ -44,7 +44,7 @@ namespace omniscia::core::ecs {
             std::string _animationId;
             
             /** @brief Tick of the animation */
-            u64 _tick;
+            u32 _tick;
 
             /**
              * @brief Pointer to the animation asset data
@@ -52,6 +52,10 @@ namespace omniscia::core::ecs {
             Animation* animation;
 
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_SpriteAnimation, this->_currentFrame << " " << this->_animationId << " " << this->_tick);
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_SpriteAnimation, self._currentFrame << " " << self._animationId << " " << self._tick);
+        
             /**
              * @brief Method used for time 
              * synchronization of the component

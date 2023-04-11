@@ -32,6 +32,10 @@ namespace omniscia::core::ecs {
             std::vector<std::shared_ptr<ECS_Component>> _components;
 
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_ComponentContainer, this->_components.size());
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_ComponentContainer, self._components.size());
+
             /**
              * @brief Method used for clonning ECS_ComponentContainer 
              * cotainer, also clones all components inside it

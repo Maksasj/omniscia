@@ -40,16 +40,20 @@ namespace omniscia::core::ecs {
             */
             Entity* _parent;
 
+            /** @brief Gravity acceleration speed */
+            f32 _gravitationalAcceleration;
+
             /** @brief ECS_Index of the velocity component */
             ECS_Index<ECS_Velocity> velocityIndex;
             
             /** @brief ECS_Index of the acceleration component */
             ECS_Index<ECS_Acceleration> accelerationIndex;
 
-            /** @brief Gravity acceleration speed */
-            f32 _gravitationalAcceleration;
-
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_Gravity, this->_parent << " " << this->_gravitationalAcceleration);
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_Gravity, self._parent << " " << self._gravitationalAcceleration);
+
             /**
              * @brief Method used for time 
              * synchronization of the component

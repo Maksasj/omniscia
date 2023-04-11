@@ -53,6 +53,10 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_Positioned> posIndex;
 
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_CameraFollow, this->_parent << " " << this->_camPos << " " << this->_cameraFollowSpeed);
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_CameraFollow, self._parent << " " << self._camPos << " " << self._cameraFollowSpeed);
+
             /**
              * @brief Method used for time 
              * synchronization of the component

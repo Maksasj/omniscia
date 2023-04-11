@@ -33,6 +33,10 @@ namespace omniscia::core::ecs {
             Vec2f _scale;
 
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_Scaled, this->_scale);
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_Scaled, self._scale);
+
             /**
              * @brief Default constructor of the ECS_Scaled component
              * 

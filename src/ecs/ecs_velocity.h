@@ -46,6 +46,10 @@ namespace omniscia::core::ecs {
             Vec2f _velocityRangesY;
             
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_Velocity, this->_vel << " " << this->_velocityRangesX << " " << this->_velocityRangesY); 
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_Velocity, self._vel << " " << self._velocityRangesX << " " << self._velocityRangesY);
+
             /**
              * @brief Default constructor for ECS_Velocity component
              * 

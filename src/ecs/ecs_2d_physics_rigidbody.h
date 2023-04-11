@@ -60,6 +60,10 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_PhysicsPositioned> _physicsPositionedIndex;
             
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_2DPhysicsRigidbody, this->_parent);
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_2DPhysicsRigidbody, self._parent);
+
             /**
              * @brief Method used for time 
              * synchronization of the component

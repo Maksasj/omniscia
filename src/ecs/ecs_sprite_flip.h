@@ -35,6 +35,10 @@ namespace omniscia::core::ecs {
             bool _verticalFlip;
 
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_SpriteFlip, this->_horizontalFlip << " " << this->_verticalFlip); 
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_SpriteFlip, self._horizontalFlip << " " << self._verticalFlip);
+        
             /**
              * @brief Default constructor of the ECS_SpriteFlip component
             */

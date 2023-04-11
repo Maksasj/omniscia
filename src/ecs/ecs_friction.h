@@ -34,6 +34,10 @@ namespace omniscia::core::ecs {
             f32 _friction;
 
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_Friction, this->_friction);
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_Friction, self._friction);
+
             /**
              * @brief Default constructor of the ECS_Friction component
              * 

@@ -55,6 +55,10 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_SoundEmitter> _soundEmitterIndex;
 
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_CrabController, this->_parent);
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_CrabController, self._parent);
+
             /**
              * @brief Method used for time 
              * synchronization of the component

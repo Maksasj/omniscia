@@ -35,6 +35,10 @@ namespace omniscia::core::ecs {
         Vec3f _newPosition;
 
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_PhysicsPositioned, this->_oldPosition << " " << this->_newPosition);
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_PhysicsPositioned, self._oldPosition << " " << self._newPosition);
+
             /**
              * @brief Default ECS_PhysicsPositioned component constructor 
             */

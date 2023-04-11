@@ -32,7 +32,11 @@ namespace omniscia::core::ecs {
             /** @brief Position of the entity */
             Vec3f _pos;
 
-        public: 
+        public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_Positioned, this->_pos);
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_Positioned, self._pos);
+
             /**
              * @brief Default constructor of the ECS_Positioned component
              * 

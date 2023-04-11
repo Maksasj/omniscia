@@ -39,6 +39,16 @@ namespace omniscia::core::ecs {
             CollisionSide _collisionSideY;
 
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(
+                ECS_MovableAABBCollider, 
+                this->_parent << " " << this->_colliding << " " << this->_collisionPoint << " " << this->_collisionSide << " | " <<
+                this->_collidingY << " " << this->_collisionPointY << " " << this->_collisionSideY)
+            OMNISCIA_OFSTREAM_REPRESENTATION(
+                ECS_MovableAABBCollider, 
+                self._parent << " "<< self._colliding << " " << self._collisionPoint << " " << self._collisionSide << " | " <<
+                self._collidingY << " " << self._collisionPointY << " " << self._collisionSideY)
+
             /**
              * @brief Method used for time 
              * synchronization of the component

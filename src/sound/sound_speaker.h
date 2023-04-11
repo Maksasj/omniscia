@@ -26,14 +26,15 @@ namespace omniscia::core {
      * by Sound emitter component
     */
     class SoundSpeaker {
-        /** @brief Position of the sound speaker */
-        Vec2f _soundSourcePos;
+        private:
+            /** @brief Position of the sound speaker */
+            Vec2f _soundSourcePos;
 
-        /**
-         * @brief Active sound slot index, if there 
-         * is no sound this value is set to -1
-        */
-        i32 _activeSound;
+            /**
+             * @brief Active sound slot index, if there 
+             * is no sound this value is set to -1
+            */
+            i32 _activeSound;
 
         public:
             /**

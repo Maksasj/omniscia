@@ -55,6 +55,10 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_SpriteAnimation> spriteAnimationIndex;
 
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_PlayerController, this->_parent);
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_PlayerController, self._parent);
+
             /**
              * @brief Method used for time 
              * synchronization of the component

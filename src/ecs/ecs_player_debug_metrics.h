@@ -41,6 +41,10 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_Positioned> _posIndex;
 
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_PlayerDebugMetrics, this->_parent);
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_PlayerDebugMetrics, self._parent);
+
             /**
              * @brief Method used for time 
              * synchronization of the component

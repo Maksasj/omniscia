@@ -53,6 +53,10 @@ namespace omniscia::core::ecs {
             std::function<f32(f32&)> _layerOffsetCallBack;
 
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_ParallaxSpriteRendererFront, this->_layer << " " << this->_layerOffset);
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_ParallaxSpriteRendererFront, self._layer << " " << self._layerOffset);
+
             /**
              * @brief Method used for time 
              * synchronization of the component

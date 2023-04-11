@@ -67,6 +67,10 @@ namespace omniscia::core::ecs {
         public:
             friend class ECS_MovableAABBCollider;
 
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_AABBCollider, this->_parent << " "<< this->_colliding << " " << this->_collisionPoint << " " << this->_collisionSide)
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_AABBCollider, self._parent << " "<< self._colliding << " " << self._collisionPoint << " " << self._collisionSide)
+
             /**
              * @brief Method used for time 
              * synchronization of the component
@@ -192,7 +196,6 @@ namespace omniscia::core::ecs {
              * all currently assigned components
             */
             void update() {
-                std::cout << _components.size() << "\n";
                 for(int i = 0; i < _components.size(); ++i) {
                     for(int j = 0; j < _components.size(); ++j) { 
                         if(i == j) continue;

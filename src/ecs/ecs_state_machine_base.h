@@ -32,6 +32,10 @@ namespace omniscia::core::ecs {
             void (ECS_StateMachineBase::*_activeState)();
             
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_StateMachineBase, ""); 
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_StateMachineBase, ""); 
+
             /**
              * @brief Method used for time 
              * synchronization of the component

@@ -49,6 +49,10 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_MovableAABBCollider> movableAABBColliderIndex;
 
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_PlayerTimeJumpController, this->_parent);
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_PlayerTimeJumpController, self._parent);
+
             /**
              * @brief Default ECS_PlayerTimeJumpController component constructor
             */

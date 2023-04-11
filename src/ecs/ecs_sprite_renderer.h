@@ -59,6 +59,10 @@ namespace omniscia::core::ecs {
             Sprite _sprite;
 
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_SpriteRenderer, this->_layer); 
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_SpriteRenderer, self._layer);
+
             /**
              * @brief Method used for time 
              * synchronization of the component

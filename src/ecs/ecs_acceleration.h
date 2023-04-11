@@ -33,6 +33,10 @@ namespace omniscia::core::ecs {
             Vec3f _acl;
 
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_Acceleration, this->_acl);
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_Acceleration, self._acl);
+
             /**
              * @brief Method that reindexes all indexes
              * that are required by this component,

@@ -15,8 +15,22 @@
 #include <array>
 #include <memory>
 #include <iostream>
+#include <sstream>
 
 #include "types.tpp"
+
+#define OMNISCIA_STRING_REPRESENTATION(__TYPE_NAME__, ...)                          \
+    std::string to_string() const {                                                 \
+        std::stringstream ss;                                                       \
+        ss << __VA_ARGS__;                                                          \
+        return ss.str();                                                            \
+    }                                                                               \
+
+#define OMNISCIA_OFSTREAM_REPRESENTATION(__TYPE_NAME__, ...)                        \
+    friend std::ostream& operator<<(std::ostream& os, const __TYPE_NAME__& self) {  \
+        os << #__TYPE_NAME__ << " " << __VA_ARGS__;                                 \
+        return os;                                                                  \
+    }                                                                               \
 
 namespace omniscia::core::ecs {
     /**

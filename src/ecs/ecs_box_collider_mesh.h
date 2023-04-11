@@ -55,6 +55,10 @@ namespace omniscia::core::ecs {
             Vec2f _yRanges;
 
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_BoxColliderMesh, this->_xRanges << " " << this->_yRanges);
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_BoxColliderMesh, self._xRanges << " " << self._yRanges);
+
             /**
              * @brief Constructs a new ECS_BoxColliderMesh object
              * 

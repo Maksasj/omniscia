@@ -49,6 +49,11 @@ namespace omniscia::core::ecs {
             */
             u32 _layer;
 
+            /**
+             * @brief Sprite instance
+            */
+            Sprite _sprite;
+
             /** @brief ECS_Index of the sprite flip component */
             ECS_Index<ECS_SpriteFlip> _spriteFlipIndex;
             
@@ -61,12 +66,11 @@ namespace omniscia::core::ecs {
             /** @brief ECS_Index of the scale component */
             ECS_Index<ECS_Scaled> _scaleIndex;
 
-            /**
-             * @brief Sprite instance
-            */
-            Sprite _sprite;
-
         public:
+            /* Some evil macros */
+            OMNISCIA_STRING_REPRESENTATION(ECS_SpriteSheetRenderer, this->_parent << " " << this->_layer); 
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_SpriteSheetRenderer, self._parent << " " << self._layer);
+
             /**
              * @brief Method used for time 
              * synchronization of the component
