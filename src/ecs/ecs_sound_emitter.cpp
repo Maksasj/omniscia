@@ -23,6 +23,6 @@ void omniscia::core::ecs::ECS_SoundEmitter::update() {
     _speaker.update();
 }
 
-void omniscia::core::ecs::ECS_SoundEmitter::play(const std::string& sound_id) {
-    _speaker.play(sound_id);
+void omniscia::core::ecs::ECS_SoundEmitter::play(const std::string& soundId) {
+    _speaker.play(soundId);
 }

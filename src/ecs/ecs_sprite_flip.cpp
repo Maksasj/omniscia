@@ -10,10 +10,6 @@ omniscia::core::ecs::ECS_SpriteFlip::ECS_SpriteFlip(const bool& horizontalFlip, 
     _verticalFlip = verticalFlip;
 }
 
-void omniscia::core::ecs::ECS_SpriteFlip::reindex(void* parent) {
-
-}
-
 bool omniscia::core::ecs::ECS_SpriteFlip::get_horizontal_flip() const {
     return _horizontalFlip;
 }

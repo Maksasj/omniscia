@@ -1,6 +1,6 @@
 #include "ecs_sprite_renderer.h"
 
-omniscia::core::ecs::ECS_SpriteRenderer::ECS_SpriteRenderer(const std::string& texture_id, const u32& layer) : _sprite(texture_id) {
+omniscia::core::ecs::ECS_SpriteRenderer::ECS_SpriteRenderer(const std::string& textureId, const u32& layer) : _sprite(textureId) {
     _layer = layer;
 
     ECS_SpriteRendererSystem::get_instance().bind_component(this);

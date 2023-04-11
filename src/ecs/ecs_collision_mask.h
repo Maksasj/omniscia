@@ -1,14 +1,37 @@
+/**
+ * @file 
+ * ecs_collision_mask.h
+ * 
+ * @author 
+ * Maksim Jaroslavcevas radioboos@gmail.com
+ * 
+ * @copyright
+ * see LICENSE.md file
+*/
+
 #ifndef _ECS_COMPONENT_COLLISION_MASK_H_
 #define _ECS_COMPONENT_COLLISION_MASK_H_
 
 #include "entity.h"
 
 namespace omniscia::core::ecs {
+    /**
+     * @brief CollisionMask - enum that describes different
+     * collision layers, used by collision detection components (aabb)
+    */
     enum CollisionMask {
+        /** @brief There is no collision mask */
         CollisionMask_None              = 0,
+        
+        /** @brief Collision with player entity */
         CollisionMask_Player            = 1 << 0,
+
+        /** @brief Collision with ambient entity */
         CollisionMask_AmbientEntities   = 1 << 1,
+
+        /** @brief Collision with tiles */
         CollisionMask_Tiles             = 1 << 2,
+        
         /*
         CollisionMask_Layer5            = 1 << 3,
         CollisionMask_Layer6            = 1 << 4,

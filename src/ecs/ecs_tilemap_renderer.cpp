@@ -1,6 +1,6 @@
 #include "ecs_tilemap_renderer.h"
 
-omniscia::core::ecs::ECS_TilemapRenderer::ECS_TilemapRenderer(const RawMeshData& meshData, const std::string& texture_id, const u32& layer) : _sprite(meshData, texture_id) {
+omniscia::core::ecs::ECS_TilemapRenderer::ECS_TilemapRenderer(const RawMeshData& meshData, const std::string& textureId, const u32& layer) : _sprite(meshData, textureId) {
     _layer = layer;
 
     ECS_TilemapRendererSystem::get_instance().bind_component(this);

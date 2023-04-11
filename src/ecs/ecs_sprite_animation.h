@@ -1,3 +1,14 @@
+/**
+ * @file 
+ * ecs_sprite_animation.h
+ * 
+ * @author 
+ * Maksim Jaroslavcevas radioboos@gmail.com
+ * 
+ * @copyright
+ * see LICENSE.md file
+*/
+
 #ifndef _ECS_SPRITE_ANIMATION_H_
 #define _ECS_SPRITE_ANIMATION_H_
 
@@ -20,32 +31,97 @@ namespace omniscia::core::ecs {
     using namespace omniscia::gfx::sprite;
     using namespace omniscia::gfx; 
 
+    /**
+     * @brief ECS_SpriteAnimation - component that
+     * manages sprite animations, updates animation frames
+    */
     class ECS_SpriteAnimation : public ECS_Component {
         private:
+            /** @brief Current frame of the animation */
             u64 _currentFrame;
+
+            /** @brief Animation id */
             std::string _animationId;
             
+            /** @brief Tick of the animation */
             u64 _tick;
 
+            /**
+             * @brief Pointer to the animation asset data
+            */
             Animation* animation;
+
         public:
+            /**
+             * @brief Method used for time 
+             * synchronization of the component
+             * instance, binds component to the
+             * system
+            */
             void time_sync() override;
 
+            /**
+             * @brief Default constructor of the ECS_SpriteAnimation component
+             * 
+             * @param animationId id of the animation
+            */
             ECS_SpriteAnimation(const std::string &animationId);
             
+            /**
+             * @brief Sets animation by it id
+             * 
+             * @param animationId animation ud
+            */
             void set_animation(const std::string &animationId);
-            std::string get_animation() const;
-            void reset_animation();
             
+            /**
+             * @brief Get the animation object
+             * 
+             * @return std::string 
+             */
+            std::string get_animation() const;
+
+            /**
+             * @brief Reset animation to frame 0
+            */
+            void reset_animation();
+
+            /**
+             * @brief Get the frame size of the animation
+             * 
+             * @return Vec2f frame size 
+            */
             Vec2f get_frame_size() const;
+            
+            /**
+             * @brief Get the frame offset of the animation
+             * 
+             * @return Vec2f frame offset
+            */
             Vec2f get_frame_offset() const;
 
+            /**
+             * @brief Updates animation frame, and offset
+            */
             void update();
 
+            /**
+             * @brief Method used for clonning single 
+             * component instance, allocates copy of
+             * the current component and returns pointer to it
+             * 
+             * @return pointer to the new component instance
+            */
             std::shared_ptr<ECS_Component> clone() override {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_SpriteAnimation>(*this));
             }
 
+            /**
+             * @brief Virtual method used for 
+             * calculating byte size of the component
+             * 
+             * @return byte size of the component
+            */
             u64 byte_size() override {
                 return sizeof(ECS_SpriteAnimation);
             }

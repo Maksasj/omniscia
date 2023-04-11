@@ -25,10 +25,6 @@ omniscia::core::ecs::ECS_Velocity::ECS_Velocity(const Vec2f& velocityRangesX, co
     _velocityRangesY = velocityRangesY;
 }
 
-void omniscia::core::ecs::ECS_Velocity::reindex(void* parent) {
-
-}
-
 omniscia::core::Vec3f omniscia::core::ecs::ECS_Velocity::get_velocity() const {
     return _vel;
 }
@@ -43,4 +39,14 @@ void omniscia::core::ecs::ECS_Velocity::add_velocity(Vec3f force) {
 
 void omniscia::core::ecs::ECS_Velocity::set_velocity(Vec3f velocity) {
     _vel = velocity;
+}
+
+void omniscia::core::ecs::ECS_Velocity::clamp_velocity() {
+    if(_vel.x > _velocityRangesX.x) _vel.x = _velocityRangesX.x;
+    if(_vel.y > _velocityRangesY.x) _vel.y = _velocityRangesY.x;
+    //if(_vel.z > _maxVelocityZ) _vel.z = _maxVelocityZ;
+    
+    if(_vel.x < _velocityRangesX.y) _vel.x = _velocityRangesX.y;
+    if(_vel.y < _velocityRangesY.y) _vel.y = _velocityRangesY.y;
+    //if(_vel.z < _minVelocityZ) _vel.z = _minVelocityZ;
 }

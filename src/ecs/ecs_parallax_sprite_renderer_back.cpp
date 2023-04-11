@@ -1,6 +1,6 @@
 #include "ecs_parallax_sprite_renderer_back.h"
 
-omniscia::core::ecs::ECS_ParallaxSpriteRendererBack::ECS_ParallaxSpriteRendererBack(const std::string& texture_id, const u32& layer, const std::function<f32(f32&)>& layerOffsetCallBack) : _sprite(texture_id) , _layerOffsetCallBack(layerOffsetCallBack) {
+omniscia::core::ecs::ECS_ParallaxSpriteRendererBack::ECS_ParallaxSpriteRendererBack(const std::string& textureId, const u32& layer, const std::function<f32(f32&)>& layerOffsetCallBack) : _sprite(textureId) , _layerOffsetCallBack(layerOffsetCallBack) {
     _layer = layer;
 
     _layerOffset = 0;

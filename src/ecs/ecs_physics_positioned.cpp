@@ -5,13 +5,6 @@ omniscia::core::ecs::ECS_PhysicsPositioned::ECS_PhysicsPositioned() {
     _oldPosition = Vec3f{0.0f, 0.0f, 0.0f};
 }
 
-void omniscia::core::ecs::ECS_PhysicsPositioned::reindex(void* parent) {
-}
-
-void omniscia::core::ecs::ECS_PhysicsPositioned::time_sync() {
-
-}
-
 omniscia::core::Vec3f omniscia::core::ecs::ECS_PhysicsPositioned::get_old_position() const {
     return _oldPosition;
 }
