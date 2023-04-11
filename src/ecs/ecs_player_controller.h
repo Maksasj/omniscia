@@ -105,18 +105,44 @@ namespace omniscia::core::ecs {
             }
     };
 
+    /**
+     * @brief ECS_PlayerControllerSystem - System 
+     * class used for managing all updates and data for
+     * all active ECS_PlayerController type components
+    */
     class ECS_PlayerControllerSystem : public ECS_System<ECS_PlayerController> {
         private:
+            /**
+             * @brief Hidden default constructor
+            */
             ECS_PlayerControllerSystem() {};
+            
+            /**
+             * @brief Hidden default copy constructor
+            */
             ECS_PlayerControllerSystem(ECS_PlayerControllerSystem const&) {};
+            
+            /**
+             * @brief Hidden default assignment operator
+            */
             void operator=(ECS_PlayerControllerSystem const&) {};
+        
         public:
+            /**
+             * @brief Main update method, updates 
+             * all currently assigned components
+            */
             void update() {
                 for(ECS_PlayerController* comp : _components) {
                     comp->control();
                 }
             }
 
+            /**
+             * @brief Get the singleton instance of the ECS_PlayerControllerSystem system
+             * 
+             * @return Reference to singleton instance of the ECS_PlayerControllerSystem system
+            */
             static ECS_PlayerControllerSystem& get_instance() {
                 static ECS_PlayerControllerSystem instance;
                 return instance;

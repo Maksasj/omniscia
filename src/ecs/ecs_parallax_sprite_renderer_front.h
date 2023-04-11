@@ -107,18 +107,44 @@ namespace omniscia::core::ecs {
             }
     };
 
+    /**
+     * @brief ECS_ParallaxSpriteRendererFrontSystem - System 
+     * class used for managing all updates and data for
+     * all active ECS_ParallaxSpriteRendererFront type components
+    */
     class ECS_ParallaxSpriteRendererFrontSystem : public ECS_System<ECS_ParallaxSpriteRendererFront> {
         private:
+            /**
+             * @brief Hidden default constructor
+            */
             ECS_ParallaxSpriteRendererFrontSystem() {};
+            
+            /**
+             * @brief Hidden default copy constructor
+            */
             ECS_ParallaxSpriteRendererFrontSystem(ECS_ParallaxSpriteRendererFrontSystem const&) {};
+            
+            /**
+             * @brief Hidden default assignment operator
+            */
             void operator=(ECS_ParallaxSpriteRendererFrontSystem const&) {};
+
         public:
+            /**
+             * @brief Main rendering method, renders 
+             * all currently assigned components
+            */
             void render(const Shader* shader) {
                 for(ECS_ParallaxSpriteRendererFront* comp : _components) {
                     comp->render(shader);
                 }
             }
 
+            /**
+             * @brief Get the singleton instance of the ECS_ParallaxSpriteRendererFrontSystem system
+             * 
+             * @return Reference to singleton instance of the ECS_ParallaxSpriteRendererFrontSystem system
+            */
             static ECS_ParallaxSpriteRendererFrontSystem& get_instance() {
                 static ECS_ParallaxSpriteRendererFrontSystem instance;
                 return instance;

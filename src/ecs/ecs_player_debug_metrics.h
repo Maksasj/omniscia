@@ -91,18 +91,44 @@ namespace omniscia::core::ecs {
             }
     };
 
+    /**
+     * @brief ECS_PlayerDebugMetricsSystem - System 
+     * class used for managing all updates and data for
+     * all active ECS_PlayerDebugMetrics type components
+    */
     class ECS_PlayerDebugMetricsSystem : public ECS_System<ECS_PlayerDebugMetrics> {
         private:
+            /**
+             * @brief Hidden default constructor
+            */
             ECS_PlayerDebugMetricsSystem() {};
+            
+            /**
+             * @brief Hidden default copy constructor
+            */
             ECS_PlayerDebugMetricsSystem(ECS_PlayerDebugMetricsSystem const&) {};
+            
+            /**
+             * @brief Hidden default assignment operator
+            */
             void operator=(ECS_PlayerDebugMetricsSystem const&) {};
+
         public:
+            /**
+             * @brief Main update method, updates 
+             * all currently assigned components
+            */
             void update() {
                 for(ECS_PlayerDebugMetrics* comp : _components) {
                     comp->update();
                 }
             }
 
+            /**
+             * @brief Get the singleton instance of the ECS_PlayerDebugMetricsSystem system
+             * 
+             * @return Reference to singleton instance of the ECS_PlayerDebugMetricsSystem system
+            */
             static ECS_PlayerDebugMetricsSystem& get_instance() {
                 static ECS_PlayerDebugMetricsSystem instance;
                 return instance;

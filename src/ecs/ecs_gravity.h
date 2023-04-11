@@ -99,18 +99,44 @@ namespace omniscia::core::ecs {
             }
     };
 
+    /**
+     * @brief ECS_GravitySystem - System 
+     * class used for managing all updates and data for
+     * all active ECS_Gravity type components
+    */
     class ECS_GravitySystem : public ECS_System<ECS_Gravity> {
         private:
+            /**
+             * @brief Hidden default constructor
+            */
             ECS_GravitySystem() {};
+            
+            /**
+             * @brief Hidden default copy constructor
+            */
             ECS_GravitySystem(ECS_GravitySystem const&) {};
+            
+            /**
+             * @brief Hidden default assignment operator
+            */
             void operator=(ECS_GravitySystem const&) {};
+
         public:
+            /**
+             * @brief Main update method, updates 
+             * all currently assigned components
+            */
             void update() {
                 for(ECS_Gravity* comp : _components) {
                     comp->update();
                 }
             }
 
+            /**
+             * @brief Get the singleton instance of the ECS_GravitySystem system
+             * 
+             * @return Reference to singleton instance of the ECS_GravitySystem system
+            */
             static ECS_GravitySystem& get_instance() {
                 static ECS_GravitySystem instance;
                 return instance;

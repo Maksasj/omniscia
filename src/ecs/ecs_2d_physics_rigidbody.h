@@ -131,24 +131,54 @@ namespace omniscia::core::ecs {
             }
     };
 
+    /**
+     * @brief ECS_2DPhysicsRigidbodySystem - System 
+     * class used for managing all updates and data for
+     * all active ECS_2DPhysicsRigidbody type components
+    */
     class ECS_2DPhysicsRigidbodySystem : public ECS_System<ECS_2DPhysicsRigidbody> {
         private:
+            /**
+             * @brief Hidden default constructor
+            */
             ECS_2DPhysicsRigidbodySystem() {};
+            
+            /**
+             * @brief Hidden default copy constructor
+            */
             ECS_2DPhysicsRigidbodySystem(ECS_2DPhysicsRigidbodySystem const&) {};
+            
+            /**
+             * @brief Hidden default assignment operator
+            */         
             void operator=(ECS_2DPhysicsRigidbodySystem const&) {};
+
         public:
+            /**
+             * @brief Main update method, updates 
+             * all currently assigned components
+            */
             void update() {
                 for(ECS_2DPhysicsRigidbody* comp : _components) {
                     comp->update();
                 }
             }
 
+            /**
+             * @brief Late update method
+             * runs after main update method
+            */
             void late_update() {
                 for(ECS_2DPhysicsRigidbody* comp : _components) {
                     comp->late_update();
                 }
             }
 
+            /**
+             * @brief Get the singleton instance of the ECS_2DPhysicsRigidbodySystem system
+             * 
+             * @return Reference to singleton instance of the ECS_2DPhysicsRigidbodySystem system
+            */
             static ECS_2DPhysicsRigidbodySystem& get_instance() {
                 static ECS_2DPhysicsRigidbodySystem instance;
                 return instance;

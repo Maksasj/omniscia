@@ -82,18 +82,44 @@ namespace omniscia::core::ecs {
             }
     };
 
+    /**
+     * @brief ECS_PlayerTimeJumpControllerSystem - System 
+     * class used for managing all updates and data for
+     * all active ECS_PlayerTimeJumpController type components
+    */
     class ECS_PlayerTimeJumpControllerSystem : public ECS_System<ECS_PlayerTimeJumpController> {
         private:
+            /**
+             * @brief Hidden default constructor
+            */
             ECS_PlayerTimeJumpControllerSystem() {};
+            
+            /**
+             * @brief Hidden default copy constructor
+            */
             ECS_PlayerTimeJumpControllerSystem(ECS_PlayerTimeJumpControllerSystem const&) {};
+            
+            /**
+             * @brief Hidden default assignment operator
+            */
             void operator=(ECS_PlayerTimeJumpControllerSystem const&) {};
+
         public:
+            /**
+             * @brief Main update method, updates 
+             * all currently assigned components
+            */
             void update() {
                 for(ECS_PlayerTimeJumpController* comp : _components) {
                     comp->update();
                 }
             }
 
+            /**
+             * @brief Get the singleton instance of the ECS_PlayerTimeJumpControllerSystem system
+             * 
+             * @return Reference to singleton instance of the ECS_PlayerTimeJumpControllerSystem system
+            */
             static ECS_PlayerTimeJumpControllerSystem& get_instance() {
                 static ECS_PlayerTimeJumpControllerSystem instance;
                 return instance;

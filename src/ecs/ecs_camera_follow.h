@@ -137,18 +137,44 @@ namespace omniscia::core::ecs {
             }
     };
 
+    /**
+     * @brief ECS_CameraFollowSystem - System 
+     * class used for managing all updates and data for
+     * all active ECS_CameraFollow type components
+    */
     class ECS_CameraFollowSystem : public ECS_System<ECS_CameraFollow> {
         private:
+            /**
+             * @brief Hidden default constructor
+            */
             ECS_CameraFollowSystem() {};
+            
+            /**
+             * @brief Hidden default copy constructor
+            */
             ECS_CameraFollowSystem(ECS_CameraFollowSystem const&) {};
+            
+            /**
+             * @brief Hidden default assignment operator
+            */
             void operator=(ECS_CameraFollowSystem const&) {};
+
         public:
+            /**
+             * @brief Main update method, updates 
+             * all currently assigned components
+            */
             void update(Shader* shader) {
                 for(ECS_CameraFollow* comp : _components) {
                     comp->update(shader);
                 }
             }
 
+            /**
+             * @brief Get the singleton instance of the ECS_CameraFollowSystem system
+             * 
+             * @return Reference to singleton instance of the ECS_CameraFollowSystem system
+            */
             static ECS_CameraFollowSystem& get_instance() {
                 static ECS_CameraFollowSystem instance;
                 return instance;

@@ -98,18 +98,44 @@ namespace omniscia::core::ecs {
             }
     };
 
+    /**
+     * @brief ECS_PlayerJumpSystem - System 
+     * class used for managing all updates and data for
+     * all active ECS_PlayerJump type components
+    */
     class ECS_PlayerJumpSystem : public ECS_System<ECS_PlayerJump> {
         private:
+            /**
+             * @brief Hidden default constructor
+            */
             ECS_PlayerJumpSystem() {};
+            
+            /**
+             * @brief Hidden default copy constructor
+            */
             ECS_PlayerJumpSystem(ECS_PlayerJumpSystem const&) {};
+            
+            /**
+             * @brief Hidden default assignment operator
+            */
             void operator=(ECS_PlayerJumpSystem const&) {};
+
         public:
+            /**
+             * @brief Main update method, updates 
+             * all currently assigned components
+            */
             void update() {
                 for(ECS_PlayerJump* comp : _components) {
                     comp->update();
                 }
             }
 
+            /**
+             * @brief Get the singleton instance of the ECS_PlayerJumpSystem system
+             * 
+             * @return Reference to singleton instance of the ECS_PlayerJumpSystem system
+            */
             static ECS_PlayerJumpSystem& get_instance() {
                 static ECS_PlayerJumpSystem instance;
                 return instance;

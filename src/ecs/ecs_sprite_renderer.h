@@ -121,18 +121,44 @@ namespace omniscia::core::ecs {
             }
     };
 
+    /**
+     * @brief ECS_SpriteRendererSystem - System 
+     * class used for managing all updates and data for
+     * all active ECS_SpriteRenderer type components
+    */
     class ECS_SpriteRendererSystem : public ECS_System<ECS_SpriteRenderer> {
         private:
+            /**
+             * @brief Hidden default constructor
+            */
             ECS_SpriteRendererSystem() {};
+            
+            /**
+             * @brief Hidden default copy constructor
+            */
             ECS_SpriteRendererSystem(ECS_SpriteRendererSystem const&) {};
+            
+            /**
+             * @brief Hidden default assignment operator
+            */
             void operator=(ECS_SpriteRendererSystem const&) {};
+
         public:
+            /**
+             * @brief Main rendering method, renders 
+             * all currently assigned components
+            */
             void render(Shader* shader) {
                 for(ECS_SpriteRenderer* comp : _components) {
                     comp->render(shader);
                 }
             }
 
+            /**
+             * @brief Get the singleton instance of the ECS_SpriteRendererSystem system
+             * 
+             * @return Reference to singleton instance of the ECS_SpriteRendererSystem system
+            */
             static ECS_SpriteRendererSystem& get_instance() {
                 static ECS_SpriteRendererSystem instance;
                 return instance;

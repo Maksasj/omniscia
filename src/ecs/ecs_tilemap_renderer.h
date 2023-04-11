@@ -128,18 +128,44 @@ namespace omniscia::core::ecs {
             }
     };
 
+    /**
+     * @brief ECS_TilemapRendererSystem - System 
+     * class used for managing all updates and data for
+     * all active ECS_TilemapRenderer type components
+    */
     class ECS_TilemapRendererSystem : public ECS_System<ECS_TilemapRenderer> {
         private:
+            /**
+             * @brief Hidden default constructor
+            */
             ECS_TilemapRendererSystem() {};
+
+            /**
+             * @brief Hidden default copy constructor
+            */
             ECS_TilemapRendererSystem(ECS_TilemapRendererSystem const&) {};
+            
+            /**
+             * @brief Hidden default assignment operator
+            */
             void operator=(ECS_TilemapRendererSystem const&) {};
+
         public:
+            /**
+             * @brief Main rendering method, renders 
+             * all currently assigned components
+            */
             void render(Shader* shader) {
                 for(ECS_TilemapRenderer* comp : _components) {
                     comp->render(shader);
                 }
             }
 
+            /**
+             * @brief Get the singleton instance of the ECS_TilemapRendererSystem system
+             * 
+             * @return Reference to singleton instance of the ECS_TilemapRendererSystem system
+            */
             static ECS_TilemapRendererSystem& get_instance() {
                 static ECS_TilemapRendererSystem instance;
                 return instance;

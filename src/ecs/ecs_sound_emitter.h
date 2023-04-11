@@ -103,18 +103,44 @@ namespace omniscia::core::ecs {
             }
     };
 
+    /**
+     * @brief ECS_SoundEmitterSystem - System 
+     * class used for managing all updates and data for
+     * all active ECS_SoundEmitter type components
+    */
     class ECS_SoundEmitterSystem : public ECS_System<ECS_SoundEmitter> {
         private:
+            /**
+             * @brief Hidden default constructor
+            */
             ECS_SoundEmitterSystem() {};
+            
+            /**
+             * @brief Hidden default copy constructor
+            */
             ECS_SoundEmitterSystem(ECS_SoundEmitterSystem const&) {};
+            
+            /**
+             * @brief Hidden default assignment operator
+            */
             void operator=(ECS_SoundEmitterSystem const&) {};
+
         public:
+            /**
+             * @brief Main update method, updates 
+             * all currently assigned components
+            */
             void update() {
                 for(ECS_SoundEmitter* comp : _components) {
                     comp->update();
                 }
             }
 
+            /**
+             * @brief Get the singleton instance of the ECS_SoundEmitterSystem system
+             * 
+             * @return Reference to singleton instance of the ECS_SoundEmitterSystem system
+            */
             static ECS_SoundEmitterSystem& get_instance() {
                 static ECS_SoundEmitterSystem instance;
                 return instance;

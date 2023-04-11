@@ -85,18 +85,43 @@ namespace omniscia::core::ecs {
             }
     };
 
+    /**
+     * @brief ECS_StateMachineBaseSystem - System 
+     * class used for managing all updates and data for
+     * all active ECS_StateMachineBase type components
+    */
     class ECS_StateMachineBaseSystem : public ECS_System<ECS_StateMachineBase> {
         private:
+            /**
+             * @brief Hidden default constructor
+            */
             ECS_StateMachineBaseSystem() {};
+            
+            /**
+             * @brief Hidden default copy constructor
+            */
             ECS_StateMachineBaseSystem(ECS_StateMachineBaseSystem const&) {};
+            
+            /**
+             * @brief Hidden default assignment operator
+            */
             void operator=(ECS_StateMachineBaseSystem const&) {};
+
         public:
+            /**
+             * @brief Main update method, updates 
+             * all currently assigned components
+            */
             void update() {
-                // std::cout << _components.size() << "\n";
                 for(ECS_StateMachineBase* comp : _components)
                     comp->update();
             }
 
+            /**
+             * @brief Get the singleton instance of the ECS_StateMachineBaseSystem system
+             * 
+             * @return Reference to singleton instance of the ECS_StateMachineBaseSystem system
+            */
             static ECS_StateMachineBaseSystem& get_instance() {
                 static ECS_StateMachineBaseSystem instance;
                 return instance;

@@ -127,18 +127,44 @@ namespace omniscia::core::ecs {
             }
     };
 
+    /**
+     * @brief ECS_SpriteAnimationSystem - System 
+     * class used for managing all updates and data for
+     * all active ECS_SpriteAnimation type components
+    */
     class ECS_SpriteAnimationSystem : public ECS_System<ECS_SpriteAnimation> {
         private:
+            /**
+             * @brief Hidden default constructor
+            */
             ECS_SpriteAnimationSystem() {};
+            
+            /**
+             * @brief Hidden default copy constructor
+            */
             ECS_SpriteAnimationSystem(ECS_SpriteAnimationSystem const&) {};
+            
+            /**
+             * @brief Hidden default assignment operator
+            */
             void operator=(ECS_SpriteAnimationSystem const&) {};
+
         public:
+            /**
+             * @brief Main update method, updates 
+             * all currently assigned components
+            */
             void update() {
                 for(ECS_SpriteAnimation* comp : _components) {
                     comp->update();
                 }
             }
 
+            /**
+             * @brief Get the singleton instance of the ECS_SpriteAnimationSystem system
+             * 
+             * @return Reference to singleton instance of the ECS_SpriteAnimationSystem system
+            */
             static ECS_SpriteAnimationSystem& get_instance() {
                 static ECS_SpriteAnimationSystem instance;
                 return instance;

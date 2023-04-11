@@ -164,12 +164,33 @@ namespace omniscia::core::ecs {
             }
     };
 
+    /**
+     * @brief ECS_AABBColliderSystem - System 
+     * class used for managing all updates and data for
+     * all active ECS_AABBCollider type components
+    */
     class ECS_AABBColliderSystem : public ECS_System<ECS_AABBCollider> {
         private:
+            /**
+             * @brief Hidden default constructor
+            */
             ECS_AABBColliderSystem() {};
+            
+            /**
+             * @brief Hidden default copy constructor
+            */
             ECS_AABBColliderSystem(ECS_AABBColliderSystem const&) {};
+            
+            /**
+             * @brief Hidden default assignment operator
+            */
             void operator=(ECS_AABBColliderSystem const&) {};
+
         public:
+            /**
+             * @brief Main update method, updates 
+             * all currently assigned components
+            */
             void update() {
                 for(int i = 0; i < _components.size(); ++i) {
                     for(int j = 0; j < _components.size(); ++j) { 
@@ -180,12 +201,21 @@ namespace omniscia::core::ecs {
                 }
             }
 
+            /**
+             * @brief Resets all collision for all
+             * components that are currently assigned
+            */
             void reset() {
                 for(int i = 0; i < _components.size(); ++i) {
                     _components[i]->reset_collisions();
                 }  
             }
 
+            /**
+             * @brief Get the singleton instance of the ECS_AABBColliderSystem system
+             * 
+             * @return Reference to singleton instance of the ECS_AABBColliderSystem system
+            */
             static ECS_AABBColliderSystem& get_instance() {
                 static ECS_AABBColliderSystem instance;
                 return instance;
