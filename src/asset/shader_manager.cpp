@@ -21,7 +21,7 @@ void omniscia::core::ShaderManager::check_assets() const {
         std::string filePath = asset.second.get_file_path();
         
         if(!file_exist(filePath)) {
-            std::cout << "File '" << filePath << "' do not exist\n"; 
+            throw std::runtime_error("File '" + filePath + "' do not exist");
         }
     }
 }

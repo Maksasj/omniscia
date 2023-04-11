@@ -36,7 +36,7 @@ namespace omniscia::core {
              * 
              * @return returns -1 if not success
             */
-            int initialize();
+            void initialize();
 
             /** @brief Unutilizes sound engine */
             void unutilize();

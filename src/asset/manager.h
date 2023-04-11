@@ -15,6 +15,7 @@
 #include <fstream>
 #include <string>
 #include <unordered_map>
+#include <stdexcept>
 
 namespace omniscia::core {
 

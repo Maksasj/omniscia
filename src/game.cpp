@@ -1,14 +1,13 @@
 #include "game.h"
 
-int omniscia::Game::load() {
+void omniscia::Game::load() {
     Renderer::init();
 
     window = glfwCreateWindow(Properties::screenWidth, Properties::screenHeight, "Omniscia", NULL, NULL);
 
     if (window == NULL) {
-        std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
-        return -1;
+        throw std::runtime_error("Failed to create GLFW window");
     }
 
     glfwMakeContextCurrent(window);
@@ -17,11 +16,9 @@ int omniscia::Game::load() {
     Renderer::load_gl();
 
     omniscia::core::SoundEngine::get_instance().initialize();
-
-    return 0;
 }
 
-int omniscia::Game::run() {
+void omniscia::Game::run() {
     using namespace omniscia::gfx::sprite;
     TextureManager::get_instance().load_assets();
     SoundManager::get_instance().load_assets();
@@ -182,8 +179,6 @@ int omniscia::Game::run() {
     shader3.terminate();
 
     glfwTerminate();
-
-    return 0;
 }
 
 void omniscia::Game::switch_scene(std::string sceneId) {

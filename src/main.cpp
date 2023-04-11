@@ -21,7 +21,12 @@ int main() {
     TextureManager::get_instance().add_asset("assets/background/beach/sky1.png", "background_beach_sky1_layer");
     TextureManager::get_instance().add_asset("assets/background/beach/sky2.png", "background_beach_sky2_layer");
     TextureManager::get_instance().add_asset("assets/background/beach/terrain.png", "background_beach_terrain_layer");
-    TextureManager::get_instance().check_assets();
+    try {
+        TextureManager::get_instance().check_assets();
+    } catch (const std::runtime_error& exception) {
+        std::cout << exception.what() << "\n";
+        return 1;
+    }
 
     /* Shader assets */
     ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_1.glsl", "frag_stage_1", FRAGMENT_SHADER);
@@ -32,7 +37,12 @@ int main() {
     ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_3.glsl", "vert_stage_3", VERTEX_SHADER);
     ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_background.glsl", "frag_stage_background", FRAGMENT_SHADER);
     ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_background.glsl", "vert_stage_background", VERTEX_SHADER);
-    ShaderManager::get_instance().check_assets();
+    try {
+        ShaderManager::get_instance().check_assets();
+    } catch (const std::runtime_error& exception) {
+        std::cout << exception.what() << "\n";
+        return 1;
+    }
 
     /* Animation assets */
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.75}, 7, true, 5}), "player-run-animation");
@@ -45,9 +55,26 @@ int main() {
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk2.wav", "walk_2");
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk3.wav", "walk_3");
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk4.wav", "walk_4");
-    omniscia::core::SoundManager::get_instance().check_assets();
+    try {
+        omniscia::core::SoundManager::get_instance().check_assets();
+    } catch (const std::runtime_error& exception) {
+        std::cout << exception.what() << "\n";
+        return 1;
+    }
+    
+    try {
+        Game::get_instance().load();
+    } catch(const std::runtime_error& exception) {
+        std::cout << exception.what() << "\n";
+        return 1;
+    }
+    
+        Vec2f a = Vec2f{1.0f, 1.0f};
+        
+        auto c = a * 0.5f;
 
-    Game::get_instance().load();
+    std::cout << c.to_string() << "\n";
+
     Game::get_instance().run();
 
     return 0;

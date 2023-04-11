@@ -10,7 +10,7 @@ void omniscia::gfx::Renderer::init() {
 
 void omniscia::gfx::Renderer::load_gl() {
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        std::cout << "Failed to initialize GLAD" << std::endl;
+        throw std::runtime_error("Failed to initialize GLAD");
     }
 
     glEnable(GL_BLEND);

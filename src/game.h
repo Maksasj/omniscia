@@ -80,14 +80,14 @@ namespace omniscia {
              * 
              * @return result 
             */
-            int load();
+            void load();
 
             /**
              * @brief Runs game, can be runned only after loading game
              * 
              * @return result 
             */
-            int run();
+            void run();
 
             /**
              * @brief Switches scene by scene id

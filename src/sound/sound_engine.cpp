@@ -1,14 +1,10 @@
 #include "sound_engine.h"
 
-int omniscia::core::SoundEngine::initialize() {
+void omniscia::core::SoundEngine::initialize() {
     ma_result result = ma_engine_init(NULL, &_engine);
     
-    if (result != MA_SUCCESS) {
-        std::cout << "Failed to initialize audio engine.";
-        return -1;
-    }
-
-    return 0;
+    if (result != MA_SUCCESS)
+        throw std::runtime_error("Failed to initialize audio engine.");
 }
 
 void omniscia::core::SoundEngine::unutilize() {

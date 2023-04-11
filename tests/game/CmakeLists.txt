@@ -19,4 +19,4 @@ function(CREATE_TEST TEST_NAME TEST_FILE)
     add_test(NAME ${TEST_NAME} COMMAND $<TARGET_FILE:${TEST_NAME}>)
 endfunction()
 
-CREATE_TEST(OmnisiciaGame_Test1 test_1.cpp)
+add_subdirectory(types)

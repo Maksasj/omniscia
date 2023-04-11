@@ -1,0 +1,1 @@
+CREATE_TEST(OmnisiciaGame_Types_Vector2D_Minus vector2d_minus_tests.cpp)
