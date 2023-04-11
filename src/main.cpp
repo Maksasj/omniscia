@@ -68,12 +68,6 @@ int main() {
         std::cout << exception.what() << "\n";
         return 1;
     }
-    
-        Vec2f a = Vec2f{1.0f, 1.0f};
-        
-        auto c = a * 0.5f;
-
-    std::cout << c.to_string() << "\n";
 
     Game::get_instance().run();
 

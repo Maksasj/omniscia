@@ -192,6 +192,7 @@ namespace omniscia::core::ecs {
              * all currently assigned components
             */
             void update() {
+                std::cout << _components.size() << "\n";
                 for(int i = 0; i < _components.size(); ++i) {
                     for(int j = 0; j < _components.size(); ++j) { 
                         if(i == j) continue;

@@ -1,0 +1,2 @@
+CREATE_TEST(OmnisiciaGame_ECS_Collisions aabb_collision_tests.cpp)
+CREATE_TEST(OmnisiciaGame_ECS_Movable_Collisions movable_aabb_collision_tests.cpp)
