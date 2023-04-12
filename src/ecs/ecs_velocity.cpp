@@ -44,9 +44,7 @@ void omniscia::core::ecs::ECS_Velocity::set_velocity(Vec3f velocity) {
 void omniscia::core::ecs::ECS_Velocity::clamp_velocity() {
     if(_vel.x > _velocityRangesX.x) _vel.x = _velocityRangesX.x;
     if(_vel.y > _velocityRangesY.x) _vel.y = _velocityRangesY.x;
-    //if(_vel.z > _maxVelocityZ) _vel.z = _maxVelocityZ;
     
     if(_vel.x < _velocityRangesX.y) _vel.x = _velocityRangesX.y;
     if(_vel.y < _velocityRangesY.y) _vel.y = _velocityRangesY.y;
-    //if(_vel.z < _minVelocityZ) _vel.z = _minVelocityZ;
 }

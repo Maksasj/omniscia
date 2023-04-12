@@ -10,7 +10,6 @@ void omniscia::core::ecs::ECS_2DPhysicsRigidbody::reindex(void* parent) {
     _posIndex = _parent->index<ECS_Positioned>();
     _velocityIndex = _parent->index<ECS_Velocity>();
     _colliderIndex = _parent->index<ECS_MovableAABBCollider>();
-
     _frictionIndex = _parent->index<ECS_Friction>();
     _accelerationIndex = _parent->index<ECS_Acceleration>();
     _physicsPositionedIndex = _parent->index<ECS_PhysicsPositioned>();
@@ -25,6 +24,7 @@ void omniscia::core::ecs::ECS_2DPhysicsRigidbody::update() {
     if(!_velocityIndex.is_success()) return;
     if(!_frictionIndex.is_success()) return;
     if(!_accelerationIndex.is_success()) return;
+    if(!_physicsPositionedIndex.is_success()) return;
 
     ECS_Positioned& posComp = _parent->ref_unsafe(_posIndex);
     ECS_Velocity& velocityComp = _parent->ref_unsafe(_velocityIndex);
@@ -57,6 +57,7 @@ void omniscia::core::ecs::ECS_2DPhysicsRigidbody::late_update() {
     if(!_colliderIndex.is_success()) return;
     if(!_physicsPositionedIndex.is_success()) return;
     if(!_velocityIndex.is_success()) return;
+    if(!_physicsPositionedIndex.is_success()) return;
 
     ECS_Positioned& posComp = _parent->ref_unsafe(_posIndex);
     ECS_MovableAABBCollider& colliderComp = _parent->ref_unsafe(_colliderIndex);
