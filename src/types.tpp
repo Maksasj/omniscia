@@ -50,7 +50,11 @@ namespace omniscia::core {
         Vec2 operator-(const Vec2& vec) { return Vec2{x - vec.x, y - vec.y }; }
 
         Vec2 operator*(const _T& value) { return Vec2{x * value, y * value }; }
-        Vec2 operator/(const _T& value) { return Vec2{x / value, y / value }; }
+        Vec2 operator/(const _T& value) {
+            if(value == 0) throw std::overflow_error("Divide by zero exception");
+
+            return Vec2{x / value, y / value }; 
+        }
 
         /* Vector x= Vector */
         Vec2<_T>& operator+=(const Vec2<_T>& other) { this->x += other.x; this->y += other.y; return *this; }
@@ -79,6 +83,20 @@ namespace omniscia::core {
             os << vec.x << " " << vec.y;
             return os;
         }
+
+        /**
+         * @brief Constructs object from it string representation
+         * 
+         * @param os - reference to the in stream
+         * @param vec - reference to the object instance
+         * 
+         * @return std::istream& reference to the stream instance 
+        */
+        friend std::istream& operator>>(std::istream& os, const Vec2<_T>& vec) {
+            os >> vec.x >> vec.y;
+
+            return os;
+        } 
 
         /**
          * @brief Method used to get string representation of object instance
@@ -133,7 +151,11 @@ namespace omniscia::core {
         Vec3 operator/(const Vec3& vec) { return Vec3{this->x / vec.x, this->y / vec.y, z / vec.z}; }
 
         Vec3 operator*(const _T& value) { return Vec3{this->x * value, this->y * value, this->z * value }; }
-        Vec3 operator/(const _T& value) { return Vec3{this->x / value, this->y / value, this->z / value }; }
+        Vec3 operator/(const _T& value) { 
+            if(value == 0) throw std::overflow_error("Divide by zero exception");
+
+            return Vec3{this->x / value, this->y / value, this->z / value }; 
+        }
 
         /* Vector x= Vector */
         Vec3<_T>& operator+=(const Vec3<_T>& other) { this->x += other.x; this->y += other.y; this->z += other.z; return *this; }
@@ -162,6 +184,20 @@ namespace omniscia::core {
             os << vec.x << " " << vec.y << " " << vec.z;
             return os;
         }
+
+        /**
+         * @brief Constructs object from it string representation
+         * 
+         * @param os - reference to the in stream
+         * @param vec - reference to the object instance
+         * 
+         * @return std::istream& reference to the stream instance 
+        */
+        friend std::istream& operator>>(std::istream& os, const Vec3<_T>& vec) {
+            os >> vec.x >> vec.y >> vec.z;
+
+            return os;
+        } 
 
         /**
          * @brief Method used to get string representation of object instance
@@ -217,7 +253,11 @@ namespace omniscia::core {
         Vec4 operator/(const Vec4& vec) { return Vec4{this->x / vec.x, this->y / vec.y, this->z / vec.z, w / vec.w}; }
 
         Vec4 operator*(const _T& value) { return Vec4{this->x * value, this->y * value, this->z * value, this->w * value }; }
-        Vec4 operator/(const _T& value) { return Vec4{this->x / value, this->y / value, this->z / value, this->w / value }; }
+        Vec4 operator/(const _T& value) { 
+            if(value == 0) throw std::overflow_error("Divide by zero exception");
+
+            return Vec4{ this->x / value, this->y / value, this->z / value, this->w / value }; 
+        }
 
         /* Vector x= Vector */
         Vec4<_T>& operator+=(const Vec4<_T>& other) { this->x += other.x; this->y += other.y; this->z += other.z; this->w += other.w; return *this; }
@@ -244,6 +284,20 @@ namespace omniscia::core {
         */
         friend std::ostream& operator<<(std::ostream& os, const Vec4<_T>& vec) {
             os << vec.x << " " << vec.y << " " << vec.z << " " << vec.w; 
+            return os;
+        } 
+
+        /**
+         * @brief Constructs object from it string representation
+         * 
+         * @param os - reference to the in stream
+         * @param vec - reference to the object instance
+         * 
+         * @return std::istream& reference to the stream instance 
+        */
+        friend std::istream& operator>>(std::istream& os, const Vec4<_T>& vec) {
+            os >> vec.x >> vec.y >> vec.z >> vec.w;
+
             return os;
         } 
 
@@ -313,6 +367,50 @@ namespace omniscia::core {
         */
         static Matrix<f32, 2, 2> get_zero_rotation_matrix() {
             return {{ 1, 0, 0, 1 }};
+        }
+
+        /**
+         * @brief Puts string representation of the object to the out stream
+         * 
+         * @param os - reference to the out stream
+         * @param mat - reference to the object instance
+         * 
+         * @return std::ostream& reference to the stream instance 
+        */
+        friend std::ostream& operator<<(std::ostream& os, const Matrix<_T, _width, _heigth>& mat) {
+            for(i32 i = 0; i < _width * _heigth; ++i)
+                os << e[i] << " ";
+
+            return os;
+        } 
+
+        /**
+         * @brief Constructs object from it string representation
+         * 
+         * @param os - reference to the in stream
+         * @param mat - reference to the object instance
+         * 
+         * @return std::istream& reference to the stream instance 
+        */
+        friend std::istream& operator>>(std::istream& os, const Matrix<_T, _width, _heigth>& mat) {
+            for(i32 i = 0; i < _width * _heigth; ++i)
+                os >> e[i];
+
+            return os;
+        } 
+
+        /**
+         * @brief Method used to get string representation of object instance
+         * 
+         * @return std::string string representation 
+        */
+        std::string to_string() const {
+            std::stringstream ss;
+
+            for(i32 i = 0; i < _width * _heigth; ++i)
+                ss << e[i] << " ";
+            
+            return ss.str();
         }
     };
 

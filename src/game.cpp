@@ -49,7 +49,13 @@ void omniscia::Game::run() {
         renderStage2.bind_default_shader(&shader2);
 
     Scene* scene = new Scene();
-    SceneLoader::get_instance().load_scene(*scene);
+
+    try {
+        SceneLoader::get_instance().load_scene(*scene);
+    } catch(const std::runtime_error& exception) {
+        std::cout << exception.what() << "\n";
+    }
+
     for(int i = 0; i < 2; ++i) {
         scene->add_dynamic_entity<Crab>();
         auto& tmp = scene->ref_dynamic_part().dynamicEntities[scene->ref_dynamic_part().dynamicEntities.size() - 1]; 
@@ -73,28 +79,7 @@ void omniscia::Game::run() {
     DebugUI::get_instance().init(window);
 
     Time::get_instance().update_delta_time_clock();
-
-    // SoundSpeaker speaker;
-    // speaker.play("test_sound");
-// 
-    // SoundSpeaker speaker1;
-    // speaker1.play("test_sound");
-// 
-    // f32 stepAngle = 0.01f;
-    // f32 angle = 0;
-    // f32 distance = 1;
-
     while (!glfwWindowShouldClose(window)) {   
-        // f64 x = std::cos(angle) - std::sin(angle);
-        // f64 y = std::sin(angle) + std::cos(angle);
-// 
-        // speaker.set_pos((f32)x * distance, (f32)y * distance);
-// 
-        // angle += stepAngle;
-// 
-        // speaker.update();
-        // speaker1.update();
-
         Time::get_instance().update_delta_time_clock();
 
         Controls::handle_input(window);

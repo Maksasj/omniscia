@@ -1,0 +1,2 @@
+CREATE_TEST(OmnisiciaGame_ECS_Velocity velocity_tests.cpp)
+CREATE_TEST(OmnisiciaGame_ECS_Velocity_Clamp velocity_clamp_tests.cpp)

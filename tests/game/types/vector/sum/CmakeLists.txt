@@ -1,1 +1,3 @@
 CREATE_TEST(OmnisiciaGame_Types_Vector2D_Sum vector2d_sum_tests.cpp)
+CREATE_TEST(OmnisiciaGame_Types_Vector3D_Sum vector3d_sum_tests.cpp)
+CREATE_TEST(OmnisiciaGame_Types_Vector4D_Sum vector4d_sum_tests.cpp)

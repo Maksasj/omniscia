@@ -10,6 +10,8 @@ function(CREATE_TEST TEST_NAME TEST_FILE)
     file(GLOB_RECURSE OMNISCIA-SRC "../../../../src/*.cpp")
     list (APPEND OMNISCIA-SRC ${IMGUI-SRC})
     list(REMOVE_ITEM OMNISCIA-SRC "C:/Programming/c++/omniscia/tests/game/ecs/collisions/../../../../src/main.cpp")
+    list(REMOVE_ITEM OMNISCIA-SRC "C:/Programming/c++/omniscia/tests/game/ecs/scale/../../../../src/main.cpp")
+    list(REMOVE_ITEM OMNISCIA-SRC "C:/Programming/c++/omniscia/tests/game/ecs/velocity/../../../../src/main.cpp")
     list(APPEND OMNISCIA-SRC ${TEST_FILE})
 
     add_executable(${TEST_NAME} ${OMNISCIA-SRC})

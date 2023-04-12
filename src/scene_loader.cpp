@@ -4,10 +4,8 @@ void omniscia::core::SceneLoader::load_scene(Scene& level) {
     std::string path = "assets\\level.bin";
     std::ifstream f(path, std::ios::out | std::ios::binary);
 
-    if(!f.good()) {
-        std::cout << "Could not load '" << path << "' file"; 
-        return;
-    }
+    if(!f.good())
+       throw std::runtime_error("Failed to load file data '" + path + "'");
 
     auto& staticEntities = level.staticPart.staticEntities;
 
