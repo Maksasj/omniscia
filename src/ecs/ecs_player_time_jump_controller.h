@@ -54,6 +54,14 @@ namespace omniscia::core::ecs {
             OMNISCIA_OFSTREAM_REPRESENTATION(ECS_PlayerTimeJumpController, self._parent);
 
             /**
+             * @brief Method used for time 
+             * synchronization of the component
+             * instance, binds component to the
+             * system
+            */
+            void time_sync() override;
+
+            /**
              * @brief Default ECS_PlayerTimeJumpController component constructor
             */
             ECS_PlayerTimeJumpController();
@@ -116,6 +124,9 @@ namespace omniscia::core::ecs {
             void update() {
                 for(ECS_PlayerTimeJumpController* comp : _components) {
                     comp->update();
+
+                    if(DebugUI::get_instance().get_metrics()._isTimeJump)
+                        break;
                 }
             }
 

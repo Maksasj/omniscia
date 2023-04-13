@@ -49,18 +49,8 @@ void omniscia::Game::run() {
         renderStage2.bind_default_shader(&shader2);
 
     Scene* scene = new Scene();
-
-    try {
-        SceneLoader::get_instance().load_scene(*scene);
-    } catch(const std::runtime_error& exception) {
-        std::cout << exception.what() << "\n";
-    }
-
-    for(int i = 0; i < 2; ++i) {
-        scene->add_dynamic_entity<Crab>();
-        auto& tmp = scene->ref_dynamic_part().dynamicEntities[scene->ref_dynamic_part().dynamicEntities.size() - 1]; 
-    }
-
+    SceneLoader::get_instance().load_scene(*scene);
+    scene->add_dynamic_entity<Crab>();
     scene->add_dynamic_entity<Player>();
     scene->add_static_entity<BeachParallaxBackground>();
     scene->unbind();

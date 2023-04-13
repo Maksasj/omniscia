@@ -7,6 +7,10 @@ omniscia::core::ecs::ECS_PlayerTimeJumpController::ECS_PlayerTimeJumpController(
     ECS_PlayerTimeJumpControllerSystem::get_instance().bind_component(this);
 };
 
+void omniscia::core::ecs::ECS_PlayerTimeJumpController::time_sync() {
+    ECS_PlayerTimeJumpControllerSystem::get_instance().bind_component(this);
+}
+
 void omniscia::core::ecs::ECS_PlayerTimeJumpController::update() {
     static u64 frame = 0;
     ++frame;
