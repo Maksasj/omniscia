@@ -99,7 +99,7 @@ namespace omniscia::core::ecs {
             /**
              * @brief Hidden default constructor
             */
-            ECS_StateMachineBaseSystem() {};
+            ECS_StateMachineBaseSystem() : ECS_System<ECS_StateMachineBase>() {};
             
             /**
              * @brief Hidden default copy constructor
@@ -117,6 +117,9 @@ namespace omniscia::core::ecs {
              * all currently assigned components
             */
             void update() {
+                if(!_enabled)
+                    return;
+
                 for(ECS_StateMachineBase* comp : _components)
                     comp->update();
             }

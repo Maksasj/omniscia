@@ -121,7 +121,7 @@ namespace omniscia::core::ecs {
             /**
              * @brief Hidden default constructor
             */
-            ECS_ParallaxSpriteRendererBackSystem() {};
+            ECS_ParallaxSpriteRendererBackSystem() : ECS_System<ECS_ParallaxSpriteRendererBack>() {};
             
             /**
              * @brief Hidden default copy constructor
@@ -139,6 +139,9 @@ namespace omniscia::core::ecs {
              * all currently assigned components
             */
             void render(const Shader* shader) {
+                if(!_enabled)
+                    return;
+
                 for(ECS_ParallaxSpriteRendererBack* comp : _components) {
                     comp->render(shader);
                 }

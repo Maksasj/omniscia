@@ -50,6 +50,13 @@ namespace omniscia::core::ecs {
             /** @brief Container of the active components */
             std::vector<T*> _components;
 
+            /**
+             * @brief Is system is enabled
+            */
+            bool _enabled;
+
+            ECS_System() : _enabled(true) {}
+
         public:
             /** @brief Virtual method used for updating components (Optional)*/
             virtual void update() {}
@@ -88,6 +95,14 @@ namespace omniscia::core::ecs {
             static ECS_System<T>& get_instance() {
                 static ECS_System<T> instance;
                 return instance;
+            }
+
+            void enable() {
+                _enabled = true;
+            }
+
+            void disable() {
+                _enabled = false;
             }
     };
 }

@@ -112,7 +112,7 @@ namespace omniscia::core::ecs {
             /**
              * @brief Hidden default constructor
             */
-            ECS_PlayerJumpSystem() {};
+            ECS_PlayerJumpSystem() : ECS_System<ECS_PlayerJump>() {};
             
             /**
              * @brief Hidden default copy constructor
@@ -130,6 +130,9 @@ namespace omniscia::core::ecs {
              * all currently assigned components
             */
             void update() {
+                if(!_enabled)
+                    return;
+
                 for(ECS_PlayerJump* comp : _components) {
                     comp->update();
                 }

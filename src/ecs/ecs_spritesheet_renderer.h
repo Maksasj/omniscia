@@ -143,7 +143,7 @@ namespace omniscia::core::ecs {
             /**
              * @brief Hidden default constructor
             */
-            ECS_SpriteSheetRendererSystem() {};
+            ECS_SpriteSheetRendererSystem() : ECS_System<ECS_SpriteSheetRenderer>() {};
             
             /**
              * @brief Hidden default copy constructor
@@ -161,6 +161,9 @@ namespace omniscia::core::ecs {
              * all currently assigned components
             */
             void render(Shader* shader) {
+                if(!_enabled)
+                    return;
+
                 for(ECS_SpriteSheetRenderer* comp : _components) {
                     comp->render(shader);
                 }

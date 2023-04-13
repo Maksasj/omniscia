@@ -135,7 +135,7 @@ namespace omniscia::core::ecs {
             /**
              * @brief Hidden default constructor
             */
-            ECS_SpriteRendererSystem() {};
+            ECS_SpriteRendererSystem() : ECS_System<ECS_SpriteRenderer>() {};
             
             /**
              * @brief Hidden default copy constructor
@@ -153,6 +153,9 @@ namespace omniscia::core::ecs {
              * all currently assigned components
             */
             void render(Shader* shader) {
+                if(!_enabled)
+                    return;
+
                 for(ECS_SpriteRenderer* comp : _components) {
                     comp->render(shader);
                 }

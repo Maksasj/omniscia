@@ -126,6 +126,22 @@ namespace omniscia::core {
             void add_static_entity(Args&&... args) {
                 staticPart.staticEntities.push_back(T(std::forward<Args>(args)...));
             }
+
+            Entity* get_dynamic_entity_by_uuid(const UUID& uuid) {
+                for(Entity& e : dynamicPart.dynamicEntities)
+                    if(e.get_uuid() == uuid)
+                        return &e;
+
+                return nullptr;
+            }
+    
+            Entity* get_static_entity_by_uuid(const UUID& uuid) {
+                for(Entity& e : staticPart.staticEntities)
+                    if(e.get_uuid() == uuid)
+                        return &e;
+
+                return nullptr;
+            }
     };
 }
 

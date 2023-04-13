@@ -178,7 +178,7 @@ namespace omniscia::core::ecs {
             /**
              * @brief Hidden default constructor
             */
-            ECS_AABBColliderSystem() {};
+            ECS_AABBColliderSystem() : ECS_System<ECS_AABBCollider>() {};
             
             /**
              * @brief Hidden default copy constructor
@@ -196,6 +196,10 @@ namespace omniscia::core::ecs {
              * all currently assigned components
             */
             void update() {
+                if(!_enabled)
+                    return;
+
+
                 for(int i = 0; i < _components.size(); ++i) {
                     for(int j = 0; j < _components.size(); ++j) { 
                         if(i == j) continue;

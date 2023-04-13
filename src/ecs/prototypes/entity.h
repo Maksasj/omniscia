@@ -24,6 +24,11 @@ namespace omniscia::core {
     */
     class Entity {
         private:
+            /**
+             * @brief Entity UUID
+            */
+            UUID _uuid;
+
             /** @brief Container that holds all componets */
             ECS_ComponentContainer _component_сontainer;
         
@@ -41,6 +46,15 @@ namespace omniscia::core {
                 entity._component_сontainer = _component_сontainer.clone();
             }
             
+            /**
+             * @brief Returns entity uuid
+             *
+             * @return entity uuid 
+            */
+            UUID get_uuid() const {
+                return _uuid;
+            }
+
             /**
              * @brief Method used for 
              * cloning Entity instances

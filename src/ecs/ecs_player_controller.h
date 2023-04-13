@@ -119,7 +119,7 @@ namespace omniscia::core::ecs {
             /**
              * @brief Hidden default constructor
             */
-            ECS_PlayerControllerSystem() {};
+            ECS_PlayerControllerSystem() : ECS_System<ECS_PlayerController>() {};
             
             /**
              * @brief Hidden default copy constructor
@@ -137,6 +137,9 @@ namespace omniscia::core::ecs {
              * all currently assigned components
             */
             void update() {
+                if(!_enabled)
+                    return;
+
                 for(ECS_PlayerController* comp : _components) {
                     comp->control();
                 }

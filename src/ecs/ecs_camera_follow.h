@@ -151,7 +151,7 @@ namespace omniscia::core::ecs {
             /**
              * @brief Hidden default constructor
             */
-            ECS_CameraFollowSystem() {};
+            ECS_CameraFollowSystem() : ECS_System<ECS_CameraFollow>() {};
             
             /**
              * @brief Hidden default copy constructor
@@ -169,6 +169,9 @@ namespace omniscia::core::ecs {
              * all currently assigned components
             */
             void update(Shader* shader) {
+                if(!_enabled)
+                    return;
+
                 for(ECS_CameraFollow* comp : _components) {
                     comp->update(shader);
                 }

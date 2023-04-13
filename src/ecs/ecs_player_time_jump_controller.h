@@ -104,7 +104,7 @@ namespace omniscia::core::ecs {
             /**
              * @brief Hidden default constructor
             */
-            ECS_PlayerTimeJumpControllerSystem() {};
+            ECS_PlayerTimeJumpControllerSystem() : ECS_System<ECS_PlayerTimeJumpController>() {};
             
             /**
              * @brief Hidden default copy constructor
@@ -122,6 +122,9 @@ namespace omniscia::core::ecs {
              * all currently assigned components
             */
             void update() {
+                if(!_enabled)
+                    return;
+
                 for(ECS_PlayerTimeJumpController* comp : _components) {
                     comp->update();
 

@@ -141,7 +141,7 @@ namespace omniscia::core::ecs {
             /**
              * @brief Hidden default constructor
             */
-            ECS_SpriteAnimationSystem() {};
+            ECS_SpriteAnimationSystem() : ECS_System<ECS_SpriteAnimation>() {};
             
             /**
              * @brief Hidden default copy constructor
@@ -159,6 +159,9 @@ namespace omniscia::core::ecs {
              * all currently assigned components
             */
             void update() {
+                if(!_enabled)
+                    return;
+
                 for(ECS_SpriteAnimation* comp : _components) {
                     comp->update();
                 }

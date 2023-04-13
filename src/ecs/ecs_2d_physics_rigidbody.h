@@ -145,7 +145,7 @@ namespace omniscia::core::ecs {
             /**
              * @brief Hidden default constructor
             */
-            ECS_2DPhysicsRigidbodySystem() {};
+            ECS_2DPhysicsRigidbodySystem() : ECS_System<ECS_2DPhysicsRigidbody>() {};
             
             /**
              * @brief Hidden default copy constructor
@@ -163,6 +163,9 @@ namespace omniscia::core::ecs {
              * all currently assigned components
             */
             void update() {
+                if(!_enabled)
+                    return;
+
                 for(ECS_2DPhysicsRigidbody* comp : _components) {
                     comp->update();
                 }
