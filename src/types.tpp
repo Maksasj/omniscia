@@ -16,6 +16,8 @@
 #include <sstream>
 #include <iostream>
 
+#include "uuid.h"
+
 using u8 = unsigned char;
 using u16 = unsigned short;
 using u32 = unsigned int;

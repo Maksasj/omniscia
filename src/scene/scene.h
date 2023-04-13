@@ -14,6 +14,7 @@
 
 #include "types.tpp"
 #include "player.h"
+#include "grandpa.h"
 
 namespace omniscia::core {
     /**

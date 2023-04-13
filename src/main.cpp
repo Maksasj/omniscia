@@ -14,6 +14,7 @@ int main() {
     TextureManager::get_instance().add_asset("assets/background/4_layer.png", "4_layer");
     TextureManager::get_instance().add_asset("assets/background/4_layer.png", "4_layer");
     TextureManager::get_instance().add_asset("assets/entities/player.png", "player-spritesheet");
+    TextureManager::get_instance().add_asset("assets/entities/grandpa.png", "grandpa-spritesheet");
     TextureManager::get_instance().add_asset("assets/entities/crab.png", "crab-spritesheet");
     TextureManager::get_instance().add_asset("assets/tiles/test_tiles.png", "test_tiles");
     TextureManager::get_instance().add_asset("assets/background/beach/beach.png", "background_beach_beach_layer");
@@ -49,6 +50,7 @@ int main() {
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.875}, 7, true, 12}), "player-idle-animation");
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.5}, {0.0, 0.5}, 8, true, 24}), "crab-idle-animation");
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.5}, {0.0, 0.0}, 8, true, 12}), "crab-run-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.875}, 7, true, 24}), "grandpa-idle-animation");
 
     /* Sound assets */
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk1.wav", "walk_1");

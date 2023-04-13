@@ -16,3 +16,24 @@
 [submodule "3dparty/miniaudio"]
 	path = 3dparty/miniaudio
 	url = https://github.com/Maksasj/miniaudio
+[submodule "3dparty/boost/config"]
+	path = 3dparty/boost/config
+	url = https://github.com/boostorg/config
+[submodule "3dparty/boost/uuid"]
+	path = 3dparty/boost/uuid
+	url = https://github.com/boostorg/uuid
+[submodule "3dparty/boost/assert"]
+	path = 3dparty/boost/assert
+	url = https://github.com/boostorg/assert
+[submodule "3dparty/boost/type_traits"]
+	path = 3dparty/boost/type_traits
+	url = https://github.com/boostorg/type_traits
+[submodule "3dparty/boost/throw_exception"]
+	path = 3dparty/boost/throw_exception
+	url = https://github.com/boostorg/throw_exception
+[submodule "3dparty/boost/static_assert"]
+	path = 3dparty/boost/static_assert
+	url = https://github.com/boostorg/static_assert
+[submodule "3dparty/megaboost"]
+	path = 3dparty/megaboost
+	url = https://github.com/Maksasj/megaboost

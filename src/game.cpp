@@ -52,6 +52,7 @@ void omniscia::Game::run() {
     SceneLoader::get_instance().load_scene(*scene);
     scene->add_dynamic_entity<Crab>();
     scene->add_dynamic_entity<Player>();
+    scene->add_dynamic_entity<Grandpa>();
     scene->add_static_entity<BeachParallaxBackground>();
     scene->unbind();
     _scenes["game_scene"] = scene;

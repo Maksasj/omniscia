@@ -10,7 +10,11 @@ add_subdirectory("3dparty/json")
 include_directories("3dparty/stb")
 include_directories("3dparty/imgui")
 include_directories("3dparty/imgui/backends")
-include_directories("3dparty/miniaudio/miniaudio.h")
+include_directories("3dparty/miniaudio/miniaudio")
+
+include_directories("3dparty/megaboost")
+
+include_directories("3dparty/mega/boost_1_81_0")
 
 # Add imgui source files
 file(GLOB IMGUI-SRC
