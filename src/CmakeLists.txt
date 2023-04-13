@@ -19,4 +19,5 @@ include_directories("src/sound")
 # Scene
 include_directories("src/scene")
 include_directories("src/scene/cutscene")
+include_directories("src/scene/cutscene/events")
 include_directories("src/scene/scene_loader")

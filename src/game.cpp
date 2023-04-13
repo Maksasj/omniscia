@@ -64,6 +64,31 @@ void omniscia::Game::run() {
     
     switch_scene("game_scene");
 
+    // TerminalPrintCutsceneEvent a = (CutsceneEventProperties){ 
+    //     ._is_continues = false
+    // };
+
+    Cutscene cutscene = {
+        new CE_LogEvent((CE_LogProp){ 
+            ._base = (CE_Prop){
+                ._is_continues = false,
+                ._times_to_repeat = 1,
+            },
+
+            ._message = "Hello !",
+        }),
+        new CE_StopSystemEvent<ECS_2DPhysicsRigidbodySystem>((CE_StopSystemProp){
+            ._base = (CE_Prop){
+                ._is_continues = false,
+                ._times_to_repeat = 1,
+            },
+        }),
+    };
+
+    cutscene.start();
+    cutscene.update();
+    cutscene.update();
+
     DebugUI::get_instance().get_metrics()._timeMaxLineLength = 5000;
 
     /* ImGui */

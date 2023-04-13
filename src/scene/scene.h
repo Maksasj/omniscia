@@ -16,6 +16,8 @@
 #include "player.h"
 #include "grandpa.h"
 
+#include "cutscene.h"
+
 namespace omniscia::core {
     /**
      * @brief Class that manages all scene data, dynamic and static part
