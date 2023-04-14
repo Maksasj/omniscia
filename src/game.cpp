@@ -64,31 +64,47 @@ void omniscia::Game::run() {
     
     switch_scene("game_scene");
 
-    // TerminalPrintCutsceneEvent a = (CutsceneEventProperties){ 
-    //     ._is_continues = false
-    // };
-
     Cutscene cutscene = {
-        new CE_LogEvent((CE_LogProp){ 
-            ._base = (CE_Prop){
-                ._is_continues = false,
-                ._times_to_repeat = 1,
-            },
+        CE_Step{
+            new CE_LogEvent((CE_LogProp){ 
+                ._base = (CE_Prop){
+                    ._pauseBeforeStart = true,
+                    ._pauseTimeBeforeStart = 4.0f,
 
-            ._message = "Hello !",
-        }),
-        new CE_StopSystemEvent<ECS_2DPhysicsRigidbodySystem>((CE_StopSystemProp){
-            ._base = (CE_Prop){
-                ._is_continues = false,
-                ._times_to_repeat = 1,
-            },
-        }),
+                    ._pauseAfterFinishing = true,
+                    ._pauseTimeAfterFinishing = 8.0f,
+                    
+                    ._pauseBetweenRepeats = true,
+                    ._pauseTimeBetweenRepeats = 2.0f,
+                    ._timesToRepeat = 5,
+                },
+
+                ._message = "First Step, First Event",
+            }),
+            new CE_LogEvent((CE_LogProp){ 
+                ._base = (CE_Prop){
+                    // ._pauseBeforeStart = true,
+                    // ._pauseTimeBeforeStart = 4.0f,
+                    ._timesToRepeat = 2,
+                },
+
+                ._message = "First Step, Second Event",
+            })
+        },
+        CE_Step{
+            new CE_LogEvent((CE_LogProp){ 
+                ._base = (CE_Prop){
+                    // ._pauseBeforeStart = true,
+                    // ._pauseTimeBeforeStart = 8.0f,
+                },
+
+                ._message = "Second event",
+            })
+        },
     };
 
     cutscene.start();
-    cutscene.update();
-    cutscene.update();
-
+    
     DebugUI::get_instance().get_metrics()._timeMaxLineLength = 5000;
 
     /* ImGui */
@@ -99,6 +115,8 @@ void omniscia::Game::run() {
         Time::get_instance().update_delta_time_clock();
 
         Controls::handle_input(window);
+        cutscene.update();
+        // std::cout << Time::get_time() << "\n";
 
         ECS_PlayerTimeJumpControllerSystem::get_instance().update();
 

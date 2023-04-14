@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include "cutscene_step.h"
 #include "cutscene_event.h"
 
 #include "terminal_print_cutscene_event.h"
@@ -12,18 +13,19 @@ namespace omniscia::core {
     class Cutscene {
         private:
             bool _started;
-            i32 _current_event = 0;
-
-            std::vector<std::unique_ptr<CE_Event>> _events;
+           
+            std::vector<CE_Step> _steps;
+            std::vector<CE_Step>::iterator _current_step;
 
             Cutscene() {}
             Cutscene(const Cutscene&) {}
         public:
-            Cutscene(const std::initializer_list<CE_Event*> &events) {
-                for(CE_Event* event : events)
-                    _events.push_back(std::unique_ptr<CE_Event>(event));
+            Cutscene(const std::initializer_list<CE_Step> &steps) {
+                for(const CE_Step& step : steps)
+                    _steps.push_back(step);
 
                 _started = 0;
+                _current_step = _steps.begin();
             }
 
             void start() {
@@ -34,10 +36,16 @@ namespace omniscia::core {
                 if(!_started)
                     return;
 
-                _events[_current_event].get()->run();
-                ++_current_event;
+                if(_current_step == _steps.end())
+                    return;
+
+                CE_Step& currentStep = *_current_step;
+
+                currentStep.execute();
+
+                if(currentStep.is_done())
+                    ++_current_step;
             }
-            
     };
 }
 

@@ -11,14 +11,20 @@ namespace omniscia::core {
         std::string _message = "";
     };
 
-    struct CE_LogEvent : public CE_LogProp , public CE_Event {
-        CE_LogEvent(const CE_LogProp& data = CE_LogProp{}) : CE_LogProp(data) {
+    class CE_LogEvent : public CE_LogProp , public CE_Event {
+        private:
+            CE_LogEvent() {}
+            CE_LogEvent(const CE_LogEvent&) {}
+            void operator=(const CE_LogEvent&) {}
+
+        public:
+            CE_LogEvent(const auto& data = CE_LogProp{}) : CE_LogProp(data), CE_Event(*(CE_Prop*)&data) {
+
+            }
             
-        }
-        
-        void run() override {
-            std::cout << _message << "\n";
-        }
+            void execute() override {
+                std::cout << _message << "\n";
+            }
     };
 }
 

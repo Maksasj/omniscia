@@ -63,6 +63,10 @@ namespace omniscia::core {
                 }
             }
 
+            inline static f64 get_time() {
+                return glfwGetTime();
+            }
+
             /**
              * @brief Get the delta time
              * 
