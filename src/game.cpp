@@ -83,8 +83,6 @@ void omniscia::Game::run() {
             }),
             new CE_LogEvent((CE_LogProp){ 
                 ._base = (CE_Prop){
-                    // ._pauseBeforeStart = true,
-                    // ._pauseTimeBeforeStart = 4.0f,
                     ._timesToRepeat = 2,
                 },
 
@@ -94,8 +92,7 @@ void omniscia::Game::run() {
         CE_Step{
             new CE_LogEvent((CE_LogProp){ 
                 ._base = (CE_Prop){
-                    // ._pauseBeforeStart = true,
-                    // ._pauseTimeBeforeStart = 8.0f,
+                    ._durationTime = 5.0f
                 },
 
                 ._message = "Second event",

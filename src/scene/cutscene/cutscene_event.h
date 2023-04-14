@@ -16,6 +16,8 @@ namespace omniscia::core {
         bool _pauseBetweenRepeats = false;
         f32 _pauseTimeBetweenRepeats = 0.0f;
         u64 _timesToRepeat = 1u;
+
+        f32 _durationTime = 0.0f;
     };
 
     class CE_Event : public CE_Prop {
@@ -31,6 +33,9 @@ namespace omniscia::core {
 
             f32 _stopRequestTime = -1.0f;
             f32 _stopTimeCounter = 0.0f;
+
+            f32 _durationRequestTime = -1.0f;
+            f32 _durationTimeCounter = 0.0f;
 
             bool _isDone = false;
             
@@ -87,6 +92,16 @@ namespace omniscia::core {
 
                 if(_reapetCounter < _timesToRepeat)
                     return false;
+
+                if(_durationTime != 0.0f) {
+                    if(_durationRequestTime < 0.0f) 
+                        _durationRequestTime = Time::get_time();
+                
+                    _durationTimeCounter = Time::get_time() - _durationRequestTime;
+
+                    if(_durationTimeCounter < _durationTime)
+                        return false;
+                }
 
                 return true;
             }
