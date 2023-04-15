@@ -86,7 +86,7 @@ namespace omniscia::gfx {
              * @param uniform uniform name
              * @param value - f32 value which needed to be set to the uniform
             */
-            void set_uniform_f32(const char *uniform, f32 value) const;
+            void set_uniform_f32(const char *uniform, const f32& value) const;
 
             /**
              * @brief Sets uniform value of the openg shader program to specific value  
@@ -94,7 +94,7 @@ namespace omniscia::gfx {
              * @param uniform uniform name
              * @param value - i32 value which needed to be set to the uniform
             */
-            void set_uniform_i32(const char *uniform, i32 value) const;
+            void set_uniform_i32(const char *uniform, const i32& value) const;
 
             /** 
              * @brief Sets uniform value of the openg shader program to specific value  
@@ -102,7 +102,7 @@ namespace omniscia::gfx {
              * @param uniform uniform name
              * @param value - Vec2f value which needed to be set to the uniform
             */
-            void set_uniform_vec2f(const char *uniform, Vec2f value) const;
+            void set_uniform_vec2f(const char *uniform, const Vec2f& value) const;
 
             /** 
              * @brief Sets uniform value of the openg shader program to specific value  
@@ -110,7 +110,7 @@ namespace omniscia::gfx {
              * @param uniform uniform name
              * @param value - Vec2i value which needed to be set to the uniform
             */
-            void set_uniform_vec2i(const char *uniform, Vec2i value) const;
+            void set_uniform_vec2i(const char *uniform, const Vec2i& value) const;
 
             /** 
              * @brief Sets uniform value of the openg shader program to specific value  
@@ -118,7 +118,7 @@ namespace omniscia::gfx {
              * @param uniform uniform name
              * @param value - Vec3f value which needed to be set to the uniform
             */
-            void set_uniform_vec3f(const char *uniform, Vec3f value) const;
+            void set_uniform_vec3f(const char *uniform, const Vec3f& value) const;
 
             /** 
              * @brief Sets uniform value of the openg shader program to specific value  
@@ -126,7 +126,7 @@ namespace omniscia::gfx {
              * @param uniform uniform name
              * @param value - Vec3i value which needed to be set to the uniform
             */
-            void set_uniform_vec3i(const char *uniform, Vec3i value) const;
+            void set_uniform_vec3i(const char *uniform, const Vec3i& value) const;
 
             /** 
              * @brief Sets uniform value of the openg shader program to specific value  
@@ -134,7 +134,7 @@ namespace omniscia::gfx {
              * @param uniform uniform name
              * @param value - Matrix<f32, 2, 2> value which needed to be set to the uniform
             */
-            void set_uniform_mat2x2f(const char *uniform, Matrix<f32, 2, 2> value) const;
+            void set_uniform_mat2x2f(const char *uniform, const Matrix<f32, 2, 2>& value) const;
 
             /** @brief Terminates opengl shader program */
             void terminate();
