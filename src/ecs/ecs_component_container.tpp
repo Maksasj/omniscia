@@ -1,6 +1,6 @@
 /**
  * @file 
- * ecs_component_сontainer.tpp
+ * ecs_component_container.tpp
  * 
  * @author 
  * Maksim Jaroslavcevas radioboos@gmail.com
@@ -17,7 +17,7 @@
 #include <optional>
 #include <typeinfo>
 
-#include "ecs_component_сontainer_index.tpp"
+#include "ecs_component_container_index.tpp"
 #include "ecs_component.tpp"
 #include "types.tpp"
 

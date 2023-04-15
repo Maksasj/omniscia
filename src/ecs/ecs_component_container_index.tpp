@@ -1,6 +1,6 @@
 /**
  * @file 
- * ecs_component_сontainer_index.tpp
+ * ecs_component_container_index.tpp
  * 
  * @author 
  * Maksim Jaroslavcevas radioboos@gmail.com
