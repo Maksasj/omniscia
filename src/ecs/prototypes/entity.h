@@ -30,7 +30,7 @@ namespace omniscia::core {
             UUID _uuid;
 
             /** @brief Container that holds all componets */
-            ECS_ComponentContainer _component_сontainer;
+            ECS_ComponentContainer _component_container;
         
         public:
             /** @brief Default Entity constructor */
@@ -43,7 +43,7 @@ namespace omniscia::core {
              * @param entity target, to which clone component container 
             */
             void clone_container_to(Entity& entity) const {
-                entity._component_сontainer = _component_сontainer.clone();
+                entity._component_container = _component_container.clone();
             }
             
             /**
@@ -76,7 +76,7 @@ namespace omniscia::core {
             */
             template<class T>
             Entity& add() {
-                _component_сontainer.add<T>(this);
+                _component_container.add<T>(this);
                 return *this;
             }
 
@@ -91,7 +91,7 @@ namespace omniscia::core {
             */
             template<class T, class... Args>
             Entity& add(Args&&... args) {
-                _component_сontainer.add<T>(this, std::forward<Args>(args)...);
+                _component_container.add<T>(this, std::forward<Args>(args)...);
                 return *this;
             }
 
@@ -104,7 +104,7 @@ namespace omniscia::core {
             */
             template<typename T>
             T& ref_unsafe(ECS_Index<T> __index) const {
-                return _component_сontainer.ref_unsafe<T>(__index.get());
+                return _component_container.ref_unsafe<T>(__index.get());
             }
             
             /**
@@ -112,7 +112,7 @@ namespace omniscia::core {
              * enityt instance
             */
             void time_sync() {
-                _component_сontainer.time_sync(this);
+                _component_container.time_sync(this);
             }
 
             /**
@@ -123,7 +123,7 @@ namespace omniscia::core {
              */
             template<typename T>
             ECS_Index<T> index() const {
-                return _component_сontainer.index<T>();
+                return _component_container.index<T>();
             }
 
             /**
@@ -134,7 +134,7 @@ namespace omniscia::core {
              * @return u64 byte size 
             */
             u64 byte_size() const {
-                return _component_сontainer.byte_size();
+                return _component_container.byte_size();
             }
     };
 }
