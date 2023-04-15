@@ -18,7 +18,7 @@ include("src/CmakeLists.txt")
 # handle 3dparty lib includes and etc.
 include("3dparty/CmakeLists.txt")
 
-# add_subdirectory(tests)
+add_subdirectory(tests)
 
 add_executable( Omniscia ${OMNISCIA-SRC} )
 target_link_libraries(Omniscia ${OPENGL_LIBRARIES})
@@ -26,8 +26,8 @@ target_link_libraries(Omniscia glfw)
 target_link_libraries(Omniscia glad)
 target_link_libraries(Omniscia opengl32)
 
-# add_executable( OmnisciaEditor ${OMNISCIA-EDITOR-SRC} )
-# target_link_libraries(OmnisciaEditor ${OPENGL_LIBRARIES})
-# target_link_libraries(OmnisciaEditor glfw)
-# target_link_libraries(OmnisciaEditor glad)
-# target_link_libraries(OmnisciaEditor opengl32)
+add_executable( OmnisciaEditor ${OMNISCIA-EDITOR-SRC} )
+target_link_libraries(OmnisciaEditor ${OPENGL_LIBRARIES})
+target_link_libraries(OmnisciaEditor glfw)
+target_link_libraries(OmnisciaEditor glad)
+target_link_libraries(OmnisciaEditor opengl32)
