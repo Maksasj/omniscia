@@ -13,7 +13,7 @@ uniform vec2 scale = vec2(1.0, 1.0);
 
 uniform vec3 cameraPosition;
 
-uniform float screen_aspect = 1.6;
+uniform float screenAspect = 1.6;
 
 void main() {
    vec4 pos = vec4(vec4(aPos, 1.0f));
@@ -21,7 +21,7 @@ void main() {
    pos.xy *= scale;
    pos.xy -= cameraPosition.xy;
    pos.xy += transform.xy;
-   pos.x /= screen_aspect;
+   pos.x /= screenAspect;
 
    gl_Position = pos;
 

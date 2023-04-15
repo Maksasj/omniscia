@@ -26,6 +26,7 @@
 #include "ecs_system.h"
 #include "timesystem.h"
 #include "controls.h"
+#include "camera.h"
 
 namespace omniscia::core::ecs {
     using namespace omniscia::core;
@@ -43,9 +44,6 @@ namespace omniscia::core::ecs {
             */
             Entity* _parent;
 
-            /** @brief Current position of the camera */
-            Vec3f _camPos;
-            
             /** @brief Camera follow speed */
             f32 _cameraFollowSpeed;
 
@@ -54,8 +52,8 @@ namespace omniscia::core::ecs {
 
         public:
             /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_CameraFollow, this->_parent << " " << this->_camPos << " " << this->_cameraFollowSpeed);
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_CameraFollow, self._parent << " " << self._camPos << " " << self._cameraFollowSpeed);
+            OMNISCIA_STRING_REPRESENTATION(ECS_CameraFollow, this->_parent << " " << " " << this->_cameraFollowSpeed);
+            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_CameraFollow, self._parent << " " << " " << self._cameraFollowSpeed);
 
             /**
              * @brief Method used for time 

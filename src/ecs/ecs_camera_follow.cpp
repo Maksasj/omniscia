@@ -3,7 +3,6 @@
 omniscia::core::ecs::ECS_CameraFollow::ECS_CameraFollow(const f32& cameraFollowSpeed) {
     ECS_CameraFollowSystem::get_instance().bind_component(this);
     
-    _camPos = Vec3f{0.0, 0.0, 0.0};
     _cameraFollowSpeed = cameraFollowSpeed;
 }
 
@@ -25,21 +24,12 @@ void omniscia::core::ecs::ECS_CameraFollow::update(Shader* shader) {
     
     position.y += 0.3;
 
-    Vec3f delta = position - _camPos;
+    Vec3f& camPos = Camera::get_instance().ref_pos();
+    Vec3f delta = position - camPos;
 
     f32 dt = Time::get_instance().get_delta_time();
 
-    _camPos += delta * _cameraFollowSpeed * dt;
-
-    shader->set_uniform_vec3f("cameraPosition", _camPos);
-}
-
-omniscia::core::Vec3f omniscia::core::ecs::ECS_CameraFollow::get_camera_pos() const {
-    return _camPos;
-}
-
-omniscia::core::Vec3f& omniscia::core::ecs::ECS_CameraFollow::ref_camera_pos() {
-    return _camPos;
+    camPos += delta * _cameraFollowSpeed * dt;
 }
 
 f32 omniscia::core::ecs::ECS_CameraFollow::get_camera_follow_speed() const {
