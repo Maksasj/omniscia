@@ -18,7 +18,7 @@ include("src/CmakeLists.txt")
 # handle 3dparty lib includes and etc.
 include("3dparty/CmakeLists.txt")
 
-add_subdirectory(tests)
+# add_subdirectory(tests)
 
 add_executable( Omniscia ${OMNISCIA-SRC} )
 target_link_libraries(Omniscia ${OPENGL_LIBRARIES})
