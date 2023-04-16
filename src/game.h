@@ -32,6 +32,7 @@
 #include "debug_ui.h"
 #include "scene.h"
 #include "scene_loader.h"
+#include "monitor.h"
 
 #include "sound_fx.h"
 

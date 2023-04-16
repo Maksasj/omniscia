@@ -6,6 +6,7 @@ include_directories("src/ecs/prototypes")
 
 # Graphics
 include_directories("src/gfx")
+include_directories("src/gfx/monitor")
 
 # ImGui
 include_directories("src/imgui")

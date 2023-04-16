@@ -1,8 +1,15 @@
 #include "game.h"
 
 void omniscia::Game::load() {
+    using namespace omniscia;
+    using namespace omniscia::gfx;
+    using namespace omniscia::gfx::monitor;
+
     Renderer::init();
 
+    auto monitors = Monitor::retrieve_monitors();
+    monitors[1]->set_active();
+    //Monitor::get_active()->get_glfw_monitor()
     window = glfwCreateWindow(Properties::screenWidth, Properties::screenHeight, "Omniscia", NULL, NULL);
 
     if (window == NULL) {
@@ -48,6 +55,11 @@ void omniscia::Game::run() {
         renderStage2.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
         renderStage2.bind_default_shader(&shader2);
 
+    RenderStage renderStageFinal;
+        renderStageFinal.bind_target_texture_buffer(new TextureBuffer(Properties::screenWidth, Properties::screenHeight));
+        renderStageFinal.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
+        renderStageFinal.bind_default_shader(&shader3);
+
     Scene* scene = new Scene();
     SceneLoader::get_instance().load_scene(*scene);
     scene->add_dynamic_entity<Crab>();
@@ -72,8 +84,9 @@ void omniscia::Game::run() {
             })
         },
         CE_Step{
-            new CE_StopSystemEvent<ECS_PlayerControllerSystem>((CE_StopSystemProp){}),
-            new CE_StopSystemEvent<ECS_CameraFollowSystem>((CE_StopSystemProp){}),
+            new CE_DisableSystemEvent<ECS_PlayerControllerSystem>((CE_DisableSystemProp){}),
+            new CE_DisableSystemEvent<ECS_CameraFollowSystem>((CE_DisableSystemProp){}),
+            new CE_LetterBoxEvent((CE_LetterBoxProp){}),
             new CE_CameraMoveEvent((CE_CameraMoveProp){ 
                 ._base = (CE_Prop){
                     ._pauseBeforeStart = true,
@@ -210,6 +223,16 @@ void omniscia::Game::run() {
             ECS_ParallaxSpriteRendererFrontSystem::get_instance().render();
         });
 
+        renderStageFinal.render_stage_lambda([&](const Shader* stage_shader){ 
+            Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
+            Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
+            Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            Shader::get_active()->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
+
+            renderStage2.present_as_texture();
+            renderBackgroundStage.present_as_texture();
+        });
+
         /* screen buffer */
         RenderStage::render_anonymous_stage_lambda([&]() {
             Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 1.0});
@@ -218,8 +241,8 @@ void omniscia::Game::run() {
             Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
             Shader::get_active()->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
 
-            renderStage2.present_as_texture();
-            renderBackgroundStage.present_as_texture();
+            renderStageFinal.present_as_texture();
+            
             DebugUI::get_instance().render();
         });
 

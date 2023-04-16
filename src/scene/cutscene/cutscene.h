@@ -5,12 +5,7 @@
 
 #include "cutscene_step.h"
 #include "cutscene_event.h"
-
-#include "enable_system_cutscene_event.h"
-#include "camera_move_event.h"
-#include "terminal_print_cutscene_event.h"
-#include "stop_system_cutscene_event.h"
-#include "camera_zoom_event.h"
+#include "cutscene_events.h"
 
 namespace omniscia::core {
     class Cutscene {
@@ -29,6 +24,10 @@ namespace omniscia::core {
 
                 _started = 0;
                 _current_step = _steps.begin();
+            }
+
+            void free() {
+                _steps.clear();
             }
 
             void start() {

@@ -12,7 +12,6 @@ void main() {
     textureCoord.x += layerOffset;
 
     vec4 color = texture(ourTexture, textureCoord);
-    
 
     FragColor = color;
 }
