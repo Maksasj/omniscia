@@ -86,6 +86,10 @@ namespace omniscia::core {
                 _isDone = true;
             }
 
+            f32 get_current_duration() const {
+                return _durationTimeCounter;
+            }
+
             bool is_done() {
                 if(_isDone)
                     return true;

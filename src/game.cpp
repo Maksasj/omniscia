@@ -66,37 +66,44 @@ void omniscia::Game::run() {
 
     Cutscene cutscene = {
         CE_Step{
-            new CE_LogEvent((CE_LogProp){ 
-                ._base = (CE_Prop){
-                    ._pauseBeforeStart = true,
-                    ._pauseTimeBeforeStart = 4.0f,
-
-                    ._pauseAfterFinishing = true,
-                    ._pauseTimeAfterFinishing = 8.0f,
-                    
-                    ._pauseBetweenRepeats = true,
-                    ._pauseTimeBetweenRepeats = 2.0f,
-                    ._timesToRepeat = 5,
-                },
-
-                ._message = "First Step, First Event",
-            }),
-            new CE_LogEvent((CE_LogProp){ 
-                ._base = (CE_Prop){
-                    ._timesToRepeat = 2,
-                },
-
-                ._message = "First Step, Second Event",
+            new CE_Event((CE_Prop){ 
+                ._pauseBeforeStart = true,
+                ._pauseTimeBeforeStart = 8.0f,
             })
         },
         CE_Step{
-            new CE_LogEvent((CE_LogProp){ 
+            new CE_StopSystemEvent<ECS_PlayerControllerSystem>((CE_StopSystemProp){}),
+            new CE_StopSystemEvent<ECS_CameraFollowSystem>((CE_StopSystemProp){}),
+            new CE_CameraMoveEvent((CE_CameraMoveProp){ 
                 ._base = (CE_Prop){
+                    ._pauseBeforeStart = true,
+                    ._pauseTimeBeforeStart = 0.2f,
                     ._durationTime = 5.0f
                 },
 
-                ._message = "Second event",
-            })
+                ._startPosition = {0.0f, 0.3f, 0.0f},
+                ._finishPosition = {1.0f, 1.0f, 0.f},
+
+                ._shapingFunction = &smoothstep<Vec3f>,
+            }),
+        },
+        CE_Step{
+            new CE_CameraMoveEvent((CE_CameraMoveProp){ 
+                ._base = (CE_Prop){
+                    ._pauseBeforeStart = true,
+                    ._pauseTimeBeforeStart = 0.2f,
+                    ._durationTime = 5.0f
+                },
+
+                ._startPosition = {1.0f, 1.0f, 0.f},
+                ._finishPosition = {0.0f, 0.3f, 0.0f},
+
+                ._shapingFunction = &smoothstep<Vec3f>,
+            }),
+        },
+        CE_Step{
+            new CE_EnableSystemEvent<ECS_PlayerControllerSystem>((CE_EnableSystemProp){}),
+            new CE_EnableSystemEvent<ECS_CameraFollowSystem>((CE_EnableSystemProp){}),
         },
     };
 

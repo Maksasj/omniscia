@@ -6,6 +6,8 @@
 #include "cutscene_step.h"
 #include "cutscene_event.h"
 
+#include "enable_system_cutscene_event.h"
+#include "camera_move_event.h"
 #include "terminal_print_cutscene_event.h"
 #include "stop_system_cutscene_event.h"
 

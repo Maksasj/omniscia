@@ -51,8 +51,8 @@ namespace omniscia::core {
         Vec2 operator+(const Vec2& vec) { return Vec2{x + vec.x, y + vec.y }; }
         Vec2 operator-(const Vec2& vec) { return Vec2{x - vec.x, y - vec.y }; }
 
-        Vec2 operator*(const _T& value) { return Vec2{x * value, y * value }; }
-        Vec2 operator/(const _T& value) {
+        Vec2 operator*(const _T& value) const { return Vec2{x * value, y * value }; }
+        Vec2 operator/(const _T& value) const {
             if(value == 0) throw std::overflow_error("Divide by zero exception");
 
             return Vec2{x / value, y / value }; 
@@ -147,13 +147,13 @@ namespace omniscia::core {
         /**
          * @brief Some overoaded operators
         */
-        Vec3 operator+(const Vec3& vec) { return Vec3{this->x + vec.x, this->y + vec.y, z + vec.z}; }
-        Vec3 operator-(const Vec3& vec) { return Vec3{this->x - vec.x, this->y - vec.y, z - vec.z}; }
-        Vec3 operator*(const Vec3& vec) { return Vec3{this->x * vec.x, this->y * vec.y, z * vec.z}; }
-        Vec3 operator/(const Vec3& vec) { return Vec3{this->x / vec.x, this->y / vec.y, z / vec.z}; }
+        Vec3 operator+(const Vec3& vec) const { return Vec3{this->x + vec.x, this->y + vec.y, z + vec.z}; }
+        Vec3 operator-(const Vec3& vec) const { return Vec3{this->x - vec.x, this->y - vec.y, z - vec.z}; }
+        Vec3 operator*(const Vec3& vec) const { return Vec3{this->x * vec.x, this->y * vec.y, z * vec.z}; }
+        Vec3 operator/(const Vec3& vec) const { return Vec3{this->x / vec.x, this->y / vec.y, z / vec.z}; }
 
-        Vec3 operator*(const _T& value) { return Vec3{this->x * value, this->y * value, this->z * value }; }
-        Vec3 operator/(const _T& value) { 
+        Vec3 operator*(const _T& value) const { return Vec3{this->x * value, this->y * value, this->z * value }; }
+        Vec3 operator/(const _T& value) const { 
             if(value == 0) throw std::overflow_error("Divide by zero exception");
 
             return Vec3{this->x / value, this->y / value, this->z / value }; 
@@ -415,6 +415,20 @@ namespace omniscia::core {
             return ss.str();
         }
     };
+
+    template<typename T>
+    inline T lerp(const T& start, const T& finish, const f32& t) {
+        return (finish * t) + start * (1.0f - t);
+    }
+
+    template<typename T>
+    inline T smoothstep(const T& start, const T& finish, const f32& t) {
+        const f32 v1 = t * t;
+        const f32 v2 = 1.0f - (1.0f - t) * (1.0f - t);
+        const f32 newT = lerp(v1, v2, t);
+
+        return lerp(start, finish, newT);
+    }
 
     using Vec2f = Vec2<f32>;
     using Vec3f = Vec3<f32>;

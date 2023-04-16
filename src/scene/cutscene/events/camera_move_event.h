@@ -1,0 +1,39 @@
+#ifndef _CAMERA_MOVE_EVENT_CUTSCENE_EVENT_
+#define _CAMERA_MOVE_EVENT_CUTSCENE_EVENT_
+
+#include <functional>
+#include <string>
+
+#include "camera.h"
+#include "cutscene_event.h"
+
+namespace omniscia::core {
+    struct CE_CameraMoveProp {
+        CE_Prop _base;
+
+        Vec3f _startPosition = Vec3f{0.0f, 0.0f, 0.0f};
+        Vec3f _finishPosition = Vec3f{0.0f, 0.0f, 0.0f};
+        std::function<Vec3f(const Vec3f&, const Vec3f&, const f32&)> _shapingFunction;
+    };
+
+    class CE_CameraMoveEvent : public CE_CameraMoveProp , public CE_Event {
+        private:
+            CE_CameraMoveEvent() {}
+            CE_CameraMoveEvent(const CE_CameraMoveEvent&) {}
+            void operator=(const CE_CameraMoveEvent&) {}
+
+        public:
+            CE_CameraMoveEvent(const auto& data = CE_CameraMoveProp{}) : CE_CameraMoveProp(data), CE_Event(*(CE_Prop*)&data) {
+
+            }
+            
+            void execute() override {
+                const f32 t = this->get_current_duration() / _durationTime;
+
+                auto newPos = _shapingFunction(_startPosition, _finishPosition, t);
+                Camera::get_instance().set_pos(newPos);
+            }
+    };
+}
+
+#endif
