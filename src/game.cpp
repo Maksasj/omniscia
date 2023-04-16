@@ -86,7 +86,9 @@ void omniscia::Game::run() {
         CE_Step{
             new CE_DisableSystemEvent<ECS_PlayerControllerSystem>((CE_DisableSystemProp){}),
             new CE_DisableSystemEvent<ECS_CameraFollowSystem>((CE_DisableSystemProp){}),
+            /** TODO */ // Time sync
             new CE_LetterBoxEvent((CE_LetterBoxProp){}),
+            /** =====*/
             new CE_CameraMoveEvent((CE_CameraMoveProp){ 
                 ._base = (CE_Prop){
                     ._pauseBeforeStart = true,
