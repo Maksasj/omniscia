@@ -26,7 +26,12 @@ u32 omniscia::core::ecs::ECS_ParallaxSpriteRendererFront::get_layer() const {
     return _layer;
 }
 
-void omniscia::core::ecs::ECS_ParallaxSpriteRendererFront::render(const Shader *shader) {
+void omniscia::core::ecs::ECS_ParallaxSpriteRendererFront::render() {
+    Shader* shader = Shader::get_active();
+    if(shader == nullptr)
+        return;
+
     shader->set_uniform_f32("layerOffset", _layerOffsetCallBack(_layerOffset));
+    
     _sprite.render(shader);
 }

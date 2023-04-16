@@ -87,7 +87,7 @@ namespace omniscia::core::ecs {
              * 
              * @param shader used for updating shader uniforms
             */
-            void update(Shader* shader);
+            void update();
 
             /**
              * @brief Get the camera position
@@ -166,12 +166,12 @@ namespace omniscia::core::ecs {
              * @brief Main update method, updates 
              * all currently assigned components
             */
-            void update(Shader* shader) {
+            void update() {
                 if(!_enabled)
                     return;
 
                 for(ECS_CameraFollow* comp : _components) {
-                    comp->update(shader);
+                    comp->update();
                 }
             }
 

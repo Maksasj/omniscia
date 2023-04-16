@@ -30,28 +30,32 @@ namespace omniscia::gfx {
      * shader asset loading and etc.
     */
     class Shader {
-        /** @brief Opengl program shader id */
-        u32 _shaderProgram;
+        private:
+            /** @brief Opengl program shader id */
+            u32 _shaderProgram;
 
-        /** @brief Temporary vertex shader id, used for runtime recompilation */
-        u32 _vertexShaderTmp;
-        
-        /** @brief Temporary fragment shader id, used for runtime recompilation */
-        u32 _fragmentShaderTmp;
+            /** @brief Temporary vertex shader id, used for runtime recompilation */
+            u32 _vertexShaderTmp;
+            
+            /** @brief Temporary fragment shader id, used for runtime recompilation */
+            u32 _fragmentShaderTmp;
 
-        /** @brief Pointer to vertex shader asset */
-        ShaderAsset* _shaderAssetVertex;
-        
-        /** @brief Pointer to fragment shader asset */
-        ShaderAsset* _shaderAssetFragment;
+            /** @brief Pointer to vertex shader asset */
+            ShaderAsset* _shaderAssetVertex;
+            
+            /** @brief Pointer to fragment shader asset */
+            ShaderAsset* _shaderAssetFragment;
 
-        /**
-         * @brief Loads content of the existing file into a string
-         * 
-         * @param path to the file that should be readed
-         * @return string representing entire content of the provided file
-        */
-        static std::string load_from_file(std::string path);
+            /** @brief Pointer to currently active shader */
+            static Shader* _currentlyActiveShader;
+
+            /**
+             * @brief Loads content of the existing file into a string
+             * 
+             * @param path to the file that should be readed
+             * @return string representing entire content of the provided file
+            */
+            static std::string load_from_file(std::string path);
 
         public:
             /**
@@ -79,6 +83,11 @@ namespace omniscia::gfx {
 
             /** @brief Activates opengl shader program */
             void activate();
+
+            /**
+             * @brief Get currently active shader
+             */
+            static Shader* get_active();
 
             /**
              * @brief Sets uniform value of the openg shader program to specific value  

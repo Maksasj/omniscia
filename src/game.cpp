@@ -124,7 +124,7 @@ void omniscia::Game::run() {
             });
         }
 
-        ECS_CameraFollowSystem::get_instance().update(&shader1);
+        ECS_CameraFollowSystem::get_instance().update();
         ECS_PlayerDebugMetricsSystem::get_instance().update();
         ECS_SoundEmitterSystem::get_instance().update();
 
@@ -142,26 +142,26 @@ void omniscia::Game::run() {
         /* Render background */
         renderBackgroundStage.render_stage_lambda([&](const Shader* stage_shader){ 
             Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
-            stage_shader->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
-            stage_shader->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
+            Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
             
-            ECS_ParallaxSpriteRendererBackSystem::get_instance().render(stage_shader);
+            ECS_ParallaxSpriteRendererBackSystem::get_instance().render();
         });
 
         renderStage1.render_stage_lambda([&](){ 
             Renderer::clear_buffer(Vec4f{0.0, 0.0, 0.0, 0.0});
-            shader1.set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
-            shader1.set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
+            Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
 
-            ECS_SpriteRendererSystem::get_instance().render(&shader1);
-            ECS_SpriteSheetRendererSystem::get_instance().render(&shader1);
-            ECS_TilemapRendererSystem::get_instance().render(&shader1);
+            ECS_SpriteRendererSystem::get_instance().render();
+            ECS_SpriteSheetRendererSystem::get_instance().render();
+            ECS_TilemapRendererSystem::get_instance().render();
         });
 
         renderStage2.render_stage_lambda([&](const Shader* stage_shader){ 
             Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
-            stage_shader->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
-            stage_shader->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
+            Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
 
             renderBackgroundStage.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
             renderStage1.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
@@ -169,18 +169,18 @@ void omniscia::Game::run() {
 
         renderBackgroundStage.render_stage_lambda([&](const Shader* stage_shader){ 
             Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
-            stage_shader->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
-            stage_shader->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
+            Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
             
-            ECS_ParallaxSpriteRendererFrontSystem::get_instance().render(stage_shader);
+            ECS_ParallaxSpriteRendererFrontSystem::get_instance().render();
         });
 
         /* screen buffer */
         RenderStage::render_anonymous_stage_lambda([&]() {
             Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 1.0});
             shader3.activate();
-            shader3.set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
-            shader3.set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
+            Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
 
             renderStage2.present_as_texture();
             renderBackgroundStage.present_as_texture();

@@ -75,10 +75,16 @@ void omniscia::gfx::Shader::compile() {
 
 void omniscia::gfx::Shader::activate() {
     glUseProgram(_shaderProgram);
+    _currentlyActiveShader = this;
 }
 
 void omniscia::gfx::Shader::terminate() {
     glDeleteProgram(_shaderProgram);
+}
+
+omniscia::gfx::Shader* omniscia::gfx::Shader::_currentlyActiveShader = nullptr;
+omniscia::gfx::Shader* omniscia::gfx::Shader::get_active() {
+    return _currentlyActiveShader;
 }
 
 void omniscia::gfx::Shader::set_uniform_f32(const char *uniform, const f32& value) const {

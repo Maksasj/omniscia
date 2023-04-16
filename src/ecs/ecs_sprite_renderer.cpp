@@ -32,7 +32,11 @@ u32 omniscia::core::ecs::ECS_SpriteRenderer::get_layer() const {
     return _layer;
 }
 
-void omniscia::core::ecs::ECS_SpriteRenderer::render(const Shader *shader) {
+void omniscia::core::ecs::ECS_SpriteRenderer::render() {
+    Shader* shader = Shader::get_active();
+    if(shader == nullptr)
+        return;
+
     Vec3f position = {0.0, 0.0, 0.0};
     Vec2f scale = {1.0, 1.0};
 

@@ -16,7 +16,7 @@ void omniscia::core::ecs::ECS_CameraFollow::reindex(void* parent) {
     posIndex = _parent->index<ECS_Positioned>();
 }
 
-void omniscia::core::ecs::ECS_CameraFollow::update(Shader* shader) {
+void omniscia::core::ecs::ECS_CameraFollow::update() {
     if(!posIndex.is_success()) return;
 
     ECS_Positioned& posComp = _parent->ref_unsafe(posIndex);

@@ -98,10 +98,8 @@ namespace omniscia::core::ecs {
 
             /**
              * @brief Renders sprite to the active frame buffer
-             * 
-             * @param shader that should be used for rendering
             */
-            void render(const Shader *shader);
+            void render();
 
             /**
              * @brief Method used for clonning single 
@@ -152,12 +150,12 @@ namespace omniscia::core::ecs {
              * @brief Main rendering method, renders 
              * all currently assigned components
             */
-            void render(Shader* shader) {
+            void render() {
                 if(!_enabled)
                     return;
 
                 for(ECS_SpriteRenderer* comp : _components) {
-                    comp->render(shader);
+                    comp->render();
                 }
             }
 
