@@ -11,6 +11,7 @@ uniform vec2 transform = vec2(0.0, 0.0);
 uniform mat2x2 rotation;
 uniform vec2 scale = vec2(1.0, 1.0);
 
+uniform float cameraZoom = 1.0;
 uniform vec3 cameraPosition;
 
 uniform float screenAspect = 1.6;
@@ -22,6 +23,7 @@ void main() {
    pos.xy -= cameraPosition.xy;
    pos.xy += transform.xy;
    pos.x /= screenAspect;
+   pos.xy *= cameraZoom;
 
    gl_Position = pos;
 

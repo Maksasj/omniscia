@@ -86,6 +86,18 @@ void omniscia::Game::run() {
 
                 ._shapingFunction = &smoothstep<Vec3f>,
             }),
+            new CE_CameraZoomEvent((CE_CameraZoomProp){ 
+                ._base = (CE_Prop){
+                    ._pauseBeforeStart = true,
+                    ._pauseTimeBeforeStart = 0.2f,
+                    ._durationTime = 5.0f
+                },
+
+                ._startZoom = 1.0f,
+                ._finishZoom = 2.0f,
+
+                ._shapingFunction = &smoothstep<f32>,
+            }),
         },
         CE_Step{
             new CE_CameraMoveEvent((CE_CameraMoveProp){ 
@@ -99,6 +111,18 @@ void omniscia::Game::run() {
                 ._finishPosition = {0.0f, 0.3f, 0.0f},
 
                 ._shapingFunction = &smoothstep<Vec3f>,
+            }),
+            new CE_CameraZoomEvent((CE_CameraZoomProp){ 
+                ._base = (CE_Prop){
+                    ._pauseBeforeStart = true,
+                    ._pauseTimeBeforeStart = 0.2f,
+                    ._durationTime = 5.0f
+                },
+
+                ._startZoom = 2.0f,
+                ._finishZoom = 1.0f,
+
+                ._shapingFunction = &smoothstep<f32>,
             }),
         },
         CE_Step{
@@ -151,6 +175,7 @@ void omniscia::Game::run() {
             Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
             Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
             Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            Shader::get_active()->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
             
             ECS_ParallaxSpriteRendererBackSystem::get_instance().render();
         });
@@ -159,6 +184,7 @@ void omniscia::Game::run() {
             Renderer::clear_buffer(Vec4f{0.0, 0.0, 0.0, 0.0});
             Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
             Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            Shader::get_active()->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
 
             ECS_SpriteRendererSystem::get_instance().render();
             ECS_SpriteSheetRendererSystem::get_instance().render();
@@ -169,6 +195,7 @@ void omniscia::Game::run() {
             Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
             Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
             Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            Shader::get_active()->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
 
             renderBackgroundStage.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
             renderStage1.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
@@ -178,6 +205,7 @@ void omniscia::Game::run() {
             Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
             Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
             Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            Shader::get_active()->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
             
             ECS_ParallaxSpriteRendererFrontSystem::get_instance().render();
         });
@@ -188,6 +216,7 @@ void omniscia::Game::run() {
             shader3.activate();
             Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
             Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            Shader::get_active()->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
 
             renderStage2.present_as_texture();
             renderBackgroundStage.present_as_texture();

@@ -10,6 +10,7 @@
 #include "camera_move_event.h"
 #include "terminal_print_cutscene_event.h"
 #include "stop_system_cutscene_event.h"
+#include "camera_zoom_event.h"
 
 namespace omniscia::core {
     class Cutscene {
