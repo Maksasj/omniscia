@@ -1,23 +1,13 @@
 #include "ecs_spritesheet_renderer.h"
 
-omniscia::core::ecs::ECS_SpriteSheetRenderer::ECS_SpriteSheetRenderer(const std::string& textureId, const u32& layer) : _sprite(textureId) {
+omniscia::core::ecs::ECS_SpriteSheetRenderer::ECS_SpriteSheetRenderer(const std::string& textureId, const u32& layer) : _sprite(textureId), ECS_ProRenderer(RenderStagePool::get_instance().get_stage_by_name("MainStage")) {
     _layer = layer;
 
-    ECS_SpriteSheetRendererSystem::get_instance().bind_component(this);
-
-    ECS_SpriteSheetRendererSystem::get_instance().sort_components(
-    [](const ECS_SpriteSheetRenderer* a, const ECS_SpriteSheetRenderer* b) {
-        return a->get_layer() > b->get_layer();
-    });
+    ECS_ProRendererSystem::get_instance().bind_component(this);
 };
 
 void omniscia::core::ecs::ECS_SpriteSheetRenderer::time_sync() {
-    ECS_SpriteSheetRendererSystem::get_instance().bind_component(this);
-
-    ECS_SpriteSheetRendererSystem::get_instance().sort_components(
-    [](const ECS_SpriteSheetRenderer* a, const ECS_SpriteSheetRenderer* b) {
-        return a->get_layer() > b->get_layer();
-    });
+    ECS_ProRendererSystem::get_instance().bind_component(this);
 }
 
 void omniscia::core::ecs::ECS_SpriteSheetRenderer::reindex(void* parent) {

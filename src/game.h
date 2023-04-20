@@ -18,7 +18,7 @@
 #include "texture_manager.h"
 #include "animation_manager.h"
 #include "ecs_components.h"
-#include "render_stage.h"
+#include "render_stage_pool.h"
 #include "properties.h"
 #include "timesystem.h"
 #include "controls.h"

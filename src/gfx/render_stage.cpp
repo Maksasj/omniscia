@@ -1,8 +1,9 @@
 #include "render_stage.h"
 
-omniscia::gfx::RenderStage::RenderStage() : FrameBuffer() {
-    _textureBuffer = nullptr;
-    _shader = nullptr;
+omniscia::gfx::RenderStage* omniscia::gfx::RenderStage::_activeRenderStage = nullptr;
+
+omniscia::gfx::RenderStage::RenderStage(const RenderStageProp& prop, const i32& stageId) : FrameBuffer(), RenderStageProp(prop) {
+    _stageId = stageId;
 }
 
 void omniscia::gfx::RenderStage::present_as_texture() const {
@@ -60,63 +61,104 @@ void omniscia::gfx::RenderStage::present_as_texture(const Shader *shader, const 
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
-void omniscia::gfx::RenderStage::bind_target_mesh(const RawMeshData& rawMeshData) {
-    _spriteMesh = SpriteMesh(rawMeshData);
+omniscia::gfx::RenderStage& omniscia::gfx::RenderStage::bind_target_mesh(const SpriteMesh& spriteMesh) {
+    _spriteMesh = spriteMesh;
+    
+    return *this;
 }
 
-void omniscia::gfx::RenderStage::bind_target_mesh(const RawMeshData& rawMeshData, const Vec3f scale) {
-    _spriteMesh = SpriteMesh(rawMeshData, scale);
-}
-
-void omniscia::gfx::RenderStage::bind_target_texture_buffer(TextureBuffer *textureBuffer) {
+omniscia::gfx::RenderStage& omniscia::gfx::RenderStage::bind_target_texture_buffer(TextureBuffer *textureBuffer) {
     _textureBuffer = textureBuffer;
 
     bind();
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _textureBuffer->get_id(), 0);
+    
+    return *this;
 }
 
-void omniscia::gfx::RenderStage::bind_target_texture_buffer(TextureBuffer& textureBuffer) {
+omniscia::gfx::RenderStage& omniscia::gfx::RenderStage::bind_target_texture_buffer(TextureBuffer& textureBuffer) {
     _textureBuffer = &textureBuffer;
 
     bind();
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _textureBuffer->get_id(), 0);
+    
+    return *this;
 }
 
-void omniscia::gfx::RenderStage::bind_default_shader(Shader *shader) {
-    _shader = shader;
+omniscia::gfx::RenderStage& omniscia::gfx::RenderStage::bind_default_shader(Shader *shader) {
+    _defaultShader = shader;
+
+    return *this;
 }
 
-void omniscia::gfx::RenderStage::bind_default_shader(Shader& shader) {
-    _shader = &shader;
+omniscia::gfx::RenderStage& omniscia::gfx::RenderStage::bind_default_shader(Shader& shader) {
+    _defaultShader = &shader;
+
+    return *this;
 }
 
-void omniscia::gfx::RenderStage::render_stage_lambda(const std::function<void(void)> rendering_lambda) const {        
+void omniscia::gfx::RenderStage::render_stage_lambda(const std::function<void(void)> rendering_lambda) {        
     bind();
-        if(_shader != nullptr)
-            _shader->activate();
+        _activeRenderStage = this;
+
+        Renderer::clear_buffer(_buffer._clearBufferColor);
+
+        if(_defaultShader != nullptr) {
+            _defaultShader->activate();
+
+            _defaultShader->set_uniform_f32("screenAspect", _shaderUniforms._screenAspect());
+            _defaultShader->set_uniform_vec3f("cameraPosition", _shaderUniforms._cameraPosition());
+            _defaultShader->set_uniform_f32("cameraZoom", _shaderUniforms._cameraZoom());
+        }
 
         rendering_lambda();
     
+        _activeRenderStage = nullptr;
     unbind();
 }
 
-void omniscia::gfx::RenderStage::render_stage_lambda(const std::function<void(const Shader* shader)> rendering_lambda) const {        
+void omniscia::gfx::RenderStage::render_stage_lambda(const std::function<void(const Shader* shader)> rendering_lambda) {        
     bind();
-        if(_shader != nullptr)
-            _shader->activate();
+        _activeRenderStage = this;
 
-        rendering_lambda(_shader);
+        Renderer::clear_buffer(_buffer._clearBufferColor);
+
+        if(_defaultShader != nullptr) {
+            _defaultShader->activate();
+
+            _defaultShader->set_uniform_f32("screenAspect", _shaderUniforms._screenAspect());
+            _defaultShader->set_uniform_vec3f("cameraPosition", _shaderUniforms._cameraPosition());
+            _defaultShader->set_uniform_f32("cameraZoom", _shaderUniforms._cameraZoom());
+        }
+
+        rendering_lambda(_defaultShader);
+
+        _activeRenderStage = nullptr;
     unbind();
 }
 
-void omniscia::gfx::RenderStage::render_stage_lambda_default(const std::function<void(void)> rendering_lambda) const {
+void omniscia::gfx::RenderStage::render_stage_lambda_default(const std::function<void(void)> rendering_lambda) {
     bind();
+        _activeRenderStage = this;
         
         rendering_lambda();
-    
+
+        _activeRenderStage = nullptr;
     unbind();
 }
 
 void omniscia::gfx::RenderStage::render_anonymous_stage_lambda(const std::function<void(void)> rendering_lambda) {
+    _activeRenderStage = nullptr;
+    
     rendering_lambda();
+    
+    _activeRenderStage = nullptr;
 }
+
+omniscia::gfx::RenderStage* omniscia::gfx::RenderStage::get_active_render_stage() {
+    return _activeRenderStage;
+}
+
+i32 omniscia::gfx::RenderStage::get_stage_id() const {
+    return _stageId;
+} 

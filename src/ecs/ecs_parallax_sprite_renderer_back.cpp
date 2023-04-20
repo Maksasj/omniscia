@@ -1,25 +1,15 @@
 #include "ecs_parallax_sprite_renderer_back.h"
 
-omniscia::core::ecs::ECS_ParallaxSpriteRendererBack::ECS_ParallaxSpriteRendererBack(const std::string& textureId, const u32& layer, const std::function<f32(f32&)>& layerOffsetCallBack) : _sprite(textureId) , _layerOffsetCallBack(layerOffsetCallBack) {
+omniscia::core::ecs::ECS_ParallaxSpriteRendererBack::ECS_ParallaxSpriteRendererBack(const std::string& textureId, const u32& layer, const std::function<f32(f32&)>& layerOffsetCallBack) : _sprite(textureId) , _layerOffsetCallBack(layerOffsetCallBack), ECS_ProRenderer(RenderStagePool::get_instance().get_stage_by_name("BackgroundStage")) {
     _layer = layer;
 
     _layerOffset = 0;
 
-    ECS_ParallaxSpriteRendererBackSystem::get_instance().bind_component(this);
-
-    ECS_ParallaxSpriteRendererBackSystem::get_instance().sort_components(
-    [](const ECS_ParallaxSpriteRendererBack* a, const ECS_ParallaxSpriteRendererBack* b) {
-        return a->get_layer() > b->get_layer();
-    });
+    ECS_ProRendererSystem::get_instance().bind_component(this);
 };
 
 void omniscia::core::ecs::ECS_ParallaxSpriteRendererBack::time_sync() {
-    ECS_ParallaxSpriteRendererBackSystem::get_instance().bind_component(this);
-
-    ECS_ParallaxSpriteRendererBackSystem::get_instance().sort_components(
-    [](const ECS_ParallaxSpriteRendererBack* a, const ECS_ParallaxSpriteRendererBack* b) {
-        return a->get_layer() > b->get_layer();
-    });
+    ECS_ProRendererSystem::get_instance().bind_component(this);
 }
 
 u32 omniscia::core::ecs::ECS_ParallaxSpriteRendererBack::get_layer() const {

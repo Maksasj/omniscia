@@ -1,23 +1,13 @@
 #include "ecs_tilemap_renderer.h"
 
-omniscia::core::ecs::ECS_TilemapRenderer::ECS_TilemapRenderer(const RawMeshData& meshData, const std::string& textureId, const u32& layer) : _sprite(meshData, textureId) {
+omniscia::core::ecs::ECS_TilemapRenderer::ECS_TilemapRenderer(const RawMeshData& meshData, const std::string& textureId, const u32& layer) : _sprite(meshData, textureId), ECS_ProRenderer(RenderStagePool::get_instance().get_stage_by_name("MainStage")) {
     _layer = layer;
 
-    ECS_TilemapRendererSystem::get_instance().bind_component(this);
-
-    ECS_TilemapRendererSystem::get_instance().sort_components(
-    [](const ECS_TilemapRenderer* a, const ECS_TilemapRenderer* b) {
-        return a->get_layer() > b->get_layer();
-    });
+    ECS_ProRendererSystem::get_instance().bind_component(this);
 };
 
 void omniscia::core::ecs::ECS_TilemapRenderer::time_sync() {
-    ECS_TilemapRendererSystem::get_instance().bind_component(this);
-
-    ECS_TilemapRendererSystem::get_instance().sort_components(
-    [](const ECS_TilemapRenderer* a, const ECS_TilemapRenderer* b) {
-        return a->get_layer() > b->get_layer();
-    });
+    ECS_ProRendererSystem::get_instance().bind_component(this);
 }
 
 void omniscia::core::ecs::ECS_TilemapRenderer::reindex(void* parent) {

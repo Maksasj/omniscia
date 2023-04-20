@@ -8,9 +8,11 @@ void omniscia::Game::load() {
     Renderer::init();
 
     auto monitors = Monitor::retrieve_monitors();
-    monitors[1]->set_active();
-    //Monitor::get_active()->get_glfw_monitor()
+    //monitors[1]->set_active();
+    monitors[0]->set_active();
+    
     window = glfwCreateWindow(Properties::screenWidth, Properties::screenHeight, "Omniscia", NULL, NULL);
+    //window = glfwCreateWindow(Properties::screenWidth, Properties::screenHeight, "Omniscia", Monitor::get_active()->get_glfw_monitor(), NULL);
 
     if (window == NULL) {
         glfwTerminate();
@@ -39,38 +41,78 @@ void omniscia::Game::run() {
     if(shader2.try_compile()) shader2.compile();
     if(shader3.try_compile()) shader3.compile();
     if(shaderBackground.try_compile()) shaderBackground.compile();
-    
-    RenderStage renderBackgroundStage;
-        renderBackgroundStage.bind_target_texture_buffer(new TextureBuffer(Properties::screenWidth, Properties::screenHeight));
-        renderBackgroundStage.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
-        renderBackgroundStage.bind_default_shader(&shaderBackground);
 
-    RenderStage renderStage1;
-        renderStage1.bind_target_texture_buffer(new TextureBuffer(Properties::screenWidth, Properties::screenHeight));
-        renderStage1.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
-        renderStage1.bind_default_shader(&shader1);
+    RenderStage& renderBackgroundStage = RenderStagePool::get_instance().add_stage((RenderStageProp){
+        ._stageName = "BackgroundStage",
+        ._textureBuffer = new TextureBuffer(Properties::screenWidth, Properties::screenHeight),
+        ._defaultShader = &shaderBackground,
+        ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
+        ._shaderUniforms = {
+            ._screenAspect = [](){ return (Properties::screenWidth) / (float) Properties::screenHeight; },
+            ._cameraPosition = [](){ return Camera::get_instance().get_pos(); },
+            ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
+        },
+        ._buffer = {
+            ._clearBufferColor = Vec4f{1.0f, 0.0f, 1.0f, 0.0f},
+        }
+    });
 
-    RenderStage renderStage2;
-        renderStage2.bind_target_texture_buffer(new TextureBuffer(Properties::screenWidth, Properties::screenHeight));
-        renderStage2.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
-        renderStage2.bind_default_shader(&shader2);
+    RenderStage& renderStage1 = RenderStagePool::get_instance().add_stage((RenderStageProp){
+        ._stageName = "MainStage",
+        ._textureBuffer = new TextureBuffer(Properties::screenWidth, Properties::screenHeight),
+        ._defaultShader = &shader1,
+        ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
+        ._shaderUniforms = {
+            ._screenAspect = [](){ return (Properties::screenWidth) / (float) Properties::screenHeight; },
+            ._cameraPosition = [](){ return Camera::get_instance().get_pos(); },
+            ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
+        },
+        ._buffer = {
+            ._clearBufferColor = Vec4f{1.0f, 0.0f, 0.0f, 0.0f},
+        }
+    });
 
-    RenderStage renderStageFinal;
-        renderStageFinal.bind_target_texture_buffer(new TextureBuffer(Properties::screenWidth, Properties::screenHeight));
-        renderStageFinal.bind_target_mesh(BuildInMeshData::QUAD_MESH_DATA);
-        renderStageFinal.bind_default_shader(&shader3);
+    RenderStage& renderStage2 = RenderStagePool::get_instance().add_stage((RenderStageProp){
+        ._stageName = "IntermediateStage",
+        ._textureBuffer = new TextureBuffer(Properties::screenWidth, Properties::screenHeight),
+        ._defaultShader = &shader2,
+        ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
+        ._shaderUniforms = {
+            ._screenAspect = [](){ return (Properties::screenWidth) / (float) Properties::screenHeight; },
+            ._cameraPosition = [](){ return Camera::get_instance().get_pos(); },
+            ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
+        },
+        ._buffer = {
+            ._clearBufferColor = Vec4f{0.0f, 1.0f, 0.0f, 0.0f},
+        }
+    });
+
+    RenderStage& renderStageFinal = RenderStagePool::get_instance().add_stage((RenderStageProp){
+        ._stageName = "FinalPreScreenStage",
+        ._textureBuffer = new TextureBuffer(Properties::screenWidth, Properties::screenHeight),
+        ._defaultShader = &shader3,
+        ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
+        ._shaderUniforms = {
+            ._screenAspect = [](){ return (Properties::screenWidth) / (float) Properties::screenHeight; },
+            ._cameraPosition = [](){ return Camera::get_instance().get_pos(); },
+            ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
+        },
+        ._buffer = {
+            ._clearBufferColor = Vec4f{0.0f, 0.0f, 1.0f, 0.0f},
+        }
+    });
 
     Scene* scene = new Scene();
     SceneLoader::get_instance().load_scene(*scene);
-    scene->add_dynamic_entity<Crab>();
-    scene->add_dynamic_entity<Player>();
-    scene->add_dynamic_entity<Grandpa>();
-    scene->add_static_entity<BeachParallaxBackground>();
+        scene->add_dynamic_entity<Crab>();
+        scene->add_dynamic_entity<Player>();
+        scene->add_dynamic_entity<Grandpa>();
+        scene->add_static_entity<BeachParallaxBackground>();
     scene->unbind();
     _scenes["game_scene"] = scene;
 
     Scene* anotherScene = new Scene();
-    // anotherScene->add_dynamic_entity<Crab>();
+        anotherScene->add_dynamic_entity<Crab>();
     anotherScene->unbind();
     _scenes["another_scene"] = anotherScene;
     
@@ -87,7 +129,7 @@ void omniscia::Game::run() {
             new CE_DisableSystemEvent<ECS_PlayerControllerSystem>((CE_DisableSystemProp){}),
             new CE_DisableSystemEvent<ECS_CameraFollowSystem>((CE_DisableSystemProp){}),
             /** TODO */ // Time sync
-            new CE_LetterBoxEvent((CE_LetterBoxProp){}),
+            //new CE_LetterBoxEvent((CE_LetterBoxProp){}),
             /** =====*/
             new CE_CameraMoveEvent((CE_CameraMoveProp){ 
                 ._base = (CE_Prop){
@@ -159,7 +201,6 @@ void omniscia::Game::run() {
 
         Controls::handle_input(window);
         cutscene.update();
-        // std::cout << Time::get_time() << "\n";
 
         ECS_PlayerTimeJumpControllerSystem::get_instance().update();
 
@@ -187,57 +228,29 @@ void omniscia::Game::run() {
         
         /* Render background */
         renderBackgroundStage.render_stage_lambda([&](const Shader* stage_shader){ 
-            Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
-            Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
-            Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
-            Shader::get_active()->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
-            
-            ECS_ParallaxSpriteRendererBackSystem::get_instance().render();
+            ECS_ProRendererSystem::get_instance().render();
         });
 
         renderStage1.render_stage_lambda([&](){ 
-            Renderer::clear_buffer(Vec4f{0.0, 0.0, 0.0, 0.0});
-            Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
-            Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
-            Shader::get_active()->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
-
-            ECS_SpriteRendererSystem::get_instance().render();
-            ECS_SpriteSheetRendererSystem::get_instance().render();
-            ECS_TilemapRendererSystem::get_instance().render();
+            ECS_ProRendererSystem::get_instance().render();
         });
 
         renderStage2.render_stage_lambda([&](const Shader* stage_shader){ 
-            Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
-            Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
-            Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
-            Shader::get_active()->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
-
             renderBackgroundStage.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
             renderStage1.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
-        });
 
-        renderBackgroundStage.render_stage_lambda([&](const Shader* stage_shader){ 
-            Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
-            Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
-            Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
-            Shader::get_active()->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
-            
-            ECS_ParallaxSpriteRendererFrontSystem::get_instance().render();
+            ECS_ProRendererSystem::get_instance().render();
         });
 
         renderStageFinal.render_stage_lambda([&](const Shader* stage_shader){ 
-            Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 0.0});
-            Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
-            Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
-            Shader::get_active()->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
-
             renderStage2.present_as_texture();
-            renderBackgroundStage.present_as_texture();
+
+            ECS_ProRendererSystem::get_instance().render();
         });
 
         /* screen buffer */
         RenderStage::render_anonymous_stage_lambda([&]() {
-            Renderer::clear_buffer(Vec4f{0.0, 0.0, 1.0, 1.0});
+            Renderer::clear_buffer(Vec4f{0.0f, 0.0f, 1.0f, 1.0f});
             shader3.activate();
             Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
             Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());

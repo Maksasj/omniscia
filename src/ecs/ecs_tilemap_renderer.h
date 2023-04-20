@@ -18,6 +18,7 @@
 
 #include "raw_mesh_data_builder.h"
 #include "ecs_sprite_animation.h"
+#include "ecs_pro_renderer.h"
 #include "ecs_component.tpp"
 #include "ecs_sprite_flip.h"
 #include "ecs_positioned.h"
@@ -38,7 +39,7 @@ namespace omniscia::core::ecs {
      * raw sprite mesh, primary used only for
      * level rendering
     */
-    class ECS_TilemapRenderer : public ECS_Component {
+    class ECS_TilemapRenderer : public ECS_ProRenderer {
         private:
             /**
              * @brief Pointer to the parent entity 
@@ -107,7 +108,7 @@ namespace omniscia::core::ecs {
             /**
              * @brief Renders tiel map to the active frame buffer
             */
-            void render();
+            void render() override;
 
             /**
              * @brief Method used for clonning single 

@@ -15,13 +15,13 @@
 ---
 
 ## Todo List
-
 - ### Priority
+  - [x] Super renderer component, allows to request render call on any of rendering stages
   - [ ] Check for memory leaks
   - [ ] Sound system 
 - ### Core
   - [ ] System system manager
-  - [ ] Level manager
+  - [x] Level manager
 - ### ECS
   - [x] Templated constructors
   - [x] Box Collider Component

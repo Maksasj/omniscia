@@ -69,7 +69,7 @@ namespace omniscia::core::ecs {
              * 
              * @param pointer to the component
             */
-            void bind_component(T* component) {
+            virtual void bind_component(T* component) {
                 _components.push_back(component);
             }
 
@@ -78,12 +78,12 @@ namespace omniscia::core::ecs {
              * 
              * @param cmp lambda expression used for comparing different component
             */
-            void sort_components(const std::function<bool(const T*,const T*)> cmp) {
+            virtual void sort_components(const std::function<bool(const T*,const T*)> cmp) {
                 near_sorted_sort<T*>(_components, cmp);
             }
             
             /** @brief Function that does time synchronisation */
-            void time_sync() {
+            virtual void time_sync() {
                 _components.clear();
             }
 

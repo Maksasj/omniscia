@@ -19,12 +19,42 @@
 #include "raw_mesh_data.h"
 #include "frame_buffer.h"
 #include "sprite_mesh.h"
+#include "renderer.h"
 #include "shader.h"
 #include "gfx.h"
 
 namespace omniscia::gfx {
     using namespace omniscia::gfx::sprite;
     using namespace omniscia::gfx::texture;
+
+    struct RenderStageProp {
+        std::string _stageName = "";
+        /** 
+         * @brief Pointer to assigned texture buffer,
+         * if it is not a null, rendering stage 
+         * will render evrethingh into this texture buffer 
+        */
+        TextureBuffer* _textureBuffer = nullptr;
+        
+        /**
+         * @brief Pointer to shader that was assigned to this RenderStage
+         * if it is not null, this shader will be used for rendering
+        */
+        Shader* _defaultShader = nullptr;
+
+        /** @brief Active mesh date, ofthen there will be quad mesh */
+        SpriteMesh _spriteMesh;
+
+        struct RenderStageUniformProp {
+            std::function<f32(void)> _screenAspect = [](){ return 1.0f; };
+            std::function<Vec3f(void)> _cameraPosition = [](){ return Vec3f{0.0f, 0.0f, 0.0f}; };
+            std::function<f32(void)> _cameraZoom = [](){ return 1.0f; };
+        } _shaderUniforms;
+
+        struct RenderStageBufferProp {
+            Vec4f _clearBufferColor = Vec4f{0.0f, 0.0f, 0.0f, 0.0f}; 
+        } _buffer;
+    };
 
     /**
      * @brief RenderStage - class used for stage rendering
@@ -33,74 +63,59 @@ namespace omniscia::gfx {
      * can be rendered in to the screen buffer or even into another 
      * rendering stage / frame buffer.
     */
-    class RenderStage : public FrameBuffer {
+    class RenderStage : public FrameBuffer, public RenderStageProp {
         private:
-            /** @brief Active mesh date, ofthen there will be quad mesh */
-            SpriteMesh _spriteMesh;
-            
-            /** 
-             * @brief Pointer to assigned texture buffer,
-             * if it is not a null, rendering stage 
-             * will render evrethingh into this texture buffer 
-            */
-            TextureBuffer *_textureBuffer;
-            
             /**
-             * @brief Pointer to shader that was assigned to this RenderStage
-             * if it is not null, this shader will be used for rendering
+             * @brief Pointer to active render stage
             */
-            Shader *_shader;
+            static RenderStage* _activeRenderStage;
+            
+            i32 _stageId;
 
         public:
             /** @brief Default constructor for RenderStage */
-            RenderStage();
+            RenderStage(const RenderStageProp& prop, const i32& stageId);
             
             //void bind() const override;
             //void unbind() const override;
             //void terminate() const override;
+
+            i32 get_stage_id() const;
 
             /**
              * @brief Binds mesh to the RenderStage instance(usually QUAD mesh)
              * 
              * @param rawMeshData target mesh
             */
-            void bind_target_mesh(const RawMeshData& rawMeshData);
-            
-            /**
-             * @brief Binds mesh to the RenderStage instance(usually QUAD mesh), and scales it
-             * 
-             * @param scale new size for the mesh
-             * @param rawMeshData target mesh
-            */
-            void bind_target_mesh(const RawMeshData& rawMeshData, const Vec3f scale);
+            RenderStage& bind_target_mesh(const SpriteMesh& rawMeshData);
 
             /**
              * @brief Binds texture buffer using pointer to the RenderStage instance
              * 
              * @param textureBuffer target texture buffer pointer
             */
-            void bind_target_texture_buffer(TextureBuffer *textureBuffer);
+            RenderStage& bind_target_texture_buffer(TextureBuffer *textureBuffer);
 
             /**
              * @brief Binds texture buffer using reference to the RenderStage instance
              * 
              * @param textureBuffer target texture buffer reference
             */
-            void bind_target_texture_buffer(TextureBuffer& textureBuffer);
+            RenderStage& bind_target_texture_buffer(TextureBuffer& textureBuffer);
 
             /**
              * @brief Binds shader using pointer to the RenderStage instance
              * 
              * @param shader target shader pointer
             */
-            void bind_default_shader(Shader *shader);
+            RenderStage& bind_default_shader(Shader *shader);
 
             /**
              * @brief Binds shader using reference to the RenderStage instance
              * 
              * @param shader target shader reference
             */
-            void bind_default_shader(Shader& shader);
+            RenderStage& bind_default_shader(Shader& shader);
             
             /**
              * @brief Renders everything into the 
@@ -112,7 +127,7 @@ namespace omniscia::gfx {
              * that should be rendered into the 
              * rendering stage frame buffer
             */
-            void render_stage_lambda(const std::function<void(void)> renderingLambda) const;
+            void render_stage_lambda(const std::function<void(void)> renderingLambda);
             
             /**
              * @brief Renders everything into the 
@@ -124,7 +139,7 @@ namespace omniscia::gfx {
              * that should be rendered into the 
              * rendering stage frame buffer
             */
-            void render_stage_lambda_default(const std::function<void(void)> renderingLambda) const;
+            void render_stage_lambda_default(const std::function<void(void)> renderingLambda);
             
             /**
              * @brief Renders everything into the 
@@ -138,7 +153,7 @@ namespace omniscia::gfx {
              * that should be rendered into the 
              * rendering stage frame buffer
             */
-            void render_stage_lambda(const std::function<void(const Shader* shader)> renderingLambda) const;        
+            void render_stage_lambda(const std::function<void(const Shader* shader)> renderingLambda);        
 
             /**
              * @brief Renders everything into the 
@@ -236,6 +251,8 @@ namespace omniscia::gfx {
              * @param scale the scale of the texture
             */
             void present_as_texture(const Vec2f &position, const f32 &rotation, const Vec2f &scale) const;
+    
+            static RenderStage* get_active_render_stage();
     };
 }
 

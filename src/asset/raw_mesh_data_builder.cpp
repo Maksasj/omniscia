@@ -5,10 +5,10 @@ omniscia::gfx::RawMeshDataBuilder::RawMeshDataBuilder() {
 }
 
 omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(RawMeshData& meshData) {
-    auto& vertices = _meshData.get_vetices();
+    auto& vertices = _meshData.get_vertices();
     auto& indecies = _meshData.get_indices();
 
-    auto& incomingVertices = meshData.get_vetices();
+    auto& incomingVertices = meshData.get_vertices();
     auto& incomingIndecies = meshData.get_indices();
 
     for(auto vert : incomingVertices) {
@@ -31,10 +31,10 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
 }
 
 omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(RawMeshData& meshData, const Vec2f& transform) {
-    auto& vertices = _meshData.get_vetices();
+    auto& vertices = _meshData.get_vertices();
     auto& indecies = _meshData.get_indices();
 
-    auto& incomingVertices = meshData.get_vetices();
+    auto& incomingVertices = meshData.get_vertices();
     auto& incomingIndecies = meshData.get_indices();
 
     for(auto vert : incomingVertices) {
@@ -58,10 +58,10 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
 }
 
 omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(RawMeshData& meshData, const Vec2f& transform, const f32& angle) {
-    auto& vertices = _meshData.get_vetices();
+    auto& vertices = _meshData.get_vertices();
     auto& indecies = _meshData.get_indices();
 
-    auto& incomingVertices = meshData.get_vetices();
+    auto& incomingVertices = meshData.get_vertices();
     auto& incomingIndecies = meshData.get_indices();
 
     for(auto vert : incomingVertices) {
@@ -86,10 +86,10 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
 }
 
 omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(RawMeshData& meshData, const Vec2f& transform, const Vec2f& scale) {
-    auto& vertices = _meshData.get_vetices();
+    auto& vertices = _meshData.get_vertices();
     auto& indecies = _meshData.get_indices();
 
-    auto& incomingVertices = meshData.get_vetices();
+    auto& incomingVertices = meshData.get_vertices();
     auto& incomingIndecies = meshData.get_indices();
 
     for(auto vert : incomingVertices) {
@@ -114,10 +114,10 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
 }
 
 omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(RawMeshData& meshData, const Vec2f& transform, const Vec2f& scale, const f32& angle) {
-    auto& vertices = _meshData.get_vetices();
+    auto& vertices = _meshData.get_vertices();
     auto& indecies = _meshData.get_indices();
 
-    auto& incomingVertices = meshData.get_vetices();
+    auto& incomingVertices = meshData.get_vertices();
     auto& incomingIndecies = meshData.get_indices();
 
     for(auto vert : incomingVertices) {
@@ -143,10 +143,10 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
 }
 
 omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(RawMeshData& meshData, std::function<void(Vertex& vertex)> lambda) {
-    auto& vertices = _meshData.get_vetices();
+    auto& vertices = _meshData.get_vertices();
     auto& indecies = _meshData.get_indices();
 
-    auto& incomingVertices = meshData.get_vetices();
+    auto& incomingVertices = meshData.get_vertices();
     auto& incomingIndecies = meshData.get_indices();
 
     for(auto vert : incomingVertices) {
@@ -170,7 +170,7 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
 }
 
 omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::transform(const Vec2f& transform) {
-    for(auto& vert : _meshData.get_vetices()) {
+    for(auto& vert : _meshData.get_vertices()) {
         vert.transform(Vec3f{transform.x, transform.y, 0.0f});
     }
 
@@ -178,7 +178,7 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::transform(
 }
 
 omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::scale(const Vec2f& scale) {
-    for(auto& vert : _meshData.get_vetices()) {
+    for(auto& vert : _meshData.get_vertices()) {
         vert.scale(Vec3f{scale.x, scale.y, 0.0f});
     }
 
@@ -186,7 +186,7 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::scale(cons
 }
 
 omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::rotate(const f32& angle) {
-    for(auto& vert : _meshData.get_vetices()) {
+    for(auto& vert : _meshData.get_vertices()) {
         vert.rotate(angle);
     }
 
@@ -194,7 +194,7 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::rotate(con
 }
 
 omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::edit(std::function<void(Vertex& vertex)> lambda) {
-    for(auto& vert : _meshData.get_vetices()) {
+    for(auto& vert : _meshData.get_vertices()) {
         lambda(vert);
     }
 

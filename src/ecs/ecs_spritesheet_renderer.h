@@ -17,6 +17,7 @@
 #include <iostream>
 
 #include "ecs_sprite_animation.h"
+#include "ecs_pro_renderer.h"
 #include "ecs_component.tpp"
 #include "ecs_sprite_flip.h"
 #include "ecs_positioned.h"
@@ -36,7 +37,7 @@ namespace omniscia::core::ecs {
      * used for sprite sheet rendering, also can be used
      * for sprite sheet animation rendering
     */
-    class ECS_SpriteSheetRenderer : public ECS_Component {
+    class ECS_SpriteSheetRenderer : public ECS_ProRenderer {
         private:
             /**
              * @brief Pointer to the parent entity 
@@ -109,7 +110,7 @@ namespace omniscia::core::ecs {
              * 
              * @param shader that should be used for rendering 
             */
-            void render();
+            void render() override;
 
             /**
              * @brief Method used for clonning single 
@@ -130,53 +131,6 @@ namespace omniscia::core::ecs {
             */
             u64 byte_size() override {
                 return sizeof(ECS_SpriteSheetRenderer) - sizeof(Sprite) + _sprite.byte_size();
-            }
-    };
-
-    /**
-     * @brief ECS_SpriteSheetRendererSystem - System 
-     * class used for managing all updates and data for
-     * all active ECS_SpriteSheetRenderer type components
-    */
-    class ECS_SpriteSheetRendererSystem : public ECS_System<ECS_SpriteSheetRenderer> {
-        private:
-            /**
-             * @brief Hidden default constructor
-            */
-            ECS_SpriteSheetRendererSystem() : ECS_System<ECS_SpriteSheetRenderer>() {};
-            
-            /**
-             * @brief Hidden default copy constructor
-            */
-            ECS_SpriteSheetRendererSystem(ECS_SpriteSheetRendererSystem const&) {};
-            
-            /**
-             * @brief Hidden default assignment operator
-            */
-            void operator=(ECS_SpriteSheetRendererSystem const&) {};
-
-        public:
-            /**
-             * @brief Main rendering method, renders 
-             * all currently assigned components
-            */
-            void render() {
-                if(!_enabled)
-                    return;
-
-                for(ECS_SpriteSheetRenderer* comp : _components) {
-                    comp->render();
-                }
-            }
-
-            /**
-             * @brief Get the singleton instance of the ECS_SpriteSheetRendererSystem system
-             * 
-             * @return Reference to singleton instance of the ECS_SpriteSheetRendererSystem system
-            */
-            static ECS_SpriteSheetRendererSystem& get_instance() {
-                static ECS_SpriteSheetRendererSystem instance;
-                return instance;
             }
     };
 }

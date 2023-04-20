@@ -5,7 +5,7 @@ omniscia::gfx::sprite::SpriteMesh::SpriteMesh() {
 }
 
 omniscia::gfx::sprite::SpriteMesh::SpriteMesh(RawMeshData rawMeshData) : _vao() {
-    std::vector<Vertex>& _vertices = rawMeshData.get_vetices();
+    std::vector<Vertex>& _vertices = rawMeshData.get_vertices();
     std::vector<u32>& _indices = rawMeshData.get_indices();
 
     _verticesSize = _vertices.size();
@@ -26,7 +26,7 @@ omniscia::gfx::sprite::SpriteMesh::SpriteMesh(RawMeshData rawMeshData) : _vao() 
 }
 
 omniscia::gfx::sprite::SpriteMesh::SpriteMesh(RawMeshData rawMeshData, const Vec3f& scale) : _vao()  {
-    std::vector<Vertex>& _vertices = rawMeshData.get_vetices();
+    std::vector<Vertex>& _vertices = rawMeshData.get_vertices();
     std::vector<u32>& _indices = rawMeshData.get_indices();
 
     _verticesSize = _vertices.size();

@@ -16,6 +16,7 @@
 #include <memory>
 #include <iostream>
 
+#include "ecs_pro_renderer.h"
 #include "ecs_component.tpp"
 #include "ecs_positioned.h"
 #include "ecs_system.h"
@@ -35,7 +36,7 @@ namespace omniscia::core::ecs {
      * calculates offset of the texture using lambda
      * expression
     */
-    class ECS_ParallaxSpriteRendererFront : public ECS_Component {
+    class ECS_ParallaxSpriteRendererFront : public ECS_ProRenderer {
         private:
             /** @brief Rendering layer */
             u32 _layer;
@@ -87,7 +88,7 @@ namespace omniscia::core::ecs {
              * 
              * @param shader shader that should be used for rendering(uniforms)
             */
-            void render();
+            void render() override;
 
             /**
              * @brief Method used for clonning single 
@@ -108,53 +109,6 @@ namespace omniscia::core::ecs {
             */
             u64 byte_size() override {
                 return sizeof(ECS_ParallaxSpriteRendererFront);
-            }
-    };
-
-    /**
-     * @brief ECS_ParallaxSpriteRendererFrontSystem - System 
-     * class used for managing all updates and data for
-     * all active ECS_ParallaxSpriteRendererFront type components
-    */
-    class ECS_ParallaxSpriteRendererFrontSystem : public ECS_System<ECS_ParallaxSpriteRendererFront> {
-        private:
-            /**
-             * @brief Hidden default constructor
-            */
-            ECS_ParallaxSpriteRendererFrontSystem() : ECS_System<ECS_ParallaxSpriteRendererFront>() {};
-            
-            /**
-             * @brief Hidden default copy constructor
-            */
-            ECS_ParallaxSpriteRendererFrontSystem(ECS_ParallaxSpriteRendererFrontSystem const&) {};
-            
-            /**
-             * @brief Hidden default assignment operator
-            */
-            void operator=(ECS_ParallaxSpriteRendererFrontSystem const&) {};
-
-        public:
-            /**
-             * @brief Main rendering method, renders 
-             * all currently assigned components
-            */
-            void render() {
-                if(!_enabled)
-                    return;
-
-                for(ECS_ParallaxSpriteRendererFront* comp : _components) {
-                    comp->render();
-                }
-            }
-
-            /**
-             * @brief Get the singleton instance of the ECS_ParallaxSpriteRendererFrontSystem system
-             * 
-             * @return Reference to singleton instance of the ECS_ParallaxSpriteRendererFrontSystem system
-            */
-            static ECS_ParallaxSpriteRendererFrontSystem& get_instance() {
-                static ECS_ParallaxSpriteRendererFrontSystem instance;
-                return instance;
             }
     };
 }

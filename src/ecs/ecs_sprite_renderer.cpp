@@ -1,23 +1,13 @@
 #include "ecs_sprite_renderer.h"
 
-omniscia::core::ecs::ECS_SpriteRenderer::ECS_SpriteRenderer(const std::string& textureId, const u32& layer) : _sprite(textureId) {
+omniscia::core::ecs::ECS_SpriteRenderer::ECS_SpriteRenderer(const std::string& textureId, const u32& layer) : _sprite(textureId), ECS_ProRenderer(RenderStagePool::get_instance().get_stage_by_name("MainStage")) {
     _layer = layer;
 
-    ECS_SpriteRendererSystem::get_instance().bind_component(this);
-
-    ECS_SpriteRendererSystem::get_instance().sort_components(
-    [](const ECS_SpriteRenderer* a, const ECS_SpriteRenderer* b) {
-        return a->get_layer() > b->get_layer();
-    });
+    ECS_ProRendererSystem::get_instance().bind_component(this);
 };
 
 void omniscia::core::ecs::ECS_SpriteRenderer::time_sync() {
-    ECS_SpriteRendererSystem::get_instance().bind_component(this);
-
-    ECS_SpriteRendererSystem::get_instance().sort_components(
-    [](const ECS_SpriteRenderer* a, const ECS_SpriteRenderer* b) {
-        return a->get_layer() > b->get_layer();
-    });
+    ECS_ProRendererSystem::get_instance().bind_component(this);
 }
 
 

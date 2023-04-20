@@ -16,6 +16,7 @@
 #include <memory>
 #include <iostream>
 
+#include "ecs_pro_renderer.h"
 #include "ecs_component.tpp"
 #include "ecs_positioned.h"
 #include "ecs_system.h"
@@ -34,7 +35,7 @@ namespace omniscia::core::ecs {
      * used for sprite rendering, uses entity 
      * position(if exist), and entity scale(if exist)
     */
-    class ECS_SpriteRenderer : public ECS_Component {
+    class ECS_SpriteRenderer : public ECS_ProRenderer {
         private:
             /**
              * @brief Rendering layer
@@ -99,7 +100,7 @@ namespace omniscia::core::ecs {
             /**
              * @brief Renders sprite to the active frame buffer
             */
-            void render();
+            void render() override;
 
             /**
              * @brief Method used for clonning single 
@@ -120,53 +121,6 @@ namespace omniscia::core::ecs {
             */
             u64 byte_size() override {
                 return sizeof(ECS_SpriteRenderer) - sizeof(Sprite) + _sprite.byte_size();
-            }
-    };
-
-    /**
-     * @brief ECS_SpriteRendererSystem - System 
-     * class used for managing all updates and data for
-     * all active ECS_SpriteRenderer type components
-    */
-    class ECS_SpriteRendererSystem : public ECS_System<ECS_SpriteRenderer> {
-        private:
-            /**
-             * @brief Hidden default constructor
-            */
-            ECS_SpriteRendererSystem() : ECS_System<ECS_SpriteRenderer>() {};
-            
-            /**
-             * @brief Hidden default copy constructor
-            */
-            ECS_SpriteRendererSystem(ECS_SpriteRendererSystem const&) {};
-            
-            /**
-             * @brief Hidden default assignment operator
-            */
-            void operator=(ECS_SpriteRendererSystem const&) {};
-
-        public:
-            /**
-             * @brief Main rendering method, renders 
-             * all currently assigned components
-            */
-            void render() {
-                if(!_enabled)
-                    return;
-
-                for(ECS_SpriteRenderer* comp : _components) {
-                    comp->render();
-                }
-            }
-
-            /**
-             * @brief Get the singleton instance of the ECS_SpriteRendererSystem system
-             * 
-             * @return Reference to singleton instance of the ECS_SpriteRendererSystem system
-            */
-            static ECS_SpriteRendererSystem& get_instance() {
-                static ECS_SpriteRendererSystem instance;
-                return instance;
             }
     };
 }

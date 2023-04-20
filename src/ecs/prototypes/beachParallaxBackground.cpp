@@ -5,6 +5,7 @@ omniscia::core::BeachParallaxBackground::BeachParallaxBackground() {
         layerOffset += Time::get_instance().get_delta_time();
         return (layerOffset / 100000.0f);
     });
+    
     add<ECS_ParallaxSpriteRendererBack>("background_beach_sky2_layer", 1, [](f32& layerOffset) {
         layerOffset += Time::get_instance().get_delta_time();
         return 2.0f * (layerOffset / 100000.0f);

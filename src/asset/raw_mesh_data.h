@@ -52,7 +52,7 @@ namespace omniscia::gfx::sprite {
              * 
              * @return reference to the Vertex array
             */
-            std::vector<Vertex>& get_vetices();
+            std::vector<Vertex>& get_vertices();
 
             /**
              * @brief Referecens Indices array of the RawMeshData instance
@@ -60,6 +60,8 @@ namespace omniscia::gfx::sprite {
              * @return reference to the Index array
             */
             std::vector<u32>& get_indices();
+
+            i32 get_vertices_count() const;
     };
 }
 
