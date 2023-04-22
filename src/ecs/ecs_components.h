@@ -29,4 +29,6 @@
 #include "ecs_sound_emitter.h"
 #include "ecs_pro_renderer.h"
 
+#include "ecs_button.h"
+
 #endif

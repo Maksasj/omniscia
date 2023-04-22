@@ -10,7 +10,6 @@ void omniscia::core::ecs::ECS_SpriteRenderer::time_sync() {
     ECS_ProRendererSystem::get_instance().bind_component(this);
 }
 
-
 void omniscia::core::ecs::ECS_SpriteRenderer::reindex(void* parent) {
     _parent = (Entity*)parent;
 

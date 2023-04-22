@@ -15,6 +15,7 @@
 #include <iostream>
 #include <unordered_map>
 
+#include "properties.h"
 #include "types.tpp"
 #include "gfx.h"
 
@@ -24,11 +25,16 @@ namespace omniscia::core {
      * action player wants to do
     */
     enum PlayerController {
-        JUMP,
-        DOWN,
-        LEFT,
-        RIGHT,
-        TIME_JUMP,
+        JUMP = 0,
+        DOWN = 1,
+        LEFT = 2,
+        RIGHT = 3,
+        TIME_JUMP = 4,
+    };
+
+    enum MouseController {
+        LEFT_CLICK = 5,
+        RIGHT_CLICK = 6,
     };
     
     /**
@@ -54,12 +60,20 @@ namespace omniscia::core {
             /**
              * @brief Container that stores states of available actions
             */
-            static std::unordered_map<PlayerController, bool> controlStates;
+            std::unordered_map<i32, bool> controlStates;
 
             /**
              * @brief Container that stores which keys binded to which actions
             */
-            static std::unordered_map<u8, std::pair<PlayerController, ActionType>> keyBindigs;
+            std::unordered_map<u8, std::pair<i32, ActionType>> keyBindigs;
+            std::unordered_map<u8, std::pair<i32, ActionType>> mouseBindigs;
+
+            Vec2f _mousePos;
+            
+
+            Controls();
+            Controls(const Controls&) {}
+            void operator=(const Controls&) {}
 
         public:
             /**
@@ -69,14 +83,22 @@ namespace omniscia::core {
              * @return true action is active
              * @return false action is not active
              */
-            static bool get(const PlayerController& action);
+            bool get(const PlayerController& action);
+            bool get(const MouseController& action);
+
+            Vec2f get_mouse();
 
             /**
              * @brief Method that updates states of all actions
              * 
              * @param window pointer to GLFWwindow stance
              */
-            static void handle_input(GLFWwindow *window);
+            void handle_input(GLFWwindow *window);
+
+            static Controls& get_instance() {
+                static Controls controls;
+                return controls;
+            }
     };
 }
 

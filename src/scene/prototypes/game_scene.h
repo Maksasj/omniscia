@@ -1,7 +1,8 @@
 #ifndef _GAME_SCENE_
 #define _GAME_SCENE_
 
-#include "prototypes.h"
+#include "entity_prototypes.h"
+#include "scene_loader.h"
 #include "scene.h"
 
 namespace omniscia::core {

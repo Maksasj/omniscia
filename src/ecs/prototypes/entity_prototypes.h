@@ -6,6 +6,8 @@
 #include "grandpa.h"
 #include "player.h"
 
+#include "button.h"
+
 #include "entity.h"
 
 #endif

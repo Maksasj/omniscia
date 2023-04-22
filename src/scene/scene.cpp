@@ -21,6 +21,7 @@ void omniscia::core::Scene::unbind() {
     ECS_SoundEmitterSystem::get_instance().time_sync();
     ECS_PlayerTimeJumpControllerSystem::get_instance().time_sync();
     ECS_ProRendererSystem::get_instance().time_sync();
+    ECS_ButtonSystem::get_instance().time_sync();
 }
 
 void omniscia::core::Scene::time_sync() {

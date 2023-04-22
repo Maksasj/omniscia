@@ -9,7 +9,7 @@ void omniscia::Game::load() {
 
     auto monitors = Monitor::retrieve_monitors();
     //monitors[1]->set_active();
-    smonitors[0]->set_active();
+    monitors[0]->set_active();
     
     window = glfwCreateWindow(Properties::screenWidth, Properties::screenHeight, "Omniscia", NULL, NULL);
     //window = glfwCreateWindow(Properties::screenWidth, Properties::screenHeight, "Omniscia", Monitor::get_active()->get_glfw_monitor(), NULL);
@@ -105,12 +105,15 @@ void omniscia::Game::run() {
     Scene* scene = new GameScene();
     _scenes["game_scene"] = scene;
 
-    Scene* anotherScene = new Scene();
-        anotherScene->add_dynamic_entity<Crab>();
-    anotherScene->unbind();
-    _scenes["another_scene"] = anotherScene;
+    Scene* mainMenuScene = new MainMenuScene();
+    _scenes["main_menu_scene"] = mainMenuScene;
+
+    Scene* settingsScene = new SettingsScene();
+    _scenes["settings_scene"] = settingsScene;
     
-    switch_scene("game_scene");
+    // switch_scene("game_scene");
+    // switch_scene("game_scene");
+    switch_scene("main_menu_scene");
 
     Cutscene cutscene = {
         CE_Step{
@@ -182,7 +185,7 @@ void omniscia::Game::run() {
         },
     };
 
-    cutscene.start();
+    // cutscene.start();
     
     DebugUI::get_instance().get_metrics()._timeMaxLineLength = 5000;
 
@@ -193,7 +196,7 @@ void omniscia::Game::run() {
     while (!glfwWindowShouldClose(window)) {   
         Time::get_instance().update_delta_time_clock();
 
-        Controls::handle_input(window);
+        Controls::get_instance().handle_input(window);
         cutscene.update();
 
         ECS_PlayerTimeJumpControllerSystem::get_instance().update();
@@ -208,6 +211,7 @@ void omniscia::Game::run() {
         ECS_CameraFollowSystem::get_instance().update();
         ECS_PlayerDebugMetricsSystem::get_instance().update();
         ECS_SoundEmitterSystem::get_instance().update();
+        ECS_ButtonSystem::get_instance().update();
 
         if(!isTimeJump) {
             ECS_GravitySystem::get_instance().update();

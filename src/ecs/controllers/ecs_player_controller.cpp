@@ -26,7 +26,7 @@ void  omniscia::core::ecs::ECS_PlayerController::control() {
 
     bool isMoving = false;
 
-    if(Controls::get(PlayerController::LEFT)) {
+    if(Controls::get_instance().get(PlayerController::LEFT)) {
         acceleration.x -= 0.0001f;
 
         if(spriteFlipIndex.is_success()) {
@@ -37,7 +37,7 @@ void  omniscia::core::ecs::ECS_PlayerController::control() {
         isMoving = true;
     }
     
-    if(Controls::get(PlayerController::RIGHT)) {
+    if(Controls::get_instance().get(PlayerController::RIGHT)) {
         acceleration.x += 0.0001f;
 
         if(spriteFlipIndex.is_success()) {

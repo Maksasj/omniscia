@@ -26,7 +26,7 @@ void omniscia::core::ecs::ECS_PlayerJump::update() {
 
     if(!movableAABBColliderComp.is_colliding_by_y()) return;
 
-    if(Controls::get(PlayerController::JUMP)) {
+    if(Controls::get_instance().get(PlayerController::JUMP)) {
         velocity.y = 0.04f;
     }
 }

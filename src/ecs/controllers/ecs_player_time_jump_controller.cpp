@@ -19,7 +19,7 @@ void omniscia::core::ecs::ECS_PlayerTimeJumpController::update() {
     auto& timeLine = gameInstance.ref_time_line();
     bool& isTimeJump = DebugUI::get_instance().get_metrics()._isTimeJump;
     DebugUI::get_instance().get_metrics()._timeCurrentLineLength = timeLine.get_index();
-    isTimeJump = !Controls::get(PlayerController::TIME_JUMP); 
+    isTimeJump = !Controls::get_instance().get(PlayerController::TIME_JUMP); 
 
     if(frame % 5 != 0) return;
 

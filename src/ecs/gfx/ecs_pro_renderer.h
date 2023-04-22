@@ -46,6 +46,7 @@ namespace omniscia::core::ecs {
 
         public:
             void render() override {
+
                 if(!_enabled)
                     return;
 
