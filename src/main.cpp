@@ -51,7 +51,7 @@ int main() {
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.5}, {0.0, 0.5}, 8, true, 24}), "crab-idle-animation");
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.5}, {0.0, 0.0}, 8, true, 12}), "crab-run-animation");
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.875}, 7, true, 24}), "grandpa-idle-animation");
-
+    
     /* Sound assets */
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk1.wav", "walk_1");
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk2.wav", "walk_2");

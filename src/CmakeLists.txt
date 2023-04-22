@@ -2,6 +2,12 @@ include_directories("src")
 
 # Entity component system
 include_directories("src/ecs")
+
+include_directories("src/ecs/controllers")
+include_directories("src/ecs/debug")
+include_directories("src/ecs/gfx")
+include_directories("src/ecs/motion")
+include_directories("src/ecs/sound")
 include_directories("src/ecs/prototypes")
 
 # Graphics
@@ -19,6 +25,7 @@ include_directories("src/sound")
 
 # Scene
 include_directories("src/scene")
+include_directories("src/scene/prototypes")
 include_directories("src/scene/cutscene")
 include_directories("src/scene/cutscene/events")
 include_directories("src/scene/scene_loader")

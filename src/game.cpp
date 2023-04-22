@@ -9,7 +9,7 @@ void omniscia::Game::load() {
 
     auto monitors = Monitor::retrieve_monitors();
     //monitors[1]->set_active();
-    monitors[0]->set_active();
+    smonitors[0]->set_active();
     
     window = glfwCreateWindow(Properties::screenWidth, Properties::screenHeight, "Omniscia", NULL, NULL);
     //window = glfwCreateWindow(Properties::screenWidth, Properties::screenHeight, "Omniscia", Monitor::get_active()->get_glfw_monitor(), NULL);
@@ -21,7 +21,7 @@ void omniscia::Game::load() {
 
     glfwMakeContextCurrent(window);
     glfwSwapInterval(0);
-
+    
     Renderer::load_gl();
 
     omniscia::core::SoundEngine::get_instance().initialize();
@@ -102,13 +102,7 @@ void omniscia::Game::run() {
         }
     });
 
-    Scene* scene = new Scene();
-    SceneLoader::get_instance().load_scene(*scene);
-        scene->add_dynamic_entity<Crab>();
-        scene->add_dynamic_entity<Player>();
-        scene->add_dynamic_entity<Grandpa>();
-        scene->add_static_entity<BeachParallaxBackground>();
-    scene->unbind();
+    Scene* scene = new GameScene();
     _scenes["game_scene"] = scene;
 
     Scene* anotherScene = new Scene();

@@ -22,5 +22,6 @@ void omniscia::core::ecs::ECS_ParallaxSpriteRendererBack::render() {
         return;
 
     shader->set_uniform_f32("layerOffset", _layerOffsetCallBack(_layerOffset));
+    
     _sprite.render(shader);
 }
