@@ -8,5 +8,6 @@
 #include "camera_move_event.h"
 #include "camera_zoom_event.h"
 #include "scene_switch_cutscene_event.h"
+#include "shader_uniform_f32_change_cutscene_event.h"
 
 #endif

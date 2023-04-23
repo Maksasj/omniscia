@@ -8,7 +8,7 @@
 namespace omniscia::core {
     struct CE_SceneSwitchProp {
         CE_Prop _base;
-        std::string _cutsceneName = "";
+        std::string _sceneName = "";
     };
 
     class CE_SceneSwitchEvent : public CE_SceneSwitchProp , public CE_Event {

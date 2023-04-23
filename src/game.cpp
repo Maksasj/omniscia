@@ -105,7 +105,7 @@ void omniscia::Game::run() {
             ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
         },
         ._buffer = {
-            ._clearBufferColor = Vec4f{0.1f, 0.1f, 0.1f, 1.0f},
+            ._clearBufferColor = Vec4f{0.1f, 0.4f, 1.0f, 1.0f},
         }
     });
 
@@ -130,18 +130,16 @@ void omniscia::Game::run() {
     Scene* mainMenuScene = new MainMenuScene();
     _scenes["main_menu_scene"] = mainMenuScene;
 
+    Scene* chapterChooseMenuScene = new ChapterChooseMenuScene();
+    _scenes["chapter_choose_menu_scene"] = chapterChooseMenuScene;
+
     Scene* settingsScene = new SettingsScene();
     _scenes["settings_scene"] = settingsScene;
     
     switch_scene("main_menu_scene");
 
-    _cutscenes["transition_cutscene"] = new Cutscene({
-        CE_Step{
-            new CE_SceneSwitchEvent((CE_SceneSwitchProp){ 
-                ._cutsceneName = "game_scene",
-            })
-        }
-    });
+    _cutscenes["transition_cutscene_to_chapter_choose_scene"] = new TransitionCutscene(&transitionStageShader, "chapter_choose_menu_scene");
+    _cutscenes["transition_cutscene_to_game_scene"] = new TransitionCutscene(&transitionStageShader, "game_scene");
 
     Cutscene cutscene = {
         CE_Step{
@@ -269,9 +267,6 @@ void omniscia::Game::run() {
         });
 
         renderTransitionStage.render_stage_lambda([&](const Shader* stage_shader){ 
-           // f32 time = (sin(Time::get_time()) + 1.0) / 2.0;
-           // Shader::get_active()->set_uniform_f32("time", time);
-
             randomsprite.render(Shader::get_active());
         });
 
@@ -326,6 +321,7 @@ void omniscia::Game::switch_scene(Scene* scenePtr) {
 
 void omniscia::Game::start_cutscene(std::string cutsceneId) {
     _activeCutscene = _cutscenes[cutsceneId];
+    _activeCutscene->start();
 }
 
 void omniscia::Game::start_cutscene(Cutscene* cutscenePtr) {

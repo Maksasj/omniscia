@@ -33,6 +33,7 @@
 #include "scene.h"
 #include "scene_loader.h"
 #include "scene_prototypes.h"
+#include "cutscene_prototypes.h"
 #include "monitor.h"
 
 #include "sound_fx.h"

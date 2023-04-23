@@ -4,5 +4,6 @@
 #include "game_scene.h"
 #include "main_menu_scene.h"
 #include "settings_scene.h"
+#include "chapter_choose_menu_scene.h"
 
 #endif
