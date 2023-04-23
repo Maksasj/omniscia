@@ -5,23 +5,17 @@ int main() {
     using namespace omniscia;
     
     /* Texture assets */
-    TextureManager::get_instance().add_asset("assets/texture.png", "factorio_girl_texture");
-    TextureManager::get_instance().add_asset("assets/jojo_texture.png", "jojo_texture");
-    TextureManager::get_instance().add_asset("assets/player.png", "player");
-    TextureManager::get_instance().add_asset("assets/background/1_layer.png", "1_layer");
-    TextureManager::get_instance().add_asset("assets/background/2_layer.png", "2_layer");
-    TextureManager::get_instance().add_asset("assets/background/3_layer.png", "3_layer");
-    TextureManager::get_instance().add_asset("assets/background/4_layer.png", "4_layer");
-    TextureManager::get_instance().add_asset("assets/background/4_layer.png", "4_layer");
-    TextureManager::get_instance().add_asset("assets/entities/player.png", "player-spritesheet");
-    TextureManager::get_instance().add_asset("assets/entities/grandpa.png", "grandpa-spritesheet");
-    TextureManager::get_instance().add_asset("assets/entities/crab.png", "crab-spritesheet");
-    TextureManager::get_instance().add_asset("assets/tiles/test_tiles.png", "test_tiles");
-    TextureManager::get_instance().add_asset("assets/background/beach/beach.png", "background_beach_beach_layer");
-    TextureManager::get_instance().add_asset("assets/background/beach/grass_overlay.png", "background_beach_grass_overlay_layer");
-    TextureManager::get_instance().add_asset("assets/background/beach/sky1.png", "background_beach_sky1_layer");
-    TextureManager::get_instance().add_asset("assets/background/beach/sky2.png", "background_beach_sky2_layer");
-    TextureManager::get_instance().add_asset("assets/background/beach/terrain.png", "background_beach_terrain_layer");
+    TextureManager::get_instance().add_asset("assets/textures/texture.png", "factorio_girl_texture");
+    TextureManager::get_instance().add_asset("assets/textures/jojo_texture.png", "jojo_texture");
+    TextureManager::get_instance().add_asset("assets/textures/entities/characters/player/player.png", "player-spritesheet");
+    TextureManager::get_instance().add_asset("assets/textures/entities/characters/grandpa/grandpa.png", "grandpa-spritesheet");
+    TextureManager::get_instance().add_asset("assets/textures/entities/crab/crab.png", "crab-spritesheet");
+    TextureManager::get_instance().add_asset("assets/textures/tiles/beach/beach_tiles.png", "beach_tiles");
+    TextureManager::get_instance().add_asset("assets/textures/background/beach/beach.png", "background_beach_beach_layer");
+    TextureManager::get_instance().add_asset("assets/textures/background/beach/grass_overlay.png", "background_beach_grass_overlay_layer");
+    TextureManager::get_instance().add_asset("assets/textures/background/beach/sky1.png", "background_beach_sky1_layer");
+    TextureManager::get_instance().add_asset("assets/textures/background/beach/sky2.png", "background_beach_sky2_layer");
+    TextureManager::get_instance().add_asset("assets/textures/background/beach/terrain.png", "background_beach_terrain_layer");
     try {
         TextureManager::get_instance().check_assets();
     } catch (const std::runtime_error& exception) {

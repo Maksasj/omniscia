@@ -1,7 +1,7 @@
 #include "scene_loader.h"
 
 void omniscia::core::SceneLoader::load_scene(Scene& level) {
-    std::string path = "assets\\level.bin";
+    std::string path = "assets\\levels\\level.bin";
     std::ifstream f(path, std::ios::out | std::ios::binary);
 
     if(!f.good())
@@ -62,7 +62,7 @@ void omniscia::core::SceneLoader::load_scene(Scene& level) {
 
         tileGroup.add<ECS_Positioned>(0.0f, 0.0f);
         tileGroup.add<ECS_Scaled>(1.6f, 1.6f);
-        tileGroup.add<ECS_TilemapRenderer>(builder.get(), "test_tiles", 0);
+        tileGroup.add<ECS_TilemapRenderer>(builder.get(), "beach_tiles", 0);
         staticEntities.push_back(tileGroup);
 
         u64 collisionBoxCount = 0;
