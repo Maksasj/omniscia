@@ -14,6 +14,8 @@
 
 #include <iostream>
 
+#include "sprite.h"
+
 #include "types.tpp"
 #include "gfx.h"
 

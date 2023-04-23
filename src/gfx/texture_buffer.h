@@ -38,7 +38,7 @@ namespace omniscia::gfx::texture {
              * @brief Constructs texture buffer, using some provided metrics
              * 
              * @param width in pixels of the texture buffer
-             * @param height  in pixels of the texture buffer
+             * @param height in pixels of the texture buffer
             */
             TextureBuffer(const u32& width, const u32& height);
 

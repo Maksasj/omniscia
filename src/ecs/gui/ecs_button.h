@@ -24,6 +24,7 @@
 #include "ecs_system.h"
 #include "controls.h"
 #include "entity.h"
+#include "debug_ui.h"
 
 namespace omniscia::core::ecs {
     using namespace omniscia::core;
@@ -70,6 +71,10 @@ namespace omniscia::core::ecs {
 
                 for(ECS_Button* comp : _components) {
                     comp->update();
+
+                    /* Resolve this cringe */
+                    if(DebugUI::get_instance().get_metrics()._isTimeJump)
+                            break;
                 }
             }
 

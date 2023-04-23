@@ -56,24 +56,21 @@ namespace omniscia {
     */
     class Game {
         private:
-            /**
-             * @brief Pointer to GLFWwindow instance
-            */
+            /** @brief Pointer to GLFWwindow instance */
             GLFWwindow* window;
 
-            /**
-             * @brief Pointer to the active scene
-            */
-            Scene* _activeScene;
+            /** @brief Pointer to the active scene */
+            Scene* _activeScene = nullptr;
+            /** @brief Pointer to the active cutscene */
+            Cutscene* _activeCutscene = nullptr;
 
-            /**
-             * @brief Container that stores pointers to active scenes
-            */
+            /** @brief Container that stores pointers to cutscenes */
+            std::unordered_map<std::string, Cutscene*> _cutscenes;
+
+            /** @brief Container that stores pointers to scenes */
             std::unordered_map<std::string, Scene*> _scenes;
 
-            /**
-             * @brief Container that stores dynamic data of the active scene
-            */
+            /**  @brief Container that stores dynamic data of the active scene */
             TimeLessNessContainer<Scene::SceneDynamic, 5000> _timeLine; 
 
         public:
@@ -97,7 +94,11 @@ namespace omniscia {
              * @param sceneId scene id
             */
             void switch_scene(std::string sceneId);
-            
+
+            void start_cutscene(std::string cutsceneId);
+
+            void start_cutscene(Cutscene* cutscenePtr);
+
             /**
              * @brief Switches scene by scene pointer
              * 

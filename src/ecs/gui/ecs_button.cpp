@@ -49,7 +49,11 @@ void omniscia::core::ecs::ECS_Button::update() {
     )) {
         _hoverLambda();
 
-        if(Controls::get_instance().get(MouseController::LEFT_CLICK))
+        if(Controls::get_instance().get(MouseController::LEFT_CLICK)) {
             _clickLambda();
+
+            /* Resolve this cringe */
+            DebugUI::get_instance().get_metrics()._isTimeJump = true;
+        }
     }
 }

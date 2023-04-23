@@ -5,7 +5,7 @@
 
 #include "cutscene_step.h"
 #include "cutscene_event.h"
-#include "cutscene_events.h"
+#include "cutscene_events_prototypes.h"
 
 namespace omniscia::core {
     class Cutscene {

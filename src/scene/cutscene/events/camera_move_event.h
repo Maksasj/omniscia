@@ -18,21 +18,14 @@ namespace omniscia::core {
 
     class CE_CameraMoveEvent : public CE_CameraMoveProp , public CE_Event {
         private:
-            CE_CameraMoveEvent() {}
-            CE_CameraMoveEvent(const CE_CameraMoveEvent&) {}
-            void operator=(const CE_CameraMoveEvent&) {}
+            CE_CameraMoveEvent();
+            CE_CameraMoveEvent(const CE_CameraMoveEvent&);
+            void operator=(const CE_CameraMoveEvent&);
 
         public:
-            CE_CameraMoveEvent(const auto& data = CE_CameraMoveProp{}) : CE_CameraMoveProp(data), CE_Event(*(CE_Prop*)&data) {
-
-            }
+            CE_CameraMoveEvent(const CE_CameraMoveProp& data = CE_CameraMoveProp{});
             
-            void execute() override {
-                const f32 t = this->get_current_duration() / _durationTime;
-
-                auto newPos = _shapingFunction(_startPosition, _finishPosition, t);
-                Camera::get_instance().set_pos(newPos);
-            }
+            void execute() override;
     };
 }
 

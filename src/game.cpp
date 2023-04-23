@@ -32,20 +32,27 @@ void omniscia::Game::run() {
     TextureManager::get_instance().load_assets();
     SoundManager::get_instance().load_assets();
 
-    Shader shader1("vert_stage_1", "frag_stage_1");
-    Shader shader2("vert_stage_2", "frag_stage_2");
-    Shader shader3("vert_stage_3", "frag_stage_3");
-    Shader shaderBackground("vert_stage_background", "frag_stage_background");
+    Shader backgroundStageShader("vert_stage_background", "frag_stage_background");
+    Shader mainStageShader("vert_stage_main", "frag_stage_main");
+    Shader intermediateStageShader("vert_stage_intermediate", "frag_stage_intermediate");
+    Shader lateStageShader("vert_stage_late", "frag_stage_late");
+    Shader finalStageShader("vert_stage_final", "frag_stage_final");
 
-    if(shader1.try_compile()) shader1.compile();
-    if(shader2.try_compile()) shader2.compile();
-    if(shader3.try_compile()) shader3.compile();
-    if(shaderBackground.try_compile()) shaderBackground.compile();
+    Shader transitionStageShader("vert_stage_transition", "frag_stage_transition");
+
+    Sprite randomsprite("jojo_texture");
+
+    if(backgroundStageShader.try_compile()) backgroundStageShader.compile();
+    if(mainStageShader.try_compile()) mainStageShader.compile();
+    if(intermediateStageShader.try_compile()) intermediateStageShader.compile();
+    if(lateStageShader.try_compile()) lateStageShader.compile();
+    if(finalStageShader.try_compile()) finalStageShader.compile();
+    if(transitionStageShader.try_compile()) transitionStageShader.compile();
 
     RenderStage& renderBackgroundStage = RenderStagePool::get_instance().add_stage((RenderStageProp){
         ._stageName = "BackgroundStage",
         ._textureBuffer = new TextureBuffer(Properties::screenWidth, Properties::screenHeight),
-        ._defaultShader = &shaderBackground,
+        ._defaultShader = &backgroundStageShader,
         ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
         ._shaderUniforms = {
             ._screenAspect = [](){ return (Properties::screenWidth) / (float) Properties::screenHeight; },
@@ -57,10 +64,10 @@ void omniscia::Game::run() {
         }
     });
 
-    RenderStage& renderStage1 = RenderStagePool::get_instance().add_stage((RenderStageProp){
+    RenderStage& renderMainStage = RenderStagePool::get_instance().add_stage((RenderStageProp){
         ._stageName = "MainStage",
         ._textureBuffer = new TextureBuffer(Properties::screenWidth, Properties::screenHeight),
-        ._defaultShader = &shader1,
+        ._defaultShader = &mainStageShader,
         ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
         ._shaderUniforms = {
             ._screenAspect = [](){ return (Properties::screenWidth) / (float) Properties::screenHeight; },
@@ -72,10 +79,10 @@ void omniscia::Game::run() {
         }
     });
 
-    RenderStage& renderStage2 = RenderStagePool::get_instance().add_stage((RenderStageProp){
+    RenderStage& renderIntermediateStage = RenderStagePool::get_instance().add_stage((RenderStageProp){
         ._stageName = "IntermediateStage",
         ._textureBuffer = new TextureBuffer(Properties::screenWidth, Properties::screenHeight),
-        ._defaultShader = &shader2,
+        ._defaultShader = &intermediateStageShader,
         ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
         ._shaderUniforms = {
             ._screenAspect = [](){ return (Properties::screenWidth) / (float) Properties::screenHeight; },
@@ -87,10 +94,10 @@ void omniscia::Game::run() {
         }
     });
 
-    RenderStage& renderStageFinal = RenderStagePool::get_instance().add_stage((RenderStageProp){
-        ._stageName = "FinalPreScreenStage",
+    RenderStage& renderLateStage = RenderStagePool::get_instance().add_stage((RenderStageProp){
+        ._stageName = "LateStage",
         ._textureBuffer = new TextureBuffer(Properties::screenWidth, Properties::screenHeight),
-        ._defaultShader = &shader3,
+        ._defaultShader = &lateStageShader,
         ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
         ._shaderUniforms = {
             ._screenAspect = [](){ return (Properties::screenWidth) / (float) Properties::screenHeight; },
@@ -98,7 +105,22 @@ void omniscia::Game::run() {
             ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
         },
         ._buffer = {
-            ._clearBufferColor = Vec4f{0.0f, 0.0f, 1.0f, 0.0f},
+            ._clearBufferColor = Vec4f{0.1f, 0.1f, 0.1f, 1.0f},
+        }
+    });
+
+    RenderStage& renderTransitionStage = RenderStagePool::get_instance().add_stage((RenderStageProp){
+        ._stageName = "TransitionStage",
+        ._textureBuffer = new TextureBuffer(256u, 160u),
+        ._defaultShader = &transitionStageShader,
+        ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
+        ._shaderUniforms = {
+            ._screenAspect = [](){ return 256u / (float) 160u; },
+            ._cameraPosition = [](){ return Camera::get_instance().get_pos(); },
+            ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
+        },
+        ._buffer = {
+            ._clearBufferColor = Vec4f{0.1f, 0.1f, 0.1f, 0.0f},
         }
     });
 
@@ -111,9 +133,15 @@ void omniscia::Game::run() {
     Scene* settingsScene = new SettingsScene();
     _scenes["settings_scene"] = settingsScene;
     
-    // switch_scene("game_scene");
-    // switch_scene("game_scene");
     switch_scene("main_menu_scene");
+
+    _cutscenes["transition_cutscene"] = new Cutscene({
+        CE_Step{
+            new CE_SceneSwitchEvent((CE_SceneSwitchProp){ 
+                ._cutsceneName = "game_scene",
+            })
+        }
+    });
 
     Cutscene cutscene = {
         CE_Step{
@@ -184,8 +212,6 @@ void omniscia::Game::run() {
             new CE_EnableSystemEvent<ECS_CameraFollowSystem>((CE_EnableSystemProp){}),
         },
     };
-
-    // cutscene.start();
     
     DebugUI::get_instance().get_metrics()._timeMaxLineLength = 5000;
 
@@ -197,7 +223,9 @@ void omniscia::Game::run() {
         Time::get_instance().update_delta_time_clock();
 
         Controls::get_instance().handle_input(window);
-        cutscene.update();
+
+        if(_activeCutscene != nullptr)
+            _activeCutscene->update();
 
         ECS_PlayerTimeJumpControllerSystem::get_instance().update();
 
@@ -229,19 +257,27 @@ void omniscia::Game::run() {
             ECS_ProRendererSystem::get_instance().render();
         });
 
-        renderStage1.render_stage_lambda([&](){ 
+        renderMainStage.render_stage_lambda([&](){ 
             ECS_ProRendererSystem::get_instance().render();
         });
 
-        renderStage2.render_stage_lambda([&](const Shader* stage_shader){ 
+        renderIntermediateStage.render_stage_lambda([&](const Shader* stage_shader){ 
             renderBackgroundStage.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
-            renderStage1.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
+            renderMainStage.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
 
             ECS_ProRendererSystem::get_instance().render();
         });
 
-        renderStageFinal.render_stage_lambda([&](const Shader* stage_shader){ 
-            renderStage2.present_as_texture();
+        renderTransitionStage.render_stage_lambda([&](const Shader* stage_shader){ 
+           // f32 time = (sin(Time::get_time()) + 1.0) / 2.0;
+           // Shader::get_active()->set_uniform_f32("time", time);
+
+            randomsprite.render(Shader::get_active());
+        });
+
+        renderLateStage.render_stage_lambda([&](const Shader* stage_shader){ 
+            renderIntermediateStage.present_as_texture();
+            renderTransitionStage.present_as_texture();
 
             ECS_ProRendererSystem::get_instance().render();
         });
@@ -249,12 +285,8 @@ void omniscia::Game::run() {
         /* screen buffer */
         RenderStage::render_anonymous_stage_lambda([&]() {
             Renderer::clear_buffer(Vec4f{0.0f, 0.0f, 1.0f, 1.0f});
-            shader3.activate();
-            Shader::get_active()->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
-            Shader::get_active()->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
-            Shader::get_active()->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
-
-            renderStageFinal.present_as_texture();
+            finalStageShader.activate();
+            renderLateStage.present_as_texture();
             
             DebugUI::get_instance().render();
         });
@@ -269,9 +301,9 @@ void omniscia::Game::run() {
 
     glDisable(GL_BLEND);
 
-    shader1.terminate();
-    shader2.terminate();
-    shader3.terminate();
+    mainStageShader.terminate();
+    intermediateStageShader.terminate();
+    lateStageShader.terminate();
 
     glfwTerminate();
 }
@@ -290,6 +322,14 @@ void omniscia::Game::switch_scene(Scene* scenePtr) {
     
     _activeScene = scenePtr;
     _activeScene->time_sync();
+}
+
+void omniscia::Game::start_cutscene(std::string cutsceneId) {
+    _activeCutscene = _cutscenes[cutsceneId];
+}
+
+void omniscia::Game::start_cutscene(Cutscene* cutscenePtr) {
+    _activeCutscene = cutscenePtr;
 }
 
 omniscia::Game& omniscia::Game::get_instance() {

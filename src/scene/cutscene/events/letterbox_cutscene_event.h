@@ -15,28 +15,16 @@ namespace omniscia::core {
 
     class CE_LetterBoxEvent : public CE_LetterBoxProp , public CE_Event {
         private:
-            CE_LetterBoxEvent() {}
-            CE_LetterBoxEvent(const CE_LetterBoxEvent&) {}
-            void operator=(const CE_LetterBoxEvent&) {}
+            CE_LetterBoxEvent();
+            CE_LetterBoxEvent(const CE_LetterBoxEvent&);
+            void operator=(const CE_LetterBoxEvent&);
 
             Entity bottomBox;
             Entity upperBox;
         public:
-            CE_LetterBoxEvent(const auto& data = CE_LetterBoxProp{}) : CE_LetterBoxProp(data), CE_Event(*(CE_Prop*)&data) {
-                bottomBox.add<ECS_ParallaxSpriteRendererFront>("factorio_girl_texture", 1, [](f32& layerOffset) { return 0; });
-                upperBox.add<ECS_ParallaxSpriteRendererFront>("factorio_girl_texture", 1, [](f32& layerOffset) { return 0; });
-            }
+            CE_LetterBoxEvent(const auto& data = CE_LetterBoxProp{});
             
-            void execute() override {
-                static u64 t = 0;
-
-                if(t == 0) {
-                    bottomBox.time_sync();
-                    upperBox.time_sync();
-                }
-
-                ++t;
-            }
+            void execute() override;
     };
 }
 

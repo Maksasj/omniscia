@@ -30,14 +30,23 @@ int main() {
     }
 
     /* Shader assets */
-    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_1.glsl", "frag_stage_1", FRAGMENT_SHADER);
-    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_2.glsl", "frag_stage_2", FRAGMENT_SHADER);
-    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_3.glsl", "frag_stage_3", FRAGMENT_SHADER);
-    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_1.glsl", "vert_stage_1", VERTEX_SHADER);
-    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_2.glsl", "vert_stage_2", VERTEX_SHADER);
-    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_3.glsl", "vert_stage_3", VERTEX_SHADER);
+    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_main.glsl", "frag_stage_main", FRAGMENT_SHADER);
+    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_main.glsl", "vert_stage_main", VERTEX_SHADER);
+
+    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_intermediate.glsl", "frag_stage_intermediate", FRAGMENT_SHADER);
+    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_intermediate.glsl", "vert_stage_intermediate", VERTEX_SHADER);
+    
+    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_late.glsl", "frag_stage_late", FRAGMENT_SHADER);
+    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_late.glsl", "vert_stage_late", VERTEX_SHADER);
+    
     ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_background.glsl", "frag_stage_background", FRAGMENT_SHADER);
     ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_background.glsl", "vert_stage_background", VERTEX_SHADER);
+    
+    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_final.glsl", "frag_stage_final", FRAGMENT_SHADER);
+    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_final.glsl", "vert_stage_final", VERTEX_SHADER);
+    
+    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_transition.glsl", "vert_stage_transition", VERTEX_SHADER);
+    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_transition.glsl", "frag_stage_transition", FRAGMENT_SHADER);
     try {
         ShaderManager::get_instance().check_assets();
     } catch (const std::runtime_error& exception) {

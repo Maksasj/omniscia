@@ -5,7 +5,7 @@ in vec3 ourColor;
 in vec2 TexCoord;
 
 uniform sampler2D ourTexture;
-//uniform float tmp_uniform;
+uniform float time;
 
 void main() {
     vec4 color = texture(ourTexture, TexCoord);

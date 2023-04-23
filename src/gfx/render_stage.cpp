@@ -28,6 +28,8 @@ void omniscia::gfx::RenderStage::present_as_texture(const Shader *shader, const 
     shader->set_uniform_f32("rotation", rotation);
 
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+    _textureBuffer->unbind();
 }
 
 void omniscia::gfx::RenderStage::present_as_texture(const Shader *shader, const Vec2f &position, const float &rotation) const {
@@ -38,6 +40,8 @@ void omniscia::gfx::RenderStage::present_as_texture(const Shader *shader, const 
     shader->set_uniform_f32("rotation", rotation);
     
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+    _textureBuffer->unbind();
 }
 
 void omniscia::gfx::RenderStage::present_as_texture(const Shader *shader, const Vec2f &position, const Vec2f &scale) const {
@@ -48,6 +52,8 @@ void omniscia::gfx::RenderStage::present_as_texture(const Shader *shader, const 
     shader->set_uniform_vec2f("scale", scale);
 
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+    _textureBuffer->unbind();
 }
 
 void omniscia::gfx::RenderStage::present_as_texture(const Shader *shader, const Vec2f &position, const float &rotation, const Vec2f &scale) const {
@@ -59,6 +65,8 @@ void omniscia::gfx::RenderStage::present_as_texture(const Shader *shader, const 
     shader->set_uniform_vec2f("scale", scale);
 
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+    _textureBuffer->unbind();
 }
 
 omniscia::gfx::RenderStage& omniscia::gfx::RenderStage::bind_target_mesh(const SpriteMesh& spriteMesh) {
