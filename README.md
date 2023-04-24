@@ -14,30 +14,6 @@
 
 ---
 
-## Todo List
-- ### Priority
-  - [x] Super renderer component, allows to request render call on any of rendering stages
-  - [ ] Check for memory leaks
-  - [ ] Sound system 
-- ### Core
-  - [ ] System system manager
-  - [x] Level manager
-- ### ECS
-  - [x] Templated constructors
-  - [x] Box Collider Component
-  - [x] Tile renderer component
-  - [x] Mesh builder
-  - Prototypes
-    - [ ] Prototype serialization
-- ### GFX
-  - [ ] Better rendering stages
-  - [ ] Rendering stage configuration
-  - [x] Sprite mesh merging
-  - [x] Batch rendering
-  - [ ] Instancing
-- ### Editor
-  - [x] Use tile groups instead of tile grid
-
 ## Build
 ```bash
 cmake -B build -G Ninja
