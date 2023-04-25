@@ -10,5 +10,7 @@ omniscia::core::MainMenuScene::MainMenuScene() : Scene() {
     []() {
 
     });
+    add_static_entity<MenuBackground>();
+
     unbind();
 }

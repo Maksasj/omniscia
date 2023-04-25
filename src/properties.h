@@ -33,7 +33,7 @@ namespace omniscia::core {
              * @brief Screen height size 
             */
             //static const u32 screenHeight = 1080; 
-            static const u32 screenHeight = 800; 
+            static const u32 screenHeight = 720; 
     };
 }
 

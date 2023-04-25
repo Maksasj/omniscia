@@ -8,8 +8,8 @@ void omniscia::Game::load() {
     Renderer::init();
 
     auto monitors = Monitor::retrieve_monitors();
-    //monitors[1]->set_active();
-    monitors[0]->set_active();
+    monitors[1]->set_active();
+    //monitors[0]->set_active();
     
     window = glfwCreateWindow(Properties::screenWidth, Properties::screenHeight, "Omniscia", NULL, NULL);
     //window = glfwCreateWindow(Properties::screenWidth, Properties::screenHeight, "Omniscia", Monitor::get_active()->get_glfw_monitor(), NULL);
@@ -111,16 +111,16 @@ void omniscia::Game::run() {
 
     RenderStage& renderTransitionStage = RenderStagePool::get_instance().add_stage((RenderStageProp){
         ._stageName = "TransitionStage",
-        ._textureBuffer = new TextureBuffer(256u, 160u),
+        ._textureBuffer = new TextureBuffer(256u, 144u),
         ._defaultShader = &transitionStageShader,
         ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
         ._shaderUniforms = {
-            ._screenAspect = [](){ return 256u / (float) 160u; },
+            ._screenAspect = [](){ return 256u / (float) 144u; },
             ._cameraPosition = [](){ return Camera::get_instance().get_pos(); },
             ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
         },
         ._buffer = {
-            ._clearBufferColor = Vec4f{0.1f, 0.1f, 0.1f, 0.0f},
+            ._clearBufferColor = Vec4f{0.0f, 0.0f, 0.0f, 0.0f},
         }
     });
 
@@ -279,7 +279,6 @@ void omniscia::Game::run() {
 
         /* screen buffer */
         RenderStage::render_anonymous_stage_lambda([&]() {
-            Renderer::clear_buffer(Vec4f{0.0f, 0.0f, 1.0f, 1.0f});
             finalStageShader.activate();
             renderLateStage.present_as_texture();
             

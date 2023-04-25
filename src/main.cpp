@@ -16,6 +16,7 @@ int main() {
     TextureManager::get_instance().add_asset("assets/textures/background/beach/sky1.png", "background_beach_sky1_layer");
     TextureManager::get_instance().add_asset("assets/textures/background/beach/sky2.png", "background_beach_sky2_layer");
     TextureManager::get_instance().add_asset("assets/textures/background/beach/terrain.png", "background_beach_terrain_layer");
+    TextureManager::get_instance().add_asset("assets/textures/background/menu/menu_background.png", "menu_background");
     try {
         TextureManager::get_instance().check_assets();
     } catch (const std::runtime_error& exception) {

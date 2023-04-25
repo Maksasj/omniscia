@@ -45,6 +45,8 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader) const {
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
+    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     unbind();
@@ -60,6 +62,8 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
 
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
+
+    shader->set_uniform_f32("textureAspect", texture->get_aspect());
 
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -77,6 +81,8 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const float &ro
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
+    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     unbind();
@@ -92,6 +98,8 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
 
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
+
+    shader->set_uniform_f32("textureAspect", texture->get_aspect());
 
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -109,6 +117,8 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
+    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     unbind();
@@ -124,6 +134,8 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
 
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
+
+    shader->set_uniform_f32("textureAspect", texture->get_aspect());
 
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -141,6 +153,8 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
+    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     unbind();
@@ -156,6 +170,8 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Matrix<f3
 
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
+
+    shader->set_uniform_f32("textureAspect", texture->get_aspect());
 
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -173,6 +189,8 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
+    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     unbind();
@@ -188,6 +206,8 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
 
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
+
+    shader->set_uniform_f32("textureAspect", texture->get_aspect());
 
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -205,6 +225,8 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
+    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     unbind();
@@ -220,6 +242,9 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
 
     shader->set_uniform_i32("textureFlipHorizontal", horizontalFlip);
     shader->set_uniform_i32("textureFlipVertical", verticalFlip);
+
+    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+
     bind(); 
         glDrawElements(GL_TRIANGLES, spriteMesh.get_indices_count(), GL_UNSIGNED_INT, 0);
     unbind();

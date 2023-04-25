@@ -14,10 +14,20 @@ uniform vec2 scale = vec2(1.0, 1.0);
 uniform float cameraZoom = 1.0;
 uniform vec3 cameraPosition;
 
+uniform vec2 spriteFrameOffset = vec2(0.0, 0.0);
+uniform vec2 spriteFrameSize = vec2(1.0, 1.0);
+
+uniform bool textureFlipHorizontal = false;
+uniform bool textureFlipVertical = false;
+uniform float textureAspect = 1.0;
+
 uniform float screenAspect = 1.6;
 
 void main() {
    vec4 pos = vec4(vec4(aPos, 1.0f));
+
+   pos.x *= textureAspect;
+   pos.x *= spriteFrameSize.x / spriteFrameSize.y;
 
    pos.xy *= scale;
    pos.xy -= cameraPosition.xy;

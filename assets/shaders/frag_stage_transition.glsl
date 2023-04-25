@@ -12,7 +12,9 @@ uniform float transitionDiamondPixelSize = 12.0f;
 uniform float letterBoxUpperBound = 0.0f;
 uniform float letterBoxLowerBound = 0.0f;
 
-vec2 gameResolution = vec2(256, 160);
+uniform float bottomShadow = 0.3;
+
+vec2 gameResolution = vec2(256, 144);
 
 vec4 transition(vec2 uv, vec4 color) {
     uv.x = 1.0 - uv.x;
@@ -42,10 +44,22 @@ vec4 letter_box(vec2 uv, vec4 color) {
     return color;
 }
 
+vec4 bottom_shadow(vec2 uv, vec4 color) {
+    if(uv.y < bottomShadow) {
+        float upperShadow = 1.0 - bottomShadow;
+        float value = uv.y + upperShadow;
+
+        color.w = 1.0 - value * value;
+    }
+
+    return color;
+}
+
 void main() {
     vec2 uv = gl_FragCoord.xy / gameResolution.xy;
     vec4 color = vec4(0.0, 0.0, 0.0, 0.0);
 
+    color = bottom_shadow(uv, color);
     color = transition(uv, color);
     color = letter_box(uv, color);
 
