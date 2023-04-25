@@ -16,22 +16,29 @@
 #include "entity.h"
 
 namespace omniscia::core {
+    struct BackgroundProp {
+        std::string _texture = "";
+        u32 _layer = 0;
+    };
+
     /**
-     * @brief MenuBackground - prototype class 
-     * used for creating beach parallax background
+     * @brief Background - prototype class 
+     * used for creating background
      * entity instance
     */
-    class MenuBackground : public Entity {
+    class Background : public Entity {
         private:
 
         public:
-            /** @brief Default MenuBackground constructor */
-            MenuBackground();
+            /** @brief Default Background constructor */
+            Background();
+
+            Background(const BackgroundProp& prop = {});
             
             /**
-             * @brief Clones MenuBackground entity instance
+             * @brief Clones Backgr;ound entity instance
              * 
-             * @return MenuBackground new instance of the MenuBackground object
+             * @return Background new instance of the Background object
             */
             std::shared_ptr<Entity> clone() override {
                 auto entity = std::make_shared<Entity>(*this);

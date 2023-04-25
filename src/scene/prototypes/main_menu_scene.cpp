@@ -142,7 +142,10 @@ omniscia::core::MainMenuScene::MainMenuScene() : Scene() {
         }
     });
 
-    add_static_entity<MenuBackground>();
+    add_static_entity<Background>((BackgroundProp) {
+        ._texture = "menu_background",
+        ._layer = 0,
+    });
 
     unbind();
 }
