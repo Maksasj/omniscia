@@ -75,7 +75,7 @@ namespace omniscia::core {
              * 
              * @param level reference to existing scene instance
             */
-            void load_scene(Scene& level);
+            void load_scene(Scene& level, const std::string& path);
 
             /**
              * @brief Get singleton instance of the SceneLoader class

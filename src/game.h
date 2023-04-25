@@ -17,6 +17,7 @@
 
 #include "texture_manager.h"
 #include "animation_manager.h"
+#include "level_asset_manager.h"
 #include "ecs_components.h"
 #include "render_stage_pool.h"
 #include "properties.h"
@@ -63,7 +64,7 @@ namespace omniscia {
             /** @brief Pointer to the active scene */
             Scene* _activeScene = nullptr;
             /** @brief Pointer to the active cutscene */
-            Cutscene* _activeCutscene = nullptr;
+            std::vector<Cutscene*> _activeCutscenes;
 
             /** @brief Container that stores pointers to cutscenes */
             std::unordered_map<std::string, Cutscene*> _cutscenes;
@@ -100,12 +101,7 @@ namespace omniscia {
 
             void start_cutscene(Cutscene* cutscenePtr);
 
-            /**
-             * @brief Switches scene by scene pointer
-             * 
-             * @param scenePtr pointer to the scene
-            */
-            void switch_scene(Scene* scenePtr);
+            void update_cutscenes();
 
             /**
              * @brief Get singleton instance of the game class

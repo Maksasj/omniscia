@@ -79,6 +79,14 @@ int main() {
         return 1;
     }
     
+    LevelAssetManager::get_instance().add_asset("assets/levels/level.bin", "test_level", BASE);
+    try {
+        omniscia::core::LevelAssetManager::get_instance().check_assets();
+    } catch (const std::runtime_error& exception) {
+        std::cout << exception.what() << "\n";
+        return 1;
+    }
+
     try {
         Game::get_instance().load();
     } catch(const std::runtime_error& exception) {

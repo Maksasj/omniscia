@@ -11,14 +11,15 @@ namespace omniscia::core {
     class Cutscene {
         private:
             bool _started;
-           
+            bool _ended;
+
             std::vector<CE_Step> _steps;
             std::vector<CE_Step>::iterator _current_step;
 
             Cutscene() {}
             Cutscene(const Cutscene&) {}
         public:
-            Cutscene(const std::initializer_list<CE_Step> &steps) {
+            Cutscene(const std::initializer_list<CE_Step> &steps) : _ended(false), _started(false) {
                 for(const CE_Step& step : steps)
                     _steps.push_back(step);
 
@@ -34,12 +35,21 @@ namespace omniscia::core {
                 _started = true;
             }
 
+            bool is_ended() const {
+                return _ended;
+            }
+
             void update() {
                 if(!_started)
                     return;
 
-                if(_current_step == _steps.end())
+                if(_ended)
                     return;
+
+                if(_current_step == _steps.end()) {
+                    _ended = true;
+                    return;
+                }
 
                 CE_Step& currentStep = *_current_step;
 

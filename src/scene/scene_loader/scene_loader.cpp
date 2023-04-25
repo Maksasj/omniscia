@@ -1,7 +1,6 @@
 #include "scene_loader.h"
 
-void omniscia::core::SceneLoader::load_scene(Scene& level) {
-    std::string path = "assets\\levels\\level.bin";
+void omniscia::core::SceneLoader::load_scene(Scene& level, const std::string& path) {
     std::ifstream f(path, std::ios::out | std::ios::binary);
 
     if(!f.good())

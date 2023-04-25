@@ -216,6 +216,8 @@ void omniscia::Game::run() {
         },
     };
 
+    _cutscenes["test_cutscene"] = &cutscene;
+
     DebugUI::get_instance().get_metrics()._timeMaxLineLength = 5000;
 
     /* ImGui */
@@ -226,9 +228,8 @@ void omniscia::Game::run() {
         Time::get_instance().update_delta_time_clock();
 
         Controls::get_instance().handle_input(window);
-        
-        if(_activeCutscene != nullptr)
-            _activeCutscene->update();
+
+        update_cutscenes();
 
         ECS_PlayerTimeJumpControllerSystem::get_instance().update();
 
@@ -315,21 +316,26 @@ void omniscia::Game::switch_scene(std::string sceneId) {
     _activeScene->time_sync();
 }
 
-void omniscia::Game::switch_scene(Scene* scenePtr) {
-    if(_activeScene != nullptr)
-        _activeScene->unbind();
-    
-    _activeScene = scenePtr;
-    _activeScene->time_sync();
-}
-
 void omniscia::Game::start_cutscene(std::string cutsceneId) {
-    _activeCutscene = _cutscenes[cutsceneId];
+    Cutscene* _activeCutscene = _cutscenes[cutsceneId];
     _activeCutscene->start();
+    _activeCutscenes.push_back(_activeCutscene);
 }
 
 void omniscia::Game::start_cutscene(Cutscene* cutscenePtr) {
-    _activeCutscene = cutscenePtr;
+    cutscenePtr->start();
+    _activeCutscenes.push_back(cutscenePtr);
+}
+
+void omniscia::Game::update_cutscenes() {
+    _activeCutscenes.erase(std::remove_if(_activeCutscenes.begin(), _activeCutscenes.end(), 
+        [](Cutscene* cutscene) { 
+            return cutscene->is_ended(); 
+        }), _activeCutscenes.end());
+
+    for(auto& cutscene : _activeCutscenes) {
+        cutscene->update();
+    }
 }
 
 omniscia::Game& omniscia::Game::get_instance() {
