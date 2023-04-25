@@ -1,16 +1,17 @@
 #include "ecs_button.h"
 
-omniscia::core::ecs::ECS_Button::ECS_Button(const std::function<void(void)> clickLambda) {
+omniscia::core::ecs::ECS_Button::ECS_Button(const std::function<void(ECS_Button&)> clickLambda) {
     ECS_ButtonSystem::get_instance().bind_component(this);
 
     _clickLambda = clickLambda;
 };
 
-omniscia::core::ecs::ECS_Button::ECS_Button(const std::function<void(void)> clickLambda, const std::function<void(void)> hoverLambda) {
+omniscia::core::ecs::ECS_Button::ECS_Button(const std::function<void(ECS_Button&)> clickLambda, const std::function<void(ECS_Button&)> hoverLambda, const std::function<void(ECS_Button&)> unHoverLambda) {
     ECS_ButtonSystem::get_instance().bind_component(this);
 
     _clickLambda = clickLambda;
     _hoverLambda = hoverLambda;
+    _unHoverLambda = unHoverLambda;
 };
 
 void omniscia::core::ecs::ECS_Button::time_sync() {
@@ -47,13 +48,15 @@ void omniscia::core::ecs::ECS_Button::update() {
         mouse.y >= pos.y - scale.y * yRanges.x &&
         mouse.y <= pos.y + scale.y * yRanges.y
     )) {
-        _hoverLambda();
+        _hoverLambda(*this);
 
         if(Controls::get_instance().get(MouseController::LEFT_CLICK)) {
-            _clickLambda();
+            _clickLambda(*this);
 
             /* Resolve this cringe */
             DebugUI::get_instance().get_metrics()._isTimeJump = true;
         }
+    } else {
+        _unHoverLambda(*this);
     }
 }

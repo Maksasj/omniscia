@@ -33,8 +33,9 @@ namespace omniscia::core::ecs {
         private:
             Entity* _parent;
 
-            std::function<void(void)> _clickLambda;
-            std::function<void(void)> _hoverLambda;
+            std::function<void(ECS_Button&)> _clickLambda;
+            std::function<void(ECS_Button&)> _hoverLambda;
+            std::function<void(ECS_Button&)> _unHoverLambda;
 
             ECS_Index<ECS_Positioned> _posIndex;
             ECS_Index<ECS_Scaled> _scaleIndex;
@@ -44,10 +45,26 @@ namespace omniscia::core::ecs {
             void time_sync() override;
             void reindex(void* parent) override;
 
-            ECS_Button(const std::function<void(void)> clickLambda);
-            ECS_Button(const std::function<void(void)> clickLambda, const std::function<void(void)> hoverLambda);
+            ECS_Button(const std::function<void(ECS_Button&)> clickLambda);
+            ECS_Button(const std::function<void(ECS_Button&)> clickLambda, const std::function<void(ECS_Button&)> hoverLambda, const std::function<void(ECS_Button&)> unHoverLambda);
 
             void update();
+
+            Entity* get_parent() {
+                return _parent;
+            }
+
+            ECS_Index<ECS_Positioned> get_pos_index() const {
+                return _posIndex;
+            }
+
+            ECS_Index<ECS_Scaled> get_scale_index() const {
+                return _scaleIndex;
+            }
+
+            ECS_Index<ECS_BoxColliderMesh> get_collider_index() const {
+                return _colliderIndex;
+            }
 
             std::shared_ptr<ECS_Component> clone() override {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_Button>(*this));

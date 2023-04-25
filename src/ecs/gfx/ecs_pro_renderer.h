@@ -25,10 +25,14 @@ namespace omniscia::core::ecs {
         protected:
             RenderStage* _bindedRenderingStage;
 
+            u32 _layer;
+
         public:
-            ECS_ProRenderer(RenderStage* renderingStage);
+            ECS_ProRenderer(RenderStage* renderingStage, const u32& layer);
 
             RenderStage* get_rendering_stage() const; 
+
+            u32 get_layer() const;
 
             virtual void render() {};
     };
@@ -72,10 +76,10 @@ namespace omniscia::core::ecs {
 
                 components.push_back(component);
 
-                // near_sorted_sort<ECS_ProRenderer*>(components, 
-                // [](const ECS_ProRenderer* a, const ECS_ProRenderer* b) {
-                //     return a->get_layer() > b->get_layer();
-                // });
+                near_sorted_sort<ECS_ProRenderer*>(components, 
+                [](const ECS_ProRenderer* a, const ECS_ProRenderer* b) {
+                    return a->get_layer() > b->get_layer();
+                });
             }
 
             void time_sync() override {

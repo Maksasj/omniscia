@@ -16,7 +16,13 @@ int main() {
     TextureManager::get_instance().add_asset("assets/textures/background/beach/sky1.png", "background_beach_sky1_layer");
     TextureManager::get_instance().add_asset("assets/textures/background/beach/sky2.png", "background_beach_sky2_layer");
     TextureManager::get_instance().add_asset("assets/textures/background/beach/terrain.png", "background_beach_terrain_layer");
+    
     TextureManager::get_instance().add_asset("assets/textures/background/menu/menu_background.png", "menu_background");
+    TextureManager::get_instance().add_asset("assets/textures/background/menu/continue_button.png", "continue_button");
+    TextureManager::get_instance().add_asset("assets/textures/background/menu/new_game_button.png", "new_game_button");
+    TextureManager::get_instance().add_asset("assets/textures/background/menu/options_button.png", "options_button");
+    TextureManager::get_instance().add_asset("assets/textures/background/menu/quit_game_button.png", "quit_game_button");
+    
     try {
         TextureManager::get_instance().check_assets();
     } catch (const std::runtime_error& exception) {

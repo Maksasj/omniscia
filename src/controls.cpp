@@ -61,6 +61,6 @@ void omniscia::core::Controls::handle_input(GLFWwindow *window) {
 
     _mousePos.x = 2.0f * (xpos / Properties::screenWidth) - 1.0f;
     _mousePos.y = 2.0f * (ypos / Properties::screenHeight) - 1.0f;
-
     _mousePos.x *= Properties::screenWidth / (f32)Properties::screenHeight;
+    _mousePos.y = -_mousePos.y;
 }

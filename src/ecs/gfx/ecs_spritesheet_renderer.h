@@ -44,11 +44,6 @@ namespace omniscia::core::ecs {
              * instance, used for reindexing and time sync 
             */
             Entity* _parent;
-            
-            /**
-             * @brief Rendering layer
-            */
-            u32 _layer;
 
             /**
              * @brief Sprite instance
@@ -68,10 +63,6 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_Scaled> _scaleIndex;
 
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_SpriteSheetRenderer, this->_parent << " " << this->_layer); 
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_SpriteSheetRenderer, self._parent << " " << self._layer);
-
             /**
              * @brief Method used for time 
              * synchronization of the component
@@ -97,13 +88,6 @@ namespace omniscia::core::ecs {
              * @param layer rendering layer
              */
             ECS_SpriteSheetRenderer(const std::string& textureId, const u32& layer);
-
-            /**
-             * @brief Get the rendering layer
-             * 
-             * @return u32 rendering layer
-            */
-            u32 get_layer() const;
 
             /**
              * @brief Renders sprite sheet to the active frame buffer

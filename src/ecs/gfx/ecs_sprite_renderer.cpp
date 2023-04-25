@@ -1,8 +1,6 @@
 #include "ecs_sprite_renderer.h"
 
-omniscia::core::ecs::ECS_SpriteRenderer::ECS_SpriteRenderer(const std::string& textureId, const u32& layer) : _sprite(textureId), ECS_ProRenderer(RenderStagePool::get_instance().get_stage_by_name("MainStage")) {
-    _layer = layer;
-
+omniscia::core::ecs::ECS_SpriteRenderer::ECS_SpriteRenderer(const std::string& textureId, const u32& layer) : _sprite(textureId), ECS_ProRenderer(RenderStagePool::get_instance().get_stage_by_name("MainStage"), layer) {
     ECS_ProRendererSystem::get_instance().bind_component(this);
 };
 
@@ -15,10 +13,6 @@ void omniscia::core::ecs::ECS_SpriteRenderer::reindex(void* parent) {
 
     _posIndex = _parent->index<ECS_Positioned>();
     _scaleIndex = _parent->index<ECS_Scaled>();
-}
-
-u32 omniscia::core::ecs::ECS_SpriteRenderer::get_layer() const {
-    return _layer;
 }
 
 void omniscia::core::ecs::ECS_SpriteRenderer::render() {

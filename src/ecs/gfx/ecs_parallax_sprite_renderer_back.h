@@ -38,9 +38,6 @@ namespace omniscia::core::ecs {
     */
     class ECS_ParallaxSpriteRendererBack : public ECS_ProRenderer {
         private:
-            /** @brief Rendering layer */
-            u32 _layer;
-
             /** @brief Sprite of the this component */
             Sprite _sprite;
 
@@ -54,10 +51,6 @@ namespace omniscia::core::ecs {
             std::function<f32(f32&)> _layerOffsetCallBack;
 
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_ParallaxSpriteRendererBack, this->_layer << " " << this->_layerOffset);
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_ParallaxSpriteRendererBack, self._layer << " " << self._layerOffset);
-
             /**
              * @brief Method used for time 
              * synchronization of the component
@@ -75,13 +68,6 @@ namespace omniscia::core::ecs {
              * @param layerOffsetCallBack lambda expression used for calculating sprite offset
             */
             ECS_ParallaxSpriteRendererBack(const std::string& textureId, const u32& layer, const std::function<f32(f32&)>& layerOffsetCallBack);
-            
-            /**
-             * @brief Get the rendering layer
-             * 
-             * @return u32 rendering layer
-            */
-            u32 get_layer() const;
 
             /**
              * @brief Renders sprite to the active frame buffer
