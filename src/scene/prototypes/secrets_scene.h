@@ -1,19 +1,19 @@
-#ifndef _SETTINGS_SCENE_
-#define _SETTINGS_SCENE_
+#ifndef _SECRETS_SCENE_
+#define _SECRETS_SCENE_
 
 #include "entity_prototypes.h"
 #include "scene_loader.h"
 #include "scene.h"
 
 namespace omniscia::core {
-    class SettingsScene : public Scene {
+    class SecretsScene : public Scene {
         public:
-            SettingsScene() : Scene() {
+            SecretsScene() : Scene() {
                 add_static_entity<Background>((BackgroundProp) {
-                    ._texture = "settings_background",
+                    ._texture = "secrets_background",
                     ._layer = 0,
                 });
-
+                
                 unbind();
             }
     };

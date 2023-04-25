@@ -49,7 +49,7 @@ vec4 bottom_shadow(vec2 uv, vec4 color) {
         float upperShadow = 1.0 - bottomShadow;
         float value = uv.y + upperShadow;
 
-        color.w = 1.0 - value * value;
+        color.w = 1.0 - value * value * value;
     }
 
     return color;

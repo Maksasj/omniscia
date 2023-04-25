@@ -136,10 +136,15 @@ void omniscia::Game::run() {
     Scene* settingsScene = new SettingsScene();
     _scenes["settings_scene"] = settingsScene;
     
+    Scene* secretsScene = new SecretsScene();
+    _scenes["secrets_scene"] = secretsScene;
+
     switch_scene("main_menu_scene");
 
     _cutscenes["transition_cutscene_to_chapter_choose_scene"] = new TransitionCutscene(&transitionStageShader, "chapter_choose_menu_scene");
     _cutscenes["transition_cutscene_to_game_scene"] = new TransitionCutscene(&transitionStageShader, "game_scene");
+    _cutscenes["transition_cutscene_to_settings"] = new TransitionCutscene(&transitionStageShader, "settings_scene");
+    _cutscenes["transition_cutscene_to_secrets"] = new TransitionCutscene(&transitionStageShader, "secrets_scene");
 
     Cutscene cutscene = {
         CE_Step{
@@ -174,7 +179,7 @@ void omniscia::Game::run() {
                 },
 
                 ._startZoom = 1.0f,
-                ._finishZoom = 2.0f,
+                ._finishZoom = 0.1f,
 
                 ._shapingFunction = &smoothstep<f32>,
             }),
@@ -199,7 +204,7 @@ void omniscia::Game::run() {
                     ._durationTime = 5.0f
                 },
 
-                ._startZoom = 2.0f,
+                ._startZoom = 0.1f,
                 ._finishZoom = 1.0f,
 
                 ._shapingFunction = &smoothstep<f32>,
@@ -210,7 +215,7 @@ void omniscia::Game::run() {
             new CE_EnableSystemEvent<ECS_CameraFollowSystem>((CE_EnableSystemProp){}),
         },
     };
-    
+
     DebugUI::get_instance().get_metrics()._timeMaxLineLength = 5000;
 
     /* ImGui */
@@ -221,7 +226,7 @@ void omniscia::Game::run() {
         Time::get_instance().update_delta_time_clock();
 
         Controls::get_instance().handle_input(window);
-
+        
         if(_activeCutscene != nullptr)
             _activeCutscene->update();
 

@@ -22,8 +22,11 @@ int main() {
     TextureManager::get_instance().add_asset("assets/textures/background/menu/new_game_button.png", "new_game_button");
     TextureManager::get_instance().add_asset("assets/textures/background/menu/options_button.png", "options_button");
     TextureManager::get_instance().add_asset("assets/textures/background/menu/quit_game_button.png", "quit_game_button");
+    TextureManager::get_instance().add_asset("assets/textures/background/menu/secrets_button.png", "secrets_button");
 
     TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/chapter_choose_background.png", "chapter_choose_background");
+    TextureManager::get_instance().add_asset("assets/textures/background/secrets/secrets_background.png", "secrets_background");
+    TextureManager::get_instance().add_asset("assets/textures/background/settings/settings_background.png", "settings_background");
     
     try {
         TextureManager::get_instance().check_assets();

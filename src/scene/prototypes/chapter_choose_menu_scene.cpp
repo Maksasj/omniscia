@@ -3,7 +3,7 @@
 
 omniscia::core::ChapterChooseMenuScene::ChapterChooseMenuScene() : Scene() {
     add_static_entity<Button>((ButtonProp) {
-        ._pos = Vec2f{0.25f, 0.0f},
+        ._pos = Vec2f{1.0f, -0.7f},
         ._scale = Vec2f{0.1f, 0.1f},
         ._renderer = {
             ._texture = "new_game_button",
@@ -13,10 +13,6 @@ omniscia::core::ChapterChooseMenuScene::ChapterChooseMenuScene() : Scene() {
         ._clickLambda = [](ECS_Button&) {
             Game::get_instance().start_cutscene("transition_cutscene_to_game_scene");
         },
-
-        ._hoverLambda = [](ECS_Button&) {
-            
-        }
     });
 
     add_static_entity<Background>((BackgroundProp) {
