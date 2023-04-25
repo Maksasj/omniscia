@@ -61,10 +61,10 @@ namespace omniscia::core {
              * 
              * @return new Entity instance 
             */
-            Entity clone() {
-                Entity tmpEntity = *this;
-                clone_container_to(tmpEntity);
-                return tmpEntity;
+            virtual std::shared_ptr<Entity> clone() {
+                auto entity = std::make_shared<Entity>(*this);
+                clone_container_to(*entity.get());
+                return entity;
             }
 
             /**

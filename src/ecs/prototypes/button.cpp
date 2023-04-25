@@ -15,9 +15,3 @@ omniscia::core::Button::Button(const std::function<void(void)> clickLambda, cons
     add<ECS_SpriteRenderer>("factorio_girl_texture", 0);
     add<ECS_Button>(clickLambda, hoverLambda);
 }
-
-omniscia::core::Button omniscia::core::Button::clone() {
-    Button tmpButton = *this;
-    clone_container_to(tmpButton);
-    return tmpButton;
-}

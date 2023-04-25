@@ -32,7 +32,11 @@ namespace omniscia::core {
              * 
              * @return Grandpa new instance of the Grandpa object
             */
-            Grandpa clone();
+            std::shared_ptr<Entity> clone() override {
+                auto entity = std::make_shared<Entity>(*this);
+                clone_container_to(*entity.get());
+                return entity;
+            }
     };
 }
 

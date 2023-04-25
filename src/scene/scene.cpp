@@ -1,9 +1,9 @@
 #include "scene.h"
 
 omniscia::core::Scene::SceneDynamic omniscia::core::Scene::clone() {
-    std::vector<Entity> clonedDynamicEntities;
+    std::vector<std::shared_ptr<Entity>> clonedDynamicEntities;
     for(auto& e : dynamicPart.dynamicEntities)
-        clonedDynamicEntities.push_back(e.clone());
+        clonedDynamicEntities.push_back(e->clone());
 
     return {clonedDynamicEntities};
 }
@@ -28,10 +28,10 @@ void omniscia::core::Scene::time_sync() {
     unbind();
 
     for(auto &e : dynamicPart.dynamicEntities)
-        e.time_sync();
+        e->time_sync();
 
     for(auto &e : staticPart.staticEntities)
-        e.time_sync();
+        e->time_sync();
 }
 
 omniscia::core::Scene::SceneDynamic& omniscia::core::Scene::ref_dynamic_part() {

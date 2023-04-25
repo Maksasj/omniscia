@@ -26,9 +26,3 @@ omniscia::core::BeachParallaxBackground::BeachParallaxBackground() {
         return (layerOffset / 500.0f) * 100.0f;
     });
 }
-
-omniscia::core::BeachParallaxBackground omniscia::core::BeachParallaxBackground::clone() {
-    BeachParallaxBackground tmpbeachParallaxBackground = *this;
-    clone_container_to(tmpbeachParallaxBackground);
-    return tmpbeachParallaxBackground;
-}

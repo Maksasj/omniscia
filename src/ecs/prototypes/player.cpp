@@ -24,9 +24,3 @@ omniscia::core::Player::Player() {
     add<ECS_MovableAABBCollider>(CollisionMask_Player, CollisionMask_Tiles);
     add<ECS_2DPhysicsRigidbody>();
 }
-
-omniscia::core::Player omniscia::core::Player::clone() {
-    Player tmpPlayer = *this;
-    clone_container_to(tmpPlayer);
-    return tmpPlayer;
-}

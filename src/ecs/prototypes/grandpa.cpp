@@ -17,9 +17,3 @@ omniscia::core::Grandpa::Grandpa() {
     add<ECS_MovableAABBCollider>(CollisionMask_Player, CollisionMask_Tiles);
     add<ECS_2DPhysicsRigidbody>();
 }
-
-omniscia::core::Grandpa omniscia::core::Grandpa::clone() {
-    Grandpa tmpGrandpa = *this;
-    clone_container_to(tmpGrandpa);
-    return tmpGrandpa;
-}

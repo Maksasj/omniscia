@@ -29,7 +29,7 @@ void omniscia::core::SceneLoader::load_scene(Scene& level) {
         f.read((char *)&tileGroupAssociatedColor, sizeof(Vec4f));
 
         /* TileGroup group("Group"); */
-        Entity tileGroup;
+        std::shared_ptr<Entity> tileGroup = std::make_shared<Entity>();
         RawMeshDataBuilder builder;
 
         u64 tileCount = 0;
@@ -60,9 +60,9 @@ void omniscia::core::SceneLoader::load_scene(Scene& level) {
             builder.append(mesh, {tilePosX, tilePosY}, {tileWidth, tileHeight});
         }
 
-        tileGroup.add<ECS_Positioned>(0.0f, 0.0f);
-        tileGroup.add<ECS_Scaled>(1.6f, 1.6f);
-        tileGroup.add<ECS_TilemapRenderer>(builder.get(), "beach_tiles", 0);
+        tileGroup->add<ECS_Positioned>(0.0f, 0.0f);
+        tileGroup->add<ECS_Scaled>(1.6f, 1.6f);
+        tileGroup->add<ECS_TilemapRenderer>(builder.get(), "beach_tiles", 0);
         staticEntities.push_back(tileGroup);
 
         u64 collisionBoxCount = 0;
@@ -71,7 +71,7 @@ void omniscia::core::SceneLoader::load_scene(Scene& level) {
             char array[265];
             f.read(array, 256);
 
-            Entity collisionBox;
+            std::shared_ptr<Entity> collisionBox = std::make_shared<Entity>();
 
             /* Associated color */
             Vec4f collisionBoxAssociatedColor;
@@ -94,10 +94,10 @@ void omniscia::core::SceneLoader::load_scene(Scene& level) {
             x = x / (screenBoxHeight / 2.0);
             y = y / (screenBoxHeight / 2.0);
 
-            collisionBox.add<ECS_Scaled>(1.6f, 1.6f);
-            collisionBox.add<ECS_BoxColliderMesh>(newRangesX, newRangesY);
-            collisionBox.add<ECS_AABBCollider>(CollisionMask_Tiles, CollisionMask_None);
-            collisionBox.add<ECS_Positioned>(x * 1.6f, y * 1.6f);
+            collisionBox->add<ECS_Scaled>(1.6f, 1.6f);
+            collisionBox->add<ECS_BoxColliderMesh>(newRangesX, newRangesY);
+            collisionBox->add<ECS_AABBCollider>(CollisionMask_Tiles, CollisionMask_None);
+            collisionBox->add<ECS_Positioned>(x * 1.6f, y * 1.6f);
 
             staticEntities.push_back(collisionBox);
         } 

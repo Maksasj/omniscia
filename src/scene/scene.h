@@ -29,7 +29,7 @@ namespace omniscia::core {
              * and managing all dynamic entities
             */
             struct SceneDynamic {
-                std::vector<Entity> dynamicEntities;
+                std::vector<std::shared_ptr<Entity>> dynamicEntities;
             };
 
             /**
@@ -37,7 +37,7 @@ namespace omniscia::core {
              * and managing all static entities
             */
             struct SceneStatic {
-                std::vector<Entity> staticEntities;
+                std::vector<std::shared_ptr<Entity>> staticEntities;
             };
 
         protected:
@@ -89,10 +89,14 @@ namespace omniscia::core {
              * @brief Adds entity as dynamic entity
              * 
              * @tparam T type of the entity
+             * 
+             * @return UUID entities uuid
             */
             template<class T>
-            void add_dynamic_entity() {
-                dynamicPart.dynamicEntities.push_back(T());
+            UUID add_dynamic_entity() {
+                auto& entities = dynamicPart.dynamicEntities; 
+                entities.push_back(std::make_shared<T>());
+                return entities[entities.size() - 1]->get_uuid();
             }
 
             /**
@@ -101,20 +105,28 @@ namespace omniscia::core {
              * @tparam T type of the entity
              * @tparam Args type of the entity constructor arguments
              * @param args entity constructor arguments
+             * 
+             * @return UUID entities uuid
             */
             template<class T, class... Args>
-            void add_dynamic_entity(Args&&... args) {
-                dynamicPart.dynamicEntities.push_back(T(std::forward<Args>(args)...));
+            UUID add_dynamic_entity(Args&&... args) {
+                auto& entities = dynamicPart.dynamicEntities; 
+                entities.push_back(std::make_shared<T>(std::forward<Args>(args)...));
+                return entities[entities.size() - 1]->get_uuid();
             }
 
             /**
              * @brief Adds entity as static entity
              * 
              * @tparam T type of the entity
+             * 
+             * @return UUID entities uuid
             */
             template<class T>
-            void add_static_entity() {
-                staticPart.staticEntities.push_back(T());
+            UUID add_static_entity() {
+                auto& entities = staticPart.staticEntities; 
+                entities.push_back(std::make_shared<T>());
+                return entities[entities.size() - 1]->get_uuid();
             }
 
             /**
@@ -123,26 +135,118 @@ namespace omniscia::core {
              * @tparam T type of the entity
              * @tparam Args type of the entity constructor arguments
              * @param args entity constructor arguments
+             * 
+             * @return UUID entities uuid
             */
             template<class T, class... Args>
-            void add_static_entity(Args&&... args) {
-                staticPart.staticEntities.push_back(T(std::forward<Args>(args)...));
+            UUID add_static_entity(Args&&... args) {
+                auto& entities = staticPart.staticEntities; 
+                entities.push_back(std::make_shared<T>(std::forward<Args>(args)...));
+                return entities[entities.size() - 1]->get_uuid();
             }
 
-            Entity* get_dynamic_entity_by_uuid(const UUID& uuid) {
-                for(Entity& e : dynamicPart.dynamicEntities)
-                    if(e.get_uuid() == uuid)
-                        return &e;
+            std::shared_ptr<Entity> get_dynamic_entity_by_uuid(const UUID& uuid) {
+                for(auto& e : dynamicPart.dynamicEntities)
+                    if(e->get_uuid() == uuid)
+                        return e;
 
                 return nullptr;
             }
     
-            Entity* get_static_entity_by_uuid(const UUID& uuid) {
-                for(Entity& e : staticPart.staticEntities)
-                    if(e.get_uuid() == uuid)
-                        return &e;
+            std::shared_ptr<Entity> get_static_entity_by_uuid(const UUID& uuid) {
+                for(auto& e : staticPart.staticEntities)
+                    if(e->get_uuid() == uuid)
+                        return e;
 
                 return nullptr;
+            }
+            
+            void delete_dynamic_entity_by_uuid(const UUID& uuid) {
+                auto& entities = dynamicPart.dynamicEntities; 
+
+                for(auto i = entities.begin(); i != entities.end();) {
+                    Entity* entity = (*i).get();
+
+                    if(entity->get_uuid() == uuid) {
+                        entities.erase(i);
+                        time_sync();
+                        return;
+                    } else
+                        ++i;
+                } 
+            }
+
+            void delete_static_entity_by_uuid(const UUID& uuid) {
+                auto& entities = staticPart.staticEntities; 
+
+                for(auto i = entities.begin(); i != entities.end();) {
+                    Entity* entity = (*i).get();
+
+                    if(entity->get_uuid() == uuid) {
+                        entities.erase(i);
+                        time_sync();
+                        return;
+                    } else
+                        ++i;
+                } 
+            }
+
+            template<class T>
+            T* get_dynamic_entity_by_prototype() {
+                auto& entities = dynamicPart.dynamicEntities;
+
+                for(auto& sharedPtr : entities) {
+                    Entity* ptr = sharedPtr.get();
+
+                    if(dynamic_cast<T*>(ptr))
+                        return static_cast<T*>(ptr);
+                }
+
+                return nullptr;
+            }
+
+            template<class T>
+            T* get_static_entity_by_prototype() {
+                auto& entities = staticPart.staticEntities;
+
+                for(auto& sharedPtr : entities) {
+                    Entity* ptr = sharedPtr.get();
+
+                    if(dynamic_cast<T*>(ptr))
+                        return static_cast<T*>(ptr);
+                }
+
+                return nullptr;
+            }
+
+            template<class T>
+            std::vector<T*> get_dynamic_entities_by_prototype() {
+                auto& entities = dynamicPart.dynamicEntities;
+                std::vector<T*> outEntities;
+
+                for(auto& sharedPtr : entities) {
+                    Entity* ptr = sharedPtr.get();
+
+                    if(dynamic_cast<T*>(ptr))
+                        outEntities.push_back(static_cast<T*>(ptr));
+                }
+
+                return outEntities;
+            }
+
+            template<class T>
+            std::vector<T*> get_static_entities_by_prototype() {
+                auto& entities = staticPart.staticEntities;
+                std::vector<T*> outEntities;
+
+                for(auto& sharedPtr : entities) {
+                    Entity* ptr = sharedPtr.get();
+
+                    if(dynamic_cast<T*>(ptr))
+                        outEntities.push_back(static_cast<T*>(ptr));
+                }
+
+                return outEntities;
             }
     };
 }

@@ -13,7 +13,7 @@ namespace omniscia::core {
                             ._durationTime = 1.5f
                         },
 
-                        ._uniformName = "time",
+                        ._uniformName = "transitionProgress",
                         ._shader = transitionStageShader,
                         ._lambda = [](const f32& duration) {
                             f32 time = duration / 1.5f;
@@ -32,7 +32,7 @@ namespace omniscia::core {
                             ._durationTime = 1.5f
                         },
 
-                        ._uniformName = "time",
+                        ._uniformName = "transitionProgress",
                         ._shader = transitionStageShader,
                         ._lambda = [](const f32& duration) {
                             f32 time = 1.0f - (duration / 1.5f);

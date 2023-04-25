@@ -19,9 +19,3 @@ omniscia::core::Crab::Crab() {
     add<ECS_MovableAABBCollider>(CollisionMask_AmbientEntities, CollisionMask_Tiles);
     add<ECS_2DPhysicsRigidbody>();
 }
-
-omniscia::core::Crab omniscia::core::Crab::clone() {
-    Crab tmpCrab = *this;
-    clone_container_to(tmpCrab);
-    return tmpCrab;
-}

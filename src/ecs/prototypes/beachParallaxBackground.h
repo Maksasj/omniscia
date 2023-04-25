@@ -33,7 +33,11 @@ namespace omniscia::core {
              * 
              * @return BeachParallaxBackground new instance of the BeachParallaxBackground object
             */
-            BeachParallaxBackground clone();
+            std::shared_ptr<Entity> clone() override {
+                auto entity = std::make_shared<Entity>(*this);
+                clone_container_to(*entity.get());
+                return entity;
+            }
     };
 }
 
