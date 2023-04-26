@@ -8,7 +8,7 @@ void omniscia::Game::load() {
     Renderer::init();
 
     auto monitors = Monitor::retrieve_monitors();
-    monitors[1]->set_active();
+    //monitors[1]->set_active();
     //monitors[0]->set_active();
     
     window = glfwCreateWindow(Properties::screenWidth, Properties::screenHeight, "Omniscia", NULL, NULL);

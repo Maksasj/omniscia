@@ -37,6 +37,8 @@
 #include "cutscene_prototypes.h"
 #include "monitor.h"
 
+#include "save_manager.h"
+
 #include "sound_fx.h"
 
 #include "sound_engine.h"

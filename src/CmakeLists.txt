@@ -16,6 +16,12 @@ include_directories("src/ecs/prototypes/ui")
 include_directories("src/gfx")
 include_directories("src/gfx/monitor")
 
+# Save
+include_directories("src/save")
+
+# Secrets
+include_directories("src/secrets")
+
 # ImGui
 include_directories("src/imgui")
 

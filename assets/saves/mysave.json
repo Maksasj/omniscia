@@ -1,0 +1,27 @@
+{
+    "format": {
+        "format": "omniscia_save_file",
+        "version": 0,
+        "time_updated": 0
+    },
+    
+    "save": {
+        "chapters": {
+            "chapter_1": {
+                "time": {
+                    "best_time": 0,
+                    "last_time": 0
+                },
+                "unlocked": true
+            }
+        },
+        "secrets": {
+            "secret_1": {
+                "title": "Title of secret 1 ",
+                "description": "Description of secret 1",
+                "icon": "texture_id of the icon",
+                "unlocked": false
+            }
+        }
+    }
+}

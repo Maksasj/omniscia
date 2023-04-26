@@ -94,6 +94,19 @@ int main() {
         return 1;
     }
 
+    auto saves = SaveLoader::get_instance().scan_for_saves("assets/saves");
+    SaveLoader::get_instance().validate_saves(saves);
+    if(saves.empty()) {
+        std::cout << "There is no saves !\n";
+    }
+
+    try {
+        SaveManager::get_instance().load_save(saves[0]);
+    } catch(const std::exception& exception) {
+        std::cout << exception.what() << "\n";
+        return 1;
+    }
+
     Game::get_instance().run();
 
     return 0;
