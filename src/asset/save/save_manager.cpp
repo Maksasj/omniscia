@@ -20,7 +20,7 @@ void omniscia::core::SaveManager::load_save(std::filesystem::path path) {
     std::ifstream f(path);
     json saveData = json::parse(f);
 
-    std::shared_ptr<Save> save = std::make_shared<Save>();
+    std::shared_ptr<SaveAsset> save = std::make_shared<SaveAsset>();
 
     for(auto& secretData : saveData["save"]["secrets"]) {
         if(!secretData.contains("title")) 
@@ -35,12 +35,12 @@ void omniscia::core::SaveManager::load_save(std::filesystem::path path) {
         if(!secretData.contains("unlocked")) 
             throw std::exception(corruptionMessage.c_str());
 
-        std::string _title = secretData["title"];
-        std::string _description = secretData["description"];
-        std::string _icon = secretData["icon"];
-        bool _unlocked = secretData["unlocked"];
+        std::string title = secretData["title"];
+        std::string description = secretData["description"];
+        std::string icon = secretData["icon"];
+        bool unlocked = secretData["unlocked"];
 
-        save->_secrets.push_back((SecretSaveData){ _title, _description, _icon, _unlocked });
+        save->_secrets.push_back((SecretSaveData){ title, description, icon, unlocked });
     }
     
     f.close();

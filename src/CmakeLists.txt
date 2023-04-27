@@ -27,6 +27,13 @@ include_directories("src/imgui")
 
 # Asset managment
 include_directories("src/asset")
+include_directories("src/asset/animation")
+include_directories("src/asset/level")
+include_directories("src/asset/mesh")
+include_directories("src/asset/shader") 
+include_directories("src/asset/sound")
+include_directories("src/asset/texture")
+include_directories("src/asset/save")
 
 # Sound
 include_directories("src/sound")

@@ -39,27 +39,7 @@ namespace omniscia::core {
      */
     template<typename T>
     class Manager {
-        public:
-            /**
-             * @brief Returns existing Asset by it index
-             * 
-             * @param key of the needed asset
-             * @return const T& returns
-            */
-            static const T& get(const std::string& key);
 
-            /**
-             * @brief Adds asset to asset manager, and binds it to provided key
-             * 
-             * @param filePath path to the asset file
-             * @param key key that will be associated with this asset
-            */
-            static void add_asset(const std::string& filePath, const std::string& key);
-            
-            /**
-             * @brief Loads all asset that are stored in this manager instance
-            */
-            static void load_assets();
     };
 };
 

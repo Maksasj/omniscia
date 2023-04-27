@@ -9,7 +9,7 @@ namespace omniscia::core {
         bool _unlocked;
     };
 
-    struct Save {
+    struct SaveAsset {
         std::vector<SecretSaveData> _secrets;
     };
 }
