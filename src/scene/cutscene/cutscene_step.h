@@ -22,6 +22,12 @@ namespace omniscia::core {
                     _events.push_back(std::shared_ptr<CE_Event>(event));
             }
 
+            void bind_cutscene_data_pool(CutsceneDataPoolType& cutsceneDataPool) {
+                for(auto event : _events) {
+                    event->bind_cutscene_data_pool(cutsceneDataPool);
+                }
+            }
+
             void execute() {
                 u64 eventsDone = 0;
                 

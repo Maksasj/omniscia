@@ -127,6 +127,9 @@ void omniscia::gfx::RenderStage::render_stage_lambda(const std::function<void(vo
 
 void omniscia::gfx::RenderStage::render_stage_lambda(const std::function<void(const Shader* shader)> rendering_lambda) {        
     bind();
+        glEnable(GL_BLEND);  
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  
+
         _activeRenderStage = this;
 
         Renderer::clear_buffer(_buffer._clearBufferColor);
@@ -147,6 +150,9 @@ void omniscia::gfx::RenderStage::render_stage_lambda(const std::function<void(co
 
 void omniscia::gfx::RenderStage::render_stage_lambda_default(const std::function<void(void)> rendering_lambda) {
     bind();
+        glEnable(GL_BLEND);  
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  
+
         _activeRenderStage = this;
         
         rendering_lambda();
@@ -156,6 +162,9 @@ void omniscia::gfx::RenderStage::render_stage_lambda_default(const std::function
 }
 
 void omniscia::gfx::RenderStage::render_anonymous_stage_lambda(const std::function<void(void)> rendering_lambda) {
+    glEnable(GL_BLEND);  
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  
+
     _activeRenderStage = nullptr;
     
     rendering_lambda();

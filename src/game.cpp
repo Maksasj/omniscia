@@ -60,7 +60,7 @@ void omniscia::Game::run() {
             ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
         },
         ._buffer = {
-            ._clearBufferColor = Vec4f{1.0f, 0.0f, 1.0f, 0.0f},
+            ._clearBufferColor = Vec4f{1.0f, 1.0f, 1.0f, 1.0f},
         }
     });
 
@@ -75,7 +75,7 @@ void omniscia::Game::run() {
             ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
         },
         ._buffer = {
-            ._clearBufferColor = Vec4f{1.0f, 0.0f, 0.0f, 0.0f},
+            ._clearBufferColor = Vec4f{1.0f, 1.0f, 1.0f, 0.0f},
         }
     });
 
@@ -90,7 +90,7 @@ void omniscia::Game::run() {
             ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
         },
         ._buffer = {
-            ._clearBufferColor = Vec4f{0.0f, 1.0f, 0.0f, 0.0f},
+            ._clearBufferColor = Vec4f{1.0f, 1.0f, 1.0f, 1.0f},
         }
     });
 
@@ -105,7 +105,7 @@ void omniscia::Game::run() {
             ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
         },
         ._buffer = {
-            ._clearBufferColor = Vec4f{0.1f, 0.4f, 1.0f, 1.0f},
+            ._clearBufferColor = Vec4f{1.0f, 1.0f, 1.0f, 1.0f},
         }
     });
 
@@ -145,6 +145,8 @@ void omniscia::Game::run() {
     _cutscenes["transition_cutscene_to_game_scene"] = new TransitionCutscene(&transitionStageShader, "game_scene");
     _cutscenes["transition_cutscene_to_settings"] = new TransitionCutscene(&transitionStageShader, "settings_scene");
     _cutscenes["transition_cutscene_to_secrets"] = new TransitionCutscene(&transitionStageShader, "secrets_scene");
+    
+    _cutscenes["test_dialogue_cutscene"] = new DialogueCutscene(&transitionStageShader);
 
     Cutscene cutscene = {
         CE_Step{

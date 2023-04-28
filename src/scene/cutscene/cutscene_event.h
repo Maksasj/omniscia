@@ -3,6 +3,7 @@
 
 #include "timesystem.h"
 
+#include "cutscene_datapool_type.h"
 #include "types.tpp"
 
 namespace omniscia::core {
@@ -38,6 +39,8 @@ namespace omniscia::core {
             f32 _durationTimeCounter = 0.0f;
 
             bool _isDone = false;
+
+            CutsceneDataPoolType* _parrentCutsceneDataPool;
             
             bool try_start_internal() {
                 if(_pauseBeforeStart) {
@@ -70,7 +73,15 @@ namespace omniscia::core {
 
             }
 
+            CutsceneDataPoolType* get_cutscene_data_pool() {
+                return _parrentCutsceneDataPool;
+            }
+
             virtual void execute() {}
+
+            void bind_cutscene_data_pool(CutsceneDataPoolType& cutsceneDataPool) {
+                _parrentCutsceneDataPool = &cutsceneDataPool;
+            }
 
             void increment_reapet_counter() { 
                 _pauseRepeatTime = -1.0f;

@@ -17,6 +17,7 @@ int main() {
     TextureManager::get_instance().add_asset("assets/textures/background/beach/sky2.png", "background_beach_sky2_layer");
     TextureManager::get_instance().add_asset("assets/textures/background/beach/terrain.png", "background_beach_terrain_layer");
     
+    TextureManager::get_instance().add_asset("assets/textures/background/dialogue.png", "dialogue");
     TextureManager::get_instance().add_asset("assets/textures/background/menu/menu_background.png", "menu_background");
     TextureManager::get_instance().add_asset("assets/textures/background/menu/continue_button.png", "continue_button");
     TextureManager::get_instance().add_asset("assets/textures/background/menu/new_game_button.png", "new_game_button");
@@ -87,16 +88,10 @@ int main() {
         return 1;
     }
 
-    FontManager::get_instance().add_asset("assets/textures/fonts/soft-dark.png", "test_font", 
-            (FontAssetProp){
-            ' ', 16, Vec2f{0.0625f, 0.0625f}
-        }
-    );
-    FontManager::get_instance().add_asset("assets/textures/fonts/soft-thick.png", "test_font_another", 
-        (FontAssetProp){
-            ' ', 16, Vec2f{0.0625f, 0.0625f}
-        }
-    );
+    FontManager::get_instance().add_asset("assets/textures/fonts/soft-dark.png", "test_font", {' ', 16, Vec2f{0.0625f, 0.0625f}});
+    FontManager::get_instance().add_asset("assets/textures/fonts/soft-thick.png", "test_font_another", { ' ', 16, Vec2f{0.0625f, 0.0625f} } );
+    FontManager::get_instance().add_asset("assets/textures/fonts/abaddon-light-white.png", "abaddon-light-white", { ' ', 16, Vec2f{0.0625f, 0.0625f} } );
+    FontManager::get_instance().add_asset("assets/textures/fonts/dejavu-sans-mono-white.png", "dejavu-sans-mono-white", { ' ', 16, Vec2f{0.0625f, 0.0625f} } );
     try {
         FontManager::get_instance().check_assets();
     } catch (const std::runtime_error& exception) {

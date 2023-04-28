@@ -49,7 +49,6 @@ void main() {
    pos.xy -= cameraPosition.xy;
    pos.xy += transform.xy;
    pos.x /= screenAspect;
-   pos.xy *= cameraZoom;
 
    if(isInstancing == 1) {
       vec2 instancePos = instancingDataInsntance[gl_InstanceID]._position.xy;
@@ -64,6 +63,7 @@ void main() {
       textureFrameSize = spriteFrameSize;
       textureFrameOffset = spriteFrameOffset;
    }
+   pos.xy *= cameraZoom;
 
    gl_Position = pos;
 

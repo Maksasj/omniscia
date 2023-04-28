@@ -1,0 +1,49 @@
+#include "cutscene.h"
+
+omniscia::core::Cutscene::Cutscene() {}
+omniscia::core::Cutscene::Cutscene(const Cutscene&) {}
+
+omniscia::core::Cutscene::Cutscene(const std::initializer_list<CE_Step> &steps) : _ended(false), _started(false) {
+    for(const CE_Step& step : steps)
+        _steps.push_back(step);
+
+    for(auto& step : _steps) {
+        step.bind_cutscene_data_pool(_cutsceneDataPool);
+    }
+
+    _started = 0;
+    _currentStep = _steps.begin();
+}
+
+void omniscia::core::Cutscene::free() {
+    _steps.clear();
+    _cutsceneDataPool.clear();
+}
+
+void omniscia::core::Cutscene::start() {
+    _started = true;
+}
+
+bool omniscia::core::Cutscene::is_ended() const {
+    return _ended;
+}
+
+void omniscia::core::Cutscene::update() {
+    if(!_started)
+        return;
+
+    if(_ended)
+        return;
+
+    if(_currentStep == _steps.end()) {
+        _ended = true;
+        return;
+    }
+
+    CE_Step& currentStep = *_currentStep;
+
+    currentStep.execute();
+
+    if(currentStep.is_done())
+        ++_currentStep;
+}
