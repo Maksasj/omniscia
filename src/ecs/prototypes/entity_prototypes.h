@@ -9,6 +9,7 @@
 #include "player.h"
 
 #include "button.h"
+#include "static_text.h"
 
 #include "entity.h"
 

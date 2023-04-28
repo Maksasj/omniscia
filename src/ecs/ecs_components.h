@@ -28,6 +28,8 @@
 #include "ecs_player_time_jump_controller.h"
 #include "ecs_sound_emitter.h"
 #include "ecs_pro_renderer.h"
+#include "ecs_instancing_renderer.h"
+#include "ecs_text_renderer.h"
 
 #include "ecs_button.h"
 

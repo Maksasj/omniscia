@@ -3,11 +3,11 @@ out vec4 FragColor;
   
 in vec3 ourColor;
 in vec2 TexCoord;
+in vec2 textureFrameSize;
+in vec2 textureFrameOffset;
 
 uniform sampler2D ourTexture;
 
-uniform vec2 spriteFrameOffset = vec2(0.0, 0.0);
-uniform vec2 spriteFrameSize = vec2(1.0, 1.0);
 uniform float textureAspect = 1.0;
 
 uniform bool textureFlipHorizontal = false;
@@ -24,8 +24,8 @@ void main() {
         texCoord.x = 1.0 - texCoord.x;
     }
 
-    texCoord *= spriteFrameSize;
-    texCoord += spriteFrameOffset;
+    texCoord *= textureFrameSize;
+    texCoord += textureFrameOffset;
 
     vec4 color = texture(ourTexture, texCoord);
 

@@ -33,29 +33,29 @@ namespace omniscia::gfx::sprite {
     class Sprite {
         private:
             /** @brief SpriteMesh instance of the current sprite */
-            SpriteMesh spriteMesh;
+            SpriteMesh _spriteMesh;
             
-            /** @brief Pointer to the texture that is associated with this sprite */
-            Texture *texture;
+            /** @brief Pointer to the _texture that is associated with this sprite */
+            Texture *_texture;
             
         public:
             /**
              * @brief Constructs a sprite instance, 
-             * using provided texture id, for 
+             * using provided _texture id, for 
              * sprite mesh it will use default quad mesh
              * 
-             * @param textureId id of the texture 
+             * @param textureId id of the _texture 
             */
             Sprite(const std::string& textureId);
             
             /**
              * @brief Constructs a sprite instance, 
-             * using provided texture id, for 
+             * using provided _texture id, for 
              * sprite mesh it will use default quad mesh, 
              * and also applying scale transformation 
              * to the sprite mesh
              * 
-             * @param textureId id of the texture 
+             * @param textureId id of the _texture 
              * @param scale new scale of the sprite mesh 
             */
             Sprite(const std::string& textureId, const Vec3f& scale);
@@ -63,28 +63,28 @@ namespace omniscia::gfx::sprite {
             /**
              * @brief Constructs new sprite instance, 
              * using provided raw sprite mesh 
-             * data as well as texture id 
+             * data as well as _texture id 
              * 
-             * @param spriteMesh raw sprite mesh data, that will be used for initializing sprite mesh
+             * @param _spriteMesh raw sprite mesh data, that will be used for initializing sprite mesh
              * @param textureId id of the texutre
             */
-            Sprite(const RawMeshData& spriteMesh, const std::string& textureId);
+            Sprite(const RawMeshData& _spriteMesh, const std::string& textureId);
             
             /**
              * @brief Constructs new sprite instance, 
              * using provided raw sprite mesh 
-             * data as well as texture id, and applying scale tranformation 
+             * data as well as _texture id, and applying scale tranformation 
              * 
-             * @param spriteMesh raw sprite mesh data, that will be used for initializing sprite mesh
+             * @param _spriteMesh raw sprite mesh data, that will be used for initializing sprite mesh
              * @param textureId id of the texutre
              * @param scale new scale of the sprite mesh
             */
-            Sprite(const RawMeshData& spriteMesh, const std::string& textureId, const Vec3f& scale);
+            Sprite(const RawMeshData& _spriteMesh, const std::string& textureId, const Vec3f& scale);
 
-            /** @brief Binds sprite mesh and texture for opengl rendering */
+            /** @brief Binds sprite mesh and _texture for opengl rendering */
             void bind() const;
             
-            /** @brief Unbinds sprite mesh and texture for opengl rendering */
+            /** @brief Unbinds sprite mesh and _texture for opengl rendering */
             void unbind() const;
 
             /**
@@ -204,9 +204,9 @@ namespace omniscia::gfx::sprite {
             void render(const Shader *shader, const Vec2f &position, const float &rotationAngle, const Vec2f &scale, const Vec2f &spriteFrameSize, const Vec2f &spriteSheetOffset, const bool& horizontalFlip, const bool& verticalFlip) const;
 
             /**
-             * @brief Sets the texture by it id
+             * @brief Sets the _texture by it id
              * 
-             * @param textureId texture id that need to be set
+             * @param textureId _texture id that need to be set
             */
             void set_texture_by_id(const std::string& textureId);
 

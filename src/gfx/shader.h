@@ -20,6 +20,7 @@
 #include "shader_asset.h"
 #include "types.tpp"
 #include "gfx.h"
+#include "ubo.h"
 
 namespace omniscia::gfx {
     using namespace omniscia::core;
@@ -144,6 +145,8 @@ namespace omniscia::gfx {
              * @param value - Matrix<f32, 2, 2> value which needed to be set to the uniform
             */
             void set_uniform_mat2x2f(const char *uniform, const Matrix<f32, 2, 2>& value) const;
+
+            void bind_ubo(const char *uniform, const UBO& ubo) const;
 
             /** @brief Terminates opengl shader program */
             void terminate();

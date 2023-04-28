@@ -36,7 +36,9 @@
 #include "scene_prototypes.h"
 #include "cutscene_prototypes.h"
 #include "monitor.h"
+#include "instancing_sprite.h"
 
+#include "font_manager.h"
 #include "save_manager.h"
 
 #include "sound_fx.h"

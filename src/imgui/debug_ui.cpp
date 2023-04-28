@@ -31,6 +31,7 @@ void omniscia::core::DebugUI::render() {
 
     ImGui::SetNextWindowPos({10.0f, 10.0f}, 0, {0.0f, 0.0f});
     ImGui::SetNextWindowBgAlpha(0.35f);
+    ImGui::SetNextWindowSize({350.0f, 110.0f});
     if (ImGui::Begin("Example: Simple overlay", nullptr, window_flags)) {
         
         ImGui::Text("Frames buffered %llu / %llu", _metrics._timeCurrentLineLength, _metrics._timeMaxLineLength);

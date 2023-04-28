@@ -128,3 +128,11 @@ void omniscia::gfx::Shader::set_uniform_mat2x2f(const char *uniform, const Matri
     glUseProgram(_shaderProgram);
     glUniformMatrix2fv(vertexColorLocation, 1, GL_FALSE, value.e);
 }
+
+void omniscia::gfx::Shader::bind_ubo(const char *uniform, const UBO& ubo) const {
+    GLuint bindingPoint = 0;
+    glBindBufferBase(GL_UNIFORM_BUFFER, bindingPoint, ubo.get_id());
+
+    GLuint uboIndex = glGetUniformBlockIndex(_shaderProgram, uniform);
+    glUniformBlockBinding(_shaderProgram, uboIndex, bindingPoint);
+}

@@ -1,37 +1,37 @@
 #include "sprite.h"
 
-omniscia::gfx::sprite::Sprite::Sprite(const std::string& textureId) : spriteMesh(BuildInMeshData::QUAD_MESH_DATA) {
-    texture = TextureManager::get_instance().get(textureId).get_asset();
+omniscia::gfx::sprite::Sprite::Sprite(const std::string& textureId) : _spriteMesh(BuildInMeshData::QUAD_MESH_DATA) {
+    _texture = TextureManager::get_instance().get(textureId).get_asset();
 }
 
-omniscia::gfx::sprite::Sprite::Sprite(const std::string& textureId, const Vec3f& scale) : spriteMesh(BuildInMeshData::QUAD_MESH_DATA, scale) {
-    texture = TextureManager::get_instance().get(textureId).get_asset();
+omniscia::gfx::sprite::Sprite::Sprite(const std::string& textureId, const Vec3f& scale) : _spriteMesh(BuildInMeshData::QUAD_MESH_DATA, scale) {
+    _texture = TextureManager::get_instance().get(textureId).get_asset();
 }
 
-omniscia::gfx::sprite::Sprite::Sprite(const RawMeshData& spriteMesh, const std::string& textureId) : spriteMesh(spriteMesh) {
-    texture = TextureManager::get_instance().get(textureId).get_asset();
+omniscia::gfx::sprite::Sprite::Sprite(const RawMeshData& _spriteMesh, const std::string& textureId) : _spriteMesh(_spriteMesh) {
+    _texture = TextureManager::get_instance().get(textureId).get_asset();
 }
 
-omniscia::gfx::sprite::Sprite::Sprite(const RawMeshData& spriteMesh, const std::string& textureId, const Vec3f& scale) : spriteMesh(spriteMesh, scale) {
-    texture = TextureManager::get_instance().get(textureId).get_asset();
+omniscia::gfx::sprite::Sprite::Sprite(const RawMeshData& _spriteMesh, const std::string& textureId, const Vec3f& scale) : _spriteMesh(_spriteMesh, scale) {
+    _texture = TextureManager::get_instance().get(textureId).get_asset();
 }
 
 void omniscia::gfx::sprite::Sprite::set_texture_by_id(const std::string& textureId) {
-    texture = TextureManager::get_instance().get(textureId).get_asset();
+    _texture = TextureManager::get_instance().get(textureId).get_asset();
 }
 
 void omniscia::gfx::sprite::Sprite::bind() const {
-    texture->bind();
-    spriteMesh.bind();
+    _texture->bind();
+    _spriteMesh.bind();
 }
 
 void omniscia::gfx::sprite::Sprite::unbind() const {
-    omniscia::gfx::sprite::Sprite::texture->unbind();
-    //spriteMesh.unbind();
+    omniscia::gfx::sprite::Sprite::_texture->unbind();
+    //_spriteMesh.unbind();
 }
 
 omniscia::gfx::sprite::SpriteMesh& omniscia::gfx::sprite::Sprite::get_mesh() {
-    return spriteMesh;
+    return _spriteMesh;
 }
 
 void omniscia::gfx::sprite::Sprite::render(const Shader *shader) const {
@@ -45,7 +45,7 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader) const {
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
-    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+    shader->set_uniform_f32("textureAspect", _texture->get_aspect());
 
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -63,7 +63,7 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
-    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+    shader->set_uniform_f32("textureAspect", _texture->get_aspect());
 
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -81,7 +81,7 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const float &ro
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
-    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+    shader->set_uniform_f32("textureAspect", _texture->get_aspect());
 
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -99,7 +99,7 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
-    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+    shader->set_uniform_f32("textureAspect", _texture->get_aspect());
 
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -117,7 +117,7 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
-    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+    shader->set_uniform_f32("textureAspect", _texture->get_aspect());
 
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -135,7 +135,7 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
-    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+    shader->set_uniform_f32("textureAspect", _texture->get_aspect());
 
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -153,7 +153,7 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
-    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+    shader->set_uniform_f32("textureAspect", _texture->get_aspect());
 
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -171,7 +171,7 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Matrix<f3
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
-    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+    shader->set_uniform_f32("textureAspect", _texture->get_aspect());
 
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -189,7 +189,7 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
-    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+    shader->set_uniform_f32("textureAspect", _texture->get_aspect());
 
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -207,7 +207,7 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
-    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+    shader->set_uniform_f32("textureAspect", _texture->get_aspect());
 
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -225,7 +225,7 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
     shader->set_uniform_i32("textureFlipHorizontal", false);
     shader->set_uniform_i32("textureFlipVertical", false);
 
-    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+    shader->set_uniform_f32("textureAspect", _texture->get_aspect());
 
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -243,13 +243,13 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
     shader->set_uniform_i32("textureFlipHorizontal", horizontalFlip);
     shader->set_uniform_i32("textureFlipVertical", verticalFlip);
 
-    shader->set_uniform_f32("textureAspect", texture->get_aspect());
+    shader->set_uniform_f32("textureAspect", _texture->get_aspect());
 
     bind(); 
-        glDrawElements(GL_TRIANGLES, spriteMesh.get_indices_count(), GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, _spriteMesh.get_indices_count(), GL_UNSIGNED_INT, 0);
     unbind();
 }
 
 u64 omniscia::gfx::sprite::Sprite::byte_size() const { 
-    return sizeof(Texture*) + spriteMesh.byte_size();
+    return sizeof(Texture*) + _spriteMesh.byte_size();
 }

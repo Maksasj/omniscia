@@ -81,7 +81,24 @@ int main() {
     
     LevelAssetManager::get_instance().add_asset("assets/levels/level.bin", "test_level", BASE);
     try {
-        omniscia::core::LevelAssetManager::get_instance().check_assets();
+        LevelAssetManager::get_instance().check_assets();
+    } catch (const std::runtime_error& exception) {
+        std::cout << exception.what() << "\n";
+        return 1;
+    }
+
+    FontManager::get_instance().add_asset("assets/textures/fonts/soft-dark.png", "test_font", 
+            (FontAssetProp){
+            ' ', 16, Vec2f{0.0625f, 0.0625f}
+        }
+    );
+    FontManager::get_instance().add_asset("assets/textures/fonts/soft-thick.png", "test_font_another", 
+        (FontAssetProp){
+            ' ', 16, Vec2f{0.0625f, 0.0625f}
+        }
+    );
+    try {
+        FontManager::get_instance().check_assets();
     } catch (const std::runtime_error& exception) {
         std::cout << exception.what() << "\n";
         return 1;
