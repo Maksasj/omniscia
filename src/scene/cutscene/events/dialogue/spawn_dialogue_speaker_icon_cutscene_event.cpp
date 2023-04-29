@@ -31,7 +31,7 @@ void omniscia::core::CE_SpawnDialogueSpeakerIconEvent::execute() {
     UUID entityUUID = scene->add_static_entity<Image>((ImageProp) {
         ._texture = _speakerIconTextureId,
         ._layer = 1,
-        ._pos = Vec2f{pos.x - 0.6f, pos.y + 0.3f},
+        ._pos = Vec2f{pos.x, pos.y},
         ._scale = Vec2f{0.2f, 0.2f},
     });
     

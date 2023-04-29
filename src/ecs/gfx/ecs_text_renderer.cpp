@@ -35,11 +35,13 @@ void omniscia::core::ecs::ECS_TextRenderer::set_text_to_render(const std::string
     FontAssetProp& font = *_fontAsset->get_asset();
 
     f32 baseXOffset = 0.0f;
+    f32 baseYOffset = 0.0f;
     f32 xOffset = 0.0f;
     f32 anothetXOffset = 0.0f;
     f32 yOffset = 0.0f;
 
     baseXOffset = (lineLetterSpacing * scaleFactor.x * charactersPerRow);
+    baseYOffset = (rowLineSpacing * scaleFactor.y * (_textToRender.size() / (f32)charactersPerRow));
 
     for(i32 i = 1; i < _textToRender.size() + 1; ++i) {
         const i8& letter = _textToRender[i - 1];
@@ -49,7 +51,7 @@ void omniscia::core::ecs::ECS_TextRenderer::set_text_to_render(const std::string
         const i32 collum =  (index + font._charactersPerRow) / (font._charactersPerRow);
         
         _instancingData.push_back({
-            Vec2f{xOffset - baseXOffset, yOffset},
+            Vec2f{xOffset - baseXOffset, yOffset + baseYOffset},
             Vec2f{1.0f, 1.0f},
             font._frameSize,
             Vec2f{row * font._frameSize.x, 1.0f - collum * font._frameSize.y}

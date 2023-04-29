@@ -86,6 +86,9 @@ namespace omniscia::core::ecs {
              */
             ECS_SpriteRenderer(const std::string& textureId, const u32& layer);
 
+            void set_texture_by_id(const std::string& textureId);
+
+
             /**
              * @brief Renders sprite to the active frame buffer
             */

@@ -13,7 +13,7 @@ void omniscia::core::CE_LogEvent::operator=(const CE_LogEvent&) {
 }
 
 
-omniscia::core::CE_LogEvent::CE_LogEvent(const auto& data) : CE_LogProp(data), CE_Event(*(CE_Prop*)&data) {
+omniscia::core::CE_LogEvent::CE_LogEvent(const CE_LogProp& data) : CE_LogProp(data), CE_Event(*(CE_Prop*)&data) {
 
 }
 

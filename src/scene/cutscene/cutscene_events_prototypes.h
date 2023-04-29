@@ -19,5 +19,7 @@
 #include "entity_position_move_event.h"
 #include "entity_position_set_relative_event.h"
 #include "entity_sprite_flip_set_event.h"
+#include "entity_spriterenderer_set_texture_event.h"
+#include "destroy_entity_cutscene_event.h"
 
 #endif

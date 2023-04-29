@@ -30,6 +30,9 @@ void omniscia::core::ecs::ECS_CameraFollow::update() {
     f32 dt = Time::get_instance().get_delta_time();
 
     camPos += delta * _cameraFollowSpeed * dt;
+
+    DebugUI::get_instance().get_metrics()._cameraPos.x = camPos.x; 
+    DebugUI::get_instance().get_metrics()._cameraPos.y = camPos.y; 
 }
 
 f32 omniscia::core::ecs::ECS_CameraFollow::get_camera_follow_speed() const {

@@ -3,9 +3,12 @@
 omniscia::core::Cutscene::Cutscene() {}
 omniscia::core::Cutscene::Cutscene(const Cutscene&) {}
 
-omniscia::core::Cutscene::Cutscene(const std::initializer_list<CE_Step> &steps) : _ended(false), _started(false) {
-    for(const CE_Step& step : steps)
-        _steps.push_back(step);
+omniscia::core::Cutscene::Cutscene(const std::initializer_list<CE_StepObject> &steps) : _ended(false), _started(false) {
+    for(const CE_StepObject& objectStep : steps) {
+        for(const auto& step : objectStep._steps) {
+            _steps.push_back(step);
+        }
+    }
 
     for(auto& step : _steps) {
         step.bind_cutscene_data_pool(_cutsceneDataPool);

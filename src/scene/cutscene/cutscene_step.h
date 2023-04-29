@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <string>
+#include <functional>
 
 #include "cutscene_event.h"
 
@@ -55,6 +56,31 @@ namespace omniscia::core {
             bool is_done() const {
                 return _is_done_executing;
             }
+    };
+
+    struct CE_StepObject {
+        std::vector<CE_Step> _steps;
+
+        CE_StepObject() {
+
+        }
+
+        CE_StepObject(const CE_Step& step) {
+            _steps.push_back(step);
+        }
+    };
+
+    template<typename T>
+    struct CE_MultiStep : public CE_StepObject {
+        CE_MultiStep(const i32& count, const std::vector<T>& stepsData, const std::function<std::vector<CE_Step>(const T& stepData)> _stepLambda) {
+            for(auto i = 0; i < count; ++i) {
+                auto tmpSteps = _stepLambda(stepsData[i]);
+
+                for(auto& step : tmpSteps) {
+                    _steps.push_back(step);
+                }
+            }
+        }
     };
 }
 

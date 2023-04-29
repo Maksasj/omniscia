@@ -146,7 +146,14 @@ void omniscia::Game::run() {
     _cutscenes["transition_cutscene_to_settings"] = new TransitionCutscene(&transitionStageShader, "settings_scene");
     _cutscenes["transition_cutscene_to_secrets"] = new TransitionCutscene(&transitionStageShader, "secrets_scene");
     
-    _cutscenes["test_dialogue_cutscene"] = new DialogueCutscene(&transitionStageShader);
+    _cutscenes["test_dialogue_cutscene"] = new DialogueCutscene(&transitionStageShader, {
+        DialogueStepData("player_test_icon", 1, "Hello, who you are ?"),
+        DialogueStepData("grandpa_test_icon", -1, "I am a random old guy,  just staying there"),
+        DialogueStepData("player_test_icon", 1, "Interesting, is there   any interesting thigs todo ?"),
+        DialogueStepData("grandpa_test_icon", -1, "Lol, no. GET REKT"),
+        DialogueStepData("player_test_icon", 1, "Bruh, you very cringy   old guy"),
+        DialogueStepData("grandpa_test_icon", -1, "Lol."),
+    });
 
     Cutscene cutscene = {
         CE_Step{

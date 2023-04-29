@@ -20,7 +20,7 @@ namespace omniscia::core {
             Cutscene();
             Cutscene(const Cutscene&);
         public:
-            Cutscene(const std::initializer_list<CE_Step> &steps);
+            Cutscene(const std::initializer_list<CE_StepObject> &steps);
             void free();
             void start();
             bool is_ended() const;

@@ -18,7 +18,7 @@ namespace omniscia::core {
             void operator=(const CE_LogEvent&);
 
         public:
-            CE_LogEvent(const auto& data = CE_LogProp{});
+            CE_LogEvent(const CE_LogProp& data = CE_LogProp{});
             
             void execute() override;
     };

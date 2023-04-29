@@ -42,7 +42,7 @@ void omniscia::core::CE_AnimateStaticTextEvent::execute() {
 
     const f32 t = this->get_current_duration() / _durationTime;
     
-    auto  newCharacterCount = _shapingFunction(_startingCharacterCount, _finishCharacterCount, t);
+    auto newCharacterCount = _shapingFunction(_startingCharacterCount, _finishCharacterCount, t);
 
-    comp.set_text_to_render(_text.substr(0, newCharacterCount + 1), 0.31f, 0.8f, 24u);    
+    comp.set_text_to_render(_text.substr(0, round(newCharacterCount)), 0.31f, 0.8f, 24u);    
 }

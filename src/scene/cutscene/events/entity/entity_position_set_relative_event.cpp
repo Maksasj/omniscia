@@ -40,6 +40,8 @@ void omniscia::core::CE_EntityPositionSetRelativeEvent::execute() {
 
     ECS_Positioned& comp = entityPtr->ref_unsafe(positionIndex);
     Vec3f& currentPos = comp.ref_pos();
-    currentPos.x += _relativePosition.x;
-    currentPos.y += _relativePosition.y;
+
+    Vec3f pos = Camera::get_instance().get_pos();
+    currentPos.x = pos.x + _relativePosition.x;
+    currentPos.y = pos.y + _relativePosition.y;
 }

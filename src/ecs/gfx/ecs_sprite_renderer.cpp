@@ -17,6 +17,10 @@ void omniscia::core::ecs::ECS_SpriteRenderer::reindex(void* parent) {
     _spriteFlipIndex = _parent->index<ECS_SpriteFlip>();
 }
 
+void omniscia::core::ecs::ECS_SpriteRenderer::set_texture_by_id(const std::string& textureId) {
+    _sprite.set_texture_by_id(textureId);
+}
+
 void omniscia::core::ecs::ECS_SpriteRenderer::render() {
     Shader* shader = Shader::get_active();
     if(shader == nullptr)

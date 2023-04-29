@@ -13,11 +13,11 @@ namespace omniscia::core {
 
         std::string _entityTmpName = "";
 
-        i32 _startingCharacterCount = 0;
-        i32 _finishCharacterCount = 0;
+        u64 _startingCharacterCount = 0;
+        u64 _finishCharacterCount = 0;
         std::string _text = "";
         
-        std::function<f32(const f32&, const f32&, const f32&)> _shapingFunction;
+        std::function<f32(const u64&, const u64&, const f32&)> _shapingFunction;
     };
 
     class CE_AnimateStaticTextEvent : public CE_AnimateStaticTextProp , public CE_Event {

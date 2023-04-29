@@ -48,6 +48,8 @@ namespace omniscia::core {
 
                 /** @brief Current player position */
                 Vec2f _playerPos;
+
+                Vec2f _cameraPos;
             };
 
             /** @brief Pointer to imgui io */
