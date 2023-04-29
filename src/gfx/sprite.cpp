@@ -106,6 +106,24 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
     unbind();
 }
 
+void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const Vec2f &scale, const bool& horizontalFlip, const bool& verticalFlip) const {
+    shader->set_uniform_vec2f("transform", position);
+    shader->set_uniform_vec2f("scale", scale);
+    shader->set_uniform_mat2x2f("rotation", Matrix<f32, 2, 2>::get_zero_rotation_matrix());
+
+    shader->set_uniform_vec2f("spriteFrameSize", Vec2f{1.0, 1.0});
+    shader->set_uniform_vec2f("spriteFrameOffset", Vec2f{0.0, 0.0});
+
+    shader->set_uniform_i32("textureFlipHorizontal", horizontalFlip);
+    shader->set_uniform_i32("textureFlipVertical", verticalFlip);
+
+    shader->set_uniform_f32("textureAspect", _texture->get_aspect());
+
+    bind(); 
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    unbind();
+}
+
 void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &position, const float &rotationAngle) const { 
     shader->set_uniform_vec2f("transform", position);
     shader->set_uniform_vec2f("scale", Vec2f{1.0, 1.0});

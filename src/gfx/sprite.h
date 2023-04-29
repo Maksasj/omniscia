@@ -124,6 +124,17 @@ namespace omniscia::gfx::sprite {
              * 
              * @param shader that should be used for rendering  
              * @param position uv position where to render sprite
+             * @param scale the uv scale by which the sprite should be scaled
+             * @param horizontalFlip bolean, does sprite should be flipped horizontally
+             * @param verticalFlip bolean, does sprite should be flipped vertically
+            */
+            void render(const Shader *shader, const Vec2f &position, const Vec2f &scale, const bool& horizontalFlip, const bool& verticalFlip) const;
+
+            /**
+             * @brief Renders sprite instance into the binded frame buffer, using specified parameters
+             * 
+             * @param shader that should be used for rendering  
+             * @param position uv position where to render sprite
              * @param rotationAngle the angle by which the sprite should be rotated
             */
             void render(const Shader *shader, const Vec2f &position, const float &rotationAngle) const;

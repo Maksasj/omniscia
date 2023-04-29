@@ -1,0 +1,32 @@
+#ifndef _SPAWN_DIALOGUE_SPEAKER_ICON_CUTSCENE_EVENT_
+#define _SPAWN_DIALOGUE_SPEAKER_ICON_CUTSCENE_EVENT_
+
+#include <string>
+#include <functional>
+
+#include "cutscene_event.h"
+#include "scene.h"
+#include "camera.h"
+
+namespace omniscia::core {
+    struct CE_SpawnDialogueSpeakerIconProp {
+        CE_Prop _base;
+        
+        std::string _entityTmpName = "";
+        std::string _speakerIconTextureId = "";
+    };
+
+    class CE_SpawnDialogueSpeakerIconEvent : public CE_SpawnDialogueSpeakerIconProp , public CE_Event {
+        private:
+            CE_SpawnDialogueSpeakerIconEvent();
+            CE_SpawnDialogueSpeakerIconEvent(const CE_SpawnDialogueSpeakerIconEvent&);
+            void operator=(const CE_SpawnDialogueSpeakerIconEvent&);
+
+        public:
+            CE_SpawnDialogueSpeakerIconEvent(const CE_SpawnDialogueSpeakerIconProp& data = CE_SpawnDialogueSpeakerIconProp{});
+            
+            void execute() override;
+    };
+}
+
+#endif

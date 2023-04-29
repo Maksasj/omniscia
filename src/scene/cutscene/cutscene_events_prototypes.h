@@ -12,5 +12,12 @@
 #include "show_dialogue_tab_cutscene_event.h"
 #include "spawn_dialogue_tab_cutscene_event.h"
 #include "entity_transparency_change_event.h"
+#include "spawn_dialogue_text_cutscene_event.h"
+#include "animate_static_text_cutscene_event.h"
+#include "spawn_dialogue_speaker_icon_cutscene_event.h"
+#include "entity_position_set_event.h"
+#include "entity_position_move_event.h"
+#include "entity_position_set_relative_event.h"
+#include "entity_sprite_flip_set_event.h"
 
 #endif

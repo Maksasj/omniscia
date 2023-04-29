@@ -14,6 +14,7 @@ void omniscia::core::ecs::ECS_SpriteRenderer::reindex(void* parent) {
     _posIndex = _parent->index<ECS_Positioned>();
     _scaleIndex = _parent->index<ECS_Scaled>();
     _transparencyIndex = _parent->index<ECS_Transparency>();
+    _spriteFlipIndex = _parent->index<ECS_SpriteFlip>();
 }
 
 void omniscia::core::ecs::ECS_SpriteRenderer::render() {
@@ -23,6 +24,9 @@ void omniscia::core::ecs::ECS_SpriteRenderer::render() {
 
     Vec3f position = {0.0, 0.0, 0.0};
     Vec2f scale = {1.0, 1.0};
+
+    bool horizontalSpriteFlip = false;
+    bool verticalSpriteFlip = false;
 
     if(_posIndex.is_success()) {
         ECS_Positioned &positionComp = _parent->ref_unsafe(_posIndex);
@@ -41,7 +45,14 @@ void omniscia::core::ecs::ECS_SpriteRenderer::render() {
         shader->set_uniform_f32("transparency", transparencyComp.get_transparency());
     }
     
-    _sprite.render(shader, position, scale);
+    if(_spriteFlipIndex.is_success()) {
+        ECS_SpriteFlip& spriteFlipComp = _parent->ref_unsafe(_spriteFlipIndex);
+
+        horizontalSpriteFlip = spriteFlipComp.get_horizontal_flip();
+        verticalSpriteFlip = spriteFlipComp.get_vertical_flip();
+    }
+
+    _sprite.render(shader, position, scale, horizontalSpriteFlip, verticalSpriteFlip);
     
     shader->set_uniform_f32("transparency", 1.0f);
 }

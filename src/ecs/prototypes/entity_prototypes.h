@@ -11,6 +11,7 @@
 #include "button.h"
 #include "static_text.h"
 #include "dialogue_tab.h"
+#include "image.h"
 
 #include "entity.h"
 

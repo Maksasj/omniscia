@@ -25,6 +25,7 @@
 #include "entity.h"
 #include "sprite.h"
 #include "shader.h"
+#include "ecs_sprite_flip.h"
 
 namespace omniscia::core::ecs {
     using namespace omniscia::gfx::sprite;
@@ -50,6 +51,8 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_Scaled> _scaleIndex;
             
             ECS_Index<ECS_Transparency> _transparencyIndex;
+
+            ECS_Index<ECS_SpriteFlip> _spriteFlipIndex;
 
             /**
              * @brief Sprite instance

@@ -33,7 +33,5 @@ void omniscia::core::CE_SpawnDialogueTabEvent::execute() {
     CutsceneDataPoolType& _dataPool = *ptrParrentCutsceneDataPool;
     _dataPool[_entityTmpName] = std::make_shared<UUID>(entityUUID);
 
-    std::cout << "Spawned dialogue tab uuid: " << entityUUID.to_string() << "\n";
-
     scene->time_sync();
 }
