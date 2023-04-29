@@ -6,6 +6,8 @@ in vec2 TexCoord;
 
 uniform sampler2D ourTexture;
 
+uniform float transparency = 1.0f;
+
 uniform float transitionProgress = 0.0f;
 uniform float transitionDiamondPixelSize = 12.0f;
 
@@ -62,6 +64,7 @@ void main() {
     color = bottom_shadow(uv, color);
     color = transition(uv, color);
     color = letter_box(uv, color);
+    color *= transparency;
 
     FragColor = color;
 }

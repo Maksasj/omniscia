@@ -13,6 +13,7 @@ void omniscia::core::ecs::ECS_SpriteRenderer::reindex(void* parent) {
 
     _posIndex = _parent->index<ECS_Positioned>();
     _scaleIndex = _parent->index<ECS_Scaled>();
+    _transparencyIndex = _parent->index<ECS_Transparency>();
 }
 
 void omniscia::core::ecs::ECS_SpriteRenderer::render() {
@@ -35,5 +36,12 @@ void omniscia::core::ecs::ECS_SpriteRenderer::render() {
         scale = scaleComp.get_scale();
     }
 
+    if(_transparencyIndex.is_success()) {
+        ECS_Transparency& transparencyComp = _parent->ref_unsafe(_transparencyIndex);
+        shader->set_uniform_f32("transparency", transparencyComp.get_transparency());
+    }
+    
     _sprite.render(shader, position, scale);
+    
+    shader->set_uniform_f32("transparency", 1.0f);
 }

@@ -60,7 +60,7 @@ void omniscia::Game::run() {
             ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
         },
         ._buffer = {
-            ._clearBufferColor = Vec4f{1.0f, 1.0f, 1.0f, 1.0f},
+            ._clearBufferColor = Vec4f{1.0f, 1.0f, 1.0f, 0.0f},
         }
     });
 
@@ -90,7 +90,7 @@ void omniscia::Game::run() {
             ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
         },
         ._buffer = {
-            ._clearBufferColor = Vec4f{1.0f, 1.0f, 1.0f, 1.0f},
+            ._clearBufferColor = Vec4f{1.0f, 1.0f, 1.0f, 0.0f},
         }
     });
 
@@ -105,7 +105,7 @@ void omniscia::Game::run() {
             ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
         },
         ._buffer = {
-            ._clearBufferColor = Vec4f{1.0f, 1.0f, 1.0f, 1.0f},
+            ._clearBufferColor = Vec4f{1.0f, 1.0f, 1.0f, 0.0f},
         }
     });
 

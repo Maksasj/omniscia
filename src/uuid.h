@@ -9,7 +9,6 @@
 #include "boost/uuid/random_generator.hpp"
 
 namespace omniscia::core {
-    // using UUID = boost::uuids::uuid;
 
     class UUID {
         private:

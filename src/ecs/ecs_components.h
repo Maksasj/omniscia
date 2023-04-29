@@ -30,6 +30,7 @@
 #include "ecs_pro_renderer.h"
 #include "ecs_instancing_renderer.h"
 #include "ecs_text_renderer.h"
+#include "ecs_transparency.h"
 
 #include "ecs_button.h"
 

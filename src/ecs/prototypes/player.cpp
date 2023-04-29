@@ -1,6 +1,6 @@
 #include "player.h"
 
-omniscia::core::Player::Player() {
+omniscia::core::Player::Player() : Entity() {
     add<ECS_Positioned>(0.0f, 0.3f);
     add<ECS_Velocity>(
         Vec2f{0.002f, -0.002f}, 

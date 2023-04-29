@@ -34,7 +34,9 @@ namespace omniscia::core {
         
         public:
             /** @brief Default Entity constructor */
-            Entity() {}
+            Entity() {
+                _uuid = UUID::gen_uuid();
+            }
 
             /**
              * @brief Clones component container to 

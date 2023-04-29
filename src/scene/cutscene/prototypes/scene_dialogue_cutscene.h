@@ -17,6 +17,7 @@ namespace omniscia::core {
                 CE_Step {
                     new CE_DisableSystemEvent<ECS_PlayerControllerSystem>((CE_DisableSystemProp){}),
                     new CE_DisableSystemEvent<ECS_PlayerJumpSystem>((CE_DisableSystemProp){}),
+                    new CE_DisableSystemEvent<ECS_PlayerTimeJumpControllerSystem>((CE_DisableSystemProp){}),
                 },
                 CE_Step {
                     new CE_CameraZoomEvent((CE_CameraZoomProp){ 
@@ -39,7 +40,18 @@ namespace omniscia::core {
                     })
                 }, 
                 CE_Step {
-                    new CE_ShowDialogueTabEvent((CE_ShowDialogueTabProp){}),
+                    new CE_SpawnDialogueTabEvent((CE_SpawnDialogueTabProp){
+                        ._entityTmpName = "DialogueTab"
+                    }),
+                },
+                CE_Step {
+                    new CE_EntityTransparencyChangeEvent((CE_EntityTransparencyChangeProp) {
+                        ._base = (CE_Prop){ ._durationTime = 0.5f },
+                        ._entityTmpName = "DialogueTab",
+                        ._startTransparency = 0.0f,
+                        ._finishTransparency = 1.0f,
+                        ._shapingFunction = &smoothstep<f32>,
+                    })
                 }
             }) {}
     };

@@ -62,6 +62,8 @@ namespace omniscia::core::ecs {
             /** @brief ECS_Index of the scale component */
             ECS_Index<ECS_Scaled> _scaleIndex;
 
+            ECS_Index<ECS_Transparency> _transparencyIndex;
+
         public:
             /**
              * @brief Method used for time 

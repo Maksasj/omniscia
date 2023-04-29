@@ -16,6 +16,7 @@
 #include "sprite.h"
 #include "shader.h"
 #include "render_stage_pool.h"
+#include "ecs_transparency.h"
 
 namespace omniscia::core::ecs {
     using namespace omniscia::gfx::sprite;

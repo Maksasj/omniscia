@@ -10,5 +10,7 @@
 #include "shader_uniform_f32_change_cutscene_event.h"
 #include "spawn_entity_cutscene_event.h"
 #include "show_dialogue_tab_cutscene_event.h"
+#include "spawn_dialogue_tab_cutscene_event.h"
+#include "entity_transparency_change_event.h"
 
 #endif

@@ -1,6 +1,6 @@
 #include "beachParallaxBackground.h"
 
-omniscia::core::BeachParallaxBackground::BeachParallaxBackground() {
+omniscia::core::BeachParallaxBackground::BeachParallaxBackground() : Entity() {
     add<ECS_ParallaxSpriteRendererBack>("background_beach_sky1_layer", 0, [](f32& layerOffset ) {
         layerOffset += Time::get_instance().get_delta_time();
         return (layerOffset / 100000.0f);

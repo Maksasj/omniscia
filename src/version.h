@@ -1,6 +1,6 @@
 #ifndef _OMNISCIA_VERSION_H_
 #define _OMNISCIA_VERSION_H_
 
-#define _OMNISCIA_VERSION_ 2590
+#define _OMNISCIA_VERSION_ 2620
 
 #endif

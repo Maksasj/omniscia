@@ -8,8 +8,8 @@ in vec2 textureFrameOffset;
 
 uniform sampler2D ourTexture;
 
-uniform float textureAspect = 1.0;
-
+uniform float transparency = 1.0f;
+uniform float textureAspect = 1.0f;
 uniform bool textureFlipHorizontal = false;
 uniform bool textureFlipVertical = false;
 
@@ -28,6 +28,7 @@ void main() {
     texCoord += textureFrameOffset;
 
     vec4 color = texture(ourTexture, texCoord);
+    color *= transparency;
 
     FragColor = color;
 }

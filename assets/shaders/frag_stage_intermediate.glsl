@@ -6,8 +6,11 @@ in vec2 TexCoord;
 
 uniform sampler2D ourTexture;
 
+uniform float transparency = 1.0f;
+
 void main() {
     vec4 color = texture(ourTexture, TexCoord);
+    color *= transparency;
 
     FragColor = color;
 }

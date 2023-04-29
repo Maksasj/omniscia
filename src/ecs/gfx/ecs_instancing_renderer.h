@@ -16,6 +16,7 @@
 #include "entity.h"
 #include "instancing_sprite.h"
 #include "shader.h"
+#include "ecs_transparency.h"
 
 namespace omniscia::core::ecs {
     using namespace omniscia::gfx::sprite;
@@ -32,6 +33,7 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_SpriteAnimation> _animationIndex;
             ECS_Index<ECS_Positioned> _posIndex;
             ECS_Index<ECS_Scaled> _scaleIndex;
+            ECS_Index<ECS_Transparency> _transparencyIndex;
 
         public:
             void time_sync() override;

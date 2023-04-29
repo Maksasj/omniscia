@@ -14,6 +14,7 @@ void omniscia::core::ecs::ECS_TilemapRenderer::reindex(void* parent) {
     _spriteFlipIndex = _parent->index<ECS_SpriteFlip>();
     _posIndex = _parent->index<ECS_Positioned>();
     _scaleIndex = _parent->index<ECS_Scaled>();
+    _transparencyIndex = _parent->index<ECS_Transparency>();
 }
 
 void omniscia::core::ecs::ECS_TilemapRenderer::render() {
@@ -47,5 +48,12 @@ void omniscia::core::ecs::ECS_TilemapRenderer::render() {
         horizontalFlip = spriteFlipComp.get_horizontal_flip();
     }
     
+    if(_transparencyIndex.is_success()) {
+        ECS_Transparency& transparencyComp = _parent->ref_unsafe(_transparencyIndex);
+        shader->set_uniform_f32("transparency", transparencyComp.get_transparency());
+    }
+    
     _sprite.render(shader, position, 0.0f, scale, spriteFrameSize, spriteFrameOffset, horizontalFlip, verticalFlip);
+    
+    shader->set_uniform_f32("transparency", 1.0f);
 }

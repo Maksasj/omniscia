@@ -1,6 +1,6 @@
 #include "grandpa.h"
 
-omniscia::core::Grandpa::Grandpa() {
+omniscia::core::Grandpa::Grandpa() : Entity() {
     add<ECS_Positioned>(0.0f, 0.3f);
     add<ECS_Velocity>(
         Vec2f{0.002f, -0.002f}, 

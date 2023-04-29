@@ -38,6 +38,8 @@ namespace omniscia::core::ecs {
     */
     class ECS_ParallaxSpriteRendererFront : public ECS_ProRenderer {
         private:
+            Entity* _parent;
+
             /** @brief Sprite of the this component */
             Sprite _sprite;
 
@@ -50,6 +52,8 @@ namespace omniscia::core::ecs {
             */
             std::function<f32(f32&)> _layerOffsetCallBack;
 
+            ECS_Index<ECS_Transparency> _transparencyIndex;
+
         public:
             /**
              * @brief Method used for time 
@@ -58,6 +62,8 @@ namespace omniscia::core::ecs {
              * system
             */
             void time_sync() override;
+
+            void reindex(void* parent) override;
 
             /**
              * @brief Default constructor of the 
