@@ -44,7 +44,7 @@ void omniscia::core::SaveLoader::validate_saves(std::vector<std::filesystem::pat
                 if(data["format"]["format"] != "omniscia_save_file")
                     throw std::runtime_error("Omniscia save file, format format field not found");
 
-                if(data["format"]["version"] > _OMNISCIA_VERSION_)
+                if(data["format"]["version"] > get_game_version())
                     throw std::runtime_error("Omniscia save file, not compatible game version");
 
             } catch(const std::runtime_error& e) {
