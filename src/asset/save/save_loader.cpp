@@ -42,12 +42,12 @@ void omniscia::core::SaveLoader::validate_saves(std::vector<std::filesystem::pat
                 json data = json::parse(f);
 
                 if(data["format"]["format"] != "omniscia_save_file")
-                    throw std::exception("Omniscia save file, format format field not found");
+                    throw std::runtime_error("Omniscia save file, format format field not found");
 
                 if(data["format"]["version"] > _OMNISCIA_VERSION_)
-                    throw std::exception("Omniscia save file, not compatible game version");
+                    throw std::runtime_error("Omniscia save file, not compatible game version");
 
-            } catch(const std::exception& e) {
+            } catch(const std::runtime_error& e) {
                 std::cout << e.what() << "\n";
                 std::cout << "Unable to parse " << path.string() << " save file\n";
                 return true;

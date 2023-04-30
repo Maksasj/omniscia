@@ -15,7 +15,7 @@ void omniscia::core::SaveManager::operator=(const SaveManager&) {
 void omniscia::core::SaveManager::load_save(std::filesystem::path path) {
     static std::string corruptionMessage = "Save " + path.string() + " is corrupted";
 
-    if(!std::filesystem::exists(path)) throw std::exception(corruptionMessage.c_str());
+    if(!std::filesystem::exists(path)) throw std::runtime_error(corruptionMessage.c_str());
 
     std::ifstream f(path);
     json saveData = json::parse(f);
@@ -24,16 +24,16 @@ void omniscia::core::SaveManager::load_save(std::filesystem::path path) {
 
     for(auto& secretData : saveData["save"]["secrets"]) {
         if(!secretData.contains("title")) 
-            throw std::exception(corruptionMessage.c_str());
+            throw std::runtime_error(corruptionMessage.c_str());
         
         if(!secretData.contains("description")) 
-            throw std::exception(corruptionMessage.c_str());
+            throw std::runtime_error(corruptionMessage.c_str());
 
         if(!secretData.contains("icon")) 
-            throw std::exception(corruptionMessage.c_str());
+            throw std::runtime_error(corruptionMessage.c_str());
 
         if(!secretData.contains("unlocked")) 
-            throw std::exception(corruptionMessage.c_str());
+            throw std::runtime_error(corruptionMessage.c_str());
 
         std::string title = secretData["title"];
         std::string description = secretData["description"];
