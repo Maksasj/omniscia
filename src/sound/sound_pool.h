@@ -130,8 +130,8 @@ namespace omniscia::core {
              * @param newPos position to be set to the sound
             */
             void position_sound(const i32& soundIndex, const Vec3f& newPos) {
-                if(soundIndex >= __size) return false;
-                if(soundIndex < 0) return false;
+                if(soundIndex >= __size) return;
+                if(soundIndex < 0) return;
 
                 Sound& sound = _sounds[soundIndex];
                 sound.set_pos(newPos);

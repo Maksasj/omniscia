@@ -98,21 +98,7 @@ namespace omniscia::core::ecs {
              * update method
             */
             void late_update();
-
-            /**
-             * @brief Getter that returns old position of the entity
-             * 
-             * @return Vec3f old position of the entity
-            */
-            Vec3f get_old_position() const;
-
-            /**
-             * @brief Getter that returns new position of the entity
-             * 
-             * @return Vec3f new position of the entity
-            */
-            Vec3f get_new_position() const;
-
+            
             /**
              * @brief Method used for clonning single 
              * component instance, allocates copy of

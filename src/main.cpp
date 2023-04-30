@@ -119,7 +119,7 @@ int main() {
 
     try {
         SaveManager::get_instance().load_save(saves[0]);
-    } catch(const std::exception& exception) {
+    } catch(const std::runtime_error& exception) {
         std::cout << exception.what() << "\n";
         return 1;
     }

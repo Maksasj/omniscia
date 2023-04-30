@@ -359,7 +359,7 @@ namespace omniscia::core {
          * @return Matrix<f32, 2, 2> new matrix instance 
         */
         static Matrix<f32, 2, 2> get_rotation_matrix(const f32 &rotationAngle) {
-            return {{cos(rotationAngle), -sin(rotationAngle), sin(rotationAngle), cos(rotationAngle)}};
+            return {{(f32)cos(rotationAngle), -(f32)sin(rotationAngle), (f32)sin(rotationAngle), (f32)cos(rotationAngle)}};
         }
 
         /**
@@ -381,7 +381,7 @@ namespace omniscia::core {
         */
         friend std::ostream& operator<<(std::ostream& os, const Matrix<_T, _width, _heigth>& mat) {
             for(i32 i = 0; i < _width * _heigth; ++i)
-                os << e[i] << " ";
+                os << mat.e[i] << " ";
 
             return os;
         } 
@@ -396,7 +396,7 @@ namespace omniscia::core {
         */
         friend std::istream& operator>>(std::istream& os, const Matrix<_T, _width, _heigth>& mat) {
             for(i32 i = 0; i < _width * _heigth; ++i)
-                os >> e[i];
+                os >> mat.e[i];
 
             return os;
         } 
