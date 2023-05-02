@@ -17,6 +17,10 @@ namespace omniscia::core {
             CE_SceneSwitchEvent(const CE_SceneSwitchEvent&);
             void operator=(const CE_SceneSwitchEvent&);
 
+            void reset() override {
+                reset_base();
+            }
+
         public:
             CE_SceneSwitchEvent(const CE_SceneSwitchProp& data = CE_SceneSwitchProp{});
             void execute() override;

@@ -21,6 +21,10 @@ namespace omniscia::core {
             CE_EntityPositionSetEvent(const CE_EntityPositionSetEvent&);
             void operator=(const CE_EntityPositionSetEvent&);
 
+            void reset() override {
+                reset_base();
+            }
+
         public:
             CE_EntityPositionSetEvent(const CE_EntityPositionSetProp& data = CE_EntityPositionSetProp{});
             

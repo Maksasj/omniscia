@@ -66,6 +66,7 @@ namespace omniscia::core::ecs {
 
         public:
             friend class ECS_MovableAABBCollider;
+            friend class ECS_TriggerAABBCollider;
 
             /* Some evil macros */
             OMNISCIA_STRING_REPRESENTATION(ECS_AABBCollider, this->_parent << " "<< this->_colliding << " " << this->_collisionPoint << " " << this->_collisionSide)

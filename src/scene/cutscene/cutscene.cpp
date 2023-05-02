@@ -25,6 +25,12 @@ void omniscia::core::Cutscene::free() {
 
 void omniscia::core::Cutscene::start() {
     _started = true;
+    _ended = false;
+    _currentStep = _steps.begin();
+
+    for(auto& step : _steps) {
+        step.reset();
+    }
 }
 
 bool omniscia::core::Cutscene::is_ended() const {

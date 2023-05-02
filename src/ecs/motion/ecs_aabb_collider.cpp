@@ -28,6 +28,9 @@ void omniscia::core::ecs::ECS_AABBCollider::collide(ECS_AABBCollider* another) {
     if(!(_collisionLayerTarget & another->_collisionLayer)) 
         return;
     
+    if(_parent == another->_parent)
+        return;
+
     Vec2f selfScale = Vec2f{1.0f, 1.0f}; 
     Vec3f selfPosition = Vec3f{0.0f, 0.0f, 0.0f};
     Vec2f selfCollisionXRanges = Vec2f{1.0f, 1.0f};

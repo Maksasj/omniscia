@@ -22,6 +22,10 @@ namespace omniscia::core {
             CE_SpawnDialogueSpeakerIconEvent(const CE_SpawnDialogueSpeakerIconEvent&);
             void operator=(const CE_SpawnDialogueSpeakerIconEvent&);
 
+            void reset() override {
+                reset_base();
+            }
+            
         public:
             CE_SpawnDialogueSpeakerIconEvent(const CE_SpawnDialogueSpeakerIconProp& data = CE_SpawnDialogueSpeakerIconProp{});
             

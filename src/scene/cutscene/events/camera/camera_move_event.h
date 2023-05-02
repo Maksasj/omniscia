@@ -22,6 +22,10 @@ namespace omniscia::core {
             CE_CameraMoveEvent(const CE_CameraMoveEvent&);
             void operator=(const CE_CameraMoveEvent&);
 
+            void reset() override {
+                reset_base();
+            }
+
         public:
             CE_CameraMoveEvent(const CE_CameraMoveProp& data = CE_CameraMoveProp{});
             

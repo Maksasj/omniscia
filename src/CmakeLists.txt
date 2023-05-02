@@ -9,6 +9,7 @@ include_directories("src/ecs/gfx")
 include_directories("src/ecs/gui")
 include_directories("src/ecs/motion")
 include_directories("src/ecs/sound")
+include_directories("src/ecs/interactive")
 include_directories("src/ecs/prototypes")
 include_directories("src/ecs/prototypes/ui")
 

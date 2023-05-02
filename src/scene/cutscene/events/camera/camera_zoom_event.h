@@ -22,6 +22,10 @@ namespace omniscia::core {
             CE_CameraZoomEvent(const CE_CameraZoomEvent&);
             void operator=(const CE_CameraZoomEvent&);
 
+            void reset() override {
+                reset_base();
+            }
+
         public:
             CE_CameraZoomEvent(const CE_CameraZoomProp& data = CE_CameraZoomProp{});
             

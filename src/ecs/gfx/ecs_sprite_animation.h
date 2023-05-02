@@ -36,7 +36,7 @@ namespace omniscia::core::ecs {
      * manages sprite animations, updates animation frames
     */
     class ECS_SpriteAnimation : public ECS_Component {
-        private:
+        protected:
             /** @brief Current frame of the animation */
             u64 _currentFrame;
 
@@ -50,12 +50,11 @@ namespace omniscia::core::ecs {
              * @brief Pointer to the animation asset data
             */
             Animation* animation;
-
         public:
             /* Some evil macros */
             OMNISCIA_STRING_REPRESENTATION(ECS_SpriteAnimation, this->_currentFrame << " " << this->_animationId << " " << this->_tick);
             OMNISCIA_OFSTREAM_REPRESENTATION(ECS_SpriteAnimation, self._currentFrame << " " << self._animationId << " " << self._tick);
-        
+
             /**
              * @brief Method used for time 
              * synchronization of the component
@@ -107,7 +106,7 @@ namespace omniscia::core::ecs {
             /**
              * @brief Updates animation frame, and offset
             */
-            void update();
+            virtual void update();
 
             /**
              * @brief Method used for clonning single 

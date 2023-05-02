@@ -20,6 +20,10 @@ namespace omniscia::core {
             CE_DestroyEntityEvent(const CE_DestroyEntityEvent&);
             void operator=(const CE_DestroyEntityEvent&);
 
+            void reset() override {
+                reset_base();
+            }
+
         public:
             CE_DestroyEntityEvent(const CE_DestroyEntityProp& data = CE_DestroyEntityProp{});
             

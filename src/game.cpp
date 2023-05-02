@@ -155,78 +155,6 @@ void omniscia::Game::run() {
         DialogueStepData("grandpa_test_icon", -1, "Lol."),
     });
 
-    Cutscene cutscene = {
-        CE_Step{
-            new CE_Event((CE_Prop){ 
-                ._pauseBeforeStart = true,
-                ._pauseTimeBeforeStart = 8.0f,
-            })
-        },
-        CE_Step{
-            new CE_DisableSystemEvent<ECS_PlayerControllerSystem>((CE_DisableSystemProp){}),
-            new CE_DisableSystemEvent<ECS_CameraFollowSystem>((CE_DisableSystemProp){}),
-            /** TODO */ // Time sync
-            //new CE_LetterBoxEvent((CE_LetterBoxProp){}),
-            /** =====*/
-            new CE_CameraMoveEvent((CE_CameraMoveProp){ 
-                ._base = (CE_Prop){
-                    ._pauseBeforeStart = true,
-                    ._pauseTimeBeforeStart = 0.2f,
-                    ._durationTime = 5.0f
-                },
-
-                ._startPosition = {0.0f, 0.3f, 0.0f},
-                ._finishPosition = {1.0f, 1.0f, 0.f},
-
-                ._shapingFunction = &smoothstep<Vec3f>,
-            }),
-            new CE_CameraZoomEvent((CE_CameraZoomProp){ 
-                ._base = (CE_Prop){
-                    ._pauseBeforeStart = true,
-                    ._pauseTimeBeforeStart = 0.2f,
-                    ._durationTime = 5.0f
-                },
-
-                ._startZoom = 1.0f,
-                ._finishZoom = 0.1f,
-
-                ._shapingFunction = &smoothstep<f32>,
-            }),
-        },
-        CE_Step{
-            new CE_CameraMoveEvent((CE_CameraMoveProp){ 
-                ._base = (CE_Prop){
-                    ._pauseBeforeStart = true,
-                    ._pauseTimeBeforeStart = 0.2f,
-                    ._durationTime = 5.0f
-                },
-
-                ._startPosition = {1.0f, 1.0f, 0.f},
-                ._finishPosition = {0.0f, 0.3f, 0.0f},
-
-                ._shapingFunction = &smoothstep<Vec3f>,
-            }),
-            new CE_CameraZoomEvent((CE_CameraZoomProp){ 
-                ._base = (CE_Prop){
-                    ._pauseBeforeStart = true,
-                    ._pauseTimeBeforeStart = 0.2f,
-                    ._durationTime = 5.0f
-                },
-
-                ._startZoom = 0.1f,
-                ._finishZoom = 1.0f,
-
-                ._shapingFunction = &smoothstep<f32>,
-            }),
-        },
-        CE_Step{
-            new CE_EnableSystemEvent<ECS_PlayerControllerSystem>((CE_EnableSystemProp){}),
-            new CE_EnableSystemEvent<ECS_CameraFollowSystem>((CE_EnableSystemProp){}),
-        },
-    };
-
-    _cutscenes["test_cutscene"] = &cutscene;
-
     DebugUI::get_instance().get_metrics()._timeMaxLineLength = 5000;
 
     /* ImGui */
@@ -262,6 +190,7 @@ void omniscia::Game::run() {
             ECS_PlayerControllerSystem::get_instance().update();
             ECS_PlayerJumpSystem::get_instance().update(); /* Need to be between collider updates, since should know is player standing */
             ECS_StateMachineBaseSystem::get_instance().update();
+            ECS_InteractiveSystem::get_instance().update();
             ECS_AABBColliderSystem::get_instance().reset();
         }
         

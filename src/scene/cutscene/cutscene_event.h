@@ -67,8 +67,10 @@ namespace omniscia::core {
                 return true;
             }
 
+
         public:
-            
+            virtual ~CE_Event() = default;
+
             CE_Event(const CE_Prop& data = CE_Prop{}) : CE_Prop(data) {
 
             }
@@ -88,6 +90,26 @@ namespace omniscia::core {
                 _pauseRepeatTimeCounter = 0.0f;
 
                 ++_reapetCounter;
+            }
+
+            virtual void reset() = 0;
+
+            void reset_base() {
+                _isStarted = false;
+                _reapetCounter = 0;
+                _pauseRepeatTime = -1.0f;
+                _pauseRepeatTimeCounter = 0.0f;
+
+                _startRequestTime = -1.0f;
+                _startTimeCounter = 0.0f;
+
+                _stopRequestTime = -1.0f;
+                _stopTimeCounter = 0.0f;
+
+                _durationRequestTime = -1.0f;
+                _durationTimeCounter = 0.0f;
+
+                _isDone = false;
             }
 
             u64 get_reapet_counter() const { return _reapetCounter; }

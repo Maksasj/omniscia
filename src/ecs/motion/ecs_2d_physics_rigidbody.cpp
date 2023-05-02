@@ -50,6 +50,8 @@ void omniscia::core::ecs::ECS_2DPhysicsRigidbody::update() {
     position.y += velocity.y * dt + acceleration.y * 0.5 * dt * dt;
 
     physicsPositioneComp.set_new_position(position);
+
+    acceleration.x = 0.0f;
 }
 
 void omniscia::core::ecs::ECS_2DPhysicsRigidbody::late_update() {

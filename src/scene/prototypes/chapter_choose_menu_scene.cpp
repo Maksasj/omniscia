@@ -12,7 +12,6 @@ omniscia::core::ChapterChooseMenuScene::ChapterChooseMenuScene() : Scene() {
         
         ._clickLambda = [](ECS_Button&) {
             Game::get_instance().start_cutscene("transition_cutscene_to_game_scene");
-            Game::get_instance().start_cutscene("test_dialogue_cutscene");
         },
     });
 

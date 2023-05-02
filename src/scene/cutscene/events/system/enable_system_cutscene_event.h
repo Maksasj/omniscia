@@ -17,6 +17,9 @@ namespace omniscia::core {
             CE_EnableSystemEvent(const CE_EnableSystemEvent&) {}
             void operator=(const CE_EnableSystemEvent&) {}
 
+            void reset() override {
+                reset_base();
+            }
         public:
             CE_EnableSystemEvent(const auto& data = CE_EnableSystemProp{}) : CE_EnableSystemProp(data), CE_Event(*(CE_Prop*)&data) {
                 

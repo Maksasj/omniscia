@@ -171,6 +171,8 @@ namespace omniscia::core {
         Vec3<_T>& operator*=(const _T& other) { this->x *= other; this->y *= other; this->z *= other; return *this; }
         Vec3<_T>& operator/=(const _T& other) { this->x /= other; this->y /= other; this->z /= other; return *this; }
 
+        operator Vec2<_T>() const { return Ve2<_T{this->x, this->y}; }
+
         bool operator==(const Vec3<_T> other) { return this->x == other.x && this->y == other.y && this->z == other.z; }
         bool operator!=(const Vec3<_T> other) { return !this == other; }
 

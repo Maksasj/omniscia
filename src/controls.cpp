@@ -15,6 +15,7 @@ omniscia::core::Controls::Controls() {
         {'A', {omniscia::core::PlayerController::LEFT,       ActionType::PRESS  }},
         {'D', {omniscia::core::PlayerController::RIGHT,      ActionType::PRESS  }},
         {'T', {omniscia::core::PlayerController::TIME_JUMP,  ActionType::RELEASE}},
+        {'E', {omniscia::core::PlayerController::INTERACT,   ActionType::PRESS}},
     };
 
     mouseBindigs = {

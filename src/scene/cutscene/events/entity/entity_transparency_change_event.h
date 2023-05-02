@@ -23,6 +23,10 @@ namespace omniscia::core {
             CE_EntityTransparencyChangeEvent(const CE_EntityTransparencyChangeEvent&);
             void operator=(const CE_EntityTransparencyChangeEvent&);
 
+            void reset() override {
+                reset_base();
+            }
+
         public:
             CE_EntityTransparencyChangeEvent(const CE_EntityTransparencyChangeProp& data = CE_EntityTransparencyChangeProp{});
             

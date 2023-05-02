@@ -22,7 +22,6 @@ void  omniscia::core::ecs::ECS_PlayerController::control() {
     ECS_Acceleration &accelerationComp = _parent->ref_unsafe(accelerationIndex);
     Vec3f& acceleration = accelerationComp.ref_acceleration();
     Vec3f& velocity = velocityComp.ref_velocity();
-    acceleration.x = 0.0f;
 
     bool isMoving = false;
 

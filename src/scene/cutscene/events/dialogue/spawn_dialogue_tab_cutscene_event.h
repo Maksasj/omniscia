@@ -21,6 +21,10 @@ namespace omniscia::core {
             CE_SpawnDialogueTabEvent(const CE_SpawnDialogueTabEvent&);
             void operator=(const CE_SpawnDialogueTabEvent&);
 
+            void reset() override {
+                reset_base();
+            }
+
         public:
             CE_SpawnDialogueTabEvent(const CE_SpawnDialogueTabProp& data = CE_SpawnDialogueTabProp{});
             

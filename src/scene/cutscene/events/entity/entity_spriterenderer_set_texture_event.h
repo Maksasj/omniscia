@@ -21,6 +21,10 @@ namespace omniscia::core {
             CE_EntitySpriteRendererSetTextureEvent(const CE_EntitySpriteRendererSetTextureEvent&);
             void operator=(const CE_EntitySpriteRendererSetTextureEvent&);
 
+            void reset() override {
+                reset_base();
+            }
+
         public:
             CE_EntitySpriteRendererSetTextureEvent(const CE_EntitySpriteRendererSetTextureProp& data = CE_EntitySpriteRendererSetTextureProp{});
             

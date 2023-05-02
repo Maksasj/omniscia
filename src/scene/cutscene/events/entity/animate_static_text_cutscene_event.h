@@ -26,6 +26,10 @@ namespace omniscia::core {
             CE_AnimateStaticTextEvent(const CE_AnimateStaticTextEvent&);
             void operator=(const CE_AnimateStaticTextEvent&);
 
+            void reset() override {
+                reset_base();
+            }
+
         public:
             CE_AnimateStaticTextEvent(const CE_AnimateStaticTextProp& data = CE_AnimateStaticTextProp{});
             

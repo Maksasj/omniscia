@@ -21,6 +21,10 @@ namespace omniscia::core {
             CE_SpawnDialogueTextEvent(const CE_SpawnDialogueTextEvent&);
             void operator=(const CE_SpawnDialogueTextEvent&);
 
+            void reset() override {
+                reset_base();
+            }
+
         public:
             CE_SpawnDialogueTextEvent(const CE_SpawnDialogueTextProp& data = CE_SpawnDialogueTextProp{});
             

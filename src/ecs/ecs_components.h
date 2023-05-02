@@ -31,7 +31,15 @@
 #include "ecs_instancing_renderer.h"
 #include "ecs_text_renderer.h"
 #include "ecs_transparency.h"
+#include "ecs_sprite_animation_auto.h"
+#include "ecs_sprite_animation_manual.h"
 
 #include "ecs_button.h"
+#include "ecs_interactive.h"
+#include "ecs_interactive_press.h"
+#include "ecs_interactive_collision.h"
+#include "ecs_trigger_aabb_collider.h"
+#include "ecs_popup_renderer.h"
+#include "ecs_popup.h"
 
 #endif

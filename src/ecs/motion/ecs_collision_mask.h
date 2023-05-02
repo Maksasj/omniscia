@@ -32,8 +32,9 @@ namespace omniscia::core::ecs {
         /** @brief Collision with tiles */
         CollisionMask_Tiles             = 1 << 2,
         
+        CollisionMask_Interactable      = 1 << 3,
+        
         /*
-        CollisionMask_Layer5            = 1 << 3,
         CollisionMask_Layer6            = 1 << 4,
         CollisionMask_Layer7            = 1 << 5,
         CollisionMask_Layer8            = 1 << 6,

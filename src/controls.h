@@ -30,11 +30,12 @@ namespace omniscia::core {
         LEFT = 2,
         RIGHT = 3,
         TIME_JUMP = 4,
+        INTERACT = 5,
     };
 
     enum MouseController {
-        LEFT_CLICK = 5,
-        RIGHT_CLICK = 6,
+        LEFT_CLICK = 6,
+        RIGHT_CLICK = 7,
     };
     
     /**

@@ -20,6 +20,10 @@ namespace omniscia::core {
             CE_SpawnEntityEvent(const CE_SpawnEntityEvent&);
             void operator=(const CE_SpawnEntityEvent&);
 
+            void reset() override {
+                reset_base();
+            }
+
         public:
             CE_SpawnEntityEvent(const CE_SpawnEntityProp& data = CE_SpawnEntityProp{});
             

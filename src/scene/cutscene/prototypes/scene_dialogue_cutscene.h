@@ -21,15 +21,10 @@ namespace omniscia::core {
         public:
             DialogueCutscene(Shader* transitionStageShader, const std::vector<DialogueStepData> dialogueData) : Cutscene({
                 CE_Step {
-                    new CE_Event((CE_Prop){ 
-                        ._pauseBeforeStart = true,
-                        ._pauseTimeBeforeStart = 8.0f,
-                    })
-                },
-                CE_Step {
                     new CE_DisableSystemEvent<ECS_PlayerControllerSystem>((CE_DisableSystemProp){}),
                     new CE_DisableSystemEvent<ECS_PlayerJumpSystem>((CE_DisableSystemProp){}),
                     new CE_DisableSystemEvent<ECS_PlayerTimeJumpControllerSystem>((CE_DisableSystemProp){}),
+                    new CE_DisableSystemEvent<ECS_InteractiveSystem>((CE_DisableSystemProp){}),
 
                     new CE_SpawnDialogueTabEvent((CE_SpawnDialogueTabProp){
                         ._entityTmpName = "DialogueTab"
@@ -180,6 +175,7 @@ namespace omniscia::core {
                     new CE_EnableSystemEvent<ECS_PlayerControllerSystem>((CE_EnableSystemProp){}),
                     new CE_EnableSystemEvent<ECS_PlayerJumpSystem>((CE_EnableSystemProp){}),
                     new CE_EnableSystemEvent<ECS_PlayerTimeJumpControllerSystem>((CE_EnableSystemProp){}),
+                    new CE_EnableSystemEvent<ECS_InteractiveSystem>((CE_EnableSystemProp){}),
 
                     new CE_DestroyEntityEvent((CE_DestroyEntityProp) { ._entityTmpName = "DialogueTab" }),
                     new CE_DestroyEntityEvent((CE_DestroyEntityProp) { ._entityTmpName = "DialogueText" }),

@@ -36,13 +36,5 @@ void omniscia::core::ecs::ECS_SpriteAnimation::reset_animation() {
 }
 
 void omniscia::core::ecs::ECS_SpriteAnimation::update() {
-    ++_tick;
 
-    if(_tick % animation->_animationSpeed == 0) {
-        ++_currentFrame;
-
-        if(_currentFrame >= animation->get_frame_count()) {
-            _currentFrame = 0;
-        }
-    }
 };

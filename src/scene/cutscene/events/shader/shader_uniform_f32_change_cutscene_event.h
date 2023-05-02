@@ -24,6 +24,10 @@ namespace omniscia::core {
             CE_ShaderUniformF32ChangeEvent(const CE_ShaderUniformF32ChangeEvent&) {}
             void operator=(const CE_ShaderUniformF32ChangeEvent&) {}
 
+            void reset() override {
+                reset_base();
+            }
+
         public:
             CE_ShaderUniformF32ChangeEvent(const CE_ShaderUniformF32ChangeProp& data = CE_ShaderUniformF32ChangeProp{}) : CE_ShaderUniformF32ChangeProp(data), CE_Event(*(CE_Prop*)&data) {
                 

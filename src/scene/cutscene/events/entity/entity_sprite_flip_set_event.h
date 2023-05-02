@@ -22,6 +22,10 @@ namespace omniscia::core {
             CE_EntitySpriteFlipSetEvent(const CE_EntitySpriteFlipSetEvent&);
             void operator=(const CE_EntitySpriteFlipSetEvent&);
 
+            void reset() override {
+                reset_base();
+            }
+
         public:
             CE_EntitySpriteFlipSetEvent(const CE_EntitySpriteFlipSetProp& data = CE_EntitySpriteFlipSetProp{});
             

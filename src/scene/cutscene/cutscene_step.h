@@ -18,6 +18,13 @@ namespace omniscia::core {
                 _events.push_back(std::shared_ptr<CE_Event>((CE_Event*)event));
             }
 
+            void reset() {
+                _is_done_executing = false;
+
+                for(auto& e : _events)
+                    e->reset();
+            }
+
             CE_Step(const std::initializer_list<CE_Event*> &events) {
                 for(CE_Event* event : events)
                     _events.push_back(std::shared_ptr<CE_Event>(event));

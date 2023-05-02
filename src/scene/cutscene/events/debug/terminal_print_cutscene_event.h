@@ -20,6 +20,10 @@ namespace omniscia::core {
         public:
             CE_LogEvent(const CE_LogProp& data = CE_LogProp{});
             
+            void reset() override {
+                reset_base();
+            }
+
             void execute() override;
     };
 }

@@ -1,7 +1,7 @@
 #include "player.h"
 
 omniscia::core::Player::Player() : Entity() {
-    add<ECS_Positioned>(0.0f, 0.3f);
+    add<ECS_Positioned>(-1.3f, 1.3f);
     add<ECS_Velocity>(
         Vec2f{0.002f, -0.002f}, 
         Vec2f{0.0035f, -0.0035f});
@@ -10,7 +10,7 @@ omniscia::core::Player::Player() : Entity() {
     add<ECS_Friction>();
     add<ECS_Scaled>(0.2f, 0.2f);
     add<ECS_SpriteFlip>(false, false);
-    add<ECS_SpriteAnimation>("player-idle-animation");
+    add<ECS_SpriteAnimationAuto>("player-idle-animation");
     add<ECS_SpriteSheetRenderer>("player-spritesheet", 0);
     add<ECS_Gravity>();
     add<ECS_CameraFollow>(0.005f);

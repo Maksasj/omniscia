@@ -41,9 +41,24 @@ namespace omniscia::core::ecs {
     class ECS_Component {
         private:
 
+        protected:
+            bool _enabled;
+
         public:
             /** @brief Destroy the ecs component object */
             virtual ~ECS_Component() = default;
+
+            void enable() {
+                _enabled = true;
+            }
+
+            void disable() {
+                _enabled = false;
+            }
+
+            bool is_enabled() const {
+                return _enabled;
+            }
 
             /**
              * @brief Method used for time 

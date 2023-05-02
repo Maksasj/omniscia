@@ -19,6 +19,10 @@ namespace omniscia::core {
             CE_ShowDialogueTabEvent(const CE_ShowDialogueTabEvent&);
             void operator=(const CE_ShowDialogueTabEvent&);
 
+            void reset() override {
+                reset_base();
+            }
+
         public:
             CE_ShowDialogueTabEvent(const CE_ShowDialogueTabProp& data = CE_ShowDialogueTabProp{});
             

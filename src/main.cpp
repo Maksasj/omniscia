@@ -17,9 +17,10 @@ int main() {
     TextureManager::get_instance().add_asset("assets/textures/background/beach/sky2.png", "background_beach_sky2_layer");
     TextureManager::get_instance().add_asset("assets/textures/background/beach/terrain.png", "background_beach_terrain_layer");
     
-    TextureManager::get_instance().add_asset("assets/textures/background/dialogue.png", "dialogue");
-    TextureManager::get_instance().add_asset("assets/textures/background/grandpa_test_icon.png", "grandpa_test_icon");
-    TextureManager::get_instance().add_asset("assets/textures/background/player_test_icon.png", "player_test_icon");
+    TextureManager::get_instance().add_asset("assets/textures/ui/dialogue.png", "dialogue");
+    TextureManager::get_instance().add_asset("assets/textures/ui/icons/grandpa_test_icon.png", "grandpa_test_icon");
+    TextureManager::get_instance().add_asset("assets/textures/ui/icons/player_test_icon.png", "player_test_icon");
+    TextureManager::get_instance().add_asset("assets/textures/ui/popup/popups.png", "popups");
 
     TextureManager::get_instance().add_asset("assets/textures/background/menu/menu_background.png", "menu_background");
     TextureManager::get_instance().add_asset("assets/textures/background/menu/continue_button.png", "continue_button");
@@ -70,6 +71,9 @@ int main() {
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.5}, {0.0, 0.5}, 8, true, 24}), "crab-idle-animation");
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.5}, {0.0, 0.0}, 8, true, 12}), "crab-run-animation");
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.875}, 7, true, 24}), "grandpa-idle-animation");
+
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.0625}, {0.0, 0.9375}, 6, true, 8}), "use-popup-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.0625}, {0.0, 0.875}, 6, true, 8}), "speak-popup-animation");
     
     /* Sound assets */
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk1.wav", "walk_1");

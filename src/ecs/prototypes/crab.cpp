@@ -10,7 +10,7 @@ omniscia::core::Crab::Crab() : Entity() {
     add<ECS_Friction>();
     add<ECS_Scaled>(0.1f, 0.1f);
     add<ECS_SpriteFlip>(false, false);
-    add<ECS_SpriteAnimation>("crab-idle-animation");
+    add<ECS_SpriteAnimationAuto>("crab-idle-animation");
     add<ECS_SpriteSheetRenderer>("crab-spritesheet", 0);
     add<ECS_Gravity>();
     add<ECS_SoundEmitter>();
