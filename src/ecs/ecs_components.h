@@ -40,6 +40,10 @@
 #include "ecs_interactive_collision.h"
 #include "ecs_trigger_aabb_collider.h"
 #include "ecs_popup_renderer.h"
+
 #include "ecs_popup.h"
+#include "ecs_speak_popup.h"
+#include "ecs_use_popup.h"
+#include "ecs_checkpoint_popup.h"
 
 #endif

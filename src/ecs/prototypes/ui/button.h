@@ -18,7 +18,7 @@ namespace omniscia::core {
 
         struct _Renderer {
             std::string _texture = "";
-            u32 _layer = 0;
+            u32 _layer = 11;
         } _renderer;
 
         std::function<void(ECS_Button&)> _clickLambda = [](ECS_Button&) {};

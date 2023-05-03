@@ -17,6 +17,8 @@ namespace omniscia::core {
                 add_dynamic_entity<Grandpa>();
                 add_static_entity<BeachParallaxBackground>();
 
+                add_static_entity<Checkpoint>();
+
                 unbind();
             }
     };

@@ -246,7 +246,7 @@ void omniscia::Game::run() {
     glfwTerminate();
 }
 
-void omniscia::Game::switch_scene(std::string sceneId) {
+void omniscia::Game::switch_scene(const std::string& sceneId) {
     if(_activeScene != nullptr)
         _activeScene->unbind();
     
@@ -254,7 +254,7 @@ void omniscia::Game::switch_scene(std::string sceneId) {
     _activeScene->time_sync();
 }
 
-void omniscia::Game::start_cutscene(std::string cutsceneId) {
+void omniscia::Game::start_cutscene(const std::string& cutsceneId) {
     Cutscene* _activeCutscene = _cutscenes[cutsceneId];
     _activeCutscene->start();
     _activeCutscenes.push_back(_activeCutscene);

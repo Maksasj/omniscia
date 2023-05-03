@@ -11,7 +11,7 @@ omniscia::core::Player::Player() : Entity() {
     add<ECS_Scaled>(0.2f, 0.2f);
     add<ECS_SpriteFlip>(false, false);
     add<ECS_SpriteAnimationAuto>("player-idle-animation");
-    add<ECS_SpriteSheetRenderer>("player-spritesheet", 0);
+    add<ECS_SpriteSheetRenderer>("player-spritesheet", 1);
     add<ECS_Gravity>();
     add<ECS_CameraFollow>(0.005f);
     add<ECS_PlayerController>();

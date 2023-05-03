@@ -61,7 +61,7 @@ void omniscia::core::SceneLoader::load_scene(Scene& level, const std::string& pa
 
         tileGroup->add<ECS_Positioned>(0.0f, 0.0f);
         tileGroup->add<ECS_Scaled>(1.6f, 1.6f);
-        tileGroup->add<ECS_TilemapRenderer>(builder.get(), "beach_tiles", 0);
+        tileGroup->add<ECS_TilemapRenderer>(builder.get(), "beach_tiles", 9);
         staticEntities.push_back(tileGroup);
 
         u64 collisionBoxCount = 0;

@@ -8,6 +8,8 @@
 #include "grandpa.h"
 #include "player.h"
 
+#include "checkpoint.h"
+
 #include "button.h"
 #include "static_text.h"
 #include "dialogue_tab.h"

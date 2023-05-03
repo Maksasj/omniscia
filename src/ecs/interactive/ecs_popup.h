@@ -29,6 +29,7 @@ namespace omniscia::core::ecs {
 
             std::string _animationId;
 
+            Vec2f _offset;
             f32 _visibilityDistance;
 
             ECS_Index<ECS_Positioned> _posIndex;
@@ -37,7 +38,13 @@ namespace omniscia::core::ecs {
             void time_sync() override;
             void reindex(void* parent) override;
 
-            ECS_Popup(const f32& visibilityDistance, const std::string& popupAnimation, const f32& cooldown, const std::function<void(void)>& lambda);
+            ECS_Popup(  const f32& visibilityDistance,
+                        const f32& scale,
+                        const Vec2f& offset,
+                        const std::string& textureId,
+                        const std::string& popupAnimation,
+                        const f32& cooldown,
+                        const std::function<void(void)>& lambda);
 
             void update() override;
 

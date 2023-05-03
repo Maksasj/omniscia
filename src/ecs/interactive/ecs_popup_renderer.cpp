@@ -6,6 +6,8 @@ omniscia::core::ecs::ECS_PopupRenderer::ECS_PopupRenderer(const std::string& tex
             ECS_ProRenderer(RenderStagePool::get_instance().get_stage_by_name("MainStage"), layer) {
                 
     _offset = Vec2f{0.0f, 0.0f};
+
+    _scale = 1.0f;
    
     ECS_ProRendererSystem::get_instance().bind_component(this);
 };
@@ -22,7 +24,6 @@ void omniscia::core::ecs::ECS_PopupRenderer::reindex(void* parent) {
     _animationComp.reindex(parent);
 
     _posIndex = _parent->index<ECS_Positioned>();
-    _scaleIndex = _parent->index<ECS_Scaled>();
 }
 
 void omniscia::core::ecs::ECS_PopupRenderer::render() {
@@ -34,7 +35,7 @@ void omniscia::core::ecs::ECS_PopupRenderer::render() {
         return;
 
     Vec3f position = {0.0, 0.0, 0.0};
-    Vec2f scale = {1.0, 1.0};
+    Vec2f scale = {_scale, _scale};
     Vec2f spriteFrameSize = {1.0, 1.0};
     Vec2f spriteFrameOffset = {0.0, 0.0};
 
@@ -47,20 +48,13 @@ void omniscia::core::ecs::ECS_PopupRenderer::render() {
         position = positionComp.get_pos();
     }
 
-    if(_scaleIndex.is_success()) {
-        ECS_Scaled &scaleComp = _parent->ref_unsafe(_scaleIndex);
-
-        scale = scaleComp.get_scale();
-        scale *= 0.5f;
-    }
-
     spriteFrameSize = _animationComp.get_frame_size();
     spriteFrameOffset = _animationComp.get_frame_offset();
 
     position.x += _offset.x;
     position.y += _offset.y;
 
-    shader->set_uniform_f32("transparency", 1.0f);
+    shader->set_uniform_f32("transparency", _transparency);
     _sprite.render(shader, position, 0.0f, scale, spriteFrameSize, spriteFrameOffset, horizontalFlip, verticalFlip);
     shader->set_uniform_f32("transparency", 1.0f);
 }

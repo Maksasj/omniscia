@@ -3,7 +3,7 @@
 #include "game.h"
 
 omniscia::core::Grandpa::Grandpa() : Entity() {
-    add<ECS_Positioned>(0.0f, 0.3f);
+    add<ECS_Positioned>(1.2f, 0.3f);
     add<ECS_Velocity>(
         Vec2f{0.002f, -0.002f}, 
         Vec2f{0.0035f, -0.0035f});
@@ -20,7 +20,5 @@ omniscia::core::Grandpa::Grandpa() : Entity() {
     add<ECS_2DPhysicsRigidbody>();
 
     add<ECS_TriggerAABBCollider>(CollisionMask_None, CollisionMask_Player);
-    add<ECS_Popup>(0.3f, "speak-popup-animation", 1000.0f, []() {
-        Game::get_instance().start_cutscene("test_dialogue_cutscene");
-    });
+    add<ECS_SpeakPopup>("test_dialogue_cutscene");
 }

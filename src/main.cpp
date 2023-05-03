@@ -7,9 +7,12 @@ int main() {
     /* Texture assets */
     TextureManager::get_instance().add_asset("assets/textures/texture.png", "factorio_girl_texture");
     TextureManager::get_instance().add_asset("assets/textures/jojo_texture.png", "jojo_texture");
+
     TextureManager::get_instance().add_asset("assets/textures/entities/characters/player/player.png", "player-spritesheet");
     TextureManager::get_instance().add_asset("assets/textures/entities/characters/grandpa/grandpa.png", "grandpa-spritesheet");
     TextureManager::get_instance().add_asset("assets/textures/entities/crab/crab.png", "crab-spritesheet");
+    TextureManager::get_instance().add_asset("assets/textures/entities/checkpoint/checkpoint-spritesheet.png", "checkpoint-spritesheet");
+
     TextureManager::get_instance().add_asset("assets/textures/tiles/beach/beach_tiles.png", "beach_tiles");
     TextureManager::get_instance().add_asset("assets/textures/background/beach/beach.png", "background_beach_beach_layer");
     TextureManager::get_instance().add_asset("assets/textures/background/beach/grass_overlay.png", "background_beach_grass_overlay_layer");
@@ -74,6 +77,9 @@ int main() {
 
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.0625}, {0.0, 0.9375}, 6, true, 8}), "use-popup-animation");
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.0625}, {0.0, 0.875}, 6, true, 8}), "speak-popup-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.0625}, {0.0, 0.75}, 6, true, 8}), "save-popup-animation");
+
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 1.0}, {0.0, 0.0}, 6, true, 12}), "checkpoint-animation");
     
     /* Sound assets */
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk1.wav", "walk_1");

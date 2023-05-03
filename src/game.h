@@ -99,9 +99,9 @@ namespace omniscia {
              * 
              * @param sceneId scene id
             */
-            void switch_scene(std::string sceneId);
+            void switch_scene(const std::string& sceneId);
 
-            void start_cutscene(std::string cutsceneId);
+            void start_cutscene(const std::string& cutsceneId);
 
             void start_cutscene(Cutscene* cutscenePtr);
 
