@@ -7,6 +7,10 @@
 #include <iostream>
 #include <sstream>
 
+#include "omni_serializer.h"
+#include "level_data_serializable.h"
+#include "collisionbox_data_serializable.h"
+
 #include "../level_editor_properties.h"
 #include "tile_group_data.h"
 

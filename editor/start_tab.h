@@ -29,7 +29,7 @@ namespace omniscia_editor::editor {
                 if(ImGui::BeginTabItem("Main")) {
                     ImGui::TextColored(ImVec4(1.0, 1.0, 1.0, 1.0), "Hello world!");
                     ImGui::EndTabItem();
-                    ImGui::TextColored(ImVec4(1.0, 1.0, 1.0, 0.6), "Version 0.0.%d", _OMNISCIA_EDITOR_VERSION_);
+                    ImGui::TextColored(ImVec4(1.0, 1.0, 1.0, 0.6), "Version 0.0.%llu", get_editor_version());
                 }
             };
     };

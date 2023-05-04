@@ -1,0 +1,3 @@
+file(GLOB SRC_FILES "*.cpp")
+
+add_library(omni_types STATIC ${SRC_FILES})

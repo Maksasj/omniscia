@@ -4,17 +4,22 @@
 #include <vector>
 #include <algorithm>
 
-#include "collsion_box_data.h"
-#include "tile_data.h"
+#include "omni_serializer.h"
+#include "level_data_serializable.h"
+#include "collisionbox_data_serializable.h"
+
 #include "../types.h"
 #include "../image_loading.h"
 
 namespace omniscia_editor::level_editor {
+    using namespace omniscia::core;
+    using namespace omni::serializer;
+
     struct TileGroup {
         char _name[256];
-        ImVec4 _associatedColor;
-        std::vector<Tile> tiles;
-        std::vector<CollisionBox> _collisionBoxes;
+        Vec4f _associatedColor;
+        std::vector<TileData> tiles;
+        std::vector<CollisionBoxData> _collisionBoxes;
 
         bool _tileSetLoaded;
         i32 _tileSetImageWidth;

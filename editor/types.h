@@ -1,7 +1,7 @@
 #ifndef _OMNISCIA_EDITOR_TYPES_H_
 #define _OMNISCIA_EDITOR_TYPES_H_
 
-#include "../src/types.tpp"
+#include "types.tpp"
 
 // using u8 = unsigned char;
 // using u16 = unsigned short;
