@@ -107,6 +107,10 @@ namespace omniscia {
 
             void update_cutscenes();
 
+            void save_dynamic_checkpoint();
+
+            void load_dynamic_checkpoint();
+
             /**
              * @brief Get singleton instance of the game class
              * 

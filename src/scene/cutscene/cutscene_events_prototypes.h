@@ -21,5 +21,8 @@
 #include "entity_sprite_flip_set_event.h"
 #include "entity_spriterenderer_set_texture_event.h"
 #include "destroy_entity_cutscene_event.h"
+#include "scene_save_checkpoint.h"
+#include "scene_load_checkpoint.h"
+#include "run_cutscene_cutscene_event.h"
 
 #endif

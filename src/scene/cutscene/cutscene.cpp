@@ -28,9 +28,8 @@ void omniscia::core::Cutscene::start() {
     _ended = false;
     _currentStep = _steps.begin();
 
-    for(auto& step : _steps) {
+    for(auto& step : _steps)
         step.reset();
-    }
 }
 
 bool omniscia::core::Cutscene::is_ended() const {
@@ -44,7 +43,7 @@ void omniscia::core::Cutscene::update() {
     if(_ended)
         return;
 
-    if(_currentStep == _steps.end()) {
+    if(_currentStep >= _steps.end()) {
         _ended = true;
         return;
     }

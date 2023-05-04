@@ -155,6 +155,9 @@ void omniscia::Game::run() {
         DialogueStepData("grandpa_test_icon", -1, "Lol."),
     });
 
+    _cutscenes["scene_save_checkpoint_cutscene"] = new SaveCheckpointCutscene(&transitionStageShader);
+    _cutscenes["scene_load_checkpoint_cutscene"] = new LoadCheckpointCutscene(&transitionStageShader);
+
     DebugUI::get_instance().get_metrics()._timeMaxLineLength = 5000;
 
     /* ImGui */
@@ -268,12 +271,14 @@ void omniscia::Game::start_cutscene(Cutscene* cutscenePtr) {
 void omniscia::Game::update_cutscenes() {
     _activeCutscenes.erase(std::remove_if(_activeCutscenes.begin(), _activeCutscenes.end(), 
         [](Cutscene* cutscene) { 
+            if(cutscene == nullptr) return true;
+
             return cutscene->is_ended(); 
         }), _activeCutscenes.end());
 
-    for(auto& cutscene : _activeCutscenes) {
-        cutscene->update();
-    }
+    const i32 size = _activeCutscenes.size();
+    for(i32 i = 0; i < size; ++i)
+        _activeCutscenes[i]->update();
 }
 
 omniscia::Game& omniscia::Game::get_instance() {
@@ -287,4 +292,18 @@ omniscia::core::TimeLessNessContainer<omniscia::core::Scene::SceneDynamic, 5000>
 
 omniscia::core::Scene* omniscia::Game::get_active_scene() {
     return _activeScene;
+}
+
+void omniscia::Game::save_dynamic_checkpoint() {
+    if(_activeScene == nullptr) 
+        return;
+    
+    _activeScene->save_dynamic_checkpoint();
+}
+
+void omniscia::Game::load_dynamic_checkpoint() {
+    if(_activeScene == nullptr) 
+        return;
+    
+    _activeScene->load_dynamic_checkpoint();
 }

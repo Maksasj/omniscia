@@ -51,6 +51,10 @@ namespace omniscia::core {
             */
             SceneStatic staticPart;
 
+            /**
+             * @brief Checkpoint dynamic part
+            */
+            SceneDynamic checkpointDynamicPart;
         public:
             friend class SceneLoader;
 
@@ -60,6 +64,10 @@ namespace omniscia::core {
              * @return SceneDynamic new dynamic scene part instance
             */
             SceneDynamic clone();
+
+            void load_dynamic_checkpoint();
+
+            void save_dynamic_checkpoint();
 
             /**
              * @brief Unbinds all components from all systems

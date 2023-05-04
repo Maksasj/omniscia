@@ -42,3 +42,11 @@ omniscia::core::Scene::SceneDynamic& omniscia::core::Scene::ref_dynamic_part() {
 omniscia::core::Scene::SceneStatic& omniscia::core::Scene::ref_static_part() {
     return staticPart;
 }
+
+void omniscia::core::Scene::load_dynamic_checkpoint() {
+    //dynamicPart = checkpointDynamicPart;
+}
+
+void omniscia::core::Scene::save_dynamic_checkpoint() {
+    //checkpointDynamicPart = clone();
+}
