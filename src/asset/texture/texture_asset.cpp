@@ -1,6 +1,6 @@
 #include "texture_asset.h"
 
-u32 omniscia::core::TextureAsset::_count = 0;
+omni::types::u32 omniscia::core::TextureAsset::_count = 0;
 
 
 omniscia::core::TextureAsset::TextureAsset() { ++_count; }
@@ -38,6 +38,6 @@ void omniscia::core::TextureAsset::load_asset() {
     _asset.unbind();
 }
 
-u32 omniscia::core::TextureAsset::get_count() {
+omni::types::u32 omniscia::core::TextureAsset::get_count() {
     return _count;
 }

@@ -27,6 +27,7 @@
 #include "debug_ui.h"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
     using namespace omniscia::core;
 
     class ECS_Button : public ECS_Component {

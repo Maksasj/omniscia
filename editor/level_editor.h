@@ -14,6 +14,8 @@
 #include "gfx.h"
 
 namespace omniscia_editor::level_editor {
+    using namespace omni::types;
+
     class LevelEditor : public LevelEditorProperties {
         private:
             LevelData _levelData;

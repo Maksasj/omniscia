@@ -1,6 +1,6 @@
 #include "timesystem.h"
 
-f32 omniscia::core::Time::get_delta_time() {
+omni::types::f32 omniscia::core::Time::get_delta_time() {
     return _deltaTime * 1000.0;
 }
 

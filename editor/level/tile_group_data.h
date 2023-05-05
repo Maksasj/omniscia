@@ -12,7 +12,7 @@
 #include "../image_loading.h"
 
 namespace omniscia_editor::level_editor {
-    using namespace omniscia::core;
+    using namespace omni::types;
     using namespace omni::serializer;
 
     struct TileGroup {

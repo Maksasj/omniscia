@@ -6,6 +6,8 @@
 #include "scene.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     class SettingsScene : public Scene {
         public:
             SettingsScene() : Scene() {

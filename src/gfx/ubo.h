@@ -21,6 +21,7 @@
 #include "instancing_data.h"
 
 namespace omniscia::gfx {
+    using namespace omni::types;
 
     class UBO : public BO {
         private:

@@ -22,6 +22,7 @@
 #include "entity.h"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
 
     /**
      * @brief ECS_Friction - component used for

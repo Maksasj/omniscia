@@ -20,6 +20,8 @@
 #include "gfx.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     /**
      * @brief Enum used to identify that 
      * action player wants to do

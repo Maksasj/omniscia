@@ -1,8 +1,6 @@
 #include "ebo.h"
 
-omniscia::gfx::EBO::EBO(const std::vector<u32>& indices) {
-    using namespace omniscia::core;
-    
+omniscia::gfx::EBO::EBO(const std::vector<u32>& indices) {    
     glGenBuffers(1, &_ID);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ID);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(u32), indices.data(), GL_STATIC_DRAW);

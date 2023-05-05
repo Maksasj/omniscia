@@ -7,7 +7,7 @@
 #include "gfx.h"
 
 namespace omniscia::gfx::monitor {
-    using namespace omniscia::core;
+    using namespace omni::types;
 
     class Monitor {
         private:    

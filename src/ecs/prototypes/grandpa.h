@@ -16,6 +16,8 @@
 #include "entity.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     /**
      * @brief Grandpa - prototype class used 
      * for creating grandpa entity instance

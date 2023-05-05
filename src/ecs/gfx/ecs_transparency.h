@@ -10,6 +10,8 @@
 #include "entity.h"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
+    
     class ECS_Transparency : public ECS_Component {
         private:
             f32 _transparency;

@@ -7,6 +7,8 @@
 #include "types.tpp"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     struct CE_Prop {
         bool _pauseBeforeStart = false;
         f32 _pauseTimeBeforeStart = 0.0f;

@@ -29,8 +29,9 @@
 #include "shader.h"
 
 namespace omniscia::core::ecs {
-    using namespace omniscia::gfx::sprite;
+    using namespace omni::types;
     using namespace omniscia::gfx; 
+    using namespace omniscia::gfx::sprite;
 
     /**
      * @brief ECS_SpriteSheetRenderer - component that 

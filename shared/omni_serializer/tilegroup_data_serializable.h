@@ -8,6 +8,8 @@
 #include "collisionbox_data_serializable.h"
 
 namespace omni::serializer {
+    using namespace omni::types;
+
     struct SerializableTileGroupData : public core::Serializable {
         SerializableString _name;
         omni::serializer::Serializable<Vec4f> _tileGroupAssociatedColor;

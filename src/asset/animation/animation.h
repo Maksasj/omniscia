@@ -16,6 +16,8 @@
 #include "types.tpp"
 
 namespace omniscia::core {
+    using namespace omni::types;
+
     /**
      * @brief
      * Animation - class used for storing all information related to a single 

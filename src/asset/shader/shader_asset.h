@@ -16,6 +16,8 @@
 #include "asset.tpp"
 
 namespace omniscia::core {
+    using namespace omni::types;
+
     /**
      * @brief ShaderAsset - class used for storing shader asset,
      * Stores file path to the shader asset, as well as shader type

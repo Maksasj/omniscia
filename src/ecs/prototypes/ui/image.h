@@ -5,6 +5,8 @@
 #include "entity.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     struct ImageProp {
         std::string _texture = "";
         u32 _layer = 11;

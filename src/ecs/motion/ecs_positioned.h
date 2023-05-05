@@ -21,6 +21,8 @@
 #include "entity.h"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
+    
     /**
      * @brief ECS_Positioned - component that
      * stores entity position, used by a lot of

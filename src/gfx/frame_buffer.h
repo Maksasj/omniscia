@@ -18,6 +18,8 @@
 #include "bo.h"
 
 namespace omniscia::gfx {
+    using namespace omni::types;
+
     /**
      * @brief FrameBuffer - frame buffer opengl object,
      * used storing frame data, used by stage rendering

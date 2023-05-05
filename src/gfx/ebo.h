@@ -14,10 +14,13 @@
 
 #include <vector>
 
+#include "types.tpp"
 #include "gfx.h"
 #include "bo.h"
 
 namespace omniscia::gfx {
+    using namespace omni::types;
+
     /**
      * @brief EBO - element buffer object, primary 
      * used for storing opengl indices buffer

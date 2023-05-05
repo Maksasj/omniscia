@@ -20,6 +20,8 @@
 #include "debug_ui.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     /**
      * @brief SoundPool - class used for storing all sounds, manages
      * sound play time, positioning, auto loading and unloading

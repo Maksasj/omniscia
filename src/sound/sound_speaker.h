@@ -21,6 +21,8 @@
 #include "types.tpp"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     /**
      * @brief SoundSpeaker - class used to play sound, used
      * by Sound emitter component

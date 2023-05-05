@@ -15,6 +15,8 @@
 #include "types.tpp"
 
 namespace omniscia::gfx {
+    using namespace omni::types;
+
     /**
      * @brief BO - buffer object, main opengl 
      * object, used for VBO, EBO, Texture buffer and etc. 

@@ -18,7 +18,9 @@
 #include "../types.h"
 
 namespace omniscia_editor::editor {
+    using namespace omni::types;
     namespace fs = std::filesystem;
+    
     class FileExplorer {
         private:
             std::filesystem::path _currentPath;

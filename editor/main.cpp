@@ -2,6 +2,8 @@
 #include "editor.h"
 
 int main(void) {
+    using namespace omni::types;
+
     GLFWwindow* window;
 
     if (!glfwInit()) return -1;

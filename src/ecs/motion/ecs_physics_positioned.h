@@ -20,6 +20,8 @@
 #include "ecs_system.h" 
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
+    
     /**
      * @brief ECS_PhysicsPositioned - component used
      * for storing temporary position of the enitity

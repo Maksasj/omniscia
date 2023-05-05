@@ -18,6 +18,8 @@
 #include "manager.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+
     /**
      * @brief 
      * ShaderManager - class used for storing ShaderAsset 

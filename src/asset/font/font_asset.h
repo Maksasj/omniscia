@@ -4,6 +4,8 @@
 #include "asset.tpp"
 
 namespace omniscia::core {
+    using namespace omni::types;
+
     struct FontAssetProp {
         i8 _startCharacter;
         i8 _charactersPerRow;

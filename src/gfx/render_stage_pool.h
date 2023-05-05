@@ -6,6 +6,7 @@
 #include "render_stage.h"
 
 namespace omniscia::gfx {
+    using namespace omni::types;
     using namespace omniscia::gfx::sprite;
     using namespace omniscia::gfx::texture;
 

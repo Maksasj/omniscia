@@ -9,6 +9,8 @@
 #include "manager.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+
     class SaveManager : Manager<SaveAsset> {
         private:
             SaveManager();

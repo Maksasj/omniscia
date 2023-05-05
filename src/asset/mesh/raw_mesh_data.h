@@ -24,6 +24,8 @@
 #include "gfx.h"
 
 namespace omniscia::gfx::sprite {
+    using namespace omni::types;
+
     /**
      * @brief RawMeshData - class used for storing all 
      * Vertices and indices of the mesh

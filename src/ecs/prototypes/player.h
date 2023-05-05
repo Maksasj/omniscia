@@ -16,6 +16,8 @@
 #include "entity.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     /**
      * @brief Player - prototype class used 
      * for creating player entity instance

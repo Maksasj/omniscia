@@ -15,6 +15,8 @@
 #include "types.tpp"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     /**
      * @brief Container used for storing, and 
      * automaticlly popping values from back

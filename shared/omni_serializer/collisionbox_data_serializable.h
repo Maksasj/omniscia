@@ -6,7 +6,7 @@
 #include "omni_serializer.h"
 
 namespace omni::serializer {
-    using namespace omniscia::core;
+    using namespace omni::types;
 
     struct CollisionBoxData {
         char _name[256];
@@ -20,7 +20,7 @@ namespace omni::serializer {
             name.copy(_name, name.size());
         }
 
-        CollisionBoxData(std::string name, f32 x, f32 y, omniscia::core::Vec2f rangesX, omniscia::core::Vec2f rangesY) {
+        CollisionBoxData(std::string name, f32 x, f32 y, Vec2f rangesX, Vec2f rangesY) {
             name.copy(_name, name.size());
 
             _position.x = x;

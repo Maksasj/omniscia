@@ -6,6 +6,8 @@
 #include "types.tpp"
 
 namespace omniscia::gfx {
+    using namespace omni::types;
+
     struct InstancingData {
         Vec2f _position;
         Vec2f _scale;

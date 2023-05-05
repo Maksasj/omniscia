@@ -17,6 +17,7 @@
 #include "entity.h"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
     using namespace omniscia::core;
 
     class ECS_InteractiveCollision : public ECS_Interactive {

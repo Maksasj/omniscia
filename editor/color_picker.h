@@ -7,6 +7,8 @@
 #include "types.h"
 
 namespace omniscia_editor::level_editor {
+    using namespace omni::types;
+
     void color_picker(std::string _label, ImVec4& colorTarget);
 }
 

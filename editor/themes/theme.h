@@ -3,12 +3,17 @@
 
 #include <string>
 
+#include "types.tpp"
 #include "../gfx.h"
 
 namespace omniscia_editor::level_editor::themes {
+    using namespace omni::types;
+
     class Theme {
-        std::string _name;
-        std::string _author;
+        private:
+            std::string _name;
+            std::string _author;
+            
         public:
             Theme(std::string name, std::string author) : _name(name), _author(author) {
 

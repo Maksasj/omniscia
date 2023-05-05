@@ -18,6 +18,8 @@
 #include "types.tpp"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
+    
     /**
      * @brief ECS_Index - class used for 
      * storing index of the specific

@@ -20,6 +20,8 @@
 #include "sound_fx.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+
     /**
      * @brief 
      * SoundManager - class used for storing SoundAsset 

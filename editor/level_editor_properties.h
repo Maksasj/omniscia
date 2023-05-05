@@ -5,6 +5,8 @@
 #include "gfx.h"
 
 namespace omniscia_editor::level_editor {
+    using namespace omni::types;
+
     struct LevelEditorProperties {
         bool _renderGrid;
         bool _renderAxis;
@@ -37,10 +39,10 @@ namespace omniscia_editor::level_editor {
         f32 _brushTileDefaultWidth;
         f32 _brushTileDefaultHeight;
 
-        omniscia::core::Vec2f _brushActiveTileAtlasCordsTopRight;
-        omniscia::core::Vec2f _brushActiveTileAtlasCordsBottomRight;
-        omniscia::core::Vec2f _brushActiveTileAtlasCordsBottomLeft;
-        omniscia::core::Vec2f _brushActiveTileAtlasCordsTopLeft;
+        Vec2f _brushActiveTileAtlasCordsTopRight;
+        Vec2f _brushActiveTileAtlasCordsBottomRight;
+        Vec2f _brushActiveTileAtlasCordsBottomLeft;
+        Vec2f _brushActiveTileAtlasCordsTopLeft;
 
         i32 _selectedTileGroup;
         i32 _selectedCollisionBox;

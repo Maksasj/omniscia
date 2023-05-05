@@ -64,6 +64,6 @@ void omniscia::gfx::sprite::InstancingSprite::render(const Shader *shader, const
     shader->set_uniform_i32("isInstancing", 0);
 }
 
-u64 omniscia::gfx::sprite::InstancingSprite::byte_size() const { 
+omni::types::u64 omniscia::gfx::sprite::InstancingSprite::byte_size() const { 
     return sizeof(Texture*) + _spriteMesh.byte_size();
 }

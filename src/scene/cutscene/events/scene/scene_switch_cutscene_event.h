@@ -6,6 +6,8 @@
 #include "cutscene_event.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     struct CE_SceneSwitchProp {
         CE_Prop _base;
         std::string _sceneName = "";

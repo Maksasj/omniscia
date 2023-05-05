@@ -5,6 +5,8 @@
 #include "cutscene_events_prototypes.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     struct DialogueStepData {
         std::string _speakerIconTexture;
         i32 _side;

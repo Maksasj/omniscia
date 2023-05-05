@@ -15,6 +15,8 @@
 #include "tile_group_data.h"
 
 namespace omniscia_editor::level_editor {
+    using namespace omni::types;
+
     struct LevelData {
         std::vector<TileGroup> tileGroups;
 

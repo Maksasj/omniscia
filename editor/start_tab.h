@@ -7,13 +7,15 @@
 #include "gfx.h"
 
 namespace omniscia_editor::editor {
+    using namespace omni::types;
+
     class StartTab {
         private:
             void text_centered(const char* text) const {
-                float win_width = ImGui::GetWindowSize().x;
-                float text_width = ImGui::CalcTextSize(text).x;
-                float text_indentation = (win_width - text_width) * 0.5f;
-                float min_indentation = 20.0f;
+                f32 win_width = ImGui::GetWindowSize().x;
+                f32 text_width = ImGui::CalcTextSize(text).x;
+                f32 text_indentation = (win_width - text_width) * 0.5f;
+                f32 min_indentation = 20.0f;
 
                 if (text_indentation <= min_indentation)
                     text_indentation = min_indentation;

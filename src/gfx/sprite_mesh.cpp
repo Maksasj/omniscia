@@ -54,10 +54,10 @@ void omniscia::gfx::sprite::SpriteMesh::bind() const {
     _vao.bind();
 }
 
-u32 omniscia::gfx::sprite::SpriteMesh::get_indices_count() const {
+omni::types::u32 omniscia::gfx::sprite::SpriteMesh::get_indices_count() const {
     return _indicesSize;
 }
 
-u64 omniscia::gfx::sprite::SpriteMesh::byte_size() const {
+omni::types::u64 omniscia::gfx::sprite::SpriteMesh::byte_size() const {
     return sizeof(SpriteMesh);
 }

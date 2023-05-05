@@ -9,6 +9,8 @@
 #include "tilegroup_data_serializable.h"
 
 namespace omni::serializer {
+    using namespace omni::types;
+    
     struct SerializableLevelData : public core::Serializable {
         omni::serializer::Serializable<f32> _screenBoxWidth;
         omni::serializer::Serializable<f32> _screenBoxHeight;

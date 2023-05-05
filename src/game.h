@@ -51,6 +51,7 @@
 #include "timelessness_container.tpp"
 
 namespace omniscia {
+    using namespace omni::types;
     using namespace omniscia::core;
     using namespace omniscia::gfx;
 

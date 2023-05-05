@@ -268,6 +268,6 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
     unbind();
 }
 
-u64 omniscia::gfx::sprite::Sprite::byte_size() const { 
+omni::types::u64 omniscia::gfx::sprite::Sprite::byte_size() const { 
     return sizeof(Texture*) + _spriteMesh.byte_size();
 }

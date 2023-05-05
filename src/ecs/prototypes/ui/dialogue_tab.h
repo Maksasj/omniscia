@@ -5,6 +5,8 @@
 #include "entity.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     class DialogueTab : public Entity {
         private:
 

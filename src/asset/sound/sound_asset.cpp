@@ -1,6 +1,6 @@
 #include "sound_asset.h"
 
-u32 omniscia::core::SoundAsset::_count = 0;
+omni::types::u32 omniscia::core::SoundAsset::_count = 0;
 
 omniscia::core::SoundAsset::SoundAsset() {
     ++_count;
@@ -14,6 +14,6 @@ void omniscia::core::SoundAsset::load_asset() {
     _asset.load(_filePath);
 }
 
-u32 omniscia::core::SoundAsset::get_count() {
+omni::types::u32 omniscia::core::SoundAsset::get_count() {
     return _count;
 }

@@ -17,6 +17,7 @@
 #include "types.tpp"
 
 namespace omniscia::core {
+    using namespace omni::types;
 
     /**
      * @brief 

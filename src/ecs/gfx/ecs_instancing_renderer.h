@@ -19,8 +19,9 @@
 #include "ecs_transparency.h"
 
 namespace omniscia::core::ecs {
-    using namespace omniscia::gfx::sprite;
+    using namespace omni::types;
     using namespace omniscia::gfx; 
+    using namespace omniscia::gfx::sprite;
 
     class ECS_InstancingRenderer : public ECS_ProRenderer {
         protected:

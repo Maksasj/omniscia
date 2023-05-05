@@ -21,6 +21,8 @@
 #include "entity.h"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
+    
     /**
      * @brief ECS_Scaled - component that
      * stores entity scale, used by a lot of

@@ -15,6 +15,8 @@
 #include "entity.h"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
+    
     /**
      * @brief CollisionMask - enum that describes different
      * collision layers, used by collision detection components (aabb)

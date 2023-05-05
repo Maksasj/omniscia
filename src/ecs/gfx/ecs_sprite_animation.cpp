@@ -18,11 +18,11 @@ std::string omniscia::core::ecs::ECS_SpriteAnimation::get_animation() const {
     return _animationId;
 }
 
-omniscia::core::Vec2f omniscia::core::ecs::ECS_SpriteAnimation::get_frame_size() const {
+omni::types::Vec2f omniscia::core::ecs::ECS_SpriteAnimation::get_frame_size() const {
     return animation->get_frame_size();
 }
 
-omniscia::core::Vec2f omniscia::core::ecs::ECS_SpriteAnimation::get_frame_offset() const {
+omni::types::Vec2f omniscia::core::ecs::ECS_SpriteAnimation::get_frame_offset() const {
     return animation->get_frame_offset(_currentFrame);
 }
 

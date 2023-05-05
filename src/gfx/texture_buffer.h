@@ -20,7 +20,7 @@
 #include "bo.h"
 
 namespace omniscia::gfx::texture {
-    using namespace omniscia::core;
+    using namespace omni::types;
 
     /**
      * @brief TextureBuffer - class used for

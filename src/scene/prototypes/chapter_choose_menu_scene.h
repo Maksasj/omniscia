@@ -7,6 +7,8 @@
 #include "scene.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     class ChapterChooseMenuScene : public Scene {
         public:
             ChapterChooseMenuScene();

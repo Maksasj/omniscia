@@ -93,20 +93,20 @@ void omniscia::core::ecs::ECS_AABBCollider::collide(ECS_AABBCollider* another) {
     }
 
     /* Calculate collision point */
-    float intersectionX1 = std::max(minX1, minX2);
-    float intersectionX2 = std::min(maxX1, maxX2);
-    float intersectionY1 = std::max(minY1, minY2);
-    float intersectionY2 = std::min(maxY1, maxY2);
-    float intersectionCenterX = (intersectionX1 + intersectionX2) / 2.0f;
-    float intersectionCenterY = (intersectionY1 + intersectionY2) / 2.0f;
+    f32 intersectionX1 = std::max(minX1, minX2);
+    f32 intersectionX2 = std::min(maxX1, maxX2);
+    f32 intersectionY1 = std::max(minY1, minY2);
+    f32 intersectionY2 = std::min(maxY1, maxY2);
+    f32 intersectionCenterX = (intersectionX1 + intersectionX2) / 2.0f;
+    f32 intersectionCenterY = (intersectionY1 + intersectionY2) / 2.0f;
 
     /* Calculate collision side */
     CollisionSide tmpCollsionSide = NONE;
-    float xOverlapDistLeft = maxX2 - minX1;
-    float xOverlapDistRight = maxX1 - minX2;
-    float yOverlapDistTop = maxY2 - minY1;
-    float yOverlapDistBottom = maxY1 - minY2;
-    float minOverlap = std::min({xOverlapDistLeft, xOverlapDistRight, yOverlapDistTop, yOverlapDistBottom});
+    f32 xOverlapDistLeft = maxX2 - minX1;
+    f32 xOverlapDistRight = maxX1 - minX2;
+    f32 yOverlapDistTop = maxY2 - minY1;
+    f32 yOverlapDistBottom = maxY1 - minY2;
+    f32 minOverlap = std::min({xOverlapDistLeft, xOverlapDistRight, yOverlapDistTop, yOverlapDistBottom});
 
     if (minOverlap == xOverlapDistLeft) {
         tmpCollsionSide = CollisionSide::LEFT;
@@ -132,7 +132,7 @@ bool omniscia::core::ecs::ECS_AABBCollider::is_colliding() const {
     return _colliding;
 }
 
-u64 omniscia::core::ecs::ECS_AABBCollider::get_collision_layer() const {
+omni::types::u64 omniscia::core::ecs::ECS_AABBCollider::get_collision_layer() const {
     return _collisionLayer;
 }
 
@@ -140,7 +140,7 @@ omniscia::core::ecs::ECS_AABBCollider* omniscia::core::ecs::ECS_AABBCollider::ge
     return _collidedWith;
 }
 
-omniscia::core::Vec2f omniscia::core::ecs::ECS_AABBCollider::get_collision_point() const {
+omni::types::Vec2f omniscia::core::ecs::ECS_AABBCollider::get_collision_point() const {
     return _collisionPoint;
 }
 

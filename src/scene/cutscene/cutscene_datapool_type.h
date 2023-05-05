@@ -5,6 +5,8 @@
 #include <memory>
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     using CutsceneDataPoolType = std::unordered_map<std::string, std::shared_ptr<void>>;
 }
 

@@ -5,11 +5,11 @@ omniscia::core::ecs::ECS_PhysicsPositioned::ECS_PhysicsPositioned() {
     _oldPosition = Vec3f{0.0f, 0.0f, 0.0f};
 }
 
-omniscia::core::Vec3f omniscia::core::ecs::ECS_PhysicsPositioned::get_old_position() const {
+omni::types::Vec3f omniscia::core::ecs::ECS_PhysicsPositioned::get_old_position() const {
     return _oldPosition;
 }
 
-omniscia::core::Vec3f omniscia::core::ecs::ECS_PhysicsPositioned::get_new_position() const {
+omni::types::Vec3f omniscia::core::ecs::ECS_PhysicsPositioned::get_new_position() const {
     return _newPosition;
 }
 

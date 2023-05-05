@@ -22,6 +22,8 @@
 #include "build_in_mesh_data.h"
 
 namespace omniscia::gfx {
+    using namespace omni::types;
+
     /**
      * @brief RawMeshDataBuilder - class used for building RawMeshData,
      * mesh merging, combing. Primary used for tile mesh building

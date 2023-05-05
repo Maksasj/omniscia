@@ -7,6 +7,8 @@
 #include "manager.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+
     class LevelAssetManager : Manager<LevelAsset> {
         private:
             LevelAssetManager() {};

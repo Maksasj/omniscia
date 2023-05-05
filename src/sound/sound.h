@@ -17,6 +17,8 @@
 #include "types.tpp"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     /**
      * @brief Sound - class used for playing sounds,
      * stores miniaudio sound instances, configuration, 

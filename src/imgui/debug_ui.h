@@ -22,6 +22,8 @@
 #include "gfx.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     /**
      * @brief DebugUI - singleton class used for debugging, and collecting different metrics across entire game
     */

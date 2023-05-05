@@ -23,6 +23,7 @@
 #include "ubo.h"
 
 namespace omniscia::gfx {
+    using namespace omni::types;
     using namespace omniscia::core;
 
     /**

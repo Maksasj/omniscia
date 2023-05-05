@@ -18,7 +18,7 @@
 #include "gfx.h"
 
 namespace omniscia::gfx {
-    using namespace omniscia::core;
+    using namespace omni::types;
 
     /**
      * @brief Vertex - structure used for storing all 

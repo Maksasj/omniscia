@@ -17,6 +17,7 @@
 #include "ecs_velocity.h"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
     using namespace omniscia::core;
 
     /**

@@ -16,6 +16,8 @@
 #include "entity.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     struct BackgroundProp {
         std::string _texture = "";
         u32 _layer = 0;

@@ -5,6 +5,8 @@
 #include "entity.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     struct StaticTextProp {
         std::string _fontId = "";
         std::string _textToRender = "";

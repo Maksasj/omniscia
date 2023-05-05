@@ -7,6 +7,7 @@
 #include "level_editor.h"
 
 namespace omniscia_editor::editor {
+    using namespace omni::types;
     using namespace omniscia_editor::level_editor;
     using namespace omniscia_editor::level_editor::themes;
 

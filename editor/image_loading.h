@@ -4,6 +4,7 @@
 #include "gfx.h"
 #include "types.h"
 
+using namespace omni::types;
 bool load_texture_from_file(const char* filename, GLuint* out_texture, i32* out_width, i32* out_height);
 
 #endif

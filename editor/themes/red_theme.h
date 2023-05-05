@@ -4,6 +4,8 @@
 #include "theme.h"
 
 namespace omniscia_editor::level_editor::themes {
+    using namespace omni::types;
+
     class RedTheme : public Theme {
         public:
             RedTheme();

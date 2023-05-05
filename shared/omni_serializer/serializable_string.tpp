@@ -6,10 +6,10 @@
 #include "serializable.tpp"
 
 namespace omni::serializer {
+    using namespace omni::types;
+
     class SerializableString : public Serializable<std::string> {
         public:
-            using u64 = unsigned long long;
-
             SerializableString() : Serializable<std::string>() {}
             SerializableString(const std::string& value) : Serializable<std::string>(value) {}
 

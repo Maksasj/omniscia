@@ -22,6 +22,8 @@
 #include "entity.h"
  
 namespace omniscia::core::ecs {
+    using namespace omni::types;
+    
     /**
      * @brief ECS_Velocity - component that used 
      * for storing entity velocity values, as well

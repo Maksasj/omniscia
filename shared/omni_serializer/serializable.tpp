@@ -7,6 +7,8 @@
 #include "types.tpp"
 
 namespace omni::serializer {
+    using namespace omni::types;
+    
     namespace core {
         class Serializable {
             public:

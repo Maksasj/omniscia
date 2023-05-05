@@ -4,11 +4,11 @@ omniscia::core::ecs::ECS_Transparency::ECS_Transparency(const f32& transparency)
     _transparency = transparency;
 }
 
-f32 omniscia::core::ecs::ECS_Transparency::get_transparency() const {
+omni::types::f32 omniscia::core::ecs::ECS_Transparency::get_transparency() const {
     return _transparency;
 }
 
-f32& omniscia::core::ecs::ECS_Transparency::ref_transparency() {
+omni::types::f32& omniscia::core::ecs::ECS_Transparency::ref_transparency() {
     return _transparency;
 }
 

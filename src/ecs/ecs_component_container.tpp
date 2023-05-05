@@ -22,6 +22,8 @@
 #include "types.tpp"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
+    
     /**
      * @brief ECS_ComponentContainer - class that stores pointer to
      * components, manges their life time, clonning, referencing

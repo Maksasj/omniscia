@@ -8,6 +8,8 @@
 #include "manager.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+
     class FontManager : Manager<FontAsset> {
         private:
             FontManager() {};

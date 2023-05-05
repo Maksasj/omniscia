@@ -33,6 +33,8 @@
     }                                                                               \
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
+    
     /**
      * @brief ECS_Component - generic class 
      * used for all components, just 

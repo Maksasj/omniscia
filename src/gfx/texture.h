@@ -16,6 +16,8 @@
 #include "gfx.h"
 
 namespace omniscia::gfx::texture {
+    using namespace omni::types;
+
     /**
      * @brief Texture - class used for storing 
      * texture buffer, and some other texture

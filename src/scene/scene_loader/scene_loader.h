@@ -18,6 +18,8 @@
 #include "scene.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     /**
      * @brief SceneLoader - class used for loading 
      * level binary data as an active scene

@@ -1,6 +1,6 @@
 #include "level_asset.h"
 
-u32 omniscia::core::LevelAsset::_count = 0;
+omni::types::u32 omniscia::core::LevelAsset::_count = 0;
 
 omniscia::core::LevelAsset::LevelAsset() {
     ++_count;
@@ -15,6 +15,6 @@ void omniscia::core::LevelAsset::load_asset(Scene& scene) {
     SceneLoader::get_instance().load_scene(scene, _filePath);
 }
 
-u32 omniscia::core::LevelAsset::get_count() {
+omni::types::u32 omniscia::core::LevelAsset::get_count() {
     return _count;
 }

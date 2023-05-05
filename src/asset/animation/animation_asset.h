@@ -17,6 +17,8 @@
 #include "asset.tpp"
 
 namespace omniscia::core {
+    using namespace omni::types;
+
     /**
      * @brief 
      * AnimationAsset - class used for storing 

@@ -176,6 +176,6 @@ omniscia::gfx::RenderStage* omniscia::gfx::RenderStage::get_active_render_stage(
     return _activeRenderStage;
 }
 
-i32 omniscia::gfx::RenderStage::get_stage_id() const {
+omni::types::i32 omniscia::gfx::RenderStage::get_stage_id() const {
     return _stageId;
 } 

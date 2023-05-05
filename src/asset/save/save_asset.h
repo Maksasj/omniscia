@@ -4,7 +4,11 @@
 #include <vector>
 #include <string>
 
+#include "types.tpp"
+
 namespace omniscia::core {
+    using namespace omni::types;
+
     struct SecretSaveData {
         std::string _title;
         std::string _description;

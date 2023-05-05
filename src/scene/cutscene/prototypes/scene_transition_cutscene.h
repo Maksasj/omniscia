@@ -5,6 +5,8 @@
 #include "cutscene_events_prototypes.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     class TransitionCutscene : public Cutscene {
         public:
             TransitionCutscene(Shader* transitionStageShader, const std::string& _sceneId);

@@ -16,6 +16,8 @@
 #include "sound.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+
     /**
      * @brief SoundAsset - class used for storing sound asset,
      * Stores file path to the sound asset

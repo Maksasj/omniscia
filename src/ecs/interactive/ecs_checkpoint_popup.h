@@ -5,6 +5,7 @@
 #include "ecs_popup.h"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
     using namespace omniscia::core;
 
     class ECS_CheckpointPopup : public ECS_Popup {  

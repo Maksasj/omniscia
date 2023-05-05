@@ -16,6 +16,8 @@
 #include "entity.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     /**
      * @brief Crab - prototype class used 
      * for creating crab entity instance

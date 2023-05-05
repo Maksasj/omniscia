@@ -7,6 +7,8 @@
 #include "entity.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     struct ButtonProp {
         Vec2f _pos = Vec2f{0.0f, 0.0f};
         Vec2f _scale = Vec2f{1.0f, 1.0f};

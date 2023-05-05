@@ -6,11 +6,11 @@
 #include "serializable.tpp"
 
 namespace omni::serializer {
+    using namespace omni::types;
+
     template<unsigned long long __size>
     class SerializableFixedSizeString : public Serializable<std::string> {
         public:
-            using u64 = unsigned long long;
-
             SerializableFixedSizeString() : Serializable<std::string>() {}
             SerializableFixedSizeString(const std::string& value) : Serializable<std::string>(value) {}
 

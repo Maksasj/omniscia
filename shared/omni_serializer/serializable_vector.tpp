@@ -6,11 +6,11 @@
 #include "serializable.tpp"
 
 namespace omni::serializer {
+    using namespace omni::types;
+    
     template<class T>
     class SerializableVector : public Serializable<std::vector<T>> {
         public:
-            using u64 = unsigned long long;
-
             SerializableVector() : Serializable<std::vector<T>>() {}
             SerializableVector(const std::vector<T>& value) : Serializable<std::vector<T>>(value) {}
 

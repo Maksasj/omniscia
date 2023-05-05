@@ -15,6 +15,8 @@
 #include "asset.tpp"
 
 namespace omniscia::core {
+    using namespace omni::types;
+
     /**
      * @brief ShaderAssetType - enum used for describing shader type
     */

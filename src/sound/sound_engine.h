@@ -18,6 +18,8 @@
 #include "types.tpp"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     /**
      * @brief SoundEngine - class used for managing 
      * sound pool and miniaudio sound engine

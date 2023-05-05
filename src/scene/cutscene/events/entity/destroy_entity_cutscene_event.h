@@ -8,6 +8,8 @@
 #include "cutscene_event.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     struct CE_DestroyEntityProp {
         CE_Prop _base;
 

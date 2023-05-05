@@ -24,8 +24,9 @@
 #include "ubo.h"
 
 namespace omniscia::gfx::sprite {
-    using namespace omniscia::gfx::texture;
+    using namespace omni::types;
     using namespace omniscia::core;
+    using namespace omniscia::gfx::texture;
     
     class InstancingSprite {
         private:

@@ -11,6 +11,7 @@
 #include "save_asset.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
     using namespace nlohmann::literals;
     using namespace std::filesystem;
     using json = nlohmann::json;

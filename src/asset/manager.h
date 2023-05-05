@@ -18,6 +18,7 @@
 #include <stdexcept>
 
 namespace omniscia::core {
+    using namespace omni::types;
 
     /**
      * @brief Check if file exist

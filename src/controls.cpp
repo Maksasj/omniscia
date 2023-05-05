@@ -24,7 +24,7 @@ omniscia::core::Controls::Controls() {
     };
 }
 
-omniscia::core::Vec2f omniscia::core::Controls::get_mouse() {
+omni::types::Vec2f omniscia::core::Controls::get_mouse() {
     return _mousePos;
 }
 

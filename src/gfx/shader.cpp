@@ -17,7 +17,7 @@ std::string omniscia::gfx::Shader::load_from_file(std::string path) {
     return buffer.str();
 }
 
-i32 omniscia::gfx::Shader::try_compile() {
+omni::types::i32 omniscia::gfx::Shader::try_compile() {
     //std::cout << _shaderAssetVertex->get_file_path() << "\n";
     //std::cout << _shaderAssetFragment->get_file_path() << "\n";
 

@@ -35,10 +35,10 @@ void omniscia::core::ecs::ECS_CameraFollow::update() {
     DebugUI::get_instance().get_metrics()._cameraPos.y = camPos.y; 
 }
 
-f32 omniscia::core::ecs::ECS_CameraFollow::get_camera_follow_speed() const {
+omni::types::f32 omniscia::core::ecs::ECS_CameraFollow::get_camera_follow_speed() const {
     return _cameraFollowSpeed;
 }
 
-f32& omniscia::core::ecs::ECS_CameraFollow::ref_camera_follow_speed() {
+omni::types::f32& omniscia::core::ecs::ECS_CameraFollow::ref_camera_follow_speed() {
     return _cameraFollowSpeed;
 }

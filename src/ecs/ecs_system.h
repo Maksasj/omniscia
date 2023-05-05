@@ -16,7 +16,10 @@
 #include <memory>
 #include <vector>
 
+#include "types.tpp"
+
 namespace omniscia::core::ecs {
+    using namespace omni::types;
 
     /**
      * @brief Function used for sorting vector that is nearly sorted(Insertion sort)

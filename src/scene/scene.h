@@ -19,6 +19,8 @@
 #include "cutscene.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     /**
      * @brief Class that manages all scene data, dynamic and static part
     */

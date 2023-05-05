@@ -15,6 +15,8 @@
 #include "types.tpp"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     /**
      * @brief Properties singleton class, that will be used
      * for storing different app properties and settings

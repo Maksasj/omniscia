@@ -28,6 +28,8 @@
 #include "entity.h"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
+    
     /**
      * @brief ECS_2DPhysicsRigidbody - component used for 
      * managing all 2d based physics, controls position of the enity, taking into a count

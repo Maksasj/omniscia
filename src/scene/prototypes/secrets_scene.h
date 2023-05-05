@@ -6,6 +6,8 @@
 #include "scene.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     class SecretsScene : public Scene {
         public:
             SecretsScene() : Scene() {

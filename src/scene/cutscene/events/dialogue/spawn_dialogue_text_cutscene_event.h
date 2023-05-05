@@ -9,6 +9,8 @@
 #include "camera.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     struct CE_SpawnDialogueTextProp {
         CE_Prop _base;
 

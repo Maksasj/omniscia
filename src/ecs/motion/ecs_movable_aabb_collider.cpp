@@ -206,7 +206,7 @@ omniscia::core::ecs::ECS_AABBCollider* omniscia::core::ecs::ECS_MovableAABBColli
     return _collidedWith;
 }
 
-omniscia::core::Vec2f omniscia::core::ecs::ECS_MovableAABBCollider::get_collision_point_by_x() const {
+omni::types::Vec2f omniscia::core::ecs::ECS_MovableAABBCollider::get_collision_point_by_x() const {
     return _collisionPoint;
 }
 
@@ -222,7 +222,7 @@ omniscia::core::ecs::ECS_AABBCollider* omniscia::core::ecs::ECS_MovableAABBColli
     return _collidedWithY;
 }
 
-omniscia::core::Vec2f omniscia::core::ecs::ECS_MovableAABBCollider::get_collision_point_by_y() const {
+omni::types::Vec2f omniscia::core::ecs::ECS_MovableAABBCollider::get_collision_point_by_y() const {
     return _collisionPointY;
 }
 

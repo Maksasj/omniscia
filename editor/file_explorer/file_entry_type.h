@@ -4,6 +4,8 @@
 #include "../types.h"
 
 namespace omniscia_editor::editor {
+    using namespace omni::types;
+
     enum FileEntryType {
         _FILE,
         _DIRECTORY

@@ -228,7 +228,7 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
         if(ImGui::Button("Create ##Collision Box")) {
             tileGroup._collisionBoxes.push_back(CollisionBoxData(
                 "Collision box " + std::to_string(tileGroup._collisionBoxes.size()),
-                0.0f, 0.0f, omniscia::core::Vec2f{50.0f, 50.0f}, omniscia::core::Vec2f{50.0f, 50.0f}
+                0.0f, 0.0f, Vec2f{50.0f, 50.0f}, Vec2f{50.0f, 50.0f}
             ));
         }
 

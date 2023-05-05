@@ -22,6 +22,8 @@
 #include "entity.h"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
+    
     /**
      * @brief ECS_Acceleration - component used for
      * managing acceleration of the entity, primary

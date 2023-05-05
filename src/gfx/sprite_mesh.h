@@ -23,7 +23,7 @@
 #include "gfx.h"
 
 namespace omniscia::gfx::sprite {
-    using namespace omniscia::core;
+    using namespace omni::types;
 
     /**
      * @brief SpriteMesh - class used for stroing

@@ -4,6 +4,8 @@
 #include "file_entry_type.h"
 
 namespace omniscia_editor::editor {
+    using namespace omni::types;
+
     struct FileEntry {
         FileEntryType _type;
         

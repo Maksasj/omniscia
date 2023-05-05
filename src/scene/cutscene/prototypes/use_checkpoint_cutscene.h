@@ -5,6 +5,8 @@
 #include "cutscene_events_prototypes.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     class UseCheckpointCutscene : public Cutscene {
         public:
             UseCheckpointCutscene(Shader* transitionStageShader);

@@ -16,6 +16,7 @@
 #include "ecs_component.tpp"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
     using namespace omniscia::core;
 
     /**

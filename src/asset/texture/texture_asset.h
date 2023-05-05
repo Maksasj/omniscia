@@ -16,6 +16,7 @@
 #include "texture.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
     using namespace omniscia::gfx::texture;
 
     /**

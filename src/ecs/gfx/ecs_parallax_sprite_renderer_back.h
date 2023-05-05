@@ -27,8 +27,9 @@
 #include "shader.h"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
+    using namespace omniscia::gfx;
     using namespace omniscia::gfx::sprite;
-    using namespace omniscia::gfx; 
 
     /**
      * @brief ECS_ParallaxSpriteRendererBack - component

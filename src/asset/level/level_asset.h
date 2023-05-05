@@ -6,6 +6,8 @@
 #include "asset.tpp"
 
 namespace omniscia::core {
+    using namespace omni::types;
+
     class LevelAsset : public Asset<LevelAssetType> {
         private:
             static u32 _count;

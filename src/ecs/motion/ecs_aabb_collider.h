@@ -28,6 +28,7 @@
 #include "entity.h"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
     using namespace omniscia::core;
 
     /**

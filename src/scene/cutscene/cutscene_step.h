@@ -8,6 +8,8 @@
 #include "cutscene_event.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     class CE_Step {
         private:
             bool _is_done_executing = false;

@@ -7,6 +7,8 @@
 #include "cutscene_event.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     class Cutscene {
         private:
             bool _started;

@@ -20,6 +20,7 @@
 #include "bo.h"
 
 namespace omniscia::gfx {
+    using namespace omni::types;
 
     /**
      * @brief VAO - class used for managing 

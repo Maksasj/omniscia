@@ -18,6 +18,7 @@
 #include "ecs_aabb_collider.h"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
     using namespace omniscia::core;
 
     class ECS_TriggerAABBCollider : public ECS_AABBCollider {

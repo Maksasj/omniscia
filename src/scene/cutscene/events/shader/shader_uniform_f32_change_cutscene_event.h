@@ -8,6 +8,7 @@
 #include "cutscene_event.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
     using namespace omniscia::gfx;
 
     struct CE_ShaderUniformF32ChangeProp {

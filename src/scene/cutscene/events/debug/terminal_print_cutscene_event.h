@@ -6,6 +6,8 @@
 #include "cutscene_event.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     struct CE_LogProp {
         CE_Prop _base;
         std::string _message = "";

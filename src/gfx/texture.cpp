@@ -31,19 +31,19 @@ omniscia::gfx::texture::Texture::Texture() {
     */
 }
 
-u32 omniscia::gfx::texture::Texture::get_width() const {
+omni::types::u32 omniscia::gfx::texture::Texture::get_width() const {
     return _width;
 }
 
-u32 omniscia::gfx::texture::Texture::get_height() const {
+omni::types::u32 omniscia::gfx::texture::Texture::get_height() const {
     return _height;
 }
 
-f32 omniscia::gfx::texture::Texture::get_aspect() const {
+omni::types::f32 omniscia::gfx::texture::Texture::get_aspect() const {
     return _aspect;
 }
 
-u32 omniscia::gfx::texture::Texture::get_color_channels() const {
+omni::types::u32 omniscia::gfx::texture::Texture::get_color_channels() const {
     return _colorChannels;
 }
 

@@ -8,6 +8,8 @@
 #include "scene.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     struct CE_SpawnEntityProp {
         CE_Prop _base;
 

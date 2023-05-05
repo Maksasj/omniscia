@@ -21,6 +21,8 @@
 #include "entity.h"
 
 namespace omniscia::core::ecs {
+    using namespace omni::types;
+    
     /**
      * @brief ECS_SpriteFlip - component that stores
      * if sprite should be flipped, used by sprite renderers,

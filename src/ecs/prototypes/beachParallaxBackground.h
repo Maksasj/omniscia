@@ -16,6 +16,8 @@
 #include "entity.h"
 
 namespace omniscia::core {
+    using namespace omni::types;
+    
     /**
      * @brief BeachParallaxBackground - prototype class 
      * used for creating beach parallax background

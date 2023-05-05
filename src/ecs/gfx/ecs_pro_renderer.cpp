@@ -10,6 +10,6 @@ omniscia::gfx::RenderStage* omniscia::core::ecs::ECS_ProRenderer::get_rendering_
     return _bindedRenderingStage;
 }
 
-u32 omniscia::core::ecs::ECS_ProRenderer::get_layer() const {
+omni::types::u32 omniscia::core::ecs::ECS_ProRenderer::get_layer() const {
     return _layer;
 }

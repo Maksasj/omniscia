@@ -40,11 +40,11 @@ std::string omniscia::gfx::monitor::Monitor::get_name() const {
     return _monitorName;
 }
 
-omniscia::core::Vec2i omniscia::gfx::monitor::Monitor::get_pos() const {
+omni::types::Vec2i omniscia::gfx::monitor::Monitor::get_pos() const {
     return _monitorPos;
 }
 
-omniscia::core::Vec2i omniscia::gfx::monitor::Monitor::get_size() const {
+omni::types::Vec2i omniscia::gfx::monitor::Monitor::get_size() const {
     return _monitorSize;
 }
 

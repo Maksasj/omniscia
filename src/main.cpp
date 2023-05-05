@@ -3,6 +3,7 @@
 int main() {
     srand(time(NULL));
     using namespace omniscia;
+    using namespace omni::types;
     
     /* Texture assets */
     TextureManager::get_instance().add_asset("assets/textures/texture.png", "factorio_girl_texture");
