@@ -30,7 +30,7 @@ namespace omni::serializer {
             void serialize(std::ostream &stream) override {
                 std::vector<T>& _value = this->_value;
 
-                Serializable<u64> vectorLength;
+                Serializable<u64> vectorLength = _value.size();
                 vectorLength.serialize(stream);
 
                 for(int i = 0; i < vectorLength; ++i)

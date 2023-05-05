@@ -65,18 +65,27 @@ void omniscia_editor::level_editor::LevelData::export_to_file(std::string filePa
     for(TileGroup& tileGroup : tileGroups) {
         SerializableTileGroupData tileGroupData;
 
-        //tileGroupData._name.get() = tileGroup._name;
-        tileGroupData._name.get().resize(256, 'a');
+        std::string& name = tileGroupData._name.get();
+        for(auto letter : tileGroup._name)
+            name.push_back(letter);
 
         tileGroupData._tileGroupAssociatedColor.get() = tileGroup._associatedColor;
 
-        for(auto& tile : tileGroup.tiles)
+        for(auto tile : tileGroup.tiles) {
+            if(levelEditorProperties._exportOpenglCoordinateFlip)
+                tile._position.y *= -1.0f;
+
             tileGroupData._tiles.get().push_back(tile);
+        }
 
-        std::cout << tileGroup.tiles.size() << "\n";
+        for(auto collisionBox : tileGroup._collisionBoxes) {
+            if(levelEditorProperties._exportOpenglCoordinateFlip) {
+                collisionBox._position.y *= -1.0f;
+                std::swap(collisionBox._yRanges.x, collisionBox._yRanges.y);
+            }
 
-        for(auto& collisionBox : tileGroup._collisionBoxes)
             tileGroupData._collisionBoxes.get().push_back(collisionBox);
+        }
 
         tileGroupData.serialize(file);
     }

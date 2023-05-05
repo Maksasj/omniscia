@@ -9,7 +9,7 @@
 
 namespace omni::serializer {
     struct SerializableTileGroupData : public core::Serializable {
-        SerializableFixedSizeString<256> _name;
+        SerializableString _name;
         omni::serializer::Serializable<Vec4f> _tileGroupAssociatedColor;
 
         SerializableVector<SerializableTileData> _tiles;
@@ -26,7 +26,6 @@ namespace omni::serializer {
         void serialize(std::ostream &stream) override {
             _name.serialize(stream);
             _tileGroupAssociatedColor.serialize(stream);
-            
             _tiles.serialize(stream);
             _collisionBoxes.serialize(stream);
         }
