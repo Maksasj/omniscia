@@ -20,7 +20,7 @@ namespace omniscia::core {
 
         public:
             StaticText(const StaticTextProp& prop);
-            StaticText(const Vec2f& pos, const Vec2f& scale, const StaticTextProp& prop);
+            StaticText(const Vec2f& position, const Vec2f& scale, const StaticTextProp& prop);
 
             std::shared_ptr<Entity> clone() override {
                 auto entity = std::make_shared<Entity>(*this);

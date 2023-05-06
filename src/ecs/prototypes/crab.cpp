@@ -1,7 +1,7 @@
 #include "crab.h"
 
-omniscia::core::Crab::Crab() : Entity() {
-    add<ECS_Positioned>(0.3f, 1.3f);
+omniscia::core::Crab::Crab(const Vec2f& position) : Entity() {
+    add<ECS_Positioned>(position.x, position.y);
     add<ECS_Velocity>(
         Vec2f{0.002f, -0.002f}, 
         Vec2f{0.0035f, -0.0035f});

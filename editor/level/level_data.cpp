@@ -11,6 +11,8 @@ void omniscia_editor::level_editor::LevelData::load_from_file(std::string filePa
     _tileGroups.get().clear();
 
     using namespace omni::serializer;
+    using namespace omni::types;
+    
     SerializableLevelData levelData;
     levelData.deserialize(file);
     
@@ -32,6 +34,15 @@ void omniscia_editor::level_editor::LevelData::load_from_file(std::string filePa
                 data._position.y *= -1.0f;
                 std::swap(data._yRanges.x, data._yRanges.y);
             }
+        }
+    }
+
+    for(SerializableMarkerGroupData& markerGroup : _markerGroups.get()) {
+        for(SerializableMarkerData& marker : markerGroup._markers.get()) {
+            Vec2f& position = marker._position.get(); 
+
+            if(levelEditorProperties._exportOpenglCoordinateFlip)
+                position.y *= -1.0f;
         }
     }
 }
@@ -67,8 +78,16 @@ void omniscia_editor::level_editor::LevelData::export_to_file(std::string filePa
         }
     }
 
-    tileGroups.serialize(file);
-
     SerializableVector<SerializableMarkerGroupData> markerGroups = _markerGroups;
+    for(SerializableMarkerGroupData& markerGroup : markerGroups.get()) {
+        for(SerializableMarkerData& marker : markerGroup._markers.get()) {
+            Vec2f& position = marker._position.get();
+            
+            if(levelEditorProperties._exportOpenglCoordinateFlip)
+                position.y *= -1.0f;
+        }
+    }
+
+    tileGroups.serialize(file);
     markerGroups.serialize(file);
 }

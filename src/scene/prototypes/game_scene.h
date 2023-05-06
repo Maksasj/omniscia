@@ -14,12 +14,15 @@ namespace omniscia::core {
             GameScene() : Scene() {
                 LevelAssetManager::get_instance().get("test_level")->load_asset(*this);
 
-                add_dynamic_entity<Crab>();
-                add_dynamic_entity<Player>();
-                add_dynamic_entity<Grandpa>();
-                add_static_entity<BeachParallaxBackground>();
+                summon_dynamic_entity_at_marker_group<Player>(0);
+                summon_static_entity_at_marker_group<Checkpoint>(1);
 
-                add_static_entity<Checkpoint>();
+                // add_dynamic_entity<Crab>();
+                // add_dynamic_entity<Player>();
+                // add_dynamic_entity<Grandpa>();
+                add_static_entity<BeachParallaxBackground>();
+// 
+                // add_static_entity<Checkpoint>();
 
                 unbind();
             }

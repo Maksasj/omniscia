@@ -1,7 +1,7 @@
 #include "button.h"
 
-omniscia::core::Button::Button() : Entity() {
-    add<ECS_Positioned>(0.0f, 0.0f);
+omniscia::core::Button::Button(const Vec2f& position) : Entity() {
+    add<ECS_Positioned>(position.x, position.y);
     add<ECS_Scaled>(0.1f, 0.1f);
     add<ECS_BoxColliderMesh>(Vec2f{1.0f, 1.0f}, Vec2f{1.0f, 1.0f});
     add<ECS_SpriteRenderer>("new_game_button", 11);
@@ -16,8 +16,8 @@ omniscia::core::Button::Button(const ButtonProp& prop) : Entity() {
     add<ECS_Button>(prop._clickLambda, prop._hoverLambda, prop._unHoverLambda);
 }
 
-omniscia::core::Button::Button(const std::function<void(ECS_Button&)> clickLambda, const std::function<void(ECS_Button&)> hoverLambda) : Entity() {
-    add<ECS_Positioned>(0.0f, 0.0f);
+omniscia::core::Button::Button(const Vec2f& position, const std::function<void(ECS_Button&)> clickLambda, const std::function<void(ECS_Button&)> hoverLambda) : Entity() {
+    add<ECS_Positioned>(position.x, position.y);
     add<ECS_Scaled>(0.1f, 0.1f);
     add<ECS_BoxColliderMesh>(Vec2f{1.0f, 1.0f}, Vec2f{1.0f, 1.0f});
     add<ECS_SpriteRenderer>("new_game_button", 11);

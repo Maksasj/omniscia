@@ -27,7 +27,7 @@ namespace omniscia::core {
 
         public:
             /** @brief Default Player constructor */
-            Player();
+            Player(const Vec2f& position);
 
             /**
              * @brief Clones Player entity instance

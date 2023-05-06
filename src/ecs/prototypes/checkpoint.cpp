@@ -1,7 +1,7 @@
 #include "checkpoint.h"
 
-omniscia::core::Checkpoint::Checkpoint() : Entity() {
-    add<ECS_Positioned>(0.0f, 1.3f);
+omniscia::core::Checkpoint::Checkpoint(const Vec2f& position) : Entity() {
+    add<ECS_Positioned>(position.x, position.y);
     add<ECS_Velocity>(
         Vec2f{0.002f, -0.002f}, 
         Vec2f{0.0035f, -0.0035f});

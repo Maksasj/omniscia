@@ -11,11 +11,27 @@ void omniscia::core::SceneLoader::load_scene(Scene& level, const std::string& pa
     staticEntities.clear();
 
     using namespace omni::serializer;
+    using namespace omni::types;
 
     SerializableLevelData levelData;
     levelData.deserialize(file);
 
     f32 screenBoxHeight = levelData._screenBoxHeight;
+
+    for(SerializableMarkerGroupData& markerGroup : levelData._markerGroups.get()) {
+        SerializableMarkerGroupData tmpMakerGroup;
+
+        for(SerializableMarkerData marker : markerGroup._markers.get()) {
+            Vec2f& pos = marker._position.get();
+
+            pos = pos / (screenBoxHeight / 2.0);
+
+            std::vector<SerializableMarkerData>& markers = tmpMakerGroup._markers.get(); 
+            markers.push_back(marker);
+        }
+
+        level._markerGroups.get().push_back(tmpMakerGroup);
+    }
 
     for(SerializableTileGroupData& tileGroupData : levelData._tileGroups.get()) {
         std::shared_ptr<Entity> tileGroup = std::make_shared<Entity>();

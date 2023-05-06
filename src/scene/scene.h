@@ -16,10 +16,13 @@
 #include "player.h"
 #include "grandpa.h"
 
+#include "markergroup_data_serializable.h"
+
 #include "cutscene.h"
 
 namespace omniscia::core {
     using namespace omni::types;
+    using namespace omni::serializer;
     
     /**
      * @brief Class that manages all scene data, dynamic and static part
@@ -57,6 +60,9 @@ namespace omniscia::core {
              * @brief Checkpoint dynamic part
             */
             SceneDynamic checkpointDynamicPart;
+
+            SerializableVector<SerializableMarkerGroupData> _markerGroups;
+
         public:
             friend class SceneLoader;
 
@@ -153,6 +159,46 @@ namespace omniscia::core {
                 auto& entities = staticPart.staticEntities; 
                 entities.push_back(std::make_shared<T>(std::forward<Args>(args)...));
                 return entities[entities.size() - 1]->get_uuid();
+            }
+
+            template<class T>
+            void summon_dynamic_entity_at_marker_group(const i32& markerGroupIndex) {
+                SerializableMarkerGroupData& markerGroup = _markerGroups.get().at(markerGroupIndex);
+                auto& entities = dynamicPart.dynamicEntities; 
+
+                for(SerializableMarkerData& marker : markerGroup._markers.get()) {
+                    entities.push_back(std::make_shared<T>(Vec2f{marker._position.get().x, marker._position.get().y}));
+                }
+            }
+
+            template<class T, class... Args>
+            void summon_dynamic_entity_at_marker_group(const i32& markerGroupIndex, Args&&... args) {
+                SerializableMarkerGroupData& markerGroup = _markerGroups.get().at(markerGroupIndex);
+                auto& entities = dynamicPart.dynamicEntities; 
+
+                for(SerializableMarkerData& marker : markerGroup._markers.get()) {
+                    entities.push_back(std::make_shared<T>(Vec2f{marker._position.get().x, marker._position.get().y}, std::forward<Args>(args)...));
+                }
+            }
+
+            template<class T>
+            void summon_static_entity_at_marker_group(const i32& markerGroupIndex) {
+                SerializableMarkerGroupData& markerGroup = _markerGroups.get().at(markerGroupIndex);
+                auto& entities = staticPart.staticEntities; 
+
+                for(SerializableMarkerData& marker : markerGroup._markers.get()) {
+                    entities.push_back(std::make_shared<T>(Vec2f{marker._position.get().x, marker._position.get().y}));
+                }
+            }
+
+            template<class T, class... Args>
+            void summon_static_entity_at_marker_group(const i32& markerGroupIndex, Args&&... args) {
+                SerializableMarkerGroupData& markerGroup = _markerGroups.get().at(markerGroupIndex);
+                auto& entities = staticPart.staticEntities; 
+
+                for(SerializableMarkerData& marker : markerGroup._markers.get()) {
+                    entities.push_back(std::make_shared<T>(Vec2f{marker._position.get().x, marker._position.get().y}, std::forward<Args>(args)...));
+                }
             }
 
             std::shared_ptr<Entity> get_dynamic_entity_by_uuid(const UUID& uuid) {

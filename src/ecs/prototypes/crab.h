@@ -27,7 +27,7 @@ namespace omniscia::core {
 
         public:
             /** @brief Default Crab constructor */
-            Crab();
+            Crab(const Vec2f& position);
 
             /**
              * @brief Clones Crab entity instance

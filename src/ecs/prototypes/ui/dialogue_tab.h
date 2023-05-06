@@ -11,7 +11,7 @@ namespace omniscia::core {
         private:
 
         public:
-            DialogueTab(const Vec2f& pos);
+            DialogueTab(const Vec2f& position);
 
             std::shared_ptr<Entity> clone() override {
                 auto entity = std::make_shared<Entity>(*this);

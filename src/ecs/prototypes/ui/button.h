@@ -32,9 +32,9 @@ namespace omniscia::core {
         private:
 
         public:
-            Button();
+            Button(const Vec2f& position);
             Button(const ButtonProp& prop = {});
-            Button(const std::function<void(ECS_Button&)> clickLambda, const std::function<void(ECS_Button&)> hoverLambda);
+            Button(const Vec2f& position, const std::function<void(ECS_Button&)> clickLambda, const std::function<void(ECS_Button&)> hoverLambda);
 
             std::shared_ptr<Entity> clone() override {
                 auto entity = std::make_shared<Entity>(*this);

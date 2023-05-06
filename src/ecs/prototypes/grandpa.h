@@ -27,7 +27,7 @@ namespace omniscia::core {
 
         public:
             /** @brief Default Grandpa constructor */
-            Grandpa();
+            Grandpa(const Vec2f& position);
 
             /**
              * @brief Clones Grandpa entity instance
