@@ -16,6 +16,7 @@
 #include "player.h"
 #include "grandpa.h"
 
+#include "debug_ui.h"
 #include "markergroup_data_serializable.h"
 
 #include "cutscene.h"
@@ -94,6 +95,7 @@ namespace omniscia::core {
             */
             SceneDynamic& ref_dynamic_part();
 
+            SceneDynamic& ref_dynamic_checkpoint_part();
             /**
              * @brief Get reference to scene static part
              * 

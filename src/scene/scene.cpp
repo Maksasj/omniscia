@@ -23,6 +23,7 @@ void omniscia::core::Scene::unbind() {
     ECS_ProRendererSystem::get_instance().time_sync();
     ECS_ButtonSystem::get_instance().time_sync();
     ECS_InteractiveSystem::get_instance().time_sync();
+    ECS_DeadlySystem::get_instance().time_sync();
 }
 
 void omniscia::core::Scene::time_sync() {
@@ -39,14 +40,31 @@ omniscia::core::Scene::SceneDynamic& omniscia::core::Scene::ref_dynamic_part() {
     return dynamicPart;
 }
 
+omniscia::core::Scene::SceneDynamic& omniscia::core::Scene::ref_dynamic_checkpoint_part() {
+    return checkpointDynamicPart;
+}
+
 omniscia::core::Scene::SceneStatic& omniscia::core::Scene::ref_static_part() {
     return staticPart;
 }
 
 void omniscia::core::Scene::load_dynamic_checkpoint() {
-    //dynamicPart = checkpointDynamicPart;
+    dynamicPart.dynamicEntities.clear();
+
+    for(auto& e : checkpointDynamicPart.dynamicEntities)
+        dynamicPart.dynamicEntities.push_back(e->clone());
+    
+    // Todo resolve this cringe
+    DebugUI::get_instance().get_metrics()._isTimeJump = true;
+
+    time_sync();
 }
 
 void omniscia::core::Scene::save_dynamic_checkpoint() {
-    //checkpointDynamicPart = clone();
+    checkpointDynamicPart = clone();
+    
+    // Todo resolve this cringe
+    DebugUI::get_instance().get_metrics()._isTimeJump = true;
+
+    time_sync();
 }

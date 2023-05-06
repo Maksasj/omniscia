@@ -35,6 +35,8 @@ namespace omniscia::core::ecs {
         CollisionMask_Tiles             = 1 << 2,
         
         CollisionMask_Interactable      = 1 << 3,
+
+        CollisionMask_Deadly            = 1 << 4,
         
         /*
         CollisionMask_Layer6            = 1 << 4,

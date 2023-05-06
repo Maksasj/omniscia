@@ -7,5 +7,6 @@
 #include "scene_load_checkpoint_cutscene.h"
 #include "run_cutscene_cutscene_event.h"
 #include "use_checkpoint_cutscene.h"
+#include "death_cutscene.h"
 
 #endif

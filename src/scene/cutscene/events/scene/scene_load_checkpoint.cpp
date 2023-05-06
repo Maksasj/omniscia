@@ -18,7 +18,5 @@ omniscia::core::CE_SceneLoadCheckpointEvent::CE_SceneLoadCheckpointEvent(const C
 }
 
 void omniscia::core::CE_SceneLoadCheckpointEvent::execute() {
-    std::cout << "Loading checkpoint \n";
-
-    Game::get_instance().save_dynamic_checkpoint();
+    Game::get_instance().load_dynamic_checkpoint();
 }

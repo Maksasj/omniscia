@@ -29,7 +29,6 @@ void omniscia::core::ecs::ECS_TriggerAABBCollider::collide(ECS_AABBCollider* ano
     if(posIndex.is_success()) {
         ECS_Positioned &positionComp = _parent->ref_unsafe(posIndex);
         selfPosition = positionComp.get_pos();
-
     }
 
     if(scaleIndex.is_success()) {

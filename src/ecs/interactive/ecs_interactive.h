@@ -14,6 +14,7 @@
 #include "ecs_system.h"
 #include "controls.h"
 #include "entity.h"
+#include "debug_ui.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;
@@ -66,6 +67,9 @@ namespace omniscia::core::ecs {
 
                 for(ECS_Interactive* comp : _components) {
                     comp->update();
+
+                    if(DebugUI::get_instance().get_metrics()._isTimeJump == true)
+                        break;
                 }
             }
 

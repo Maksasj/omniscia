@@ -145,7 +145,8 @@ void omniscia::Game::run() {
     _cutscenes["transition_cutscene_to_game_scene"] = new TransitionCutscene(&transitionStageShader, "game_scene");
     _cutscenes["transition_cutscene_to_settings"] = new TransitionCutscene(&transitionStageShader, "settings_scene");
     _cutscenes["transition_cutscene_to_secrets"] = new TransitionCutscene(&transitionStageShader, "secrets_scene");
-    
+    _cutscenes["death_cutscene"] = new DeathCutscene(&transitionStageShader);
+
     _cutscenes["test_dialogue_cutscene"] = new DialogueCutscene(&transitionStageShader, {
         DialogueStepData("player_test_icon", 1, "Hello, who you are ?"),
         DialogueStepData("grandpa_test_icon", -1, "I am a random old guy,  just staying there"),
@@ -189,11 +190,12 @@ void omniscia::Game::run() {
             ECS_GravitySystem::get_instance().update();
             ECS_2DPhysicsRigidbodySystem::get_instance().update();
             ECS_AABBColliderSystem::get_instance().update();
+            ECS_InteractiveSystem::get_instance().update();
             ECS_2DPhysicsRigidbodySystem::get_instance().late_update();
             ECS_PlayerControllerSystem::get_instance().update();
             ECS_PlayerJumpSystem::get_instance().update(); /* Need to be between collider updates, since should know is player standing */
             ECS_StateMachineBaseSystem::get_instance().update();
-            ECS_InteractiveSystem::get_instance().update();
+            ECS_DeadlySystem::get_instance().update();
             ECS_AABBColliderSystem::get_instance().reset();
         }
         

@@ -33,6 +33,7 @@
 #include "ecs_transparency.h"
 #include "ecs_sprite_animation_auto.h"
 #include "ecs_sprite_animation_manual.h"
+#include "ecs_deadly.h"
 
 #include "ecs_button.h"
 #include "ecs_interactive.h"

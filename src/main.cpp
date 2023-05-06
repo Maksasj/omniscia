@@ -72,6 +72,9 @@ int main() {
     /* Animation assets */
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.75}, 7, true, 5}), "player-run-animation");
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.875}, 7, true, 12}), "player-idle-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.625}, 7, true, 12}), "player-fly-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.5}, 8, true, 12}), "player-death-animation");
+
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.5}, {0.0, 0.5}, 8, true, 24}), "crab-idle-animation");
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.5}, {0.0, 0.0}, 8, true, 12}), "crab-run-animation");
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.875}, 7, true, 24}), "grandpa-idle-animation");

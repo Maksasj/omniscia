@@ -84,12 +84,17 @@ void omniscia::core::SceneLoader::load_scene(Scene& level, const std::string& pa
             collisionBoxPos.y = collisionBoxPos.y / (screenBoxHeight / 2.0);
 
             if(collisionBox.get()._isDamaging) {
+                collisionBoxEntity->add<ECS_Positioned>(collisionBoxPos.x * 1.6f, collisionBoxPos.y * 1.6f);
+                collisionBoxEntity->add<ECS_Scaled>(1.6f, 1.6f);
+                collisionBoxEntity->add<ECS_BoxColliderMesh>(rangesX, rangesY);
+                collisionBoxEntity->add<ECS_Deadly>();
 
+                staticEntities.push_back(collisionBoxEntity);
             } else {
+                collisionBoxEntity->add<ECS_Positioned>(collisionBoxPos.x * 1.6f, collisionBoxPos.y * 1.6f);
                 collisionBoxEntity->add<ECS_Scaled>(1.6f, 1.6f);
                 collisionBoxEntity->add<ECS_BoxColliderMesh>(rangesX, rangesY);
                 collisionBoxEntity->add<ECS_AABBCollider>(CollisionMask_Tiles, CollisionMask_None);
-                collisionBoxEntity->add<ECS_Positioned>(collisionBoxPos.x * 1.6f, collisionBoxPos.y * 1.6f);
 
                 staticEntities.push_back(collisionBoxEntity);
             }
