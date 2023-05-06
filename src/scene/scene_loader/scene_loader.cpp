@@ -25,6 +25,7 @@ void omniscia::core::SceneLoader::load_scene(Scene& level, const std::string& pa
             Vec2f& pos = marker._position.get();
 
             pos = pos / (screenBoxHeight / 2.0);
+            pos *= 1.6f;
 
             std::vector<SerializableMarkerData>& markers = tmpMakerGroup._markers.get(); 
             markers.push_back(marker);

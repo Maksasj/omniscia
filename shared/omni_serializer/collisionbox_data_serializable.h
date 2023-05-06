@@ -15,6 +15,8 @@ namespace omni::serializer {
         Vec2f _xRanges;
         Vec2f _yRanges;
 
+        bool _isDamaging;
+
         CollisionBoxData() {
             std::string name = "poggers";
             name.copy(_name, name.size());
@@ -28,6 +30,8 @@ namespace omni::serializer {
 
             _xRanges = rangesX;
             _yRanges = rangesY;
+
+            _isDamaging = false;
 
             _collisionBoxAssociatedColor = Vec4f{1.0f, 1.0f, 1.0f, 1.0f};
         }

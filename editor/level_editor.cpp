@@ -355,6 +355,8 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
             ImGui::SameLine();
             ImGui::InputText("##Collision Box name input label", collisionBox.get()._name, 256);
 
+            ImGui::Checkbox("Damaging ", &collisionBox.get()._isDamaging); 
+
             ImGui::Text("Associated color: ");
             ImGui::SameLine();
             color_picker("Collision box color picker", (ImVec4&)collisionBox.get()._collisionBoxAssociatedColor);
