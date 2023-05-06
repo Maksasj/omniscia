@@ -12,15 +12,13 @@
 #include "collisionbox_data_serializable.h"
 
 #include "../level_editor_properties.h"
-#include "tile_group_data.h"
 
 namespace omniscia_editor::level_editor {
     using namespace omni::types;
+    using namespace omni::serializer;
 
     struct LevelData {
-        std::vector<TileGroup> tileGroups;
-
-        LevelData();
+        SerializableVector<SerializableTileGroupData> _tileGroups;
 
         void load_from_file(std::string filePath, LevelEditorProperties& levelEditorProperties);
         void export_to_file(std::string filePath, LevelEditorProperties& levelEditorProperties);

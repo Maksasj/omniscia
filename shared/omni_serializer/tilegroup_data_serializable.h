@@ -12,10 +12,24 @@ namespace omni::serializer {
 
     struct SerializableTileGroupData : public core::Serializable {
         SerializableString _name;
-        omni::serializer::Serializable<Vec4f> _tileGroupAssociatedColor;
+        omni::serializer::Serializable<Vec4f> _tileGroupAssociatedColor = Vec4f{1.0f, 1.0f, 1.0f, 1.0f};
 
         SerializableVector<SerializableTileData> _tiles;
         SerializableVector<SerializableCollisionBoxData> _collisionBoxes;
+
+        // Editor only
+        bool _tileSetLoaded;
+        i32 _tileSetImageWidth;
+        i32 _tileSetImageHeight;
+        u32 _tileSetTexture;
+
+        SerializableTileGroupData() {
+
+        }
+        
+        SerializableTileGroupData(const std::string& name) {
+            _name.get() = name;
+        }
 
         void deserialize(std::istream &stream) override {
             _name.deserialize(stream);

@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <functional>
 
+#include "image_loading.h"
+
 #include "level_editor_properties.h"
 #include "level/level_data.h"
 #include "file_explorer/files_explorer.h"
@@ -31,7 +33,7 @@ namespace omniscia_editor::level_editor {
 
             void render_editor_options(GLFWwindow* window);
             void render_level_options();
-            void render_tile_texture_coordinate_options(TileGroup& tileGroup);
+            void render_tile_texture_coordinate_options(SerializableTileGroupData& tileGroup);
             void render_tilegroup_options();
             void render_brush_options();
 

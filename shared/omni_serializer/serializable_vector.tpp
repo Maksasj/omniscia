@@ -21,10 +21,12 @@ namespace omni::serializer {
                 vectorLength.deserialize(stream);
 
                 _value.clear();
-                _value.resize(vectorLength);
                 
-                for(int i = 0; i < vectorLength; ++i)
-                    _value[i].deserialize(stream);
+                for(int i = 0; i < vectorLength; ++i) {
+                    T item;
+                    item.deserialize(stream);
+                    _value.push_back(item);
+                }
             }
             
             void serialize(std::ostream &stream) override {

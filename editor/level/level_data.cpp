@@ -1,9 +1,5 @@
 #include "level_data.h"
 
-omniscia_editor::level_editor::LevelData::LevelData() {
-
-}
-
 void omniscia_editor::level_editor::LevelData::load_from_file(std::string filePath, LevelEditorProperties& levelEditorProperties) {
     std::ifstream file(filePath, std::ios::out | std::ios::binary);
 
@@ -12,38 +8,30 @@ void omniscia_editor::level_editor::LevelData::load_from_file(std::string filePa
         return;
     }
 
-    tileGroups.clear();
+    _tileGroups.get().clear();
 
     using namespace omni::serializer;
     SerializableLevelData levelData;
     levelData.deserialize(file);
+    
+    _tileGroups = levelData._tileGroups;
 
-    int i = 0;
-    for(SerializableTileGroupData& tileGroupData : levelData._tileGroups.get()) {
-        TileGroup group((std::string("groupppppssss") + std::to_string(0) + std::string(" ")));
-        group._associatedColor = tileGroupData._tileGroupAssociatedColor.get();
-
-        for(SerializableTileData& tileData : tileGroupData._tiles.get()) {
-            TileData tile = tileData.get();
+    for(SerializableTileGroupData& tileGroup : _tileGroups.get()) {
+        for(SerializableTileData& tile : tileGroup._tiles.get()) {
+            TileData& data = tile.get(); 
 
             if(levelEditorProperties._exportOpenglCoordinateFlip)
-                tile._position.y *= -1.0f;
-
-            group.tiles.push_back(tile);
+                data._position.y *= -1.0f;
         }
+    
+        for(SerializableCollisionBoxData& collisionBox : tileGroup._collisionBoxes.get()) {
+            CollisionBoxData& data = collisionBox.get();
 
-        for(SerializableCollisionBoxData& collisionBoxData : tileGroupData._collisionBoxes.get()) {
-            CollisionBoxData collisionBox = collisionBoxData.get();
-            
             if(levelEditorProperties._exportOpenglCoordinateFlip) {
-                collisionBox._position.y *= -1.0f;
-                std::swap(collisionBox._yRanges.x, collisionBox._yRanges.y);
+                data._position.y *= -1.0f;
+                std::swap(data._yRanges.x, data._yRanges.y);
             }
-
-            group._collisionBoxes.push_back(collisionBox);
         }
-        
-        tileGroups.push_back(group);
     }
 }
 
@@ -59,34 +47,24 @@ void omniscia_editor::level_editor::LevelData::export_to_file(std::string filePa
     screenBoxWidth.serialize(file);
     screenBoxHeight.serialize(file);
 
-    Serializable<u64> tileGroupCount = tileGroups.size();
-    tileGroupCount.serialize(file);
-    
-    for(TileGroup& tileGroup : tileGroups) {
-        SerializableTileGroupData tileGroupData;
-
-        std::string& name = tileGroupData._name.get();
-        for(auto letter : tileGroup._name)
-            name.push_back(letter);
-
-        tileGroupData._tileGroupAssociatedColor.get() = tileGroup._associatedColor;
-
-        for(auto tile : tileGroup.tiles) {
+    SerializableVector<SerializableTileGroupData> tileGroups = _tileGroups;
+    for(SerializableTileGroupData& tileGroup : tileGroups.get()) {
+        for(SerializableTileData& tileData : tileGroup._tiles.get()) {
+            TileData& tile = tileData.get();
+            
             if(levelEditorProperties._exportOpenglCoordinateFlip)
                 tile._position.y *= -1.0f;
-
-            tileGroupData._tiles.get().push_back(tile);
         }
 
-        for(auto collisionBox : tileGroup._collisionBoxes) {
+        for(SerializableCollisionBoxData& collisionBoxData : tileGroup._collisionBoxes.get()) {
+            CollisionBoxData& collisionBox = collisionBoxData.get();
+            
             if(levelEditorProperties._exportOpenglCoordinateFlip) {
                 collisionBox._position.y *= -1.0f;
                 std::swap(collisionBox._yRanges.x, collisionBox._yRanges.y);
             }
-
-            tileGroupData._collisionBoxes.get().push_back(collisionBox);
         }
-
-        tileGroupData.serialize(file);
     }
+
+    tileGroups.serialize(file);
 }
