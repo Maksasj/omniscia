@@ -34,10 +34,12 @@ namespace omniscia_editor::level_editor {
             void render_editor_options(GLFWwindow* window);
             void render_level_options();
             void render_tile_texture_coordinate_options(SerializableTileGroupData& tileGroup);
+            void render_markergroup_options();
             void render_tilegroup_options();
             void render_brush_options();
 
             void render_tiles(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1);
+            void render_markers(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1);
             void render_collision_boxes(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1);
             void render_grid(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1);
             void render_camera_box(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1);

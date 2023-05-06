@@ -15,6 +15,7 @@ void omniscia_editor::level_editor::LevelData::load_from_file(std::string filePa
     levelData.deserialize(file);
     
     _tileGroups = levelData._tileGroups;
+    _markerGroups = levelData._markerGroups;
 
     for(SerializableTileGroupData& tileGroup : _tileGroups.get()) {
         for(SerializableTileData& tile : tileGroup._tiles.get()) {
@@ -67,4 +68,7 @@ void omniscia_editor::level_editor::LevelData::export_to_file(std::string filePa
     }
 
     tileGroups.serialize(file);
+
+    SerializableVector<SerializableMarkerGroupData> markerGroups = _markerGroups;
+    markerGroups.serialize(file);
 }

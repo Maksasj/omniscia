@@ -46,6 +46,8 @@ namespace omniscia_editor::level_editor {
 
         i32 _selectedTileGroup;
         i32 _selectedCollisionBox;
+        i32 _selectedMarkerGroup;
+        i32 _selectedMarker;
 
         f32 _minZoom;
         f32 _maxZoom;

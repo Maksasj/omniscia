@@ -158,6 +158,91 @@ void omniscia_editor::level_editor::LevelEditor::render_tile_texture_coordinate_
     ImGui::End();
 }
 
+void omniscia_editor::level_editor::LevelEditor::render_markergroup_options() {
+    using namespace omni::types;
+
+    ImGui::SeparatorText("Marker Groups");
+
+    if(ImGui::BeginListBox("##marker group list box", ImVec2(-FLT_MIN, 5 * ImGui::GetTextLineHeightWithSpacing()))) {
+        for (i32 n = 0; n < _levelData._markerGroups.get().size(); ++n) {
+            const bool is_selected = (_selectedMarkerGroup == n);
+            if(ImGui::Selectable(std::to_string(n).c_str(), is_selected))
+                _selectedMarkerGroup = n;
+
+            if(is_selected)
+                ImGui::SetItemDefaultFocus();
+        }
+
+        ImGui::EndListBox();
+    }
+
+    if(ImGui::Button("Add Marker Group")) {
+        _levelData._markerGroups.get().push_back({});
+        _selectedMarkerGroup = _levelData._markerGroups.get().size() - 1;
+    }
+
+    ImGui::SameLine();
+    if(ImGui::Button("Delete Marker Group") && _levelData._markerGroups.get().size() > 0)
+        if(_selectedMarkerGroup < _levelData._markerGroups.get().size())
+            _levelData._markerGroups.get().erase(_levelData._markerGroups.get().begin() + _selectedMarkerGroup);
+
+    if(_selectedMarkerGroup < _levelData._markerGroups.get().size()) {
+        SerializableMarkerGroupData& markerGroup = _levelData._markerGroups.get()[_selectedMarkerGroup];
+
+        Vec4f& color = markerGroup._markerGroupAssociatedColor.get(); 
+        ImVec4 imColor;
+        imColor.x = color.x;
+        imColor.y = color.y;
+        imColor.z = color.z;
+        imColor.w = color.w;
+        color_picker("Marker group color picker", imColor);
+        color.x = imColor.x;
+        color.y = imColor.y;
+        color.z = imColor.z;
+        color.w = imColor.w;
+
+        ImGui::SeparatorText("Markers");
+        if(ImGui::BeginListBox("##marker list box", ImVec2(-FLT_MIN, 5 * ImGui::GetTextLineHeightWithSpacing()))) {
+            for (i32 n = 0; n < markerGroup._markers.get().size(); ++n) {
+                SerializableMarkerData& markerData = markerGroup._markers.get()[n];
+
+                const bool is_selected = (_selectedMarker == n);
+                if(ImGui::Selectable((std::to_string(n) + ") " + std::to_string(markerData._position.get().x) + " | " + std::to_string(markerData._position.get().y)).c_str(), is_selected))
+                    _selectedMarker = n;
+
+                if(is_selected)
+                    ImGui::SetItemDefaultFocus();
+            }
+
+            ImGui::EndListBox();
+        }
+
+        if(ImGui::Button("Create ##Marker")) {
+            SerializableMarkerData markerData;
+            markerData._position = Vec2f{0.0f, 0.0f};
+            markerGroup._markers.get().push_back(markerData);
+        }
+
+        ImGui::SameLine();
+        if(ImGui::Button("Delete Marker") && markerGroup._markers.get().size() > 0)
+            if(_selectedMarker < markerGroup._markers.get().size())
+                markerGroup._markers.get().erase(markerGroup._markers.get().begin() + _selectedMarker);
+        
+        if(_selectedMarker < markerGroup._markers.get().size()) {
+            SerializableMarkerData& marker = markerGroup._markers.get()[_selectedMarker];
+        
+            ImGui::Text("Possition");
+            ImGui::Text("X ");
+            ImGui::SameLine();
+            ImGui::InputFloat("## Marker box X", &marker._position.get().x, 5.0f, 5.0f, "%.3f");
+            
+            ImGui::Text("Y ");
+            ImGui::SameLine();
+            ImGui::InputFloat("## Marker box Y", &marker._position.get().y, 5.0f, 5.0f, "%.3f");
+        }
+    }
+}
+
 void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
     using namespace omni::types;
 
@@ -243,7 +328,6 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
                 0.0f, 0.0f, Vec2f{50.0f, 50.0f}, Vec2f{50.0f, 50.0f}
             ));
         }
-
 
         if(_selectedCollisionBox < tileGroup._collisionBoxes.get().size()) {
             ImGui::SameLine();
@@ -354,6 +438,9 @@ omniscia_editor::level_editor::LevelEditor::LevelEditor() {
     _interactionRadiusMin = 1.0f;
     _interactionRadiusMax = 500.0f;
 
+    _selectedMarkerGroup = 0;
+    _selectedMarker = 0;
+
     _brushModeTilePerfect = true;
     _brushContinuous = false;
 
@@ -424,6 +511,27 @@ void omniscia_editor::level_editor::LevelEditor::render_tiles(ImDrawList* drawLi
                 drawList->AddRectFilled({firstPointX, firstPointY}, {secondPointX, secondPointY}, 
                     IM_COL32(color.x * 255, color.y * 255, color.z * 255, color.w * 255));
             }
+        }
+    }
+}
+
+void omniscia_editor::level_editor::LevelEditor::render_markers(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
+    using namespace omni::types;
+    
+    for(SerializableMarkerGroupData& markerGroup : _levelData._markerGroups.get()) {    
+        for(SerializableMarkerData serMarker : markerGroup._markers.get()) {
+            Vec2f position = serMarker._position.get();
+            i32 xStart = _scroll.x;
+            i32 yStart = _scroll.y;
+
+            Vec4f& color = markerGroup._markerGroupAssociatedColor.get();
+
+            f32 factor = (_zoom / _gridSize);
+
+            f32 firstPointX = xStart + (f32)position.x * factor;
+            f32 firstPointY = yStart + (f32)position.y * factor;
+
+            drawList->AddCircleFilled({firstPointX, firstPointY}, factor * 25.0f, IM_COL32(color.x * 255, color.y * 255, color.z * 255, color.w * 255));
         }
     }
 }
@@ -605,6 +713,8 @@ void omniscia_editor::level_editor::LevelEditor::render_tab(GLFWwindow *window) 
 
             render_tilegroup_options();
 
+            render_markergroup_options();
+
             ImGui::EndChild();
         }
 
@@ -757,6 +867,7 @@ void omniscia_editor::level_editor::LevelEditor::render_tab(GLFWwindow *window) 
             /* Render _tiles */
             render_tiles(draw_list, canvas_p0, canvas_p1);
             render_collision_boxes(draw_list, canvas_p0, canvas_p1);
+            render_markers(draw_list, canvas_p0, canvas_p1);
 
             /* Render grid */
             if (_renderGrid) {

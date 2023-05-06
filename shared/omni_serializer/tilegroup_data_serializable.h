@@ -42,6 +42,7 @@ namespace omni::serializer {
         void serialize(std::ostream &stream) override {
             _name.serialize(stream);
             _tileGroupAssociatedColor.serialize(stream);
+            
             _tiles.serialize(stream);
             _collisionBoxes.serialize(stream);
         }

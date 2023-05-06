@@ -19,6 +19,7 @@ namespace omniscia_editor::level_editor {
 
     struct LevelData {
         SerializableVector<SerializableTileGroupData> _tileGroups;
+        SerializableVector<SerializableMarkerGroupData> _markerGroups;
 
         void load_from_file(std::string filePath, LevelEditorProperties& levelEditorProperties);
         void export_to_file(std::string filePath, LevelEditorProperties& levelEditorProperties);

@@ -12,7 +12,10 @@ namespace omni::serializer {
     namespace core {
         class Serializable {
             public:
+                /** @brief create to file */
                 virtual void deserialize(std::istream &stream) = 0;
+
+                /** @brief write to file */
                 virtual void serialize(std::ostream &stream) = 0;
         };
     }
