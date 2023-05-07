@@ -70,20 +70,21 @@ int main() {
     }
 
     /* Animation assets */
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.75}, 7, true, 5}), "player-run-animation");
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.875}, 7, true, 12}), "player-idle-animation");
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.625}, 7, true, 12}), "player-fly-animation");
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.5}, 8, true, 12}), "player-death-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.125}, {0.0, 0.75},    7, true, 5,     true}), "player-run-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.125}, {0.0, 0.875},   7, true, 12,    true}), "player-idle-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.125}, {0.0, 0.625},   7, true, 12,    true}), "player-fly-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.125}, {0.0, 0.5},     8, true, 12,    false}), "player-death-animation");
 
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.5}, {0.0, 0.5}, 8, true, 24}), "crab-idle-animation");
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.5}, {0.0, 0.0}, 8, true, 12}), "crab-run-animation");
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.125}, {0.0, 0.875}, 7, true, 24}), "grandpa-idle-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.5},   {0.0, 0.5},     8, true, 24,    true}), "crab-idle-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.5},   {0.0, 0.0},     8, true, 12,    true}), "crab-run-animation");
 
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.0625}, {0.0, 0.9375}, 6, true, 8}), "use-popup-animation");
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.0625}, {0.0, 0.875}, 6, true, 8}), "speak-popup-animation");
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 0.0625}, {0.0, 0.75}, 6, true, 8}), "save-popup-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.125}, {0.0, 0.875},   7, true, 24,    true}), "grandpa-idle-animation");
 
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0}, {0.125, 1.0}, {0.0, 0.0}, 6, true, 12}), "checkpoint-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.0625},{0.0, 0.9375},  6, true, 8,     true}), "use-popup-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.0625},{0.0, 0.875},   6, true, 8,     true}), "speak-popup-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.0625},{0.0, 0.75},    6, true, 8,     true}), "save-popup-animation");
+
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 1.0}, {0.0, 0.0},       6, true, 12,    true}), "checkpoint-animation");
     
     /* Sound assets */
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk1.wav", "walk_1");

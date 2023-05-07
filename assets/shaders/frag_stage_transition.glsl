@@ -8,8 +8,10 @@ uniform sampler2D ourTexture;
 
 uniform float transparency = 1.0f;
 
-uniform float transitionProgress = 0.0f;
-uniform float transitionDiamondPixelSize = 12.0f;
+uniform float transitionCircleProgress = 0.0f;
+
+uniform float transitionSideProgress = 0.0f;
+uniform float transitionSideDiamondPixelSize = 12.0f;
 
 uniform float letterBoxUpperBound = 0.0f;
 uniform float letterBoxLowerBound = 0.0f;
@@ -18,16 +20,30 @@ uniform float bottomShadow = 0.3;
 
 vec2 gameResolution = vec2(256, 144);
 
-vec4 transition(vec2 uv, vec4 color) {
+vec4 transitionSide(vec2 uv, vec4 color) {
     uv.x = 1.0 - uv.x;
 
-    float xFraction = fract(gl_FragCoord.x / transitionDiamondPixelSize);
-    float yFraction = fract(gl_FragCoord.y / transitionDiamondPixelSize);
+    float xFraction = fract(gl_FragCoord.x / transitionSideDiamondPixelSize);
+    float yFraction = fract(gl_FragCoord.y / transitionSideDiamondPixelSize);
     
     float xDistance = abs(xFraction - 0.5);
     float yDistance = abs(yFraction - 0.5);
     
-    if (xDistance + yDistance + uv.x + uv.y < transitionProgress * 4.0f) {
+    if (xDistance + yDistance + uv.x + uv.y < transitionSideProgress * 4.0f) {
+        color.w = 1.0;
+    }
+
+    return color;
+}
+
+vec4 transitionCircle(vec2 uv, vec4 color) {
+    uv -= vec2(0.5, 0.5);
+    uv.x *= gameResolution.x / gameResolution.y;
+
+    float additionalLength = sin(uv.x * 50.0) + sin(uv.y * 50.0);
+    additionalLength *= 0.012; 
+
+    if(length(uv) + additionalLength < transitionCircleProgress) {
         color.w = 1.0;
     }
 
@@ -62,7 +78,8 @@ void main() {
     vec4 color = vec4(0.0, 0.0, 0.0, 0.0);
 
     color = bottom_shadow(uv, color);
-    color = transition(uv, color);
+    color = transitionSide(uv, color);
+    color = transitionCircle(uv, color);
     color = letter_box(uv, color);
     color *= transparency;
 

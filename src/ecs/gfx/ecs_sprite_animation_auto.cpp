@@ -14,6 +14,11 @@ void omniscia::core::ecs::ECS_SpriteAnimationAuto::update() {
         ++_currentFrame;
 
         if(_currentFrame >= animation->get_frame_count()) {
+            if(!animation->_continuous) {
+                _currentFrame = animation->_frameCount - 1;
+                return;
+            }
+
             _currentFrame = 0;
         }
     }

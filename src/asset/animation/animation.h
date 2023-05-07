@@ -42,6 +42,8 @@ namespace omniscia::core {
         /** @brief Animation speed */
         u64 _animationSpeed;
 
+        bool _continuous;
+
         /**
          * @brief Get animation frame uv size
          * 
