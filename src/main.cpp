@@ -20,7 +20,15 @@ int main() {
     TextureManager::get_instance().add_asset("assets/textures/background/beach/sky1.png", "background_beach_sky1_layer");
     TextureManager::get_instance().add_asset("assets/textures/background/beach/sky2.png", "background_beach_sky2_layer");
     TextureManager::get_instance().add_asset("assets/textures/background/beach/terrain.png", "background_beach_terrain_layer");
-    
+
+    TextureManager::get_instance().add_asset("assets/textures/background/menu/sky1.png", "menu_background_sky1_layer");
+    TextureManager::get_instance().add_asset("assets/textures/background/menu/sky2.png", "menu_background_sky2_layer");
+    TextureManager::get_instance().add_asset("assets/textures/background/menu/sky3.png", "menu_background_sky3_layer");
+    TextureManager::get_instance().add_asset("assets/textures/background/menu/terrain.png", "menu_background_terrain_layer");
+    TextureManager::get_instance().add_asset("assets/textures/background/menu/girls.png", "menu_background_girls_layer");
+
+    TextureManager::get_instance().add_asset("assets/textures/background/menu/logo_spritesheet.png", "logo_spritesheet");
+
     TextureManager::get_instance().add_asset("assets/textures/ui/dialogue.png", "dialogue");
     TextureManager::get_instance().add_asset("assets/textures/ui/icons/grandpa_test_icon.png", "grandpa_test_icon");
     TextureManager::get_instance().add_asset("assets/textures/ui/icons/player_test_icon.png", "player_test_icon");
@@ -85,6 +93,7 @@ int main() {
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.0625},{0.0, 0.75},    6, true, 8,     true}), "save-popup-animation");
 
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 1.0}, {0.0, 0.0},       6, true, 12,    true}), "checkpoint-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 1.0}, {0.0, 0.0},       6, true, 12,    true}), "logo-animation");
     
     /* Sound assets */
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk1.wav", "walk_1");

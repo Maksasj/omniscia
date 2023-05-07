@@ -2,6 +2,8 @@
 #define _ENTITY_PROTOTYPES_H_
 
 #include "beachParallaxBackground.h"
+#include "mainmenuParallaxBackground.h"
+
 #include "background.h"
 
 #include "crab.h"
@@ -14,6 +16,7 @@
 #include "static_text.h"
 #include "dialogue_tab.h"
 #include "image.h"
+#include "animated_image.h"
 
 #include "entity.h"
 
