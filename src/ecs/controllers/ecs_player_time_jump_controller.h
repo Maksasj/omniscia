@@ -108,14 +108,14 @@ namespace omniscia::core::ecs {
             ECS_PlayerTimeJumpControllerSystem() : ECS_System<ECS_PlayerTimeJumpController>() {};
             
             /**
-             * @brief Hidden default copy constructor
+             * @brief Disabled default copy constructor
             */
-            ECS_PlayerTimeJumpControllerSystem(ECS_PlayerTimeJumpControllerSystem const&) {};
+            ECS_PlayerTimeJumpControllerSystem(ECS_PlayerTimeJumpControllerSystem const&) = delete;
             
             /**
-             * @brief Hidden default assignment operator
+             * @brief Disabled default assignment operator
             */
-            void operator=(ECS_PlayerTimeJumpControllerSystem const&) {};
+            void operator=(ECS_PlayerTimeJumpControllerSystem const&) = delete;
 
         public:
             /**

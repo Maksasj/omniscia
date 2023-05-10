@@ -123,14 +123,14 @@ namespace omniscia::core::ecs {
             ECS_PlayerControllerSystem() : ECS_System<ECS_PlayerController>() {};
             
             /**
-             * @brief Hidden default copy constructor
+             * @brief Disabled default copy constructor
             */
-            ECS_PlayerControllerSystem(ECS_PlayerControllerSystem const&) {};
+            ECS_PlayerControllerSystem(ECS_PlayerControllerSystem const&) = delete;
             
             /**
-             * @brief Hidden default assignment operator
+             * @brief Disabled default assignment operator
             */
-            void operator=(ECS_PlayerControllerSystem const&) {};
+            void operator=(ECS_PlayerControllerSystem const&) = delete;
         
         public:
             /**

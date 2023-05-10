@@ -109,14 +109,14 @@ namespace omniscia::core::ecs {
             ECS_PlayerDebugMetricsSystem() : ECS_System<ECS_PlayerDebugMetrics>() {};
             
             /**
-             * @brief Hidden default copy constructor
+             * @brief Disabled default copy constructor
             */
-            ECS_PlayerDebugMetricsSystem(ECS_PlayerDebugMetricsSystem const&) {};
+            ECS_PlayerDebugMetricsSystem(ECS_PlayerDebugMetricsSystem const&) = delete;
             
             /**
-             * @brief Hidden default assignment operator
+             * @brief Disabled default assignment operator
             */
-            void operator=(ECS_PlayerDebugMetricsSystem const&) {};
+            void operator=(ECS_PlayerDebugMetricsSystem const&) = delete;
 
         public:
             /**

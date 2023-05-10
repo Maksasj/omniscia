@@ -117,14 +117,14 @@ namespace omniscia::core::ecs {
             ECS_GravitySystem() : ECS_System<ECS_Gravity>() {};
             
             /**
-             * @brief Hidden default copy constructor
+             * @brief Disabled default copy constructor
             */
-            ECS_GravitySystem(ECS_GravitySystem const&) {};
+            ECS_GravitySystem(ECS_GravitySystem const&) = delete;
             
             /**
-             * @brief Hidden default assignment operator
+             * @brief Disabled default assignment operator
             */
-            void operator=(ECS_GravitySystem const&) {};
+            void operator=(ECS_GravitySystem const&) = delete;
 
         public:
             /**

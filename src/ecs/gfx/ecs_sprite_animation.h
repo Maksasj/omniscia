@@ -144,14 +144,14 @@ namespace omniscia::core::ecs {
             ECS_SpriteAnimationSystem() : ECS_System<ECS_SpriteAnimation>() {};
             
             /**
-             * @brief Hidden default copy constructor
+             * @brief Disabled default copy constructor
             */
-            ECS_SpriteAnimationSystem(ECS_SpriteAnimationSystem const&) {};
+            ECS_SpriteAnimationSystem(ECS_SpriteAnimationSystem const&) = delete;
             
             /**
-             * @brief Hidden default assignment operator
+             * @brief Disabled default assignment operator
             */
-            void operator=(ECS_SpriteAnimationSystem const&) {};
+            void operator=(ECS_SpriteAnimationSystem const&) = delete;
 
         public:
             /**

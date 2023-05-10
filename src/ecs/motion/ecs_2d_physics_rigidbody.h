@@ -136,14 +136,14 @@ namespace omniscia::core::ecs {
             ECS_2DPhysicsRigidbodySystem() : ECS_System<ECS_2DPhysicsRigidbody>() {};
             
             /**
-             * @brief Hidden default copy constructor
+             * @brief Disabled default copy constructor
             */
-            ECS_2DPhysicsRigidbodySystem(ECS_2DPhysicsRigidbodySystem const&) {};
+            ECS_2DPhysicsRigidbodySystem(ECS_2DPhysicsRigidbodySystem const&) = delete;
             
             /**
-             * @brief Hidden default assignment operator
+             * @brief Disabled default assignment operator
             */         
-            void operator=(ECS_2DPhysicsRigidbodySystem const&) {};
+            void operator=(ECS_2DPhysicsRigidbodySystem const&) = delete;
 
         public:
             /**

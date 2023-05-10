@@ -183,14 +183,14 @@ namespace omniscia::core::ecs {
             ECS_AABBColliderSystem() : ECS_System<ECS_AABBCollider>() {};
             
             /**
-             * @brief Hidden default copy constructor
+             * @brief Disabled default copy constructor
             */
-            ECS_AABBColliderSystem(ECS_AABBColliderSystem const&) {};
+            ECS_AABBColliderSystem(ECS_AABBColliderSystem const&) = delete;
             
             /**
-             * @brief Hidden default assignment operator
+             * @brief Disabled default assignment operator
             */
-            void operator=(ECS_AABBColliderSystem const&) {};
+            void operator=(ECS_AABBColliderSystem const&) = delete;
 
         public:
             /**

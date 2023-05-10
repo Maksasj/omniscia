@@ -120,14 +120,14 @@ namespace omniscia::core::ecs {
             ECS_SoundEmitterSystem() : ECS_System<ECS_SoundEmitter>() {};
             
             /**
-             * @brief Hidden default copy constructor
+             * @brief Disabled default copy constructor
             */
-            ECS_SoundEmitterSystem(ECS_SoundEmitterSystem const&) {};
+            ECS_SoundEmitterSystem(ECS_SoundEmitterSystem const&) = delete;
             
             /**
-             * @brief Hidden default assignment operator
+             * @brief Disabled default assignment operator
             */
-            void operator=(ECS_SoundEmitterSystem const&) {};
+            void operator=(ECS_SoundEmitterSystem const&) = delete;
 
         public:
             /**

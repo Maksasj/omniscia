@@ -134,14 +134,14 @@ namespace omniscia::core::ecs {
             ECS_TilemapRendererSystem() : ECS_System<ECS_TilemapRenderer>() {};
 
             /**
-             * @brief Hidden default copy constructor
+             * @brief Disabled default copy constructor
             */
-            ECS_TilemapRendererSystem(ECS_TilemapRendererSystem const&) {};
+            ECS_TilemapRendererSystem(ECS_TilemapRendererSystem const&) = delete;
             
             /**
-             * @brief Hidden default assignment operator
+             * @brief Disabled default assignment operator
             */
-            void operator=(ECS_TilemapRendererSystem const&) {};
+            void operator=(ECS_TilemapRendererSystem const&) = delete;
 
         public:
             /**

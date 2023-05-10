@@ -103,14 +103,14 @@ namespace omniscia::core::ecs {
             ECS_StateMachineBaseSystem() : ECS_System<ECS_StateMachineBase>() {};
             
             /**
-             * @brief Hidden default copy constructor
+             * @brief Disabled default copy constructor
             */
-            ECS_StateMachineBaseSystem(ECS_StateMachineBaseSystem const&) {};
+            ECS_StateMachineBaseSystem(ECS_StateMachineBaseSystem const&) = delete;
             
             /**
-             * @brief Hidden default assignment operator
+             * @brief Disabled default assignment operator
             */
-            void operator=(ECS_StateMachineBaseSystem const&) {};
+            void operator=(ECS_StateMachineBaseSystem const&) = delete;
 
         public:
             /**

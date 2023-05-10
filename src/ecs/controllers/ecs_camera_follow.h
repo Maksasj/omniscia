@@ -154,14 +154,14 @@ namespace omniscia::core::ecs {
             ECS_CameraFollowSystem() : ECS_System<ECS_CameraFollow>() {};
             
             /**
-             * @brief Hidden default copy constructor
+             * @brief Disabled default copy constructor
             */
-            ECS_CameraFollowSystem(ECS_CameraFollowSystem const&) {};
+            ECS_CameraFollowSystem(ECS_CameraFollowSystem const&) = delete;
             
             /**
-             * @brief Hidden default assignment operator
+             * @brief Disabled default assignment operator
             */
-            void operator=(ECS_CameraFollowSystem const&) {};
+            void operator=(ECS_CameraFollowSystem const&) = delete;
 
         public:
             /**

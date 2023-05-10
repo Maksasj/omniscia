@@ -116,14 +116,14 @@ namespace omniscia::core::ecs {
             ECS_PlayerJumpSystem() : ECS_System<ECS_PlayerJump>() {};
             
             /**
-             * @brief Hidden default copy constructor
+             * @brief Disabled default copy constructor
             */
-            ECS_PlayerJumpSystem(ECS_PlayerJumpSystem const&) {};
+            ECS_PlayerJumpSystem(ECS_PlayerJumpSystem const&) = delete;
             
             /**
-             * @brief Hidden default assignment operator
+             * @brief Disabled default assignment operator
             */
-            void operator=(ECS_PlayerJumpSystem const&) {};
+            void operator=(ECS_PlayerJumpSystem const&) = delete;
 
         public:
             /**
