@@ -46,7 +46,7 @@ namespace omniscia::core::ecs {
             }
 
             u64 byte_size() override {
-                return sizeof(ECS_TextRenderer) - sizeof(Sprite) + _instancingSprite.byte_size();
+                return sizeof(ECS_TextRenderer);
             }
     };
 }

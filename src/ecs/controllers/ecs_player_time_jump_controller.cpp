@@ -37,6 +37,6 @@ void omniscia::core::ecs::ECS_PlayerTimeJumpController::update() {
 
         DebugUI::get_instance().get_metrics()._timeManipulationTime = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count() * 0.000001;
     } else {
-        timeLine.push(activeScene->clone());
+        timeLine.push(activeScene->clone_dynamic());
     }
 }

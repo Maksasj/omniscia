@@ -1,7 +1,7 @@
 #include "ecs_text_renderer.h"
 
 omniscia::core::ecs::ECS_TextRenderer::ECS_TextRenderer(const std::string& fontId, const std::string& textToRender, const f32& lineLetterSpacing, const f32& rowLineSpacing, const u64& charactersPerRow, const u32& layer) 
-        : ECS_InstancingRenderer(fontId, layer) {
+        : ECS_InstancingRenderer(fontId, 100, layer) {
 
     _fontAsset = &FontManager::get_instance().get(fontId);
 
@@ -30,7 +30,7 @@ void omniscia::core::ecs::ECS_TextRenderer::set_text_to_render(const std::string
 
     _textToRender = textToRender;
 
-    _instancingData.clear();
+    //_instancingData.clear();
 
     FontAssetProp& font = *_fontAsset->get_asset();
 
@@ -43,6 +43,8 @@ void omniscia::core::ecs::ECS_TextRenderer::set_text_to_render(const std::string
     baseXOffset = (lineLetterSpacing * scaleFactor.x * charactersPerRow);
     baseYOffset = (rowLineSpacing * scaleFactor.y * (_textToRender.size() / (f32)charactersPerRow));
 
+    i32 instanceIndex = 0;
+
     for(i32 i = 1; i < _textToRender.size() + 1; ++i) {
         const i8& letter = _textToRender[i - 1];
         const i32 index = letter - font._startCharacter; 
@@ -50,12 +52,14 @@ void omniscia::core::ecs::ECS_TextRenderer::set_text_to_render(const std::string
         const i32 row =     (index % font._charactersPerRow);
         const i32 collum =  (index + font._charactersPerRow) / (font._charactersPerRow);
         
-        _instancingData.push_back({
+        _instancingData[instanceIndex] = (InstancingData) {
             Vec2f{xOffset - baseXOffset, yOffset + baseYOffset},
             Vec2f{1.0f, 1.0f},
             font._frameSize,
             Vec2f{row * font._frameSize.x, 1.0f - collum * font._frameSize.y}
-        });
+        };
+
+        ++instanceIndex;
 
         xOffset += lineLetterSpacing * scaleFactor.x * 2;
 

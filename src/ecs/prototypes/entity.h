@@ -41,15 +41,32 @@ namespace omniscia::core {
                 _uuid = UUID::gen_uuid();
             }
 
+            Entity(const Entity& entity) {
+                _uuid = entity._uuid;
+                _component_container = entity._component_container;
+            } 
+
+            Entity& operator=(const Entity& entity) {
+                if(this == &entity)
+                    return *this;
+                
+                _component_container.clear();
+
+                _uuid = entity._uuid;
+                _component_container = entity._component_container;
+
+                return *this;
+            }
+
             /**
              * @brief Clones component container to 
              * specific entity instance
              * 
              * @param entity target, to which clone component container 
             */
-            void clone_container_to(Entity& entity) const {
-                entity._component_container = _component_container.clone();
-            }
+            // void clone_container_to(Entity& entity) const {
+            //     entity._component_container = _component_container.clone();
+            // }
             
             /**
              * @brief Returns entity uuid
@@ -68,7 +85,7 @@ namespace omniscia::core {
             */
             virtual std::shared_ptr<Entity> clone() {
                 auto entity = std::make_shared<Entity>(*this);
-                clone_container_to(*entity.get());
+                //clone_container_to(*entity.get());
                 return entity;
             }
 

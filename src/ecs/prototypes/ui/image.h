@@ -22,7 +22,7 @@ namespace omniscia::core {
             
             std::shared_ptr<Entity> clone() override {
                 auto entity = std::make_shared<Entity>(*this);
-                clone_container_to(*entity.get());
+                //clone_container_to(*entity.get());
                 return entity;
             }
     };

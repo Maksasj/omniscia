@@ -42,7 +42,17 @@ namespace omniscia::gfx::sprite {
             void bind() const;
             void unbind() const;
 
-            void render(const Shader *shader, const std::vector<InstancingData>& instancingData, const Vec2f &position, const float &rotationAngle, const Vec2f &scale, const Vec2f &spriteFrameSize, const Vec2f &spriteSheetOffset, const bool& horizontalFlip, const bool& verticalFlip) const;
+            void render(
+                const Shader *shader, 
+                InstancingData* instancingData,
+                const i32& instanceCount,
+                const Vec2f &position,
+                const float &rotationAngle,
+                const Vec2f &scale,
+                const Vec2f &spriteFrameSize,
+                const Vec2f &spriteSheetOffset,
+                const bool& horizontalFlip, 
+                const bool& verticalFlip) const;
             
             void set_texture_by_id(const std::string& textureId);
             

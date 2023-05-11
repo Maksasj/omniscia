@@ -28,7 +28,9 @@ namespace omniscia::core::ecs {
             Entity* _parent;
 
             InstancingSprite _instancingSprite;
-            std::vector<InstancingData> _instancingData;
+            //std::vector<InstancingData> _instancingData;
+            InstancingData* _instancingData;
+            i32 _instanceCount;
 
             ECS_Index<ECS_SpriteFlip> _spriteFlipIndex;
             ECS_Index<ECS_SpriteAnimation> _animationIndex;
@@ -41,7 +43,44 @@ namespace omniscia::core::ecs {
 
             void reindex(void* parent) override;
 
-            ECS_InstancingRenderer(const std::string& textureId, const u32& layer);
+            ECS_InstancingRenderer(const std::string& textureId, const i32& instanceCount, const u32& layer);
+
+            ECS_InstancingRenderer(const ECS_InstancingRenderer& instance) :
+                _instancingSprite(instance._instancingSprite),
+                ECS_ProRenderer(RenderStagePool::get_instance().get_stage_by_name("MainStage"), instance.get_layer()) 
+            {
+                _parent = instance._parent;
+                _instanceCount = instance._instanceCount;
+
+                _instancingData = new InstancingData[instance._instanceCount];
+                std::copy(instance._instancingData, instance._instancingData + instance._instanceCount, _instancingData);
+
+                _spriteFlipIndex = instance._spriteFlipIndex;
+                _animationIndex = instance._animationIndex;
+                _posIndex = instance._posIndex;
+                _scaleIndex = instance._scaleIndex;
+                _transparencyIndex = instance._transparencyIndex;
+            }
+
+            ECS_InstancingRenderer& operator=(const ECS_InstancingRenderer& comp) {
+                if(this == &comp)
+                    return *this;
+
+                if(_instanceCount != comp._instanceCount) {
+                    InstancingData* tmp = new InstancingData[comp._instanceCount];
+                    delete [] _instancingData;
+                    _instancingData = tmp;
+                    _instanceCount = comp._instanceCount;
+                }
+
+                std::copy(comp._instancingData, comp._instancingData + comp._instanceCount, _instancingData);
+
+                return *this;
+            }
+
+            ~ECS_InstancingRenderer() {
+                delete [] _instancingData;
+            }
 
             void render() override;
 
@@ -50,7 +89,7 @@ namespace omniscia::core::ecs {
             }
 
             u64 byte_size() override {
-                return sizeof(ECS_InstancingRenderer) - sizeof(Sprite) + _instancingSprite.byte_size();
+                return sizeof(ECS_InstancingRenderer);
             }
     };
 }

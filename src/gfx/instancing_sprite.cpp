@@ -25,7 +25,7 @@ omniscia::gfx::sprite::SpriteMesh& omniscia::gfx::sprite::InstancingSprite::get_
     return _spriteMesh;
 }
 
-void omniscia::gfx::sprite::InstancingSprite::render(const Shader *shader, const std::vector<InstancingData>& instancingData, const Vec2f &position, const float &rotationAngle, const Vec2f &scale, const Vec2f &spriteFrameSize, const Vec2f &spriteSheetOffset, const bool& horizontalFlip, const bool& verticalFlip) const {
+void omniscia::gfx::sprite::InstancingSprite::render(const Shader *shader, InstancingData* instancingData, const i32& instanceCount, const Vec2f &position, const float &rotationAngle, const Vec2f &scale, const Vec2f &spriteFrameSize, const Vec2f &spriteSheetOffset, const bool& horizontalFlip, const bool& verticalFlip) const {
     shader->set_uniform_vec2f("transform", position);
     shader->set_uniform_vec2f("scale", scale);
     shader->set_uniform_mat2x2f("rotation", Matrix<f32, 2, 2>::get_rotation_matrix(rotationAngle));
@@ -43,7 +43,7 @@ void omniscia::gfx::sprite::InstancingSprite::render(const Shader *shader, const
 
     if(instances == nullptr) return;
 
-    const i32 actualInstanceCount = instancingData.size();
+    const i32 actualInstanceCount = instanceCount;
     const i32 clampedInstanceCount = UNIFORM_INSTANCING_DATA_SIZE < actualInstanceCount ? UNIFORM_INSTANCING_DATA_SIZE : actualInstanceCount; 
 
     for(int i = 0; i < clampedInstanceCount; ++i) {

@@ -36,7 +36,8 @@ omni::types::i32 omniscia::gfx::Shader::try_compile() {
     glGetShaderiv(_vertexShaderTmp, GL_COMPILE_STATUS, &success);
     if (!success) {
         glGetShaderInfoLog(_vertexShaderTmp, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+        throw ShaderVertexException("ERROR::SHADER::VERTEX::COMPILATION_FAILED " + std::string(infoLog), _vertexShaderTmp, _shaderProgram);
+
         return 0;
     }
 
@@ -48,7 +49,8 @@ omni::types::i32 omniscia::gfx::Shader::try_compile() {
     glGetShaderiv(_fragmentShaderTmp, GL_COMPILE_STATUS, &success);
     if (!success) {
         glGetShaderInfoLog(_fragmentShaderTmp, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+        throw ShaderFragmentException("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED " + std::string(infoLog), _fragmentShaderTmp, _shaderProgram);
+
         return 0;
     }
 

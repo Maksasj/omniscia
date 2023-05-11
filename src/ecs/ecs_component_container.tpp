@@ -38,20 +38,39 @@ namespace omniscia::core::ecs {
             OMNISCIA_STRING_REPRESENTATION(ECS_ComponentContainer, this->_components.size());
             OMNISCIA_OFSTREAM_REPRESENTATION(ECS_ComponentContainer, self._components.size());
 
+            ECS_ComponentContainer() {}
+
+            ECS_ComponentContainer(const ECS_ComponentContainer& container) {
+                for(const std::shared_ptr<ECS_Component> &c : container._components)
+                    _components.push_back(c->clone());
+            }
+
+            ECS_ComponentContainer& operator=(const ECS_ComponentContainer& container) {
+                if(this == &container)
+                    return *this;
+                
+                _components.clear();
+
+                for(const std::shared_ptr<ECS_Component> &c : container._components)
+                    _components.push_back(c->clone());
+
+                return *this;
+            }
+
             /**
              * @brief Method used for clonning ECS_ComponentContainer 
              * cotainer, also clones all components inside it
              * 
              * @return new instance of the ECS_ComponentContainer 
             */
-            ECS_ComponentContainer clone() const {
-                ECS_ComponentContainer cont;
-
-                for(auto &c : _components)
-                    cont._components.push_back(c->clone());
-
-                return cont;
-            }
+            // ECS_ComponentContainer clone() const {
+            //     ECS_ComponentContainer cont;
+// 
+            //     for(auto &c : _components)
+            //         cont._components.push_back(c->clone());
+// 
+            //     return cont;
+            // }
 
             /**
              * @brief References component by it ecs index
@@ -64,6 +83,10 @@ namespace omniscia::core::ecs {
             template<typename T>
             T& ref_unsafe(u32 index) const {
                 return *std::dynamic_pointer_cast<T>(_components[index]);
+            }
+
+            void clear() {
+                _components.clear();
             }
 
             /**

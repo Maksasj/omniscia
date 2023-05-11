@@ -1,9 +1,12 @@
 #include "scene.h"
 
-omniscia::core::Scene::SceneDynamic omniscia::core::Scene::clone() {
+omniscia::core::Scene::SceneDynamic omniscia::core::Scene::clone_dynamic() {
     std::vector<std::shared_ptr<Entity>> clonedDynamicEntities;
-    for(auto& e : dynamicPart.dynamicEntities)
-        clonedDynamicEntities.push_back(e->clone());
+    for(auto& e : dynamicPart.dynamicEntities) {
+        //clonedDynamicEntities.push_back(e->clone());
+        std::shared_ptr<Entity> newEntity = std::make_shared<Entity>(*e);
+        clonedDynamicEntities.push_back(newEntity);
+    }
 
     return {clonedDynamicEntities};
 }
@@ -51,8 +54,10 @@ omniscia::core::Scene::SceneStatic& omniscia::core::Scene::ref_static_part() {
 void omniscia::core::Scene::load_dynamic_checkpoint() {
     dynamicPart.dynamicEntities.clear();
 
-    for(auto& e : checkpointDynamicPart.dynamicEntities)
-        dynamicPart.dynamicEntities.push_back(e->clone());
+    for(auto& e : checkpointDynamicPart.dynamicEntities) {
+        std::shared_ptr<Entity> newEntity = std::make_shared<Entity>(*e);
+        dynamicPart.dynamicEntities.push_back(newEntity);
+    }
     
     // Todo resolve this cringe
     DebugUI::get_instance().get_metrics()._isTimeJump = true;
@@ -61,7 +66,7 @@ void omniscia::core::Scene::load_dynamic_checkpoint() {
 }
 
 void omniscia::core::Scene::save_dynamic_checkpoint() {
-    checkpointDynamicPart = clone();
+    checkpointDynamicPart = clone_dynamic();
     
     // Todo resolve this cringe
     DebugUI::get_instance().get_metrics()._isTimeJump = true;

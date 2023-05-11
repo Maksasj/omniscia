@@ -72,7 +72,7 @@ namespace omniscia::core {
              * 
              * @return SceneDynamic new dynamic scene part instance
             */
-            SceneDynamic clone();
+            SceneDynamic clone_dynamic();
 
             void load_dynamic_checkpoint();
 

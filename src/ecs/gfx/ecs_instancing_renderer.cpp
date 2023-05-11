@@ -1,6 +1,11 @@
 #include "ecs_instancing_renderer.h"
 
-omniscia::core::ecs::ECS_InstancingRenderer::ECS_InstancingRenderer(const std::string& textureId, const u32& layer) : _instancingSprite(textureId), ECS_ProRenderer(RenderStagePool::get_instance().get_stage_by_name("MainStage"), layer) {
+omniscia::core::ecs::ECS_InstancingRenderer::ECS_InstancingRenderer(const std::string& textureId, const i32& instanceCount, const u32& layer) 
+    : _instancingSprite(textureId)
+    , _instancingData(new InstancingData[instanceCount])
+    , _instanceCount(instanceCount)
+    , ECS_ProRenderer(RenderStagePool::get_instance().get_stage_by_name("MainStage"), layer) 
+{
     ECS_ProRendererSystem::get_instance().bind_component(this);
 };
 
@@ -58,6 +63,7 @@ void omniscia::core::ecs::ECS_InstancingRenderer::render() {
     _instancingSprite.render(
         shader, 
         _instancingData,
+        _instanceCount,
         position, 
         0.0f, scale, 
         spriteFrameSize, spriteFrameOffset, 
