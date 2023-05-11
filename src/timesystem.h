@@ -13,14 +13,15 @@
 #define _TIME_SYSTEM_H_
 
 #include <functional>
-#include <chrono>
+
+#define BOOST_CHRONO_HEADER_ONLY
+#include "boost/chrono/chrono.hpp"
 
 #include "gfx.h"
 #include "types.tpp"
 
 namespace omniscia::core {
     using namespace omni::types;
-    using namespace std::chrono;
 
     /**
      * @brief Class used managin time
@@ -51,14 +52,14 @@ namespace omniscia::core {
              * @tparam _milliseconds value of the n 
              * @param lambda expression to be runned everu n milliseconds
             */
-            template<u32 _milliseconds>
-            static void run_every_n_milliseconds(const std::function<void()> lambda) {
-                using namespace std::chrono;
+            template <unsigned int _milliseconds>
+            static void run_every_n_milliseconds(const std::function<void()>& lambda) {
+                using namespace boost::chrono;
                 static auto begin = high_resolution_clock::now();
                 auto end = high_resolution_clock::now();
 
-                f64 delta = duration_cast<nanoseconds>(end - begin).count() * 0.000001f;
-                if(delta > _milliseconds) {
+                double delta = duration_cast<nanoseconds>(end - begin).count() * 0.000001;
+                if (delta > _milliseconds) {
                     lambda();
                     begin = high_resolution_clock::now();
                 }
