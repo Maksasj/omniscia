@@ -41,6 +41,7 @@ namespace omniscia::core {
             f32 _durationTimeCounter = 0.0f;
 
             bool _isDone = false;
+            bool _forceNotDone = false;
 
             CutsceneDataPoolType* _parrentCutsceneDataPool;
             
@@ -112,6 +113,7 @@ namespace omniscia::core {
                 _durationTimeCounter = 0.0f;
 
                 _isDone = false;
+                _forceNotDone = false;
             }
 
             u64 get_reapet_counter() const { return _reapetCounter; }
@@ -119,6 +121,11 @@ namespace omniscia::core {
 
             void done() {
                 _isDone = true;
+                _forceNotDone = false;
+            }
+
+            void not_done() {
+                _forceNotDone = true;
             }
 
             f32 get_current_duration() const {
@@ -126,6 +133,11 @@ namespace omniscia::core {
             }
 
             bool is_done() {
+                if(_forceNotDone) {
+                    _forceNotDone = false;
+                    return false;
+                }
+
                 if(_isDone)
                     return true;
 

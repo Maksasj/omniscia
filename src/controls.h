@@ -33,11 +33,12 @@ namespace omniscia::core {
         RIGHT = 3,
         TIME_JUMP = 4,
         INTERACT = 5,
+        PAUSE = 6,
     };
 
     enum MouseController {
-        LEFT_CLICK = 6,
-        RIGHT_CLICK = 7,
+        LEFT_CLICK = 7,
+        RIGHT_CLICK = 8,
     };
     
     /**
@@ -68,8 +69,8 @@ namespace omniscia::core {
             /**
              * @brief Container that stores which keys binded to which actions
             */
-            std::unordered_map<u8, std::pair<i32, ActionType>> keyBindigs;
-            std::unordered_map<u8, std::pair<i32, ActionType>> mouseBindigs;
+            std::unordered_map<i32, std::pair<i32, ActionType>> keyBindigs;
+            std::unordered_map<i32, std::pair<i32, ActionType>> mouseBindigs;
 
             Vec2f _mousePos;
             

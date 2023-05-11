@@ -10,7 +10,7 @@ namespace omniscia::core {
     using namespace omni::types;
     
     class Cutscene {
-        private:
+        protected:
             bool _started;
             bool _ended;
 
@@ -26,7 +26,7 @@ namespace omniscia::core {
             void free();
             void start();
             bool is_ended() const;
-            void update();
+            virtual void update();
     };
 }
 

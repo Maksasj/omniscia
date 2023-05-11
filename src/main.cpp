@@ -28,6 +28,7 @@ int main() {
     TextureManager::get_instance().add_asset("assets/textures/background/menu/girls.png", "menu_background_girls_layer");
 
     TextureManager::get_instance().add_asset("assets/textures/background/menu/logo_spritesheet.png", "logo_spritesheet");
+    TextureManager::get_instance().add_asset("assets/textures/background/pause_screen/pause_text.png", "pause_text");
 
     TextureManager::get_instance().add_asset("assets/textures/ui/dialogue.png", "dialogue");
     TextureManager::get_instance().add_asset("assets/textures/ui/icons/grandpa_test_icon.png", "grandpa_test_icon");

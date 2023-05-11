@@ -146,6 +146,8 @@ void omniscia::Game::run() {
     _cutscenes["transition_cutscene_to_settings"] = new TransitionCutscene(&transitionStageShader, "settings_scene");
     _cutscenes["transition_cutscene_to_secrets"] = new TransitionCutscene(&transitionStageShader, "secrets_scene");
     _cutscenes["death_cutscene"] = new DeathCutscene(&transitionStageShader);
+    _cutscenes["pause_cutscene"] = new PauseCutscene(&transitionStageShader);
+    start_cutscene("pause_cutscene"); // Endless cutscene
 
     _cutscenes["test_dialogue_cutscene"] = new DialogueCutscene(&transitionStageShader, {
         DialogueStepData("player_test_icon", 1, "Hello, who you are ?"),
