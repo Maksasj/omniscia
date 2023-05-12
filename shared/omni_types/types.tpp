@@ -125,8 +125,8 @@ namespace omni::types {
          * 
          * @return f32 length of the vector
         */
-        f32 length() {
-            return sqrtf(this->x * this->x + this->y);
+        f32 length() const {
+            return sqrtf(this->x * this->x + this->y * this->y);
         }
     };
 
@@ -229,7 +229,7 @@ namespace omni::types {
          * 
          * @return f32 length of the vector
         */
-        _T length() {
+        _T length() const {
             return sqrtf(this->x * this->x + this->y * this->y + this->z * this->z);
         }
     };
@@ -332,7 +332,7 @@ namespace omni::types {
          * 
          * @return f32 length of the vector
         */
-        f32 length() {
+        f32 length() const {
             return sqrtf(this->x * this->x + this->y * this->y + this->z * this->z,  + this->w * this->w);
         }
     };

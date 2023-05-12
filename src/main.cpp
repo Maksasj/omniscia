@@ -13,6 +13,7 @@ int main() {
     TextureManager::get_instance().add_asset("assets/textures/entities/characters/grandpa/grandpa.png", "grandpa-spritesheet");
     TextureManager::get_instance().add_asset("assets/textures/entities/crab/crab.png", "crab-spritesheet");
     TextureManager::get_instance().add_asset("assets/textures/entities/checkpoint/checkpoint-spritesheet.png", "checkpoint-spritesheet");
+    TextureManager::get_instance().add_asset("assets/textures/entities/star/star-spritesheet.png", "star-spritesheet");
 
     TextureManager::get_instance().add_asset("assets/textures/tiles/beach/beach_tiles.png", "beach_tiles");
     TextureManager::get_instance().add_asset("assets/textures/background/beach/beach.png", "background_beach_beach_layer");
@@ -96,6 +97,8 @@ int main() {
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 1.0}, {0.0, 0.0},       6, true, 12,    true}), "checkpoint-animation");
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 1.0}, {0.0, 0.0},       6, true, 12,    true}), "logo-animation");
     
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.5}, {0.0, 0.5},     6, true, 12,    true}), "star-spinning-animation");
+
     /* Sound assets */
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk1.wav", "walk_1");
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk2.wav", "walk_2");

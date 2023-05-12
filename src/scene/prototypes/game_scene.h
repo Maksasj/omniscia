@@ -16,6 +16,7 @@ namespace omniscia::core {
 
                 summon_dynamic_entity_at_marker_group<Player>(0);
                 summon_static_entity_at_marker_group<Checkpoint>(1);
+                summon_static_entity_at_marker_group<Star>(2);
 
                 // add_dynamic_entity<Crab>();
                 // add_dynamic_entity<Player>();

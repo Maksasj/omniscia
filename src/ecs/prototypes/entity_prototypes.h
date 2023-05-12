@@ -19,5 +19,6 @@
 #include "animated_image.h"
 
 #include "entity.h"
+#include "star.h"
 
 #endif
