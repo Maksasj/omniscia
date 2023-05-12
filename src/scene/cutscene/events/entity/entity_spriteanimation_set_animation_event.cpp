@@ -30,7 +30,7 @@ void omniscia::core::CE_EntitySpriteAnimationSetAnimationEvent::execute() {
     CutsceneDataPoolType& _dataPool = *ptrParrentCutsceneDataPool;
     UUID* entityUUID = (UUID*)_dataPool[_entityTmpName].get();
 
-    std::shared_ptr<Entity> entityPtr= scene->get_dynamic_entity_by_uuid(*entityUUID);
+    std::shared_ptr<Entity> entityPtr= scene->find_dynamic_entity_by_uuid(*entityUUID);
     if(entityPtr == nullptr) return;
 
     ECS_Index<ECS_SpriteAnimation> spriteAnimationIndex = entityPtr->index<ECS_SpriteAnimation>();

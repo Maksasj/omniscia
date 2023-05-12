@@ -127,9 +127,9 @@ namespace omniscia::core::ecs {
                 if(!_enabled)
                     return;
 
-                for(ECS_PlayerDebugMetrics* comp : _components) {
+                std::for_each(_components.begin(), _components.end(), [&](ECS_PlayerDebugMetrics* comp) {
                     comp->update();
-                }
+                });
             }
 
             /**

@@ -11,7 +11,7 @@ void omniscia::core::EndlessCutscene::update() {
     if(_ended)
         return;
 
-    if(_currentStep >= _steps.end()) {
+    if(_currentStep == _steps.end()) {
         _ended = true;
         start();
         return;

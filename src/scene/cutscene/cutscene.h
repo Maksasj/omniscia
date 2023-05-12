@@ -1,6 +1,7 @@
 #ifndef _CUTSCENE_H_
 #define _CUTSCENE_H_
 
+#include <list>
 #include <memory>
 
 #include "cutscene_step.h"
@@ -16,8 +17,8 @@ namespace omniscia::core {
 
             CutsceneDataPoolType _cutsceneDataPool;
 
-            std::vector<CE_Step> _steps;
-            std::vector<CE_Step>::iterator _currentStep;
+            std::list<CE_Step> _steps;
+            std::list<CE_Step>::iterator _currentStep;
 
             Cutscene();
             Cutscene(const Cutscene&);
@@ -27,6 +28,16 @@ namespace omniscia::core {
             void start();
             bool is_ended() const;
             virtual void update();
+    };
+
+    bool ended_cutscene_predicate(Cutscene const* cutscene);
+
+    struct Predicate_CutsceneEnd {
+        bool operator()(Cutscene const* cutscene) {
+            if(cutscene == nullptr) return true;
+
+            return cutscene->is_ended(); 
+        }
     };
 }
 

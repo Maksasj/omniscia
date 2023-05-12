@@ -8,7 +8,7 @@ omniscia::core::DeathCutscene::DeathCutscene(Shader* transitionStageShader)
             new CE_DisableSystemEvent<ECS_PlayerTimeJumpControllerSystem>((CE_DisableSystemProp){}),
             new CE_DisableSystemEvent<ECS_InteractiveSystem>((CE_DisableSystemProp){}),
             new CE_DisableSystemEvent<ECS_DeadlySystem>((CE_DisableSystemProp){}),
-            new CE_IndexDynamicEntityEvent<Player>((CE_IndexDynamicEntityProp){
+            new CE_FindDynamicEntityEvent<Player>((CE_IndexDynamicEntityProp){
                 ._entityTmpName = "Player",
             }),
         },
@@ -16,7 +16,7 @@ omniscia::core::DeathCutscene::DeathCutscene(Shader* transitionStageShader)
             new CE_EntitySpriteAnimationSetAnimationEvent((CE_EntitySpriteAnimationSetAnimationProp){
                 ._base = (CE_Prop){ 
                     ._pauseAfterFinishing = true,
-                    ._pauseTimeAfterFinishing = 2.5f,
+                    ._pauseTimeAfterFinishing = 1.0f,
                 },
                 ._entityTmpName = "Player",
                 ._animationId = "player-death-animation",
@@ -24,10 +24,10 @@ omniscia::core::DeathCutscene::DeathCutscene(Shader* transitionStageShader)
         },
         CE_Step {
             new CE_ShaderUniformF32ChangeEvent((CE_ShaderUniformF32ChangeProp){ 
-                ._base = (CE_Prop){ ._durationTime = 1.5f },
+                ._base = (CE_Prop){ ._durationTime = 1.0f },
                 ._uniformName = "transitionCircleProgress",
                 ._shader = transitionStageShader,
-                ._lambda = [](const f32& duration) { return smoothstep(0.0f, 1.1f, duration / 1.5f); }
+                ._lambda = [](const f32& duration) { return smoothstep(0.0f, 1.1f, duration / 1.0f); }
             }),
         },
         CE_Step {
@@ -42,10 +42,10 @@ omniscia::core::DeathCutscene::DeathCutscene(Shader* transitionStageShader)
         },
         CE_Step {
             new CE_ShaderUniformF32ChangeEvent((CE_ShaderUniformF32ChangeProp){ 
-                ._base = (CE_Prop){ ._durationTime = 1.5f },
+                ._base = (CE_Prop){ ._durationTime = 1.0f },
                 ._uniformName = "transitionCircleProgress",
                 ._shader = transitionStageShader,
-                ._lambda = [](const f32& duration) { return smoothstep(1.1f, 0.0f, duration / 1.5f); }
+                ._lambda = [](const f32& duration) { return smoothstep(1.1f, 0.0f, duration / 1.0f); }
             }),
         },
 }) {}

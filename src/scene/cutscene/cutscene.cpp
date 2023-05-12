@@ -43,7 +43,7 @@ void omniscia::core::Cutscene::update() {
     if(_ended)
         return;
 
-    if(_currentStep >= _steps.end()) {
+    if(_currentStep == _steps.end()) {
         _ended = true;
         return;
     }
@@ -54,4 +54,10 @@ void omniscia::core::Cutscene::update() {
 
     if(currentStep.is_done())
         ++_currentStep;
+}
+
+bool omniscia::core::ended_cutscene_predicate(omniscia::core::Cutscene const* cutscene) {
+    if(cutscene == nullptr) return true;
+
+    return cutscene->is_ended(); 
 }

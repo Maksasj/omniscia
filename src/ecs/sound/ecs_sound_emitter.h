@@ -138,9 +138,9 @@ namespace omniscia::core::ecs {
                 if(!_enabled)
                     return;
 
-                for(ECS_SoundEmitter* comp : _components) {
+                std::for_each(_components.begin(), _components.end(), [&](ECS_SoundEmitter* comp) {
                     comp->update();
-                }
+                });
             }
 
             /**

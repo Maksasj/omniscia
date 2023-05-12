@@ -172,9 +172,9 @@ namespace omniscia::core::ecs {
                 if(!_enabled)
                     return;
 
-                for(ECS_CameraFollow* comp : _components) {
+                std::for_each(_components.begin(), _components.end(), [&](ECS_CameraFollow* comp) {
                     comp->update();
-                }
+                });
             }
 
             /**

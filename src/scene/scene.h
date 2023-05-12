@@ -203,22 +203,83 @@ namespace omniscia::core {
                 }
             }
 
-            std::shared_ptr<Entity> get_dynamic_entity_by_uuid(const UUID& uuid) {
-                for(auto& e : dynamicPart.dynamicEntities)
-                    if(e->get_uuid() == uuid)
-                        return e;
+            template<class Predicate>
+            std::shared_ptr<omniscia::core::Entity> find_dynamic_entity_with_predicate(const Predicate& predicate) {
+                auto& entities = dynamicPart.dynamicEntities;
+
+                for(std::shared_ptr<omniscia::core::Entity>& ptr : entities) {
+                    if(predicate(ptr)) {
+                        return ptr;
+                    }
+                }
 
                 return nullptr;
+            }
+
+            template<class Predicate>
+            std::shared_ptr<omniscia::core::Entity> find_static_entity_with_predicate(const Predicate& predicate) {
+                auto& entities = staticPart.staticEntities;
+
+                for(std::shared_ptr<omniscia::core::Entity>& ptr : entities) {
+                    if(predicate(ptr))
+                        return ptr;
+                }
+
+                return nullptr;
+            }
+
+            inline std::shared_ptr<Entity> find_dynamic_entity_by_uuid(const UUID& uuid) {
+                return find_dynamic_entity_with_predicate(Predicate_EntityUUIDEqual(uuid));
             }
     
-            std::shared_ptr<Entity> get_static_entity_by_uuid(const UUID& uuid) {
-                for(auto& e : staticPart.staticEntities)
-                    if(e->get_uuid() == uuid)
-                        return e;
-
-                return nullptr;
+            inline std::shared_ptr<Entity> find_static_entity_by_uuid(const UUID& uuid) {
+                return find_static_entity_with_predicate(Predicate_EntityUUIDEqual(uuid));
             }
             
+            template<class _T>
+            inline std::shared_ptr<omniscia::core::Entity> find_dynamic_entity_by_prototype() {
+                return find_dynamic_entity_with_predicate(Predicate_EntityPrototypeEqual<_T>());
+            }
+
+            template<class _T>
+            inline std::shared_ptr<omniscia::core::Entity> find_static_entity_by_prototype() {
+                return find_static_entity_with_predicate(Predicate_EntityPrototypeEqual<_T>());
+            }
+            
+            template<class Predicate>
+            std::vector<std::shared_ptr<omniscia::core::Entity>> find_dynamic_entities_with_predicate(const Predicate& predicate) {
+                auto& entities = dynamicPart.dynamicEntities;
+                std::vector<std::shared_ptr<omniscia::core::Entity>> outEntities;
+                
+                for(std::shared_ptr<omniscia::core::Entity>& ptr : entities)
+                    if(predicate(ptr))
+                        outEntities.push_back(ptr);
+
+                return outEntities;
+            }
+
+            template<class Predicate>
+            std::vector<std::shared_ptr<omniscia::core::Entity>> find_static_entities_with_predicate(const Predicate& predicate) {
+                auto& entities = staticPart.staticEntities;
+                std::vector<std::shared_ptr<omniscia::core::Entity>> outEntities;
+
+                for(std::shared_ptr<omniscia::core::Entity>& ptr : entities)
+                    if(predicate(ptr))
+                        outEntities.push_back(ptr);
+
+                return outEntities;
+            }
+
+            template<class _T>
+            inline std::vector<std::shared_ptr<omniscia::core::Entity>> find_dynamic_entities_by_prototype() {
+                return find_dynamic_entities_with_predicate(Predicate_EntityPrototypeEqual<_T>());
+            }
+
+            template<class _T>
+            inline std::vector<std::shared_ptr<omniscia::core::Entity>> find_static_entities_by_prototype() {
+                return find_static_entities_with_predicate(Predicate_EntityPrototypeEqual<_T>());
+            }
+
             void delete_dynamic_entity_by_uuid(const UUID& uuid) {
                 auto& entities = dynamicPart.dynamicEntities; 
 
@@ -247,64 +308,6 @@ namespace omniscia::core {
                     } else
                         ++i;
                 } 
-            }
-
-            template<class T>
-            T* get_dynamic_entity_by_prototype() {
-                auto& entities = dynamicPart.dynamicEntities;
-
-                for(auto& sharedPtr : entities) {
-                    Entity* ptr = sharedPtr.get();
-
-                    if(dynamic_cast<T*>(ptr))
-                        return static_cast<T*>(ptr);
-                }
-
-                return nullptr;
-            }
-
-            template<class T>
-            T* get_static_entity_by_prototype() {
-                auto& entities = staticPart.staticEntities;
-
-                for(auto& sharedPtr : entities) {
-                    Entity* ptr = sharedPtr.get();
-
-                    if(dynamic_cast<T*>(ptr))
-                        return static_cast<T*>(ptr);
-                }
-
-                return nullptr;
-            }
-
-            template<class T>
-            std::vector<T*> get_dynamic_entities_by_prototype() {
-                auto& entities = dynamicPart.dynamicEntities;
-                std::vector<T*> outEntities;
-
-                for(auto& sharedPtr : entities) {
-                    Entity* ptr = sharedPtr.get();
-
-                    if(dynamic_cast<T*>(ptr))
-                        outEntities.push_back(static_cast<T*>(ptr));
-                }
-
-                return outEntities;
-            }
-
-            template<class T>
-            std::vector<T*> get_static_entities_by_prototype() {
-                auto& entities = staticPart.staticEntities;
-                std::vector<T*> outEntities;
-
-                for(auto& sharedPtr : entities) {
-                    Entity* ptr = sharedPtr.get();
-
-                    if(dynamic_cast<T*>(ptr))
-                        outEntities.push_back(static_cast<T*>(ptr));
-                }
-
-                return outEntities;
             }
     };
 }

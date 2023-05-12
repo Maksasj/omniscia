@@ -162,9 +162,9 @@ namespace omniscia::core::ecs {
                 if(!_enabled)
                     return;
 
-                for(ECS_SpriteAnimation* comp : _components) {
+                std::for_each(_components.begin(), _components.end(), [&](ECS_SpriteAnimation* comp) {
                     comp->update();
-                }
+                });
             }
 
             /**

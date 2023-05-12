@@ -10,10 +10,8 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
 
     auto& incomingVertices = meshData.get_vertices();
     auto& incomingIndecies = meshData.get_indices();
-
-    for(auto vert : incomingVertices) {
-        vertices.push_back(vert);
-    }
+    
+    vertices.insert(vertices.end(), incomingVertices.begin(), incomingVertices.end());
 
     u64 tmpMaxIndex = _maxIndex;
     for(auto& ind : incomingIndecies) {
@@ -37,10 +35,13 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
     auto& incomingVertices = meshData.get_vertices();
     auto& incomingIndecies = meshData.get_indices();
 
-    for(auto vert : incomingVertices) {
-        vert.transform(Vec3f{transform.x, transform.y, 0.0f});
-        vertices.push_back(vert);
-    }
+    std::transform(incomingVertices.begin(), incomingVertices.end(), incomingVertices.begin(), [&](Vertex vertex) {
+        vertex.transform(Vec3f{transform.x, transform.y, 0.0f});
+        
+        return vertex;
+    });
+
+    vertices.insert(vertices.end(), incomingVertices.begin(), incomingVertices.end());
 
     u64 tmpMaxIndex = _maxIndex;
     for(auto& ind : incomingIndecies) {
@@ -64,11 +65,14 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
     auto& incomingVertices = meshData.get_vertices();
     auto& incomingIndecies = meshData.get_indices();
 
-    for(auto vert : incomingVertices) {
-        vert.rotate(angle);
-        vert.transform(Vec3f{transform.x, transform.y, 0.0f});
-        vertices.push_back(vert);
-    }
+    std::transform(incomingVertices.begin(), incomingVertices.end(), incomingVertices.begin(), [&](Vertex vertex) {
+        vertex.rotate(angle);
+        vertex.transform(Vec3f{transform.x, transform.y, 0.0f});
+
+        return vertex;
+    });
+
+    vertices.insert(vertices.end(), incomingVertices.begin(), incomingVertices.end());
 
     u64 tmpMaxIndex = _maxIndex;
     for(auto& ind : incomingIndecies) {
@@ -92,11 +96,14 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
     auto& incomingVertices = meshData.get_vertices();
     auto& incomingIndecies = meshData.get_indices();
 
-    for(auto vert : incomingVertices) {
-        vert.scale(Vec3f{scale.x, scale.y, 1.0});
-        vert.transform(Vec3f{transform.x, transform.y, 0.0f});
-        vertices.push_back(vert);
-    }
+    std::transform(incomingVertices.begin(), incomingVertices.end(), incomingVertices.begin(), [&](Vertex vertex) {
+        vertex.scale(Vec3f{scale.x, scale.y, 1.0});
+        vertex.transform(Vec3f{transform.x, transform.y, 0.0f});
+        
+        return vertex;
+    });
+
+    vertices.insert(vertices.end(), incomingVertices.begin(), incomingVertices.end());
 
     u64 tmpMaxIndex = _maxIndex;
     for(auto& ind : incomingIndecies) {
@@ -120,12 +127,15 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
     auto& incomingVertices = meshData.get_vertices();
     auto& incomingIndecies = meshData.get_indices();
 
-    for(auto vert : incomingVertices) {
-        vert.rotate(angle);
-        vert.transform(Vec3f{transform.x, transform.y, 0.0f});
-        vert.scale(Vec3f{scale.x, scale.y, 1.0});
-        vertices.push_back(vert);
-    }
+    std::transform(incomingVertices.begin(), incomingVertices.end(), incomingVertices.begin(), [&](Vertex vertex) {
+        vertex.rotate(angle);
+        vertex.scale(Vec3f{scale.x, scale.y, 1.0});
+        vertex.transform(Vec3f{transform.x, transform.y, 0.0f});
+        
+        return vertex;
+    });
+
+    vertices.insert(vertices.end(), incomingVertices.begin(), incomingVertices.end());
 
     u64 tmpMaxIndex = _maxIndex;
     for(auto& ind : incomingIndecies) {
@@ -149,10 +159,13 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
     auto& incomingVertices = meshData.get_vertices();
     auto& incomingIndecies = meshData.get_indices();
 
-    for(auto vert : incomingVertices) {
-        lambda(vert);
-        vertices.push_back(vert);
-    }
+    std::transform(incomingVertices.begin(), incomingVertices.end(), incomingVertices.begin(), [&](Vertex vertex) {
+        lambda(vertex);
+        
+        return vertex;
+    });
+
+    vertices.insert(vertices.end(), incomingVertices.begin(), incomingVertices.end());
 
     u64 tmpMaxIndex = _maxIndex;
     for(auto& ind : incomingIndecies) {
@@ -170,33 +183,49 @@ omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::append(Raw
 }
 
 omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::transform(const Vec2f& transform) {
-    for(auto& vert : _meshData.get_vertices()) {
-        vert.transform(Vec3f{transform.x, transform.y, 0.0f});
-    }
+    auto& vertices = _meshData.get_vertices();
+
+    std::transform(vertices.begin(), vertices.end(), vertices.begin(), [&](Vertex vertex) {
+        vertex.transform(Vec3f{transform.x, transform.y, 0.0f});
+
+        return vertex;
+    });
 
     return *this;
 }
 
 omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::scale(const Vec2f& scale) {
-    for(auto& vert : _meshData.get_vertices()) {
-        vert.scale(Vec3f{scale.x, scale.y, 0.0f});
-    }
+    auto& vertices = _meshData.get_vertices();
+
+    std::transform(vertices.begin(), vertices.end(), vertices.begin(), [&](Vertex vertex) {
+        vertex.scale(Vec3f{scale.x, scale.y, 0.0f});
+
+        return vertex;
+    });
 
     return *this;
 }
 
 omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::rotate(const f32& angle) {
-    for(auto& vert : _meshData.get_vertices()) {
-        vert.rotate(angle);
-    }
+    auto& vertices = _meshData.get_vertices();
+
+    std::transform(vertices.begin(), vertices.end(), vertices.begin(), [&](Vertex vertex) {
+        vertex.rotate(angle);
+
+        return vertex;
+    });
 
     return *this;
 }
 
 omniscia::gfx::RawMeshDataBuilder& omniscia::gfx::RawMeshDataBuilder::edit(std::function<void(Vertex& vertex)> lambda) {
-    for(auto& vert : _meshData.get_vertices()) {
-        lambda(vert);
-    }
+    auto& vertices = _meshData.get_vertices();
+
+    std::transform(vertices.begin(), vertices.end(), vertices.begin(), [&](Vertex vertex) {
+        lambda(vertex);
+
+        return vertex;
+    });
 
     return *this;
 }

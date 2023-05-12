@@ -141,9 +141,14 @@ namespace omniscia::core::ecs {
                 if(!_enabled)
                     return;
 
-                for(ECS_PlayerController* comp : _components) {
+                bool _ = std::all_of(_components.begin(), _components.end(), [&](ECS_PlayerController* comp) {
                     comp->control();
-                }
+                    
+                    if(DebugUI::get_instance().get_metrics()._isTimeJump)
+                        return false;
+                    
+                    return true;
+                });
             }
 
             /**

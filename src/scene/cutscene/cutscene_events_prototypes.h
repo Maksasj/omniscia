@@ -25,7 +25,7 @@
 #include "scene_load_checkpoint.h"
 #include "run_cutscene_cutscene_event.h"
 #include "entity_spriteanimation_set_animation_event.h"
-#include "index_dynamic_entity_cutscene_event.h"
+#include "find_dynamic_entity_cutscene_event.h"
 #include "wait_cutscene_event.h"
 #include "spawn_pause_text_cutscene_event.h"
 

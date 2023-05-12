@@ -201,14 +201,13 @@ namespace omniscia::core::ecs {
                 if(!_enabled)
                     return;
 
+                std::for_each(_components.begin(), _components.end(), [&](ECS_AABBCollider* first) {
+                    std::for_each(_components.begin(), _components.end(), [&](ECS_AABBCollider* second) {
+                        if(first == second) return;
 
-                for(int i = 0; i < _components.size(); ++i) {
-                    for(int j = 0; j < _components.size(); ++j) { 
-                        if(i == j) continue;
-    
-                        _components[i]->collide(_components[j]);
-                    }
-                }
+                        first->collide(second);
+                    });
+                });
             }
 
             /**
@@ -216,9 +215,9 @@ namespace omniscia::core::ecs {
              * components that are currently assigned
             */
             void reset() {
-                for(int i = 0; i < _components.size(); ++i) {
-                    _components[i]->reset_collisions();
-                }  
+                std::for_each(_components.begin(), _components.end(), [&](ECS_AABBCollider* comp) {
+                    comp->reset_collisions();
+                });
             }
 
             /**

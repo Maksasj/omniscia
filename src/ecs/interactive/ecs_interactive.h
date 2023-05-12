@@ -65,12 +65,14 @@ namespace omniscia::core::ecs {
                 if(!_enabled)
                     return;
 
-                for(ECS_Interactive* comp : _components) {
+                bool _ = std::all_of(_components.begin(), _components.end(), [&](ECS_Interactive* comp) {
                     comp->update();
-
-                    if(DebugUI::get_instance().get_metrics()._isTimeJump == true)
-                        break;
-                }
+                    
+                    if(DebugUI::get_instance().get_metrics()._isTimeJump)
+                        return false;
+                    
+                    return true;
+                });
             }
 
             static ECS_InteractiveSystem& get_instance() {

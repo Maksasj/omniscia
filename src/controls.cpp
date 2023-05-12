@@ -39,24 +39,21 @@ bool omniscia::core::Controls::get(const MouseController& action) {
 }
 
 void omniscia::core::Controls::handle_input(GLFWwindow *window) {
-    for(auto &key : keyBindigs) {
-        auto& actionType = key.second.second;
 
-        if (glfwGetKey(window, key.first) == actionType) {
-            controlStates[key.second.first] = true;
-        } else {
-            controlStates[key.second.first] = false;
-        }
+    std::unordered_map<i32, std::pair<i32, ActionType>>::const_iterator keyIterator;
+    for(keyIterator = keyBindigs.begin(); keyIterator != keyBindigs.end(); ++keyIterator) {
+        const auto key = *keyIterator; 
+        const ActionType& actionType = key.second.second;
+
+        controlStates[key.second.first] = (glfwGetKey(window, key.first) == actionType);
     }
 
-    for(auto &key : mouseBindigs) {
-        auto& actionType = key.second.second;
+    std::unordered_map<i32, std::pair<i32, ActionType>>::const_iterator mouseIterator;
+    for(mouseIterator = mouseBindigs.begin(); mouseIterator != mouseBindigs.end(); ++mouseIterator) {
+        const auto key = *mouseIterator; 
+        const ActionType& actionType = key.second.second;
 
-        if (glfwGetMouseButton(window, key.first) == actionType) {
-            controlStates[key.second.first] = true;
-        } else {
-            controlStates[key.second.first] = false;
-        }
+        controlStates[key.second.first] = (glfwGetMouseButton(window, key.first) == actionType);
     }
 
     f64 xpos, ypos;

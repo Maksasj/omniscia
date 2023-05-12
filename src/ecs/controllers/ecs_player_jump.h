@@ -134,9 +134,9 @@ namespace omniscia::core::ecs {
                 if(!_enabled)
                     return;
 
-                for(ECS_PlayerJump* comp : _components) {
+                std::for_each(_components.begin(), _components.end(), [&](ECS_PlayerJump* comp) {
                     comp->update();
-                }
+                });
             }
 
             /**

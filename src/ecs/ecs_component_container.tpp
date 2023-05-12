@@ -146,7 +146,7 @@ namespace omniscia::core::ecs {
 
                 return false;
             }
-
+            
             /**
              * @brief Returns amount of the components stored inside component container
              * 

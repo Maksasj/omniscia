@@ -142,6 +142,38 @@ namespace omniscia::core {
                 return _component_container.byte_size();
             }
     };
+
+    template<class T>
+    class Predicate_EntityPrototypeEqual {
+        public:
+            bool operator()(const std::shared_ptr<omniscia::core::Entity>& entity) const {
+                Entity* ptr = entity.get();
+
+                if(dynamic_cast<T*>(ptr))
+                    return true;
+
+                return false; 
+            }
+    };
+
+    class Predicate_EntityUUIDEqual {
+        private:
+            const UUID _uuid;
+        
+        public:
+            Predicate_EntityUUIDEqual(const UUID& uuid) : _uuid(uuid) {
+
+            }
+
+            bool operator()(const std::shared_ptr<omniscia::core::Entity>& entity) const {
+                Entity* ptr = entity.get();
+
+                if(ptr->get_uuid() == _uuid)
+                    return true;
+
+                return false; 
+            }
+    };
 }
 
 #endif

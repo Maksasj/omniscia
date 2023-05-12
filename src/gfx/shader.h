@@ -58,8 +58,17 @@ namespace omniscia::gfx {
              * @return string representing entire content of the provided file
             */
             static std::string load_from_file(std::string path);
-
         public:
+
+            class ShaderException;
+            friend class ShaderException;
+
+            class ShaderVertexException;
+            friend class ShaderVertexException;
+
+            class ShaderFragmentException;
+            friend class ShaderFragmentException;
+
             /**
              * @brief Default shader constructor
              * 
@@ -152,6 +161,50 @@ namespace omniscia::gfx {
             /** @brief Terminates opengl shader program */
             void terminate();
     };
+
+    class Shader::ShaderException : public std::exception {
+        private:
+            std::string _message;
+        
+        protected:
+            u32 _shaderProgramId;
+
+        public:
+            ShaderException(const std::string& message, const u32& shaderProgramId) : _message(message), _shaderProgramId(shaderProgramId) {
+
+            }
+
+        const char* what() const {
+            return _message.c_str();
+        }
+    };
+    
+    class Shader::ShaderVertexException : public ShaderException {
+        private:
+            u32 _vertexShaderId;
+
+        public:
+            ShaderVertexException(const std::string& message, const u32& vertexShaderId , const u32& shaderProgramId) 
+                : ShaderException(std::string("Failed to compile vertex shader, program id: ") 
+                    + std::to_string(shaderProgramId)+ std::string(", ") + std::to_string(vertexShaderId) + std::string(", Error message: ") + message, shaderProgramId), 
+                _vertexShaderId(vertexShaderId) {
+
+            }
+    };
+
+    class Shader::ShaderFragmentException : public ShaderException {
+        private:
+            u32 _fragmentShaderId;
+
+        public:
+            ShaderFragmentException(const std::string& message, const u32& fragmentShaderId , const u32& shaderProgramId) 
+                : ShaderException(std::string("Failed to compile fragment shader, program id: ") 
+                    + std::to_string(shaderProgramId) + std::string(", ") + std::to_string(fragmentShaderId) + std::string(", Error message: ") + message, shaderProgramId), 
+                _fragmentShaderId(fragmentShaderId) {
+
+            }
+    };
+
 }
 
 #endif

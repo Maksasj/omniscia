@@ -13,9 +13,11 @@
 #define _ECS_SYSTEM_H_
 
 #include <functional>
+#include <algorithm>
 #include <memory>
 #include <vector>
 
+#include "debug_ui.h"
 #include "types.tpp"
 
 namespace omniscia::core::ecs {
@@ -29,13 +31,14 @@ namespace omniscia::core::ecs {
      * @param cmp comparison lambda expression used for comparing elements
     */
     template<typename T>
-    void near_sorted_sort(std::vector<T>& arr, const std::function<bool(T, T)> cmp) {
-        for(int i = 1; i < arr.size(); i++) {
-            T key = arr[i];
-            int j;
-            for(j = i - 1; j >= 0 && cmp(arr[j], key); j--) {
+    void system_sort(std::vector<T>& arr, const std::function<bool(T, T)> cmp) {
+        for(i32 i = 1; i < arr.size(); i++) {
+            const T key = arr[i];
+            i32 j;
+
+            for(j = i - 1; j >= 0 && cmp(arr[j], key); j--)
                 arr[j+1] = arr[j];
-            }
+            
             arr[j+1] = key;
         }
     };
@@ -81,8 +84,8 @@ namespace omniscia::core::ecs {
              * 
              * @param cmp lambda expression used for comparing different component
             */
-            virtual void sort_components(const std::function<bool(const T*,const T*)> cmp) {
-                near_sorted_sort<T*>(_components, cmp);
+            virtual void sort(const std::function<bool(const T*,const T*)> cmp) {
+                system_sort<T*>(_components, cmp);
             }
             
             /** @brief Function that does time synchronisation */

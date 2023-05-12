@@ -39,17 +39,17 @@ namespace omniscia::core {
             */
             u64 _size;
 
-            /**
-             * @brief Index of the last element
-            */
-            i64 _currentIndex;
+            class iterator;
+            friend class iterator;
+
+            iterator _current;
 
         public:
             /**
              * @brief Default TimeLessNessContainer class constructor
             */
-            TimeLessNessContainer() : _size(__size) {
-                _currentIndex = 0;
+            TimeLessNessContainer() : _size(__size), _current(this, 0) {
+
             }
 
             /**
@@ -58,11 +58,8 @@ namespace omniscia::core {
              * @param value value to be pushed to container
             */
             void push(const __T& value) {
-                ++_currentIndex;
-                if(_currentIndex >= __size)
-                    _currentIndex = 0;
-            
-                _data[_currentIndex] = value;
+                ++_current;
+                *_current = value;
             }
 
             /**
@@ -71,17 +68,14 @@ namespace omniscia::core {
              * @return __T& referene to element
              */
             __T& get() {
-                return _data[_currentIndex];
+                return *_current;
             } 
 
             /**
              * @brief Decrements index of the current item
             */
             void pop() {
-                --_currentIndex;
-
-                if(_currentIndex < 0)
-                    _currentIndex = __size - 1;
+                --_current;
             }
 
             /**
@@ -98,8 +92,83 @@ namespace omniscia::core {
              * 
              * @return i64 index of current item
             */
-            i64 get_index() {
-                return _currentIndex;
+            i64 get_index() const {
+                return _current.get_index();
+            }
+    };
+
+    template<class __T, u64 __size>
+    class TimeLessNessContainer<__T, __size>::iterator {
+        private:
+            using iterator_category = std::bidirectional_iterator_tag;
+            using difference_type   = std::ptrdiff_t;
+            using value_type        = __T;
+            using pointer           = __T*;
+            using reference         = __T&;
+
+            i64 _index;
+            TimeLessNessContainer* _container;
+
+        public:
+            iterator(TimeLessNessContainer* container, const i32& index) : _container(container), _index(index) {
+                if(_index < 0)
+                    _index = __size - 1;
+            }
+
+            reference operator*() const { 
+                return _container->_data[_index];
+            }
+            
+            pointer operator->() { 
+                return &_container->_data[_index]; 
+            }
+
+            iterator& operator++() { 
+                ++_index;
+                if(_index >= __size)
+                    _index = 0;
+
+                return *this;
+            }  
+            
+            iterator operator++(int) { 
+                iterator<__T> tmp = *this;
+
+                ++_index;
+                if(_index >= __size)
+                    _index = 0;
+                
+                return tmp;
+            }
+
+            iterator& operator--() { 
+                --_index;
+                if(_index < 0)
+                    _index = __size - 1;
+
+                return *this;
+            }  
+            
+            iterator operator--(int) { 
+                iterator<__T> tmp = *this;
+
+                --_index;
+                if(_index < 0)
+                    _index = __size - 1;
+                
+                return tmp;
+            }
+
+            friend bool operator==(const iterator& a, const iterator& b) { 
+                return (a._index == b._index) && (a._container == b._container); 
+            };
+            
+            friend bool operator!=(const iterator& a, const iterator& b) { 
+                return (a._index != b._index) && (a._container == b._container);
+            };     
+
+            i64 get_index() const {
+                return _index;
             }
     };
 }

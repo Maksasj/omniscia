@@ -154,9 +154,9 @@ namespace omniscia::core::ecs {
                 if(!_enabled)
                     return;
 
-                for(ECS_2DPhysicsRigidbody* comp : _components) {
+                std::for_each(_components.begin(), _components.end(), [&](ECS_2DPhysicsRigidbody* comp) {
                     comp->update();
-                }
+                });
             }
 
             /**
@@ -164,9 +164,9 @@ namespace omniscia::core::ecs {
              * runs after main update method
             */
             void late_update() {
-                for(ECS_2DPhysicsRigidbody* comp : _components) {
+                std::for_each(_components.begin(), _components.end(), [&](ECS_2DPhysicsRigidbody* comp) {
                     comp->late_update();
-                }
+                });
             }
 
             /**

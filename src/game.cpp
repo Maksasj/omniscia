@@ -42,12 +42,71 @@ void omniscia::Game::run() {
 
     Sprite randomsprite("jojo_texture");
 
-    if(backgroundStageShader.try_compile()) backgroundStageShader.compile();
-    if(mainStageShader.try_compile()) mainStageShader.compile();
-    if(intermediateStageShader.try_compile()) intermediateStageShader.compile();
-    if(lateStageShader.try_compile()) lateStageShader.compile();
-    if(finalStageShader.try_compile()) finalStageShader.compile();
-    if(transitionStageShader.try_compile()) transitionStageShader.compile();
+    try {
+        backgroundStageShader.try_compile();
+        backgroundStageShader.compile();
+    } catch (const Shader::ShaderVertexException& exception) {
+        std::cout << exception.what() << "\n";
+    } catch (const Shader::ShaderFragmentException& exception) {
+        std::cout << exception.what() << "\n";
+    } catch (...) {
+        std::cout << "Undefined exception\n";
+    }
+
+    try {
+        mainStageShader.try_compile();
+        mainStageShader.compile();
+    } catch (const Shader::ShaderVertexException& exception) {
+        std::cout << exception.what() << "\n";
+    } catch (const Shader::ShaderFragmentException& exception) {
+        std::cout << exception.what() << "\n";
+    } catch (...) {
+        std::cout << "Undefined exception\n";
+    }
+
+    try {
+        intermediateStageShader.try_compile();
+        intermediateStageShader.compile();
+    } catch (const Shader::ShaderVertexException& exception) {
+        std::cout << exception.what() << "\n";
+    } catch (const Shader::ShaderFragmentException& exception) {
+        std::cout << exception.what() << "\n";
+    } catch (...) {
+        std::cout << "Undefined exception\n";
+    }
+
+    try {
+        lateStageShader.try_compile();
+        lateStageShader.compile();
+    } catch (const Shader::ShaderVertexException& exception) {
+        std::cout << exception.what() << "\n";
+    } catch (const Shader::ShaderFragmentException& exception) {
+        std::cout << exception.what() << "\n";
+    } catch (...) {
+        std::cout << "Undefined exception\n";
+    }
+
+    try {
+        finalStageShader.try_compile();
+        finalStageShader.compile();
+    } catch (const Shader::ShaderVertexException& exception) {
+        std::cout << exception.what() << "\n";
+    } catch (const Shader::ShaderFragmentException& exception) {
+        std::cout << exception.what() << "\n";
+    } catch (...) {
+        std::cout << "Undefined exception\n";
+    }
+
+    try {
+        transitionStageShader.try_compile();
+        transitionStageShader.compile();
+    } catch (const Shader::ShaderVertexException& exception) {
+        std::cout << exception.what() << "\n";
+    } catch (const Shader::ShaderFragmentException& exception) {
+        std::cout << exception.what() << "\n";
+    } catch (...) {
+        std::cout << "Undefined exception\n";
+    }
 
     RenderStage& renderBackgroundStage = RenderStagePool::get_instance().add_stage((RenderStageProp){
         ._stageName = "BackgroundStage",
@@ -273,12 +332,9 @@ void omniscia::Game::start_cutscene(Cutscene* cutscenePtr) {
 }
 
 void omniscia::Game::update_cutscenes() {
-    _activeCutscenes.erase(std::remove_if(_activeCutscenes.begin(), _activeCutscenes.end(), 
-        [](Cutscene* cutscene) { 
-            if(cutscene == nullptr) return true;
-
-            return cutscene->is_ended(); 
-        }), _activeCutscenes.end());
+    _activeCutscenes.erase(
+        std::remove_if(_activeCutscenes.begin(), _activeCutscenes.end(), Predicate_CutsceneEnd()),
+        _activeCutscenes.end());
 
     const i32 size = _activeCutscenes.size();
     for(i32 i = 0; i < size; ++i)

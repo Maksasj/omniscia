@@ -1,5 +1,5 @@
-#ifndef _INDEX_DYNAMIC_ENTITY_CUTSCENE_EVENT_
-#define _INDEX_DYNAMIC_ENTITY_CUTSCENE_EVENT_
+#ifndef _FIND_DYNAMIC_ENTITY_CUTSCENE_EVENT_
+#define _FIND_DYNAMIC_ENTITY_CUTSCENE_EVENT_
 
 #include <functional>
 #include <string>
@@ -17,18 +17,18 @@ namespace omniscia::core {
     };
 
     template<class _T>
-    class CE_IndexDynamicEntityEvent : public CE_IndexDynamicEntityProp , public CE_Event {
+    class CE_FindDynamicEntityEvent : public CE_IndexDynamicEntityProp , public CE_Event {
         private:
-            CE_IndexDynamicEntityEvent();
-            CE_IndexDynamicEntityEvent(const CE_IndexDynamicEntityEvent&);
-            void operator=(const CE_IndexDynamicEntityEvent&);
+            CE_FindDynamicEntityEvent();
+            CE_FindDynamicEntityEvent(const CE_FindDynamicEntityEvent&);
+            void operator=(const CE_FindDynamicEntityEvent&);
 
             void reset() override {
                 reset_base();
             }
 
         public:
-            CE_IndexDynamicEntityEvent(const CE_IndexDynamicEntityProp& data = CE_IndexDynamicEntityProp{});
+            CE_FindDynamicEntityEvent(const CE_IndexDynamicEntityProp& data = CE_IndexDynamicEntityProp{});
             
             void execute() override;
     };

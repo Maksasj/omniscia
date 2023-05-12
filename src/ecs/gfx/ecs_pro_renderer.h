@@ -39,6 +39,18 @@ namespace omniscia::core::ecs {
             virtual void render() {};
     };
 
+    struct Predicate_ProRendereLayerTop {
+        bool operator()(const ECS_ProRenderer* first, const ECS_ProRenderer* second) {
+            return first->get_layer() > second->get_layer();
+        }
+    }; 
+
+    struct Predicate_ProRendereLayerBottom {
+        bool operator()(const ECS_ProRenderer* first, const ECS_ProRenderer* second) {
+            return first->get_layer() > second->get_layer();
+        }
+    };
+
     class ECS_ProRendererSystem : public ECS_System<ECS_ProRenderer> {
         private:
             std::vector<std::vector<ECS_ProRenderer*>> _proComponents;
@@ -62,10 +74,10 @@ namespace omniscia::core::ecs {
                     return;
 
                 auto& components = _proComponents[activeStage->get_stage_id()];
-
-                for(ECS_ProRenderer* comp : components) {
+                
+                std::for_each(components.begin(), components.end(), [&](ECS_ProRenderer* comp) {
                     comp->render();
-                }
+                });
             }
 
             void bind_component(ECS_ProRenderer* component) override {
@@ -78,15 +90,13 @@ namespace omniscia::core::ecs {
 
                 components.push_back(component);
 
-                near_sorted_sort<ECS_ProRenderer*>(components, 
-                [](const ECS_ProRenderer* a, const ECS_ProRenderer* b) {
-                    return a->get_layer() > b->get_layer();
-                });
+                system_sort<ECS_ProRenderer*>(components, Predicate_ProRendereLayerTop());
             }
 
             void time_sync() override {
-                for(auto& components : _proComponents)
+                std::for_each(_proComponents.begin(), _proComponents.end(), [&](std::vector<omniscia::core::ecs::ECS_ProRenderer*>& components) {
                     components.clear();
+                });
             }
 
             static ECS_ProRendererSystem& get_instance() {

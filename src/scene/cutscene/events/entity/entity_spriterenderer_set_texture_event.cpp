@@ -30,7 +30,7 @@ void omniscia::core::CE_EntitySpriteRendererSetTextureEvent::execute() {
     CutsceneDataPoolType& _dataPool = *ptrParrentCutsceneDataPool;
     UUID* entityUUID = (UUID*)_dataPool[_entityTmpName].get();
 
-    std::shared_ptr<Entity> entityPtr= scene->get_static_entity_by_uuid(*entityUUID);
+    std::shared_ptr<Entity> entityPtr= scene->find_static_entity_by_uuid(*entityUUID);
     if(entityPtr == nullptr) return;
 
     ECS_Index<ECS_SpriteRenderer> spriteRendererIndex = entityPtr->index<ECS_SpriteRenderer>();

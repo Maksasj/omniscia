@@ -23,17 +23,29 @@ namespace omniscia::core {
             void reset() {
                 _is_done_executing = false;
 
-                for(auto& e : _events)
+                std::vector<std::shared_ptr<CE_Event>>::iterator it;
+                for(it = _events.begin(); it != _events.end(); ++it) {
+                    auto& e = *it; 
                     e->reset();
+                }
             }
 
             CE_Step(const std::initializer_list<CE_Event*> &events) {
-                for(CE_Event* event : events)
+                std::initializer_list<CE_Event*>::const_iterator it;
+
+                for(it = events.begin(); it != events.end(); ++it) {
+                    const auto& event = *it;
+
                     _events.push_back(std::shared_ptr<CE_Event>(event));
+                }
             }
 
             void bind_cutscene_data_pool(CutsceneDataPoolType& cutsceneDataPool) {
-                for(auto event : _events) {
+                std::vector<std::shared_ptr<omniscia::core::CE_Event>>::iterator it;
+
+                for(it = _events.begin(); it != _events.end(); ++it) {
+                    auto& event = *it;
+                    
                     event->bind_cutscene_data_pool(cutsceneDataPool);
                 }
             }
@@ -41,8 +53,9 @@ namespace omniscia::core {
             void execute() {
                 u64 eventsDone = 0;
                 
-                for(std::shared_ptr<CE_Event>& eventPtr : _events) {
-                    CE_Event& event = *(eventPtr.get());
+                std::vector<std::shared_ptr<omniscia::core::CE_Event>>::iterator it;
+                for(it = _events.begin(); it != _events.end(); ++it) {
+                    CE_Event& event = **it;
 
                     if(event.is_done()) {
                         if(event.finishing())
@@ -83,9 +96,11 @@ namespace omniscia::core {
     struct CE_MultiStep : public CE_StepObject {
         CE_MultiStep(const i32& count, const std::vector<T>& stepsData, const std::function<std::vector<CE_Step>(const T& stepData)> _stepLambda) {
             for(auto i = 0; i < count; ++i) {
-                auto tmpSteps = _stepLambda(stepsData[i]);
+                const std::vector<omniscia::core::CE_Step> tmpSteps = _stepLambda(stepsData[i]);
 
-                for(auto& step : tmpSteps) {
+                std::vector<omniscia::core::CE_Step>::const_iterator it;
+                for(it = tmpSteps.begin(); it != tmpSteps.end(); ++it) {
+                    const auto& step = *it;
                     _steps.push_back(step);
                 }
             }

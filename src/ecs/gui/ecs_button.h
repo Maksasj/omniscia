@@ -87,13 +87,14 @@ namespace omniscia::core::ecs {
                 if(!_enabled)
                     return;
 
-                for(ECS_Button* comp : _components) {
+                bool _ = std::all_of(_components.begin(), _components.end(), [&](ECS_Button* comp) {
                     comp->update();
-
-                    /* Resolve this cringe */
+                    
                     if(DebugUI::get_instance().get_metrics()._isTimeJump)
-                            break;
-                }
+                        return false;
+                    
+                    return true;
+                });
             }
 
             static ECS_ButtonSystem& get_instance() {
