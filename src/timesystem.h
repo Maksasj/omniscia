@@ -14,9 +14,7 @@
 
 #include <functional>
 
-#define BOOST_CHRONO_HEADER_ONLY
-#include "boost/chrono/chrono.hpp"
-
+#include "boost_includes.h"
 #include "gfx.h"
 #include "types.tpp"
 

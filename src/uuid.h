@@ -4,11 +4,7 @@
 #include <string>
 
 #include "types.tpp"
-
-#include "boost/lexical_cast.hpp"
-#include "boost/uuid/uuid_io.hpp"
-#include "boost/uuid/uuid.hpp"
-#include "boost/uuid/random_generator.hpp"
+#include "boost_includes.h"
 
 namespace omniscia::core {
     using namespace omni::types;

@@ -18,6 +18,9 @@ if version != -1:
         file.write("unsigned long long get_game_version() {\n")
         file.write("    return _OMNISCIA_VERSION_;\n")
         file.write("}\n")
+        file.write("std::string get_game_version_string() {\n");
+        file.write("    return boost::lexical_cast<std::string>(get_game_version());\n");
+        file.write("}\n");
         file.write("\n")
     
     print("Game version: " + str(version))
