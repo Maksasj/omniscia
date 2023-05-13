@@ -7,7 +7,8 @@ omniscia::core::Controls::Controls() {
         {omniscia::core::PlayerController::LEFT,        false},
         {omniscia::core::PlayerController::RIGHT,       false},
         {omniscia::core::PlayerController::TIME_JUMP,   false},
-        {omniscia::core::PlayerController::PAUSE,   false},
+        {omniscia::core::PlayerController::PAUSE,       false},
+        {omniscia::core::PlayerController::DEBUGUI,       false}, 
     };
 
     keyBindigs = {
@@ -18,6 +19,7 @@ omniscia::core::Controls::Controls() {
         {'T',               {omniscia::core::PlayerController::TIME_JUMP,  ActionType::RELEASE}},
         {'E',               {omniscia::core::PlayerController::INTERACT,   ActionType::PRESS}},
         {GLFW_KEY_ESCAPE,   {omniscia::core::PlayerController::PAUSE,      ActionType::PRESS}},
+        {GLFW_KEY_F3,       {omniscia::core::PlayerController::DEBUGUI,    ActionType::PRESS}},
     };
 
     mouseBindigs = {

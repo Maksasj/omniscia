@@ -326,7 +326,20 @@ void omniscia::Game::run() {
             finalStageShader.activate();
             renderLateStage.present_as_texture();
             
-            DebugUI::get_instance().render();
+            if(DebugUI::get_instance().get_metrics()._debugUIEnabled) {
+                DebugUI::get_instance().render();
+            }
+
+            static bool buttonPressed = false;
+            const bool isDebugButtonPressed = Controls::get_instance().get(PlayerController::DEBUGUI);
+            bool& toggled = DebugUI::get_instance().get_metrics()._debugUIEnabled;
+
+            if(isDebugButtonPressed && !buttonPressed) {
+                toggled = !toggled;
+                buttonPressed = true;
+            } else if(!isDebugButtonPressed) {
+                buttonPressed = false;
+            }
         });
 
         glfwSwapBuffers(window);

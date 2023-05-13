@@ -54,6 +54,8 @@ namespace omniscia::core {
                 Vec2f _playerPos;
 
                 Vec2f _cameraPos;
+
+                bool _debugUIEnabled = false;
             };
 
             /** @brief Pointer to imgui io */
