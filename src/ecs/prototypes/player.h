@@ -35,9 +35,9 @@ namespace omniscia::core {
              * @return Player new instance of the Player object
             */
             std::shared_ptr<Entity> clone() override {
-                auto entity = std::make_shared<Entity>(*this);
+                std::shared_ptr<Player> entity = std::make_shared<Player>(*this);
                 clone_container_to(*entity.get());
-                return entity;
+                return static_cast<std::shared_ptr<Entity>>(entity);
             }
     };
 }

@@ -25,6 +25,8 @@ namespace omniscia::core::ecs {
 
             ECS_PlayerCollectorController();
 
+            ECS_PlayerCollectorController(ECS_PlayerCollectorController const& comp);
+
             void player_collector_state();
             void collect();
 

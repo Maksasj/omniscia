@@ -20,11 +20,11 @@ namespace omniscia::core {
 
         public:
             AnimatedImage(const AnimatedImageProp& prop = {});
-            
+
             std::shared_ptr<Entity> clone() override {
-                auto entity = std::make_shared<Entity>(*this);
+                std::shared_ptr<AnimatedImage> entity = std::make_shared<AnimatedImage>(*this);
                 clone_container_to(*entity.get());
-                return entity;
+                return static_cast<std::shared_ptr<Entity>>(entity);
             }
     };
 }

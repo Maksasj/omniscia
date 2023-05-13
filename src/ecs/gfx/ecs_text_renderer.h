@@ -37,6 +37,8 @@ namespace omniscia::core::ecs {
         public:
             void reindex(void* parent) override;
 
+            ECS_TextRenderer(ECS_TextRenderer const& comp);
+
             ECS_TextRenderer(const std::string& fontId, const std::string& textToRender, const f32& lineLetterSpacing, const f32& rowLineSpacing, const u64& charactersPerRow, const u32& layer);
 
             void set_text_to_render(const std::string& textToRender, const f32& lineLetterSpacing, const f32& rowLineSpacing, const u64& charactersPerRow);

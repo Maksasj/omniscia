@@ -43,9 +43,9 @@ namespace omniscia::core {
              * @return Background new instance of the Background object
             */
             std::shared_ptr<Entity> clone() override {
-                auto entity = std::make_shared<Entity>(*this);
+                std::shared_ptr<Background> entity = std::make_shared<Background>(*this);
                 clone_container_to(*entity.get());
-                return entity;
+                return static_cast<std::shared_ptr<Entity>>(entity);
             }
     };
 }

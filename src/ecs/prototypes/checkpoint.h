@@ -14,9 +14,9 @@ namespace omniscia::core {
             Checkpoint(const Vec2f& position);
 
             std::shared_ptr<Entity> clone() override {
-                auto entity = std::make_shared<Entity>(*this);
+                std::shared_ptr<Checkpoint> entity = std::make_shared<Checkpoint>(*this);
                 clone_container_to(*entity.get());
-                return entity;
+                return static_cast<std::shared_ptr<Entity>>(entity);
             }
     };
 }

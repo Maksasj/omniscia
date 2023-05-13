@@ -27,10 +27,9 @@ void omniscia::core::CE_SpawnPauseTextEvent::execute() {
     if(scene == nullptr) 
         return;
 
-    Vec3f pos = Camera::get_instance().get_pos();
     UUID entityUUID = scene->add_static_entity<Image>((ImageProp) {
         ._texture = "pause_text",
-        ._pos = Vec2f{pos.x, pos.y + 0.6f},
+        ._pos = Vec2f{0.0f, 0.6f},
         ._scale = Vec2f{0.2f, 0.2f},
     });
     

@@ -26,11 +26,11 @@ namespace omniscia::core {
                     ._texture = "star-spritesheet",
                     ._animation = "star-shiny-animation",
                     ._layer = 11,
-                    ._pos = Vec2f{1.6f, 0.6f},
+                    ._pos = Vec2f{1.4f, 0.85f},
                     ._scale = Vec2f{0.1f, 0.1f},
                 });
                 
-                add_static_entity<CollectedText>(Vec2f{1.6f, 0.6f}, Vec2f{0.1f, 0.1f}, (CollectedTextProp){
+                add_static_entity<CollectedText>(Vec2f{1.75f, 0.87f}, Vec2f{0.1f, 0.1f}, (CollectedTextProp){
                     ._fontId = "monogram-white",
                     ._textToRender = "x5",
                     ._lineLetterSpacing = 0.31f,
@@ -42,7 +42,7 @@ namespace omniscia::core {
                     ._texture = "clock-bar-spritesheet",
                     ._animation = "clock-bar-progression-animation",
                     ._layer = 11,
-                    ._pos = Vec2f{1.4f, 0.75f},
+                    ._pos = Vec2f{-1.45f, 0.85f},
                     ._scale = Vec2f{0.1f, 0.1f},
                 });
 

@@ -35,9 +35,9 @@ namespace omniscia::core {
              * @return Crab new instance of the Crab object
             */
             std::shared_ptr<Entity> clone() override {
-                auto entity = std::make_shared<Entity>(*this);
+                std::shared_ptr<Crab> entity = std::make_shared<Crab>(*this);
                 clone_container_to(*entity.get());
-                return entity;
+                return static_cast<std::shared_ptr<Entity>>(entity);
             }
     };
 }

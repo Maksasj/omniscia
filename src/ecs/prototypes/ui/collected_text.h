@@ -23,9 +23,9 @@ namespace omniscia::core {
             CollectedText(const Vec2f& position, const Vec2f& scale, const CollectedTextProp& prop);
 
             std::shared_ptr<Entity> clone() override {
-                auto entity = std::make_shared<Entity>(*this);
+                std::shared_ptr<CollectedText> entity = std::make_shared<CollectedText>(*this);
                 clone_container_to(*entity.get());
-                return entity;
+                return static_cast<std::shared_ptr<Entity>>(entity);
             }
     };
 }

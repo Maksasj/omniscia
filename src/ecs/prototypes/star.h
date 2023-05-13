@@ -14,9 +14,9 @@ namespace omniscia::core {
             Star(const Vec2f& position);
 
             std::shared_ptr<Entity> clone() override {
-                auto entity = std::make_shared<Entity>(*this);
+                std::shared_ptr<Star> entity = std::make_shared<Star>(*this);
                 clone_container_to(*entity.get());
-                return entity;
+                return static_cast<std::shared_ptr<Entity>>(entity);
             }
     };
 }

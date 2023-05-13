@@ -36,9 +36,9 @@ namespace omniscia::core {
              * @return MainMenuParallaxBackground new instance of the MainMenuParallaxBackground object
             */
             std::shared_ptr<Entity> clone() override {
-                auto entity = std::make_shared<Entity>(*this);
+                std::shared_ptr<MainMenuParallaxBackground> entity = std::make_shared<MainMenuParallaxBackground>(*this);
                 clone_container_to(*entity.get());
-                return entity;
+                return static_cast<std::shared_ptr<Entity>>(entity);
             }
     };
 }

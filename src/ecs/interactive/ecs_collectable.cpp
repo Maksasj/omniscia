@@ -27,4 +27,6 @@ void omniscia::core::ecs::ECS_Collectable::update() {
     Game::get_instance().get_active_scene()->delete_static_entity_by_uuid(_parent->get_uuid());
     
     DebugUI::get_instance().get_metrics()._systemInterupt = true;
+
+    std::cout << "poggers !\n";
 }

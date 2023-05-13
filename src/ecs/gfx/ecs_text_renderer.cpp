@@ -12,6 +12,14 @@ omniscia::core::ecs::ECS_TextRenderer::ECS_TextRenderer(const std::string& fontI
     set_text_to_render(textToRender, _lineLetterSpacing, _rowLineSpacing, _charactersPerRow);
 }
 
+omniscia::core::ecs::ECS_TextRenderer::ECS_TextRenderer(ECS_TextRenderer const& comp) : ECS_InstancingRenderer(comp) {
+    _textToRender = comp._textToRender;
+    _fontAsset = comp._fontAsset;
+    _lineLetterSpacing = comp._lineLetterSpacing;
+    _rowLineSpacing = comp._rowLineSpacing;
+    _charactersPerRow = comp._charactersPerRow;
+}
+
 void omniscia::core::ecs::ECS_TextRenderer::reindex(void* parent) {
     ECS_InstancingRenderer::reindex(parent);
 
