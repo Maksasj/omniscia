@@ -99,6 +99,10 @@ namespace omniscia::core {
                 return _actualFrame;
             }
 
+            void reduce_actual_frame() {
+                _actualFrame = 0;
+            }
+
             /**
              * @brief Get the index of current item
              * 

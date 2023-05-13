@@ -12,7 +12,7 @@ void omniscia::core::ecs::ECS_Collectable::time_sync() {
 }
 
 void omniscia::core::ecs::ECS_Collectable::reindex(void* parent) {
-    _parent = (Entity*) parent;
+    ECS_Interactive::reindex(parent);
 }
 
 void omniscia::core::ecs::ECS_Collectable::update() {
@@ -25,4 +25,6 @@ void omniscia::core::ecs::ECS_Collectable::update() {
 
     Game::get_instance().start_cutscene("star_collection_cutscene");
     Game::get_instance().get_active_scene()->delete_static_entity_by_uuid(_parent->get_uuid());
+    
+    DebugUI::get_instance().get_metrics()._systemInterupt = true;
 }

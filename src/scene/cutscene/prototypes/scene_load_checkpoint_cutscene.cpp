@@ -5,5 +5,8 @@ omniscia::core::LoadCheckpointCutscene::LoadCheckpointCutscene(Shader* transitio
         CE_Step {
             new CE_SceneLoadCheckpointEvent((CE_SceneLoadCheckpointProp){})
         },
+        CE_Step {
+            new CE_ReduceTimelineFramesEvent((CE_ReduceTimelineFramesProp) {}),
+        }
 }) {}
 

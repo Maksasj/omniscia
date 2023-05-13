@@ -30,5 +30,6 @@
 #include "spawn_pause_text_cutscene_event.h"
 #include "find_static_entity_cutscene_event.h"
 #include "entity_collect_event.h"
+#include "reduce_timeline_frames.h"
 
 #endif

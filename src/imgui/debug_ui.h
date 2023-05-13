@@ -48,6 +48,8 @@ namespace omniscia::core {
                 /** @brief Is game in time jump mode */
                 bool _isTimeJump;
 
+                bool _systemInterupt;
+
                 /** @brief Current player position */
                 Vec2f _playerPos;
 

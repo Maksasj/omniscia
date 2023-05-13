@@ -9,10 +9,12 @@ namespace omniscia::core::ecs {
     using namespace omniscia::core;
 
     class ECS_SpeakPopup : public ECS_Popup {  
-        const std::string _dialogueCutsceneId;
+        std::string _dialogueCutsceneId;
 
         public:
             ECS_SpeakPopup(const std::string& dialogueCutsceneId);
+
+            ECS_SpeakPopup(ECS_SpeakPopup const& comp);
 
             std::shared_ptr<ECS_Component> clone() override {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_SpeakPopup>(*this));

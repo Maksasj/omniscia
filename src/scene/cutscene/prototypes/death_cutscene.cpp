@@ -34,6 +34,9 @@ omniscia::core::DeathCutscene::DeathCutscene(Shader* transitionStageShader)
             new CE_SceneLoadCheckpointEvent((CE_SceneLoadCheckpointProp){})
         },
         CE_Step {
+            new CE_ReduceTimelineFramesEvent((CE_ReduceTimelineFramesProp) {}),
+        },
+        CE_Step {
             new CE_EnableSystemEvent<ECS_PlayerControllerSystem>((CE_EnableSystemProp){}),
             new CE_EnableSystemEvent<ECS_PlayerJumpSystem>((CE_EnableSystemProp){}),
             new CE_EnableSystemEvent<ECS_PlayerTimeJumpControllerSystem>((CE_EnableSystemProp){}),

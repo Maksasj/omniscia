@@ -35,13 +35,6 @@ namespace omniscia::core::ecs {
             void reindex(void* parent) override;
 
             ECS_Interactive(const f32& cooldown, const std::function<void(void)>& lambda);
-            // ECS_Interactive(const ECS_Interactive& instance) {
-            //     _parent = instance._parent;
-            //     _lambda = instance._lambda;
-            //     _cooldown = instance._cooldown;
-            //     _timer = instance._timer;
-            //     _triggerColliderIndex = instance._triggerColliderIndex;
-            // }
 
             virtual void update() {};
 
@@ -85,6 +78,12 @@ namespace omniscia::core::ecs {
                             comp->update();
                     } else {
                         comp->update();
+                    }
+                    
+
+                    if(DebugUI::get_instance().get_metrics()._systemInterupt) {
+                        DebugUI::get_instance().get_metrics()._systemInterupt = false;
+                        return;
                     }
                 }
             }

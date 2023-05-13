@@ -355,7 +355,14 @@ void omniscia::Game::switch_scene(const std::string& sceneId) {
 }
 
 void omniscia::Game::start_cutscene(const std::string& cutsceneId) {
-    Cutscene* _activeCutscene = _cutscenes[cutsceneId];
+    auto found = _cutscenes.find(cutsceneId);
+
+    if(found == _cutscenes.end()) {
+        std::cout << "Unable to find cutscene with key: " << cutsceneId << "\n";
+        return;
+    }
+
+    Cutscene* _activeCutscene = (*found).second;
     _activeCutscene->start();
     _activeCutscenes.push_back(_activeCutscene);
 }
@@ -371,6 +378,7 @@ void omniscia::Game::update_cutscenes() {
         _activeCutscenes.end());
 
     const i32 size = _activeCutscenes.size();
+    
     for(i32 i = 0; i < size; ++i)
         _activeCutscenes[i]->update();
 }

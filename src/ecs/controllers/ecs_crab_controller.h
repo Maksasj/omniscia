@@ -78,6 +78,10 @@ namespace omniscia::core::ecs {
             */
             ECS_CrabController();
 
+            ECS_CrabController(ECS_CrabController const& comp) : ECS_StateMachineBase(comp) {
+                
+            }
+
             /** @brief Update method for crab run left state */
             void crab_run_left_state();
 

@@ -329,16 +329,18 @@ namespace omniscia::core {
             void delete_static_entity_by_uuid(const UUID& uuid) {
                 auto& entities = staticPart.staticEntities; 
 
-                for(auto i = entities.begin(); i != entities.end();) {
-                    Entity* entity = (*i).get();
+                for(auto it = entities.begin(); it != entities.end(); ++it) {
+                    Entity* entity = (*it).get();
 
-                    if(entity->get_uuid() == uuid) {
-                        entities.erase(i);
-                        time_sync();
-                        return;
-                    } else
-                        ++i;
-                } 
+                    if(entity->get_uuid() != uuid)  
+                        continue;
+
+                    entities.erase(it);
+                    goto TIME_SYNC;
+                }
+
+                TIME_SYNC:
+                    time_sync();
             }
     };
 }
