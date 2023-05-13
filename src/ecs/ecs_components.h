@@ -52,5 +52,6 @@
 #include "ecs_player_collector_controller.h"
 #include "ecs_collectable.h"
 #include "ecs_clock_progression_bar_controller.h"
+#include "ecs_red_crystal_popup.h"
 
 #endif

@@ -234,6 +234,8 @@ void omniscia::Game::run() {
     _cutscenes["death_cutscene"] = new DeathCutscene(&transitionStageShader);
     _cutscenes["pause_cutscene"] = new PauseCutscene(&transitionStageShader);
     _cutscenes["star_collection_cutscene"] = new PlayerCollectStarCutscene(&transitionStageShader);
+    _cutscenes["chapter_1_end_cutscene"] = new Chapter1EndCutscene(&transitionStageShader);
+
     start_cutscene("pause_cutscene"); // Endless cutscene
 
     _cutscenes["test_dialogue_cutscene"] = new DialogueCutscene(&transitionStageShader, {

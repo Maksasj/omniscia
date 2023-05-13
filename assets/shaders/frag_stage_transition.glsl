@@ -9,6 +9,7 @@ uniform sampler2D ourTexture;
 uniform float transparency = 1.0f;
 
 uniform float transitionCircleProgress = 0.0f;
+uniform float transitionChapterCircleProgress = 0.0f;
 
 uniform float transitionSideProgress = 0.0f;
 uniform float transitionSideDiamondPixelSize = 12.0f;
@@ -22,7 +23,7 @@ uniform float shadowTintStrength = 0.0f;
 
 vec2 gameResolution = vec2(256, 144);
 
-vec4 transitionSide(vec2 uv, vec4 color) {
+vec4 transition_side(vec2 uv, vec4 color) {
     uv.x = 1.0 - uv.x;
 
     float xFraction = fract(gl_FragCoord.x / transitionSideDiamondPixelSize);
@@ -38,7 +39,7 @@ vec4 transitionSide(vec2 uv, vec4 color) {
     return color;
 }
 
-vec4 transitionCircle(vec2 uv, vec4 color) {
+vec4 transition_circle(vec2 uv, vec4 color) {
     uv -= vec2(0.5, 0.5);
     uv.x *= gameResolution.x / gameResolution.y;
 
@@ -47,6 +48,20 @@ vec4 transitionCircle(vec2 uv, vec4 color) {
 
     if(length(uv) + additionalLength < transitionCircleProgress) {
         color.w = 1.0;
+    }
+
+    return color;
+}
+
+vec4 transition_chapter_circle(vec2 uv, vec4 color) {
+    uv -= vec2(0.5, 0.5);
+    uv.x *= gameResolution.x / gameResolution.y;
+
+    float additionalLength = sin(uv.x * 50.0) + sin(uv.y * 50.0);
+    additionalLength *= 0.012; 
+
+    if(length(uv) + additionalLength > (1.1 - transitionChapterCircleProgress)) {
+        color = vec4(1.0, 1.0, 1.0, 1.0);
     }
 
     return color;
@@ -86,8 +101,9 @@ void main() {
 
     color = bottom_shadow(uv, color);
     color = color_overlay(uv, color);
-    color = transitionSide(uv, color);
-    color = transitionCircle(uv, color);
+    color = transition_side(uv, color);
+    color = transition_circle(uv, color);
+    color = transition_chapter_circle(uv, color);
     color = letter_box(uv, color);
 
     color *= transparency;

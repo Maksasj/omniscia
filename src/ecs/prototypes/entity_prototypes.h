@@ -21,5 +21,6 @@
 #include "entity.h"
 #include "star.h"
 #include "clock_progression_bar.h"
+#include "red_crystal.h"
 
 #endif
