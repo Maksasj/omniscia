@@ -390,12 +390,12 @@ void omniscia::Game::save_dynamic_checkpoint() {
     if(_activeScene == nullptr) 
         return;
     
-    _activeScene->save_dynamic_checkpoint();
+    _activeScene->save_checkpoint();
 }
 
 void omniscia::Game::load_dynamic_checkpoint() {
     if(_activeScene == nullptr) 
         return;
     
-    _activeScene->load_dynamic_checkpoint();
+    _activeScene->load_checkpoint();
 }

@@ -1,23 +1,23 @@
-#include "entity_spriteanimation_set_animation_event.h"
+#include "dynamic_entity_spriteanimation_set_animation_event.h"
 #include "game.h"
 
-omniscia::core::CE_EntitySpriteAnimationSetAnimationEvent::CE_EntitySpriteAnimationSetAnimationEvent() {
+omniscia::core::CE_DynamicEntitySpriteAnimationSetAnimationEvent::CE_DynamicEntitySpriteAnimationSetAnimationEvent() {
 
 }
 
-omniscia::core::CE_EntitySpriteAnimationSetAnimationEvent::CE_EntitySpriteAnimationSetAnimationEvent(const CE_EntitySpriteAnimationSetAnimationEvent&) {
+omniscia::core::CE_DynamicEntitySpriteAnimationSetAnimationEvent::CE_DynamicEntitySpriteAnimationSetAnimationEvent(const CE_DynamicEntitySpriteAnimationSetAnimationEvent&) {
 
 }
 
-void omniscia::core::CE_EntitySpriteAnimationSetAnimationEvent::operator=(const CE_EntitySpriteAnimationSetAnimationEvent&) {
+void omniscia::core::CE_DynamicEntitySpriteAnimationSetAnimationEvent::operator=(const CE_DynamicEntitySpriteAnimationSetAnimationEvent&) {
 
 }
 
-omniscia::core::CE_EntitySpriteAnimationSetAnimationEvent::CE_EntitySpriteAnimationSetAnimationEvent(const CE_EntitySpriteAnimationSetAnimationProp& data) : CE_EntitySpriteAnimationSetAnimationProp(data), CE_Event(*(CE_Prop*)&data) {
+omniscia::core::CE_DynamicEntitySpriteAnimationSetAnimationEvent::CE_DynamicEntitySpriteAnimationSetAnimationEvent(const CE_DynamicEntitySpriteAnimationSetAnimationProp& data) : CE_DynamicEntitySpriteAnimationSetAnimationProp(data), CE_Event(*(CE_Prop*)&data) {
 
 }
 
-void omniscia::core::CE_EntitySpriteAnimationSetAnimationEvent::execute() {
+void omniscia::core::CE_DynamicEntitySpriteAnimationSetAnimationEvent::execute() {
     CutsceneDataPoolType* ptrParrentCutsceneDataPool = get_cutscene_data_pool();
     if(ptrParrentCutsceneDataPool == nullptr) 
         return;

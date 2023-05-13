@@ -58,9 +58,10 @@ namespace omniscia::core {
             SceneStatic staticPart;
 
             /**
-             * @brief Checkpoint dynamic part
+             * @brief Checkpoint part
             */
             SceneDynamic checkpointDynamicPart;
+            SceneStatic checkpointStaticPart;
 
             SerializableVector<SerializableMarkerGroupData> _markerGroups;
 
@@ -74,9 +75,11 @@ namespace omniscia::core {
             */
             SceneDynamic clone();
 
-            void load_dynamic_checkpoint();
+            SceneStatic clone_static();
 
-            void save_dynamic_checkpoint();
+            void load_checkpoint();
+
+            void save_checkpoint();
 
             /**
              * @brief Unbinds all components from all systems

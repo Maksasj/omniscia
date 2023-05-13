@@ -41,4 +41,4 @@ void omniscia::core::CE_FindDynamicEntityEvent<_T>::execute() {
     _dataPool[_entityTmpName] = std::make_shared<UUID>(entity->get_uuid());
 }
 
-template class omniscia::CE_FindDynamicEntityEvent<omniscia::Player>;
+// template class omniscia::CE_FindDynamicEntityEvent<omniscia::Player>;

@@ -14,7 +14,7 @@ namespace omniscia::core {
             GameScene() : Scene() {
                 LevelAssetManager::get_instance().get("test_level")->load_asset(*this);
 
-                summon_dynamic_entity_at_marker_group<Player>(0);
+                summon_static_entity_at_marker_group<Player>(0);
                 summon_static_entity_at_marker_group<Checkpoint>(1);
                 summon_static_entity_at_marker_group<Star>(2);
 

@@ -8,12 +8,12 @@ omniscia::core::DeathCutscene::DeathCutscene(Shader* transitionStageShader)
             new CE_DisableSystemEvent<ECS_PlayerTimeJumpControllerSystem>((CE_DisableSystemProp){}),
             new CE_DisableSystemEvent<ECS_InteractiveSystem>((CE_DisableSystemProp){}),
             new CE_DisableSystemEvent<ECS_DeadlySystem>((CE_DisableSystemProp){}),
-            new CE_FindDynamicEntityEvent<Player>((CE_IndexDynamicEntityProp){
+            new CE_FindStaticEntityEvent<Player>((CE_FindStaticEntityProp){
                 ._entityTmpName = "Player",
             }),
         },
         CE_Step {
-            new CE_EntitySpriteAnimationSetAnimationEvent((CE_EntitySpriteAnimationSetAnimationProp){
+            new CE_StaticEntitySpriteAnimationSetAnimationEvent((CE_StaticEntitySpriteAnimationSetAnimationProp){
                 ._base = (CE_Prop){ 
                     ._pauseAfterFinishing = true,
                     ._pauseTimeAfterFinishing = 1.0f,
