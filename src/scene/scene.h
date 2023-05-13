@@ -117,7 +117,11 @@ namespace omniscia::core {
             UUID add_dynamic_entity() {
                 auto& entities = dynamicPart.dynamicEntities; 
                 entities.push_back(std::make_shared<T>());
-                return entities[entities.size() - 1]->get_uuid();
+
+                std::shared_ptr<Entity> entity = entities[entities.size() - 1];
+                entity->set_time_type(EntityTimeType::DYNAMIC);
+
+                return entity->get_uuid();
             }
 
             /**
@@ -133,7 +137,11 @@ namespace omniscia::core {
             UUID add_dynamic_entity(Args&&... args) {
                 auto& entities = dynamicPart.dynamicEntities; 
                 entities.push_back(std::make_shared<T>(std::forward<Args>(args)...));
-                return entities[entities.size() - 1]->get_uuid();
+
+                std::shared_ptr<Entity> entity = entities[entities.size() - 1];
+                entity->set_time_type(EntityTimeType::DYNAMIC);
+
+                return entity->get_uuid();
             }
 
             /**
@@ -147,7 +155,11 @@ namespace omniscia::core {
             UUID add_static_entity() {
                 auto& entities = staticPart.staticEntities; 
                 entities.push_back(std::make_shared<T>());
-                return entities[entities.size() - 1]->get_uuid();
+
+                std::shared_ptr<Entity> entity = entities[entities.size() - 1];
+                entity->set_time_type(EntityTimeType::STATIC);
+
+                return entity->get_uuid();
             }
 
             /**
@@ -163,7 +175,11 @@ namespace omniscia::core {
             UUID add_static_entity(Args&&... args) {
                 auto& entities = staticPart.staticEntities; 
                 entities.push_back(std::make_shared<T>(std::forward<Args>(args)...));
-                return entities[entities.size() - 1]->get_uuid();
+
+                std::shared_ptr<Entity> entity = entities[entities.size() - 1];
+                entity->set_time_type(EntityTimeType::STATIC);
+
+                return entity->get_uuid();
             }
 
             template<class T>
@@ -173,6 +189,9 @@ namespace omniscia::core {
 
                 for(SerializableMarkerData& marker : markerGroup._markers.get()) {
                     entities.push_back(std::make_shared<T>(Vec2f{marker._position.get().x, marker._position.get().y}));
+
+                    std::shared_ptr<Entity> entity = entities[entities.size() - 1];
+                    entity->set_time_type(EntityTimeType::DYNAMIC);
                 }
             }
 
@@ -183,6 +202,9 @@ namespace omniscia::core {
 
                 for(SerializableMarkerData& marker : markerGroup._markers.get()) {
                     entities.push_back(std::make_shared<T>(Vec2f{marker._position.get().x, marker._position.get().y}, std::forward<Args>(args)...));
+                    
+                    std::shared_ptr<Entity> entity = entities[entities.size() - 1];
+                    entity->set_time_type(EntityTimeType::DYNAMIC);
                 }
             }
 
@@ -193,6 +215,9 @@ namespace omniscia::core {
 
                 for(SerializableMarkerData& marker : markerGroup._markers.get()) {
                     entities.push_back(std::make_shared<T>(Vec2f{marker._position.get().x, marker._position.get().y}));
+       
+                    std::shared_ptr<Entity> entity = entities[entities.size() - 1];
+                    entity->set_time_type(EntityTimeType::STATIC);
                 }
             }
 
@@ -203,6 +228,9 @@ namespace omniscia::core {
 
                 for(SerializableMarkerData& marker : markerGroup._markers.get()) {
                     entities.push_back(std::make_shared<T>(Vec2f{marker._position.get().x, marker._position.get().y}, std::forward<Args>(args)...));
+
+                    std::shared_ptr<Entity> entity = entities[entities.size() - 1];
+                    entity->set_time_type(EntityTimeType::STATIC);
                 }
             }
 

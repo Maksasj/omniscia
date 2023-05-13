@@ -101,6 +101,10 @@ namespace omniscia::core::ecs {
             */
             void late_update();
             
+            Entity* get_parent() {
+                return _parent;
+            }
+
             /**
              * @brief Method used for clonning single 
              * component instance, allocates copy of
@@ -154,9 +158,24 @@ namespace omniscia::core::ecs {
                 if(!_enabled)
                     return;
 
-                std::for_each(_components.begin(), _components.end(), [&](ECS_2DPhysicsRigidbody* comp) {
-                    comp->update();
-                });
+                for(ECS_2DPhysicsRigidbody* comp : _components) {
+                    if(comp == nullptr)
+                        continue;
+
+                    Entity* parent = comp->get_parent();
+
+                    if(DebugUI::get_instance().get_metrics()._isTimeJump) {
+                        if(parent == nullptr)
+                            continue;
+                        
+                        const EntityTimeType timeType = parent->get_time_type();
+                        
+                        if(timeType == EntityTimeType::STATIC)
+                            comp->update();
+                    } else {
+                        comp->update();
+                    }
+                }
             }
 
             /**
@@ -164,6 +183,26 @@ namespace omniscia::core::ecs {
              * runs after main update method
             */
             void late_update() {
+                
+                for(ECS_2DPhysicsRigidbody* comp : _components) {
+                    if(comp == nullptr)
+                        continue;
+
+                    Entity* parent = comp->get_parent();
+
+                    if(DebugUI::get_instance().get_metrics()._isTimeJump) {
+                        if(parent == nullptr)
+                            continue;
+                        
+                        const EntityTimeType timeType = parent->get_time_type();
+                        
+                        if(timeType == EntityTimeType::STATIC)
+                            comp->late_update();
+                    } else {
+                        comp->late_update();
+                    }
+                }
+
                 std::for_each(_components.begin(), _components.end(), [&](ECS_2DPhysicsRigidbody* comp) {
                     comp->late_update();
                 });

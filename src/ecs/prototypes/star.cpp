@@ -16,6 +16,7 @@ omniscia::core::Star::Star(const Vec2f& position) : Entity() {
     add<ECS_SpriteSheetRenderer>("star-spritesheet", 0);
     add<ECS_BoxColliderMesh>(Vec2f{0.5f, 0.5f}, Vec2f{0.5f, 0.5f});
     add<ECS_TriggerAABBCollider>(CollisionMask_None, CollisionMask_Player);
+    add<ECS_Collectable>();
     add<ECS_MovableAABBCollider>(CollisionMask_AmbientEntities, CollisionMask_Tiles);
     add<ECS_2DPhysicsRigidbody>();
     

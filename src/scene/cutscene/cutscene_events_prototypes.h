@@ -29,5 +29,6 @@
 #include "wait_cutscene_event.h"
 #include "spawn_pause_text_cutscene_event.h"
 #include "find_static_entity_cutscene_event.h"
+#include "entity_collect_event.h"
 
 #endif

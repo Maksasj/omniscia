@@ -26,16 +26,21 @@ void omniscia::core::ecs::ECS_PlayerTimeJumpController::update() {
     Scene* activeScene = gameInstance.get_active_scene();
 
     if(isTimeJump) {
-        std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+        using namespace std::chrono;
+        
+        if(timeLine.get_actual_frame() <= 1)
+            return;
+
+        steady_clock::time_point begin = steady_clock::now();
 
         activeScene->ref_dynamic_part() = timeLine.get();
         activeScene->time_sync();
         timeLine.pop();
 
         DebugUI::get_instance().get_metrics()._timeCurrentLineLength = timeLine.get_index();
-        std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+        steady_clock::time_point end = steady_clock::now();
 
-        DebugUI::get_instance().get_metrics()._timeManipulationTime = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count() * 0.000001;
+        DebugUI::get_instance().get_metrics()._timeManipulationTime = duration_cast<nanoseconds>(end - begin).count() * 0.000001;
     } else {
         timeLine.push(activeScene->clone());
     }

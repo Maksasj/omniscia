@@ -21,6 +21,11 @@ namespace omniscia::core {
     using namespace omni::types;
     using namespace omniscia::core::ecs;
 
+    enum EntityTimeType {
+        STATIC,
+        DYNAMIC
+    };
+
     /**
      * @brief Entity - class used for storing components, 
      * managing their lifetime communication betweenn components and
@@ -34,11 +39,22 @@ namespace omniscia::core {
 
             /** @brief Container that holds all componets */
             ECS_ComponentContainer _component_container;
+
+            EntityTimeType _timeType;
         
         public:
             /** @brief Default Entity constructor */
             Entity() {
                 _uuid = UUID::gen_uuid();
+                _timeType = DYNAMIC;
+            }
+
+            EntityTimeType get_time_type() const {
+                return _timeType;
+            }
+
+            void set_time_type(const EntityTimeType& type) {
+                _timeType = type;
             }
 
             /**

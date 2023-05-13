@@ -73,6 +73,10 @@ namespace omniscia::core::ecs {
             */
             void update();
 
+            Entity* get_parent() {
+                return _parent;
+            }
+
             /**
              * @brief Method used for clonning single 
              * component instance, allocates copy of

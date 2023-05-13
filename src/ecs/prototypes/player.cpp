@@ -17,6 +17,7 @@ omniscia::core::Player::Player(const Vec2f& position) : Entity() {
     add<ECS_PlayerController>();
 
     add<ECS_PlayerTimeJumpController>();
+    add<ECS_PlayerCollectorController>();
     
     add<ECS_PlayerDebugMetrics>();
     add<ECS_PlayerJump>();

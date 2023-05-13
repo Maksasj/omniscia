@@ -38,17 +38,19 @@ namespace omniscia::core {
              * @brief Container max size
             */
             u64 _size;
+            i64 _actualFrame;
 
             class iterator;
             friend class iterator;
 
             iterator _current;
 
+
         public:
             /**
              * @brief Default TimeLessNessContainer class constructor
             */
-            TimeLessNessContainer() : _size(__size), _current(this, 0) {
+            TimeLessNessContainer() : _size(__size), _current(this, 0), _actualFrame(0) {
 
             }
 
@@ -59,6 +61,11 @@ namespace omniscia::core {
             */
             void push(const __T& value) {
                 ++_current;
+                ++_actualFrame;
+
+                if(_actualFrame > _size)
+                    _actualFrame = _size;
+
                 *_current = value;
             }
 
@@ -75,6 +82,7 @@ namespace omniscia::core {
              * @brief Decrements index of the current item
             */
             void pop() {
+                --_actualFrame;
                 --_current;
             }
 
@@ -83,8 +91,12 @@ namespace omniscia::core {
              * 
              * @return u64 max size of the container
             */
-            u64 size() {
+            u64 size() const {
                 return __size;
+            }
+
+            i64 get_actual_frame() const {
+                return _actualFrame;
             }
 
             /**

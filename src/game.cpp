@@ -233,6 +233,7 @@ void omniscia::Game::run() {
     _cutscenes["transition_cutscene_to_secrets"] = new TransitionCutscene(&transitionStageShader, "secrets_scene");
     _cutscenes["death_cutscene"] = new DeathCutscene(&transitionStageShader);
     _cutscenes["pause_cutscene"] = new PauseCutscene(&transitionStageShader);
+    _cutscenes["star_collection_cutscene"] = new PlayerCollectStarCutscene(&transitionStageShader);
     start_cutscene("pause_cutscene"); // Endless cutscene
 
     _cutscenes["test_dialogue_cutscene"] = new DialogueCutscene(&transitionStageShader, {
@@ -263,29 +264,30 @@ void omniscia::Game::run() {
         ECS_PlayerTimeJumpControllerSystem::get_instance().update();
 
         auto& isTimeJump = DebugUI::get_instance().get_metrics()._isTimeJump;
-        if(!isTimeJump) {
-            Time::run_every_n_milliseconds<16u>([]() {
-                ECS_SpriteAnimationSystem::get_instance().update();
-            });
-        }
+
+        Time::run_every_n_milliseconds<16u>([]() {
+            ECS_SpriteAnimationSystem::get_instance().update();
+        });
 
         ECS_CameraFollowSystem::get_instance().update();
         ECS_PlayerDebugMetricsSystem::get_instance().update();
         ECS_SoundEmitterSystem::get_instance().update();
         ECS_ButtonSystem::get_instance().update();
+        
+        ECS_GravitySystem::get_instance().update();
+        ECS_2DPhysicsRigidbodySystem::get_instance().update();
+        ECS_AABBColliderSystem::get_instance().update();
+        ECS_InteractiveSystem::get_instance().update();
+        ECS_2DPhysicsRigidbodySystem::get_instance().late_update();
+        ECS_PlayerJumpSystem::get_instance().update(); /* Need to be between collider updates, since should know is player standing */
+        ECS_PlayerControllerSystem::get_instance().update();
+        ECS_StateMachineBaseSystem::get_instance().update();
 
         if(!isTimeJump) {
-            ECS_GravitySystem::get_instance().update();
-            ECS_2DPhysicsRigidbodySystem::get_instance().update();
-            ECS_AABBColliderSystem::get_instance().update();
-            ECS_InteractiveSystem::get_instance().update();
-            ECS_2DPhysicsRigidbodySystem::get_instance().late_update();
-            ECS_PlayerControllerSystem::get_instance().update();
-            ECS_PlayerJumpSystem::get_instance().update(); /* Need to be between collider updates, since should know is player standing */
-            ECS_StateMachineBaseSystem::get_instance().update();
             ECS_DeadlySystem::get_instance().update();
-            ECS_AABBColliderSystem::get_instance().reset();
         }
+        
+        ECS_AABBColliderSystem::get_instance().reset();
         
         /* Render background */
         renderBackgroundStage.render_stage_lambda([&](const Shader* stage_shader){ 

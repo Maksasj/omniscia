@@ -36,6 +36,8 @@ int main() {
     TextureManager::get_instance().add_asset("assets/textures/ui/icons/player_test_icon.png", "player_test_icon");
     TextureManager::get_instance().add_asset("assets/textures/ui/popup/popups.png", "popups");
 
+    TextureManager::get_instance().add_asset("assets/textures/ui/bars/abilities/clock_bar/clock-bar-spritesheet.png", "clock-bar-spritesheet");
+
     TextureManager::get_instance().add_asset("assets/textures/background/menu/menu_background.png", "menu_background");
     TextureManager::get_instance().add_asset("assets/textures/background/menu/continue_button.png", "continue_button");
     TextureManager::get_instance().add_asset("assets/textures/background/menu/new_game_button.png", "new_game_button");
@@ -101,6 +103,9 @@ int main() {
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 1.0}, {0.0, 0.0},       6, true, 12,    true}), "logo-animation");
     
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.5}, {0.0, 0.5},     6, true, 12,    true}), "star-spinning-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.5}, {0.0, 1.0},     8, true, 12,    true}), "star-shiny-animation");
+
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 1.0}, {0.0, 0.0},     8, true, 12,    true}), "clock-bar-progression-animation");
 
     /* Sound assets */
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk1.wav", "walk_1");

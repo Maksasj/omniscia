@@ -17,8 +17,9 @@
 #include "dialogue_tab.h"
 #include "image.h"
 #include "animated_image.h"
-
+#include "collected_text.h"
 #include "entity.h"
 #include "star.h"
+#include "clock_progression_bar.h"
 
 #endif

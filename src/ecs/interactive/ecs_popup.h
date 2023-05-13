@@ -24,8 +24,6 @@ namespace omniscia::core::ecs {
 
     class ECS_Popup : public ECS_Interactive {        
         private:
-            Entity* _parent;
-
             ECS_PopupRenderer _renderer;
 
             std::string _animationId;

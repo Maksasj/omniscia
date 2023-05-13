@@ -30,6 +30,9 @@ void omniscia::gfx::sprite::InstancingSprite::render(const Shader *shader, const
     shader->set_uniform_vec2f("scale", scale);
     shader->set_uniform_mat2x2f("rotation", Matrix<f32, 2, 2>::get_rotation_matrix(rotationAngle));
 
+    shader->set_uniform_vec2f("spriteFrameSize", spriteFrameSize);
+    shader->set_uniform_vec2f("spriteFrameOffset", spriteSheetOffset);
+
     shader->set_uniform_i32("textureFlipHorizontal", horizontalFlip);
     shader->set_uniform_i32("textureFlipVertical", verticalFlip);
 

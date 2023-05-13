@@ -75,9 +75,4 @@ void omniscia::core::Scene::load_checkpoint() {
 void omniscia::core::Scene::save_checkpoint() {
     checkpointDynamicPart = clone();
     checkpointStaticPart = clone_static();
-    
-    // Todo resolve this cringe
-    DebugUI::get_instance().get_metrics()._isTimeJump = true;
-
-    time_sync();
 }

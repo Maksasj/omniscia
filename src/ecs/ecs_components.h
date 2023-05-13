@@ -49,5 +49,8 @@
 #include "ecs_checkpoint_popup.h"
 #include "ecs_gui_spritesheet_renderer.h"
 #include "ecs_gui_sprite_renderer.h"
+#include "ecs_player_collector_controller.h"
+#include "ecs_collectable.h"
+#include "ecs_clock_progression_bar_controller.h"
 
 #endif

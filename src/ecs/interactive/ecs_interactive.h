@@ -45,6 +45,10 @@ namespace omniscia::core::ecs {
 
             virtual void update() {};
 
+            Entity* get_parent() {
+                return _parent;
+            }
+
             std::shared_ptr<ECS_Component> clone() override {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_Interactive>(*this));
             }
@@ -65,14 +69,24 @@ namespace omniscia::core::ecs {
                 if(!_enabled)
                     return;
 
-                bool _ = std::all_of(_components.begin(), _components.end(), [&](ECS_Interactive* comp) {
-                    comp->update();
-                    
-                    if(DebugUI::get_instance().get_metrics()._isTimeJump)
-                        return false;
-                    
-                    return true;
-                });
+                for(ECS_Interactive* comp : _components) {
+                    if(comp == nullptr)
+                        continue;
+
+                    Entity* parent = comp->get_parent();
+
+                    if(DebugUI::get_instance().get_metrics()._isTimeJump) {
+                        if(parent == nullptr)
+                            continue;
+                        
+                        const EntityTimeType timeType = parent->get_time_type();
+                        
+                        if(timeType == EntityTimeType::STATIC)
+                            comp->update();
+                    } else {
+                        comp->update();
+                    }
+                }
             }
 
             static ECS_InteractiveSystem& get_instance() {

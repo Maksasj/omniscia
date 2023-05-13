@@ -18,12 +18,33 @@ namespace omniscia::core {
                 summon_static_entity_at_marker_group<Checkpoint>(1);
                 summon_static_entity_at_marker_group<Star>(2);
 
-                // add_dynamic_entity<Crab>();
-                // add_dynamic_entity<Player>();
+                summon_dynamic_entity_at_marker_group<Crab>(3);
                 add_dynamic_entity<Grandpa>(Vec2f{1.0f, 1.0f});
                 add_static_entity<BeachParallaxBackground>();
-// 
-                // add_static_entity<Checkpoint>();
+
+                add_static_entity<AnimatedImage>((AnimatedImageProp){
+                    ._texture = "star-spritesheet",
+                    ._animation = "star-shiny-animation",
+                    ._layer = 11,
+                    ._pos = Vec2f{1.6f, 0.6f},
+                    ._scale = Vec2f{0.1f, 0.1f},
+                });
+                
+                add_static_entity<CollectedText>(Vec2f{1.6f, 0.6f}, Vec2f{0.1f, 0.1f}, (CollectedTextProp){
+                    ._fontId = "monogram-white",
+                    ._textToRender = "x5",
+                    ._lineLetterSpacing = 0.31f,
+                    ._rowLineSpacing = 0.0f,
+                    ._charactersPerRow = 3u,
+                });
+
+                add_static_entity<ClockProgressionBar>((ClockProgressionBarProp){
+                    ._texture = "clock-bar-spritesheet",
+                    ._animation = "clock-bar-progression-animation",
+                    ._layer = 11,
+                    ._pos = Vec2f{1.4f, 0.75f},
+                    ._scale = Vec2f{0.1f, 0.1f},
+                });
 
                 unbind();
             }

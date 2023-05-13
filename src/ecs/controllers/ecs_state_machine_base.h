@@ -14,6 +14,7 @@
 
 #include "ecs_system.h"
 #include "ecs_component.tpp"
+#include "entity.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;
@@ -25,6 +26,9 @@ namespace omniscia::core::ecs {
      * state machine, for now used only by crab ai 
     */
     class ECS_StateMachineBase : public ECS_Component {
+        protected:
+            Entity *_parent;
+
         private:
             /**
              * @brief Pointer to the member function that represents
@@ -44,6 +48,12 @@ namespace omniscia::core::ecs {
              * system
             */
             void time_sync() override;
+
+            void reindex(void* parent) override;
+
+            Entity* get_parent() {
+                return _parent;
+            }
 
             /**
              * @brief Default constructor of the ECS_StateMachineBase component
@@ -121,14 +131,24 @@ namespace omniscia::core::ecs {
                 if(!_enabled)
                     return;
 
-                bool _ = std::all_of(_components.begin(), _components.end(), [&](ECS_StateMachineBase* comp) {
-                    comp->update();
-                    
-                    if(DebugUI::get_instance().get_metrics()._isTimeJump)
-                        return false;
-                    
-                    return true;
-                });
+                for(ECS_StateMachineBase* comp : _components) {
+                    if(comp == nullptr)
+                        continue;
+
+                    Entity* parent = comp->get_parent();
+
+                    if(DebugUI::get_instance().get_metrics()._isTimeJump) {
+                        if(parent == nullptr)
+                            continue;
+                        
+                        const EntityTimeType timeType = parent->get_time_type();
+                        
+                        if(timeType == EntityTimeType::STATIC)
+                            comp->update();
+                    } else {
+                        comp->update();
+                    }
+                }
             }
 
             /**

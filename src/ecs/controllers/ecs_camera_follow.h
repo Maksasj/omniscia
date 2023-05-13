@@ -130,6 +130,10 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_CameraFollow>(*this));
             }
 
+            Entity* get_parent() {
+                return _parent;
+            }
+
             /**
              * @brief Virtual method used for 
              * calculating byte size of the component

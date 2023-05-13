@@ -38,6 +38,8 @@ namespace omniscia::core::ecs {
     */
     class ECS_SpriteAnimation : public ECS_Component {
         protected:
+            Entity* _parent;
+
             /** @brief Current frame of the animation */
             u64 _currentFrame;
 
@@ -64,6 +66,10 @@ namespace omniscia::core::ecs {
             */
             void time_sync() override;
 
+            void reindex(void* parent) override {
+                _parent = (Entity*) parent;
+            }
+
             /**
              * @brief Default constructor of the ECS_SpriteAnimation component
              * 
@@ -89,6 +95,10 @@ namespace omniscia::core::ecs {
              * @brief Reset animation to frame 0
             */
             void reset_animation();
+
+            Entity* get_parent() {
+                return _parent;
+            }
 
             /**
              * @brief Get the frame size of the animation
@@ -162,9 +172,24 @@ namespace omniscia::core::ecs {
                 if(!_enabled)
                     return;
 
-                std::for_each(_components.begin(), _components.end(), [&](ECS_SpriteAnimation* comp) {
-                    comp->update();
-                });
+                for(ECS_SpriteAnimation* comp : _components) {
+                    if(comp == nullptr)
+                        continue;
+
+                    Entity* parent = comp->get_parent();
+
+                    if(DebugUI::get_instance().get_metrics()._isTimeJump) {
+                        if(parent == nullptr)
+                            continue;
+                        
+                        const EntityTimeType timeType = parent->get_time_type();
+                        
+                        if(timeType == EntityTimeType::STATIC)
+                            comp->update();
+                    } else {
+                        comp->update();
+                    }
+                }
             }
 
             /**

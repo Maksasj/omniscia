@@ -99,6 +99,10 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_PlayerController>(*this));
             }
 
+            Entity* get_parent() {
+                return _parent;
+            }
+
             /**
              * @brief Virtual method used for 
              * calculating byte size of the component
@@ -141,14 +145,24 @@ namespace omniscia::core::ecs {
                 if(!_enabled)
                     return;
 
-                bool _ = std::all_of(_components.begin(), _components.end(), [&](ECS_PlayerController* comp) {
-                    comp->control();
-                    
-                    if(DebugUI::get_instance().get_metrics()._isTimeJump)
-                        return false;
-                    
-                    return true;
-                });
+                for(ECS_PlayerController* comp : _components) {
+                    if(comp == nullptr)
+                        continue;
+
+                    Entity* parent = comp->get_parent();
+
+                    if(DebugUI::get_instance().get_metrics()._isTimeJump) {
+                        if(parent == nullptr)
+                            continue;
+                        
+                        const EntityTimeType timeType = parent->get_time_type();
+                        
+                        if(timeType == EntityTimeType::STATIC)
+                            comp->control();
+                    } else {
+                        comp->control();
+                    }
+                }
             }
 
             /**

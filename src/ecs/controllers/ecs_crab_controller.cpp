@@ -10,7 +10,7 @@ void omniscia::core::ecs::ECS_CrabController::time_sync() {
 }
 
 void omniscia::core::ecs::ECS_CrabController::reindex(void* parent) {
-    _parent = (Entity*)parent;
+    _parent = (Entity*) parent;
 
     _accelerationIndex = _parent->index<ECS_Acceleration>();
     _spriteFlipIndex = _parent->index<ECS_SpriteFlip>();

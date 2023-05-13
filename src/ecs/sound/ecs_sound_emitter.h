@@ -85,6 +85,10 @@ namespace omniscia::core::ecs {
             */
             void play(const std::string& soundId);
 
+            Entity* get_parent() {
+                return _parent;
+            }
+
             /**
              * @brief Method used for clonning single 
              * component instance, allocates copy of

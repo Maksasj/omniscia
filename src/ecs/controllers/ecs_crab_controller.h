@@ -31,12 +31,6 @@ namespace omniscia::core::ecs {
     */
     class ECS_CrabController : public ECS_StateMachineBase {
         private:
-            /**
-             * @brief Pointer to the parent entity 
-             * instance, used for reindexing and time sync 
-            */
-            Entity* _parent;
-            
             /** @brief ECS_Index of the sprite flip component */
             ECS_Index<ECS_SpriteFlip> _spriteFlipIndex;
             

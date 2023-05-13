@@ -51,10 +51,6 @@ namespace omniscia::core::ecs {
 
             void update();
 
-            Entity* get_parent() {
-                return _parent;
-            }
-
             ECS_Index<ECS_Positioned> get_pos_index() const {
                 return _posIndex;
             }
@@ -71,6 +67,10 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_Button>(*this));
             }
 
+            Entity* get_parent() {
+                return _parent;
+            }
+            
             u64 byte_size() override {
                 return sizeof(ECS_Button);
             }

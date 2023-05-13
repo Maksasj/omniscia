@@ -24,9 +24,8 @@ void omniscia::core::ecs::ECS_Popup::time_sync() {
 }
 
 void omniscia::core::ecs::ECS_Popup::reindex(void* parent) {
-    _parent = (Entity*) parent;
-    
     ECS_Interactive::reindex(parent);
+    
     _renderer.reindex(parent);
 
     _posIndex = _parent->index<ECS_Positioned>();

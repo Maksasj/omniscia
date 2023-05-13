@@ -140,6 +140,10 @@ namespace omniscia::core::ecs {
              * @return Vec2f point of the collision
             */
             Vec2f get_collision_point() const;
+
+            Entity* get_parent() {
+                return _parent;
+            }
             
             /**
              * @brief Returns collision side, from which side collision acquired
@@ -201,13 +205,33 @@ namespace omniscia::core::ecs {
                 if(!_enabled)
                     return;
 
-                std::for_each(_components.begin(), _components.end(), [&](ECS_AABBCollider* first) {
-                    std::for_each(_components.begin(), _components.end(), [&](ECS_AABBCollider* second) {
-                        if(first == second) return;
+                for(ECS_AABBCollider* first : _components) {
+                    if(first == nullptr)
+                        continue;
 
-                        first->collide(second);
-                    });
-                });
+                    Entity* parent = first->get_parent();
+
+                    if(DebugUI::get_instance().get_metrics()._isTimeJump) {
+                        if(parent == nullptr)
+                            continue;
+                        
+                        const EntityTimeType timeType = parent->get_time_type();
+                        
+                        if(timeType == EntityTimeType::STATIC) {
+                            std::for_each(_components.begin(), _components.end(), [&](ECS_AABBCollider* second) {
+                                if(first == second) return;
+
+                                first->collide(second);
+                            });
+                        }
+                    } else {
+                        std::for_each(_components.begin(), _components.end(), [&](ECS_AABBCollider* second) {
+                            if(first == second) return;
+
+                            first->collide(second);
+                        });
+                    }
+                }
             }
 
             /**
@@ -215,9 +239,23 @@ namespace omniscia::core::ecs {
              * components that are currently assigned
             */
             void reset() {
-                std::for_each(_components.begin(), _components.end(), [&](ECS_AABBCollider* comp) {
-                    comp->reset_collisions();
-                });
+                for(ECS_AABBCollider* comp : _components) {
+                    if(comp == nullptr)
+                        continue;
+
+                    Entity* parent = comp->get_parent();
+
+                    if(DebugUI::get_instance().get_metrics()._isTimeJump) {
+                        if(parent == nullptr)
+                            continue;
+                        
+                        const EntityTimeType timeType = parent->get_time_type();
+                        
+                        comp->reset_collisions();
+                    } else {
+                        comp->reset_collisions();
+                    }
+                }
             }
 
             /**
