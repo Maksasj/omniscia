@@ -28,7 +28,7 @@ void omniscia::core::CE_SpawnDialogueTextEvent::execute() {
         return;
 
     Vec3f pos = Camera::get_instance().get_pos();
-    UUID entityUUID = scene->add_static_entity<StaticText>(Vec2f{pos.x, pos.y}, Vec2f{0.035f, 0.035f}, (StaticTextProp) {
+    UUID entityUUID = scene->add_static_entity<StaticText>(Vec2f{0.0f, 0.45f}, Vec2f{0.0525f, 0.0525f}, (StaticTextProp) {
         ._fontId = "monogram-white",
         ._textToRender = "",
         ._lineLetterSpacing = 0.31f,

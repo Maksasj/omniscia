@@ -26,17 +26,17 @@ omniscia::core::DialogueCutscene::DialogueCutscene(Shader* transitionStageShader
             }),
         },
         CE_Step {
-            new CE_EntityPositionSetRelativeEvent((CE_EntityPositionSetRelativeProp) {
+            new CE_EntityPositionSetEvent((CE_EntityPositionSetProp) {
                 ._entityTmpName = "DialogueIcon",
-                ._relativePosition = Vec2f{((dialogueData[0]._side == 1) ? 0.6f : -0.6f), 0.3f},
+                ._newPosition = Vec2f{((dialogueData[0]._side == 1) ? 0.9f : -0.9f), 0.45f},
             }),
-            new CE_EntityPositionSetRelativeEvent((CE_EntityPositionSetRelativeProp) {
+            new CE_EntityPositionSetEvent((CE_EntityPositionSetProp) {
                 ._entityTmpName = "DialogueText",
-                ._relativePosition = Vec2f{((dialogueData[0]._side == 1) ? 0.1f : -0.2f), 0.3f},
+                ._newPosition = Vec2f{((dialogueData[0]._side == 1) ? 0.15f : -0.3f), 0.45f},
             }),
-            new CE_EntityPositionSetRelativeEvent((CE_EntityPositionSetRelativeProp) {
+            new CE_EntityPositionSetEvent((CE_EntityPositionSetProp) {
                 ._entityTmpName = "DialogueTab",
-                ._relativePosition = Vec2f{0.0f, 0.3f},
+                ._newPosition = Vec2f{0.0f, 0.45f},
             }),
         },
         CE_Step {
@@ -84,13 +84,13 @@ omniscia::core::DialogueCutscene::DialogueCutscene(Shader* transitionStageShader
                         ._entityTmpName = "DialogueIcon",
                         ._textureId = stepData._speakerIconTexture
                     }),
-                    new CE_EntityPositionSetRelativeEvent((CE_EntityPositionSetRelativeProp) {
+                    new CE_EntityPositionSetEvent((CE_EntityPositionSetProp) {
                         ._entityTmpName = "DialogueIcon",
-                        ._relativePosition = Vec2f{((stepData._side == 1) ? -0.6f : 0.6f), 0.3f},
+                        ._newPosition = Vec2f{((stepData._side == 1) ? -0.9f : 0.9f), 0.45f},
                     }),
-                    new CE_EntityPositionSetRelativeEvent((CE_EntityPositionSetRelativeProp) {
+                    new CE_EntityPositionSetEvent((CE_EntityPositionSetProp) {
                         ._entityTmpName = "DialogueText",
-                        ._relativePosition = Vec2f{((stepData._side == 1) ? 0.1f : -0.2f), 0.3f},
+                        ._newPosition = Vec2f{((stepData._side == 1) ? 0.15f : -0.3f), 0.45f},
                     }),
                 },
                 CE_Step {

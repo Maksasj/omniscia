@@ -28,7 +28,7 @@ void omniscia::core::CE_SpawnDialogueTabEvent::execute() {
         return;
 
     Vec3f pos = Camera::get_instance().get_pos();
-    UUID entityUUID = scene->add_static_entity<DialogueTab>(Vec2f{pos.x, pos.y});
+    UUID entityUUID = scene->add_static_entity<DialogueTab>(Vec2f{0.0f, 0.45f});
     
     CutsceneDataPoolType& _dataPool = *ptrParrentCutsceneDataPool;
     _dataPool[_entityTmpName] = std::make_shared<UUID>(entityUUID);

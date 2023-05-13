@@ -72,6 +72,9 @@ int main() {
     
     ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_transition.glsl", "vert_stage_transition", VERTEX_SHADER);
     ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_transition.glsl", "frag_stage_transition", FRAGMENT_SHADER);
+
+    ShaderManager::get_instance().add_asset("assets/shaders/vert_stage_gui.glsl", "vert_stage_gui", VERTEX_SHADER);
+    ShaderManager::get_instance().add_asset("assets/shaders/frag_stage_gui.glsl", "frag_stage_gui", FRAGMENT_SHADER);
     try {
         ShaderManager::get_instance().check_assets();
     } catch (const std::runtime_error& exception) {

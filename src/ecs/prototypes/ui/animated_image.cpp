@@ -5,5 +5,5 @@ omniscia::core::AnimatedImage::AnimatedImage(const AnimatedImageProp& prop) : En
     add<ECS_Scaled>(prop._scale.x, prop._scale.y);
     add<ECS_SpriteFlip>(false, false);
     add<ECS_SpriteAnimationAuto>(prop._animation);
-    add<ECS_SpriteSheetRenderer>(prop._texture, prop._layer);
+    add<ECS_GuiSpriteSheetRenderer>(prop._texture, prop._layer);
 }

@@ -37,6 +37,7 @@ void omniscia::Game::run() {
     Shader intermediateStageShader("vert_stage_intermediate", "frag_stage_intermediate");
     Shader lateStageShader("vert_stage_late", "frag_stage_late");
     Shader finalStageShader("vert_stage_final", "frag_stage_final");
+    Shader guiStageShader("vert_stage_gui", "frag_stage_gui");
 
     Shader transitionStageShader("vert_stage_transition", "frag_stage_transition");
 
@@ -98,6 +99,17 @@ void omniscia::Game::run() {
     }
 
     try {
+        guiStageShader.try_compile();
+        guiStageShader.compile();
+    } catch (const Shader::ShaderVertexException& exception) {
+        std::cout << exception.what() << "\n";
+    } catch (const Shader::ShaderFragmentException& exception) {
+        std::cout << exception.what() << "\n";
+    } catch (...) {
+        std::cout << "Undefined exception\n";
+    }
+
+    try {
         transitionStageShader.try_compile();
         transitionStageShader.compile();
     } catch (const Shader::ShaderVertexException& exception) {
@@ -127,6 +139,21 @@ void omniscia::Game::run() {
         ._stageName = "MainStage",
         ._textureBuffer = new TextureBuffer(Properties::screenWidth, Properties::screenHeight),
         ._defaultShader = &mainStageShader,
+        ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
+        ._shaderUniforms = {
+            ._screenAspect = [](){ return (Properties::screenWidth) / (float) Properties::screenHeight; },
+            ._cameraPosition = [](){ return Camera::get_instance().get_pos(); },
+            ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
+        },
+        ._buffer = {
+            ._clearBufferColor = Vec4f{1.0f, 1.0f, 1.0f, 0.0f},
+        }
+    });
+
+    RenderStage& renderGuiStage = RenderStagePool::get_instance().add_stage((RenderStageProp){
+        ._stageName = "GuiStage",
+        ._textureBuffer = new TextureBuffer(Properties::screenWidth, Properties::screenHeight),
+        ._defaultShader = &guiStageShader,
         ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
         ._shaderUniforms = {
             ._screenAspect = [](){ return (Properties::screenWidth) / (float) Properties::screenHeight; },
@@ -269,9 +296,14 @@ void omniscia::Game::run() {
             ECS_ProRendererSystem::get_instance().render();
         });
 
+        renderGuiStage.render_stage_lambda([&]() {
+            ECS_ProRendererSystem::get_instance().render();
+        });
+
         renderIntermediateStage.render_stage_lambda([&](const Shader* stage_shader){ 
             renderBackgroundStage.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
             renderMainStage.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
+            renderGuiStage.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
 
             ECS_ProRendererSystem::get_instance().render();
         });

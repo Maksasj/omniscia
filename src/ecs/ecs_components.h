@@ -47,5 +47,7 @@
 #include "ecs_speak_popup.h"
 #include "ecs_use_popup.h"
 #include "ecs_checkpoint_popup.h"
+#include "ecs_gui_spritesheet_renderer.h"
+#include "ecs_gui_sprite_renderer.h"
 
 #endif

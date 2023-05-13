@@ -20,7 +20,7 @@ namespace omniscia::core {
 
                 // add_dynamic_entity<Crab>();
                 // add_dynamic_entity<Player>();
-                // add_dynamic_entity<Grandpa>();
+                add_dynamic_entity<Grandpa>(Vec2f{1.0f, 1.0f});
                 add_static_entity<BeachParallaxBackground>();
 // 
                 // add_static_entity<Checkpoint>();

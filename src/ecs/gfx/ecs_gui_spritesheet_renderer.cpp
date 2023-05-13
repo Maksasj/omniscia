@@ -1,23 +1,24 @@
-#include "ecs_instancing_renderer.h"
+#include "ecs_gui_spritesheet_renderer.h"
 
-omniscia::core::ecs::ECS_InstancingRenderer::ECS_InstancingRenderer(const std::string& textureId, const u32& layer) : _instancingSprite(textureId), ECS_ProRenderer(RenderStagePool::get_instance().get_stage_by_name("GuiStage"), layer) {
+omniscia::core::ecs::ECS_GuiSpriteSheetRenderer::ECS_GuiSpriteSheetRenderer(const std::string& textureId, const u32& layer) : _sprite(textureId), ECS_ProRenderer(RenderStagePool::get_instance().get_stage_by_name("GuiStage"), layer) {
     ECS_ProRendererSystem::get_instance().bind_component(this);
 };
 
-void omniscia::core::ecs::ECS_InstancingRenderer::time_sync() {
+void omniscia::core::ecs::ECS_GuiSpriteSheetRenderer::time_sync() {
     ECS_ProRendererSystem::get_instance().bind_component(this);
 }
 
-void omniscia::core::ecs::ECS_InstancingRenderer::reindex(void* parent) {
+void omniscia::core::ecs::ECS_GuiSpriteSheetRenderer::reindex(void* parent) {
     _parent = (Entity*)parent;
 
     _spriteFlipIndex = _parent->index<ECS_SpriteFlip>();
     _animationIndex = _parent->index<ECS_SpriteAnimation>();
     _posIndex = _parent->index<ECS_Positioned>();
     _scaleIndex = _parent->index<ECS_Scaled>();
+    _transparencyIndex = _parent->index<ECS_Transparency>();
 }
 
-void omniscia::core::ecs::ECS_InstancingRenderer::render() {
+void omniscia::core::ecs::ECS_GuiSpriteSheetRenderer::render() {
     Shader* shader = Shader::get_active();
     if(shader == nullptr)
         return;
@@ -55,12 +56,12 @@ void omniscia::core::ecs::ECS_InstancingRenderer::render() {
         horizontalFlip = spriteFlipComp.get_horizontal_flip();
     }
 
-    _instancingSprite.render(
-        shader, 
-        _instancingData,
-        position, 
-        0.0f, scale, 
-        spriteFrameSize, spriteFrameOffset, 
-        horizontalFlip, verticalFlip
-    );
+    if(_transparencyIndex.is_success()) {
+        ECS_Transparency& transparencyComp = _parent->ref_unsafe(_transparencyIndex);
+        shader->set_uniform_f32("transparency", transparencyComp.get_transparency());
+    }
+    
+    _sprite.render(shader, position, 0.0f, scale, spriteFrameSize, spriteFrameOffset, horizontalFlip, verticalFlip);
+    
+    shader->set_uniform_f32("transparency", 1.0f);
 }

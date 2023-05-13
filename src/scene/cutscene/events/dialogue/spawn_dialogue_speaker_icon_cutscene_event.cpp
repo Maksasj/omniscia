@@ -30,8 +30,8 @@ void omniscia::core::CE_SpawnDialogueSpeakerIconEvent::execute() {
     Vec3f pos = Camera::get_instance().get_pos();
     UUID entityUUID = scene->add_static_entity<Image>((ImageProp) {
         ._texture = _speakerIconTextureId,
-        ._pos = Vec2f{pos.x, pos.y},
-        ._scale = Vec2f{0.2f, 0.2f},
+        ._pos = Vec2f{0.0f, 0.45f},
+        ._scale = Vec2f{0.3f, 0.3f},
     });
     
     CutsceneDataPoolType& _dataPool = *ptrParrentCutsceneDataPool;
