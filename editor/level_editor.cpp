@@ -56,7 +56,6 @@ void omniscia_editor::level_editor::LevelEditor::render_tile_texture_coordinate_
     auto flag = 
         ImGuiWindowFlags_NoResize | 
         ImGuiWindowFlags_NoScrollWithMouse | 
-        ImGuiWindowFlags_NoCollapse | 
         ImGuiWindowFlags_NoScrollbar;
     
     ImGui::SetNextWindowSize({750, 550});
@@ -623,8 +622,6 @@ void omniscia_editor::level_editor::LevelEditor::render_metrics_window() {
 }
 
 void omniscia_editor::level_editor::LevelEditor::render_tab(GLFWwindow *window) {
-    ImGui::ShowDemoWindow();
-
     if(ImGui::BeginTabItem("Level")) {
         ImGuiIO& io = ImGui::GetIO(); 
 
