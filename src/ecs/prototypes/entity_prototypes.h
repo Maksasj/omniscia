@@ -8,6 +8,7 @@
 #include "animated_background.h"
 
 #include "crab.h"
+#include "crab_corrupted.h"
 #include "grandpa.h"
 #include "player.h"
 

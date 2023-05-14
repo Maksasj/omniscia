@@ -36,10 +36,7 @@ void omniscia::core::ecs::ECS_PlayerCollectorController::collect() {
         return;
     
     std::shared_ptr<Entity> entityPtr= scene->find_static_entity_by_prototype<CollectedText>();
-    std::cout << entityPtr.get() << "\n";
     if(entityPtr.get() == nullptr) return;
-
-    std::cout << _collected << "dasdasdasdasdasdasfagfagsagga\n";
 
     ECS_Index<ECS_TextRenderer> textRendererIndex = entityPtr->index<ECS_TextRenderer>();
     

@@ -18,6 +18,7 @@ namespace omniscia::core {
                 summon_static_entity_at_marker_group<Checkpoint>(1);
                 summon_static_entity_at_marker_group<Star>(2);
                 
+                summon_dynamic_entity_at_marker_group<CrabCorrupted>(3);
                 summon_dynamic_entity_at_marker_group<Crab>(3);
 
                 summon_static_entity_at_marker_group<RedCrystal>(4);

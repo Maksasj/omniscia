@@ -12,6 +12,7 @@ int main() {
     TextureManager::get_instance().add_asset("assets/textures/entities/characters/player/player.png", "player-spritesheet");
     TextureManager::get_instance().add_asset("assets/textures/entities/characters/grandpa/grandpa.png", "grandpa-spritesheet");
     TextureManager::get_instance().add_asset("assets/textures/entities/crab/crab.png", "crab-spritesheet");
+    TextureManager::get_instance().add_asset("assets/textures/entities/crab/crab_corrupted.png", "crab-corrupted-spritesheet");
     TextureManager::get_instance().add_asset("assets/textures/entities/checkpoint/checkpoint-spritesheet.png", "checkpoint-spritesheet");
     TextureManager::get_instance().add_asset("assets/textures/entities/star/star-spritesheet.png", "star-spritesheet");
 
