@@ -24,6 +24,19 @@ int main() {
     TextureManager::get_instance().add_asset("assets/textures/background/beach/sky2.png", "background_beach_sky2_layer");
     TextureManager::get_instance().add_asset("assets/textures/background/beach/terrain.png", "background_beach_terrain_layer");
 
+    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/sky1.png", "chapter_choose_background_sky1_layer");
+    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/sky2.png", "chapter_choose_background_sky2_layer");
+    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/sky3.png", "chapter_choose_background_sky3_layer");
+    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/terrain.png", "chapter_choose_background_terrain_layer");
+
+    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/chapter_buttons.png", "chapter_buttons");
+    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/choose_panel.png", "choose_panel");
+    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/chapter_1_thumbnail_spritesheet.png", "chapter_1_thumbnail_spritesheet");
+    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/selector_spritesheet.png", "selector_spritesheet");
+    
+    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/menus.png", "chapter_choose_menus");
+    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/fireflies.png", "fireflies");
+
     TextureManager::get_instance().add_asset("assets/textures/background/menu/sky1.png", "menu_background_sky1_layer");
     TextureManager::get_instance().add_asset("assets/textures/background/menu/sky2.png", "menu_background_sky2_layer");
     TextureManager::get_instance().add_asset("assets/textures/background/menu/sky3.png", "menu_background_sky3_layer");
@@ -31,6 +44,7 @@ int main() {
     TextureManager::get_instance().add_asset("assets/textures/background/menu/girls.png", "menu_background_girls_layer");
 
     TextureManager::get_instance().add_asset("assets/textures/background/menu/logo_spritesheet.png", "logo_spritesheet");
+    TextureManager::get_instance().add_asset("assets/textures/background/menu/logo_green_spritesheet.png", "logo_green_spritesheet");
     TextureManager::get_instance().add_asset("assets/textures/background/pause_screen/pause_text.png", "pause_text");
 
     TextureManager::get_instance().add_asset("assets/textures/ui/dialogue.png", "dialogue");
@@ -101,15 +115,29 @@ int main() {
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.0625},{0.0, 0.875},   6, true, 8,     true}), "speak-popup-animation");
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.0625},{0.0, 0.75},    6, true, 8,     true}), "save-popup-animation");
 
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 1.0}, {0.0, 0.0},       6, true, 12,    true}), "checkpoint-animation");
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 1.0}, {0.0, 0.0},       6, true, 12,    true}), "logo-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 1.0},   {0.0, 0.0},     6, true, 12,    true}), "checkpoint-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 1.0},   {0.0, 0.0},     6, true, 12,    true}), "logo-animation");
     
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.5}, {0.0, 0.5},     6, true, 12,    true}), "star-spinning-animation");
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.5}, {0.0, 1.0},     8, true, 12,    true}), "star-shiny-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.5},   {0.0, 0.5},     6, true, 12,    true}), "star-spinning-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.5},   {0.0, 1.0},     8, true, 12,    true}), "star-shiny-animation");
 
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 1.0}, {0.0, 0.0},     8, true, 12,    true}), "clock-bar-progression-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 1.0},   {0.0, 0.0},     8, true, 12,    true}), "clock-bar-progression-animation");
 
-    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 1.0}, {0.0, 0.0},     6, true, 24,    true}), "red-crystal-idle-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 1.0},   {0.0, 0.0},     6, true, 24,    true}), "red-crystal-idle-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 1.0},   {0.0, 0.0},     6, true, 36,    true}), "chapter-1-thumbnail-animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.2, 1.0},     {0.0, 0.0},     5, true, 48,    true}), "fireflies_animation");
+    
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.5, 0.25},     {0.0, 0.75},    1, true, 48,    false}), "chapter_1_locked_animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.5, 0.25},     {0.5, 0.75},    1, true, 48,    false}), "chapter_1_unlocked_animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.5, 0.25},     {0.0, 0.5},    1, true, 48,    false}), "chapter_2_locked_animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.5, 0.25},     {0.5, 0.5},    1, true, 48,    false}), "chapter_2_unlocked_animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.5, 0.25},     {0.0, 0.25},    1, true, 48,    false}), "chapter_3_locked_animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.5, 0.25},     {0.5, 0.25},    1, true, 48,    false}), "chapter_3_unlocked_animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.5, 0.25},     {0.0, 0.0},    1, true, 48,    false}), "chapter_4_locked_animation");
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.5, 0.25},     {0.5, 0.0},    1, true, 48,    false}), "chapter_4_unlocked_animation");
+
+    AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.5},   {0.0, 0.5},     8, true, 12,    true}), "selector-animation");
+
 
     /* Sound assets */
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk1.wav", "walk_1");
@@ -136,6 +164,7 @@ int main() {
     FontManager::get_instance().add_asset("assets/textures/fonts/abaddon-light-white.png", "abaddon-light-white", { ' ', 16, Vec2f{0.0625f, 0.0625f} } );
     FontManager::get_instance().add_asset("assets/textures/fonts/dejavu-sans-mono-white.png", "dejavu-sans-mono-white", { ' ', 16, Vec2f{0.0625f, 0.0625f} } );
     FontManager::get_instance().add_asset("assets/textures/fonts/monogram-white.png", "monogram-white", { ' ', 16, Vec2f{0.0625f, 0.0625f} } );
+    FontManager::get_instance().add_asset("assets/textures/fonts/monogram-gray.png", "monogram-gray", { ' ', 16, Vec2f{0.0625f, 0.0625f} } );
     FontManager::get_instance().add_asset("assets/textures/fonts/yoster-white.png", "yoster-white", { ' ', 16, Vec2f{0.0625f, 0.0625f} } );
     try {
         FontManager::get_instance().check_assets();

@@ -5,6 +5,7 @@
 #include "mainmenuParallaxBackground.h"
 
 #include "background.h"
+#include "animated_background.h"
 
 #include "crab.h"
 #include "grandpa.h"
@@ -22,5 +23,7 @@
 #include "star.h"
 #include "clock_progression_bar.h"
 #include "red_crystal.h"
+#include "chapterChooseBackground.h"
+#include "animated_button.h"
 
 #endif
