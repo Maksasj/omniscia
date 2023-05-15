@@ -145,6 +145,8 @@ int main() {
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk2.wav", "walk_2");
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk3.wav", "walk_3");
     omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk4.wav", "walk_4");
+
+    omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/music/d264.wav", "d264");
     try {
         omniscia::core::SoundManager::get_instance().check_assets();
     } catch (const std::runtime_error& exception) {

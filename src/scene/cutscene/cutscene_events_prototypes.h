@@ -31,5 +31,6 @@
 #include "find_static_entity_cutscene_event.h"
 #include "entity_collect_event.h"
 #include "reduce_timeline_frames.h"
+#include "sound_loop_cutscene_event.h"
 
 #endif

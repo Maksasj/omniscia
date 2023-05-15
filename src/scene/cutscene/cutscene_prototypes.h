@@ -11,5 +11,6 @@
 #include "pause_cutscene.h"
 #include "player_collect_star_cutscene.h"
 #include "chapter_1_end_cutscene.h"
+#include "background_music_cutscene.h"
 
 #endif

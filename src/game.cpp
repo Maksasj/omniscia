@@ -235,8 +235,10 @@ void omniscia::Game::run() {
     _cutscenes["pause_cutscene"] = new PauseCutscene(&transitionStageShader);
     _cutscenes["star_collection_cutscene"] = new PlayerCollectStarCutscene(&transitionStageShader);
     _cutscenes["chapter_1_end_cutscene"] = new Chapter1EndCutscene(&transitionStageShader);
+    _cutscenes["background_music_cutscene"] = new BackgroundMusicCutscene();
 
     start_cutscene("pause_cutscene"); // Endless cutscene
+    start_cutscene("background_music_cutscene"); // Endless cutscene
 
     _cutscenes["test_dialogue_cutscene"] = new DialogueCutscene(&transitionStageShader, {
         DialogueStepData("player_test_icon", 1, "Hello, who you are ?"),
