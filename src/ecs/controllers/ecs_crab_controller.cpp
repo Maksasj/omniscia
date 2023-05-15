@@ -45,6 +45,7 @@ void omniscia::core::ecs::ECS_CrabController::crab_run_right_state() {
 
     const u64 random = rand();
 
+    /*
     switch (random % 100) {
         case 0:
             soundEmitterComp.play("walk_1");
@@ -61,6 +62,7 @@ void omniscia::core::ecs::ECS_CrabController::crab_run_right_state() {
         default:
             break;
     }
+    */
 
     if(random % 7000 != 0) return;
 
@@ -93,6 +95,7 @@ void omniscia::core::ecs::ECS_CrabController::crab_run_left_state() {
 
     const u64 random = rand();
 
+    /*
     switch (random % 100) {
         case 0:
             soundEmitterComp.play("walk_1");
@@ -109,6 +112,7 @@ void omniscia::core::ecs::ECS_CrabController::crab_run_left_state() {
         default:
             break;
     }
+    */
 
     if(random % 7000 != 0) return;
 

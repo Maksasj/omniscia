@@ -227,6 +227,13 @@ void omniscia_editor::level_editor::LevelEditor::render_markergroup_options() {
             if(_selectedMarker < markerGroup._markers.get().size())
                 markerGroup._markers.get().erase(markerGroup._markers.get().begin() + _selectedMarker);
         
+        ImGui::SameLine();
+        if(ImGui::Button("Copy") && markerGroup._markers.get().size() > 0)
+            if(_selectedMarker < markerGroup._markers.get().size()) {
+                SerializableMarkerData markerData = markerGroup._markers.get().at(_selectedMarker);
+                markerGroup._markers.get().push_back(markerData);
+            }
+
         if(_selectedMarker < markerGroup._markers.get().size()) {
             SerializableMarkerData& marker = markerGroup._markers.get()[_selectedMarker];
         
