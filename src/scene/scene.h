@@ -17,13 +17,15 @@
 #include "grandpa.h"
 
 #include "debug_ui.h"
-#include "markergroup_data_serializable.h"
+
+#include "omni_serializer.h"
 
 #include "cutscene.h"
 
 namespace omniscia::core {
     using namespace omni::types;
-    using namespace omni::serializer;
+    using namespace omni::reflector;
+    using namespace omni::reflector::serialization;
     
     /**
      * @brief Class that manages all scene data, dynamic and static part
@@ -63,7 +65,7 @@ namespace omniscia::core {
             SceneDynamic checkpointDynamicPart;
             SceneStatic checkpointStaticPart;
 
-            SerializableVector<SerializableMarkerGroupData> _markerGroups;
+            std::vector<MarkerGroupData> _markerGroups;
 
         public:
             friend class SceneLoader;
@@ -184,11 +186,11 @@ namespace omniscia::core {
 
             template<class T>
             void summon_dynamic_entity_at_marker_group(const i32& markerGroupIndex) {
-                SerializableMarkerGroupData& markerGroup = _markerGroups.get().at(markerGroupIndex);
+                MarkerGroupData& markerGroup = _markerGroups.at(markerGroupIndex);
                 auto& entities = dynamicPart.dynamicEntities; 
 
-                for(SerializableMarkerData& marker : markerGroup._markers.get()) {
-                    entities.push_back(std::make_shared<T>(Vec2f{marker._position.get().x, marker._position.get().y}));
+                for(MarkerData& marker : markerGroup._markers) {
+                    entities.push_back(std::make_shared<T>(Vec2f{marker._position.x, marker._position.y}));
 
                     std::shared_ptr<Entity> entity = entities[entities.size() - 1];
                     entity->set_time_type(EntityTimeType::DYNAMIC);
@@ -197,11 +199,11 @@ namespace omniscia::core {
 
             template<class T, class... Args>
             void summon_dynamic_entity_at_marker_group(const i32& markerGroupIndex, Args&&... args) {
-                SerializableMarkerGroupData& markerGroup = _markerGroups.get().at(markerGroupIndex);
+                MarkerGroupData& markerGroup = _markerGroups.at(markerGroupIndex);
                 auto& entities = dynamicPart.dynamicEntities; 
 
-                for(SerializableMarkerData& marker : markerGroup._markers.get()) {
-                    entities.push_back(std::make_shared<T>(Vec2f{marker._position.get().x, marker._position.get().y}, std::forward<Args>(args)...));
+                for(MarkerData& marker : markerGroup._markers) {
+                    entities.push_back(std::make_shared<T>(Vec2f{marker._position.x, marker._position.y}, std::forward<Args>(args)...));
                     
                     std::shared_ptr<Entity> entity = entities[entities.size() - 1];
                     entity->set_time_type(EntityTimeType::DYNAMIC);
@@ -210,11 +212,11 @@ namespace omniscia::core {
 
             template<class T>
             void summon_static_entity_at_marker_group(const i32& markerGroupIndex) {
-                SerializableMarkerGroupData& markerGroup = _markerGroups.get().at(markerGroupIndex);
+                MarkerGroupData& markerGroup = _markerGroups.at(markerGroupIndex);
                 auto& entities = staticPart.staticEntities; 
 
-                for(SerializableMarkerData& marker : markerGroup._markers.get()) {
-                    entities.push_back(std::make_shared<T>(Vec2f{marker._position.get().x, marker._position.get().y}));
+                for(MarkerData& marker : markerGroup._markers) {
+                    entities.push_back(std::make_shared<T>(Vec2f{marker._position.x, marker._position.y}));
        
                     std::shared_ptr<Entity> entity = entities[entities.size() - 1];
                     entity->set_time_type(EntityTimeType::STATIC);
@@ -223,11 +225,11 @@ namespace omniscia::core {
 
             template<class T, class... Args>
             void summon_static_entity_at_marker_group(const i32& markerGroupIndex, Args&&... args) {
-                SerializableMarkerGroupData& markerGroup = _markerGroups.get().at(markerGroupIndex);
+                MarkerGroupData& markerGroup = _markerGroups.at(markerGroupIndex);
                 auto& entities = staticPart.staticEntities; 
 
-                for(SerializableMarkerData& marker : markerGroup._markers.get()) {
-                    entities.push_back(std::make_shared<T>(Vec2f{marker._position.get().x, marker._position.get().y}, std::forward<Args>(args)...));
+                for(MarkerData& marker : markerGroup._markers) {
+                    entities.push_back(std::make_shared<T>(Vec2f{marker._position.x, marker._position.y}, std::forward<Args>(args)...));
 
                     std::shared_ptr<Entity> entity = entities[entities.size() - 1];
                     entity->set_time_type(EntityTimeType::STATIC);
@@ -314,15 +316,15 @@ namespace omniscia::core {
             void delete_dynamic_entity_by_uuid(const UUID& uuid) {
                 auto& entities = dynamicPart.dynamicEntities; 
 
-                for(auto i = entities.begin(); i != entities.end();) {
-                    Entity* entity = (*i).get();
+                for(auto it = entities.begin(); it != entities.end();) {
+                    Entity* entity = (*it).get();
 
                     if(entity->get_uuid() == uuid) {
-                        entities.erase(i);
+                        entities.erase(it);
                         time_sync();
                         return;
                     } else
-                        ++i;
+                        ++it;
                 } 
             }
 

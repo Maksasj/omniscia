@@ -12,7 +12,7 @@
 #ifndef _SCENE_LOADER_H_
 #define _SCENE_LOADER_H_
 
-#include "level_data_serializable.h"
+#include "omni_serializer.h"
 
 #include "types.tpp"
 #include "scene.h"

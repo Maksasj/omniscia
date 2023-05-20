@@ -10,7 +10,7 @@ void omniscia_editor::level_editor::LevelData::load_from_file(std::string filePa
 
     _tileGroups.get().clear();
 
-    using namespace omni::serializer;
+    using namespace omni::serializer::binary;
     using namespace omni::types;
     
     SerializableLevelData levelData;

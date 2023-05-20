@@ -36,4 +36,4 @@
 	url = https://github.com/boostorg/static_assert
 [submodule "3dparty/megaboost"]
 	path = 3dparty/megaboost
-	url = https://github.com/Maksasj/megaboost
+	url = https://github.com/scipy/boost-headers-only

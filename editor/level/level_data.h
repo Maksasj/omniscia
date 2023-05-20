@@ -7,15 +7,13 @@
 #include <iostream>
 #include <sstream>
 
-#include "omni_serializer.h"
-#include "level_data_serializable.h"
-#include "collisionbox_data_serializable.h"
+#include "omni_only.h"
 
 #include "../level_editor_properties.h"
 
 namespace omniscia_editor::level_editor {
     using namespace omni::types;
-    using namespace omni::serializer;
+    using namespace omni::serializer::binary;
 
     struct LevelData {
         SerializableVector<SerializableTileGroupData> _tileGroups;

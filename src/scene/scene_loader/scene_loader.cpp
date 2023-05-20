@@ -10,37 +10,37 @@ void omniscia::core::SceneLoader::load_scene(Scene& level, const std::string& pa
 
     staticEntities.clear();
 
-    using namespace omni::serializer;
     using namespace omni::types;
+    using namespace omni::reflector;
+    using namespace omni::reflector::serialization;
 
-    SerializableLevelData levelData;
-    levelData.deserialize(file);
+    LevelData levelData = binary_deserialize<LevelData>(file);
 
     f32 screenBoxHeight = levelData._screenBoxHeight;
 
-    for(SerializableMarkerGroupData& markerGroup : levelData._markerGroups.get()) {
-        SerializableMarkerGroupData tmpMakerGroup;
+    for(auto& markerGroup : levelData._markerGroups) {
+        MarkerGroupData tmpMakerGroup;
 
-        for(SerializableMarkerData marker : markerGroup._markers.get()) {
-            Vec2f& pos = marker._position.get();
+        for(MarkerData marker : markerGroup._markers) {
+            Vec2f& pos = marker._position;
 
             pos = pos / (screenBoxHeight / 2.0);
             pos *= 1.6f;
 
-            std::vector<SerializableMarkerData>& markers = tmpMakerGroup._markers.get(); 
+            std::vector<MarkerData>& markers = tmpMakerGroup._markers; 
             markers.push_back(marker);
         }
 
-        level._markerGroups.get().push_back(tmpMakerGroup);
+        level._markerGroups.push_back(tmpMakerGroup);
     }
 
-    for(SerializableTileGroupData& tileGroupData : levelData._tileGroups.get()) {
+    for(TileGroupData& tileGroupData : levelData._tileGroups) {
         std::shared_ptr<Entity> tileGroup = std::make_shared<Entity>();
         RawMeshDataBuilder builder;
 
         // Tiles
-        for(SerializableTileData& tileData : tileGroupData._tiles.get()) {
-            TileData tile = tileData.get();
+        for(TileData& tileData : tileGroupData._tiles) {
+            TileData tile = tileData;
 
             Vec2f tilePos = tile._position;
             Vec2f tileSize = tile._scale;
@@ -70,10 +70,10 @@ void omniscia::core::SceneLoader::load_scene(Scene& level, const std::string& pa
         staticEntities.push_back(tileGroup);
 
         // Collision boxes
-        for(SerializableCollisionBoxData& collisionBox : tileGroupData._collisionBoxes.get()) {
-            Vec2f collisionBoxPos = collisionBox.get()._position;
-            Vec2f rangesX = collisionBox.get()._xRanges;
-            Vec2f rangesY = collisionBox.get()._yRanges;
+        for(CollisionBoxData& collisionBox : tileGroupData._collisionBoxes) {
+            Vec2f collisionBoxPos = collisionBox._position;
+            Vec2f rangesX = collisionBox._xRanges;
+            Vec2f rangesY = collisionBox._yRanges;
             
             std::shared_ptr<Entity> collisionBoxEntity = std::make_shared<Entity>();
 
@@ -83,7 +83,7 @@ void omniscia::core::SceneLoader::load_scene(Scene& level, const std::string& pa
             collisionBoxPos.x = collisionBoxPos.x / (screenBoxHeight / 2.0);
             collisionBoxPos.y = collisionBoxPos.y / (screenBoxHeight / 2.0);
 
-            if(collisionBox.get()._isDamaging) {
+            if(collisionBox._isDamaging) {
                 collisionBoxEntity->add<ECS_Positioned>(collisionBoxPos.x * 1.6f, collisionBoxPos.y * 1.6f);
                 collisionBoxEntity->add<ECS_Scaled>(1.6f, 1.6f);
                 collisionBoxEntity->add<ECS_BoxColliderMesh>(rangesX, rangesY);
