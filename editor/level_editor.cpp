@@ -42,7 +42,7 @@ void omniscia_editor::level_editor::LevelEditor::render_editor_options(GLFWwindo
 
 void omniscia_editor::level_editor::LevelEditor::render_level_options() {
     ImGui::SeparatorText("Level");
-    ImGui::Text("Tile group count: %llu", _levelData._tileGroups.get().size());
+    ImGui::Text("Tile group count: %llu", _levelData._tileGroups.size());
 }
 
 void omniscia_editor::level_editor::LevelEditor::render_rect(ImDrawList* drawList, const ImVec2& topLeft, const ImVec2& topRight, const ImVec2& bottomLeft, const ImVec2& bottomRight, const ImU32& color, f32 thickness) {
@@ -52,7 +52,7 @@ void omniscia_editor::level_editor::LevelEditor::render_rect(ImDrawList* drawLis
     drawList->AddLine(topRight, bottomRight, color, thickness);
 }
 
-void omniscia_editor::level_editor::LevelEditor::render_tile_texture_coordinate_options(SerializableTileGroupData& tileGroup) {
+void omniscia_editor::level_editor::LevelEditor::render_tile_texture_coordinate_options(TileGroupData& tileGroup) {
     auto flag = 
         ImGuiWindowFlags_NoResize | 
         ImGuiWindowFlags_NoScrollWithMouse | 
@@ -163,7 +163,7 @@ void omniscia_editor::level_editor::LevelEditor::render_markergroup_options() {
     ImGui::SeparatorText("Marker Groups");
 
     if(ImGui::BeginListBox("##marker group list box", ImVec2(-FLT_MIN, 5 * ImGui::GetTextLineHeightWithSpacing()))) {
-        for (i32 n = 0; n < _levelData._markerGroups.get().size(); ++n) {
+        for (i32 n = 0; n < _levelData._markerGroups.size(); ++n) {
             const bool is_selected = (_selectedMarkerGroup == n);
             if(ImGui::Selectable(std::to_string(n).c_str(), is_selected))
                 _selectedMarkerGroup = n;
@@ -176,19 +176,19 @@ void omniscia_editor::level_editor::LevelEditor::render_markergroup_options() {
     }
 
     if(ImGui::Button("Add Marker Group")) {
-        _levelData._markerGroups.get().push_back({});
-        _selectedMarkerGroup = _levelData._markerGroups.get().size() - 1;
+        _levelData._markerGroups.push_back({});
+        _selectedMarkerGroup = _levelData._markerGroups.size() - 1;
     }
 
     ImGui::SameLine();
-    if(ImGui::Button("Delete Marker Group") && _levelData._markerGroups.get().size() > 0)
-        if(_selectedMarkerGroup < _levelData._markerGroups.get().size())
-            _levelData._markerGroups.get().erase(_levelData._markerGroups.get().begin() + _selectedMarkerGroup);
+    if(ImGui::Button("Delete Marker Group") && _levelData._markerGroups.size() > 0)
+        if(_selectedMarkerGroup < _levelData._markerGroups.size())
+            _levelData._markerGroups.erase(_levelData._markerGroups.begin() + _selectedMarkerGroup);
 
-    if(_selectedMarkerGroup < _levelData._markerGroups.get().size()) {
-        SerializableMarkerGroupData& markerGroup = _levelData._markerGroups.get()[_selectedMarkerGroup];
+    if(_selectedMarkerGroup < _levelData._markerGroups.size()) {
+        MarkerGroupData& markerGroup = _levelData._markerGroups[_selectedMarkerGroup];
 
-        Vec4f& color = markerGroup._markerGroupAssociatedColor.get(); 
+        Vec4f& color = markerGroup._markerGroupAssociatedColor; 
         ImVec4 imColor;
         imColor.x = color.x;
         imColor.y = color.y;
@@ -202,11 +202,11 @@ void omniscia_editor::level_editor::LevelEditor::render_markergroup_options() {
 
         ImGui::SeparatorText("Markers");
         if(ImGui::BeginListBox("##marker list box", ImVec2(-FLT_MIN, 5 * ImGui::GetTextLineHeightWithSpacing()))) {
-            for (i32 n = 0; n < markerGroup._markers.get().size(); ++n) {
-                SerializableMarkerData& markerData = markerGroup._markers.get()[n];
+            for (i32 n = 0; n < markerGroup._markers.size(); ++n) {
+                MarkerData& markerData = markerGroup._markers[n];
 
                 const bool is_selected = (_selectedMarker == n);
-                if(ImGui::Selectable((std::to_string(n) + ") " + std::to_string(markerData._position.get().x) + " | " + std::to_string(markerData._position.get().y)).c_str(), is_selected))
+                if(ImGui::Selectable((std::to_string(n) + ") " + std::to_string(markerData._position.x) + " | " + std::to_string(markerData._position.y)).c_str(), is_selected))
                     _selectedMarker = n;
 
                 if(is_selected)
@@ -217,34 +217,34 @@ void omniscia_editor::level_editor::LevelEditor::render_markergroup_options() {
         }
 
         if(ImGui::Button("Create ##Marker")) {
-            SerializableMarkerData markerData;
+            MarkerData markerData;
             markerData._position = Vec2f{0.0f, 0.0f};
-            markerGroup._markers.get().push_back(markerData);
+            markerGroup._markers.push_back(markerData);
         }
 
         ImGui::SameLine();
-        if(ImGui::Button("Delete Marker") && markerGroup._markers.get().size() > 0)
-            if(_selectedMarker < markerGroup._markers.get().size())
-                markerGroup._markers.get().erase(markerGroup._markers.get().begin() + _selectedMarker);
+        if(ImGui::Button("Delete Marker") && markerGroup._markers.size() > 0)
+            if(_selectedMarker < markerGroup._markers.size())
+                markerGroup._markers.erase(markerGroup._markers.begin() + _selectedMarker);
         
         ImGui::SameLine();
-        if(ImGui::Button("Copy") && markerGroup._markers.get().size() > 0)
-            if(_selectedMarker < markerGroup._markers.get().size()) {
-                SerializableMarkerData markerData = markerGroup._markers.get().at(_selectedMarker);
-                markerGroup._markers.get().push_back(markerData);
+        if(ImGui::Button("Copy") && markerGroup._markers.size() > 0)
+            if(_selectedMarker < markerGroup._markers.size()) {
+                MarkerData markerData = markerGroup._markers.at(_selectedMarker);
+                markerGroup._markers.push_back(markerData);
             }
 
-        if(_selectedMarker < markerGroup._markers.get().size()) {
-            SerializableMarkerData& marker = markerGroup._markers.get()[_selectedMarker];
+        if(_selectedMarker < markerGroup._markers.size()) {
+            MarkerData& marker = markerGroup._markers[_selectedMarker];
         
             ImGui::Text("Possition");
             ImGui::Text("X ");
             ImGui::SameLine();
-            ImGui::InputFloat("## Marker box X", &marker._position.get().x, 5.0f, 5.0f, "%.3f");
+            ImGui::InputFloat("## Marker box X", &marker._position.x, 5.0f, 5.0f, "%.3f");
             
             ImGui::Text("Y ");
             ImGui::SameLine();
-            ImGui::InputFloat("## Marker box Y", &marker._position.get().y, 5.0f, 5.0f, "%.3f");
+            ImGui::InputFloat("## Marker box Y", &marker._position.y, 5.0f, 5.0f, "%.3f");
         }
     }
 }
@@ -254,9 +254,9 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
 
     ImGui::SeparatorText("Tile Groups");
     if(ImGui::BeginListBox("##tile group list box", ImVec2(-FLT_MIN, 5 * ImGui::GetTextLineHeightWithSpacing()))) {
-        for (i32 n = 0; n < _levelData._tileGroups.get().size(); ++n) {
+        for (i32 n = 0; n < _levelData._tileGroups.size(); ++n) {
             const bool is_selected = (_selectedTileGroup == n);
-            if(ImGui::Selectable(_levelData._tileGroups.get()[n]._name.get().c_str(), is_selected))
+            if(ImGui::Selectable(_levelData._tileGroups[n]._name.c_str(), is_selected))
                 _selectedTileGroup = n;
 
             if(is_selected)
@@ -266,17 +266,17 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
     }
 
     if(ImGui::Button("Add Tile Group")) {
-        _levelData._tileGroups.get().push_back(SerializableTileGroupData("Tile group #" + std::to_string(_levelData._tileGroups.get().size() + 1)));
-        _selectedTileGroup = _levelData._tileGroups.get().size() - 1;
+        _levelData._tileGroups.push_back(TileGroupData("Tile group #" + std::to_string(_levelData._tileGroups.size() + 1)));
+        _selectedTileGroup = _levelData._tileGroups.size() - 1;
     }
 
     ImGui::SameLine();
-    if(ImGui::Button("Delete Tile Group") && _levelData._tileGroups.get().size() > 0)
-        if(_selectedTileGroup < _levelData._tileGroups.get().size())
-            _levelData._tileGroups.get().erase(_levelData._tileGroups.get().begin() + _selectedTileGroup);
+    if(ImGui::Button("Delete Tile Group") && _levelData._tileGroups.size() > 0)
+        if(_selectedTileGroup < _levelData._tileGroups.size())
+            _levelData._tileGroups.erase(_levelData._tileGroups.begin() + _selectedTileGroup);
 
-    if(_selectedTileGroup < _levelData._tileGroups.get().size()) {
-        SerializableTileGroupData& tileGroup = _levelData._tileGroups.get()[_selectedTileGroup];
+    if(_selectedTileGroup < _levelData._tileGroups.size()) {
+        TileGroupData& tileGroup = _levelData._tileGroups[_selectedTileGroup];
 
         if(tileGroup._tileSetLoaded) {
             render_tile_texture_coordinate_options(tileGroup);
@@ -284,11 +284,11 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
 
         ImGui::SeparatorText("Selected Tile Group");
 
-        ImGui::Text("Tile count: %llu", tileGroup._tiles.get().size());
+        ImGui::Text("Tile count: %llu", tileGroup._tiles.size());
         ImGui::Text("Associated color: ");
         ImGui::SameLine();
         
-        Vec4f& color = tileGroup._tileGroupAssociatedColor.get(); 
+        Vec4f& color = tileGroup._tileGroupAssociatedColor; 
         ImVec4 imColor;
         imColor.x = color.x;
         imColor.y = color.y;
@@ -302,12 +302,12 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
 
         ImGui::Text("Collision boxes");
         if(ImGui::BeginListBox("##Tile group collision box list", ImVec2(-FLT_MIN, 5 * ImGui::GetTextLineHeightWithSpacing()))) {
-            for(u32 i = 0; i < tileGroup._collisionBoxes.get().size(); ++i) {
-                SerializableCollisionBoxData& collisionBox = tileGroup._collisionBoxes.get()[i];
+            for(u32 i = 0; i < tileGroup._collisionBoxes.size(); ++i) {
+                CollisionBoxData& collisionBox = tileGroup._collisionBoxes[i];
 
                 const bool is_selected = (_selectedCollisionBox == i);
 
-                if(ImGui::Selectable((std::string(collisionBox.get()._name) + "## " + std::to_string(i)).c_str(), is_selected)) 
+                if(ImGui::Selectable((std::string(collisionBox._name._bytes) + "## " + std::to_string(i)).c_str(), is_selected)) 
                     _selectedCollisionBox = i;
 
                 if(is_selected)
@@ -329,26 +329,26 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
         }
 
         if(ImGui::Button("Create ##Collision Box")) {
-            tileGroup._collisionBoxes.get().push_back(CollisionBoxData(
-                "Collision box " + std::to_string(tileGroup._collisionBoxes.get().size()),
+            tileGroup._collisionBoxes.push_back(CollisionBoxData(
+                "Collision box " + std::to_string(tileGroup._collisionBoxes.size()),
                 0.0f, 0.0f, Vec2f{50.0f, 50.0f}, Vec2f{50.0f, 50.0f}
             ));
         }
 
-        if(_selectedCollisionBox < tileGroup._collisionBoxes.get().size()) {
+        if(_selectedCollisionBox < tileGroup._collisionBoxes.size()) {
             ImGui::SameLine();
-            if(ImGui::Button("Delete ##Collision Box") && tileGroup._collisionBoxes.get().size() > 0) {
-                tileGroup._collisionBoxes.get().erase(tileGroup._collisionBoxes.get().begin() + _selectedCollisionBox);
+            if(ImGui::Button("Delete ##Collision Box") && tileGroup._collisionBoxes.size() > 0) {
+                tileGroup._collisionBoxes.erase(tileGroup._collisionBoxes.begin() + _selectedCollisionBox);
                 _selectedCollisionBox = 0;
             }
 
-            SerializableCollisionBoxData& collisionBox = tileGroup._collisionBoxes.get()[_selectedCollisionBox];
+            CollisionBoxData& collisionBox = tileGroup._collisionBoxes[_selectedCollisionBox];
 
             ImGui::SameLine();
             if(ImGui::Button("Copy ##Collision Box")) {
-                tileGroup._collisionBoxes.get().push_back(collisionBox);
+                tileGroup._collisionBoxes.push_back(collisionBox);
 
-                auto& newCollisionBox = tileGroup._collisionBoxes.get()[tileGroup._collisionBoxes.get().size() - 1];
+                auto& newCollisionBox = tileGroup._collisionBoxes[tileGroup._collisionBoxes.size() - 1];
                 // std::string newName = newCollisionBox._name;
                 // newName += " Copy";
                 // newName.copy(newCollisionBox._name, min(newName.size(), 256u));
@@ -359,36 +359,36 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
             
             ImGui::Text("Name: ");
             ImGui::SameLine();
-            ImGui::InputText("##Collision Box name input label", collisionBox.get()._name, 256);
+            ImGui::InputText("##Collision Box name input label", collisionBox._name._bytes, 256);
 
-            ImGui::Checkbox("Damaging ", &collisionBox.get()._isDamaging); 
+            ImGui::Checkbox("Damaging ", &collisionBox._isDamaging); 
 
             ImGui::Text("Associated color: ");
             ImGui::SameLine();
-            color_picker("Collision box color picker", (ImVec4&)collisionBox.get()._collisionBoxAssociatedColor);
+            color_picker("Collision box color picker", (ImVec4&)collisionBox._collisionBoxAssociatedColor);
 
             ImGui::Text("Possition");
             ImGui::Text("X ");
             ImGui::SameLine();
-            ImGui::InputFloat("## Collision box X", &collisionBox.get()._position.x, 5.0f, 5.0f, "%.3f");
+            ImGui::InputFloat("## Collision box X", &collisionBox._position.x, 5.0f, 5.0f, "%.3f");
             
             ImGui::Text("Y ");
             ImGui::SameLine();
-            ImGui::InputFloat("## Collision box Y", &collisionBox.get()._position.y, 5.0f, 5.0f, "%.3f");
+            ImGui::InputFloat("## Collision box Y", &collisionBox._position.y, 5.0f, 5.0f, "%.3f");
 
             ImGui::Text("Size");
             ImGui::Text("Left ");
             ImGui::SameLine();
-            ImGui::InputFloat("## Collision width X1", &collisionBox.get()._xRanges.x, 5.0f, 5.0f, "%.3f");
+            ImGui::InputFloat("## Collision width X1", &collisionBox._xRanges.x, 5.0f, 5.0f, "%.3f");
             ImGui::Text("Right");
             ImGui::SameLine();
-            ImGui::InputFloat("## Collision width X2", &collisionBox.get()._xRanges.y, 5.0f, 5.0f, "%.3f");
+            ImGui::InputFloat("## Collision width X2", &collisionBox._xRanges.y, 5.0f, 5.0f, "%.3f");
             ImGui::Text("Up   ");
             ImGui::SameLine();
-            ImGui::InputFloat("## Collision width Y1", &collisionBox.get()._yRanges.x, 5.0f, 5.0f, "%.3f");
+            ImGui::InputFloat("## Collision width Y1", &collisionBox._yRanges.x, 5.0f, 5.0f, "%.3f");
             ImGui::Text("Down ");
             ImGui::SameLine();
-            ImGui::InputFloat("## Collision width Y2", &collisionBox.get()._yRanges.y, 5.0f, 5.0f, "%.3f");
+            ImGui::InputFloat("## Collision width Y2", &collisionBox._yRanges.y, 5.0f, 5.0f, "%.3f");
         }
     }
 }
@@ -485,13 +485,13 @@ omniscia_editor::level_editor::LevelEditor::LevelEditor() {
 void omniscia_editor::level_editor::LevelEditor::render_tiles(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
     using namespace omni::types;
     
-    for(SerializableTileGroupData& tileGroup : _levelData._tileGroups.get()) {    
-        for(SerializableTileData serTile : tileGroup._tiles.get()) {
-            TileData tile = serTile.get();
+    for(TileGroupData& tileGroup : _levelData._tileGroups) {    
+        for(TileData serTile : tileGroup._tiles) {
+            TileData tile = serTile;
             i32 xStart = _scroll.x;
             i32 yStart = _scroll.y;
 
-            Vec4f& color = tileGroup._tileGroupAssociatedColor.get();
+            Vec4f& color = tileGroup._tileGroupAssociatedColor;
 
             f32 factor = (_zoom / _gridSize);
 
@@ -526,13 +526,13 @@ void omniscia_editor::level_editor::LevelEditor::render_tiles(ImDrawList* drawLi
 void omniscia_editor::level_editor::LevelEditor::render_markers(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
     using namespace omni::types;
     
-    for(SerializableMarkerGroupData& markerGroup : _levelData._markerGroups.get()) {    
-        for(SerializableMarkerData serMarker : markerGroup._markers.get()) {
-            Vec2f position = serMarker._position.get();
+    for(MarkerGroupData& markerGroup : _levelData._markerGroups) {    
+        for(MarkerData serMarker : markerGroup._markers) {
+            Vec2f position = serMarker._position;
             i32 xStart = _scroll.x;
             i32 yStart = _scroll.y;
 
-            Vec4f& color = markerGroup._markerGroupAssociatedColor.get();
+            Vec4f& color = markerGroup._markerGroupAssociatedColor;
 
             f32 factor = (_zoom / _gridSize);
 
@@ -547,17 +547,17 @@ void omniscia_editor::level_editor::LevelEditor::render_markers(ImDrawList* draw
 void omniscia_editor::level_editor::LevelEditor::render_collision_boxes(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
     using namespace omni::types;
 
-    for(auto& tileGroup : _levelData._tileGroups.get()) {
-        for(SerializableCollisionBoxData collisionBox : tileGroup._collisionBoxes.get()) {
-            Vec4f& color = collisionBox.get()._collisionBoxAssociatedColor;
+    for(auto& tileGroup : _levelData._tileGroups) {
+        for(CollisionBoxData collisionBox : tileGroup._collisionBoxes) {
+            Vec4f& color = collisionBox._collisionBoxAssociatedColor;
 
             f32 factor = (_zoom / _gridSize);
 
-            f32 firstPointX = _scroll.x + factor * ((f32)collisionBox.get()._position.x - collisionBox.get()._xRanges.x);
-            f32 firstPointY = _scroll.y + factor * ((f32)collisionBox.get()._position.y - collisionBox.get()._yRanges.x);
+            f32 firstPointX = _scroll.x + factor * ((f32)collisionBox._position.x - collisionBox._xRanges.x);
+            f32 firstPointY = _scroll.y + factor * ((f32)collisionBox._position.y - collisionBox._yRanges.x);
 
-            f32 secondPointX = _scroll.x + factor * ((f32)collisionBox.get()._position.x + collisionBox.get()._xRanges.y);
-            f32 secondPointY = _scroll.y + factor * ((f32)collisionBox.get()._position.y + collisionBox.get()._yRanges.y);
+            f32 secondPointX = _scroll.x + factor * ((f32)collisionBox._position.x + collisionBox._xRanges.y);
+            f32 secondPointY = _scroll.y + factor * ((f32)collisionBox._position.y + collisionBox._yRanges.y);
 
             drawList->AddRect({firstPointX, firstPointY}, {secondPointX, secondPointY}, 
                 IM_COL32(color.x * 255, color.y * 255, color.z * 255, color.w * 255));
@@ -688,11 +688,11 @@ void omniscia_editor::level_editor::LevelEditor::render_tab(GLFWwindow *window) 
                     }
 
                     ImGui::SeparatorText("Tile groups");
-                    ImGui::Text("Tile group count %llu", _levelData._tileGroups.get().size());
+                    ImGui::Text("Tile group count %llu", _levelData._tileGroups.size());
 
                     u64 tileCount = 0;
-                    for(SerializableTileGroupData& tileGroup : _levelData._tileGroups.get()) {
-                        tileCount += tileGroup._tiles.get().size();
+                    for(TileGroupData& tileGroup : _levelData._tileGroups) {
+                        tileCount += tileGroup._tiles.size();
                     }
 
                     ImGui::Text("Total tile count %llu", tileCount);
@@ -776,7 +776,7 @@ void omniscia_editor::level_editor::LevelEditor::render_tab(GLFWwindow *window) 
                 
                 if((ImGui::IsMouseClicked(ImGuiMouseButton_Left) || ImGui::IsMouseDown(ImGuiMouseButton_Left)) 
                     && ImGui::IsWindowFocused()) {
-                    if(_levelData._tileGroups.get().size() > 0) {
+                    if(_levelData._tileGroups.size() > 0) {
                         f32 placePosX = io.MousePos.x - _scroll.x;
                         f32 placePosY = io.MousePos.y - _scroll.y;
 
@@ -820,7 +820,7 @@ void omniscia_editor::level_editor::LevelEditor::render_tab(GLFWwindow *window) 
                                         ._textureCordsTopLeft =      _brushActiveTileAtlasCordsTopLeft,
                                     };
 
-                                    _levelData._tileGroups.get()[_selectedTileGroup]._tiles.get().push_back(tile);
+                                    _levelData._tileGroups[_selectedTileGroup]._tiles.push_back(tile);
                                 } else {
                                     f32 radius = _gridSize * (_brushSize / 2);
 
@@ -839,20 +839,20 @@ void omniscia_editor::level_editor::LevelEditor::render_tab(GLFWwindow *window) 
                                             if(_brushType == 0) {
                                                 if((placePosX - x)*(placePosX - x) + (placePosY - y)*(placePosY - y) > radius*radius) continue;
                                                 
-                                                _levelData._tileGroups.get()[_selectedTileGroup]._tiles.get().push_back(tile);
+                                                _levelData._tileGroups[_selectedTileGroup]._tiles.push_back(tile);
 
                                             } else if(_brushType == 1) {
                                                 
-                                                _levelData._tileGroups.get()[_selectedTileGroup]._tiles.get().push_back(tile);
+                                                _levelData._tileGroups[_selectedTileGroup]._tiles.push_back(tile);
                                             }
                                         }
                                     }
                                 }
                             } else if(_brushMode == 1) {
-                                for(auto& tileGroup : _levelData._tileGroups.get()) {
-                                    for(auto i = 0; i != tileGroup._tiles.get().size(); ++i) {
-                                        SerializableTileData& tile = tileGroup._tiles.get()[i];
-                                        TileData& tileData = tile.get(); 
+                                for(auto& tileGroup : _levelData._tileGroups) {
+                                    for(auto i = 0; i != tileGroup._tiles.size(); ++i) {
+                                        TileData& tile = tileGroup._tiles[i];
+                                        TileData& tileData = tile; 
 
                                         if(_gridSnap) {
                                             if(placePosX != tileData._position.x || placePosY != tileData._position.y) continue;
@@ -860,7 +860,7 @@ void omniscia_editor::level_editor::LevelEditor::render_tab(GLFWwindow *window) 
                                             if((placePosX - tileData._position.x) * (placePosX - tileData._position.x) + (placePosY - tileData._position.y) * (placePosY - tileData._position.y) > _interactionRadius*_interactionRadius) continue;
                                         }
 
-                                        tileGroup._tiles.get().erase(tileGroup._tiles.get().begin() + i);
+                                        tileGroup._tiles.erase(tileGroup._tiles.begin() + i);
                                         break;
                                     }
                                 }

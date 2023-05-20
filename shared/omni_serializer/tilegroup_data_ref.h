@@ -27,6 +27,12 @@ namespace omniscia::core {
         i32 _tileSetImageHeight;
         u32 _tileSetTexture;
 
+        TileGroupData() {}
+        
+        TileGroupData(const std::string& name) {
+            _name = name;
+        }
+
         const constexpr static auto meta = std::make_tuple(
             field(_name),
             field(_tileGroupAssociatedColor),

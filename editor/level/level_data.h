@@ -7,17 +7,19 @@
 #include <iostream>
 #include <sstream>
 
-#include "omni_only.h"
+#include "omni_serializer.h"
 
 #include "../level_editor_properties.h"
 
 namespace omniscia_editor::level_editor {
     using namespace omni::types;
-    using namespace omni::serializer::binary;
+    using namespace omniscia::core;
+    using namespace omni::reflector;
+    using namespace omni::reflector::serialization;
 
     struct LevelData {
-        SerializableVector<SerializableTileGroupData> _tileGroups;
-        SerializableVector<SerializableMarkerGroupData> _markerGroups;
+        std::vector<TileGroupData> _tileGroups;
+        std::vector<MarkerGroupData> _markerGroups;
 
         void load_from_file(std::string filePath, LevelEditorProperties& levelEditorProperties);
         void export_to_file(std::string filePath, LevelEditorProperties& levelEditorProperties);

@@ -30,6 +30,25 @@ namespace omniscia::core {
         Vec2f _yRanges;
 
         bool _isDamaging;
+
+        CollisionBoxData() {
+            std::string name = "poggers";
+            name.copy(_name._bytes, name.size());
+        }
+
+        CollisionBoxData(std::string name, f32 x, f32 y, Vec2f rangesX, Vec2f rangesY) {
+            name.copy(_name._bytes, name.size());
+
+            _position.x = x;
+            _position.y = y;
+
+            _xRanges = rangesX;
+            _yRanges = rangesY;
+
+            _isDamaging = false;
+
+            _collisionBoxAssociatedColor = Vec4f{1.0f, 1.0f, 1.0f, 1.0f};
+        }
     };
 }
 

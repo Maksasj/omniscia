@@ -8,27 +8,29 @@ void omniscia_editor::level_editor::LevelData::load_from_file(std::string filePa
         return;
     }
 
-    _tileGroups.get().clear();
+    _tileGroups.clear();
 
-    using namespace omni::serializer::binary;
+    using namespace omni::reflector;
+    using namespace omni::reflector::serialization;
     using namespace omni::types;
     
-    SerializableLevelData levelData;
-    levelData.deserialize(file);
-    
+    omniscia::core::LevelData levelData = binary_deserialize<omniscia::core::LevelData>(file);
+     
+    using namespace omniscia::core;
+
     _tileGroups = levelData._tileGroups;
     _markerGroups = levelData._markerGroups;
 
-    for(SerializableTileGroupData& tileGroup : _tileGroups.get()) {
-        for(SerializableTileData& tile : tileGroup._tiles.get()) {
-            TileData& data = tile.get(); 
+    for(TileGroupData& tileGroup : _tileGroups) {
+        for(TileData& tile : tileGroup._tiles) {
+            TileData& data = tile; 
 
             if(levelEditorProperties._exportOpenglCoordinateFlip)
                 data._position.y *= -1.0f;
         }
     
-        for(SerializableCollisionBoxData& collisionBox : tileGroup._collisionBoxes.get()) {
-            CollisionBoxData& data = collisionBox.get();
+        for(CollisionBoxData& collisionBox : tileGroup._collisionBoxes) {
+            CollisionBoxData& data = collisionBox;
 
             if(levelEditorProperties._exportOpenglCoordinateFlip) {
                 data._position.y *= -1.0f;
@@ -37,14 +39,16 @@ void omniscia_editor::level_editor::LevelData::load_from_file(std::string filePa
         }
     }
 
-    for(SerializableMarkerGroupData& markerGroup : _markerGroups.get()) {
-        for(SerializableMarkerData& marker : markerGroup._markers.get()) {
-            Vec2f& position = marker._position.get(); 
+    for(MarkerGroupData& markerGroup : _markerGroups) {
+        for(MarkerData& marker : markerGroup._markers) {
+            Vec2f& position = marker._position; 
 
             if(levelEditorProperties._exportOpenglCoordinateFlip)
                 position.y *= -1.0f;
         }
     }
+
+   file.close();
 }
 
 void omniscia_editor::level_editor::LevelData::export_to_file(std::string filePath, LevelEditorProperties& levelEditorProperties) {
@@ -54,22 +58,22 @@ void omniscia_editor::level_editor::LevelData::export_to_file(std::string filePa
         return;
     }
 
-    Serializable<f32> screenBoxWidth = levelEditorProperties._playerScreenWidth;
-    Serializable<f32> screenBoxHeight = levelEditorProperties._playerScreenHeight;
-    screenBoxWidth.serialize(file);
-    screenBoxHeight.serialize(file);
+    omniscia::core::LevelData levelData;
 
-    SerializableVector<SerializableTileGroupData> tileGroups = _tileGroups;
-    for(SerializableTileGroupData& tileGroup : tileGroups.get()) {
-        for(SerializableTileData& tileData : tileGroup._tiles.get()) {
-            TileData& tile = tileData.get();
+    levelData._screenBoxWidth = levelEditorProperties._playerScreenWidth;
+    levelData._screenBoxHeight = levelEditorProperties._playerScreenHeight;
+
+    levelData._tileGroups = _tileGroups;
+    for(TileGroupData& tileGroup : levelData._tileGroups) {
+        for(TileData& tileData : tileGroup._tiles) {
+            TileData& tile = tileData;
             
             if(levelEditorProperties._exportOpenglCoordinateFlip)
                 tile._position.y *= -1.0f;
         }
 
-        for(SerializableCollisionBoxData& collisionBoxData : tileGroup._collisionBoxes.get()) {
-            CollisionBoxData& collisionBox = collisionBoxData.get();
+        for(CollisionBoxData& collisionBoxData : tileGroup._collisionBoxes) {
+            CollisionBoxData& collisionBox = collisionBoxData;
             
             if(levelEditorProperties._exportOpenglCoordinateFlip) {
                 collisionBox._position.y *= -1.0f;
@@ -78,16 +82,17 @@ void omniscia_editor::level_editor::LevelData::export_to_file(std::string filePa
         }
     }
 
-    SerializableVector<SerializableMarkerGroupData> markerGroups = _markerGroups;
-    for(SerializableMarkerGroupData& markerGroup : markerGroups.get()) {
-        for(SerializableMarkerData& marker : markerGroup._markers.get()) {
-            Vec2f& position = marker._position.get();
+    levelData._markerGroups = _markerGroups;
+    for(MarkerGroupData& markerGroup : levelData._markerGroups) {
+        for(MarkerData& marker : markerGroup._markers) {
+            Vec2f& position = marker._position;
             
             if(levelEditorProperties._exportOpenglCoordinateFlip)
                 position.y *= -1.0f;
         }
     }
 
-    tileGroups.serialize(file);
-    markerGroups.serialize(file);
+    binary_serialize(file, levelData);
+
+    file.close();
 }
