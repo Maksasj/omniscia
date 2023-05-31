@@ -28,7 +28,7 @@ omniscia::core::DialogueCutscene::DialogueCutscene(Shader* transitionStageShader
         CE_Step {
             new CE_EntityPositionSetEvent((CE_EntityPositionSetProp) {
                 ._entityTmpName = "DialogueIcon",
-                ._newPosition = Vec2f{((dialogueData[0]._side == 1) ? 0.9f : -0.9f), 0.45f},
+                ._newPosition = Vec2f{((dialogueData[0]._side == 1) ? -0.9f : 0.9f), 0.45f},
             }),
             new CE_EntityPositionSetEvent((CE_EntityPositionSetProp) {
                 ._entityTmpName = "DialogueText",

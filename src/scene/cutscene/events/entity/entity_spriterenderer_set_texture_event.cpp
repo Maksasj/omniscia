@@ -33,12 +33,12 @@ void omniscia::core::CE_EntitySpriteRendererSetTextureEvent::execute() {
     std::shared_ptr<Entity> entityPtr= scene->find_static_entity_by_uuid(*entityUUID);
     if(entityPtr.get() == nullptr) return;
 
-    ECS_Index<ECS_SpriteRenderer> spriteRendererIndex = entityPtr->index<ECS_SpriteRenderer>();
+    ECS_Index<ECS_GuiSpriteRenderer> spriteRendererIndex = entityPtr->index<ECS_GuiSpriteRenderer>();
     
     if(!spriteRendererIndex.is_success()) 
         return;
 
-    ECS_SpriteRenderer& comp = entityPtr->ref_unsafe(spriteRendererIndex);
+    ECS_GuiSpriteRenderer& comp = entityPtr->ref_unsafe(spriteRendererIndex);
 
     comp.set_texture_by_id(_textureId);
 }
