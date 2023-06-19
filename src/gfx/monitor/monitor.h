@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "types.tpp"
+#include "omni_types.tpp"
 #include "gfx.h"
 
 namespace omniscia::gfx::monitor {

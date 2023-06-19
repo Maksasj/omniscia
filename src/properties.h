@@ -12,7 +12,7 @@
 #ifndef _OMMNISCIA_PROPERTIES_H_
 #define _OMMNISCIA_PROPERTIES_H_
 
-#include "types.tpp"
+#include "omni_types.tpp"
 
 namespace omniscia::core {
     using namespace omni::types;

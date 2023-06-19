@@ -18,7 +18,7 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
-#include "types.tpp"
+#include "omni_types.tpp"
 #include "gfx.h"
 
 namespace omniscia::core {

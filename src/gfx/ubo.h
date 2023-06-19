@@ -14,7 +14,7 @@
 
 #include <vector>
 
-#include "types.tpp"
+#include "omni_types.tpp"
 #include "vertex.h"
 #include "gfx.h"
 #include "bo.h"

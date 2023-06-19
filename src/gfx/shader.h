@@ -18,7 +18,7 @@
 
 #include "shader_manager.h"
 #include "shader_asset.h"
-#include "types.tpp"
+#include "omni_types.tpp"
 #include "gfx.h"
 #include "ubo.h"
 

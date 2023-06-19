@@ -16,7 +16,7 @@
 #include <unordered_map>
 
 #include "properties.h"
-#include "types.tpp"
+#include "omni_types.tpp"
 #include "gfx.h"
 
 namespace omniscia::core {

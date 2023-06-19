@@ -18,7 +18,7 @@
 #include "sound_engine.h"
 #include "sound_manager.h"
 
-#include "types.tpp"
+#include "omni_types.tpp"
 
 namespace omniscia::core {
     using namespace omni::types;

@@ -12,7 +12,7 @@
 #ifndef _BO_H_
 #define _BO_H_
 
-#include "types.tpp"
+#include "omni_types.tpp"
 
 namespace omniscia::gfx {
     using namespace omni::types;

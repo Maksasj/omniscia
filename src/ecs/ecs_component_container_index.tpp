@@ -15,7 +15,7 @@
 #include <array>
 
 #include "ecs_component.tpp"
-#include "types.tpp"
+#include "omni_types.tpp"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

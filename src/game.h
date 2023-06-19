@@ -24,7 +24,7 @@
 #include "timesystem.h"
 #include "controls.h"
 #include "renderer.h"
-#include "types.tpp"
+#include "omni_types.tpp"
 #include "sprite.h" 
 #include "player.h"
 #include "crab.h"

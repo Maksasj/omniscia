@@ -17,7 +17,7 @@
 #include "texture_manager.h"
 #include "texture.h"
 #include "properties.h"
-#include "types.tpp"
+#include "omni_types.tpp"
 #include "shader.h"
 #include "gfx.h"
 

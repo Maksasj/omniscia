@@ -15,7 +15,7 @@
 #include <iostream>
 
 #include "sound_pool.h"
-#include "types.tpp"
+#include "omni_types.tpp"
 
 namespace omniscia::core {
     using namespace omni::types;

@@ -12,8 +12,8 @@ include_directories( ${OPENGL_INCLUDE_DIRS} )
 include_directories("3dparty/json/include")
 
 add_subdirectory(shared)
-include_directories("shared/omni_types")
 include_directories("shared/omni_serializer")
+include_directories("shared/omni_types/src")
 include_directories("shared/omni_reflector/src")
 
 file(GLOB_RECURSE OMNISCIA-SRC "src/*.cpp")

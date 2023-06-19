@@ -13,7 +13,7 @@
 #define _ANIMATION_ASSET_H_
 
 #include "animation.h"
-#include "types.tpp"
+#include "omni_types.tpp"
 #include "asset.tpp"
 
 namespace omniscia::core {

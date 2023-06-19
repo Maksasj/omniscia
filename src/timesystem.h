@@ -16,7 +16,7 @@
 
 #include "boost_includes.h"
 #include "gfx.h"
-#include "types.tpp"
+#include "omni_types.tpp"
 
 namespace omniscia::core {
     using namespace omni::types;

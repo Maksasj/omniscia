@@ -13,7 +13,7 @@
 #define _FRAME_BUFFER_H_
 
 #include "texture_buffer.h"
-#include "types.tpp"
+#include "omni_types.tpp"
 #include "gfx.h"
 #include "bo.h"
 

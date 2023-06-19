@@ -17,7 +17,7 @@
 #include <algorithm>
 #include <functional>
 
-#include "types.tpp"
+#include "omni_types.tpp"
 #include "raw_mesh_data.h"
 #include "build_in_mesh_data.h"
 

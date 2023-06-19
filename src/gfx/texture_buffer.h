@@ -15,7 +15,7 @@
 #include <iostream>
 
 #include "stb_image.h"
-#include "types.tpp"
+#include "omni_types.tpp"
 #include "gfx.h"
 #include "bo.h"
 

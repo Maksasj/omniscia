@@ -14,7 +14,7 @@
 
 #include "omni_serializer.h"
 
-#include "types.tpp"
+#include "omni_types.tpp"
 #include "scene.h"
 
 namespace omniscia::core {

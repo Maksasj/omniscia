@@ -16,7 +16,7 @@
 #include <iostream>
 #include <algorithm>
 
-#include "types.tpp"
+#include "omni_types.tpp"
 #include "vertex.h"
 #include "vao.h"
 #include "vbo.h"

@@ -3,7 +3,7 @@
 
 #define UNIFORM_INSTANCING_DATA_SIZE 1000
 
-#include "types.tpp"
+#include "omni_types.tpp"
 
 namespace omniscia::gfx {
     using namespace omni::types;

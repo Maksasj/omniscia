@@ -18,7 +18,7 @@
 
 #include "ecs_component.tpp"
 #include "controls.h"
-#include "types.tpp"
+#include "omni_types.tpp"
 #include "entity.h"
 
 namespace omniscia::core::ecs {

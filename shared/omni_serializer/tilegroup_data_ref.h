@@ -1,7 +1,7 @@
 #ifndef _TILEGROUP_DATA_REF_H_
 #define _TILEGROUP_DATA_REF_H_
 
-#include "types.tpp"
+#include "omni_types.tpp"
 
 #define OMNI_REFLECTOR_ENABLE_SERIALIZER
 #include "omni_reflector.h"

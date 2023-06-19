@@ -17,7 +17,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "types.tpp"
+#include "omni_types.tpp"
 
 #define OMNISCIA_STRING_REPRESENTATION(__TYPE_NAME__, ...)                          \
     std::string to_string() const {                                                 \

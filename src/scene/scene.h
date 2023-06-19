@@ -12,7 +12,7 @@
 #ifndef _SCENE_H_
 #define _SCENE_H_
 
-#include "types.tpp"
+#include "omni_types.tpp"
 #include "player.h"
 #include "grandpa.h"
 

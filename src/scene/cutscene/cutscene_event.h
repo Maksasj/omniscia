@@ -4,7 +4,7 @@
 #include "timesystem.h"
 
 #include "cutscene_datapool_type.h"
-#include "types.tpp"
+#include "omni_types.tpp"
 
 namespace omniscia::core {
     using namespace omni::types;

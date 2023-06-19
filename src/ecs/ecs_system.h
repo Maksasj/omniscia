@@ -18,7 +18,7 @@
 #include <vector>
 
 #include "debug_ui.h"
-#include "types.tpp"
+#include "omni_types.tpp"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

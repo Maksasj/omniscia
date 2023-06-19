@@ -15,7 +15,7 @@
 #include <vector>
 
 #include "raw_mesh_data.h"
-#include "types.tpp"
+#include "omni_types.tpp"
 #include "vertex.h"
 #include "vao.h"
 #include "vbo.h"

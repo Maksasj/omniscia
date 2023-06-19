@@ -12,7 +12,7 @@
 #ifndef _TIMELESSNESS_CONTAINER_H_
 #define _TIMELESSNESS_CONTAINER_H_
 
-#include "types.tpp"
+#include "omni_types.tpp"
 
 namespace omniscia::core {
     using namespace omni::types;
