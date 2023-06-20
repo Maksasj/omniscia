@@ -4,26 +4,16 @@
 #define OMNI_REFLECTOR_ENABLE_SERIALIZER
 #include "omni_reflector.h"
 
+#define OMNI_TYPES_ENABLE_REFLECTIONS
 #include "omni_types.tpp"
 
-struct byte256 {
-    char _bytes[256];
-
-    friend std::ostream& operator<<(std::ostream& os, const byte256& vec) {
-        for(int i = 0; i < 256; ++i)
-            os << vec._bytes[i];
-
-        return os;
-    }
-};
 
 namespace omniscia::core {
     using namespace omni::types;
     using namespace omni::reflector;
-    // using namespace omni::reflector::serialization;
 
-    struct CollisionBoxData {
-        byte256 _name;
+    struct CollisionBoxData : Reflected<CollisionBoxData> {
+        std::string _name;
         Vec4f _collisionBoxAssociatedColor;
         Vec2f _position;
         Vec2f _xRanges;
@@ -32,12 +22,11 @@ namespace omniscia::core {
         bool _isDamaging;
 
         CollisionBoxData() {
-            std::string name = "poggers";
-            name.copy(_name._bytes, name.size());
+            std::string _name = "poggers";
         }
 
         CollisionBoxData(std::string name, f32 x, f32 y, Vec2f rangesX, Vec2f rangesY) {
-            name.copy(_name._bytes, name.size());
+            _name = name;
 
             _position.x = x;
             _position.y = y;
@@ -49,6 +38,15 @@ namespace omniscia::core {
 
             _collisionBoxAssociatedColor = Vec4f{1.0f, 1.0f, 1.0f, 1.0f};
         }
+
+        const constexpr static auto meta = std::make_tuple(
+            field(_name),
+            field(_collisionBoxAssociatedColor),
+            field(_position),
+            field(_xRanges),
+            field(_yRanges),
+            field(_isDamaging)
+        );
     };
 }
 

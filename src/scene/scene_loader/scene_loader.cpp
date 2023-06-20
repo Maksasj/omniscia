@@ -6,6 +6,9 @@ void omniscia::core::SceneLoader::load_scene(Scene& level, const std::string& pa
     if(!file.good())
        throw std::runtime_error("Failed to load file data '" + path + "'");
 
+    nlohmann::json jsonData  = nlohmann::json::parse(file);
+    file.close();
+
     auto& staticEntities = level.staticPart.staticEntities;
 
     staticEntities.clear();
@@ -14,7 +17,7 @@ void omniscia::core::SceneLoader::load_scene(Scene& level, const std::string& pa
     using namespace omni::reflector;
     using namespace omni::reflector::serialization;
 
-    LevelData levelData = binary_deserialize<LevelData>(file);
+    LevelData levelData = json_deserialize<LevelData>(jsonData);
 
     f32 screenBoxHeight = levelData._screenBoxHeight;
 

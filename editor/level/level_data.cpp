@@ -7,6 +7,9 @@ void omniscia_editor::level_editor::LevelData::load_from_file(std::string filePa
         std::cout << "Could not load level data from '" << filePath << "'"; 
         return;
     }
+    
+    nlohmann::json jsonData  = nlohmann::json::parse(file);
+    file.close();
 
     _tileGroups.clear();
 
@@ -14,7 +17,7 @@ void omniscia_editor::level_editor::LevelData::load_from_file(std::string filePa
     using namespace omni::reflector::serialization;
     using namespace omni::types;
     
-    omniscia::core::LevelData levelData = binary_deserialize<omniscia::core::LevelData>(file);
+    omniscia::core::LevelData levelData = json_deserialize<omniscia::core::LevelData>(jsonData);
      
     using namespace omniscia::core;
 
@@ -47,8 +50,6 @@ void omniscia_editor::level_editor::LevelData::load_from_file(std::string filePa
                 position.y *= -1.0f;
         }
     }
-
-   file.close();
 }
 
 void omniscia_editor::level_editor::LevelData::export_to_file(std::string filePath, LevelEditorProperties& levelEditorProperties) {
@@ -92,7 +93,9 @@ void omniscia_editor::level_editor::LevelData::export_to_file(std::string filePa
         }
     }
 
-    binary_serialize(file, levelData);
+    auto json = json_serialize(levelData);
+    const auto representation = json.dump(4);
+    file << representation;
 
     file.close();
 }

@@ -15,11 +15,11 @@ namespace omniscia::core {
                 LevelAssetManager::get_instance().get("test_level")->load_asset(*this);
 
                 summon_static_entity_at_marker_group<Player>(0);
-                summon_static_entity_at_marker_group<RedCrystal>(1);
-                summon_dynamic_entity_at_marker_group<Crab>(2);
-                summon_dynamic_entity_at_marker_group<CrabCorrupted>(3);
-                summon_static_entity_at_marker_group<Checkpoint>(4);
-                summon_static_entity_at_marker_group<Star>(5);
+                // summon_static_entity_at_marker_group<RedCrystal>(1);
+                // summon_dynamic_entity_at_marker_group<Crab>(2);
+                // summon_dynamic_entity_at_marker_group<CrabCorrupted>(3);
+                // summon_static_entity_at_marker_group<Checkpoint>(4);
+                // summon_static_entity_at_marker_group<Star>(5);
 
                 add_dynamic_entity<Grandpa>(Vec2f{1.0f, 1.0f});
                 add_static_entity<BeachParallaxBackground>();

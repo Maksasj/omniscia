@@ -154,7 +154,7 @@ int main() {
         return 1;
     }
     
-    LevelAssetManager::get_instance().add_asset("assets/levels/level.bin", "test_level", BASE);
+    LevelAssetManager::get_instance().add_asset("assets/levels/level.json", "test_level", BASE);
     try {
         LevelAssetManager::get_instance().check_assets();
     } catch (const std::runtime_error& exception) {

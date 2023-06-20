@@ -307,7 +307,7 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
 
                 const bool is_selected = (_selectedCollisionBox == i);
 
-                if(ImGui::Selectable((std::string(collisionBox._name._bytes) + "## " + std::to_string(i)).c_str(), is_selected)) 
+                if(ImGui::Selectable((collisionBox._name + "## " + std::to_string(i)).c_str(), is_selected)) 
                     _selectedCollisionBox = i;
 
                 if(is_selected)
@@ -359,7 +359,7 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
             
             ImGui::Text("Name: ");
             ImGui::SameLine();
-            ImGui::InputText("##Collision Box name input label", collisionBox._name._bytes, 256);
+            // ImGui::InputText("##Collision Box name input label", collisionBox._name.c_str(), 256);
 
             ImGui::Checkbox("Damaging ", &collisionBox._isDamaging); 
 
@@ -647,7 +647,7 @@ void omniscia_editor::level_editor::LevelEditor::render_tab(GLFWwindow *window) 
             if(importButtonClicked & 1) {
                 std::cout << "Importing map assets\\levels\\level.bin \n";
 
-                _levelData.load_from_file("assets\\levels\\level.bin", get_properties());
+                _levelData.load_from_file("assets\\level.json", get_properties());
 
                 importButtonClicked = 0;
             }
