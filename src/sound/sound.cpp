@@ -10,7 +10,7 @@ int omniscia::core::Sound::load(const std::string& filePath) {
     _soundConfig = ma_sound_config_init();
     _soundConfig.pFilePath  = filePath.c_str();
     _soundConfig.pDataSource = NULL;
-    _soundConfig.volumeSmoothTimeInPCMFrames = 400; 
+    // _soundConfig.volumeSmoothTimeInPCMFrames = 400; 
 
     ma_result result = ma_sound_init_from_file(&omniscia::core::SoundEngine::get_instance().get_backend(), filePath.c_str(), 0, NULL, NULL, &_sound);
 

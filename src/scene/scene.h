@@ -24,8 +24,6 @@
 
 namespace omniscia::core {
     using namespace omni::types;
-    using namespace omni::reflector;
-    using namespace omni::reflector::serialization;
     
     /**
      * @brief Class that manages all scene data, dynamic and static part

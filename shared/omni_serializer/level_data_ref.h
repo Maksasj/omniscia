@@ -1,10 +1,10 @@
 #ifndef _LEVEL_DATA_REF_H_
 #define _LEVEL_DATA_REF_H_
 
-#include "omni_types.tpp"
-
 #define OMNI_REFLECTOR_ENABLE_SERIALIZER
 #include "omni_reflector.h"
+
+#include "omni_types.tpp"
 
 #include "tilegroup_data_ref.h"
 #include "markergroup_data_ref.h"

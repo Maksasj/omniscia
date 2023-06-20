@@ -1,17 +1,17 @@
 #ifndef _MARKERGROUP_DATA_REF_H_
 #define _MARKERGROUP_DATA_REF_H_
 
-#include "omni_types.tpp"
-
 #define OMNI_REFLECTOR_ENABLE_SERIALIZER
 #include "omni_reflector.h"
+
+#include "omni_types.tpp"
 
 #include "marker_data_ref.h"
 
 namespace omniscia::core {
     using namespace omni::types;
     using namespace omni::reflector;
-    using namespace omni::reflector::serialization;
+    // using namespace omni::reflector::serialization;
 
     struct MarkerGroupData : Reflected<MarkerGroupData> {
         Vec4f _markerGroupAssociatedColor = Vec4f{1.0f, 1.0f, 1.0f, 1.0f};

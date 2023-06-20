@@ -1,10 +1,10 @@
 #ifndef _TILEGROUP_DATA_REF_H_
 #define _TILEGROUP_DATA_REF_H_
 
-#include "omni_types.tpp"
-
 #define OMNI_REFLECTOR_ENABLE_SERIALIZER
 #include "omni_reflector.h"
+
+#include "omni_types.tpp"
 
 #include "tile_data_ref.h"
 #include "collisionbox_data_ref.h"
@@ -12,7 +12,7 @@
 namespace omniscia::core {
     using namespace omni::types;
     using namespace omni::reflector;
-    using namespace omni::reflector::serialization;
+    // using namespace omni::reflector::serialization;
 
     struct TileGroupData : Reflected<TileGroupData> {
         std::string _name;

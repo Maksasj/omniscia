@@ -1,15 +1,15 @@
 #ifndef _TILE_DATA_REF_H_
 #define _TILE_DATA_REF_H_
 
-#include "omni_types.tpp"
-
 #define OMNI_REFLECTOR_ENABLE_SERIALIZER
 #include "omni_reflector.h"
+
+#include "omni_types.tpp"
 
 namespace omniscia::core {
     using namespace omni::types;
     using namespace omni::reflector;
-    using namespace omni::reflector::serialization;
+    // using namespace omni::reflector::serialization;
 
     struct TileData {
         Vec2f _position;

@@ -1,10 +1,10 @@
 #ifndef _COLLISIONBOX_DATA_REF_H_
 #define _COLLISIONBOX_DATA_REF_H_
 
-#include "omni_types.tpp"
-
 #define OMNI_REFLECTOR_ENABLE_SERIALIZER
 #include "omni_reflector.h"
+
+#include "omni_types.tpp"
 
 struct byte256 {
     char _bytes[256];
@@ -20,7 +20,7 @@ struct byte256 {
 namespace omniscia::core {
     using namespace omni::types;
     using namespace omni::reflector;
-    using namespace omni::reflector::serialization;
+    // using namespace omni::reflector::serialization;
 
     struct CollisionBoxData {
         byte256 _name;
