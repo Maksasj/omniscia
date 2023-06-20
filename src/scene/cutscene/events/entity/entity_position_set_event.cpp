@@ -40,5 +40,5 @@ void omniscia::core::CE_EntityPositionSetEvent::execute() {
 
     ECS_Positioned& comp = entityPtr->ref_unsafe(positionIndex);
 
-    comp.set_pos(Vec3f{_newPosition});
+    comp.set_pos(Vec3f{_newPosition.x, _newPosition.y, 0.0f});
 }

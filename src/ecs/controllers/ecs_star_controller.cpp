@@ -32,7 +32,7 @@ void omniscia::core::ecs::ECS_StarController::star_chase_state() {
 
     const Vec2f& playerPos = DebugUI::get_instance().get_metrics()._playerPos;
 
-    const Vec2f delta = Vec2f{ position.x - playerPos.x, position.y - playerPos.y };
+    const Vec2f delta = Vec2f(position.x - playerPos.x, position.y - playerPos.y);
 
     if(delta.x * delta.x + delta.y * delta.y > 0.25f) {
         velocity.x = 0;

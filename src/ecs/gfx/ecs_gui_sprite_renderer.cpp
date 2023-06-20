@@ -26,8 +26,8 @@ void omniscia::core::ecs::ECS_GuiSpriteRenderer::render() {
     if(shader == nullptr)
         return;
 
-    Vec3f position = {0.0, 0.0, 0.0};
-    Vec2f scale = {1.0, 1.0};
+    Vec3f position = Vec3f::splat(0.0f);
+    Vec2f scale = Vec2f::splat(1.0f);
 
     bool horizontalSpriteFlip = false;
     bool verticalSpriteFlip = false;

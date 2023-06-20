@@ -61,9 +61,9 @@ namespace omniscia::core {
         */
         Vec2f get_frame_offset(u32 currentFrame) const {
             if(_direction)
-                return Vec2f{_startPossition.x + currentFrame*_spriteFrameSize.x, _startPossition.y};
+                return Vec2f(_startPossition.x + currentFrame*_spriteFrameSize.x, _startPossition.y);
 
-            return Vec2f{_startPossition.x, _startPossition.y + _spriteFrameSize.y*currentFrame};
+            return Vec2f(_startPossition.x, _startPossition.y + _spriteFrameSize.y*currentFrame);
         }
 
         /**

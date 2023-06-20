@@ -30,7 +30,8 @@ void omniscia::core::ecs::ECS_TextRenderer::set_text_to_render(const std::string
     if(_fontAsset == nullptr) 
         return; 
     
-    Vec2f scaleFactor = Vec2f{1.0f, 1.0f};
+    Vec2f scaleFactor = Vec2f::splat(1.0f);
+
     if(_scaleIndex.is_success()) {
         ECS_Scaled& scaleComp = _parent->ref_unsafe(_scaleIndex);
         scaleFactor = scaleComp.get_scale();
@@ -59,10 +60,10 @@ void omniscia::core::ecs::ECS_TextRenderer::set_text_to_render(const std::string
         const i32 collum =  (index + font._charactersPerRow) / (font._charactersPerRow);
         
         _instancingData.push_back({
-            Vec2f{xOffset - baseXOffset, yOffset + baseYOffset},
-            Vec2f{1.0f, 1.0f},
+            Vec2f(xOffset - baseXOffset, yOffset + baseYOffset),
+            Vec2f::splat(1.0f),
             font._frameSize,
-            Vec2f{row * font._frameSize.x, 1.0f - collum * font._frameSize.y}
+            Vec2f(row * font._frameSize.x, 1.0f - collum * font._frameSize.y)
         });
 
         xOffset += lineLetterSpacing * scaleFactor.x * 2;

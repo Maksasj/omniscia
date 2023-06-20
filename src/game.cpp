@@ -307,9 +307,9 @@ void omniscia::Game::run() {
         });
 
         renderIntermediateStage.render_stage_lambda([&](const Shader* stage_shader){ 
-            renderBackgroundStage.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
-            renderMainStage.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
-            renderGuiStage.present_as_texture(stage_shader, Vec2f{0.0f, 0.0f}, 0);
+            renderBackgroundStage.present_as_texture(stage_shader, Vec2f::splat(0.0f), 0);
+            renderMainStage.present_as_texture(stage_shader, Vec2f::splat(0.0f), 0);
+            renderGuiStage.present_as_texture(stage_shader, Vec2f::splat(0.0f), 0);
 
             ECS_ProRendererSystem::get_instance().render();
         });

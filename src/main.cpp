@@ -162,13 +162,13 @@ int main() {
         return 1;
     }
 
-    FontManager::get_instance().add_asset("assets/textures/fonts/soft-dark.png", "test_font", {' ', 16, Vec2f{0.0625f, 0.0625f}});
-    FontManager::get_instance().add_asset("assets/textures/fonts/soft-thick.png", "test_font_another", { ' ', 16, Vec2f{0.0625f, 0.0625f} } );
-    FontManager::get_instance().add_asset("assets/textures/fonts/abaddon-light-white.png", "abaddon-light-white", { ' ', 16, Vec2f{0.0625f, 0.0625f} } );
-    FontManager::get_instance().add_asset("assets/textures/fonts/dejavu-sans-mono-white.png", "dejavu-sans-mono-white", { ' ', 16, Vec2f{0.0625f, 0.0625f} } );
-    FontManager::get_instance().add_asset("assets/textures/fonts/monogram-white.png", "monogram-white", { ' ', 16, Vec2f{0.0625f, 0.0625f} } );
-    FontManager::get_instance().add_asset("assets/textures/fonts/monogram-gray.png", "monogram-gray", { ' ', 16, Vec2f{0.0625f, 0.0625f} } );
-    FontManager::get_instance().add_asset("assets/textures/fonts/yoster-white.png", "yoster-white", { ' ', 16, Vec2f{0.0625f, 0.0625f} } );
+    FontManager::get_instance().add_asset("assets/textures/fonts/soft-dark.png", "test_font",                           { ' ', 16, Vec2f::splat(0.0625f) } );
+    FontManager::get_instance().add_asset("assets/textures/fonts/soft-thick.png", "test_font_another",                  { ' ', 16, Vec2f::splat(0.0625f) } );
+    FontManager::get_instance().add_asset("assets/textures/fonts/abaddon-light-white.png", "abaddon-light-white",       { ' ', 16, Vec2f::splat(0.0625f) } );
+    FontManager::get_instance().add_asset("assets/textures/fonts/dejavu-sans-mono-white.png", "dejavu-sans-mono-white", { ' ', 16, Vec2f::splat(0.0625f) } );
+    FontManager::get_instance().add_asset("assets/textures/fonts/monogram-white.png", "monogram-white",                 { ' ', 16, Vec2f::splat(0.0625f) } );
+    FontManager::get_instance().add_asset("assets/textures/fonts/monogram-gray.png", "monogram-gray",                   { ' ', 16, Vec2f::splat(0.0625f) } );
+    FontManager::get_instance().add_asset("assets/textures/fonts/yoster-white.png", "yoster-white",                     { ' ', 16, Vec2f::splat(0.0625f) } );
     try {
         FontManager::get_instance().check_assets();
     } catch (const std::runtime_error& exception) {

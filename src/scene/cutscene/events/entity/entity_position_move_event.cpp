@@ -43,5 +43,5 @@ void omniscia::core::CE_EntityPositionMoveEvent::execute() {
     const f32 t = this->get_current_duration() / _durationTime;
     const Vec2f newPosition = _shapingFunction(_startPosition, _finishPosition, t);
     
-    comp.set_pos(Vec3f{newPosition});
+    comp.set_pos(Vec3f{newPosition.x, newPosition.y, 0.0f});
 }
