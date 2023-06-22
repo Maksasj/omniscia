@@ -27,12 +27,8 @@ namespace omniscia::core {
      * action player wants to do
     */
     enum PlayerController {
-        JUMP = 0,
-        DOWN = 1,
-        LEFT = 2,
-        RIGHT = 3,
-        TIME_JUMP = 4,
-        INTERACT = 5,
+        JUMP = 0, DOWN = 1, LEFT = 2, RIGHT = 3,
+        TIME_JUMP = 4, INTERACT = 5,
         PAUSE = 6,
         DEBUGUI = 7,
     };

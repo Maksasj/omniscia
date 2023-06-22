@@ -29,13 +29,13 @@ namespace omniscia::core {
              * @brief Screen width size 
             */
             //static const u32 screenWidth = 1920; 
-            static const u32 screenWidth = 1280; 
+            static u32 screenWidth; 
             
             /**
              * @brief Screen height size 
             */
             //static const u32 screenHeight = 1080; 
-            static const u32 screenHeight = 720; 
+            static u32 screenHeight; 
     };
 }
 

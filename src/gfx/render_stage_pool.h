@@ -20,20 +20,8 @@ namespace omniscia::gfx {
             void operator=(RenderStagePool const&) {};
 
         public:
-            RenderStage& add_stage(const RenderStageProp& prop = {}) {
-                RenderStage* renderStage = new RenderStage(prop, _renderingStages.size());
-
-                if(prop._textureBuffer != nullptr)
-                    renderStage->bind_target_texture_buffer(prop._textureBuffer);
-
-                _renderingStages.push_back(renderStage);
-                _slowReferences[prop._stageName] = renderStage; 
-
-                return *renderStage;
-            }
-
             RenderStage& add_stage(const std::string& _renderingStageName) {
-                RenderStage* renderStage = new RenderStage((RenderStageProp){}, _renderingStages.size());
+                RenderStage* renderStage = new RenderStage(_renderingStages.size());
                 _renderingStages.push_back(renderStage);
                 
                 _slowReferences[_renderingStageName] = renderStage; 

@@ -2,8 +2,14 @@
 
 omniscia::gfx::RenderStage* omniscia::gfx::RenderStage::_activeRenderStage = nullptr;
 
-omniscia::gfx::RenderStage::RenderStage(const RenderStageProp& prop, const i32& stageId) : FrameBuffer(), RenderStageProp(prop) {
+omniscia::gfx::RenderStage::RenderStage(const i32& stageId) : FrameBuffer() {
     _stageId = stageId;
+
+    _textureBuffer = nullptr;
+    _defaultShader = nullptr;
+
+    _clearBufferColor = Vec4f::splat(0.0f);
+    _uniformLambda = [](const Shader*) {};
 }
 
 void omniscia::gfx::RenderStage::present_as_texture() const {
@@ -80,7 +86,8 @@ omniscia::gfx::RenderStage& omniscia::gfx::RenderStage::bind_target_texture_buff
 
     bind();
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _textureBuffer->get_id(), 0);
-    
+    unbind();
+
     return *this;
 }
 
@@ -89,6 +96,7 @@ omniscia::gfx::RenderStage& omniscia::gfx::RenderStage::bind_target_texture_buff
 
     bind();
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _textureBuffer->get_id(), 0);
+    unbind();
     
     return *this;
 }
@@ -105,69 +113,90 @@ omniscia::gfx::RenderStage& omniscia::gfx::RenderStage::bind_default_shader(Shad
     return *this;
 }
 
-void omniscia::gfx::RenderStage::render_stage_lambda(const std::function<void(void)> rendering_lambda) {        
-    bind();
-        _activeRenderStage = this;
+omniscia::gfx::RenderStage& omniscia::gfx::RenderStage::bind_shader_uniform(const std::function<void(const Shader* shader)>& uniformLambda) {
+    _uniformLambda = uniformLambda;
 
-        Renderer::clear_buffer(_buffer._clearBufferColor);
-
-        if(_defaultShader != nullptr) {
-            _defaultShader->activate();
-
-            _defaultShader->set_uniform_f32("screenAspect", _shaderUniforms._screenAspect());
-            _defaultShader->set_uniform_vec3f("cameraPosition", _shaderUniforms._cameraPosition());
-            _defaultShader->set_uniform_f32("cameraZoom", _shaderUniforms._cameraZoom());
-        }
-
-        rendering_lambda();
-    
-        _activeRenderStage = nullptr;
-    unbind();
+    return *this;
 }
 
-void omniscia::gfx::RenderStage::render_stage_lambda(const std::function<void(const Shader* shader)> rendering_lambda) {        
+omniscia::gfx::RenderStage& omniscia::gfx::RenderStage::bind_default_buffer_clear(const Vec4f& color) {
+    _clearBufferColor = color;
+
+    return *this;
+}
+
+omniscia::gfx::RenderStage& omniscia::gfx::RenderStage::bind_viewport_size(const Vec4f& viewPort) {
+    _viewPort = viewPort;
+
+    return *this;
+}
+
+void omniscia::gfx::RenderStage::render_stage_lambda(const std::function<void(void)>& renderingLambda) {        
     bind();
         glEnable(GL_BLEND);  
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  
+        glViewport(_viewPort.x, _viewPort.y, _viewPort.z, _viewPort.w);
 
         _activeRenderStage = this;
 
-        Renderer::clear_buffer(_buffer._clearBufferColor);
+        Renderer::clear_buffer(_clearBufferColor);
 
-        if(_defaultShader != nullptr) {
+        if(_defaultShader != nullptr)
             _defaultShader->activate();
 
-            _defaultShader->set_uniform_f32("screenAspect", _shaderUniforms._screenAspect());
-            _defaultShader->set_uniform_vec3f("cameraPosition", _shaderUniforms._cameraPosition());
-            _defaultShader->set_uniform_f32("cameraZoom", _shaderUniforms._cameraZoom());
-        }
+        Shader* activeShader = Shader::get_active();
 
-        rendering_lambda(_defaultShader);
+        _uniformLambda(activeShader);
+
+        renderingLambda();
 
         _activeRenderStage = nullptr;
     unbind();
 }
 
-void omniscia::gfx::RenderStage::render_stage_lambda_default(const std::function<void(void)> rendering_lambda) {
+void omniscia::gfx::RenderStage::render_stage_lambda(const std::function<void(const Shader* shader)>& renderingLambda) {        
+    bind();
+        glEnable(GL_BLEND);  
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  
+        glViewport(_viewPort.x, _viewPort.y, _viewPort.z, _viewPort.w);
+
+        _activeRenderStage = this;
+
+        Renderer::clear_buffer(_clearBufferColor);
+
+        if(_defaultShader != nullptr)
+            _defaultShader->activate();
+
+        Shader* activeShader = Shader::get_active();
+
+        _uniformLambda(activeShader);
+
+        renderingLambda(activeShader);
+
+        _activeRenderStage = nullptr;
+    unbind();
+}
+
+void omniscia::gfx::RenderStage::render_stage_lambda_default(const std::function<void(void)>& renderingLambda) {
     bind();
         glEnable(GL_BLEND);  
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  
 
         _activeRenderStage = this;
         
-        rendering_lambda();
+        renderingLambda();
 
         _activeRenderStage = nullptr;
     unbind();
 }
 
-void omniscia::gfx::RenderStage::render_anonymous_stage_lambda(const std::function<void(void)> rendering_lambda) {
+void omniscia::gfx::RenderStage::render_anonymous_stage_lambda(const std::function<void(void)>& renderingLambda) {
     glEnable(GL_BLEND);  
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  
-
+   
     _activeRenderStage = nullptr;
     
-    rendering_lambda();
+    renderingLambda();
     
     _activeRenderStage = nullptr;
 }

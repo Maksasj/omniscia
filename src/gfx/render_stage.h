@@ -28,35 +28,6 @@ namespace omniscia::gfx {
     using namespace omniscia::gfx::sprite;
     using namespace omniscia::gfx::texture;
 
-    struct RenderStageProp {
-        std::string _stageName = "";
-        /** 
-         * @brief Pointer to assigned texture buffer,
-         * if it is not a null, rendering stage 
-         * will render evrethingh into this texture buffer 
-        */
-        TextureBuffer* _textureBuffer = nullptr;
-        
-        /**
-         * @brief Pointer to shader that was assigned to this RenderStage
-         * if it is not null, this shader will be used for rendering
-        */
-        Shader* _defaultShader = nullptr;
-
-        /** @brief Active mesh date, ofthen there will be quad mesh */
-        SpriteMesh _spriteMesh;
-
-        struct RenderStageUniformProp {
-            std::function<f32(void)> _screenAspect = [](){ return 1.0f; };
-            std::function<Vec3f(void)> _cameraPosition = [](){ return Vec3f{0.0f, 0.0f, 0.0f}; };
-            std::function<f32(void)> _cameraZoom = [](){ return 1.0f; };
-        } _shaderUniforms;
-
-        struct RenderStageBufferProp {
-            Vec4f _clearBufferColor = Vec4f{0.0f, 0.0f, 0.0f, 0.0f}; 
-        } _buffer;
-    };
-
     /**
      * @brief RenderStage - class used for stage rendering
      * everything that is rendered inside renderingStageLamda
@@ -64,18 +35,27 @@ namespace omniscia::gfx {
      * can be rendered in to the screen buffer or even into another 
      * rendering stage / frame buffer.
     */
-    class RenderStage : public FrameBuffer, public RenderStageProp {
+    class RenderStage : public FrameBuffer {
         private:
             /**
              * @brief Pointer to active render stage
             */
             static RenderStage* _activeRenderStage;
+
+            TextureBuffer* _textureBuffer;
+            Shader* _defaultShader;
+            SpriteMesh _spriteMesh;
             
             i32 _stageId;
 
+            Vec4f _clearBufferColor;
+            Vec4f _viewPort;
+
+            std::function<void(const Shader*)> _uniformLambda;
+
         public:
             /** @brief Default constructor for RenderStage */
-            RenderStage(const RenderStageProp& prop, const i32& stageId);
+            RenderStage(const i32& stageId);
             
             //void bind() const override;
             //void unbind() const override;
@@ -118,6 +98,10 @@ namespace omniscia::gfx {
             */
             RenderStage& bind_default_shader(Shader& shader);
             
+            RenderStage& bind_shader_uniform(const std::function<void(const Shader* shader)>& uniformLambda);
+            RenderStage& bind_default_buffer_clear(const Vec4f& color);
+            RenderStage& bind_viewport_size(const Vec4f& viewPort);
+
             /**
              * @brief Renders everything into the 
              * rendering stage frame buffer using rendering lamda
@@ -128,7 +112,7 @@ namespace omniscia::gfx {
              * that should be rendered into the 
              * rendering stage frame buffer
             */
-            void render_stage_lambda(const std::function<void(void)> renderingLambda);
+            void render_stage_lambda(const std::function<void(void)>& renderingLambda);
             
             /**
              * @brief Renders everything into the 
@@ -140,7 +124,7 @@ namespace omniscia::gfx {
              * that should be rendered into the 
              * rendering stage frame buffer
             */
-            void render_stage_lambda_default(const std::function<void(void)> renderingLambda);
+            void render_stage_lambda_default(const std::function<void(void)>& renderingLambda);
             
             /**
              * @brief Renders everything into the 
@@ -154,7 +138,7 @@ namespace omniscia::gfx {
              * that should be rendered into the 
              * rendering stage frame buffer
             */
-            void render_stage_lambda(const std::function<void(const Shader* shader)> renderingLambda);        
+            void render_stage_lambda(const std::function<void(const Shader* shader)>& renderingLambda);        
 
             /**
              * @brief Renders everything into the 
@@ -164,7 +148,7 @@ namespace omniscia::gfx {
              * that should be rendered into the 
              * screen buffer
             */
-            static void render_anonymous_stage_lambda(const std::function<void(void)> renderingLambda);
+            static void render_anonymous_stage_lambda(const std::function<void(void)>& renderingLambda);
 
             /** @brief Renders frame buffer as an sprite */
             void present_as_texture() const;

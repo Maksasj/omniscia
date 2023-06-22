@@ -167,7 +167,6 @@ omniscia::core::MainMenuScene::MainMenuScene() : Scene() {
         },
         
         ._clickLambda = [](ECS_Button&) {
-            /* Todo */
             std::exit(69);
         },
 
@@ -193,8 +192,9 @@ omniscia::core::MainMenuScene::MainMenuScene() : Scene() {
             scale.set_scale(Vec2f{0.06f, 0.06f});
         }
     });
-    
+
     add_static_entity<MainMenuParallaxBackground>();
+
     add_static_entity<AnimatedImage>((AnimatedImageProp) {
         ._texture = "logo_spritesheet",
         ._animation = "logo-animation",

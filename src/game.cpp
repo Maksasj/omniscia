@@ -1,5 +1,19 @@
 #include "game.h"
 
+omni::types::u32 omniscia::core::Properties::screenWidth = 1280;
+omni::types::u32 omniscia::core::Properties::screenHeight = 720;
+
+void window_size_callback(GLFWwindow* window, int width, int height) {
+    using namespace omniscia;
+    using namespace omniscia::gfx;
+    using namespace omniscia::gfx::monitor;
+
+    glfwSetWindowAspectRatio(window, 16, 9);
+
+    Properties::screenWidth = width;
+    Properties::screenHeight = height;
+}
+
 void omniscia::Game::load() {
     using namespace omniscia;
     using namespace omniscia::gfx;
@@ -13,6 +27,8 @@ void omniscia::Game::load() {
     
     window = glfwCreateWindow(Properties::screenWidth, Properties::screenHeight, "Omniscia", NULL, NULL);
     //window = glfwCreateWindow(Properties::screenWidth, Properties::screenHeight, "Omniscia", Monitor::get_active()->get_glfw_monitor(), NULL);
+
+    glfwSetWindowSizeCallback(window, window_size_callback);
 
     if (window == NULL) {
         glfwTerminate();
@@ -120,95 +136,77 @@ void omniscia::Game::run() {
         std::cout << "Undefined exception\n";
     }
 
-    RenderStage& renderBackgroundStage = RenderStagePool::get_instance().add_stage((RenderStageProp){
-        ._stageName = "BackgroundStage",
-        ._textureBuffer = new TextureBuffer(Properties::screenWidth, Properties::screenHeight),
-        ._defaultShader = &backgroundStageShader,
-        ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
-        ._shaderUniforms = {
-            ._screenAspect = [](){ return (Properties::screenWidth) / (float) Properties::screenHeight; },
-            ._cameraPosition = [](){ return Camera::get_instance().get_pos(); },
-            ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
-        },
-        ._buffer = {
-            ._clearBufferColor = Vec4f{1.0f, 1.0f, 1.0f, 0.0f},
-        }
-    });
+    RenderStage& renderBackgroundStage = RenderStagePool::get_instance().add_stage("BackgroundStage")
+        .bind_target_texture_buffer(new TextureBuffer(256, 144))
+        .bind_viewport_size(Vec4f(0.0, 0.0, 256.0, 144.0))
+        .bind_default_shader(&backgroundStageShader)
+        .bind_target_mesh(SpriteMesh(BuildInMeshData::QUAD_MESH_DATA))
+        .bind_shader_uniform([](const Shader* shader) {
+            shader->set_uniform_f32("screenAspect", 256.0 / 144.0);
+            shader->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            shader->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
+        })
+        .bind_default_buffer_clear(Vec4f(1.0f, 1.0f, 1.0f, 0.0f));
 
-    RenderStage& renderMainStage = RenderStagePool::get_instance().add_stage((RenderStageProp){
-        ._stageName = "MainStage",
-        ._textureBuffer = new TextureBuffer(Properties::screenWidth, Properties::screenHeight),
-        ._defaultShader = &mainStageShader,
-        ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
-        ._shaderUniforms = {
-            ._screenAspect = [](){ return (Properties::screenWidth) / (float) Properties::screenHeight; },
-            ._cameraPosition = [](){ return Camera::get_instance().get_pos(); },
-            ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
-        },
-        ._buffer = {
-            ._clearBufferColor = Vec4f{1.0f, 1.0f, 1.0f, 0.0f},
-        }
-    });
+    RenderStage& renderMainStage = RenderStagePool::get_instance().add_stage("MainStage")
+        .bind_target_texture_buffer(new TextureBuffer(Properties::screenWidth, Properties::screenHeight))
+        .bind_viewport_size(Vec4f(0.0, 0.0, Properties::screenWidth, Properties::screenHeight))
+        .bind_default_shader(&mainStageShader)
+        .bind_target_mesh(SpriteMesh(BuildInMeshData::QUAD_MESH_DATA))
+        .bind_shader_uniform([](const Shader* shader) {
+            shader->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
+            shader->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            shader->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
+        })
+        .bind_default_buffer_clear(Vec4f(1.0f, 1.0f, 1.0f, 0.0f));
 
-    RenderStage& renderGuiStage = RenderStagePool::get_instance().add_stage((RenderStageProp){
-        ._stageName = "GuiStage",
-        ._textureBuffer = new TextureBuffer(Properties::screenWidth, Properties::screenHeight),
-        ._defaultShader = &guiStageShader,
-        ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
-        ._shaderUniforms = {
-            ._screenAspect = [](){ return (Properties::screenWidth) / (float) Properties::screenHeight; },
-            ._cameraPosition = [](){ return Camera::get_instance().get_pos(); },
-            ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
-        },
-        ._buffer = {
-            ._clearBufferColor = Vec4f{1.0f, 1.0f, 1.0f, 0.0f},
-        }
-    });
+    RenderStage& renderGuiStage = RenderStagePool::get_instance().add_stage("GuiStage")
+        .bind_target_texture_buffer(new TextureBuffer(Properties::screenWidth, Properties::screenHeight))
+        .bind_viewport_size(Vec4f(0.0, 0.0, Properties::screenWidth, Properties::screenHeight))
+        .bind_default_shader(&guiStageShader)
+        .bind_target_mesh(SpriteMesh(BuildInMeshData::QUAD_MESH_DATA))
+        .bind_shader_uniform([](const Shader* shader) {
+            shader->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
+            shader->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            shader->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
+        })
+        .bind_default_buffer_clear(Vec4f(1.0f, 1.0f, 1.0f, 0.0f));
 
-    RenderStage& renderIntermediateStage = RenderStagePool::get_instance().add_stage((RenderStageProp){
-        ._stageName = "IntermediateStage",
-        ._textureBuffer = new TextureBuffer(Properties::screenWidth, Properties::screenHeight),
-        ._defaultShader = &intermediateStageShader,
-        ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
-        ._shaderUniforms = {
-            ._screenAspect = [](){ return (Properties::screenWidth) / (float) Properties::screenHeight; },
-            ._cameraPosition = [](){ return Camera::get_instance().get_pos(); },
-            ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
-        },
-        ._buffer = {
-            ._clearBufferColor = Vec4f{1.0f, 1.0f, 1.0f, 0.0f},
-        }
-    });
+    RenderStage& renderIntermediateStage = RenderStagePool::get_instance().add_stage("IntermediateStage")
+        .bind_target_texture_buffer(new TextureBuffer(Properties::screenWidth, Properties::screenHeight))
+        .bind_viewport_size(Vec4f(0.0, 0.0, Properties::screenWidth, Properties::screenHeight))
+        .bind_default_shader(&intermediateStageShader)
+        .bind_target_mesh(SpriteMesh(BuildInMeshData::QUAD_MESH_DATA))
+        .bind_shader_uniform([](const Shader* shader) {
+            shader->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
+            shader->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            shader->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
+        })
+        .bind_default_buffer_clear(Vec4f(1.0f, 1.0f, 1.0f, 0.0f));
 
-    RenderStage& renderLateStage = RenderStagePool::get_instance().add_stage((RenderStageProp){
-        ._stageName = "LateStage",
-        ._textureBuffer = new TextureBuffer(Properties::screenWidth, Properties::screenHeight),
-        ._defaultShader = &lateStageShader,
-        ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
-        ._shaderUniforms = {
-            ._screenAspect = [](){ return (Properties::screenWidth) / (float) Properties::screenHeight; },
-            ._cameraPosition = [](){ return Camera::get_instance().get_pos(); },
-            ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
-        },
-        ._buffer = {
-            ._clearBufferColor = Vec4f{1.0f, 1.0f, 1.0f, 0.0f},
-        }
-    });
-
-    RenderStage& renderTransitionStage = RenderStagePool::get_instance().add_stage((RenderStageProp){
-        ._stageName = "TransitionStage",
-        ._textureBuffer = new TextureBuffer(256u, 144u),
-        ._defaultShader = &transitionStageShader,
-        ._spriteMesh = SpriteMesh(BuildInMeshData::QUAD_MESH_DATA),
-        ._shaderUniforms = {
-            ._screenAspect = [](){ return 256u / (float) 144u; },
-            ._cameraPosition = [](){ return Camera::get_instance().get_pos(); },
-            ._cameraZoom = [](){ return Camera::get_instance().get_zoom(); },
-        },
-        ._buffer = {
-            ._clearBufferColor = Vec4f{0.0f, 0.0f, 0.0f, 0.0f},
-        }
-    });
+    RenderStage& renderLateStage = RenderStagePool::get_instance().add_stage("LateStage")
+        .bind_target_texture_buffer(new TextureBuffer(Properties::screenWidth, Properties::screenHeight))
+        .bind_viewport_size(Vec4f(0.0, 0.0, Properties::screenWidth, Properties::screenHeight))
+        .bind_default_shader(&lateStageShader)
+        .bind_target_mesh(SpriteMesh(BuildInMeshData::QUAD_MESH_DATA))
+        .bind_shader_uniform([](const Shader* shader) {
+            shader->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
+            shader->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            shader->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
+        })
+        .bind_default_buffer_clear(Vec4f(1.0f, 1.0f, 1.0f, 0.0f));
+    
+    RenderStage& renderTransitionStage = RenderStagePool::get_instance().add_stage("TransitionStage")
+        .bind_target_texture_buffer(new TextureBuffer(256, 144))
+        .bind_viewport_size(Vec4f(0.0, 0.0, 256.0, 144.0))
+        .bind_default_shader(&transitionStageShader)
+        .bind_target_mesh(SpriteMesh(BuildInMeshData::QUAD_MESH_DATA))
+        .bind_shader_uniform([](const Shader* shader) {
+            shader->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
+            shader->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
+            shader->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
+        })
+        .bind_default_buffer_clear(Vec4f::splat(0.0f));
 
     Scene* scene = new GameScene();
     _scenes["game_scene"] = scene;
@@ -267,7 +265,7 @@ void omniscia::Game::run() {
 
         ECS_PlayerTimeJumpControllerSystem::get_instance().update();
 
-        auto& isTimeJump = DebugUI::get_instance().get_metrics()._isTimeJump;
+        const auto& isTimeJump = DebugUI::get_instance().get_metrics()._isTimeJump;
 
         Time::run_every_n_milliseconds<16u>([]() {
             ECS_SpriteAnimationSystem::get_instance().update();
@@ -307,7 +305,7 @@ void omniscia::Game::run() {
         });
 
         renderIntermediateStage.render_stage_lambda([&](const Shader* stage_shader){ 
-            renderBackgroundStage.present_as_texture(stage_shader, Vec2f::splat(0.0f), 0);
+            renderBackgroundStage.present_as_texture();
             renderMainStage.present_as_texture(stage_shader, Vec2f::splat(0.0f), 0);
             renderGuiStage.present_as_texture(stage_shader, Vec2f::splat(0.0f), 0);
 
@@ -325,11 +323,14 @@ void omniscia::Game::run() {
             ECS_ProRendererSystem::get_instance().render();
         });
 
+        glViewport(0, 0, Properties::screenWidth, Properties::screenHeight);
         /* screen buffer */
         RenderStage::render_anonymous_stage_lambda([&]() {
             finalStageShader.activate();
             renderLateStage.present_as_texture();
-            
+
+            // randomsprite.render(&finalStageShader);
+
             if(DebugUI::get_instance().get_metrics()._debugUIEnabled) {
                 DebugUI::get_instance().render();
             }
