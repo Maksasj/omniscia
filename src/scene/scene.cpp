@@ -67,8 +67,8 @@ void omniscia::core::Scene::load_checkpoint() {
         dynamicPart.dynamicEntities.push_back(e->clone());
     
     // Todo resolve this cringe
-    DebugUI::get_instance().get_metrics()._isTimeJump = true;
-    DebugUI::get_instance().get_metrics()._systemInterupt = true;
+    DebugInfo::get_instance().get_metrics()._isTimeJump = true;
+    DebugInfo::get_instance().get_metrics()._systemInterupt = true;
 
     time_sync();
 }

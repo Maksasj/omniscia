@@ -30,7 +30,7 @@ void omniscia::core::ecs::ECS_StarController::star_chase_state() {
     Vec3f& velocity = velocityComp.ref_velocity();
     Vec3f& position = positionComp.ref_pos();
 
-    const Vec2f& playerPos = DebugUI::get_instance().get_metrics()._playerPos;
+    const Vec2f& playerPos = DebugInfo::get_instance().get_metrics()._playerPos;
 
     const Vec2f delta = Vec2f(position.x - playerPos.x, position.y - playerPos.y);
 

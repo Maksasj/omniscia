@@ -12,17 +12,17 @@ omniscia::core::BeachParallaxBackground::BeachParallaxBackground() : Entity() {
     });
 
     add<ECS_ParallaxSpriteRendererBack>("background_beach_beach_layer", 2, [](f32& layerOffset) {
-        layerOffset = DebugUI::get_instance().get_metrics()._playerPos.x;
+        layerOffset = DebugInfo::get_instance().get_metrics()._playerPos.x;
         return (layerOffset / 500.0f) * 10.5f;
     });
     
     add<ECS_ParallaxSpriteRendererBack>("background_beach_terrain_layer", 3, [](f32& layerOffset) {
-        layerOffset = DebugUI::get_instance().get_metrics()._playerPos.x;
+        layerOffset = DebugInfo::get_instance().get_metrics()._playerPos.x;
         return (layerOffset / 500.0f) * 21.0f;
     });
 
     add<ECS_ParallaxSpriteRendererFront>("background_beach_grass_overlay_layer", 0, [](f32& layerOffset) {
-        layerOffset = DebugUI::get_instance().get_metrics()._playerPos.x;
+        layerOffset = DebugInfo::get_instance().get_metrics()._playerPos.x;
         return (layerOffset / 500.0f) * 100.0f;
     });
 }

@@ -247,10 +247,10 @@ void omniscia::Game::run() {
     _cutscenes["scene_save_checkpoint_cutscene"] = new SaveCheckpointCutscene(&transitionStageShader);
     _cutscenes["scene_load_checkpoint_cutscene"] = new LoadCheckpointCutscene(&transitionStageShader);
 
-    DebugUI::get_instance().get_metrics()._timeMaxLineLength = 5000;
+    DebugInfo::get_instance().get_metrics()._timeMaxLineLength = 5000;
 
     /* ImGui */
-    DebugUI::get_instance().init(window);
+    DebugInfo::get_instance().init(window);
 
     Time::get_instance().update_delta_time_clock();
     while (!glfwWindowShouldClose(window)) {   
@@ -262,7 +262,7 @@ void omniscia::Game::run() {
 
         ECS_PlayerTimeJumpControllerSystem::get_instance().update();
 
-        const auto& isTimeJump = DebugUI::get_instance().get_metrics()._isTimeJump;
+        const auto& isTimeJump = DebugInfo::get_instance().get_metrics()._isTimeJump;
 
         Time::run_every_n_milliseconds<16u>([]() {
             ECS_SpriteAnimationSystem::get_instance().update();
@@ -328,13 +328,13 @@ void omniscia::Game::run() {
 
             // randomsprite.render(&finalStageShader);
 
-            if(DebugUI::get_instance().get_metrics()._debugUIEnabled) {
-                DebugUI::get_instance().render();
+            if(DebugInfo::get_instance().get_metrics()._debugUIEnabled) {
+                DebugInfo::get_instance().render();
             }
 
             static bool buttonPressed = false;
             const bool isDebugButtonPressed = Controls::get_instance().get(PlayerController::DEBUGUI);
-            bool& toggled = DebugUI::get_instance().get_metrics()._debugUIEnabled;
+            bool& toggled = DebugInfo::get_instance().get_metrics()._debugUIEnabled;
 
             if(isDebugButtonPressed && !buttonPressed) {
                 toggled = !toggled;

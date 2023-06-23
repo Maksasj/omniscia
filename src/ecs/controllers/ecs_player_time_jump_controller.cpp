@@ -17,8 +17,8 @@ void omniscia::core::ecs::ECS_PlayerTimeJumpController::update() {
 
     auto& gameInstance = Game::get_instance();
     auto& timeLine = gameInstance.ref_time_line();
-    bool& isTimeJump = DebugUI::get_instance().get_metrics()._isTimeJump;
-    DebugUI::get_instance().get_metrics()._timeCurrentLineLength = timeLine.get_index();
+    bool& isTimeJump = DebugInfo::get_instance().get_metrics()._isTimeJump;
+    DebugInfo::get_instance().get_metrics()._timeCurrentLineLength = timeLine.get_index();
     isTimeJump = !Controls::get_instance().get(PlayerController::TIME_JUMP); 
 
     if(frame % 5 != 0) return;
@@ -37,10 +37,10 @@ void omniscia::core::ecs::ECS_PlayerTimeJumpController::update() {
         activeScene->time_sync();
         timeLine.pop();
 
-        DebugUI::get_instance().get_metrics()._timeCurrentLineLength = timeLine.get_index();
+        DebugInfo::get_instance().get_metrics()._timeCurrentLineLength = timeLine.get_index();
         steady_clock::time_point end = steady_clock::now();
 
-        DebugUI::get_instance().get_metrics()._timeManipulationTime = duration_cast<nanoseconds>(end - begin).count() * 0.000001;
+        DebugInfo::get_instance().get_metrics()._timeManipulationTime = duration_cast<nanoseconds>(end - begin).count() * 0.000001;
     } else {
         timeLine.push(activeScene->clone());
     }

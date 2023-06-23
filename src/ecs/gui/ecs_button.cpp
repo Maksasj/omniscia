@@ -54,7 +54,7 @@ void omniscia::core::ecs::ECS_Button::update() {
             _clickLambda(*this);
 
             /* Resolve this cringe */
-            DebugUI::get_instance().get_metrics()._isTimeJump = true;
+            DebugInfo::get_instance().get_metrics()._isTimeJump = true;
         }
     } else {
         _unHoverLambda(*this);

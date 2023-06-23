@@ -21,6 +21,6 @@ void  omniscia::core::ecs::ECS_PlayerDebugMetrics::update() {
 
     Vec3f& position = posComp.ref_pos();
 
-    DebugUI::get_instance().get_metrics()._playerPos.x = position.x; 
-    DebugUI::get_instance().get_metrics()._playerPos.y = position.y; 
+    DebugInfo::get_instance().get_metrics()._playerPos.x = position.x; 
+    DebugInfo::get_instance().get_metrics()._playerPos.y = position.y; 
 }

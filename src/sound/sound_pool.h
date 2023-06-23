@@ -84,7 +84,7 @@ namespace omniscia::core {
 
                 _availableSounds[availableSoundIndex] = false;
                 ++_currentlyPlayingSoundCount;
-                DebugUI::get_instance().get_metrics()._currentlyPlayingSoundCount = _currentlyPlayingSoundCount;
+                DebugInfo::get_instance().get_metrics()._currentlyPlayingSoundCount = _currentlyPlayingSoundCount;
 
                 return availableSoundIndex;
             }
@@ -104,7 +104,7 @@ namespace omniscia::core {
                 
                 sound.unload();
                 --_currentlyPlayingSoundCount;
-                DebugUI::get_instance().get_metrics()._currentlyPlayingSoundCount = _currentlyPlayingSoundCount;
+                DebugInfo::get_instance().get_metrics()._currentlyPlayingSoundCount = _currentlyPlayingSoundCount;
 
                 _availableSounds[soundIndex] = true;
             }

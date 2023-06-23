@@ -133,7 +133,7 @@ namespace omniscia::core::ecs {
                 bool _ = std::all_of(_components.begin(), _components.end(), [&](ECS_PlayerTimeJumpController* comp) {
                     comp->update();
                     
-                    if(DebugUI::get_instance().get_metrics()._isTimeJump)
+                    if(DebugInfo::get_instance().get_metrics()._isTimeJump)
                         return false;
                     
                     return true;

@@ -23,5 +23,5 @@ void omniscia::core::CE_SceneSwitchEvent::execute() {
     Game::get_instance().switch_scene(_sceneName);
 
     /* Resolve this cringe */
-    DebugUI::get_instance().get_metrics()._isTimeJump = true;
+    DebugInfo::get_instance().get_metrics()._isTimeJump = true;
 }

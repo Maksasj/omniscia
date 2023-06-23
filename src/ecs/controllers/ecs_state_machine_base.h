@@ -137,7 +137,7 @@ namespace omniscia::core::ecs {
 
                     Entity* parent = comp->get_parent();
 
-                    if(DebugUI::get_instance().get_metrics()._isTimeJump) {
+                    if(DebugInfo::get_instance().get_metrics()._isTimeJump) {
                         if(parent == nullptr)
                             continue;
                         

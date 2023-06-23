@@ -25,9 +25,9 @@ namespace omniscia::core {
     using namespace omni::types;
     
     /**
-     * @brief DebugUI - singleton class used for debugging, and collecting different metrics across entire game
+     * @brief DebugInfo - singleton class used for debugging, and collecting different metrics across entire game
     */
-    class DebugUI {
+    class DebugInfo {
         private:
             /**
              * @brief DebugMetrics - class that stores diffrent metrics
@@ -65,24 +65,24 @@ namespace omniscia::core {
             DebugMetrics _metrics;
 
             /** @brief Hidden constructor */
-            DebugUI() : _imgui_io(nullptr) {};
+            DebugInfo() : _imgui_io(nullptr) {};
             
             /** @brief Hidden copy constructor */
-            DebugUI(DebugUI const&) {};
+            DebugInfo(DebugInfo const&) {};
             
             /** @brief Hidden assignment operator */
-            void operator=(DebugUI const&) {};
+            void operator=(DebugInfo const&) {};
 
         public:
             /**
-             * @brief Initializes DebugUI instance
+             * @brief Initializes DebugInfo instance
              * 
              * @param window pointer to GLFW windows instance 
             */
             void init(GLFWwindow* window);
 
             /**
-             * @brief Renders DebugUI on to the screen
+             * @brief Renders DebugInfo on to the screen
             */
             void render();
             
@@ -94,11 +94,11 @@ namespace omniscia::core {
             DebugMetrics& get_metrics();
             
             /**
-             * @brief Get the singleton instance of the DebugUI
+             * @brief Get the singleton instance of the DebugInfo
              * 
-             * @return Reference to singleton instance of the DebugUI
+             * @return Reference to singleton instance of the DebugInfo
             */
-            static DebugUI& get_instance();
+            static DebugInfo& get_instance();
     };
 }
 

@@ -37,7 +37,7 @@ void omniscia::core::ecs::ECS_Popup::update() {
     auto time = Time::get_instance().get_time();
     auto dt = Time::get_instance().get_delta_time();
     
-    Vec2f playerPos = DebugUI::get_instance().get_metrics()._playerPos;
+    Vec2f playerPos = DebugInfo::get_instance().get_metrics()._playerPos;
     ECS_Positioned& posComp = _parent->ref_unsafe(_posIndex);
     Vec2f pos = posComp.get_pos();
 
