@@ -16,7 +16,7 @@
 #include "ecs_system.h"
 #include "controls.h"
 #include "entity.h"
-#include "debug_ui.h"
+#include "debug_info.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

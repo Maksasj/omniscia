@@ -11,7 +11,7 @@
 #include "ecs_text_renderer.h"
 #include "ecs_sprite_animation_manual.h"
 
-#include "debug_ui.h"
+#include "debug_info.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

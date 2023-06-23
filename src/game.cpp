@@ -321,27 +321,27 @@ void omniscia::Game::run() {
         });
 
         glViewport(0, 0, Properties::get_instance().screenWidth, Properties::get_instance().screenHeight);
-        /* screen buffer */
         RenderStage::render_anonymous_stage_lambda([&]() {
             finalStageShader.activate();
             renderLateStage.present_as_texture();
 
-            // randomsprite.render(&finalStageShader);
-
             if(DebugInfo::get_instance().get_metrics()._debugUIEnabled) {
-                DebugInfo::get_instance().render();
+                ImGui_ImplOpenGL3_NewFrame();
+                ImGui_ImplGlfw_NewFrame();
+                ImGui::NewFrame();
+
+                DebugMetricsWindow::get_instance().render();
+
+                ImGui::Render();
+                ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
             }
 
             static bool buttonPressed = false;
             const bool isDebugButtonPressed = Controls::get_instance().get(PlayerController::DEBUGUI);
             bool& toggled = DebugInfo::get_instance().get_metrics()._debugUIEnabled;
 
-            if(isDebugButtonPressed && !buttonPressed) {
-                toggled = !toggled;
-                buttonPressed = true;
-            } else if(!isDebugButtonPressed) {
-                buttonPressed = false;
-            }
+            toggled = isDebugButtonPressed && !buttonPressed ? !toggled : toggled;  
+            buttonPressed = !isDebugButtonPressed ? false : true;
         });
 
         glfwSwapBuffers(window);

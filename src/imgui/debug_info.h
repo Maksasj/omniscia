@@ -1,6 +1,6 @@
 /**
  * @file 
- * debug_ui.h
+ * debug_info.h
  * 
  * @author 
  * Maksim Jaroslavcevas radioboos@gmail.com
@@ -74,6 +74,8 @@ namespace omniscia::core {
             void operator=(DebugInfo const&) {};
 
         public:
+            friend class DebugMetricsWindow;
+
             /**
              * @brief Initializes DebugInfo instance
              * 
@@ -81,11 +83,6 @@ namespace omniscia::core {
             */
             void init(GLFWwindow* window);
 
-            /**
-             * @brief Renders DebugInfo on to the screen
-            */
-            void render();
-            
             /**
              * @brief References current metrics object
              * 

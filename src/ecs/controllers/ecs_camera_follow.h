@@ -27,7 +27,7 @@
 #include "timesystem.h"
 #include "controls.h"
 #include "camera.h"
-#include "debug_ui.h"
+#include "debug_info.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

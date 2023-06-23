@@ -17,7 +17,7 @@
 
 #include "sound.h"
 #include "omni_types.tpp"
-#include "debug_ui.h"
+#include "debug_info.h"
 
 namespace omniscia::core {
     using namespace omni::types;

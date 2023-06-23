@@ -19,7 +19,7 @@
 #include "ecs_system.h"
 #include "ecs_positioned.h"
 
-#include "debug_ui.h"
+#include "debug_info.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

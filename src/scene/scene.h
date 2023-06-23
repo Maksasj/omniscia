@@ -16,7 +16,7 @@
 #include "player.h"
 #include "grandpa.h"
 
-#include "debug_ui.h"
+#include "debug_info.h"
 
 #include "omni_serializer.h"
 

@@ -9,7 +9,7 @@
 #include "ecs_sound_emitter.h"
 #include "ecs_velocity.h"
 
-#include "debug_ui.h"
+#include "debug_info.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;
