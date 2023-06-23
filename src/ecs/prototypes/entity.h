@@ -146,17 +146,6 @@ namespace omniscia::core {
             ECS_Index<T> index() const {
                 return _component_container.index<T>();
             }
-
-            /**
-             * @brief Function used for getting byte 
-             * size of the entity(as well as 
-             * counting all components)
-             * 
-             * @return u64 byte size 
-            */
-            u64 byte_size() const {
-                return _component_container.byte_size();
-            }
     };
 
     template<class T>

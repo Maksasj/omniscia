@@ -71,8 +71,8 @@ namespace omniscia::core::ecs {
                 return _parent;
             }
             
-            u64 byte_size() override {
-                return sizeof(ECS_Button);
+            void _type_query(void* query) override {
+
             }
     };
 

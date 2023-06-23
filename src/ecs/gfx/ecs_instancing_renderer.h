@@ -49,8 +49,8 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_InstancingRenderer>(*this));
             }
 
-            u64 byte_size() override {
-                return sizeof(ECS_InstancingRenderer) - sizeof(Sprite) + _instancingSprite.byte_size();
+            void _type_query(void* query) override {
+
             }
     };
 }

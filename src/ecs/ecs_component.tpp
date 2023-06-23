@@ -103,8 +103,8 @@ namespace omniscia::core::ecs {
              * 
              * @return byte size of the component
             */
-            virtual u64 byte_size() {
-                return sizeof(ECS_Component);
+            virtual void _type_query(void* query) {
+
             }
     };
 }

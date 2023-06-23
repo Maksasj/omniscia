@@ -35,8 +35,8 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_Collectable>(*this));
             }
 
-            u64 byte_size() override {
-                return sizeof(ECS_Collectable);
+            void _type_query(void* query) override {
+
             }
     };
 }

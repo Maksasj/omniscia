@@ -46,8 +46,8 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_GuiSpriteSheetRenderer>(*this));
             }
 
-            u64 byte_size() override {
-                return sizeof(ECS_GuiSpriteSheetRenderer) - sizeof(Sprite) + _sprite.byte_size();
+            void _type_query(void* query) override {
+
             }
     };
 }

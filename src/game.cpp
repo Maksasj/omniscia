@@ -1,8 +1,5 @@
 #include "game.h"
 
-omni::types::u32 omniscia::core::Properties::screenWidth = 1280;
-omni::types::u32 omniscia::core::Properties::screenHeight = 720;
-
 void window_size_callback(GLFWwindow* window, int width, int height) {
     using namespace omniscia;
     using namespace omniscia::gfx;
@@ -10,8 +7,8 @@ void window_size_callback(GLFWwindow* window, int width, int height) {
 
     glfwSetWindowAspectRatio(window, 16, 9);
 
-    Properties::screenWidth = width;
-    Properties::screenHeight = height;
+    Properties::get_instance().screenWidth = width;
+    Properties::get_instance().screenHeight = height;
 }
 
 void omniscia::Game::load() {
@@ -25,8 +22,8 @@ void omniscia::Game::load() {
     //monitors[1]->set_active();
     //monitors[0]->set_active();
     
-    window = glfwCreateWindow(Properties::screenWidth, Properties::screenHeight, "Omniscia", NULL, NULL);
-    //window = glfwCreateWindow(Properties::screenWidth, Properties::screenHeight, "Omniscia", Monitor::get_active()->get_glfw_monitor(), NULL);
+    window = glfwCreateWindow(Properties::get_instance().screenWidth, Properties::get_instance().screenHeight, "Omniscia", NULL, NULL);
+    //window = glfwCreateWindow(Properties::get_instance().screenWidth, Properties::get_instance().screenHeight, "Omniscia", Monitor::get_active()->get_glfw_monitor(), NULL);
 
     glfwSetWindowSizeCallback(window, window_size_callback);
 
@@ -149,48 +146,48 @@ void omniscia::Game::run() {
         .bind_default_buffer_clear(Vec4f(1.0f, 1.0f, 1.0f, 0.0f));
 
     RenderStage& renderMainStage = RenderStagePool::get_instance().add_stage("MainStage")
-        .bind_target_texture_buffer(new TextureBuffer(Properties::screenWidth, Properties::screenHeight))
-        .bind_viewport_size(Vec4f(0.0, 0.0, Properties::screenWidth, Properties::screenHeight))
+        .bind_target_texture_buffer(new TextureBuffer(Properties::get_instance().screenWidth, Properties::get_instance().screenHeight))
+        .bind_viewport_size(Vec4f(0.0, 0.0, Properties::get_instance().screenWidth, Properties::get_instance().screenHeight))
         .bind_default_shader(&mainStageShader)
         .bind_target_mesh(SpriteMesh(BuildInMeshData::QUAD_MESH_DATA))
         .bind_shader_uniform([](const Shader* shader) {
-            shader->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
+            shader->set_uniform_f32("screenAspect", (Properties::get_instance().screenWidth) / (float) Properties::get_instance().screenHeight);
             shader->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
             shader->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
         })
         .bind_default_buffer_clear(Vec4f(1.0f, 1.0f, 1.0f, 0.0f));
 
     RenderStage& renderGuiStage = RenderStagePool::get_instance().add_stage("GuiStage")
-        .bind_target_texture_buffer(new TextureBuffer(Properties::screenWidth, Properties::screenHeight))
-        .bind_viewport_size(Vec4f(0.0, 0.0, Properties::screenWidth, Properties::screenHeight))
+        .bind_target_texture_buffer(new TextureBuffer(Properties::get_instance().screenWidth, Properties::get_instance().screenHeight))
+        .bind_viewport_size(Vec4f(0.0, 0.0, Properties::get_instance().screenWidth, Properties::get_instance().screenHeight))
         .bind_default_shader(&guiStageShader)
         .bind_target_mesh(SpriteMesh(BuildInMeshData::QUAD_MESH_DATA))
         .bind_shader_uniform([](const Shader* shader) {
-            shader->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
+            shader->set_uniform_f32("screenAspect", (Properties::get_instance().screenWidth) / (float) Properties::get_instance().screenHeight);
             shader->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
             shader->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
         })
         .bind_default_buffer_clear(Vec4f(1.0f, 1.0f, 1.0f, 0.0f));
 
     RenderStage& renderIntermediateStage = RenderStagePool::get_instance().add_stage("IntermediateStage")
-        .bind_target_texture_buffer(new TextureBuffer(Properties::screenWidth, Properties::screenHeight))
-        .bind_viewport_size(Vec4f(0.0, 0.0, Properties::screenWidth, Properties::screenHeight))
+        .bind_target_texture_buffer(new TextureBuffer(Properties::get_instance().screenWidth, Properties::get_instance().screenHeight))
+        .bind_viewport_size(Vec4f(0.0, 0.0, Properties::get_instance().screenWidth, Properties::get_instance().screenHeight))
         .bind_default_shader(&intermediateStageShader)
         .bind_target_mesh(SpriteMesh(BuildInMeshData::QUAD_MESH_DATA))
         .bind_shader_uniform([](const Shader* shader) {
-            shader->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
+            shader->set_uniform_f32("screenAspect", (Properties::get_instance().screenWidth) / (float) Properties::get_instance().screenHeight);
             shader->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
             shader->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
         })
         .bind_default_buffer_clear(Vec4f(1.0f, 1.0f, 1.0f, 0.0f));
 
     RenderStage& renderLateStage = RenderStagePool::get_instance().add_stage("LateStage")
-        .bind_target_texture_buffer(new TextureBuffer(Properties::screenWidth, Properties::screenHeight))
-        .bind_viewport_size(Vec4f(0.0, 0.0, Properties::screenWidth, Properties::screenHeight))
+        .bind_target_texture_buffer(new TextureBuffer(Properties::get_instance().screenWidth, Properties::get_instance().screenHeight))
+        .bind_viewport_size(Vec4f(0.0, 0.0, Properties::get_instance().screenWidth, Properties::get_instance().screenHeight))
         .bind_default_shader(&lateStageShader)
         .bind_target_mesh(SpriteMesh(BuildInMeshData::QUAD_MESH_DATA))
         .bind_shader_uniform([](const Shader* shader) {
-            shader->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
+            shader->set_uniform_f32("screenAspect", (Properties::get_instance().screenWidth) / (float) Properties::get_instance().screenHeight);
             shader->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
             shader->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
         })
@@ -202,7 +199,7 @@ void omniscia::Game::run() {
         .bind_default_shader(&transitionStageShader)
         .bind_target_mesh(SpriteMesh(BuildInMeshData::QUAD_MESH_DATA))
         .bind_shader_uniform([](const Shader* shader) {
-            shader->set_uniform_f32("screenAspect", (Properties::screenWidth) / (float) Properties::screenHeight);
+            shader->set_uniform_f32("screenAspect", (Properties::get_instance().screenWidth) / (float) Properties::get_instance().screenHeight);
             shader->set_uniform_vec3f("cameraPosition", Camera::get_instance().get_pos());
             shader->set_uniform_f32("cameraZoom", Camera::get_instance().get_zoom());
         })
@@ -323,7 +320,7 @@ void omniscia::Game::run() {
             ECS_ProRendererSystem::get_instance().render();
         });
 
-        glViewport(0, 0, Properties::screenWidth, Properties::screenHeight);
+        glViewport(0, 0, Properties::get_instance().screenWidth, Properties::get_instance().screenHeight);
         /* screen buffer */
         RenderStage::render_anonymous_stage_lambda([&]() {
             finalStageShader.activate();

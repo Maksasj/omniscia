@@ -106,14 +106,8 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_SpriteRenderer>(*this));
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
-            u64 byte_size() override {
-                return sizeof(ECS_SpriteRenderer) - sizeof(Sprite) + _sprite.byte_size();
+            void _type_query(void* query) override {
+
             }
     };
 }

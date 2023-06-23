@@ -78,8 +78,6 @@ namespace omniscia::core::ecs {
                 std::shared_ptr<T> ptr(new T());
                 ptr->reindex(parent);
 
-                // std::cout << typeid(T).name() << " " << ptr->byte_size() << "\n";
-
                 _components.push_back(ptr);
             }
 
@@ -96,8 +94,6 @@ namespace omniscia::core::ecs {
             void add(void* parent, Args&&... args) {
                 std::shared_ptr<T> ptr(new T(std::forward<Args>(args)...));
                 ptr->reindex(parent);
-                
-                // std::cout << typeid(T).name() << " " << ptr->byte_size() << "\n";
 
                 _components.push_back(ptr);
             }
@@ -154,20 +150,6 @@ namespace omniscia::core::ecs {
             */
             u32 size() const {
                 return _components.size();
-            }
-
-            /**
-             * @brief Method use for calculating byte size of the component container
-             * 
-             * @return byte size of the component container
-            */
-            u64 byte_size() const {
-                u64 sum = 0;
-
-                for(auto& comp : _components)
-                    sum += comp->byte_size();
-
-                return sum + sizeof(ECS_ComponentContainer); 
             }
     };
 }

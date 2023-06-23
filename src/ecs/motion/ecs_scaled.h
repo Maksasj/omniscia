@@ -85,8 +85,8 @@ namespace omniscia::core::ecs {
              * 
              * @return byte size of the component
             */
-            u64 byte_size() override {
-                return sizeof(ECS_Scaled);
+            void _type_query(void* query) override {
+
             }
     };
 }
