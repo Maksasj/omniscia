@@ -18,6 +18,8 @@ void omniscia::core::ecs::ECS_InstancingRenderer::reindex(void* parent) {
 }
 
 void omniscia::core::ecs::ECS_InstancingRenderer::render() {
+    if(!_enabled) return;
+
     Shader* shader = Shader::get_active();
     if(shader == nullptr)
         return;

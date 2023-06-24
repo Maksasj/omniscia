@@ -335,7 +335,7 @@ void omniscia::Game::run() {
                 DebugMetricsWindow::get_instance().render();
                 DebugSceneManagerWindow::get_instance().render();
 
-                ImGui::ShowDemoWindow();
+                // ImGui::ShowDemoWindow();
 
                 ImGui::Render();
                 ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

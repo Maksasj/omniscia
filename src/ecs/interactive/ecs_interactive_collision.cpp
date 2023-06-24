@@ -5,6 +5,8 @@ omniscia::core::ecs::ECS_InteractiveCollision::ECS_InteractiveCollision(const f3
 };
 
 void omniscia::core::ecs::ECS_InteractiveCollision::update() {
+    if(!_enabled) return;
+
     if(!_triggerColliderIndex.is_success())
         return;
 

@@ -49,10 +49,9 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_MovableAABBCollider> movableAABBColliderIndex;
 
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_PlayerJump, this->_parent);
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_PlayerJump, self._parent);
-
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_PlayerJump>;
+            
             /**
              * @brief Method used for time 
              * synchronization of the component
@@ -96,17 +95,15 @@ namespace omniscia::core::ecs {
                 return _parent;
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_PlayerJump>(*this);
             }
     };
+}
 
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_PlayerJump, _enabled);
+
+namespace omniscia::core::ecs {
     /**
      * @brief ECS_PlayerJumpSystem - System 
      * class used for managing all updates and data for

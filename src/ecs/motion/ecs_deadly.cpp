@@ -12,6 +12,8 @@ void omniscia::core::ecs::ECS_Deadly::time_sync() {
 }
 
 void omniscia::core::ecs::ECS_Deadly::update() {
+    if(!_enabled) return;
+
     if(!is_triggered()) return;
 
     Game::get_instance().start_cutscene("death_cutscene");    

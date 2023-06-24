@@ -10,6 +10,9 @@ namespace omniscia::core::ecs {
 
     class ECS_CheckpointPopup : public ECS_Popup {  
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_CheckpointPopup>;
+
             ECS_CheckpointPopup();
 
             std::shared_ptr<ECS_Component> clone() override {
@@ -17,9 +20,11 @@ namespace omniscia::core::ecs {
             }
 
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_CheckpointPopup>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_CheckpointPopup, _enabled, _cooldown, _timer, _animationId, _offset, _visibilityDistance);
 
 #endif

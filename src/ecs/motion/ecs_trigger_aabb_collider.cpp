@@ -15,6 +15,8 @@ omniscia::core::ecs::ECS_TriggerAABBCollider::ECS_TriggerAABBCollider(const u64&
 };
 
 void omniscia::core::ecs::ECS_TriggerAABBCollider::collide(ECS_AABBCollider* another) {
+    if(!_enabled) return;
+
     if(!(_collisionLayerTarget & another->_collisionLayer)) 
         return;
     

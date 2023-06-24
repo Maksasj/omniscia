@@ -35,6 +35,9 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_Transparency> _transparencyIndex;
 
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_GuiSpriteSheetRenderer>;
+            
             void time_sync() override;
             void reindex(void* parent) override;
 
@@ -47,9 +50,11 @@ namespace omniscia::core::ecs {
             }
 
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_GuiSpriteSheetRenderer>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_GuiSpriteSheetRenderer, _enabled, _layer);
 
 #endif

@@ -35,6 +35,9 @@ namespace omniscia::core::ecs {
             u64 _charactersPerRow;
 
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_TextRenderer>;
+
             void reindex(void* parent) override;
 
             ECS_TextRenderer(ECS_TextRenderer const& comp);
@@ -48,9 +51,11 @@ namespace omniscia::core::ecs {
             }
 
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_TextRenderer>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_TextRenderer, _enabled, _layer, _textToRender, _lineLetterSpacing, _rowLineSpacing, _charactersPerRow);
 
 #endif

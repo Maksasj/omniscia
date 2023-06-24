@@ -12,6 +12,9 @@ namespace omniscia::core::ecs {
         std::string _dialogueCutsceneId;
 
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_SpeakPopup>;
+
             ECS_SpeakPopup(const std::string& dialogueCutsceneId);
 
             ECS_SpeakPopup(ECS_SpeakPopup const& comp);
@@ -21,9 +24,11 @@ namespace omniscia::core::ecs {
             }
 
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_SpeakPopup>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_SpeakPopup, _enabled, _cooldown, _timer, _animationId, _offset, _visibilityDistance, _dialogueCutsceneId);
 
 #endif

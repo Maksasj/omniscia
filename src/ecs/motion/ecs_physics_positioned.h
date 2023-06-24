@@ -37,9 +37,8 @@ namespace omniscia::core::ecs {
         Vec3f _newPosition;
 
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_PhysicsPositioned, this->_oldPosition << " " << this->_newPosition);
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_PhysicsPositioned, self._oldPosition << " " << self._newPosition);
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_PhysicsPositioned>;
 
             /**
              * @brief Default ECS_PhysicsPositioned component constructor 
@@ -85,16 +84,12 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_PhysicsPositioned>(*this));
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_PhysicsPositioned>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_PhysicsPositioned, _enabled, _oldPosition, _newPosition);
 
 #endif

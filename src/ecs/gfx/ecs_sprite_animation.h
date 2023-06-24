@@ -54,9 +54,8 @@ namespace omniscia::core::ecs {
             */
             Animation* animation;
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_SpriteAnimation, this->_currentFrame << " " << this->_animationId << " " << this->_tick);
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_SpriteAnimation, self._currentFrame << " " << self._animationId << " " << self._tick);
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_SpriteAnimation>;
 
             /**
              * @brief Method used for time 
@@ -130,17 +129,15 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_SpriteAnimation>(*this));
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_SpriteAnimation>(*this);
             }
     };
+}
 
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_SpriteAnimation, _enabled, _currentFrame, _animationId, _tick);
+
+namespace omniscia::core::ecs {
     /**
      * @brief ECS_SpriteAnimationSystem - System 
      * class used for managing all updates and data for

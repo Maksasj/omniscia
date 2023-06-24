@@ -56,9 +56,8 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_SpriteAnimation> spriteAnimationIndex;
 
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_PlayerController, this->_parent);
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_PlayerController, self._parent);
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_PlayerController>;
 
             /**
              * @brief Method used for time 
@@ -103,17 +102,15 @@ namespace omniscia::core::ecs {
                 return _parent;
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_PlayerController>(*this);
             }
     };
+}
 
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_PlayerController, _enabled);
+
+namespace omniscia::core::ecs {
     /**
      * @brief ECS_PlayerControllerSystem - System 
      * class used for managing all updates and data for

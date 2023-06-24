@@ -50,9 +50,8 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_SoundEmitter> _soundEmitterIndex;
 
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_CrabController, this->_parent);
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_CrabController, self._parent);
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_CrabController>;
 
             /**
              * @brief Method used for time 
@@ -102,16 +101,12 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_CrabController>(*this));
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_CrabController>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_CrabController, _enabled);
 
 #endif

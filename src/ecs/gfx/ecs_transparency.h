@@ -17,6 +17,9 @@ namespace omniscia::core::ecs {
             f32 _transparency;
 
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_Transparency>;
+
             ECS_Transparency(const f32& transparency = 1.0f);
 
             f32 get_transparency() const;
@@ -30,9 +33,11 @@ namespace omniscia::core::ecs {
             }
 
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_Transparency>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_Transparency, _enabled, _transparency);
 
 #endif

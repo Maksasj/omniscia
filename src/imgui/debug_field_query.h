@@ -35,7 +35,7 @@ namespace omniscia::core {
         using Ref = omni::reflector::Reflection<_ComponentType>;
 
         if(ImGui::TreeNode(Ref::clearTypeName)) {
-            FieldFriendlyScope::for_each_field<predicate::is_any>(component, [&](const char* fieldName, auto& field) {
+            omni::reflector::FieldFriendlyScope::for_each_field<omni::reflector::predicate::is_any>(component, [&](const char* fieldName, auto& field) {
                 DebugFieldQuery::debug_edit_field(fieldName, field);
             });
 

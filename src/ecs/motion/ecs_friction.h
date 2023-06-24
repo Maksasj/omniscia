@@ -35,9 +35,8 @@ namespace omniscia::core::ecs {
             f32 _friction;
 
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_Friction, this->_friction);
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_Friction, self._friction);
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_Friction>;
 
             /**
              * @brief Default constructor of the ECS_Friction component
@@ -78,16 +77,12 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_Friction>(*this));
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_Friction>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_Friction, _enabled, _friction);
 
 #endif

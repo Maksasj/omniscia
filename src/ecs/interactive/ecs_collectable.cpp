@@ -16,6 +16,8 @@ void omniscia::core::ecs::ECS_Collectable::reindex(void* parent) {
 }
 
 void omniscia::core::ecs::ECS_Collectable::update() {
+    if(!_enabled) return;
+
     if(!_triggerColliderIndex.is_success()) return;
 
     ECS_TriggerAABBCollider& colliderComp = ((Entity*)_parent)->ref_unsafe(_triggerColliderIndex);

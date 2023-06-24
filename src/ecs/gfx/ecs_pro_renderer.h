@@ -30,6 +30,9 @@ namespace omniscia::core::ecs {
             u32 _layer;
 
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_ProRenderer>;
+
             ECS_ProRenderer(RenderStage* renderingStage, const u32& layer);
 
             RenderStage* get_rendering_stage() const; 
@@ -37,8 +40,16 @@ namespace omniscia::core::ecs {
             u32 get_layer() const;
 
             virtual void render() {};
-    };
 
+            void _type_query(void* query) override {
+                DebugFieldQuery::debug_component_edit_query<ECS_ProRenderer>(*this);
+            }
+    };
+}
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_ProRenderer, _enabled, _layer);
+
+namespace omniscia::core::ecs {
     struct Predicate_ProRendereLayerTop {
         bool operator()(const ECS_ProRenderer* first, const ECS_ProRenderer* second) {
             return first->get_layer() > second->get_layer();

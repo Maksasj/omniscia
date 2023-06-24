@@ -26,7 +26,6 @@ void omniscia::core::DebugSceneManagerWindow::render() {
 
                 ImGui::Text("Component count %llu", components.size());
 
-
                 for(auto& component : components) {
                     component->_type_query(nullptr);
                 }

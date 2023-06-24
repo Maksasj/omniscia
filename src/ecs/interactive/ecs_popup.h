@@ -23,7 +23,7 @@ namespace omniscia::core::ecs {
     using namespace omniscia::core;
 
     class ECS_Popup : public ECS_Interactive {        
-        private:
+        protected:
             ECS_PopupRenderer _renderer;
 
             std::string _animationId;
@@ -34,6 +34,9 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_Positioned> _posIndex;
 
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_Popup>;
+
             void time_sync() override;
             void reindex(void* parent) override;
 
@@ -52,9 +55,11 @@ namespace omniscia::core::ecs {
             }
 
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_Popup>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_Popup, _enabled, _cooldown, _timer, _animationId, _offset, _visibilityDistance);
 
 #endif

@@ -22,6 +22,9 @@ namespace omniscia::core::ecs {
 
     class ECS_InteractivePress : public ECS_Interactive {
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_InteractivePress>;
+
             ECS_InteractivePress(const f32& cooldown, const std::function<void(void)>& lambda);
 
             void update() override;
@@ -31,9 +34,11 @@ namespace omniscia::core::ecs {
             }
 
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_InteractivePress>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_InteractivePress, _enabled, _cooldown, _timer);
 
 #endif

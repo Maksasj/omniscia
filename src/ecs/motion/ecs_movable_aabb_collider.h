@@ -40,15 +40,8 @@ namespace omniscia::core::ecs {
             CollisionSide _collisionSideY;
 
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(
-                ECS_MovableAABBCollider, 
-                this->_parent << " " << this->_colliding << " " << this->_collisionPoint << " " << this->_collisionSide << " | " <<
-                this->_collidingY << " " << this->_collisionPointY << " " << this->_collisionSideY)
-            OMNISCIA_OFSTREAM_REPRESENTATION(
-                ECS_MovableAABBCollider, 
-                self._parent << " "<< self._colliding << " " << self._collisionPoint << " " << self._collisionSide << " | " <<
-                self._collidingY << " " << self._collisionPointY << " " << self._collisionSideY)
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_MovableAABBCollider>;
 
             /**
              * @brief Method used for time 
@@ -169,16 +162,12 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_MovableAABBCollider>(*this));
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_MovableAABBCollider>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_MovableAABBCollider, _enabled, _collisionLayer, _collisionLayerTarget, _colliding, _collisionPoint, _collidingY, _collisionPointY);
 
 #endif

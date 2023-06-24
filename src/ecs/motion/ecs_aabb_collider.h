@@ -68,10 +68,8 @@ namespace omniscia::core::ecs {
         public:
             friend class ECS_MovableAABBCollider;
             friend class ECS_TriggerAABBCollider;
-
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_AABBCollider, this->_parent << " "<< this->_colliding << " " << this->_collisionPoint << " " << this->_collisionSide)
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_AABBCollider, self._parent << " "<< self._colliding << " " << self._collisionPoint << " " << self._collisionSide)
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_AABBCollider>;
 
             /**
              * @brief Method used for time 
@@ -163,17 +161,15 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_AABBCollider>(*this));
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_AABBCollider>(*this);
             }
     };
+}
 
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_AABBCollider, _enabled, _collisionLayer, _collisionLayerTarget, _colliding, _collisionPoint);
+
+namespace omniscia::core::ecs {
     /**
      * @brief ECS_AABBColliderSystem - System 
      * class used for managing all updates and data for

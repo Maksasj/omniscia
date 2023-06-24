@@ -48,9 +48,8 @@ namespace omniscia::core::ecs {
             Vec2f _velocityRangesY;
             
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_Velocity, this->_vel << " " << this->_velocityRangesX << " " << this->_velocityRangesY); 
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_Velocity, self._vel << " " << self._velocityRangesX << " " << self._velocityRangesY);
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_Velocity>;
 
             /**
              * @brief Default constructor for ECS_Velocity component
@@ -130,16 +129,12 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_Velocity>(*this));
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_Velocity>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_Velocity, _enabled, _vel, _velocityRangesX, _velocityRangesY);
 
 #endif

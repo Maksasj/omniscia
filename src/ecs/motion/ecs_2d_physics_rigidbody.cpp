@@ -20,6 +20,8 @@ void omniscia::core::ecs::ECS_2DPhysicsRigidbody::time_sync() {
 }
 
 void omniscia::core::ecs::ECS_2DPhysicsRigidbody::update() {
+    if(!_enabled) return;
+
     if(!_posIndex.is_success()) return;
     if(!_velocityIndex.is_success()) return;
     if(!_frictionIndex.is_success()) return;

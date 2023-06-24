@@ -35,9 +35,8 @@ namespace omniscia::core::ecs {
             Vec3f _acl;
 
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_Acceleration, this->_acl);
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_Acceleration, self._acl);
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_Acceleration>;
 
             /**
              * @brief Method that reindexes all indexes
@@ -81,16 +80,12 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_Acceleration>(*this));
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_Acceleration>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_Acceleration, _enabled, _acl);
 
 #endif

@@ -27,6 +27,8 @@ void omniscia::core::ecs::ECS_TextRenderer::reindex(void* parent) {
 }
 
 void omniscia::core::ecs::ECS_TextRenderer::set_text_to_render(const std::string& textToRender, const f32& lineLetterSpacing, const f32& rowLineSpacing, const u64& charactersPerRow) {
+    if(!_enabled) return;
+    
     if(_fontAsset == nullptr) 
         return; 
     

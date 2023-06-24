@@ -5,6 +5,8 @@ omniscia::core::ecs::ECS_SpriteAnimationAuto::ECS_SpriteAnimationAuto(const std:
 }
 
 void omniscia::core::ecs::ECS_SpriteAnimationAuto::update() {
+    if(!_enabled) return;
+
     if(animation == nullptr)
         return;
 

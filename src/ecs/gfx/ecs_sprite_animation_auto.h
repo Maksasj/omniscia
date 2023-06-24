@@ -24,6 +24,9 @@ namespace omniscia::core::ecs {
 
     class ECS_SpriteAnimationAuto : public ECS_SpriteAnimation {
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_SpriteAnimationAuto>;
+
             ECS_SpriteAnimationAuto(const std::string &animationId);
 
             void update() override;
@@ -33,9 +36,11 @@ namespace omniscia::core::ecs {
             }
 
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_SpriteAnimationAuto>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_SpriteAnimationAuto, _enabled, _currentFrame, _animationId, _tick);
 
 #endif

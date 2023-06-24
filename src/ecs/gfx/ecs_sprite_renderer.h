@@ -61,6 +61,9 @@ namespace omniscia::core::ecs {
             Sprite _sprite;
 
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_SpriteRenderer>;
+
             /**
              * @brief Method used for time 
              * synchronization of the component
@@ -107,9 +110,11 @@ namespace omniscia::core::ecs {
             }
 
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_SpriteRenderer>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_SpriteRenderer, _enabled, _layer);
 
 #endif

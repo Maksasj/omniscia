@@ -24,6 +24,9 @@ namespace omniscia::core::ecs {
 
     class ECS_Deadly : public ECS_TriggerAABBCollider {
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_Deadly>;
+
             void time_sync() override;
 
             ECS_Deadly();
@@ -33,8 +36,16 @@ namespace omniscia::core::ecs {
             std::shared_ptr<ECS_Component> clone() override {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_Deadly>(*this));
             }
-    };
 
+            void _type_query(void* query) override {
+                DebugFieldQuery::debug_component_edit_query<ECS_Deadly>(*this);
+            }
+    };
+}
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_Deadly, _enabled, _isTriggered, _collisionLayer, _collisionLayerTarget, _colliding, _collisionPoint);
+
+namespace omniscia::core::ecs {
     class ECS_DeadlySystem : public ECS_System<ECS_Deadly> {
         private:
             ECS_DeadlySystem() : ECS_System<ECS_Deadly>() {};

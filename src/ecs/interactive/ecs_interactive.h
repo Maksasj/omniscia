@@ -31,6 +31,9 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_TriggerAABBCollider> _triggerColliderIndex;
 
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_Interactive>;
+
             void time_sync() override;
             void reindex(void* parent) override;
 
@@ -47,10 +50,14 @@ namespace omniscia::core::ecs {
             }
 
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_Interactive>(*this);
             }
     };
+}
 
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_Interactive, _enabled, _cooldown, _timer);
+
+namespace omniscia::core::ecs {
     class ECS_InteractiveSystem : public ECS_System<ECS_Interactive> {
         private:
             ECS_InteractiveSystem() : ECS_System<ECS_Interactive>() {};

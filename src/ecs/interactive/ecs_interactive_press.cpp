@@ -5,6 +5,8 @@ omniscia::core::ecs::ECS_InteractivePress::ECS_InteractivePress(const f32& coold
 };
 
 void omniscia::core::ecs::ECS_InteractivePress::update() {
+    if(!_enabled) return;
+
     if(!_triggerColliderIndex.is_success())
         return;
 

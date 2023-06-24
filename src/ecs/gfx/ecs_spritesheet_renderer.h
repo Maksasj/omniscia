@@ -66,6 +66,9 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_Transparency> _transparencyIndex;
 
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_SpriteSheetRenderer>;
+
             /**
              * @brief Method used for time 
              * synchronization of the component
@@ -111,9 +114,11 @@ namespace omniscia::core::ecs {
             }
 
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_SpriteSheetRenderer>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_SpriteSheetRenderer, _enabled, _layer);
 
 #endif

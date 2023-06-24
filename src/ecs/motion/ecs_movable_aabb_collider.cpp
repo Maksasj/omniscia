@@ -29,6 +29,8 @@ void omniscia::core::ecs::ECS_MovableAABBCollider::reindex(void* parent) {
 }
 
 void omniscia::core::ecs::ECS_MovableAABBCollider::collide(ECS_AABBCollider* another) {
+    if(!_enabled) return;
+
     if(!(_collisionLayerTarget & another->_collisionLayer)) 
         return;
 

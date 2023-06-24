@@ -46,9 +46,8 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_Positioned> _posIndex;
 
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_SoundEmitter, this->_parent);
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_SoundEmitter, self._parent);
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_SoundEmitter>;
 
             /**
              * @brief Method used for time 
@@ -100,17 +99,15 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_SoundEmitter>(*this));
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_SoundEmitter>(*this);
             }
     };
+}
 
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_SoundEmitter, _enabled);
+
+namespace omniscia::core::ecs {
     /**
      * @brief ECS_SoundEmitterSystem - System 
      * class used for managing all updates and data for

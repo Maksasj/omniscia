@@ -22,10 +22,13 @@ namespace omniscia::core::ecs {
     using namespace omniscia::core;
 
     class ECS_TriggerAABBCollider : public ECS_AABBCollider {
-        private:
+        protected:
             bool _isTriggered;
 
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_TriggerAABBCollider>;
+
             ECS_TriggerAABBCollider(const u64& collisionLayer = CollisionMask_None, const u64& collisionLayerTarget = CollisionMask_None);
 
             void collide(ECS_AABBCollider* another) override;
@@ -41,9 +44,11 @@ namespace omniscia::core::ecs {
             }
 
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_TriggerAABBCollider>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_TriggerAABBCollider, _enabled, _isTriggered, _collisionLayer, _collisionLayerTarget, _colliding, _collisionPoint);
 
 #endif

@@ -37,10 +37,9 @@ namespace omniscia::core::ecs {
             bool _verticalFlip;
 
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_SpriteFlip, this->_horizontalFlip << " " << this->_verticalFlip); 
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_SpriteFlip, self._horizontalFlip << " " << self._verticalFlip);
-        
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_SpriteFlip>;
+
             /**
              * @brief Default constructor of the ECS_SpriteFlip component
             */
@@ -95,16 +94,12 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_SpriteFlip>(*this));
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_SpriteFlip>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_SpriteFlip, _enabled, _horizontalFlip, _verticalFlip);
 
 #endif

@@ -56,6 +56,9 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_Transparency> _transparencyIndex;
 
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_ParallaxSpriteRendererFront>;
+            
             /**
              * @brief Method used for time 
              * synchronization of the component
@@ -94,16 +97,12 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_ParallaxSpriteRendererFront>(*this));
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_ParallaxSpriteRendererFront>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_ParallaxSpriteRendererFront, _enabled, _layer, _layerOffset);
 
 #endif

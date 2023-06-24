@@ -51,9 +51,8 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_Acceleration> accelerationIndex;
 
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_Gravity, this->_parent << " " << this->_gravitationalAcceleration);
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_Gravity, self._parent << " " << self._gravitationalAcceleration);
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_Gravity>;
 
             /**
              * @brief Method used for time 
@@ -96,18 +95,16 @@ namespace omniscia::core::ecs {
             Entity* get_parent() {
                 return _parent;
             }
-            
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
-            void _type_query(void* query) override {
 
+            void _type_query(void* query) override {
+                DebugFieldQuery::debug_component_edit_query<ECS_Gravity>(*this);
             }
     };
+}
 
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_Gravity, _enabled, _gravitationalAcceleration);
+
+namespace omniscia::core::ecs {
     /**
      * @brief ECS_GravitySystem - System 
      * class used for managing all updates and data for

@@ -22,6 +22,8 @@ void omniscia::core::ecs::ECS_GuiSpriteRenderer::set_texture_by_id(const std::st
 }
 
 void omniscia::core::ecs::ECS_GuiSpriteRenderer::render() {
+    if(!_enabled) return;
+
     Shader* shader = Shader::get_active();
     if(shader == nullptr)
         return;

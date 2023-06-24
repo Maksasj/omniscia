@@ -62,9 +62,8 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_PhysicsPositioned> _physicsPositionedIndex;
             
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_2DPhysicsRigidbody, this->_parent);
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_2DPhysicsRigidbody, self._parent);
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_2DPhysicsRigidbody>;
 
             /**
              * @brief Method used for time 
@@ -116,17 +115,15 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_2DPhysicsRigidbody>(*this));
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_2DPhysicsRigidbody>(*this);
             }
     };
+}
 
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_2DPhysicsRigidbody, _enabled);
+
+namespace omniscia::core::ecs {
     /**
      * @brief ECS_2DPhysicsRigidbodySystem - System 
      * class used for managing all updates and data for

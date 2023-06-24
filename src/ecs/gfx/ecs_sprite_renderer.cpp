@@ -22,6 +22,8 @@ void omniscia::core::ecs::ECS_SpriteRenderer::set_texture_by_id(const std::strin
 }
 
 void omniscia::core::ecs::ECS_SpriteRenderer::render() {
+    if(!_enabled) return;
+
     Shader* shader = Shader::get_active();
     if(shader == nullptr)
         return;

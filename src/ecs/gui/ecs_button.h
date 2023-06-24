@@ -43,6 +43,9 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_BoxColliderMesh> _colliderIndex;
 
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_Button>;
+
             void time_sync() override;
             void reindex(void* parent) override;
 
@@ -70,12 +73,16 @@ namespace omniscia::core::ecs {
             Entity* get_parent() {
                 return _parent;
             }
-            
-            void _type_query(void* query) override {
 
+            void _type_query(void* query) override {
+                DebugFieldQuery::debug_component_edit_query<ECS_Button>(*this);
             }
     };
+}
 
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_Button, _enabled);
+
+namespace omniscia::core::ecs {
     class ECS_ButtonSystem : public ECS_System<ECS_Button> {
         private:
             ECS_ButtonSystem() : ECS_System<ECS_Button>() {};

@@ -93,13 +93,9 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_Positioned>(*this));
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
-            void _type_query(void* query) override;
+            void _type_query(void* query) override {
+                DebugFieldQuery::debug_component_edit_query<ECS_Positioned>(*this);
+            }
     };
 }
 

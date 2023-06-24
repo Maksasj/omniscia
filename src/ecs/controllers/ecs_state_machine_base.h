@@ -37,9 +37,8 @@ namespace omniscia::core::ecs {
             void (ECS_StateMachineBase::*_activeState)();
             
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_StateMachineBase, ""); 
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_StateMachineBase, ""); 
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_StateMachineBase>;
 
             /**
              * @brief Method used for time 
@@ -89,17 +88,15 @@ namespace omniscia::core::ecs {
                 return static_cast<std::shared_ptr<ECS_Component>>(std::make_shared<ECS_StateMachineBase>(*this));
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_StateMachineBase>(*this);
             }
     };
+}
 
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_StateMachineBase, _enabled);
+
+namespace omniscia::core::ecs {
     /**
      * @brief ECS_StateMachineBaseSystem - System 
      * class used for managing all updates and data for

@@ -24,6 +24,9 @@ namespace omniscia::core::ecs {
 
     class ECS_Collectable : public ECS_Interactive {        
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_Collectable>;
+
             void time_sync() override;
             void reindex(void* parent) override;
 
@@ -36,9 +39,11 @@ namespace omniscia::core::ecs {
             }
 
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_Collectable>(*this);
             }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_Collectable, _enabled, _cooldown, _timer);
 
 #endif

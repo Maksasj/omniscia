@@ -53,9 +53,8 @@ namespace omniscia::core::ecs {
             ECS_Index<ECS_Positioned> posIndex;
 
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_CameraFollow, this->_parent << " " << " " << this->_cameraFollowSpeed);
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_CameraFollow, self._parent << " " << " " << self._cameraFollowSpeed);
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_CameraFollow>;
 
             /**
              * @brief Method used for time 
@@ -134,17 +133,15 @@ namespace omniscia::core::ecs {
                 return _parent;
             }
 
-            /**
-             * @brief Virtual method used for 
-             * calculating byte size of the component
-             * 
-             * @return byte size of the component
-            */
             void _type_query(void* query) override {
-
+                DebugFieldQuery::debug_component_edit_query<ECS_CameraFollow>(*this);
             }
     };
+}
 
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_CameraFollow, _enabled, _cameraFollowSpeed);
+
+namespace omniscia::core::ecs {
     /**
      * @brief ECS_CameraFollowSystem - System 
      * class used for managing all updates and data for
