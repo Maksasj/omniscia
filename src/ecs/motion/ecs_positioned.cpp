@@ -23,3 +23,7 @@ void omniscia::core::ecs::ECS_Positioned::set_pos(const Vec3f& newPos) {
 void omniscia::core::ecs::ECS_Positioned::move_pos(const Vec3f& movedPos) {
     _pos += movedPos;
 }
+
+void omniscia::core::ecs::ECS_Positioned::_type_query(void* query) {
+    DebugFieldQuery::debug_component_edit_query<ECS_Positioned>(*this);
+}

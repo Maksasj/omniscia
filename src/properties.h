@@ -26,7 +26,7 @@ namespace omniscia::core {
      * @brief Properties singleton class, that will be used
      * for storing different app properties and settings
     */
-    class Properties : Reflected<Properties> {
+    class Properties {
         public:
             u32 screenWidth;
             u32 screenHeight;
@@ -42,12 +42,9 @@ namespace omniscia::core {
                 static Properties editor;
                 return editor;
             }
-
-            const constexpr static auto meta = std::make_tuple(
-                field(screenWidth),
-                field(screenHeight)
-            );
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core, Properties, screenWidth, screenHeight);
 
 #endif

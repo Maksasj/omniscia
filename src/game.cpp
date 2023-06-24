@@ -45,6 +45,9 @@ void omniscia::Game::run() {
     TextureManager::get_instance().load_assets();
     SoundManager::get_instance().load_assets();
 
+    DebugCore::get_instance().init(window);
+    const auto& debugCore = DebugCore::get_instance();
+
     Shader backgroundStageShader("vert_stage_background", "frag_stage_background");
     Shader mainStageShader("vert_stage_main", "frag_stage_main");
     Shader intermediateStageShader("vert_stage_intermediate", "frag_stage_intermediate");
@@ -249,9 +252,6 @@ void omniscia::Game::run() {
 
     DebugInfo::get_instance().get_metrics()._timeMaxLineLength = 5000;
 
-    /* ImGui */
-    DebugInfo::get_instance().init(window);
-
     Time::get_instance().update_delta_time_clock();
     while (!glfwWindowShouldClose(window)) {   
         Time::get_instance().update_delta_time_clock();
@@ -329,8 +329,13 @@ void omniscia::Game::run() {
                 ImGui_ImplOpenGL3_NewFrame();
                 ImGui_ImplGlfw_NewFrame();
                 ImGui::NewFrame();
+                // if(DebugCore::get_instance().font != nullptr)
+                    // ImGui::PushFont(DebugCore::get_instance().font);
 
                 DebugMetricsWindow::get_instance().render();
+                DebugSceneManagerWindow::get_instance().render();
+
+                ImGui::ShowDemoWindow();
 
                 ImGui::Render();
                 ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

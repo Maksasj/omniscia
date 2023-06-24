@@ -12,7 +12,7 @@ namespace omniscia::core {
     using namespace omni::reflector;
     // using namespace omni::reflector::serialization;
 
-    struct TileData : Reflected<TileData> {
+    struct TileData {
         Vec2f _position;
         Vec2f _scale;
 
@@ -20,17 +20,9 @@ namespace omniscia::core {
         Vec2f _textureCordsBottomRight   = {1.0f, 0.0f};
         Vec2f _textureCordsBottomLeft    = {0.0f, 1.0f};
         Vec2f _textureCordsTopLeft       = {0.0f, 0.0f};
-
-        const constexpr static auto meta = std::make_tuple(
-            field(_position),
-            field(_scale),
-
-            field(_textureCordsTopRight),
-            field(_textureCordsBottomRight),
-            field(_textureCordsBottomLeft),
-            field(_textureCordsTopLeft)
-        );
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core, TileData, _position, _scale, _textureCordsTopRight, _textureCordsBottomRight, _textureCordsBottomLeft, _textureCordsTopLeft);
 
 #endif

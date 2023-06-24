@@ -13,9 +13,8 @@
 namespace omniscia::core {
     using namespace omni::types;
     using namespace omni::reflector;
-    // using namespace omni::reflector::serialization;
 
-    struct TileGroupData : Reflected<TileGroupData> {
+    struct TileGroupData {
         std::string _name;
         Vec4f _tileGroupAssociatedColor = Vec4f{1.0f, 1.0f, 1.0f, 1.0f};
 
@@ -29,18 +28,10 @@ namespace omniscia::core {
         u32 _tileSetTexture;
 
         TileGroupData() {}
-        
-        TileGroupData(const std::string& name) {
-            _name = name;
-        }
-
-        const constexpr static auto meta = std::make_tuple(
-            field(_name),
-            field(_tileGroupAssociatedColor),
-            field(_tiles),
-            field(_collisionBoxes)
-        );
+        TileGroupData(const std::string& name) { _name = name; }
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core, TileGroupData, _name, _tileGroupAssociatedColor, _tiles, _collisionBoxes);
 
 #endif

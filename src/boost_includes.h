@@ -10,4 +10,6 @@
 #include "boost/uuid/uuid.hpp"
 #include "boost/uuid/random_generator.hpp"
 
+#include "boost/type_index.hpp"
+
 #endif

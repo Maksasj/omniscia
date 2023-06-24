@@ -10,15 +10,12 @@
 namespace omniscia::core {
     using namespace omni::types;
     using namespace omni::reflector;
-    // using namespace omni::reflector::serialization;
 
-    struct MarkerData : Reflected<MarkerData> {
+    struct MarkerData {
         Vec2f _position;
-
-        const constexpr static auto meta = std::make_tuple(
-            field(_position)
-        );
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core, MarkerData, _position);
 
 #endif

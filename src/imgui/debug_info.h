@@ -58,14 +58,11 @@ namespace omniscia::core {
                 bool _debugUIEnabled = false;
             };
 
-            /** @brief Pointer to imgui io */
-            ImGuiIO* _imgui_io;    
-
             /** @brief Metrics it self */
             DebugMetrics _metrics;
 
             /** @brief Hidden constructor */
-            DebugInfo() : _imgui_io(nullptr) {};
+            DebugInfo() {};
             
             /** @brief Hidden copy constructor */
             DebugInfo(DebugInfo const&) {};
@@ -75,13 +72,7 @@ namespace omniscia::core {
 
         public:
             friend class DebugMetricsWindow;
-
-            /**
-             * @brief Initializes DebugInfo instance
-             * 
-             * @param window pointer to GLFW windows instance 
-            */
-            void init(GLFWwindow* window);
+            friend class DebugSceneManagerWindow;
 
             /**
              * @brief References current metrics object

@@ -43,6 +43,8 @@ namespace omniscia::core {
             EntityTimeType _timeType;
         
         public:
+            friend class DebugSceneManagerWindow;
+
             /** @brief Default Entity constructor */
             Entity() {
                 _uuid = UUID::gen_uuid();

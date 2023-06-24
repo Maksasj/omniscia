@@ -17,7 +17,11 @@
 #include <iostream>
 #include <sstream>
 
+#include "omni_reflector.h"
+
 #include "omni_types.tpp"
+
+#include "debug_field_query.h"
 
 #define OMNISCIA_STRING_REPRESENTATION(__TYPE_NAME__, ...)                          \
     std::string to_string() const {                                                 \
@@ -34,7 +38,8 @@
 
 namespace omniscia::core::ecs {
     using namespace omni::types;
-    
+    using namespace omni::reflector;
+
     /**
      * @brief ECS_Component - generic class 
      * used for all components, just 

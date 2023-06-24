@@ -12,7 +12,7 @@ namespace omniscia::core {
     using namespace omni::types;
     using namespace omni::reflector;
 
-    struct CollisionBoxData : Reflected<CollisionBoxData> {
+    struct CollisionBoxData {
         std::string _name;
         Vec4f _collisionBoxAssociatedColor;
         Vec2f _position;
@@ -38,16 +38,9 @@ namespace omniscia::core {
 
             _collisionBoxAssociatedColor = Vec4f{1.0f, 1.0f, 1.0f, 1.0f};
         }
-
-        const constexpr static auto meta = std::make_tuple(
-            field(_name),
-            field(_collisionBoxAssociatedColor),
-            field(_position),
-            field(_xRanges),
-            field(_yRanges),
-            field(_isDamaging)
-        );
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core, CollisionBoxData, _name, _collisionBoxAssociatedColor, _position, _xRanges, _yRanges, _isDamaging);
 
 #endif

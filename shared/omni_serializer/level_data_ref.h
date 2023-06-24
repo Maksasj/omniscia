@@ -15,20 +15,15 @@ namespace omniscia::core {
     using namespace omni::reflector;
     using namespace omni::reflector::serialization;
 
-    struct LevelData : Reflected<LevelData> {
+    struct LevelData {
         f32 _screenBoxWidth;
         f32 _screenBoxHeight;
 
         std::vector<TileGroupData> _tileGroups;
         std::vector<MarkerGroupData> _markerGroups;
-
-        const constexpr static auto meta = std::make_tuple(
-            field(_screenBoxWidth),
-            field(_screenBoxHeight),
-            field(_tileGroups),
-            field(_markerGroups)
-        );
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core, LevelData, _screenBoxWidth, _screenBoxHeight, _tileGroups, _markerGroups);
 
 #endif

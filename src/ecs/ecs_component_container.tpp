@@ -17,11 +17,14 @@
 #include <optional>
 #include <typeinfo>
 
+#include "debug_scene_manager_window.h"
+
 #include "ecs_component_container_index.tpp"
 #include "ecs_component.tpp"
 #include "omni_types.tpp"
 
 namespace omniscia::core::ecs {
+    using namespace omniscia::core;
     using namespace omni::types;
     
     /**
@@ -34,6 +37,8 @@ namespace omniscia::core::ecs {
             std::vector<std::shared_ptr<ECS_Component>> _components;
 
         public:
+            friend class ::omniscia::core::DebugSceneManagerWindow;
+
             /* Some evil macros */
             OMNISCIA_STRING_REPRESENTATION(ECS_ComponentContainer, this->_components.size());
             OMNISCIA_OFSTREAM_REPRESENTATION(ECS_ComponentContainer, self._components.size());

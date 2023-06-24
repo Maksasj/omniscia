@@ -67,6 +67,7 @@ namespace omniscia::core {
 
         public:
             friend class SceneLoader;
+            friend class DebugSceneManagerWindow;
 
             /**
              * @brief Method used for cloning dynamic scene part

@@ -35,9 +35,8 @@ namespace omniscia::core::ecs {
             Vec3f _pos;
 
         public:
-            /* Some evil macros */
-            OMNISCIA_STRING_REPRESENTATION(ECS_Positioned, this->_pos);
-            OMNISCIA_OFSTREAM_REPRESENTATION(ECS_Positioned, self._pos);
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<ECS_Positioned>;
 
             /**
              * @brief Default constructor of the ECS_Positioned component
@@ -100,10 +99,10 @@ namespace omniscia::core::ecs {
              * 
              * @return byte size of the component
             */
-            void _type_query(void* query) override {
-
-            }
+            void _type_query(void* query) override;
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core::ecs, ECS_Positioned, _enabled, _pos);
 
 #endif
