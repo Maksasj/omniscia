@@ -41,6 +41,7 @@
 #include "debug_core.h"
 #include "debug_metrics_window.h"
 #include "debug_scene_manager_window.h"
+#include "debug_rendering_stage_preview.h"
 
 #include "font_manager.h"
 #include "save_manager.h"

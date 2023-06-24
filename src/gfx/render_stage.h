@@ -63,6 +63,10 @@ namespace omniscia::gfx {
 
             i32 get_stage_id() const;
 
+            u32 get_raw_texture() {
+                return _textureBuffer->get_id();
+            }
+
             /**
              * @brief Binds mesh to the RenderStage instance(usually QUAD mesh)
              * 

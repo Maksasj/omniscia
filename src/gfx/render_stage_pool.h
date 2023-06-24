@@ -29,6 +29,10 @@ namespace omniscia::gfx {
                 return *renderStage;
             }
 
+            std::unordered_map<std::string, RenderStage*>& get_stages() {
+                return _slowReferences;
+            }
+
             i32 rendering_stage_count() const {
                 return _renderingStages.size();
             }
