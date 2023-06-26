@@ -1,6 +1,6 @@
 #include "level_data.h"
 
-void omniscia_editor::level_editor::LevelData::load_from_file(std::string filePath, LevelEditorProperties& levelEditorProperties) {
+void omniscia_editor::level_editor::LevelData::load_from_file(std::string filePath, LevelEditorOldProperties& levelEditorProperties) {
     std::ifstream file(filePath, std::ios::out | std::ios::binary);
 
     if(!file.good()) {
@@ -52,7 +52,7 @@ void omniscia_editor::level_editor::LevelData::load_from_file(std::string filePa
     }
 }
 
-void omniscia_editor::level_editor::LevelData::export_to_file(std::string filePath, LevelEditorProperties& levelEditorProperties) {
+void omniscia_editor::level_editor::LevelData::export_to_file(std::string filePath, LevelEditorOldProperties& levelEditorProperties) {
     std::ofstream file(filePath, std::ios::out | std::ios::binary);
     if(!file.good()) {
         std::cout << "Could not export level to '" << filePath << "'";

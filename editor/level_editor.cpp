@@ -1,6 +1,6 @@
 #include "level_editor.h"
 
-void omniscia_editor::level_editor::LevelEditor::render_editor_options(GLFWwindow* window) {
+void omniscia_editor::level_editor::LevelEditorOld::render_editor_options(GLFWwindow* window) {
     ImGui::SeparatorText("Editor");
     
     ImGui::Checkbox("Render grid", &_renderGrid);
@@ -40,19 +40,19 @@ void omniscia_editor::level_editor::LevelEditor::render_editor_options(GLFWwindo
     }
 }
 
-void omniscia_editor::level_editor::LevelEditor::render_level_options() {
+void omniscia_editor::level_editor::LevelEditorOld::render_level_options() {
     ImGui::SeparatorText("Level");
     ImGui::Text("Tile group count: %llu", _levelData._tileGroups.size());
 }
 
-void omniscia_editor::level_editor::LevelEditor::render_rect(ImDrawList* drawList, const ImVec2& topLeft, const ImVec2& topRight, const ImVec2& bottomLeft, const ImVec2& bottomRight, const ImU32& color, f32 thickness) {
+void omniscia_editor::level_editor::LevelEditorOld::render_rect(ImDrawList* drawList, const ImVec2& topLeft, const ImVec2& topRight, const ImVec2& bottomLeft, const ImVec2& bottomRight, const ImU32& color, f32 thickness) {
     drawList->AddLine(topLeft, topRight, color, thickness); 
     drawList->AddLine(bottomLeft, bottomRight, color, thickness);
     drawList->AddLine(topLeft, bottomLeft, color, thickness);                                                                                                  
     drawList->AddLine(topRight, bottomRight, color, thickness);
 }
 
-void omniscia_editor::level_editor::LevelEditor::render_tile_texture_coordinate_options(TileGroupData& tileGroup) {
+void omniscia_editor::level_editor::LevelEditorOld::render_tile_texture_coordinate_options(TileGroupData& tileGroup) {
     auto flag = 
         ImGuiWindowFlags_NoResize | 
         ImGuiWindowFlags_NoScrollWithMouse | 
@@ -157,7 +157,7 @@ void omniscia_editor::level_editor::LevelEditor::render_tile_texture_coordinate_
     ImGui::End();
 }
 
-void omniscia_editor::level_editor::LevelEditor::render_markergroup_options() {
+void omniscia_editor::level_editor::LevelEditorOld::render_markergroup_options() {
     using namespace omni::types;
 
     ImGui::SeparatorText("Marker Groups");
@@ -249,7 +249,7 @@ void omniscia_editor::level_editor::LevelEditor::render_markergroup_options() {
     }
 }
 
-void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
+void omniscia_editor::level_editor::LevelEditorOld::render_tilegroup_options() {
     using namespace omni::types;
 
     ImGui::SeparatorText("Tile Groups");
@@ -393,7 +393,7 @@ void omniscia_editor::level_editor::LevelEditor::render_tilegroup_options() {
     }
 }
 
-void omniscia_editor::level_editor::LevelEditor::render_brush_options() {
+void omniscia_editor::level_editor::LevelEditorOld::render_brush_options() {
     ImGui::SeparatorText("Brush");
     ImGui::RadioButton("Place", &_brushMode, 0); 
     ImGui::SameLine();
@@ -430,7 +430,7 @@ void omniscia_editor::level_editor::LevelEditor::render_brush_options() {
     }
 }
 
-omniscia_editor::level_editor::LevelEditor::LevelEditor() {
+omniscia_editor::level_editor::LevelEditorOld::LevelEditorOld() {
     _renderGrid = true;
     _renderAxis = true;
     _renderTilesTextures = false;
@@ -482,7 +482,7 @@ omniscia_editor::level_editor::LevelEditor::LevelEditor() {
     _brushActiveTileAtlasCordsTopLeft =     {0.0f, 1.0f}; // {0.0f, 1.0f};
 }
 
-void omniscia_editor::level_editor::LevelEditor::render_tiles(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
+void omniscia_editor::level_editor::LevelEditorOld::render_tiles(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
     using namespace omni::types;
     
     for(TileGroupData& tileGroup : _levelData._tileGroups) {    
@@ -523,7 +523,7 @@ void omniscia_editor::level_editor::LevelEditor::render_tiles(ImDrawList* drawLi
     }
 }
 
-void omniscia_editor::level_editor::LevelEditor::render_markers(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
+void omniscia_editor::level_editor::LevelEditorOld::render_markers(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
     using namespace omni::types;
     
     for(MarkerGroupData& markerGroup : _levelData._markerGroups) {    
@@ -544,7 +544,7 @@ void omniscia_editor::level_editor::LevelEditor::render_markers(ImDrawList* draw
     }
 }
 
-void omniscia_editor::level_editor::LevelEditor::render_collision_boxes(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
+void omniscia_editor::level_editor::LevelEditorOld::render_collision_boxes(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
     using namespace omni::types;
 
     for(auto& tileGroup : _levelData._tileGroups) {
@@ -565,7 +565,7 @@ void omniscia_editor::level_editor::LevelEditor::render_collision_boxes(ImDrawLi
     }
 }
 
-void omniscia_editor::level_editor::LevelEditor::render_grid(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
+void omniscia_editor::level_editor::LevelEditorOld::render_grid(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
     f32 startY = 0.0 + _scroll.y;
     f32 startX = 0.0 + _scroll.x;
     
@@ -591,7 +591,7 @@ void omniscia_editor::level_editor::LevelEditor::render_grid(ImDrawList* drawLis
     }
 }
 
-void omniscia_editor::level_editor::LevelEditor::render_camera_box(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
+void omniscia_editor::level_editor::LevelEditorOld::render_camera_box(ImDrawList* drawList, const ImVec2& canvas_p0, const ImVec2& canvas_p1) {
     f32 radiusX = _playerScreenWidth / 2.0; 
     f32 radiusY = _playerScreenHeight / 2.0; 
 
@@ -608,7 +608,7 @@ void omniscia_editor::level_editor::LevelEditor::render_camera_box(ImDrawList* d
     drawList->AddRect(firstPoint, secondPoint, IM_COL32(255, 255, 0, 255));
 }
 
-void omniscia_editor::level_editor::LevelEditor::render_metrics_window() {
+void omniscia_editor::level_editor::LevelEditorOld::render_metrics_window() {
     ImGuiIO& io = ImGui::GetIO(); 
 
     ImGuiStyle& style = ImGui::GetStyle();
@@ -628,7 +628,7 @@ void omniscia_editor::level_editor::LevelEditor::render_metrics_window() {
     }
 }
 
-void omniscia_editor::level_editor::LevelEditor::render_tab(GLFWwindow *window) {
+void omniscia_editor::level_editor::LevelEditorOld::render_tab(GLFWwindow *window) {
     if(ImGui::BeginTabItem("Level")) {
         ImGuiIO& io = ImGui::GetIO(); 
 
@@ -647,7 +647,7 @@ void omniscia_editor::level_editor::LevelEditor::render_tab(GLFWwindow *window) 
             if(importButtonClicked & 1) {
                 std::cout << "Importing map assets\\levels\\level.bin \n";
 
-                _levelData.load_from_file("assets\\level.json", get_properties());
+                _levelData.load_from_file("assets\\levels\\level.json", get_properties());
 
                 importButtonClicked = 0;
             }

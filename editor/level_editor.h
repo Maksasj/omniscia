@@ -18,7 +18,7 @@
 namespace omniscia_editor::level_editor {
     using namespace omni::types;
 
-    class LevelEditor : public LevelEditorProperties {
+    class LevelEditorOld : public LevelEditorOldProperties {
         private:
             LevelData _levelData;
 
@@ -46,7 +46,7 @@ namespace omniscia_editor::level_editor {
 
             void render_metrics_window();
         public:
-            LevelEditor();
+            LevelEditorOld();
             void render_tab(GLFWwindow *window);
     };
 }

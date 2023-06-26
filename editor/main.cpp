@@ -3,6 +3,7 @@
 
 int main(void) {
     using namespace omni::types;
+    using namespace omniscia_editor::editor;
 
     GLFWwindow* window;
 
@@ -26,22 +27,33 @@ int main(void) {
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
+
     ImGuiIO& io = ImGui::GetIO(); 
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+
+    ImGui::CreateContext();
     ImGui::StyleColorsDark();
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
+
+    ImFont* font = io.Fonts->AddFontFromFileTTF("assets\\fonts\\Nunito-Medium.ttf", 21);
 
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-        using namespace omniscia_editor::editor;
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
 
         Editor::get_instance().render(window);
 
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());     
+
         glfwSwapBuffers(window);
         glfwPollEvents();
-    }
+    } 
 
     glfwTerminate();
     return 0;

@@ -7,7 +7,7 @@
 namespace omniscia_editor::level_editor {
     using namespace omni::types;
 
-    struct LevelEditorProperties {
+    struct LevelEditorOldProperties {
         bool _renderGrid;
         bool _renderAxis;
         bool _renderTilesTextures;
@@ -61,7 +61,7 @@ namespace omniscia_editor::level_editor {
         bool _exportAllTileGroups;
         bool _exportOpenglCoordinateFlip;
 
-        LevelEditorProperties& get_properties();
+        LevelEditorOldProperties& get_properties();
     };
 }
 

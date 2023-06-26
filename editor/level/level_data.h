@@ -21,8 +21,8 @@ namespace omniscia_editor::level_editor {
         std::vector<TileGroupData> _tileGroups;
         std::vector<MarkerGroupData> _markerGroups;
 
-        void load_from_file(std::string filePath, LevelEditorProperties& levelEditorProperties);
-        void export_to_file(std::string filePath, LevelEditorProperties& levelEditorProperties);
+        void load_from_file(std::string filePath, LevelEditorOldProperties& levelEditorProperties);
+        void export_to_file(std::string filePath, LevelEditorOldProperties& levelEditorProperties);
     };
 }
 
