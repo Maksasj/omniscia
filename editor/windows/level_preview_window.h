@@ -43,20 +43,20 @@ namespace omniscia_editor::windows {
             void render_window() override {
                 ImGui::Begin("Level preview");
 
-                ImGuiIO& io = ImGui::GetIO(); 
+                const ImGuiIO& io = ImGui::GetIO(); 
 
-                ImVec2 canvasP0 = ImGui::GetCursorScreenPos();
+                const ImVec2 canvasP0 = ImGui::GetCursorScreenPos();
                 ImVec2 canvasSZ = ImGui::GetContentRegionAvail();
 
                 if (canvasSZ.x < 50.0f) canvasSZ.x = 50.0f;
                 if (canvasSZ.y < 50.0f) canvasSZ.y = 50.0f;
                 
-                ImVec2 canvasP1 = ImVec2(canvasP0.x + canvasSZ.x, canvasP0.y + canvasSZ.y);
+                const ImVec2 canvasP1 = ImVec2(canvasP0.x + canvasSZ.x, canvasP0.y + canvasSZ.y);
                 
                 ImDrawList* drawList = ImGui::GetWindowDrawList();
 
                 /** Grid */
-                ImVec2 windowPos = ImGui::GetWindowPos();
+                const ImVec2 windowPos = ImGui::GetWindowPos();
 
                 const Vec2f start = Vec2f(_scroll.x + windowPos.x, _scroll.y + windowPos.y);
                 

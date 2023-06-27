@@ -9,6 +9,7 @@
 #include "brush_window.h"
 #include "history_window.h"
 #include "level_preview_window.h"
+#include "metrics_window.h"
 
 #include "../gfx.h"
 #include "../types.h"
@@ -26,10 +27,14 @@ namespace omniscia_editor::windows {
             std::vector<PropertyInstance> _windows;
 
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<PropertiesWindow>;
+
             PropertiesWindow() {
                 _windows.push_back(PropertyInstance{"Brush",            &BrushWindow::get_instance()});
                 _windows.push_back(PropertyInstance{"History",          &HistoryWindow::get_instance()});
                 _windows.push_back(PropertyInstance{"Level prieview",   &LevelPreviewWindow::get_instance()});
+                _windows.push_back(PropertyInstance{"Metrics",          &MetricsWindow::get_instance()});
                 
                 _windows.push_back(PropertyInstance{"Properties",       this});
             };

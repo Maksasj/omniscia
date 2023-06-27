@@ -15,6 +15,9 @@ namespace omniscia_editor::windows {
     class BrushWindow : public AppWindow {
         private:
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<BrushWindow>;
+
             BrushWindow() {
 
             };

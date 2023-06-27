@@ -11,6 +11,7 @@
 #include "windows/properties_window.h"
 #include "windows/history_window.h"
 #include "windows/brush_window.h"
+#include "windows/metrics_window.h"
 
 namespace omniscia_editor::editor {
     using namespace omni::types;
@@ -62,6 +63,7 @@ namespace omniscia_editor::editor {
                 static bool renderBrushWindow = false;
                 static bool renderLevelPreviewWindow = false;
                 static bool renderHistroyWindow = false;
+                static bool renderMetricsWindow = false;
 
                 static bool renderPropertiesWindow = false;
 
@@ -96,6 +98,7 @@ namespace omniscia_editor::editor {
                         ImGui::MenuItem("Brush", nullptr, &renderBrushWindow);
                         ImGui::MenuItem("Level preview", nullptr, &renderLevelPreviewWindow);
                         ImGui::MenuItem("History", nullptr, &renderHistroyWindow);
+                        ImGui::MenuItem("Metrics", nullptr, &renderMetricsWindow);
 
                         ImGui::EndMenu();
                     }
@@ -122,6 +125,7 @@ namespace omniscia_editor::editor {
                 if(renderBrushWindow) BrushWindow::get_instance().render_window();
                 if(renderLevelPreviewWindow) LevelPreviewWindow::get_instance().render_window();
                 if(renderHistroyWindow) HistoryWindow::get_instance().render_window();
+                if(renderMetricsWindow) MetricsWindow::get_instance().render_window();
 
                 if(renderPropertiesWindow) PropertiesWindow::get_instance().render_window();
 
