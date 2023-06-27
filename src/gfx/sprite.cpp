@@ -47,6 +47,8 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader) const {
 
     shader->set_uniform_f32("textureAspect", _texture->get_aspect());
 
+    shader->set_uniform_vec2f("texturePixelSize", Vec2f(_texture->get_width(), _texture->get_height()));
+    
     bind(); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     unbind();
@@ -260,6 +262,8 @@ void omniscia::gfx::sprite::Sprite::render(const Shader *shader, const Vec2f &po
 
     shader->set_uniform_i32("textureFlipHorizontal", horizontalFlip);
     shader->set_uniform_i32("textureFlipVertical", verticalFlip);
+
+    shader->set_uniform_vec2f("texturePixelSize", Vec2f(_texture->get_width(), _texture->get_height()));
 
     shader->set_uniform_f32("textureAspect", _texture->get_aspect());
 

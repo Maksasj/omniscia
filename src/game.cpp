@@ -149,8 +149,8 @@ void omniscia::Game::run() {
         .bind_default_buffer_clear(Vec4f(1.0f, 1.0f, 1.0f, 0.0f));
 
     RenderStage& renderMainStage = RenderStagePool::get_instance().add_stage("MainStage")
-        .bind_target_texture_buffer(new TextureBuffer(Properties::get_instance().screenWidth, Properties::get_instance().screenHeight))
-        .bind_viewport_size(Vec4f(0.0, 0.0, Properties::get_instance().screenWidth, Properties::get_instance().screenHeight))
+        .bind_target_texture_buffer(new TextureBuffer(256, 144))
+        .bind_viewport_size(Vec4f(0.0, 0.0, 256, 144))
         .bind_default_shader(&mainStageShader)
         .bind_target_mesh(SpriteMesh(BuildInMeshData::QUAD_MESH_DATA))
         .bind_shader_uniform([](const Shader* shader) {
@@ -223,7 +223,7 @@ void omniscia::Game::run() {
     Scene* secretsScene = new SecretsScene();
     _scenes["secrets_scene"] = secretsScene;
 
-    switch_scene("main_menu_scene");
+    switch_scene("game_scene");
 
     _cutscenes["transition_cutscene_to_chapter_choose_scene"] = new TransitionCutscene(&transitionStageShader, "chapter_choose_menu_scene");
     _cutscenes["transition_cutscene_to_game_scene"] = new TransitionCutscene(&transitionStageShader, "game_scene");
@@ -295,6 +295,7 @@ void omniscia::Game::run() {
 
         renderMainStage.render_stage_lambda([&](){ 
             ECS_ProRendererSystem::get_instance().render();
+            // randomsprite.render(Shader::get_active());
         });
 
         renderGuiStage.render_stage_lambda([&]() {
@@ -319,6 +320,101 @@ void omniscia::Game::run() {
 
             ECS_ProRendererSystem::get_instance().render();
         });
+
+
+        if(Controls::get_instance().get(PlayerController::SHADER_RELOAD)) {
+            try {
+                backgroundStageShader.try_compile();
+                backgroundStageShader.compile();
+            } catch (const Shader::ShaderVertexException& exception) {
+                std::cout << exception.what() << "\n";
+            } catch (const Shader::ShaderFragmentException& exception) {
+                std::cout << exception.what() << "\n";
+            } catch (...) {
+                std::cout << "Undefined exception\n";
+            }
+
+            try {
+                mainStageShader.try_compile();
+                mainStageShader.compile();
+            } catch (const Shader::ShaderVertexException& exception) {
+                std::cout << exception.what() << "\n";
+            } catch (const Shader::ShaderFragmentException& exception) {
+                std::cout << exception.what() << "\n";
+            } catch (...) {
+                std::cout << "Undefined exception\n";
+            }
+
+            try {
+                intermediateStageShader.try_compile();
+                intermediateStageShader.compile();
+            } catch (const Shader::ShaderVertexException& exception) {
+                std::cout << exception.what() << "\n";
+            } catch (const Shader::ShaderFragmentException& exception) {
+                std::cout << exception.what() << "\n";
+            } catch (...) {
+                std::cout << "Undefined exception\n";
+            }
+
+            try {
+                lateStageShader.try_compile();
+                lateStageShader.compile();
+            } catch (const Shader::ShaderVertexException& exception) {
+                std::cout << exception.what() << "\n";
+            } catch (const Shader::ShaderFragmentException& exception) {
+                std::cout << exception.what() << "\n";
+            } catch (...) {
+                std::cout << "Undefined exception\n";
+            }
+
+            try {
+                finalStageShader.try_compile();
+                finalStageShader.compile();
+            } catch (const Shader::ShaderVertexException& exception) {
+                std::cout << exception.what() << "\n";
+            } catch (const Shader::ShaderFragmentException& exception) {
+                std::cout << exception.what() << "\n";
+            } catch (...) {
+                std::cout << "Undefined exception\n";
+            }
+
+            try {
+                guiStageShader.try_compile();
+                guiStageShader.compile();
+            } catch (const Shader::ShaderVertexException& exception) {
+                std::cout << exception.what() << "\n";
+            } catch (const Shader::ShaderFragmentException& exception) {
+                std::cout << exception.what() << "\n";
+            } catch (...) {
+                std::cout << "Undefined exception\n";
+            }
+
+            try {
+                transitionStageShader.try_compile();
+                transitionStageShader.compile();
+            } catch (const Shader::ShaderVertexException& exception) {
+                std::cout << exception.what() << "\n";
+            } catch (const Shader::ShaderFragmentException& exception) {
+                std::cout << exception.what() << "\n";
+            } catch (...) {
+                std::cout << "Undefined exception\n";
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         glViewport(0, 0, Properties::get_instance().screenWidth, Properties::get_instance().screenHeight);
         RenderStage::render_anonymous_stage_lambda([&]() {

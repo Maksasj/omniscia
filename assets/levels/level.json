@@ -37,7 +37,7 @@
                     },
                     "_xRanges": {
                         "x": 400.0,
-                        "y": 400.0
+                        "y": 550.0
                     },
                     "_yRanges": {
                         "x": 400.0,
@@ -63,6 +63,28 @@
                     },
                     "_yRanges": {
                         "x": 50.0,
+                        "y": 50.0
+                    }
+                },
+                {
+                    "_collisionBoxAssociatedColor": {
+                        "w": 1.0,
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    },
+                    "_isDamaging": false,
+                    "_name": "Collision box 2",
+                    "_position": {
+                        "x": 500.0,
+                        "y": 100.0
+                    },
+                    "_xRanges": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_yRanges": {
+                        "x": 100.0,
                         "y": 50.0
                     }
                 }
@@ -3381,6 +3403,812 @@
                     "_position": {
                         "x": -400.0,
                         "y": -250.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.125,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.25,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.125,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.25,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 400.0000305175781,
+                        "y": -0.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.125,
+                        "y": 0.875
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.25,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.125,
+                        "y": 1.0
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.25,
+                        "y": 1.0
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 450.0000305175781,
+                        "y": 50.000003814697266
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.375,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.5,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.375,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.5,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 450.0000305175781,
+                        "y": 100.00000762939453
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.375,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.5,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.375,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.5,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 450.0000305175781,
+                        "y": 150.00001525878906
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.375,
+                        "y": 0.875
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.5,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.375,
+                        "y": 1.0
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.5,
+                        "y": 1.0
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 700.0000610351563,
+                        "y": 50.000003814697266
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.375,
+                        "y": 0.875
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.5,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.375,
+                        "y": 1.0
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.5,
+                        "y": 1.0
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 500.0000305175781,
+                        "y": 150.00001525878906
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.5,
+                        "y": 0.875
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.625,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.5,
+                        "y": 1.0
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.625,
+                        "y": 1.0
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 500.0000305175781,
+                        "y": 100.00000762939453
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.5,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.625,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.5,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.625,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 500.0000305175781,
+                        "y": 50.000003814697266
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.5,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.625,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.5,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.625,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 500.0,
+                        "y": -0.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.5,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.625,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.5,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.625,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 500.0,
+                        "y": -50.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.5,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.625,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.5,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.625,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 500.0,
+                        "y": -100.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.5,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.625,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.5,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.625,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 500.0,
+                        "y": -150.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.5,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.625,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.5,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.625,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 500.0,
+                        "y": -200.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.5,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.625,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.5,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.625,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 500.0,
+                        "y": -250.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.5,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.625,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.5,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.625,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 500.0,
+                        "y": -300.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.5,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.625,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.5,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.625,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 500.0,
+                        "y": -350.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.5,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.625,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.5,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.625,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 450.0,
+                        "y": -0.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.375,
+                        "y": 0.625
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.5,
+                        "y": 0.625
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.375,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.5,
+                        "y": 0.75
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 400.0,
+                        "y": -50.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.125,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.25,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.125,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.25,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 400.0,
+                        "y": -100.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.125,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.25,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.125,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.25,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 400.0,
+                        "y": -150.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.125,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.25,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.125,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.25,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 400.0,
+                        "y": -200.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.125,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.25,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.125,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.25,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 400.0,
+                        "y": -250.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.125,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.25,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.125,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.25,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 400.0,
+                        "y": -300.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.125,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.25,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.125,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.25,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 400.0,
+                        "y": -350.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.125,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.25,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.125,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.25,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 450.0,
+                        "y": -350.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.125,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.25,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.125,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.25,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 450.0,
+                        "y": -300.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.125,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.25,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.125,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.25,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 450.0,
+                        "y": -250.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.125,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.25,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.125,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.25,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 450.0,
+                        "y": -200.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.125,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.25,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.125,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.25,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 450.0,
+                        "y": -150.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.125,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.25,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.125,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.25,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 450.0,
+                        "y": -100.0
+                    },
+                    "_scale": {
+                        "x": 50.0,
+                        "y": 50.0
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.125,
+                        "y": 0.75
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.25,
+                        "y": 0.75
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.125,
+                        "y": 0.875
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.25,
+                        "y": 0.875
+                    }
+                },
+                {
+                    "_position": {
+                        "x": 450.0,
+                        "y": -50.0
                     },
                     "_scale": {
                         "x": 50.0,

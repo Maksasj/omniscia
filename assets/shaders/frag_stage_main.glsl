@@ -23,11 +23,12 @@ void main() {
     if(textureFlipVertical) {
         texCoord.x = 1.0 - texCoord.x;
     }
-
-    texCoord *= textureFrameSize;
-    texCoord += textureFrameOffset;
+// 
+    // texCoord *= textureFrameSize;
+    // texCoord += textureFrameOffset;
 
     vec4 color = texture(ourTexture, texCoord);
+    
     color.w *= transparency;
 
     FragColor = color;

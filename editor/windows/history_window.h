@@ -55,7 +55,7 @@ namespace omniscia_editor::windows {
                 ImGui::SameLine();
                 ImGui::Checkbox("## history auto scroll checkbox", &_autoScroll);
                 
-                ImGui::SameLine(ImGui::GetWindowSize().x - 2.0f * (ImGui::CalcTextSize("Undo 5").x + ImGui::GetStyle().FramePadding.x * 2.0f));
+                ImGui::SameLine(ImGui::GetWindowSize().x - 2.0f * (ImGui::CalcTextSize("Undo 5 ").x + ImGui::GetStyle().FramePadding.x * 2.0f));
 
                 ImGui::Button("Undo");
                 ImGui::SameLine();

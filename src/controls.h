@@ -31,6 +31,7 @@ namespace omniscia::core {
         TIME_JUMP = 4, INTERACT = 5,
         PAUSE = 6,
         DEBUGUI = 7,
+        SHADER_RELOAD = 8,
     };
 
     enum MouseController {
