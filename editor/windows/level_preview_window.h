@@ -83,7 +83,12 @@ namespace omniscia_editor::windows {
                     for(f32 y = start.y; y > canvasP0.y; y -= _zoom)
                         drawList->AddLine(ImVec2(canvasP0.x, y), ImVec2(canvasP1.x, y), IM_COL32(200, 200, 200, 40));
                 }
-                
+
+                if(!ImGui::IsWindowHovered()) {
+                    ImGui::End();
+                    return;
+                }
+
                 if(ImGui::IsMouseHoveringRect(canvasP0, canvasP1)) {
                     if(ImGui::IsMouseDragging(ImGuiMouseButton_Right, 0.0f))
                         _scroll += Vec2f(io.MouseDelta.x, io.MouseDelta.y);

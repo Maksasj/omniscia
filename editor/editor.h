@@ -12,6 +12,8 @@
 #include "windows/history_window.h"
 #include "windows/brush_window.h"
 #include "windows/metrics_window.h"
+#include "windows/selected_tilegroup_window.h"
+#include "windows/tilegroups_management_window.h"
 
 namespace omniscia_editor::editor {
     using namespace omni::types;
@@ -60,10 +62,12 @@ namespace omniscia_editor::editor {
                 ImGui::PopStyleVar();
                 ImGui::PopStyleVar();
 
-                static bool renderBrushWindow = false;
-                static bool renderLevelPreviewWindow = false;
-                static bool renderHistroyWindow = false;
-                static bool renderMetricsWindow = false;
+                static bool renderBrushWindow = true;
+                static bool renderLevelPreviewWindow = true;
+                static bool renderHistroyWindow = true;
+                static bool renderMetricsWindow = true;
+                static bool renderTileGroupsManagementWindow = true;
+                static bool renderSelectedTileGroupWindow = true;
 
                 static bool renderPropertiesWindow = false;
 
@@ -98,6 +102,23 @@ namespace omniscia_editor::editor {
                         ImGui::MenuItem("Brush", nullptr, &renderBrushWindow);
                         ImGui::MenuItem("Level preview", nullptr, &renderLevelPreviewWindow);
                         ImGui::MenuItem("History", nullptr, &renderHistroyWindow);
+                        ImGui::Separator();
+
+                        if (ImGui::BeginMenu("Tile groups")) {
+                            ImGui::MenuItem("Tile groups", nullptr, &renderTileGroupsManagementWindow);
+                            ImGui::MenuItem("Selected tile group", nullptr, &renderSelectedTileGroupWindow);
+
+                            ImGui::EndMenu();
+                        }
+
+                        if (ImGui::BeginMenu("Tile")) {
+                            ImGui::MenuItem("Tile preview", nullptr, nullptr);
+                            ImGui::MenuItem("Tile editor", nullptr, nullptr);
+
+                            ImGui::EndMenu();
+                        }
+                        ImGui::Separator();
+
                         ImGui::MenuItem("Metrics", nullptr, &renderMetricsWindow);
 
                         ImGui::EndMenu();
@@ -112,44 +133,14 @@ namespace omniscia_editor::editor {
                 ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
                 ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_PassthruCentralNode);
 
-                // ImGui::Begin("Brush");
-                    // const char* items[] = { "AAAA", "BBBB", "CCCC", "DDDD", "EEEE", "FFFF", "GGGG", "HHHH", "IIIIIII", "JJJJ", "KKKKKKK" };
-                    // static int item_current = 0;
-                    // ImGui::Combo("combo", &item_current, items, IM_ARRAYSIZE(items));
-                // ImGui::End();
-
-                // ImGui::Begin("History");
-                // ImGui::End();
-
-
                 if(renderBrushWindow) BrushWindow::get_instance().render_window();
                 if(renderLevelPreviewWindow) LevelPreviewWindow::get_instance().render_window();
                 if(renderHistroyWindow) HistoryWindow::get_instance().render_window();
                 if(renderMetricsWindow) MetricsWindow::get_instance().render_window();
+                if(renderTileGroupsManagementWindow) TileGroupsManagementWindow::get_instance().render_window();
+                if(renderSelectedTileGroupWindow) SelectedTileGroup::get_instance().render_window();
 
                 if(renderPropertiesWindow) PropertiesWindow::get_instance().render_window();
-
-                // LevelEditor::get_instance().render();
-                // ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
-                // ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), 0);
-                /*
-                auto flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoResize |ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoMove;
-
-                int sizeX; int sizeY;
-                glfwGetWindowSize(window, &sizeX, &sizeY);
-                ImGui::SetNextWindowSize({(float)sizeX, (float)sizeY});
-                ImGui::SetNextWindowPos({0, 0});
-                ImGui::Begin("Omniscia Editor", nullptr, flags);
-                    ImGui::BeginTabBar("Omniscia Editor Tabs");
-                        using namespace omniscia_editor::editor;
-
-                        // _startTab.render_tab();
-
-                    //     _levelEditor.render_tab(window);
-                    // 
-                    ImGui::EndTabBar();
-                ImGui::End();
-                */
 
                 ImGui::ShowDemoWindow();
 
