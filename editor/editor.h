@@ -8,11 +8,16 @@
 #include "level_editor_new.h"
 
 #include "windows/level_preview_window.h"
+#include "windows/properties_window.h"
+#include "windows/history_window.h"
+#include "windows/brush_window.h"
 
 namespace omniscia_editor::editor {
     using namespace omni::types;
     using namespace omniscia_editor::level_editor;
     using namespace omniscia_editor::level_editor::themes;
+
+    using namespace omniscia_editor::windows;
 
     class Editor {
         private:
@@ -54,8 +59,11 @@ namespace omniscia_editor::editor {
                 ImGui::PopStyleVar();
                 ImGui::PopStyleVar();
 
-                static bool opt_fullscreen = false;
-                static bool opt_padding = false;
+                static bool renderBrushWindow = false;
+                static bool renderLevelPreviewWindow = false;
+                static bool renderHistroyWindow = false;
+
+                static bool renderPropertiesWindow = false;
 
                 if (ImGui::BeginMenuBar()) {
                     if (ImGui::BeginMenu("File")) {
@@ -85,11 +93,14 @@ namespace omniscia_editor::editor {
                         ImGui::EndMenu();
                     }
                     if (ImGui::BeginMenu("View")) {
-                        ImGui::MenuItem("Brush", nullptr, &opt_fullscreen);
-                        ImGui::MenuItem("Level preview", nullptr, &opt_padding);
-                        ImGui::MenuItem("History", nullptr, &opt_padding);
+                        ImGui::MenuItem("Brush", nullptr, &renderBrushWindow);
+                        ImGui::MenuItem("Level preview", nullptr, &renderLevelPreviewWindow);
+                        ImGui::MenuItem("History", nullptr, &renderHistroyWindow);
 
                         ImGui::EndMenu();
+                    }
+                    if (ImGui::MenuItem("Properties", nullptr, nullptr)) {
+                        renderPropertiesWindow = !renderPropertiesWindow;
                     }
 
                     ImGui::EndMenuBar();
@@ -98,18 +109,21 @@ namespace omniscia_editor::editor {
                 ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
                 ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_PassthruCentralNode);
 
-                ImGui::Begin("Brush");
+                // ImGui::Begin("Brush");
                     // const char* items[] = { "AAAA", "BBBB", "CCCC", "DDDD", "EEEE", "FFFF", "GGGG", "HHHH", "IIIIIII", "JJJJ", "KKKKKKK" };
                     // static int item_current = 0;
                     // ImGui::Combo("combo", &item_current, items, IM_ARRAYSIZE(items));
-                ImGui::End();
+                // ImGui::End();
 
-                ImGui::Begin("History");
-                ImGui::End();
+                // ImGui::Begin("History");
+                // ImGui::End();
 
-                using namespace omniscia_editor::windows;
 
-                LevelPreviewWindow::get_instance().render();
+                if(renderBrushWindow) BrushWindow::get_instance().render_window();
+                if(renderLevelPreviewWindow) LevelPreviewWindow::get_instance().render_window();
+                if(renderHistroyWindow) HistoryWindow::get_instance().render_window();
+
+                if(renderPropertiesWindow) PropertiesWindow::get_instance().render_window();
 
                 // LevelEditor::get_instance().render();
                 // ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");

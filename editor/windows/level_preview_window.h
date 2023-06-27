@@ -7,18 +7,27 @@
 #include "../gfx.h"
 #include "../types.h"
 
+#include "app_window.h"
+
 namespace omniscia_editor::windows {
     using namespace omni::types;
 
-    class LevelPreviewWindow {
+    class LevelPreviewWindow : public AppWindow {
         private:
             f32 _zoom;
             Vec2f _scroll;
 
+            /* Properies */
             f32 _zoomSpeed;
             f32 _maxZoom;
             f32 _minZoom;
+
+            bool _renderAxis;
+            bool _renderGrid;
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<LevelPreviewWindow>;
+
             LevelPreviewWindow() {
                 _zoom = 50.0f;
                 _scroll = Vec2f::splat(0.0f);
@@ -26,9 +35,12 @@ namespace omniscia_editor::windows {
                 _zoomSpeed = 1.0f;
                 _maxZoom = 500.0f;
                 _minZoom = 5.0f;
+
+                _renderGrid = true;
+                _renderAxis = true;
             };
 
-            void render() {
+            void render_window() override {
                 ImGui::Begin("Level preview");
 
                 ImGuiIO& io = ImGui::GetIO(); 
@@ -49,21 +61,25 @@ namespace omniscia_editor::windows {
                 const Vec2f start = Vec2f(_scroll.x + windowPos.x, _scroll.y + windowPos.y);
                 
                 /* Axes */
-                drawList->AddLine(ImVec2(start.x, canvasP0.y), ImVec2(start.x, canvasP1.y), IM_COL32(255, 255, 255, 255));
-                drawList->AddLine(ImVec2(canvasP0.x, start.y), ImVec2(canvasP1.x, start.y), IM_COL32(255, 255, 255, 255));
+                if(_renderAxis) {
+                    drawList->AddLine(ImVec2(start.x, canvasP0.y), ImVec2(start.x, canvasP1.y), IM_COL32(255, 255, 255, 255));
+                    drawList->AddLine(ImVec2(canvasP0.x, start.y), ImVec2(canvasP1.x, start.y), IM_COL32(255, 255, 255, 255));
+                }
 
                 /* Grid it self */
-                for(f32 x = start.x; x < canvasP1.x; x += _zoom)
-                    drawList->AddLine(ImVec2(x, canvasP0.y), ImVec2(x, canvasP1.y), IM_COL32(200, 200, 200, 40));
+                if(_renderGrid) {
+                    for(f32 x = start.x; x < canvasP1.x; x += _zoom)
+                        drawList->AddLine(ImVec2(x, canvasP0.y), ImVec2(x, canvasP1.y), IM_COL32(200, 200, 200, 40));
 
-                for(f32 x = start.x; x > canvasP0.x; x -= _zoom)
-                    drawList->AddLine(ImVec2(x, canvasP0.y), ImVec2(x, canvasP1.y), IM_COL32(200, 200, 200, 40));
+                    for(f32 x = start.x; x > canvasP0.x; x -= _zoom)
+                        drawList->AddLine(ImVec2(x, canvasP0.y), ImVec2(x, canvasP1.y), IM_COL32(200, 200, 200, 40));
 
-                for(f32 y = start.y; y < canvasP1.y; y += _zoom)
-                    drawList->AddLine(ImVec2(canvasP0.x, y), ImVec2(canvasP1.x, y), IM_COL32(200, 200, 200, 40));
+                    for(f32 y = start.y; y < canvasP1.y; y += _zoom)
+                        drawList->AddLine(ImVec2(canvasP0.x, y), ImVec2(canvasP1.x, y), IM_COL32(200, 200, 200, 40));
 
-                for(f32 y = start.y; y > canvasP0.y; y -= _zoom)
-                    drawList->AddLine(ImVec2(canvasP0.x, y), ImVec2(canvasP1.x, y), IM_COL32(200, 200, 200, 40));
+                    for(f32 y = start.y; y > canvasP0.y; y -= _zoom)
+                        drawList->AddLine(ImVec2(canvasP0.x, y), ImVec2(canvasP1.x, y), IM_COL32(200, 200, 200, 40));
+                }
                 
                 if(ImGui::IsMouseHoveringRect(canvasP0, canvasP1)) {
                     if(ImGui::IsMouseDragging(ImGuiMouseButton_Right, 0.0f))
@@ -93,11 +109,28 @@ namespace omniscia_editor::windows {
                 ImGui::End();
             }
 
+            void render_properties() override {
+                PropertiesFieldQuery::property_window_edit_query(*this);
+            }
+
             static LevelPreviewWindow& get_instance() {
                 static LevelPreviewWindow window;
                 return window;
             }
     };
 }
+
+template<>																	               
+struct omni::reflector::Reflection<omniscia_editor::windows::LevelPreviewWindow> {									               
+    const constexpr static std::type_info &typeInfo = typeid(omniscia_editor::windows::LevelPreviewWindow);           
+    const constexpr static auto clearTypeName = "LevelPreviewWindow";
+    const constexpr static auto meta = std::make_tuple(
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_renderAxis, "Render axis"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_renderGrid, "Render grid"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_zoomSpeed, "Zoom zpeed"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_maxZoom, "Max zoom"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_minZoom, "Min zoom")
+    );																		               
+};
 
 #endif

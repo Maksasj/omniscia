@@ -1,6 +1,7 @@
 #ifndef _OMNISCIA_EDITOR_TYPES_H_
 #define _OMNISCIA_EDITOR_TYPES_H_
 
+#define OMNI_TYPES_ENABLE_REFLECTIONS
 #include "omni_types.tpp"
 
 // using u8 = unsigned char;
