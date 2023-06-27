@@ -23,7 +23,10 @@ namespace omniscia_editor::windows {
             };
 
             void render_window() override {
-                ImGui::Begin("History");
+                if(!ImGui::Begin("History")) {
+                    ImGui::End();
+                    return;
+                }
 
                 ImGui::End();
             }

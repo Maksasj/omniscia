@@ -41,7 +41,10 @@ namespace omniscia_editor::windows {
             };
 
             void render_window() override {
-                ImGui::Begin("Level preview");
+                if(!ImGui::Begin("Level preview")) {
+                    ImGui::End();
+                    return;
+                }
 
                 const ImGuiIO& io = ImGui::GetIO(); 
 

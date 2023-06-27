@@ -29,7 +29,10 @@ namespace omniscia_editor::windows {
             };
 
             void render_window() override {
-                ImGui::Begin("Metrics");
+                if(!ImGui::Begin("Metrics")) {
+                    ImGui::End();
+                    return;
+                }
 
                 const ImGuiIO& io = ImGui::GetIO(); 
 

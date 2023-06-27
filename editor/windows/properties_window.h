@@ -41,7 +41,10 @@ namespace omniscia_editor::windows {
 
             void render_window() override {
                 ImGui::SetNextWindowSize(ImVec2(500, 440), ImGuiCond_FirstUseEver);
-                ImGui::Begin("Properties", nullptr, ImGuiWindowFlags_None);
+                if(!ImGui::Begin("Properties", nullptr, ImGuiWindowFlags_None)) {
+                    ImGui::End();
+                    return;
+                }
 
                 ImGui::BeginChild("left pane", ImVec2(150, 0), true);
                     static size_t selected = 0;

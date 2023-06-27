@@ -23,7 +23,10 @@ namespace omniscia_editor::windows {
             };
 
             void render_window() override {
-                ImGui::Begin("Brush");
+                if(!ImGui::Begin("Brush")) {
+                    ImGui::End();
+                    return;
+                }
 
                 ImGui::End();
             }
