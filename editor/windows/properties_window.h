@@ -40,9 +40,9 @@ namespace omniscia_editor::windows {
                 _windows.push_back(PropertyInstance{"Assets view",          &AssetsViewWindow::get_instance()});
                 _windows.push_back(PropertyInstance{"Metrics",              &MetricsWindow::get_instance()});
                 _windows.push_back(PropertyInstance{"Tile groups",          &TileGroupsManagementWindow::get_instance()});
-                _windows.push_back(PropertyInstance{"Selected tile group",  &SelectedTileGroup::get_instance()});
+                _windows.push_back(PropertyInstance{"Selected tile group",  &SelectedTileGroupWindow::get_instance()});
                 
-                _windows.push_back(PropertyInstance{"Properties",       this});
+                _windows.push_back(PropertyInstance{"Properties",           this});
             };
 
             void render_window() override {

@@ -12,11 +12,14 @@
 #include "windows/tilegroups_management_window.h"
 #include "windows/assets_view_window.h"
 
+#include "systems/level_manager.h"
+
 namespace omniscia_editor::editor {
     using namespace omni::types;
     using namespace omniscia_editor::level_editor;
     using namespace omniscia_editor::level_editor::themes;
 
+    using namespace omniscia_editor::systems;
     using namespace omniscia_editor::windows;
 
     class Editor {
@@ -62,7 +65,7 @@ namespace omniscia_editor::editor {
                 static bool renderHistroyWindow = true;
                 static bool renderMetricsWindow = true;
                 static bool renderTileGroupsManagementWindow = true;
-                static bool renderSelectedTileGroupWindow = true;
+                static bool renderSelectedTileGroupWindowWindow = true;
                 static bool renderAssetsViewWindow = true;
 
                 static bool renderPropertiesWindow = false;
@@ -70,21 +73,21 @@ namespace omniscia_editor::editor {
                 if (ImGui::BeginMenuBar()) {
                     if (ImGui::BeginMenu("File")) {
                         if(ImGui::MenuItem("New", nullptr, nullptr)) {
-                            
+                            LevelManager::get_instance().file_new();
                         };
                         ImGui::Separator();
 
                         if(ImGui::MenuItem("Open", nullptr, nullptr)) {
-                                
+                            LevelManager::get_instance().file_new();
                         };
 
                         if(ImGui::MenuItem("Open Recent", nullptr, nullptr)) {
-                                
+                            // evelManager::get_instance().file_new();
                         };
                         ImGui::Separator();
 
                         if(ImGui::MenuItem("Save", nullptr, nullptr)) {
-                                
+                            LevelManager::get_instance().file_save();
                         };
                         ImGui::Separator();
 
@@ -104,7 +107,7 @@ namespace omniscia_editor::editor {
 
                         if (ImGui::BeginMenu("Tile groups")) {
                             ImGui::MenuItem("Tile groups", nullptr, &renderTileGroupsManagementWindow);
-                            ImGui::MenuItem("Selected tile group", nullptr, &renderSelectedTileGroupWindow);
+                            ImGui::MenuItem("Selected tile group", nullptr, &renderSelectedTileGroupWindowWindow);
 
                             ImGui::EndMenu();
                         }
@@ -136,7 +139,7 @@ namespace omniscia_editor::editor {
                 if(renderHistroyWindow) HistoryWindow::get_instance().render_window();
                 if(renderMetricsWindow) MetricsWindow::get_instance().render_window();
                 if(renderTileGroupsManagementWindow) TileGroupsManagementWindow::get_instance().render_window();
-                if(renderSelectedTileGroupWindow) SelectedTileGroup::get_instance().render_window();
+                if(renderSelectedTileGroupWindowWindow) SelectedTileGroupWindow::get_instance().render_window();
                 if(renderAssetsViewWindow) AssetsViewWindow::get_instance().render_window();
 
                 if(renderPropertiesWindow) PropertiesWindow::get_instance().render_window();
