@@ -27,6 +27,10 @@ namespace omniscia::core {
         static u32 _count;
         
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<SoundAsset>;
+            friend class omni::reflector::serialization::JsonSerializer;
+
             /** @brief Defualt construct for the SoundAsset */
             SoundAsset();
             
@@ -48,5 +52,7 @@ namespace omniscia::core {
             static u32 get_count();
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core, SoundAsset, _filePath);
 
 #endif

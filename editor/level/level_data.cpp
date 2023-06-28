@@ -17,7 +17,7 @@ void omniscia_editor::level_editor::LevelData::load_from_file(std::string filePa
     using namespace omni::reflector::serialization;
     using namespace omni::types;
     
-    omniscia::core::LevelData levelData = json_deserialize<omniscia::core::LevelData>(jsonData);
+    omniscia::core::LevelData levelData = JsonSerializer::json_deserialize<omniscia::core::LevelData>(jsonData);
      
     using namespace omniscia::core;
 
@@ -93,7 +93,7 @@ void omniscia_editor::level_editor::LevelData::export_to_file(std::string filePa
         }
     }
 
-    auto json = json_serialize(levelData);
+    auto json = JsonSerializer::json_serialize(levelData);
     const auto representation = json.dump(4);
     file << representation;
 

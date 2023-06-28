@@ -27,7 +27,7 @@ namespace omniscia::core {
      * way to access them at run time by any other system.
     */
     class TextureManager : Manager<TextureAsset> {
-        private:
+        protected:
             /** @brief Hidden default constructor */
             TextureManager() {};
             
@@ -37,13 +37,16 @@ namespace omniscia::core {
             /** @brief Hidden default assignment operator */
             void operator=(TextureManager const&) {};
 
-        protected:
             /**
              * @brief _data - hash map used for storing TextureAsset object instances
             */
             std::unordered_map<std::string, TextureAsset> _data;
             
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<TextureManager>;
+            friend class omni::reflector::serialization::JsonSerializer;
+
             /**
              * @brief Retrieve texture asset by provided key
              * 
@@ -60,6 +63,8 @@ namespace omniscia::core {
             */
             void add_asset(const std::string& filePath, const std::string& key);
             
+            void add_assets(const std::string& filePath);
+
             /** @brief Checks is all asset exist */
             void check_assets() const;
             
@@ -77,5 +82,7 @@ namespace omniscia::core {
             }
     };
 };
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core, TextureManager, _data);
 
 #endif

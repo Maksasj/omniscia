@@ -1,0 +1,19 @@
+{
+    "_data": {
+        "walk_1": {
+            "_filePath": "assets/sounds/walk/walk1.wav"
+        },
+        "walk_2": {
+            "_filePath": "assets/sounds/walk/walk2.wav"
+        },
+        "walk_3": {
+            "_filePath": "assets/sounds/walk/walk3.wav"
+        },
+        "walk_4": {
+            "_filePath": "assets/sounds/walk/walk4.wav"
+        },
+        "d264": {
+            "_filePath": "assets/sounds/music/d264.wav"
+        }
+    }
+}

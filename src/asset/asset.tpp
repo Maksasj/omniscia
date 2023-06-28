@@ -12,9 +12,13 @@
 #ifndef _ASSET_H_
 #define _ASSET_H_
 
+#include <fstream>
 #include <string>
 
+#define OMNI_TYPES_ENABLE_REFLECTIONS
+#define OMNI_REFLECTOR_ENABLE_SERIALIZER
 #include "omni_types.tpp"
+#include "omni_reflector.h"
 
 namespace omniscia::core {
     using namespace omni::types;
@@ -33,7 +37,7 @@ namespace omniscia::core {
             T _asset;
 
             /** @brief file path to the asset */
-            const std::string _filePath;
+            std::string _filePath;
         public:
             /**
              * @brief Default construct

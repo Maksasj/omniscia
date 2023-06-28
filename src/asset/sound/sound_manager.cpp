@@ -8,6 +8,23 @@ void omniscia::core::SoundManager::add_asset(const std::string& file_path, const
     _data.insert({key, SoundAsset(file_path)});
 }
 
+void omniscia::core::SoundManager::add_assets(const std::string& filePath) {
+    using json = nlohmann::json;
+
+    using namespace omni::reflector;
+    using namespace omni::reflector::serialization;
+
+    std::ifstream file(filePath);
+    const auto object = json::parse(file);
+
+    SoundManager manager = JsonSerializer::json_deserialize<SoundManager>(object);
+
+    for(const auto& asset : manager._data)
+        add_asset(asset.second.get_file_path(), asset.first);
+
+    file.close();
+}
+
 void omniscia::core::SoundManager::load_assets() {
     ma_fence fence;
     ma_fence_init(&fence);

@@ -17,7 +17,7 @@ void omniscia::core::SceneLoader::load_scene(Scene& level, const std::string& pa
     using namespace omni::reflector;
     using namespace omni::reflector::serialization;
 
-    LevelData levelData = json_deserialize<LevelData>(jsonData);
+    LevelData levelData = JsonSerializer::json_deserialize<LevelData>(jsonData);
 
     f32 screenBoxHeight = levelData._screenBoxHeight;
 

@@ -30,7 +30,7 @@ namespace omniscia::core {
     */
 
     class SoundManager : Manager<SoundAsset> {
-        private:
+        protected:
             /** @brief Hidden default constructor */
             SoundManager() {};
 
@@ -40,13 +40,16 @@ namespace omniscia::core {
             /** @brief Hidden default assignment operator */
             void operator=(SoundManager const&) {};
 
-        protected:
             /**
              * @brief _data - hash map used for storing SoundAsset object instances
             */
             std::unordered_map<std::string, SoundAsset> _data;
         
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<SoundManager>;
+            friend class omni::reflector::serialization::JsonSerializer;
+
             /**
              * @brief Retrieve sound asset by provided key
              * 
@@ -62,6 +65,8 @@ namespace omniscia::core {
              * @param key key that will be used to store SoundAsset
             */
             void add_asset(const std::string& filePath, const std::string& key);
+            
+            void add_assets(const std::string& filePath);
             
             /** @brief Checks is all asset exist */
             void check_assets() const;
@@ -80,5 +85,7 @@ namespace omniscia::core {
             }
     };
 };
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core, SoundManager, _data);
 
 #endif

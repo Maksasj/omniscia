@@ -29,6 +29,10 @@ namespace omniscia::core {
             static u32 _count;
 
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<TextureAsset>;
+            friend class omni::reflector::serialization::JsonSerializer;
+            
             /** @brief Defualt construct for the TextureAsset */
             TextureAsset();
             
@@ -50,5 +54,7 @@ namespace omniscia::core {
             static u32 get_count();
     };
 }
+
+OMNI_ADAPT_STRUCTURE_NAME(omniscia::core, TextureAsset, _filePath);
 
 #endif

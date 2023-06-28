@@ -5,67 +5,8 @@ int main() {
     using namespace omniscia;
     using namespace omni::types;
     
-    /* Texture assets */
-    TextureManager::get_instance().add_asset("assets/textures/texture.png", "factorio_girl_texture");
-    TextureManager::get_instance().add_asset("assets/textures/jojo_texture.png", "jojo_texture");
+    TextureManager::get_instance().add_assets("assets/texture_assets.json");
 
-    TextureManager::get_instance().add_asset("assets/textures/entities/characters/player/player.png", "player-spritesheet");
-    TextureManager::get_instance().add_asset("assets/textures/entities/characters/grandpa/grandpa.png", "grandpa-spritesheet");
-    TextureManager::get_instance().add_asset("assets/textures/entities/crab/crab.png", "crab-spritesheet");
-    TextureManager::get_instance().add_asset("assets/textures/entities/crab/crab_corrupted.png", "crab-corrupted-spritesheet");
-    TextureManager::get_instance().add_asset("assets/textures/entities/checkpoint/checkpoint-spritesheet.png", "checkpoint-spritesheet");
-    TextureManager::get_instance().add_asset("assets/textures/entities/star/star-spritesheet.png", "star-spritesheet");
-
-    TextureManager::get_instance().add_asset("assets/textures/entities/crystals/red/red-crystal-spritesheet.png", "red-crystal-spritesheet");
-
-    TextureManager::get_instance().add_asset("assets/textures/tiles/beach/beach_tiles.png", "beach_tiles");
-    TextureManager::get_instance().add_asset("assets/textures/background/beach/beach.png", "background_beach_beach_layer");
-    TextureManager::get_instance().add_asset("assets/textures/background/beach/grass_overlay.png", "background_beach_grass_overlay_layer");
-    TextureManager::get_instance().add_asset("assets/textures/background/beach/sky1.png", "background_beach_sky1_layer");
-    TextureManager::get_instance().add_asset("assets/textures/background/beach/sky2.png", "background_beach_sky2_layer");
-    TextureManager::get_instance().add_asset("assets/textures/background/beach/terrain.png", "background_beach_terrain_layer");
-
-    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/sky1.png", "chapter_choose_background_sky1_layer");
-    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/sky2.png", "chapter_choose_background_sky2_layer");
-    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/sky3.png", "chapter_choose_background_sky3_layer");
-    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/terrain.png", "chapter_choose_background_terrain_layer");
-
-    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/chapter_buttons.png", "chapter_buttons");
-    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/choose_panel.png", "choose_panel");
-    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/chapter_1_thumbnail_spritesheet.png", "chapter_1_thumbnail_spritesheet");
-    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/selector_spritesheet.png", "selector_spritesheet");
-    
-    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/menus.png", "chapter_choose_menus");
-    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/fireflies.png", "fireflies");
-
-    TextureManager::get_instance().add_asset("assets/textures/background/menu/sky1.png", "menu_background_sky1_layer");
-    TextureManager::get_instance().add_asset("assets/textures/background/menu/sky2.png", "menu_background_sky2_layer");
-    TextureManager::get_instance().add_asset("assets/textures/background/menu/sky3.png", "menu_background_sky3_layer");
-    TextureManager::get_instance().add_asset("assets/textures/background/menu/terrain.png", "menu_background_terrain_layer");
-    TextureManager::get_instance().add_asset("assets/textures/background/menu/girls.png", "menu_background_girls_layer");
-
-    TextureManager::get_instance().add_asset("assets/textures/background/menu/logo_spritesheet.png", "logo_spritesheet");
-    TextureManager::get_instance().add_asset("assets/textures/background/menu/logo_green_spritesheet.png", "logo_green_spritesheet");
-    TextureManager::get_instance().add_asset("assets/textures/background/pause_screen/pause_text.png", "pause_text");
-
-    TextureManager::get_instance().add_asset("assets/textures/ui/dialogue.png", "dialogue");
-    TextureManager::get_instance().add_asset("assets/textures/ui/icons/grandpa_test_icon.png", "grandpa_test_icon");
-    TextureManager::get_instance().add_asset("assets/textures/ui/icons/player_test_icon.png", "player_test_icon");
-    TextureManager::get_instance().add_asset("assets/textures/ui/popup/popups.png", "popups");
-
-    TextureManager::get_instance().add_asset("assets/textures/ui/bars/abilities/clock_bar/clock-bar-spritesheet.png", "clock-bar-spritesheet");
-
-    TextureManager::get_instance().add_asset("assets/textures/background/menu/menu_background.png", "menu_background");
-    TextureManager::get_instance().add_asset("assets/textures/background/menu/continue_button.png", "continue_button");
-    TextureManager::get_instance().add_asset("assets/textures/background/menu/new_game_button.png", "new_game_button");
-    TextureManager::get_instance().add_asset("assets/textures/background/menu/options_button.png", "options_button");
-    TextureManager::get_instance().add_asset("assets/textures/background/menu/quit_game_button.png", "quit_game_button");
-    TextureManager::get_instance().add_asset("assets/textures/background/menu/secrets_button.png", "secrets_button");
-
-    TextureManager::get_instance().add_asset("assets/textures/background/chapter_choose/chapter_choose_background.png", "chapter_choose_background");
-    TextureManager::get_instance().add_asset("assets/textures/background/secrets/secrets_background.png", "secrets_background");
-    TextureManager::get_instance().add_asset("assets/textures/background/settings/settings_background.png", "settings_background");
-    
     try {
         TextureManager::get_instance().check_assets();
     } catch (const std::runtime_error& exception) {
@@ -141,12 +82,7 @@ int main() {
 
 
     /* Sound assets */
-    omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk1.wav", "walk_1");
-    omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk2.wav", "walk_2");
-    omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk3.wav", "walk_3");
-    omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/walk/walk4.wav", "walk_4");
-
-    omniscia::core::SoundManager::get_instance().add_asset("assets/sounds/music/d264.wav", "d264");
+    SoundManager::get_instance().add_assets("assets/sound_assets.json");
     try {
         omniscia::core::SoundManager::get_instance().check_assets();
     } catch (const std::runtime_error& exception) {

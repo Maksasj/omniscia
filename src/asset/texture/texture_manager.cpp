@@ -4,8 +4,25 @@ omniscia::core::TextureAsset& omniscia::core::TextureManager::get(const std::str
     return _data[key];
 }
 
-void omniscia::core::TextureManager::add_asset(const std::string& file_path, const std::string& key) {
-    _data.insert({key, TextureAsset(file_path)});
+void omniscia::core::TextureManager::add_asset(const std::string& filePath, const std::string& key) {
+    _data.insert({key, TextureAsset(filePath)});
+}
+
+void omniscia::core::TextureManager::add_assets(const std::string& filePath) {
+    using json = nlohmann::json;
+
+    using namespace omni::reflector;
+    using namespace omni::reflector::serialization;
+
+    std::ifstream file(filePath);
+    const auto object = json::parse(file);
+
+    TextureManager manager = JsonSerializer::json_deserialize<TextureManager>(object);
+
+    for(const auto& asset : manager._data)
+        add_asset(asset.second.get_file_path(), asset.first);
+
+    file.close();
 }
 
 void omniscia::core::TextureManager::load_assets() {
