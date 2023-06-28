@@ -14,6 +14,7 @@
 #include "windows/metrics_window.h"
 #include "windows/selected_tilegroup_window.h"
 #include "windows/tilegroups_management_window.h"
+#include "windows/assets_view_window.h"
 
 namespace omniscia_editor::editor {
     using namespace omni::types;
@@ -68,6 +69,7 @@ namespace omniscia_editor::editor {
                 static bool renderMetricsWindow = true;
                 static bool renderTileGroupsManagementWindow = true;
                 static bool renderSelectedTileGroupWindow = true;
+                static bool renderAssetsViewWindow = true;
 
                 static bool renderPropertiesWindow = false;
 
@@ -102,6 +104,8 @@ namespace omniscia_editor::editor {
                         ImGui::MenuItem("Brush", nullptr, &renderBrushWindow);
                         ImGui::MenuItem("Level preview", nullptr, &renderLevelPreviewWindow);
                         ImGui::MenuItem("History", nullptr, &renderHistroyWindow);
+                        ImGui::MenuItem("Assets view", nullptr, &renderAssetsViewWindow);
+
                         ImGui::Separator();
 
                         if (ImGui::BeginMenu("Tile groups")) {
@@ -139,6 +143,7 @@ namespace omniscia_editor::editor {
                 if(renderMetricsWindow) MetricsWindow::get_instance().render_window();
                 if(renderTileGroupsManagementWindow) TileGroupsManagementWindow::get_instance().render_window();
                 if(renderSelectedTileGroupWindow) SelectedTileGroup::get_instance().render_window();
+                if(renderAssetsViewWindow) AssetsViewWindow::get_instance().render_window();
 
                 if(renderPropertiesWindow) PropertiesWindow::get_instance().render_window();
 

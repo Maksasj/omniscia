@@ -320,10 +320,7 @@ void omniscia_editor::level_editor::LevelEditorOld::render_tilegroup_options() {
         ImGui::Text("Tile atlas");
         if(ImGui::Button("Load texture atlas")) {
 
-            load_texture_from_file("assets/textures/tiles/beach/beach_tiles.png", 
-                &tileGroup._tileSetTexture,
-                &tileGroup._tileSetImageWidth,
-                &tileGroup._tileSetImageHeight);
+           
 
             tileGroup._tileSetLoaded = true;            
         }

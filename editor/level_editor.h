@@ -7,8 +7,6 @@
 #include <algorithm>
 #include <functional>
 
-#include "image_loading.h"
-
 #include "level_editor_properties.h"
 #include "level/level_data.h"
 #include "file_explorer/files_explorer.h"

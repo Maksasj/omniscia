@@ -21,12 +21,6 @@ namespace omniscia::core {
         std::vector<TileData> _tiles;
         std::vector<CollisionBoxData> _collisionBoxes;
 
-        // Editor only
-        bool _tileSetLoaded;
-        i32 _tileSetImageWidth;
-        i32 _tileSetImageHeight;
-        u32 _tileSetTexture;
-
         TileGroupData() {}
         TileGroupData(const std::string& name) { _name = name; }
     };
