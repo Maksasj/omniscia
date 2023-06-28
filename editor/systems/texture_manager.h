@@ -1,6 +1,7 @@
 #ifndef _OMNISCIA_EDITOR_TEXTURE_MANAGER_SYSTEM_H_
 #define _OMNISCIA_EDITOR_TEXTURE_MANAGER_SYSTEM_H_
 
+#include <fstream>
 #include <string>
 #include <unordered_map>
 

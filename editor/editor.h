@@ -3,10 +3,6 @@
 
 #include "themes/themes.h"
 
-#include "start_tab.h"
-#include "level_editor.h"
-#include "level_editor_new.h"
-
 #include "windows/level_preview_window.h"
 #include "windows/properties_window.h"
 #include "windows/history_window.h"
@@ -27,8 +23,6 @@ namespace omniscia_editor::editor {
         private:
             std::vector<Theme*> themes;
 
-            StartTab _startTab;
-            LevelEditorOld _levelEditor;
         public:
             Editor() {
                 themes = {

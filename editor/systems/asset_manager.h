@@ -8,6 +8,8 @@
 #include "../types.h"
 
 namespace omniscia_editor::systems {
+    using namespace omni::types;
+
     class AssetManager {
         private:
         public:
