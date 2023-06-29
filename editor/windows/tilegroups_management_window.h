@@ -7,6 +7,7 @@
 #include "../gfx.h"
 #include "../types.h"
 
+#include "../systems/tile_group_sorter.h"
 #include "app_window.h"
 
 namespace omniscia_editor::windows {
@@ -14,10 +15,14 @@ namespace omniscia_editor::windows {
 
     class TileGroupsManagementWindow : public AppWindow  {
         private:
-            i32 selectedTileGroupIndex;
-            i32 selectedSortingAlgorithm;
+            i32 _selectedTileGroupIndex;
+            i32 _selectedSortingAlgorithm;
 
             f32 _visibleTileGroups;
+
+            
+            bool _reverseSort;
+            std::vector<TileGroupSorterInstance> _tileGroupSorters;
 
         public:
             friend class omni::reflector::FieldFriendlyScope;

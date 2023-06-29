@@ -4,8 +4,13 @@
 
 omniscia_editor::windows::TileGroupsManagementWindow::TileGroupsManagementWindow() {
     _visibleTileGroups = 5.0f;
-    selectedTileGroupIndex = 1;
-    selectedSortingAlgorithm = 1;
+    _selectedTileGroupIndex = 0;
+    _selectedSortingAlgorithm = 0;
+
+    _reverseSort = false;
+    _tileGroupSorters.push_back({"Alphabetical order",  &AlphabeticalTileGroupSorter::get_instance()});
+    _tileGroupSorters.push_back({"Tile count",          &TileCountTileGroupSorter::get_instance()});
+    _tileGroupSorters.push_back({"Collision box count", &CollisionBoxCountTileGroupSorter::get_instance()});
 };
 
 void omniscia_editor::windows::TileGroupsManagementWindow::render_window() {
@@ -21,10 +26,10 @@ void omniscia_editor::windows::TileGroupsManagementWindow::render_window() {
     if (ImGui::TreeNodeEx("Tile groups list", ImGuiTreeNodeFlags_DefaultOpen)) {
         if (ImGui::BeginListBox("##listbox 2", ImVec2(-FLT_MIN, _visibleTileGroups * ImGui::GetTextLineHeightWithSpacing()))) {
             for (i32 n = 0; n < levelData._tileGroups.size(); n++) {
-                const bool is_selected = (selectedTileGroupIndex == n);
+                const bool is_selected = (_selectedTileGroupIndex == n);
 
                 if (ImGui::Selectable(levelData._tileGroups[n]._name.c_str(), is_selected))
-                    selectedTileGroupIndex = n;
+                    _selectedTileGroupIndex = n;
 
                 if (is_selected)
                     ImGui::SetItemDefaultFocus();
@@ -46,20 +51,20 @@ void omniscia_editor::windows::TileGroupsManagementWindow::render_window() {
         ImGui::SameLine();
         
         if(ImGui::Button("Delete tile group")) {
-            if(selectedTileGroupIndex < levelData._tileGroups.size()) {
-                levelData._tileGroups.erase(levelData._tileGroups.begin() + selectedTileGroupIndex);
+            if(_selectedTileGroupIndex < levelData._tileGroups.size()) {
+                levelData._tileGroups.erase(levelData._tileGroups.begin() + _selectedTileGroupIndex);
             }
 
-            --selectedTileGroupIndex;
+            --_selectedTileGroupIndex;
 
-            if(selectedTileGroupIndex < 1)
-                selectedTileGroupIndex = 1; 
+            if(_selectedTileGroupIndex < 0)
+                _selectedTileGroupIndex = 0; 
         }
         ImGui::SameLine();
         
         if(ImGui::Button("Copy tile group")) {
-            if(selectedTileGroupIndex < levelData._tileGroups.size()) {
-                TileGroupData tileGroupCopy = levelData._tileGroups[selectedTileGroupIndex];
+            if(_selectedTileGroupIndex < levelData._tileGroups.size()) {
+                TileGroupData tileGroupCopy = levelData._tileGroups[_selectedTileGroupIndex];
 
                 tileGroupCopy._name += " copy";
 
@@ -72,18 +77,14 @@ void omniscia_editor::windows::TileGroupsManagementWindow::render_window() {
     ImGui::Separator();
 
     if (ImGui::TreeNodeEx("Sort", ImGuiTreeNodeFlags_DefaultOpen)) {
-        const char* items[] = { "Alphabetical order", "Tile count", "Collision box count" };
-
-        const char* combo_preview_value = items[selectedSortingAlgorithm];
-
         ImGui::Text("Sorting criteria ");
         ImGui::SameLine();
-        if (ImGui::BeginCombo("## sorting criteria", combo_preview_value, ImGuiComboFlags_None)) {
-            for (int n = 0; n < IM_ARRAYSIZE(items); n++) {
-                const bool is_selected = (selectedSortingAlgorithm == n);
+        if (ImGui::BeginCombo("## sorting criteria", _tileGroupSorters[_selectedSortingAlgorithm]._label.c_str(), ImGuiComboFlags_None)) {
+            for (i32 n = 0; n < _tileGroupSorters.size(); n++) {
+                const bool is_selected = (_selectedSortingAlgorithm == n);
 
-                if (ImGui::Selectable(items[n], is_selected))
-                    selectedSortingAlgorithm = n;
+                if (ImGui::Selectable(_tileGroupSorters[n]._label.c_str(), is_selected))
+                    _selectedSortingAlgorithm = n;
 
                 if (is_selected)
                     ImGui::SetItemDefaultFocus();
@@ -94,10 +95,10 @@ void omniscia_editor::windows::TileGroupsManagementWindow::render_window() {
         ImGui::Text("Reverse sort");
         ImGui::SameLine();
 
-        static bool reverseSort = false;
-        ImGui::Checkbox("## reverse sort checkbox", &reverseSort);
+        ImGui::Checkbox("## reverse sort checkbox", &_reverseSort);
 
-        ImGui::Button("Sort tile groups");
+        if(ImGui::Button("Sort tile groups"))
+            _tileGroupSorters[_selectedSortingAlgorithm]._sorter->sort(levelData._tileGroups, _reverseSort);
         
         ImGui::TreePop();
     }
