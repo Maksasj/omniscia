@@ -13,6 +13,7 @@
 #include "tilegroups_management_window.h"
 #include "selected_tilegroup_window.h"
 #include "assets_view_window.h"
+#include "tools_window.h"
 
 #include "../gfx.h"
 #include "../types.h"
@@ -34,6 +35,7 @@ namespace omniscia_editor::windows {
             friend class omni::reflector::Reflection<PropertiesWindow>;
 
             PropertiesWindow() {
+                _windows.push_back(PropertyInstance{"Tools",                &ToolsWindow::get_instance()});
                 _windows.push_back(PropertyInstance{"Brush",                &BrushWindow::get_instance()});
                 _windows.push_back(PropertyInstance{"History",              &HistoryWindow::get_instance()});
                 _windows.push_back(PropertyInstance{"Level prieview",       &LevelPreviewWindow::get_instance()});

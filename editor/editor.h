@@ -11,6 +11,7 @@
 #include "windows/selected_tilegroup_window.h"
 #include "windows/tilegroups_management_window.h"
 #include "windows/assets_view_window.h"
+#include "windows/tools_window.h"
 
 #include "systems/level_manager.h"
 
@@ -67,6 +68,7 @@ namespace omniscia_editor::editor {
                 static bool renderTileGroupsManagementWindow = true;
                 static bool renderSelectedTileGroupWindowWindow = true;
                 static bool renderAssetsViewWindow = true;
+                static bool renderToolsWindow = true;
 
                 static bool renderPropertiesWindow = false;
 
@@ -99,6 +101,7 @@ namespace omniscia_editor::editor {
                     }
                     if (ImGui::BeginMenu("View")) {
                         ImGui::MenuItem("Brush", nullptr, &renderBrushWindow);
+                        ImGui::MenuItem("Tools", nullptr, &renderToolsWindow);
                         ImGui::MenuItem("Level preview", nullptr, &renderLevelPreviewWindow);
                         ImGui::MenuItem("History", nullptr, &renderHistroyWindow);
                         ImGui::MenuItem("Assets view", nullptr, &renderAssetsViewWindow);
@@ -135,6 +138,7 @@ namespace omniscia_editor::editor {
                 ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_PassthruCentralNode);
 
                 if(renderBrushWindow) BrushWindow::get_instance().render_window();
+                if(renderToolsWindow) ToolsWindow::get_instance().render_window();
                 if(renderLevelPreviewWindow) LevelPreviewWindow::get_instance().render_window();
                 if(renderHistroyWindow) HistoryWindow::get_instance().render_window();
                 if(renderMetricsWindow) MetricsWindow::get_instance().render_window();
