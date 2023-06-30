@@ -7,8 +7,8 @@
 #define OMNI_TYPES_ENABLE_REFLECTIONS
 #include "omni_types.tpp"
 
-#include "tilegroup_data_ref.h"
-#include "markergroup_data_ref.h"
+#include "tilegroup_data.h"
+#include "markergroup_data.h"
 
 namespace omniscia::core {
     using namespace omni::types;

@@ -32,34 +32,36 @@ void omniscia::core::SceneLoader::load_scene(Scene& level, const std::string& pa
         level._markerGroups.push_back(tmpMakerGroup);
     }
 
-    for(TileGroupData& tileGroupData : levelData._tileGroups) {
+    for(const TileGroupData& tileGroupData : levelData._tileGroups) {
         std::shared_ptr<Entity> tileGroup = std::make_shared<Entity>();
         RawMeshDataBuilder builder;
 
         // Tiles
-        for(TileData& tileData : tileGroupData._tiles) {
+        for(const TileEntity& tileData : tileGroupData._tiles) {
+            const std::vector<TileMaterial>& tileMaterials = tileGroupData._tileMaterials;
+
             omniscia::gfx::sprite::RawMeshData mesh = RawMeshData(
                 {
-                    Vertex({ 1.0f,  1.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, Vec2f{tileData._textureCordsTopRight     }),       // top right
-                    Vertex({ 1.0f, -1.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, Vec2f{tileData._textureCordsBottomRight  }),     // bottom right
-                    Vertex({-1.0f, -1.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, Vec2f{tileData._textureCordsBottomLeft   }),       // bottom left
-                    Vertex({-1.0f,  1.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, Vec2f{tileData._textureCordsTopLeft      })          // top left 
+                    Vertex(Vec3f( 1.0f,  1.0f, 0.0f), Vec3f::splat(1.0f), tileMaterials[tileData._materialId]._textureCordsTopRight     ),       // top right
+                    Vertex(Vec3f( 1.0f, -1.0f, 0.0f), Vec3f::splat(1.0f), tileMaterials[tileData._materialId]._textureCordsBottomRight  ),       // bottom right
+                    Vertex(Vec3f(-1.0f, -1.0f, 0.0f), Vec3f::splat(1.0f), tileMaterials[tileData._materialId]._textureCordsBottomLeft   ),       // bottom left
+                    Vertex(Vec3f(-1.0f,  1.0f, 0.0f), Vec3f::splat(1.0f), tileMaterials[tileData._materialId]._textureCordsTopLeft      )        // top left 
                 },
                 { 0, 1, 3, 1, 2, 3 }
             );
 
-            builder.append(mesh,  tileData._position, tileData._scale);
+            builder.append(mesh,  tileData._position, tileMaterials[tileData._materialId]._scale);
         }
 
         tileGroup->add<ECS_Positioned>(0.0f, 0.0f);
-        tileGroup->add<ECS_TilemapRenderer>(builder.get(), "beach_tiles", 9);
+        tileGroup->add<ECS_TilemapRenderer>(builder.get(), tileGroupData._textureMaterialAssetId, 9);
         staticEntities.push_back(tileGroup);
 
         // Collision boxes
-        for(CollisionBoxData& collisionBox : tileGroupData._collisionBoxes) {
-            Vec2f collisionBoxPos = collisionBox._position;
-            Vec2f rangesX = collisionBox._xRanges;
-            Vec2f rangesY = collisionBox._yRanges;
+        for(const CollisionBoxEntity& collisionBox : tileGroupData._collisionBoxes) {
+            const Vec2f& collisionBoxPos = collisionBox._position;
+            const Vec2f& rangesX = collisionBox._xRanges;
+            const Vec2f& rangesY = collisionBox._yRanges;
             
             std::shared_ptr<Entity> collisionBoxEntity = std::make_shared<Entity>();
 

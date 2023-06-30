@@ -5,7 +5,7 @@
 #include <string>
 #include <algorithm>
 
-#include "tilegroup_data_ref.h"
+#include "tilegroup_data.h"
 
 #include "../gfx.h"
 #include "../types.h"

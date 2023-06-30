@@ -7,15 +7,20 @@
 #define OMNI_TYPES_ENABLE_REFLECTIONS
 #include "omni_types.tpp"
 
-#include "marker_data_ref.h"
+#include "marker_data.h"
 
 namespace omniscia::core {
     using namespace omni::types;
     using namespace omni::reflector;
 
     struct MarkerGroupData {
-        Vec4f _markerGroupAssociatedColor = Vec4f{1.0f, 1.0f, 1.0f, 1.0f};
+        Vec4f _markerGroupAssociatedColor;
+        
         std::vector<MarkerData> _markers;
+
+        MarkerGroupData() {
+            _markerGroupAssociatedColor = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
+        }
     };
 }
 

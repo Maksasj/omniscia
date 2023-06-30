@@ -9,7 +9,7 @@
 #include "../windows/selected_tilegroup_window.h"
 #include "../windows/tilegroups_management_window.h"
 
-#include "level_data_ref.h"
+#include "level_data.h"
  
 namespace omniscia_editor::systems {
     using namespace omni::types;
