@@ -3,23 +3,13 @@
 
 int main(void) {
     using namespace omni::types;
+    using namespace omniscia_editor;
     using namespace omniscia_editor::editor;
 
-    GLFWwindow* window;
+    if(init_glfw())
+        return 1;
 
-    if (!glfwInit()) return -1;
-
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-    window = glfwCreateWindow(640, 480, "Omniscia Level Editor", NULL, NULL);
-    if (!window) {
-        glfwTerminate();
-        return -1;
-    }
-
-    glfwMakeContextCurrent(window);
+    Window window;
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cout << "Failed to initialize GLAD" << std::endl;
@@ -33,12 +23,12 @@ int main(void) {
 
     ImGui::CreateContext();
     ImGui::StyleColorsDark();
-    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplGlfw_InitForOpenGL(window.get_backend(), true);
     ImGui_ImplOpenGL3_Init("#version 330");
 
     ImFont* font = io.Fonts->AddFontFromFileTTF("assets\\fonts\\Nunito-Medium.ttf", 21);
 
-    while (!glfwWindowShouldClose(window)) {
+    while (!glfwWindowShouldClose(window.get_backend())) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
@@ -46,12 +36,12 @@ int main(void) {
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        Editor::get_instance().render(window);
+        Editor::get_instance().render();
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());     
 
-        glfwSwapBuffers(window);
+        glfwSwapBuffers(window.get_backend());
         glfwPollEvents();
     } 
 

@@ -39,7 +39,7 @@ namespace omniscia_editor::editor {
                 themes[0]->apply_theme();
             }
 
-            void render(GLFWwindow *window) {
+            void render() {
                 static bool open = true;
 
                 ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;

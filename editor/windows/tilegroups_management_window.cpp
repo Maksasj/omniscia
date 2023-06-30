@@ -13,6 +13,10 @@ omniscia_editor::windows::TileGroupsManagementWindow::TileGroupsManagementWindow
     _tileGroupSorters.push_back({"Collision box count", &CollisionBoxCountTileGroupSorter::get_instance()});
 };
 
+omni::types::i32 omniscia_editor::windows::TileGroupsManagementWindow::get_selected_tile_group_index() const {
+    return _selectedTileGroupIndex;
+}
+
 void omniscia_editor::windows::TileGroupsManagementWindow::render_window() {
     using namespace omniscia_editor::systems;
 
@@ -28,7 +32,10 @@ void omniscia_editor::windows::TileGroupsManagementWindow::render_window() {
             for (i32 n = 0; n < levelData._tileGroups.size(); n++) {
                 const bool is_selected = (_selectedTileGroupIndex == n);
 
-                if (ImGui::Selectable(levelData._tileGroups[n]._name.c_str(), is_selected))
+                std::stringstream ss;
+                ss << levelData._tileGroups[n]._name << "## " << (void*) &levelData._tileGroups[n];
+                
+                if (ImGui::Selectable(ss.str().c_str(), is_selected))
                     _selectedTileGroupIndex = n;
 
                 if (is_selected)

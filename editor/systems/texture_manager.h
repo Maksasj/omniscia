@@ -7,6 +7,7 @@
 
 #include "../gfx.h"
 #include "../types.h"
+#include "../window.h"
 
 #include "asset_manager.h"
 
@@ -57,7 +58,11 @@ namespace omniscia_editor::systems {
                         ImGui::TableNextColumn();
                 
                         if(!fancyPreview) {
-                            ImGui::Button(assetInstance.first.c_str(), ImVec2(ImGui::GetColumnWidth(), ImGui::GetColumnWidth()));
+                            if(ImGui::Button(assetInstance.first.c_str(), ImVec2(ImGui::GetColumnWidth(), ImGui::GetColumnWidth()))) {
+                                GLFWwindow* window = Window::get_instance()->get_backend();
+
+                                glfwSetClipboardString(window, assetInstance.first.c_str());
+                            }
                         } else {
                             ImVec2 buttonSize = ImVec2(ImGui::GetColumnWidth(), ImGui::GetColumnWidth());
 
@@ -67,7 +72,11 @@ namespace omniscia_editor::systems {
                                 buttonSize.x *= static_cast<f32>(asset._height) / static_cast<f32>(asset._width);
                             }
 
-                            ImGui::ImageButton((void*)(intptr_t)assetInstance.second._texture, buttonSize);
+                            if(ImGui::ImageButton((void*)(intptr_t)assetInstance.second._texture, buttonSize)) {
+                                GLFWwindow* window = Window::get_instance()->get_backend();
+
+                                glfwSetClipboardString(window, assetInstance.first.c_str());
+                            }
                         }
                         
                     }

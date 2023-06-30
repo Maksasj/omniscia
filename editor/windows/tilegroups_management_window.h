@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
 #include "../gfx.h"
 #include "../types.h"
@@ -19,7 +20,6 @@ namespace omniscia_editor::windows {
             i32 _selectedSortingAlgorithm;
 
             f32 _visibleTileGroups;
-
             
             bool _reverseSort;
             std::vector<TileGroupSorterInstance> _tileGroupSorters;
@@ -33,6 +33,8 @@ namespace omniscia_editor::windows {
             void render_window() override;
 
             void render_properties() override;
+
+            i32 get_selected_tile_group_index() const;
 
             static TileGroupsManagementWindow& get_instance();
     };

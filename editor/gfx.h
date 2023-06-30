@@ -10,4 +10,6 @@
 
 #include <glad/glad.h>
 
+int init_glfw();
+
 #endif
