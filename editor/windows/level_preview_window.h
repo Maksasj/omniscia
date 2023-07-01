@@ -17,6 +17,9 @@ namespace omniscia_editor::windows {
             f32 _zoom;
             Vec2f _scroll;
 
+            /* Intermediate things */
+            Vec2f _cursorPos;
+
             /* Properies */
             f32 _gridSize;
 
@@ -29,14 +32,17 @@ namespace omniscia_editor::windows {
         public:
             friend class omni::reflector::FieldFriendlyScope;
             friend class omni::reflector::Reflection<LevelPreviewWindow>;
+            friend class LevelPreviewHelpWindow;
 
             LevelPreviewWindow() {
                 _zoom = 1.0f;
-                _gridSize = 50.0f;
                 _scroll = Vec2f::splat(0.0f);
 
+                _cursorPos = Vec2f::splat(0.0f);
+
+                _gridSize = 50.0f;
                 _zoomSpeed = 0.02f;
-                _maxZoom = 50.0f;
+                _maxZoom = 5.0f;
                 _minZoom = 0.05f;
 
                 _renderGrid = true;
@@ -106,6 +112,8 @@ namespace omniscia_editor::windows {
                         _scroll -= delta * (oldZoom - _zoom);
                     }
                 }
+
+                _cursorPos = start - Vec2f(io.MousePos.x, io.MousePos.y);
 
                 ImGui::End();
             }
