@@ -18,6 +18,7 @@ omni::types::i32 omniscia_editor::windows::TileGroupsManagementWindow::get_selec
 }
 
 void omniscia_editor::windows::TileGroupsManagementWindow::render_window() {
+    using namespace omniscia::core;
     using namespace omniscia_editor::systems;
 
     if(!ImGui::Begin("Tile groups")) {

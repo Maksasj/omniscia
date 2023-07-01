@@ -27,44 +27,15 @@ namespace omniscia_editor::windows {
         public:
             friend class omni::reflector::FieldFriendlyScope;
             friend class omni::reflector::Reflection<ToolsWindow>;
+            friend class LevelPreviewWindow;
 
-            ToolsWindow() {
-                selectedToolIndex = 0;
-                
-                _tools.push_back({"Pencil",     &PencilTool::get_instance()});
-                _tools.push_back({"Selection",  &PencilTool::get_instance()});
-                _tools.push_back({"Move",       &PencilTool::get_instance()});
-            };
+            ToolsWindow();
 
-            void render_window() override {
-                if(!ImGui::Begin("Tools")) {
-                    ImGui::End();
-                    return;
-                }
+            void render_window() override;
 
-                if (ImGui::BeginCombo("Tools", _tools[selectedToolIndex]._label.c_str(), ImGuiComboFlags_None)) {
-                    for (int n = 0; n < _tools.size(); n++) {
-                        const bool is_selected = (selectedToolIndex == n);
-                        if (ImGui::Selectable(_tools[n]._label.c_str(), is_selected))
-                            selectedToolIndex = n;
+            void render_properties() override;
 
-                        if (is_selected)
-                            ImGui::SetItemDefaultFocus();
-                    }
-                    ImGui::EndCombo();
-                }
-
-                ImGui::End();
-            }
-
-            void render_properties() override {
-                PropertiesFieldQuery::property_window_edit_query(*this);
-            }
-
-            static ToolsWindow& get_instance() {
-                static ToolsWindow window;
-                return window;
-            }
+            static ToolsWindow& get_instance();
     };
 }
 

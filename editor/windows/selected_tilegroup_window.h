@@ -7,7 +7,6 @@
 #include "../gfx.h"
 #include "../types.h"
 
-#include "tilegroups_management_window.h"
 #include "app_window.h"
 
 namespace omniscia_editor::windows {

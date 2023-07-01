@@ -11,18 +11,6 @@ namespace omniscia_editor::tools {
     struct BaseTool {
         virtual void render_effect() {}
     };
-
-
-    struct PencilTool : public BaseTool {
-        void render_effect() override {
-
-        }
-        
-        static PencilTool& get_instance() {
-            static PencilTool tool;
-            return tool;
-        }
-    };
 }
 
 #endif

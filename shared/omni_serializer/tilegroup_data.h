@@ -34,7 +34,7 @@ namespace omniscia::core {
         TileGroupData() {
             _name = "Unnamed tile group";
 
-            Vec4f _tileGroupAssociatedColor = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
+            _tileGroupAssociatedColor = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
 
             _textureMaterialAssetId = "";
 
@@ -44,7 +44,7 @@ namespace omniscia::core {
         TileGroupData(const string& name) { 
             _name = name;
 
-            Vec4f _tileGroupAssociatedColor = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
+            _tileGroupAssociatedColor = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
 
             _textureMaterialAssetId = "";
 

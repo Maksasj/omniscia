@@ -6,6 +6,9 @@
 #include "../gfx.h"
 #include "../types.h"
 
+#include "../tools/pencil_tool.h"
+
+#include "../windows/level_preview_window.h"
 #include "../windows/selected_tilegroup_window.h"
 #include "../windows/tilegroups_management_window.h"
 
@@ -22,15 +25,15 @@ namespace omniscia_editor::systems {
         public:
             friend class omniscia_editor::windows::SelectedTileGroupWindow;
             friend class omniscia_editor::windows::TileGroupsManagementWindow;
+            friend class omniscia_editor::windows::LevelPreviewWindow;
 
-            void file_new() {}
-            void file_open() {}
-            void file_save() {}
+            friend class omniscia_editor::tools::PencilTool;
 
-            static LevelManager& get_instance() {
-                static LevelManager manager;
-                return manager;
-            }
+            void file_new();
+            void file_open();
+            void file_save();
+
+            static LevelManager& get_instance();
     };
 }
 

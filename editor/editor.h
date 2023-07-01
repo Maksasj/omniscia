@@ -142,12 +142,12 @@ namespace omniscia_editor::editor {
 
                 if(renderBrushWindow) BrushWindow::get_instance().render_window();
                 if(renderToolsWindow) ToolsWindow::get_instance().render_window();
+                if(renderSelectedTileGroupWindowWindow) SelectedTileGroupWindow::get_instance().render_window();
+                if(renderTileGroupsManagementWindow) TileGroupsManagementWindow::get_instance().render_window();
                 if(renderLevelPreviewWindow) LevelPreviewWindow::get_instance().render_window();
                 if(renderLevelPreviewHelpWindow) LevelPreviewHelpWindow::get_instance().render_window();
                 if(renderHistroyWindow) HistoryWindow::get_instance().render_window();
                 if(renderMetricsWindow) MetricsWindow::get_instance().render_window();
-                if(renderTileGroupsManagementWindow) TileGroupsManagementWindow::get_instance().render_window();
-                if(renderSelectedTileGroupWindowWindow) SelectedTileGroupWindow::get_instance().render_window();
                 if(renderAssetsViewWindow) AssetsViewWindow::get_instance().render_window();
 
                 if(renderPropertiesWindow) PropertiesWindow::get_instance().render_window();

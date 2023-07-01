@@ -1,5 +1,7 @@
 #include "selected_tilegroup_window.h"
 
+#include "tilegroups_management_window.h"
+
 #include "../systems/level_manager.h"
 
 omniscia_editor::windows::SelectedTileGroupWindow::SelectedTileGroupWindow() {
@@ -51,12 +53,12 @@ void omniscia_editor::windows::SelectedTileGroupWindow::render_window() {
 
         if(ImGui::Button("Clear"))
             name.clear();
-        
+
         ImVec4 temporaryColor = ImVec4(
-            selectedTileGroup._tileGroupAssociatedColor.x * 255.0f, 
-            selectedTileGroup._tileGroupAssociatedColor.y * 255.0f, 
-            selectedTileGroup._tileGroupAssociatedColor.z * 255.0f, 
-            selectedTileGroup._tileGroupAssociatedColor.w * 255.0f);
+            selectedTileGroup._tileGroupAssociatedColor.x, 
+            selectedTileGroup._tileGroupAssociatedColor.y, 
+            selectedTileGroup._tileGroupAssociatedColor.z, 
+            selectedTileGroup._tileGroupAssociatedColor.w);
 
         ImGui::Text("Associative color");
         ImGui::SameLine();
@@ -82,7 +84,6 @@ void omniscia_editor::windows::SelectedTileGroupWindow::render_window() {
         }
 
         selectedTileGroup._tileGroupAssociatedColor = Vec4f(temporaryColor.x, temporaryColor.y, temporaryColor.z, temporaryColor.w);
-        selectedTileGroup._tileGroupAssociatedColor /= 255.0f;
 
         ImGui::TreePop();
     }
