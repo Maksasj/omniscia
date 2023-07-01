@@ -14,6 +14,9 @@ namespace omniscia::core {
     struct TileEntity {
         Vec2f _position;
         i32 _materialId;
+
+        /* Editor only */
+        bool _selected = false;
     };
 }
 

@@ -1,5 +1,5 @@
-#ifndef _OMNISCIA_EDITOR_PENCIL_TOOL_H_
-#define _OMNISCIA_EDITOR_PENCIL_TOOL_H_
+#ifndef _OMNISCIA_EDITOR_MOVE_TOOL_H_
+#define _OMNISCIA_EDITOR_MOVE_TOOL_H_
 
 #include <iostream>
 #include <string>
@@ -12,16 +12,13 @@
 namespace omniscia_editor::tools {
     using namespace omni::types;
 
-    class PencilTool : public BaseTool {
+    class MoveTool : public BaseTool {
         public:
-            bool _renderGhostTile;
-            Vec4f _ghostTileColor;
-
-            PencilTool();
+            MoveTool();
 
             void render_effect() override;
             
-            static PencilTool& get_instance();
+            static MoveTool& get_instance();
     };
 }
 

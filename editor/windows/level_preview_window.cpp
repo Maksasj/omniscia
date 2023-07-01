@@ -99,6 +99,14 @@ void omniscia_editor::windows::LevelPreviewWindow::render_window() {
                 ImVec2((start.x - tile._position.x * _zoom) - _gridSize * _zoom,    (start.y - tile._position.y * _zoom) - _gridSize * _zoom),
                 IM_COL32(tileGroup._tileGroupAssociatedColor.x * 255.0f, tileGroup._tileGroupAssociatedColor.y * 255.0f, tileGroup._tileGroupAssociatedColor.z * 255.0f, tileGroup._tileGroupAssociatedColor.w * 255.0f)
             );
+
+            if(tile._selected) {
+                drawList->AddRectFilled(
+                    ImVec2((start.x - tile._position.x * _zoom),                        (start.y - tile._position.y * _zoom)),
+                    ImVec2((start.x - tile._position.x * _zoom) - _gridSize * _zoom,    (start.y - tile._position.y * _zoom) - _gridSize * _zoom),
+                    IM_COL32(255.0f, 255.0f, 51.0f, 200.0f)
+                );
+            }
         }
     }
 

@@ -31,8 +31,6 @@ void omniscia_editor::tools::PencilTool::render_effect() {
 
     if (canvasSZ.x < 50.0f) canvasSZ.x = 50.0f;
     if (canvasSZ.y < 50.0f) canvasSZ.y = 50.0f;
-    
-    const ImVec2 canvasP1 = ImVec2(canvasP0.x + canvasSZ.x, canvasP0.y + canvasSZ.y);
 
     const f32 tileHalfWidth = _gridSize * 0.5f;
     const f32 tileHalfWidthScreen = tileHalfWidth * _zoom;

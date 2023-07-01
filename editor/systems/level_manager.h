@@ -7,6 +7,7 @@
 #include "../types.h"
 
 #include "../tools/pencil_tool.h"
+#include "../tools/selection_tool.h"
 
 #include "../windows/level_preview_window.h"
 #include "../windows/selected_tilegroup_window.h"
@@ -28,6 +29,7 @@ namespace omniscia_editor::systems {
             friend class omniscia_editor::windows::LevelPreviewWindow;
 
             friend class omniscia_editor::tools::PencilTool;
+            friend class omniscia_editor::tools::SelectionTool;
 
             void file_new();
             void file_open();
