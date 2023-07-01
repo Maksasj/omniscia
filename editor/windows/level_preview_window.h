@@ -29,6 +29,9 @@ namespace omniscia_editor::windows {
 
             bool _renderAxis;
             bool _renderGrid;
+
+            bool _renderScreenboxPreview;
+            Vec2f _screenboxPreviewSize;
         public:
             friend class omni::reflector::FieldFriendlyScope;
             friend class omni::reflector::Reflection<LevelPreviewWindow>;
@@ -40,13 +43,16 @@ namespace omniscia_editor::windows {
 
                 _cursorPos = Vec2f::splat(0.0f);
 
-                _gridSize = 50.0f;
+                _gridSize = 16.0f;
                 _zoomSpeed = 0.02f;
                 _maxZoom = 5.0f;
                 _minZoom = 0.05f;
 
                 _renderGrid = true;
                 _renderAxis = true;
+
+                _renderScreenboxPreview = true;
+                _screenboxPreviewSize = Vec2(256.0f, 144.0f);
             };
 
             void render_window() override {
@@ -77,6 +83,12 @@ namespace omniscia_editor::windows {
                     drawList->AddLine(ImVec2(start.x, canvasP0.y), ImVec2(start.x, canvasP1.y), IM_COL32(255, 255, 255, 255));
                     drawList->AddLine(ImVec2(canvasP0.x, start.y), ImVec2(canvasP1.x, start.y), IM_COL32(255, 255, 255, 255));
                 }
+
+                if(_renderScreenboxPreview)
+                    drawList->AddRect(
+                        ImVec2(start.x - (_screenboxPreviewSize.x / 2.0f) * _zoom, start.y - (_screenboxPreviewSize.y / 2.0f) * _zoom), 
+                        ImVec2(start.x + (_screenboxPreviewSize.x / 2.0f) * _zoom, start.y + (_screenboxPreviewSize.y / 2.0f) * _zoom), 
+                        IM_COL32(255, 255, 100, 255));
 
                 /* Grid it self */
                 if(_renderGrid) {
@@ -113,7 +125,7 @@ namespace omniscia_editor::windows {
                     }
                 }
 
-                _cursorPos = start - Vec2f(io.MousePos.x, io.MousePos.y);
+                _cursorPos = (start - Vec2f(io.MousePos.x, io.MousePos.y)) / _zoom;
 
                 ImGui::End();
             }
@@ -139,7 +151,9 @@ struct omni::reflector::Reflection<omniscia_editor::windows::LevelPreviewWindow>
         omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_renderGrid, "Render grid"),
         omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_zoomSpeed, "Zoom zpeed"),
         omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_maxZoom, "Max zoom"),
-        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_minZoom, "Min zoom")
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_minZoom, "Min zoom"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_renderScreenboxPreview, "Render screenbox preview"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_screenboxPreviewSize, "Screenbox preview size")
     );																		               
 };
 
