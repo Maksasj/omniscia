@@ -18,6 +18,8 @@ namespace omniscia_editor::windows {
             Vec2f _scroll;
 
             /* Properies */
+            f32 _gridSize;
+
             f32 _zoomSpeed;
             f32 _maxZoom;
             f32 _minZoom;
@@ -29,12 +31,13 @@ namespace omniscia_editor::windows {
             friend class omni::reflector::Reflection<LevelPreviewWindow>;
 
             LevelPreviewWindow() {
-                _zoom = 50.0f;
+                _zoom = 1.0f;
+                _gridSize = 50.0f;
                 _scroll = Vec2f::splat(0.0f);
 
-                _zoomSpeed = 1.0f;
-                _maxZoom = 500.0f;
-                _minZoom = 5.0f;
+                _zoomSpeed = 0.02f;
+                _maxZoom = 50.0f;
+                _minZoom = 0.05f;
 
                 _renderGrid = true;
                 _renderAxis = true;
@@ -63,7 +66,7 @@ namespace omniscia_editor::windows {
 
                 const Vec2f start = Vec2f(_scroll.x + windowPos.x, _scroll.y + windowPos.y);
                 
-                /* Axes */
+                /* Axes */ 
                 if(_renderAxis) {
                     drawList->AddLine(ImVec2(start.x, canvasP0.y), ImVec2(start.x, canvasP1.y), IM_COL32(255, 255, 255, 255));
                     drawList->AddLine(ImVec2(canvasP0.x, start.y), ImVec2(canvasP1.x, start.y), IM_COL32(255, 255, 255, 255));
@@ -71,16 +74,16 @@ namespace omniscia_editor::windows {
 
                 /* Grid it self */
                 if(_renderGrid) {
-                    for(f32 x = start.x; x < canvasP1.x; x += _zoom)
+                    for(f32 x = start.x; x < canvasP1.x; x += _gridSize * _zoom)
                         drawList->AddLine(ImVec2(x, canvasP0.y), ImVec2(x, canvasP1.y), IM_COL32(200, 200, 200, 40));
 
-                    for(f32 x = start.x; x > canvasP0.x; x -= _zoom)
+                    for(f32 x = start.x; x > canvasP0.x; x -= _gridSize * _zoom)
                         drawList->AddLine(ImVec2(x, canvasP0.y), ImVec2(x, canvasP1.y), IM_COL32(200, 200, 200, 40));
 
-                    for(f32 y = start.y; y < canvasP1.y; y += _zoom)
+                    for(f32 y = start.y; y < canvasP1.y; y += _gridSize * _zoom)
                         drawList->AddLine(ImVec2(canvasP0.x, y), ImVec2(canvasP1.x, y), IM_COL32(200, 200, 200, 40));
 
-                    for(f32 y = start.y; y > canvasP0.y; y -= _zoom)
+                    for(f32 y = start.y; y > canvasP0.y; y -= _gridSize * _zoom)
                         drawList->AddLine(ImVec2(canvasP0.x, y), ImVec2(canvasP1.x, y), IM_COL32(200, 200, 200, 40));
                 }
 
@@ -96,21 +99,11 @@ namespace omniscia_editor::windows {
                     /* Zooming with mouse wheel */
                     if(io.MouseWheel != 0.0f) {
                         const f32 oldZoom = _zoom;
-                        const f32 newZoom = _zoom + io.MouseWheel * _zoomSpeed; 
-                        const Vec2f delta = Vec2f(io.MousePos.x - _scroll.x, io.MousePos.y - _scroll.y);
+                        _zoom = clamp(_zoom + io.MouseWheel * _zoomSpeed, _minZoom, _maxZoom);
+                        
+                        const Vec2f delta = (start - Vec2f(io.MousePos.x, io.MousePos.y)) / _zoom;  
 
-                        if((newZoom < _maxZoom) && (newZoom > _minZoom)) 
-                            _zoom = newZoom;
-
-                        if(delta.x < 0.0f)
-                            _scroll.x = io.MousePos.x + abs(delta.x)*(_zoom / oldZoom);
-                        else
-                            _scroll.x = io.MousePos.x - abs(delta.x)*(_zoom / oldZoom);
-
-                        if(delta.y < 0.0f)
-                            _scroll.y = io.MousePos.y + abs(delta.y)*(_zoom / oldZoom);
-                        else
-                            _scroll.y = io.MousePos.y - abs(delta.y)*(_zoom / oldZoom);  
+                        _scroll -= delta * (oldZoom - _zoom);
                     }
                 }
 
@@ -133,6 +126,7 @@ struct omni::reflector::Reflection<omniscia_editor::windows::LevelPreviewWindow>
     const constexpr static std::type_info &typeInfo = typeid(omniscia_editor::windows::LevelPreviewWindow);           
     const constexpr static auto clearTypeName = "LevelPreviewWindow";
     const constexpr static auto meta = std::make_tuple(
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_gridSize, "Grid size"),
         omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_renderAxis, "Render axis"),
         omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_renderGrid, "Render grid"),
         omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_zoomSpeed, "Zoom zpeed"),
