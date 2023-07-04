@@ -148,7 +148,7 @@ namespace omniscia::core {
             }  
             
             iterator operator++(int) { 
-                iterator<__T> tmp = *this;
+                const auto tmp = *this;
 
                 ++_index;
                 if(_index >= __size)
@@ -166,7 +166,7 @@ namespace omniscia::core {
             }  
             
             iterator operator--(int) { 
-                iterator<__T> tmp = *this;
+                const auto tmp = *this;
 
                 --_index;
                 if(_index < 0)

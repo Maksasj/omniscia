@@ -174,7 +174,7 @@ namespace omniscia::gfx {
 
             }
 
-        const char* what() const {
+        const char* what() const noexcept override {
             return _message.c_str();
         }
     };
