@@ -32,5 +32,5 @@ make.bat
 ```
 
 ## License
-Graph is free, open source library. All code in this repository is licensed under
+All code in this repository is licensed under
 - Creative Commons Attribution-NonCommercial 4.0 International ([LICENSE.md](https://github.com/Maksasj/omniscia/blob/master/LICENSE.md) or https://creativecommons.org/licenses/by-nc/4.0/)
