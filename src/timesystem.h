@@ -12,9 +12,9 @@
 #ifndef _TIME_SYSTEM_H_
 #define _TIME_SYSTEM_H_
 
+#include <chrono>
 #include <functional>
 
-#include "boost_includes.h"
 #include "gfx.h"
 #include "omni_types.tpp"
 
@@ -52,7 +52,7 @@ namespace omniscia::core {
             */
             template <unsigned int _milliseconds>
             static void run_every_n_milliseconds(const std::function<void()>& lambda) {
-                using namespace boost::chrono;
+                using namespace std::chrono;
                 static auto begin = high_resolution_clock::now();
                 auto end = high_resolution_clock::now();
 

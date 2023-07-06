@@ -3,9 +3,6 @@
 omniscia::gfx::monitor::Monitor* omniscia::gfx::monitor::Monitor::_activeMonitor = nullptr;
 
 omniscia::gfx::monitor::Monitor::Monitor(GLFWmonitor* glfwMonitor) {
-    if(_glfwMonitor == nullptr)
-        throw std::runtime_error("Monitor is invalid");
-
     _glfwMonitor = glfwMonitor;
 
     glfwGetMonitorWorkarea(_glfwMonitor, &_monitorPos.x, &_monitorPos.y, &_monitorSize.x, &_monitorSize.y);
@@ -22,6 +19,9 @@ std::vector<omniscia::gfx::monitor::Monitor*> omniscia::gfx::monitor::Monitor::r
 
     i32 glfwMonitorCount = 0;
     GLFWmonitor** glfwMonitors = glfwGetMonitors(&glfwMonitorCount);
+
+    if(glfwMonitors == nullptr)
+        throw std::runtime_error("Failed to retrieve monitors");
 
     if(glfwMonitorCount <= 0)
         throw std::runtime_error("Not found any monitors");

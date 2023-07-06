@@ -12,8 +12,6 @@
 #ifndef _ENTITY_H_
 #define _ENTITY_H_
 
-#include "uuid.h"
-
 #include "ecs_component_container_index.tpp"
 #include "ecs_component_container.tpp"
 
@@ -47,7 +45,7 @@ namespace omniscia::core {
 
             /** @brief Default Entity constructor */
             Entity() {
-                _uuid = UUID::gen_uuid();
+                _uuid = UUID::gen();
                 _timeType = DYNAMIC;
             }
 

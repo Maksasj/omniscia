@@ -80,7 +80,6 @@ int main() {
 
     AnimationManager::get_instance().add_asset(AnimationAsset({{1.0, 1.0},  {0.125, 0.5},   {0.0, 0.5},     8, true, 12,    true}), "selector-animation");
 
-
     /* Sound assets */
     SoundManager::get_instance().add_assets("assets/sound_assets.json");
     try {

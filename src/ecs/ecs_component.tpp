@@ -42,6 +42,10 @@ namespace omniscia::core::ecs {
             /** @brief Destroy the ecs component object */
             virtual ~ECS_Component() = default;
 
+            ECS_Component() {
+                _enabled = true;
+            }
+
             void enable() {
                 _enabled = true;
             }

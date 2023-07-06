@@ -5,7 +5,7 @@
 unsigned long long get_game_version() {
     return _OMNISCIA_VERSION_;
 }
-std::string get_game_version_string() {
-    return boost::lexical_cast<std::string>(get_game_version());
-}
 
+std::string get_game_version_string() {
+    return std::to_string(get_game_version());
+}

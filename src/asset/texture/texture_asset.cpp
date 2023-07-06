@@ -2,7 +2,6 @@
 
 omni::types::u32 omniscia::core::TextureAsset::_count = 0;
 
-
 omniscia::core::TextureAsset::TextureAsset() { ++_count; }
 
 omniscia::core::TextureAsset::TextureAsset(const std::string& filePath) : Asset(filePath) { ++_count; }
