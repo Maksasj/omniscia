@@ -1,6 +1,6 @@
 version = -1
 
-with open('editor/version.cpp','r') as file:
+with open('src/editor/version.cpp','r') as file:
     for line in file:
         for word in line.split():
             if word.isdigit():
@@ -9,7 +9,7 @@ with open('editor/version.cpp','r') as file:
 if version != -1:
     version += 1
 
-    with open('editor/version.cpp', 'w') as file:
+    with open('src/editor/version.cpp', 'w') as file:
         file.write("#include \"version.h\"\n")
         file.write("\n")
         file.write("#define _OMNISCIA_EDITOR_VERSION_ ")
