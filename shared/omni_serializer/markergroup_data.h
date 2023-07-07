@@ -1,7 +1,6 @@
 #ifndef _MARKERGROUP_DATA_REF_H_
 #define _MARKERGROUP_DATA_REF_H_
 
-#define OMNI_REFLECTOR_ENABLE_SERIALIZER
 #include "omni_reflector.h"
 
 #define OMNI_TYPES_ENABLE_REFLECTIONS

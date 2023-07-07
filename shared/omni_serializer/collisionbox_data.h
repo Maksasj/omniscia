@@ -1,12 +1,10 @@
 #ifndef _COLLISIONBOX_DATA_REF_H_
 #define _COLLISIONBOX_DATA_REF_H_
 
-#define OMNI_REFLECTOR_ENABLE_SERIALIZER
 #include "omni_reflector.h"
 
 #define OMNI_TYPES_ENABLE_REFLECTIONS
 #include "omni_types.tpp"
-
 
 namespace omniscia::core {
     using namespace omni::types;

@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 
-#define OMNI_REFLECTOR_ENABLE_SERIALIZER
 #include "omni_reflector.h"
 
 #define OMNI_TYPES_ENABLE_REFLECTIONS

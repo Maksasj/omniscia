@@ -1,44 +1,11 @@
-cmake_minimum_required( VERSION 3.1 )
-project( Omniscia )
+cmake_minimum_required( VERSION 3.27 )
+project(Omniscia)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_BUILD_TYPE debug)
 
-find_package( OpenGL REQUIRED )
-include_directories( ${OPENGL_INCLUDE_DIRS} )
-
-include_directories("3dparty/json/include")
-
+add_subdirectory(3dparty)
 add_subdirectory(shared)
-include_directories("shared/omni_reflector/src")
-include_directories("shared/omni_types/src")
-include_directories("shared/omni_serializer")
 
-file(GLOB_RECURSE OMNISCIA-SRC "src/*.cpp")
-file(GLOB_RECURSE OMNISCIA-EDITOR-SRC "editor/*.cpp")
-
-# includes for all files in src(recusively)
-include("src/CmakeLists.txt")
-
-# handle 3dparty lib includes and etc.
-include("3dparty/CmakeLists.txt")
-
-# add_subdirectory(tests)
-
-add_executable( Omniscia ${OMNISCIA-SRC} )
-target_link_libraries(Omniscia ${OPENGL_LIBRARIES})
-target_link_libraries(Omniscia glfw)
-target_link_libraries(Omniscia glad)
-target_link_libraries(Omniscia opengl32)
-target_link_libraries(Omniscia omni_reflector)
-target_link_libraries(Omniscia omni_serializer)
-target_link_libraries(Omniscia omni_types)
-
-add_executable( OmnisciaEditor ${OMNISCIA-EDITOR-SRC} )
-target_link_libraries(OmnisciaEditor ${OPENGL_LIBRARIES})
-target_link_libraries(OmnisciaEditor glfw)
-target_link_libraries(OmnisciaEditor glad)
-target_link_libraries(OmnisciaEditor opengl32)
-target_link_libraries(OmnisciaEditor omni_serializer)
-target_link_libraries(OmnisciaEditor omni_types)
+add_subdirectory(src)
