@@ -9,9 +9,9 @@ include_directories("../../3dparty/imgui")
 include_directories("../../3dparty/json/include")
 include_directories("../../3dparty/imgui/backends")
 include_directories("../../3dparty/miniaudio/miniaudio")
-include_directories("../../shared/omni_reflector/src")
-include_directories("../../shared/omni_types/src")
-include_directories("../../shared/omni_serializer")
+include_directories("../shared/omni_reflector/src")
+include_directories("../shared/omni_types/src")
+include_directories("../shared/omni_serializer")
 
 include_directories("./")
 
