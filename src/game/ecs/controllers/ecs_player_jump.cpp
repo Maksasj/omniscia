@@ -1,4 +1,4 @@
-#include "ecs_player_jump.h"
+#include "ecs/controllers/ecs_player_jump.h"
 
 omniscia::core::ecs::ECS_PlayerJump::ECS_PlayerJump() {
     ECS_PlayerJumpSystem::get_instance().bind_component(this);

@@ -16,10 +16,10 @@
 #include <memory>
 #include <iostream>
 
-#include "ecs_system.h"
-#include "ecs_positioned.h"
+#include "ecs/ecs_system.h"
+#include "ecs/motion/ecs_positioned.h"
 
-#include "debug_info.h"
+#include "imgui/debug_info.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

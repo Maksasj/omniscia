@@ -1,4 +1,4 @@
-#include "crab_corrupted.h"
+#include "ecs/prototypes/crab_corrupted.h"
 
 omniscia::core::CrabCorrupted::CrabCorrupted(const Vec2f& position) : Entity() {
     add<ECS_Positioned>(position.x, position.y);

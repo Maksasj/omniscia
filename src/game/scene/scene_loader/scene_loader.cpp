@@ -1,4 +1,4 @@
-#include "scene_loader.h"
+#include "scene/scene_loader/scene_loader.h"
 
 void omniscia::core::SceneLoader::load_scene(Scene& level, const std::string& path) {
     std::ifstream file(path, std::ios::out | std::ios::binary);

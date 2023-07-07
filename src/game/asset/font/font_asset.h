@@ -1,7 +1,7 @@
 #ifndef _FONT_ASSET_H_
 #define _FONT_ASSET_H_
 
-#include "asset.tpp"
+#include "asset/asset.tpp"
 
 namespace omniscia::core {
     using namespace omni::types;

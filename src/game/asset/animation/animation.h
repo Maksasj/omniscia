@@ -12,8 +12,9 @@
 #ifndef _ANIMATION_H_
 #define _ANIMATION_H_
 
-#include "asset.tpp"
 #include "omni_types.tpp"
+
+#include "asset/asset.tpp"
 
 namespace omniscia::core {
     using namespace omni::types;

@@ -1,9 +1,9 @@
 #ifndef _SETTINGS_SCENE_
 #define _SETTINGS_SCENE_
 
-#include "entity_prototypes.h"
-#include "scene_loader.h"
-#include "scene.h"
+#include "ecs/prototypes/entity_prototypes.h"
+#include "scene/scene_loader/scene_loader.h"
+#include "scene/scene.h"
 
 namespace omniscia::core {
     using namespace omni::types;

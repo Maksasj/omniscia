@@ -1,4 +1,4 @@
-#include "find_static_entity_cutscene_event.h"
+#include "scene/cutscene/events/entity/find_static_entity_cutscene_event.h"
 #include "game.h"
 
 template<class _T>

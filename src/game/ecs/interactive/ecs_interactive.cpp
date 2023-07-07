@@ -1,4 +1,4 @@
-#include "ecs_interactive.h"
+#include "ecs/interactive/ecs_interactive.h"
 
 omniscia::core::ecs::ECS_Interactive::ECS_Interactive(const f32& cooldown, const std::function<void(void)>& lambda) {
     _cooldown = cooldown;

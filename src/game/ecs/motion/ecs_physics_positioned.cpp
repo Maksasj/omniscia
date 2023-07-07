@@ -1,4 +1,4 @@
-#include "ecs_physics_positioned.h"
+#include "ecs/motion/ecs_physics_positioned.h"
 
 omniscia::core::ecs::ECS_PhysicsPositioned::ECS_PhysicsPositioned() {
     _newPosition = Vec3f{0.0f, 0.0f, 0.0f};

@@ -1,4 +1,4 @@
-#include "ecs_interactive_press.h"
+#include "ecs/interactive/ecs_interactive_press.h"
 
 omniscia::core::ecs::ECS_InteractivePress::ECS_InteractivePress(const f32& cooldown, const std::function<void(void)>& lambda) : ECS_Interactive(cooldown, lambda){
 

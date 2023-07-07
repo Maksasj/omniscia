@@ -1,4 +1,4 @@
-#include "entity_transparency_change_event.h"
+#include "scene/cutscene/events/entity/entity_transparency_change_event.h"
 #include "game.h"
 
 omniscia::core::CE_EntityTransparencyChangeEvent::CE_EntityTransparencyChangeEvent() {

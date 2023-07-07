@@ -5,7 +5,7 @@
 #include <string>
 
 #include "camera.h"
-#include "cutscene_event.h"
+#include "scene/cutscene/cutscene_event.h"
 
 namespace omniscia::core {
     using namespace omni::types;

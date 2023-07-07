@@ -1,4 +1,4 @@
-#include "ecs_player_debug_metrics.h"
+#include "ecs/debug/ecs_player_debug_metrics.h"
 
 omniscia::core::ecs::ECS_PlayerDebugMetrics::ECS_PlayerDebugMetrics() {
     ECS_PlayerDebugMetricsSystem::get_instance().bind_component(this);

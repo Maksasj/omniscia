@@ -1,4 +1,4 @@
-#include "star.h"
+#include "ecs/prototypes/star.h"
 
 omniscia::core::Star::Star(const Vec2f& position) : Entity() {
     add<ECS_Positioned>(position.x, position.y);

@@ -1,4 +1,4 @@
-#include "debug_scene_manager_window.h"
+#include "imgui/debug_scene_manager_window.h"
 #include "game.h"
 
 void omniscia::core::DebugSceneManagerWindow::render() {

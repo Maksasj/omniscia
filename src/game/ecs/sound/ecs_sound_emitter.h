@@ -16,12 +16,12 @@
 #include <memory>
 #include <iostream>
 
-#include "ecs_system.h"
-#include "ecs_positioned.h"
-#include "entity.h"
-#include "ecs_component.tpp"
+#include "ecs/ecs_system.h"
+#include "ecs/motion/ecs_positioned.h"
+#include "ecs/entity.h"
+#include "ecs/ecs_component.tpp"
 
-#include "sound_speaker.h"
+#include "sound/sound_speaker.h"
 
 namespace omniscia::core::ecs {
     using namespace omniscia::core;

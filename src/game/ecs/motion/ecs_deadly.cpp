@@ -1,4 +1,4 @@
-#include "ecs_deadly.h"
+#include "ecs/motion/ecs_deadly.h"
 
 #include "game.h"
 

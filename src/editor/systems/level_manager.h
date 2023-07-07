@@ -3,16 +3,16 @@
 #ifndef _OMNISCIA_EDITOR_LEVEL_MANAGER_H_
 #define _OMNISCIA_EDITOR_LEVEL_MANAGER_H_
 
-#include "../gfx.h"
-#include "../types.h"
+#include "gfx.h"
+#include "types.h"
 
-#include "../tools/pencil_tool.h"
-#include "../tools/selection_tool.h"
-#include "../tools/move_tool.h"
+#include "tools/pencil_tool.h"
+#include "tools/selection_tool.h"
+#include "tools/move_tool.h"
 
-#include "../windows/level_preview_window.h"
-#include "../windows/selected_tilegroup_window.h"
-#include "../windows/tilegroups_management_window.h"
+#include "windows/level_preview_window.h"
+#include "windows/selected_tilegroup_window.h"
+#include "windows/tilegroups_management_window.h"
 
 #include "level_data.h"
  

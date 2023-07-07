@@ -2,7 +2,7 @@
 
 #include "tilegroups_management_window.h"
 
-#include "../systems/level_manager.h"
+#include "systems/level_manager.h"
 
 omniscia_editor::windows::SelectedTileGroupWindow::SelectedTileGroupWindow() {
 

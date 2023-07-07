@@ -4,8 +4,8 @@
 #include <iostream>
 #include <string>
 
-#include "../gfx.h"
-#include "../types.h"
+#include "gfx.h"
+#include "types.h"
 
 #include "base_tool.h"
 

@@ -1,4 +1,4 @@
-#include "ecs_sprite_flip.h"
+#include "ecs/gfx/ecs_sprite_flip.h"
 
 omniscia::core::ecs::ECS_SpriteFlip::ECS_SpriteFlip() {
     _horizontalFlip = false;

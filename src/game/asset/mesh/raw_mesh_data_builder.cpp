@@ -1,4 +1,4 @@
-#include "raw_mesh_data_builder.h"
+#include "asset/mesh/raw_mesh_data_builder.h"
 
 omniscia::gfx::RawMeshDataBuilder::RawMeshDataBuilder() {
     _maxIndex = 0;

@@ -1,4 +1,4 @@
-#include "ecs_sprite_animation_auto.h"
+#include "ecs/gfx/ecs_sprite_animation_auto.h"
 
 omniscia::core::ecs::ECS_SpriteAnimationAuto::ECS_SpriteAnimationAuto(const std::string &animationId) : ECS_SpriteAnimation(animationId) {
 

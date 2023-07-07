@@ -15,9 +15,9 @@
 #include <iostream>
 #include <bitset>
 
-#include "sound.h"
+#include "sound/sound.h"
 #include "omni_types.tpp"
-#include "debug_info.h"
+#include "imgui/debug_info.h"
 
 namespace omniscia::core {
     using namespace omni::types;

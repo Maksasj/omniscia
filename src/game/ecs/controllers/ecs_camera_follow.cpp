@@ -1,4 +1,4 @@
-#include "ecs_camera_follow.h"
+#include "ecs/controllers/ecs_camera_follow.h"
 
 omniscia::core::ecs::ECS_CameraFollow::ECS_CameraFollow(const f32& cameraFollowSpeed) {
     ECS_CameraFollowSystem::get_instance().bind_component(this);

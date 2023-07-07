@@ -17,11 +17,12 @@
 #include <algorithm>
 
 #include "omni_types.tpp"
-#include "vertex.h"
-#include "vao.h"
-#include "vbo.h"
-#include "ebo.h"
-#include "gfx.h"
+
+#include "gfx/vertex.h"
+#include "gfx/vao.h"
+#include "gfx/vbo.h"
+#include "gfx/ebo.h"
+#include "gfx/gfx.h"
 
 namespace omniscia::gfx::sprite {
     using namespace omni::types;

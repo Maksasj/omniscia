@@ -1,4 +1,4 @@
-#include "sound_engine.h"
+#include "sound/sound_engine.h"
 
 void omniscia::core::SoundEngine::initialize() {
     ma_result result = ma_engine_init(NULL, &_engine);

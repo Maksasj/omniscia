@@ -3,9 +3,9 @@
 
 #include <iostream>
 
-#include "font_asset.h"
-#include "texture_manager.h"
-#include "manager.h"
+#include "asset/font/font_asset.h"
+#include "asset/texture/texture_manager.h"
+#include "asset/manager.h"
 
 namespace omniscia::core {
     using namespace omni::types;

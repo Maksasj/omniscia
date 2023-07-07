@@ -1,4 +1,4 @@
-#include "ecs_clock_progression_bar_controller.h"
+#include "ecs/controllers/ecs_clock_progression_bar_controller.h"
 #include "game.h"
 
 omniscia::core::ecs::ECS_ClockProgressionBarController::ECS_ClockProgressionBarController() : ECS_StateMachineBase() {

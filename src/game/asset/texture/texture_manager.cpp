@@ -1,4 +1,4 @@
-#include "texture_manager.h"
+#include "asset/texture/texture_manager.h"
 
 omniscia::core::TextureAsset& omniscia::core::TextureManager::get(const std::string& key) {
     return _data[key];

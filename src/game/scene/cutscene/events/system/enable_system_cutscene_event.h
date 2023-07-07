@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "cutscene_event.h"
+#include "scene/cutscene/cutscene_event.h"
 
 namespace omniscia::core {
     using namespace omni::types;

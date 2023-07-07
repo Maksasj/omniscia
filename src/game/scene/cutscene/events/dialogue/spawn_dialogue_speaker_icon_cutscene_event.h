@@ -4,8 +4,8 @@
 #include <string>
 #include <functional>
 
-#include "cutscene_event.h"
-#include "scene.h"
+#include "scene/cutscene/cutscene_event.h"
+#include "scene/scene.h"
 #include "camera.h"
 
 namespace omniscia::core {

@@ -1,4 +1,4 @@
-#include "ecs_acceleration.h"
+#include "ecs/motion/ecs_acceleration.h"
 
 omniscia::core::ecs::ECS_Acceleration::ECS_Acceleration(const f32& aclX, const f32& aclY, const f32& aclZ) {
     _acl = Vec3f{aclX, aclY, aclZ};

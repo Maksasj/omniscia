@@ -12,9 +12,9 @@
 #ifndef _ECS_COMPONENT_MOVABLE_AABB_COLLIDER_H_
 #define _ECS_COMPONENT_MOVABLE_AABB_COLLIDER_H_
 
-#include "ecs_physics_positioned.h"
-#include "ecs_aabb_collider.h"
-#include "ecs_velocity.h"
+#include "ecs/motion/ecs_physics_positioned.h"
+#include "ecs/motion/ecs_aabb_collider.h"
+#include "ecs/motion/ecs_velocity.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

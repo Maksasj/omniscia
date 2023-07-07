@@ -1,9 +1,9 @@
 #include "pencil_tool.h"
 
-#include "../windows/level_preview_window.h"
-#include "../windows/tilegroups_management_window.h"
+#include "windows/level_preview_window.h"
+#include "windows/tilegroups_management_window.h"
 
-#include "../systems/level_manager.h"
+#include "systems/level_manager.h"
 
 omniscia_editor::tools::PencilTool::PencilTool() {
     _renderGhostTile = true;

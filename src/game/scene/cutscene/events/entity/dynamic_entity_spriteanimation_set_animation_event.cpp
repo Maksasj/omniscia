@@ -1,4 +1,4 @@
-#include "dynamic_entity_spriteanimation_set_animation_event.h"
+#include "scene/cutscene/events/entity/dynamic_entity_spriteanimation_set_animation_event.h"
 #include "game.h"
 
 omniscia::core::CE_DynamicEntitySpriteAnimationSetAnimationEvent::CE_DynamicEntitySpriteAnimationSetAnimationEvent() {

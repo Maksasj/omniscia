@@ -1,4 +1,4 @@
-#include "ecs_player_time_jump_controller.h"
+#include "ecs/controllers/ecs_player_time_jump_controller.h"
 
 /* NOTE */
 #include "game.h"

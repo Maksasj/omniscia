@@ -1,4 +1,4 @@
-#include "ecs_interactive_collision.h"
+#include "ecs/interactive/ecs_interactive_collision.h"
 
 omniscia::core::ecs::ECS_InteractiveCollision::ECS_InteractiveCollision(const f32& cooldown, const std::function<void(void)>& lambda) : ECS_Interactive(cooldown, lambda) {
 

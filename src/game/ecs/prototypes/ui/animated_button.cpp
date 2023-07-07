@@ -1,4 +1,4 @@
-#include "animated_button.h"
+#include "ecs/prototypes/ui/animated_button.h"
 
 omniscia::core::AnimatedButton::AnimatedButton(const AnimatedButtonProp& prop) : Entity() {
     add<ECS_Positioned>(prop._pos.x, prop._pos.y);

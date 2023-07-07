@@ -15,8 +15,8 @@
 #include "assets_view_window.h"
 #include "tools_window.h"
 
-#include "../gfx.h"
-#include "../types.h"
+#include "gfx.h"
+#include "types.h"
 
 namespace omniscia_editor::windows {
     using namespace omni::types;

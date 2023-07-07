@@ -1,4 +1,4 @@
-#include "beachParallaxBackground.h"
+#include "ecs/prototypes/beachParallaxBackground.h"
 
 omniscia::core::BeachParallaxBackground::BeachParallaxBackground() : Entity() {
     add<ECS_ParallaxSpriteRendererBack>("background_beach_sky1_layer", 0, [](f32& layerOffset ) {

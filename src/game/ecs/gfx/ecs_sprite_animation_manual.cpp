@@ -1,4 +1,4 @@
-#include "ecs_sprite_animation_manual.h"
+#include "ecs/gfx/ecs_sprite_animation_manual.h"
 
 omniscia::core::ecs::ECS_SpriteAnimationManual::ECS_SpriteAnimationManual(const std::string &animationId) : ECS_SpriteAnimation(animationId) {
 

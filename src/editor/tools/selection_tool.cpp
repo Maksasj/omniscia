@@ -1,9 +1,9 @@
 #include "selection_tool.h"
 
-#include "../windows/level_preview_window.h"
-#include "../windows/tilegroups_management_window.h"
+#include "windows/level_preview_window.h"
+#include "windows/tilegroups_management_window.h"
 
-#include "../systems/level_manager.h"
+#include "systems/level_manager.h"
 
 omniscia_editor::tools::SelectionTool::SelectionTool() {
     _startPos = Vec2f::splat(0.0f);

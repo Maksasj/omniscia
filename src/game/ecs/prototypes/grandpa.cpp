@@ -1,4 +1,4 @@
-#include "grandpa.h"
+#include "ecs/prototypes/grandpa.h"
 
 #include "game.h"
 

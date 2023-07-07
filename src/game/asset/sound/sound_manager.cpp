@@ -1,4 +1,4 @@
-#include "sound_manager.h"
+#include "asset/sound/sound_manager.h"
 
 omniscia::core::SoundAsset* omniscia::core::SoundManager::get(const std::string& key) {
     return &_data[key];

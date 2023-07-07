@@ -1,4 +1,4 @@
-#include "wait_cutscene_event.h"
+#include "scene/cutscene/events/wait_cutscene_event.h"
 #include "game.h"
 
 omniscia::core::CE_WaitCutsceneEvent::CE_WaitCutsceneEvent() {

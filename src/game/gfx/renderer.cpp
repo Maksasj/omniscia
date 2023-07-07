@@ -1,4 +1,4 @@
-#include "renderer.h"
+#include "gfx/renderer.h"
 
 void omniscia::gfx::Renderer::init() {
     glfwInit();

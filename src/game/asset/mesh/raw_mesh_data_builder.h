@@ -18,8 +18,9 @@
 #include <functional>
 
 #include "omni_types.tpp"
-#include "raw_mesh_data.h"
-#include "build_in_mesh_data.h"
+
+#include "asset/mesh/raw_mesh_data.h"
+#include "asset/mesh/build_in_mesh_data.h"
 
 namespace omniscia::gfx {
     using namespace omni::types;

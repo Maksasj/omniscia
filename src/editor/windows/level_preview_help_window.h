@@ -4,8 +4,8 @@
 #include <iostream>
 #include <string>
 
-#include "../gfx.h"
-#include "../types.h"
+#include "gfx.h"
+#include "types.h"
 
 #include "app_window.h"
 #include "level_preview_window.h"

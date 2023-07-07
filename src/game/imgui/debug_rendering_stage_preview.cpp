@@ -1,4 +1,4 @@
-#include "debug_rendering_stage_preview.h"
+#include "imgui/debug_rendering_stage_preview.h"
 #include "game.h"
 
 static void AspectRatio(ImGuiSizeCallbackData* data) { 

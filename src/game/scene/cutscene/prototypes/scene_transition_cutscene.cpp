@@ -1,4 +1,4 @@
-#include "scene_transition_cutscene.h"
+#include "scene/cutscene/prototypes/scene_transition_cutscene.h"
 
 omniscia::core::TransitionCutscene::TransitionCutscene(Shader* transitionStageShader, const std::string& _sceneId) 
     : Cutscene({

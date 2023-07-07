@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-#include "level_asset.h"
-#include "manager.h"
+#include "asset/level/level_asset.h"
+#include "asset/manager.h"
 
 namespace omniscia::core {
     using namespace omni::types;

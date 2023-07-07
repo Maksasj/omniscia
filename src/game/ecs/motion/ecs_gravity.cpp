@@ -1,4 +1,4 @@
-#include "ecs_gravity.h"
+#include "ecs/motion/ecs_gravity.h"
 
 omniscia::core::ecs::ECS_Gravity::ECS_Gravity() {
     _gravitationalAcceleration = 0.00001f;

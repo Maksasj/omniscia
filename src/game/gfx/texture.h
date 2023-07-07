@@ -13,7 +13,7 @@
 #define _TEXTURE_H_
 
 #include "texture_buffer.h"
-#include "gfx.h"
+#include "gfx/gfx.h"
 
 namespace omniscia::gfx::texture {
     using namespace omni::types;

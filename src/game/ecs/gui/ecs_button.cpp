@@ -1,4 +1,4 @@
-#include "ecs_button.h"
+#include "ecs/gui/ecs_button.h"
 
 omniscia::core::ecs::ECS_Button::ECS_Button(const std::function<void(ECS_Button&)> clickLambda) {
     ECS_ButtonSystem::get_instance().bind_component(this);

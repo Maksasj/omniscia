@@ -1,4 +1,4 @@
-#include "shader_manager.h"
+#include "asset/shader/shader_manager.h"
 
 omniscia::core::ShaderAsset* omniscia::core::ShaderManager::get(const std::string& key) {
     return &_data[key];

@@ -1,4 +1,4 @@
-#include "ecs_pro_renderer.h"
+#include "ecs/gfx/ecs_pro_renderer.h"
 
 omniscia::core::ecs::ECS_ProRenderer::ECS_ProRenderer(RenderStage* renderingStage, const u32& layer) {
     _bindedRenderingStage = renderingStage;

@@ -1,4 +1,4 @@
-#include "ecs_collectable.h"
+#include "ecs/interactive/ecs_collectable.h"
 
 #include "game.h"
 

@@ -1,4 +1,4 @@
-#include "entity_sprite_flip_set_event.h"
+#include "scene/cutscene/events/entity/entity_sprite_flip_set_event.h"
 #include "game.h"
 
 omniscia::core::CE_EntitySpriteFlipSetEvent::CE_EntitySpriteFlipSetEvent() {

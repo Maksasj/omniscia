@@ -14,14 +14,14 @@
 
 #include <functional>
 
-#include "build_in_mesh_data.h"
+#include "asset/mesh/build_in_mesh_data.h"
 #include "texture_buffer.h"
-#include "raw_mesh_data.h"
+#include "asset/mesh/raw_mesh_data.h"
 #include "frame_buffer.h"
 #include "sprite_mesh.h"
-#include "renderer.h"
-#include "shader.h"
-#include "gfx.h"
+#include "gfx/renderer.h"
+#include "gfx/shader.h"
+#include "gfx/gfx.h"
 
 namespace omniscia::gfx {
     using namespace omni::types;

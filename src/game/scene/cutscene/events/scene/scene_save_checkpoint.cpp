@@ -1,4 +1,4 @@
-#include "scene_save_checkpoint.h"
+#include "scene/cutscene/events/scene/scene_save_checkpoint.h"
 #include "game.h"
 
 omniscia::core::CE_SceneSaveCheckpointEvent::CE_SceneSaveCheckpointEvent() {

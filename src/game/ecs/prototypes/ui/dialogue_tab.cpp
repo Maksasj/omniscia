@@ -1,4 +1,4 @@
-#include "dialogue_tab.h"
+#include "ecs/prototypes/ui/dialogue_tab.h"
 
 omniscia::core::DialogueTab::DialogueTab(const Vec2f& position) : Entity() {
     add<ECS_Positioned>(position.x, position.y);

@@ -14,13 +14,13 @@
 
 #include <vector>
 
-#include "raw_mesh_data.h"
+#include "asset/mesh/raw_mesh_data.h"
 #include "omni_types.tpp"
 #include "vertex.h"
 #include "vao.h"
 #include "vbo.h"
 #include "ebo.h"
-#include "gfx.h"
+#include "gfx/gfx.h"
 
 namespace omniscia::gfx::sprite {
     using namespace omni::types;

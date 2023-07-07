@@ -4,7 +4,7 @@
 #include <string>
 
 #include "omni_types.tpp"
-#include "../gfx.h"
+#include "gfx.h"
 
 namespace omniscia_editor::level_editor::themes {
     using namespace omni::types;

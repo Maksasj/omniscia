@@ -1,4 +1,4 @@
-#include "ecs_star_controller.h"
+#include "ecs/controllers/ecs_star_controller.h"
 
 omniscia::core::ecs::ECS_StarController::ECS_StarController() : ECS_StateMachineBase() {
     ECS_StateMachineBaseSystem::get_instance().bind_component(this);

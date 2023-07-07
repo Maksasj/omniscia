@@ -1,4 +1,4 @@
-#include "ecs_transparency.h"
+#include "ecs/gfx/ecs_transparency.h"
 
 omniscia::core::ecs::ECS_Transparency::ECS_Transparency(const f32& transparency) {
     _transparency = transparency;

@@ -5,9 +5,9 @@
 #include <string>
 #include <unordered_map>
 
-#include "../gfx.h"
-#include "../types.h"
-#include "../window.h"
+#include "gfx.h"
+#include "types.h"
+#include "window.h"
 
 #include "asset_manager.h"
 

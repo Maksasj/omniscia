@@ -14,10 +14,10 @@
 
 #include <iostream>
 
-#include "sprite.h"
+#include "gfx/sprite.h"
 
 #include "omni_types.tpp"
-#include "gfx.h"
+#include "gfx/gfx.h"
 
 namespace omniscia::gfx {
     using namespace omni::types;

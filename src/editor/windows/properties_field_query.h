@@ -3,8 +3,8 @@
 
 #include "omni_reflector.h"
 
-#include "../gfx.h"
-#include "../types.h"
+#include "gfx.h"
+#include "types.h"
 
 namespace omniscia_editor::windows {
     using namespace omni::types;

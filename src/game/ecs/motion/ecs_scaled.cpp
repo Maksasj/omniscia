@@ -1,4 +1,4 @@
-#include "ecs_scaled.h"
+#include "ecs/motion/ecs_scaled.h"
 
 omniscia::core::ecs::ECS_Scaled::ECS_Scaled(const f32& scaleX, const f32& scaleY) { _scale = Vec2f{scaleX, scaleY}; }
 omniscia::core::ecs::ECS_Scaled::ECS_Scaled(const Vec2f& scale) { _scale = scale; }

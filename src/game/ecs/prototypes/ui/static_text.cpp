@@ -1,4 +1,4 @@
-#include "static_text.h"
+#include "ecs/prototypes/ui/static_text.h"
 
 omniscia::core::StaticText::StaticText(const StaticTextProp& prop) : Entity() {
     add<ECS_Positioned>(0.0f, 0.0f);

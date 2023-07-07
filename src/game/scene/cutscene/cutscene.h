@@ -4,8 +4,8 @@
 #include <list>
 #include <memory>
 
-#include "cutscene_step.h"
-#include "cutscene_event.h"
+#include "scene/cutscene/cutscene_step.h"
+#include "scene/cutscene/cutscene_event.h"
 
 namespace omniscia::core {
     using namespace omni::types;

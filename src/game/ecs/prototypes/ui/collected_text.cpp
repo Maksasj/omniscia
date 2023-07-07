@@ -1,4 +1,4 @@
-#include "collected_text.h"
+#include "ecs/prototypes/ui/collected_text.h"
 
 omniscia::core::CollectedText::CollectedText(const CollectedTextProp& prop) : Entity() {
     add<ECS_Positioned>(0.0f, 0.0f);

@@ -1,4 +1,4 @@
-#include "build_in_mesh_data.h"
+#include "asset/mesh/build_in_mesh_data.h"
 
 namespace omniscia::gfx {
     RawMeshData BuildInMeshData::QUAD_MESH_DATA = RawMeshData(

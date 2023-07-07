@@ -1,4 +1,4 @@
-#include "ecs_positioned.h"
+#include "ecs/motion/ecs_positioned.h"
 
 omniscia::core::ecs::ECS_Positioned::ECS_Positioned(const f32& x, const f32& y, const f32& z) { 
     _pos = Vec3f{x, y, z}; 

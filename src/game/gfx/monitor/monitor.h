@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "omni_types.tpp"
-#include "gfx.h"
+#include "gfx/gfx.h"
 
 namespace omniscia::gfx::monitor {
     using namespace omni::types;

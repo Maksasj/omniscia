@@ -4,9 +4,9 @@
 #include <unordered_map>
 #include <fstream>
 
-#include "save_asset.h"
-#include "save_loader.h"
-#include "manager.h"
+#include "asset/save/save_asset.h"
+#include "asset/save/save_loader.h"
+#include "asset/manager.h"
 
 namespace omniscia::core {
     using namespace omni::types;

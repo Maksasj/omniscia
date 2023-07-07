@@ -1,4 +1,4 @@
-#include "ecs_tilemap_renderer.h"
+#include "ecs/gfx/ecs_tilemap_renderer.h"
 
 omniscia::core::ecs::ECS_TilemapRenderer::ECS_TilemapRenderer(const RawMeshData& meshData, const std::string& textureId, const u32& layer) : _sprite(meshData, textureId), ECS_ProRenderer(RenderStagePool::get_instance().get_stage_by_name("MainStage"), layer) {
     ECS_ProRendererSystem::get_instance().bind_component(this);

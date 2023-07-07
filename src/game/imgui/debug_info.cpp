@@ -1,4 +1,4 @@
-#include "debug_info.h"
+#include "imgui/debug_info.h"
 
 omniscia::core::DebugInfo::DebugMetrics& omniscia::core::DebugInfo::get_metrics() {
     return _metrics;

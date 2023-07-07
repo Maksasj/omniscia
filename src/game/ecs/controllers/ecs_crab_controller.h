@@ -12,13 +12,13 @@
 #ifndef _ECS_COMPONENT_CRAB_CONTROLLER_H_
 #define _ECS_COMPONENT_CRAB_CONTROLLER_H_
 
-#include "ecs_state_machine_base.h"
-#include "ecs_acceleration.h"
-#include "ecs_sprite_flip.h"
-#include "ecs_sprite_animation.h"
-#include "ecs_movable_aabb_collider.h"
-#include "ecs_sound_emitter.h"
-#include "ecs_velocity.h"
+#include "ecs/controllers/ecs_state_machine_base.h"
+#include "ecs/motion/ecs_acceleration.h"
+#include "ecs/gfx/ecs_sprite_flip.h"
+#include "ecs/gfx/ecs_sprite_animation.h"
+#include "ecs/motion/ecs_movable_aabb_collider.h"
+#include "ecs/sound/ecs_sound_emitter.h"
+#include "ecs/motion/ecs_velocity.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

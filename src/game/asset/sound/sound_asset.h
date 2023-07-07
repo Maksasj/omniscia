@@ -12,8 +12,8 @@
 #ifndef _SOUND_ASSET_H_
 #define _SOUND_ASSET_H_
 
-#include "asset.tpp"
-#include "sound.h"
+#include "asset/asset.tpp"
+#include "sound/sound.h"
 
 namespace omniscia::core {
     using namespace omni::types;

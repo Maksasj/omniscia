@@ -7,8 +7,8 @@
 
 #include "tilegroup_data.h"
 
-#include "../gfx.h"
-#include "../types.h"
+#include "gfx.h"
+#include "types.h"
 
 namespace omniscia_editor::windows {
     using namespace omniscia::core;

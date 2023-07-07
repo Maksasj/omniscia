@@ -12,8 +12,8 @@
 #ifndef _TEXTURE_ASSET_H_
 #define _TEXTURE_ASSET_H_
 
-#include "asset.tpp"
-#include "texture.h"
+#include "asset/asset.tpp"
+#include "gfx/texture.h"
 
 namespace omniscia::core {
     using namespace omni::types;

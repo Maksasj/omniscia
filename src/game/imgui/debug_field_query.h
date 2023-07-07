@@ -13,7 +13,7 @@
 #define OMNI_TYPES_ENABLE_REFLECTIONS
 #include "omni_types.tpp"
 
-#include "gfx.h"
+#include "gfx/gfx.h"
 
 namespace omniscia::core {
     using namespace omni::types;

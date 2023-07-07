@@ -1,4 +1,4 @@
-#include "spawn_dialogue_tab_cutscene_event.h"
+#include "scene/cutscene/events/dialogue/spawn_dialogue_tab_cutscene_event.h"
 #include "game.h"
 
 omniscia::core::CE_SpawnDialogueTabEvent::CE_SpawnDialogueTabEvent() {

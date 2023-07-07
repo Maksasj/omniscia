@@ -1,4 +1,4 @@
-#include "raw_mesh_data.h"
+#include "asset/mesh/raw_mesh_data.h"
 
 namespace omniscia::gfx::sprite {
     RawMeshData::RawMeshData() {

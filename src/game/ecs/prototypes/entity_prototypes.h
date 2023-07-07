@@ -1,30 +1,30 @@
 #ifndef _ENTITY_PROTOTYPES_H_
 #define _ENTITY_PROTOTYPES_H_
 
-#include "beachParallaxBackground.h"
-#include "mainmenuParallaxBackground.h"
+#include "ecs/prototypes/beachParallaxBackground.h"
+#include "ecs/prototypes/mainmenuParallaxBackground.h"
 
-#include "background.h"
-#include "animated_background.h"
+#include "ecs/prototypes/ui/background.h"
+#include "ecs/prototypes/ui/animated_background.h"
 
-#include "crab.h"
-#include "crab_corrupted.h"
-#include "grandpa.h"
-#include "player.h"
+#include "ecs/prototypes/crab.h"
+#include "ecs/prototypes/crab_corrupted.h"
+#include "ecs/prototypes/grandpa.h"
+#include "ecs/prototypes/player.h"
 
-#include "checkpoint.h"
+#include "ecs/prototypes/checkpoint.h"
 
-#include "button.h"
-#include "static_text.h"
-#include "dialogue_tab.h"
-#include "image.h"
-#include "animated_image.h"
-#include "collected_text.h"
-#include "entity.h"
-#include "star.h"
-#include "clock_progression_bar.h"
-#include "red_crystal.h"
-#include "chapterChooseBackground.h"
-#include "animated_button.h"
+#include "ecs/prototypes/ui/button.h"
+#include "ecs/prototypes/ui/static_text.h"
+#include "ecs/prototypes/ui/dialogue_tab.h"
+#include "ecs/prototypes/ui/image.h"
+#include "ecs/prototypes/ui/animated_image.h"
+#include "ecs/prototypes/ui/collected_text.h"
+#include "ecs/entity.h"
+#include "ecs/prototypes/star.h"
+#include "ecs/prototypes/ui/clock_progression_bar.h"
+#include "ecs/prototypes/red_crystal.h"
+#include "ecs/prototypes/chapterChooseBackground.h"
+#include "ecs/prototypes/ui/animated_button.h"
 
 #endif

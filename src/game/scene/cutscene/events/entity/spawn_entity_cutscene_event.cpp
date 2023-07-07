@@ -1,4 +1,4 @@
-#include "spawn_entity_cutscene_event.h"
+#include "scene/cutscene/events/entity/spawn_entity_cutscene_event.h"
 #include "game.h"
 
 omniscia::core::CE_SpawnEntityEvent::CE_SpawnEntityEvent() {

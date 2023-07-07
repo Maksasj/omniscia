@@ -1,4 +1,4 @@
-#include "ecs_player_controller.h"
+#include "ecs/controllers/ecs_player_controller.h"
 
 omniscia::core::ecs::ECS_PlayerController::ECS_PlayerController() {
     ECS_PlayerControllerSystem::get_instance().bind_component(this);

@@ -17,7 +17,7 @@
 
 #include "properties.h"
 #include "omni_types.tpp"
-#include "gfx.h"
+#include "gfx/gfx.h"
 
 namespace omniscia::core {
     using namespace omni::types;

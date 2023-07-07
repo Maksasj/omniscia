@@ -13,9 +13,9 @@
 #define _SCENE_LOADER_H_
 
 #include "omni_serializer.h"
-
 #include "omni_types.tpp"
-#include "scene.h"
+
+#include "scene/scene.h"
 
 namespace omniscia::core {
     using namespace omni::types;

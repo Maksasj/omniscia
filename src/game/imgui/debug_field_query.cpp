@@ -1,4 +1,4 @@
-#include "debug_field_query.h"
+#include "imgui/debug_field_query.h"
 
 template<>
 void omniscia::core::DebugFieldQuery::debug_edit_field<bool>(const char* fieldName, bool& field) {

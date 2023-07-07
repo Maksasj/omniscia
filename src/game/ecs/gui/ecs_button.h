@@ -17,14 +17,14 @@
 #include <iostream>
 #include <functional>
 
-#include "ecs_box_collider_mesh.h"
-#include "ecs_component.tpp"
-#include "ecs_positioned.h"
-#include "ecs_scaled.h"
-#include "ecs_system.h"
+#include "ecs/motion/ecs_box_collider_mesh.h"
+#include "ecs/ecs_component.tpp"
+#include "ecs/motion/ecs_positioned.h"
+#include "ecs/motion/ecs_scaled.h"
+#include "ecs/ecs_system.h"
 #include "controls.h"
-#include "entity.h"
-#include "debug_info.h"
+#include "ecs/entity.h"
+#include "imgui/debug_info.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

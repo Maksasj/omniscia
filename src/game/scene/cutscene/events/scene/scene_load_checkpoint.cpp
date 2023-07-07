@@ -1,4 +1,4 @@
-#include "scene_load_checkpoint.h"
+#include "scene/cutscene/events/scene/scene_load_checkpoint.h"
 #include "game.h"
 
 omniscia::core::CE_SceneLoadCheckpointEvent::CE_SceneLoadCheckpointEvent() {

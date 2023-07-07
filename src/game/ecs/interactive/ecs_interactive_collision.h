@@ -6,15 +6,15 @@
 #include <iostream>
 #include <functional>
 
-#include "ecs_acceleration.h"
-#include "ecs_component.tpp"
-#include "ecs_interactive.h"
-#include "ecs_trigger_aabb_collider.h"
-#include "ecs_velocity.h"
+#include "ecs/motion/ecs_acceleration.h"
+#include "ecs/ecs_component.tpp"
+#include "ecs/interactive/ecs_interactive.h"
+#include "ecs/motion/ecs_trigger_aabb_collider.h"
+#include "ecs/motion/ecs_velocity.h"
 #include "timesystem.h"
-#include "ecs_system.h"
+#include "ecs/ecs_system.h"
 #include "controls.h"
-#include "entity.h"
+#include "ecs/entity.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

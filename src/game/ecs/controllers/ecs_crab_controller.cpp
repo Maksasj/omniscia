@@ -1,4 +1,4 @@
-#include "ecs_crab_controller.h"
+#include "ecs/controllers/ecs_crab_controller.h"
 
 omniscia::core::ecs::ECS_CrabController::ECS_CrabController() : ECS_StateMachineBase() {
     ECS_StateMachineBaseSystem::get_instance().bind_component(this);

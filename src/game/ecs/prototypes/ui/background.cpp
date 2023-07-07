@@ -1,4 +1,4 @@
-#include "background.h"
+#include "ecs/prototypes/ui/background.h"
 
 omniscia::core::Background::Background() : Entity() {
     add<ECS_SpriteRenderer>("menu_background", 0);

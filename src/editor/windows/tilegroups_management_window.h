@@ -5,10 +5,10 @@
 #include <string>
 #include <sstream>
 
-#include "../gfx.h"
-#include "../types.h"
+#include "gfx.h"
+#include "types.h"
 
-#include "../systems/tile_group_sorter.h"
+#include "systems/tile_group_sorter.h"
 #include "app_window.h"
 
 namespace omniscia_editor::windows {

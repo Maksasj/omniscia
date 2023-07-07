@@ -1,4 +1,4 @@
-#include "ecs_friction.h"
+#include "ecs/motion/ecs_friction.h"
 
 omniscia::core::ecs::ECS_Friction::ECS_Friction(const f32& friction) {
     _friction = friction;

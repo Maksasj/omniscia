@@ -1,10 +1,10 @@
 #ifndef _GAME_SCENE_
 #define _GAME_SCENE_
 
-#include "level_asset_manager.h"
-#include "entity_prototypes.h"
-#include "scene_loader.h"
-#include "scene.h"
+#include "asset/level/level_asset_manager.h"
+#include "ecs/prototypes/entity_prototypes.h"
+#include "scene/scene_loader/scene_loader.h"
+#include "scene/scene.h"
 
 namespace omniscia::core {
     using namespace omni::types;

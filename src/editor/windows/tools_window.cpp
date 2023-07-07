@@ -1,8 +1,8 @@
 #include "tools_window.h"
 
-#include "../tools/pencil_tool.h"
-#include "../tools/selection_tool.h"
-#include "../tools/move_tool.h"
+#include "tools/pencil_tool.h"
+#include "tools/selection_tool.h"
+#include "tools/move_tool.h"
 
 omniscia_editor::windows::ToolsWindow::ToolsWindow() {
     selectedToolIndex = 0;

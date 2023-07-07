@@ -12,9 +12,9 @@
 #ifndef _ECS_COMPONENT_STATE_MACHINE_BASE_H_
 #define _ECS_COMPONENT_STATE_MACHINE_BASE_H_
 
-#include "ecs_system.h"
-#include "ecs_component.tpp"
-#include "entity.h"
+#include "ecs/ecs_system.h"
+#include "ecs/ecs_component.tpp"
+#include "ecs/entity.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

@@ -1,4 +1,4 @@
-#include "sound_loop_cutscene_event.h"
+#include "scene/cutscene/events/sound/sound_loop_cutscene_event.h"
 #include "game.h"
 
 omniscia::core::CE_SoundLoopCutsceneEvent::CE_SoundLoopCutsceneEvent() {

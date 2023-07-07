@@ -1,4 +1,4 @@
-#include "chapterChooseBackground.h"
+#include "ecs/prototypes/chapterChooseBackground.h"
 
 omniscia::core::ChapterChooseParallaxBackground::ChapterChooseParallaxBackground() : Entity() {
     add<ECS_ParallaxSpriteRendererBack>("chapter_choose_background_sky1_layer", 0, [](f32& layerOffset ) {

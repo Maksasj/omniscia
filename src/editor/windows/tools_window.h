@@ -4,10 +4,10 @@
 #include <iostream>
 #include <string>
 
-#include "../gfx.h"
-#include "../types.h"
+#include "gfx.h"
+#include "types.h"
 
-#include "../tools/base_tool.h"
+#include "tools/base_tool.h"
 
 #include "app_window.h"
 

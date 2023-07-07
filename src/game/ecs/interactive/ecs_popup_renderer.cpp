@@ -1,4 +1,4 @@
-#include "ecs_popup_renderer.h"
+#include "ecs/interactive/ecs_popup_renderer.h"
 
 omniscia::core::ecs::ECS_PopupRenderer::ECS_PopupRenderer(const std::string& textureId, const u32& layer, const std::string& popupAnimation) 
         :   _sprite(textureId), 

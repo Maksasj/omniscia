@@ -1,4 +1,4 @@
-#include "camera_zoom_event.h"
+#include "scene/cutscene/events/camera/camera_zoom_event.h"
 
 omniscia::core::CE_CameraZoomEvent::CE_CameraZoomEvent() {
 

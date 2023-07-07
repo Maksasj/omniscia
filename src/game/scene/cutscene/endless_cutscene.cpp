@@ -1,4 +1,4 @@
-#include "endless_cutscene.h"
+#include "scene/cutscene/endless_cutscene.h"
 
 omniscia::core::EndlessCutscene::EndlessCutscene(const std::initializer_list<CE_StepObject> &steps) : Cutscene(steps) {
 

@@ -1,4 +1,4 @@
-#include "entity_position_set_event.h"
+#include "scene/cutscene/events/entity/entity_position_set_event.h"
 #include "game.h"
 
 omniscia::core::CE_EntityPositionSetEvent::CE_EntityPositionSetEvent() {

@@ -1,4 +1,4 @@
-#include "ecs_state_machine_base.h"
+#include "ecs/controllers/ecs_state_machine_base.h"
 
 omniscia::core::ecs::ECS_StateMachineBase::ECS_StateMachineBase() {
     ECS_StateMachineBaseSystem::get_instance().bind_component(this);

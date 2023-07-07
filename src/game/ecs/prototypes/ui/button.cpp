@@ -1,4 +1,4 @@
-#include "button.h"
+#include "ecs/prototypes/ui/button.h"
 
 omniscia::core::Button::Button(const Vec2f& position) : Entity() {
     add<ECS_Positioned>(position.x, position.y);

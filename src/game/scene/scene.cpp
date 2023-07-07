@@ -1,4 +1,4 @@
-#include "scene.h"
+#include "scene/scene.h"
 
 omniscia::core::Scene::SceneDynamic omniscia::core::Scene::clone() {
     std::vector<std::shared_ptr<Entity>> clonedDynamicEntities;

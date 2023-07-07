@@ -4,88 +4,37 @@ project(OmnisciaGame)
 find_package( OpenGL REQUIRED )
 include_directories( ${OPENGL_INCLUDE_DIRS} )
 
+# 3dparty includes
 include_directories("../../3dparty/stb")
 include_directories("../../3dparty/imgui")
 include_directories("../../3dparty/json/include")
 include_directories("../../3dparty/imgui/backends")
 include_directories("../../3dparty/miniaudio/miniaudio")
+
+# Shared code includes
 include_directories("../shared/omni_reflector/src")
 include_directories("../shared/omni_types/src")
 include_directories("../shared/omni_serializer")
 
+# Project includes
 include_directories("./")
 
-# Entity component system
-include_directories("ecs")
+file(GLOB_RECURSE OMNISCIA-SRC *.cpp)
 
-include_directories("ecs/controllers")
-include_directories("ecs/debug")
-include_directories("ecs/gfx")
-include_directories("ecs/gui")
-include_directories("ecs/motion")
-include_directories("ecs/sound")
-include_directories("ecs/interactive")
-include_directories("ecs/prototypes")
-include_directories("ecs/prototypes/ui")
-
-# Graphics
-include_directories("gfx")
-include_directories("gfx/monitor")
-
-# Save
-include_directories("save")
-
-# Secrets
-include_directories("secrets")
-
-# ImGui
-include_directories("imgui")
-
-# Asset managment
-include_directories("asset")
-include_directories("asset/animation")
-include_directories("asset/level")
-include_directories("asset/mesh")
-include_directories("asset/shader") 
-include_directories("asset/sound")
-include_directories("asset/texture")
-include_directories("asset/save")
-include_directories("asset/font")
-
-# Sound
-include_directories("sound")
-
-# Scene
-include_directories("scene")
-include_directories("scene/prototypes")
-include_directories("scene/cutscene")
-include_directories("scene/scene_loader")
-include_directories("scene/scene_loader/serialization")
-include_directories("scene/cutscene/prototypes")
-include_directories("scene/cutscene/events")
-include_directories("scene/cutscene/events/camera")
-include_directories("scene/cutscene/events/debug")
-include_directories("scene/cutscene/events/dialogue")
-include_directories("scene/cutscene/events/entity")
-include_directories("scene/cutscene/events/scene")
-include_directories("scene/cutscene/events/shader")
-include_directories("scene/cutscene/events/system")
-include_directories("scene/cutscene/events/sound")
-
-file(GLOB_RECURSE OMNISCIA-EDITOR-SRC *.cpp)
+# Imgui source files
 file(GLOB IMGUI-SRC
     "../../3dparty/imgui/*.cpp"
     "../../3dparty/imgui/backends/imgui_impl_glfw.cpp"
     "../../3dparty/imgui/backends/imgui_impl_opengl3.cpp"
 )
 
-list (APPEND OMNISCIA-EDITOR-SRC ${IMGUI-SRC})
+list (APPEND OMNISCIA-SRC ${IMGUI-SRC})
 
-add_executable( OmnisciaGame ${OMNISCIA-EDITOR-SRC} )
-target_link_libraries(OmnisciaGame ${OPENGL_LIBRARIES})
-target_link_libraries(OmnisciaGame glfw)
-target_link_libraries(OmnisciaGame glad)
-target_link_libraries(OmnisciaGame opengl32)
+add_executable( Omniscia ${OMNISCIA-SRC} )
+target_link_libraries(Omniscia ${OPENGL_LIBRARIES})
+target_link_libraries(Omniscia glfw)
+target_link_libraries(Omniscia glad)
+target_link_libraries(Omniscia opengl32)
 
-target_link_libraries(OmnisciaGame omni_serializer)
-target_link_libraries(OmnisciaGame omni_types)
+target_link_libraries(Omniscia omni_serializer)
+target_link_libraries(Omniscia omni_types)

@@ -1,8 +1,8 @@
 #ifndef _ECS_COMPONENT_USE_POPUP_H_
 #define _ECS_COMPONENT_USE_POPUP_H_
 
-#include "cutscene.h"
-#include "ecs_popup.h"
+#include "scene/cutscene/cutscene.h"
+#include "ecs/interactive/ecs_popup.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

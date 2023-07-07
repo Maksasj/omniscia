@@ -16,10 +16,10 @@
 #include <memory>
 #include <iostream>
 
-#include "ecs_component.tpp"
+#include "ecs/ecs_component.tpp"
 #include "controls.h"
 #include "omni_types.tpp"
-#include "entity.h"
+#include "ecs/entity.h"
  
 namespace omniscia::core::ecs {
     using namespace omni::types;

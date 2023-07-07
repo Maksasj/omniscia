@@ -12,8 +12,8 @@
 #ifndef _BEACH_PARALLAX_BACKGROUND_H_
 #define _BEACH_PARALLAX_BACKGROUND_H_
 
-#include "ecs_components.h"
-#include "entity.h"
+#include "ecs/ecs_components.h"
+#include "ecs/entity.h"
 
 namespace omniscia::core {
     using namespace omni::types;

@@ -1,4 +1,4 @@
-#include "shader.h"
+#include "gfx/shader.h"
 
 omniscia::gfx::Shader::Shader(const std::string& shaderVertId, const std::string& shaderFragId) {
     using namespace omniscia::core;

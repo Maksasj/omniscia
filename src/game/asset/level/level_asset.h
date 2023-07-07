@@ -1,9 +1,9 @@
 #ifndef _LEVEL_ASSET_H_
 #define _LEVEL_ASSET_H_
 
-#include "scene_loader.h"
-#include "level_asset_type.h"
-#include "asset.tpp"
+#include "scene/scene_loader/scene_loader.h"
+#include "asset/level/level_asset_type.h"
+#include "asset/asset.tpp"
 
 namespace omniscia::core {
     using namespace omni::types;

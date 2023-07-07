@@ -17,10 +17,10 @@
 #include <optional>
 #include <typeinfo>
 
-#include "debug_scene_manager_window.h"
+#include "imgui/debug_scene_manager_window.h"
 
 #include "ecs_component_container_index.tpp"
-#include "ecs_component.tpp"
+#include "ecs/ecs_component.tpp"
 #include "omni_types.tpp"
 
 namespace omniscia::core::ecs {

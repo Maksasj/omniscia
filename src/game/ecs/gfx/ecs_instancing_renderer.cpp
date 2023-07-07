@@ -1,4 +1,4 @@
-#include "ecs_instancing_renderer.h"
+#include "ecs/gfx/ecs_instancing_renderer.h"
 
 omniscia::core::ecs::ECS_InstancingRenderer::ECS_InstancingRenderer(const std::string& textureId, const u32& layer) : _instancingSprite(textureId), ECS_ProRenderer(RenderStagePool::get_instance().get_stage_by_name("GuiStage"), layer) {
     ECS_ProRendererSystem::get_instance().bind_component(this);

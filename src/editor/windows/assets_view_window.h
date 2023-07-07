@@ -4,12 +4,12 @@
 #include <iostream>
 #include <string>
 
-#include "../gfx.h"
-#include "../types.h"
+#include "gfx.h"
+#include "types.h"
 
 #include "app_window.h"
 
-#include "../systems/texture_manager.h"
+#include "systems/texture_manager.h"
 
 namespace omniscia_editor::windows {
     using namespace omni::types;

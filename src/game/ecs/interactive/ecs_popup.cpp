@@ -1,4 +1,4 @@
-#include "ecs_popup.h"
+#include "ecs/interactive/ecs_popup.h"
 
 omniscia::core::ecs::ECS_Popup::ECS_Popup(
     const f32& visibilityDistance, 

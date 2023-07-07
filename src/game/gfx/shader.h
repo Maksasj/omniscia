@@ -16,10 +16,10 @@
 #include <fstream>
 #include <sstream>
 
-#include "shader_manager.h"
-#include "shader_asset.h"
+#include "asset/shader/shader_manager.h"
+#include "asset/shader/shader_asset.h"
 #include "omni_types.tpp"
-#include "gfx.h"
+#include "gfx/gfx.h"
 #include "ubo.h"
 
 namespace omniscia::gfx {

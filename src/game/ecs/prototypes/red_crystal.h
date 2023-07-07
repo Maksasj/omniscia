@@ -1,8 +1,8 @@
 #ifndef _RED_CRYSTAL_H_
 #define _RED_CRYSTAL_H_
 
-#include "ecs_components.h"
-#include "entity.h"
+#include "ecs/ecs_components.h"
+#include "ecs/entity.h"
 
 namespace omniscia::core {
     using namespace omni::types;

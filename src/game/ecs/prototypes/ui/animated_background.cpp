@@ -1,4 +1,4 @@
-#include "animated_background.h"
+#include "ecs/prototypes/ui/animated_background.h"
 
 omniscia::core::AnimatedBackground::AnimatedBackground() : Entity() {
     add<ECS_SpriteRenderer>("menu_background", 0);

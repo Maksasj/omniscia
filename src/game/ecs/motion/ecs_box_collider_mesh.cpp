@@ -1,4 +1,4 @@
-#include "ecs_box_collider_mesh.h"
+#include "ecs/motion/ecs_box_collider_mesh.h"
 
 omniscia::core::ecs::ECS_BoxColliderMesh::ECS_BoxColliderMesh(const Vec2f& xRanges, const Vec2f& yRanges) {
     _xRanges = xRanges;

@@ -8,10 +8,10 @@
 #include "imgui_impl_opengl3.h"
 
 #include "omni_types.tpp"
-#include "gfx.h"
+#include "gfx/gfx.h"
 
-#include "debug_info.h"
-#include "debug_field_query.h"
+#include "imgui/debug_info.h"
+#include "imgui/debug_field_query.h"
 
 #include "properties.h"
 

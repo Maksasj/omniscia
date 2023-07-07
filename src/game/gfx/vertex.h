@@ -15,7 +15,7 @@
 #include <sstream>
 
 #include "omni_types.tpp"
-#include "gfx.h"
+#include "gfx/gfx.h"
 
 namespace omniscia::gfx {
     using namespace omni::types;

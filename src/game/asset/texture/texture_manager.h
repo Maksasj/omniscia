@@ -14,8 +14,8 @@
 
 #include <iostream>
 
-#include "texture_asset.h"
-#include "manager.h"
+#include "asset/texture/texture_asset.h"
+#include "asset/manager.h"
 
 namespace omniscia::core {
     using namespace omni::types;

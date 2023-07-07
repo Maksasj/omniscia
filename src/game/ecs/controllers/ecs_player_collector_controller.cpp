@@ -1,4 +1,4 @@
-#include "ecs_player_collector_controller.h"
+#include "ecs/controllers/ecs_player_collector_controller.h"
 
 #include "game.h"
 

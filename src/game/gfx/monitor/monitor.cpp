@@ -1,4 +1,4 @@
-#include "monitor.h"
+#include "gfx/monitor/monitor.h"
 
 omniscia::gfx::monitor::Monitor* omniscia::gfx::monitor::Monitor::_activeMonitor = nullptr;
 

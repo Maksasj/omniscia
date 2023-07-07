@@ -1,4 +1,4 @@
-#include "main_menu_scene.h"
+#include "scene/prototypes/main_menu_scene.h"
 #include "game.h"
 
 omniscia::core::MainMenuScene::MainMenuScene() : Scene() {

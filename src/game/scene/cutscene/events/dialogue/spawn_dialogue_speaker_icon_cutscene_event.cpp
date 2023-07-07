@@ -1,4 +1,4 @@
-#include "spawn_dialogue_speaker_icon_cutscene_event.h"
+#include "scene/cutscene/events/dialogue/spawn_dialogue_speaker_icon_cutscene_event.h"
 #include "game.h"
 
 omniscia::core::CE_SpawnDialogueSpeakerIconEvent::CE_SpawnDialogueSpeakerIconEvent() {

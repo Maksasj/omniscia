@@ -1,4 +1,4 @@
-#include "camera_move_event.h"
+#include "scene/cutscene/events/camera/camera_move_event.h"
 
 omniscia::core::CE_CameraMoveEvent::CE_CameraMoveEvent() {
 

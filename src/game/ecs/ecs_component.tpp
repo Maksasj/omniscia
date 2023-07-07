@@ -21,7 +21,7 @@
 
 #include "omni_types.tpp"
 
-#include "debug_field_query.h"
+#include "imgui/debug_field_query.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

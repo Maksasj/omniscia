@@ -4,8 +4,8 @@
 #include <string>
 #include <functional>
 
-#include "shader.h"
-#include "cutscene_event.h"
+#include "gfx/shader.h"
+#include "scene/cutscene/cutscene_event.h"
 
 namespace omniscia::core {
     using namespace omni::types;

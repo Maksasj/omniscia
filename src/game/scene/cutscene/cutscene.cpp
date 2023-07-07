@@ -1,4 +1,4 @@
-#include "cutscene.h"
+#include "scene/cutscene/cutscene.h"
 
 omniscia::core::Cutscene::Cutscene() {}
 omniscia::core::Cutscene::Cutscene(const Cutscene&) {}

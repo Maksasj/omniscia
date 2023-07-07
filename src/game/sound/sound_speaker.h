@@ -15,8 +15,8 @@
 #include <iostream>
 #include <memory>
 
-#include "sound_engine.h"
-#include "sound_manager.h"
+#include "sound/sound_engine.h"
+#include "asset/sound/sound_manager.h"
 
 #include "omni_types.tpp"
 

@@ -14,7 +14,7 @@
 
 #include "texture_buffer.h"
 #include "omni_types.tpp"
-#include "gfx.h"
+#include "gfx/gfx.h"
 #include "bo.h"
 
 namespace omniscia::gfx {

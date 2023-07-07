@@ -1,6 +1,6 @@
 #include "level_preview_window.h"
 
-#include "../systems/level_manager.h"
+#include "systems/level_manager.h"
 
 omniscia_editor::windows::LevelPreviewWindow::LevelPreviewWindow() {
     _zoom = 1.0f;

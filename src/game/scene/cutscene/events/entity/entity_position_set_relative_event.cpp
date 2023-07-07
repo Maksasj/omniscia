@@ -1,4 +1,4 @@
-#include "entity_position_set_relative_event.h"
+#include "scene/cutscene/events/entity/entity_position_set_relative_event.h"
 #include "game.h"
 
 omniscia::core::CE_EntityPositionSetRelativeEvent::CE_EntityPositionSetRelativeEvent() {

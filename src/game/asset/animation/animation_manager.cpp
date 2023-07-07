@@ -1,4 +1,4 @@
-#include "animation_manager.h"
+#include "asset/animation/animation_manager.h"
 
 omniscia::core::AnimationAsset* omniscia::core::AnimationManager::get(const std::string& key) {
     return &_data[key];

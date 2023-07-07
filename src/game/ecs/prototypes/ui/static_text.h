@@ -1,8 +1,8 @@
 #ifndef _STATIC_TEXT_H_
 #define _STATIC_TEXT_H_
 
-#include "ecs_components.h"
-#include "entity.h"
+#include "ecs/ecs_components.h"
+#include "ecs/entity.h"
 
 namespace omniscia::core {
     using namespace omni::types;

@@ -1,4 +1,4 @@
-#include "ecs_gui_spritesheet_renderer.h"
+#include "ecs/gfx/ecs_gui_spritesheet_renderer.h"
 
 omniscia::core::ecs::ECS_GuiSpriteSheetRenderer::ECS_GuiSpriteSheetRenderer(const std::string& textureId, const u32& layer) : _sprite(textureId), ECS_ProRenderer(RenderStagePool::get_instance().get_stage_by_name("GuiStage"), layer) {
     ECS_ProRendererSystem::get_instance().bind_component(this);

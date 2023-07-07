@@ -1,8 +1,8 @@
 #ifndef _OMNISCIA_EDITOR_TEXTURE_ASSET_H_
 #define _OMNISCIA_EDITOR_TEXTURE_ASSET_H_
 
-#include "../gfx.h"
-#include "../types.h"
+#include "gfx.h"
+#include "types.h"
 
 namespace omniscia_editor::systems {
     using namespace omni::types;

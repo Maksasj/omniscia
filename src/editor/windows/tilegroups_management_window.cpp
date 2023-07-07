@@ -1,6 +1,6 @@
 #include "tilegroups_management_window.h"
 
-#include "../systems/level_manager.h"
+#include "systems/level_manager.h"
 
 omniscia_editor::windows::TileGroupsManagementWindow::TileGroupsManagementWindow() {
     _visibleTileGroups = 5.0f;

@@ -12,8 +12,8 @@
 #ifndef _SHADER_ASSET_H_
 #define _SHADER_ASSET_H_
 
-#include "shader_asset_type.h"
-#include "asset.tpp"
+#include "asset/shader/shader_asset_type.h"
+#include "asset/asset.tpp"
 
 namespace omniscia::core {
     using namespace omni::types;

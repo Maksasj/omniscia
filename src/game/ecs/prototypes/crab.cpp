@@ -1,4 +1,4 @@
-#include "crab.h"
+#include "ecs/prototypes/crab.h"
 
 omniscia::core::Crab::Crab(const Vec2f& position) : Entity() {
     add<ECS_Positioned>(position.x, position.y);

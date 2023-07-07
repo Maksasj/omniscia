@@ -1,4 +1,4 @@
-#include "animated_image.h"
+#include "ecs/prototypes/ui/animated_image.h"
 
 omniscia::core::AnimatedImage::AnimatedImage(const AnimatedImageProp& prop) : Entity() {
     add<ECS_Positioned>(prop._pos.x, prop._pos.y);

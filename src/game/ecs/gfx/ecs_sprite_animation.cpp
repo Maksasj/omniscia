@@ -1,4 +1,4 @@
-#include "ecs_sprite_animation.h"
+#include "ecs/gfx/ecs_sprite_animation.h"
 
 omniscia::core::ecs::ECS_SpriteAnimation::ECS_SpriteAnimation(const std::string &animationId) {
     animation = AnimationManager::get_instance().get(animationId)->get_asset();

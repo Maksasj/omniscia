@@ -1,4 +1,4 @@
-#include "sprite.h"
+#include "gfx/sprite.h"
 
 omniscia::gfx::sprite::Sprite::Sprite(const std::string& textureId) : _spriteMesh(BuildInMeshData::QUAD_MESH_DATA) {
     _texture = TextureManager::get_instance().get(textureId).get_asset();

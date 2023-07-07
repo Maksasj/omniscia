@@ -14,8 +14,8 @@
 
 #include <iostream>
 
-#include "shader_asset.h"
-#include "manager.h"
+#include "asset/shader/shader_asset.h"
+#include "asset/manager.h"
 
 namespace omniscia::core {
     using namespace omni::types;

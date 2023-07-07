@@ -1,4 +1,4 @@
-#include "ecs_2d_physics_rigidbody.h"
+#include "ecs/motion/ecs_2d_physics_rigidbody.h"
 
 omniscia::core::ecs::ECS_2DPhysicsRigidbody::ECS_2DPhysicsRigidbody() {
     ECS_2DPhysicsRigidbodySystem::get_instance().bind_component(this);

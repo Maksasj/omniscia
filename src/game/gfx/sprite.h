@@ -13,13 +13,13 @@
 #define _SPRITE_H_
 
 #include "sprite_mesh.h"
-#include "build_in_mesh_data.h"
-#include "texture_manager.h"
+#include "asset/mesh/build_in_mesh_data.h"
+#include "asset/texture/texture_manager.h"
 #include "texture.h"
 #include "properties.h"
 #include "omni_types.tpp"
-#include "shader.h"
-#include "gfx.h"
+#include "gfx/shader.h"
+#include "gfx/gfx.h"
 
 namespace omniscia::gfx::sprite {
     using namespace omni::types;

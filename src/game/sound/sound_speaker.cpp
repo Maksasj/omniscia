@@ -1,4 +1,4 @@
-#include "sound_speaker.h"
+#include "sound/sound_speaker.h"
 
 omniscia::core::SoundSpeaker::SoundSpeaker(Vec2f soundSourcePos) {
     _soundSourcePos = soundSourcePos;

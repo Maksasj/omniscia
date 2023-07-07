@@ -12,7 +12,7 @@
 #ifndef _ECS_COMPONENT_COLLISION_MASK_H_
 #define _ECS_COMPONENT_COLLISION_MASK_H_
 
-#include "entity.h"
+#include "ecs/entity.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

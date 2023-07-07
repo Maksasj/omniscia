@@ -1,4 +1,4 @@
-#include "animate_static_text_cutscene_event.h"
+#include "scene/cutscene/events/entity/animate_static_text_cutscene_event.h"
 #include "game.h"
 
 omniscia::core::CE_AnimateStaticTextEvent::CE_AnimateStaticTextEvent() {

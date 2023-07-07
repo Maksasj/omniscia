@@ -1,4 +1,4 @@
-#include "run_cutscene_cutscene_event.h"
+#include "scene/cutscene/events/run_cutscene_cutscene_event.h"
 #include "game.h"
 
 omniscia::core::CE_RunCutsceneCutsceneEvent::CE_RunCutsceneCutsceneEvent() {

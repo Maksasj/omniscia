@@ -1,4 +1,4 @@
-#include "entity_spriterenderer_set_texture_event.h"
+#include "scene/cutscene/events/entity/entity_spriterenderer_set_texture_event.h"
 #include "game.h"
 
 omniscia::core::CE_EntitySpriteRendererSetTextureEvent::CE_EntitySpriteRendererSetTextureEvent() {

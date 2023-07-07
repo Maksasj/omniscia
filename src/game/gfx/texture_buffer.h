@@ -16,7 +16,7 @@
 
 #include "stb_image.h"
 #include "omni_types.tpp"
-#include "gfx.h"
+#include "gfx/gfx.h"
 #include "bo.h"
 
 namespace omniscia::gfx::texture {

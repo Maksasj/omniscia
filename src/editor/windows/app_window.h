@@ -6,8 +6,8 @@
 
 #include "properties_field_query.h"
 
-#include "../gfx.h"
-#include "../types.h"
+#include "gfx.h"
+#include "types.h"
 
 namespace omniscia_editor::windows {
     class AppWindow {

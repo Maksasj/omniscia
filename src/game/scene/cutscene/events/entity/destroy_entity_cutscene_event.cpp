@@ -1,4 +1,4 @@
-#include "destroy_entity_cutscene_event.h"
+#include "scene/cutscene/events/entity/destroy_entity_cutscene_event.h"
 #include "game.h"
 
 omniscia::core::CE_DestroyEntityEvent::CE_DestroyEntityEvent() {

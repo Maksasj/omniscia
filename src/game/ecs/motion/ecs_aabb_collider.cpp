@@ -1,4 +1,4 @@
-#include "ecs_aabb_collider.h"
+#include "ecs/motion/ecs_aabb_collider.h"
 
 omniscia::core::ecs::ECS_AABBCollider::ECS_AABBCollider(const u64& collisionLayer, const u64& collisionLayerTarget) {
     _colliding = false;

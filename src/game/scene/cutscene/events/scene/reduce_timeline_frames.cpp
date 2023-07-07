@@ -1,4 +1,4 @@
-#include "reduce_timeline_frames.h"
+#include "scene/cutscene/events/scene/reduce_timeline_frames.h"
 #include "game.h"
 
 omniscia::core::CE_ReduceTimelineFramesEvent::CE_ReduceTimelineFramesEvent() {

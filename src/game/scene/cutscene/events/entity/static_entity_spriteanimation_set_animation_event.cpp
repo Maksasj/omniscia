@@ -1,4 +1,4 @@
-#include "static_entity_spriteanimation_set_animation_event.h"
+#include "scene/cutscene/events/entity/static_entity_spriteanimation_set_animation_event.h"
 #include "game.h"
 
 omniscia::core::CE_StaticEntitySpriteAnimationSetAnimationEvent::CE_StaticEntitySpriteAnimationSetAnimationEvent() {

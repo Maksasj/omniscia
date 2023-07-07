@@ -1,4 +1,4 @@
-#include "clock_progression_bar.h"
+#include "ecs/prototypes/ui/clock_progression_bar.h"
 
 omniscia::core::ClockProgressionBar::ClockProgressionBar(const ClockProgressionBarProp& prop) : Entity() {
     add<ECS_Positioned>(prop._pos.x, prop._pos.y);

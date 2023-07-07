@@ -1,4 +1,4 @@
-#include "ecs_velocity.h"
+#include "ecs/motion/ecs_velocity.h"
 
 omniscia::core::ecs::ECS_Velocity::ECS_Velocity(const f32& velX, const f32& velY, const f32& velZ) {
     _vel = Vec3f{velX, velY, velZ};

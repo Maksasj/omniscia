@@ -1,4 +1,4 @@
-#include "entity_collect_event.h"
+#include "scene/cutscene/events/entity/entity_collect_event.h"
 #include "game.h"
 
 omniscia::core::CE_EntityCollectEvent::CE_EntityCollectEvent() {

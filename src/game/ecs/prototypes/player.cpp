@@ -1,4 +1,4 @@
-#include "player.h"
+#include "ecs/prototypes/player.h"
 
 omniscia::core::Player::Player(const Vec2f& position) : Entity() {
     add<ECS_Positioned>(position.x, position.y);

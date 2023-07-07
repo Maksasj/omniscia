@@ -1,4 +1,4 @@
-#include "ecs_parallax_sprite_renderer_front.h"
+#include "ecs/gfx/ecs_parallax_sprite_renderer_front.h"
 
 omniscia::core::ecs::ECS_ParallaxSpriteRendererFront::ECS_ParallaxSpriteRendererFront(const std::string& texture_id, const u32& layer, const std::function<f32(f32&)>& layerOffsetCallBack) : _sprite(texture_id) , _layerOffsetCallBack(layerOffsetCallBack), ECS_ProRenderer(RenderStagePool::get_instance().get_stage_by_name("IntermediateStage"), layer) {
     _layerOffset = 0;

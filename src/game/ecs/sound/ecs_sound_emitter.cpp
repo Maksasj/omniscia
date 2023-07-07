@@ -1,4 +1,4 @@
-#include "ecs_sound_emitter.h"
+#include "ecs/sound/ecs_sound_emitter.h"
 
 omniscia::core::ecs::ECS_SoundEmitter::ECS_SoundEmitter() {
     ECS_SoundEmitterSystem::get_instance().bind_component(this);

@@ -1,4 +1,4 @@
-#include "terminal_print_cutscene_event.h"
+#include "scene/cutscene/events/debug/terminal_print_cutscene_event.h"
 
 omniscia::core::CE_LogEvent::CE_LogEvent() {
     

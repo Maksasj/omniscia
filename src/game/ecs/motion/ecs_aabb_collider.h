@@ -18,14 +18,14 @@
 #include <algorithm>
 
 #include "collision_side_type.h"
-#include "ecs_box_collider_mesh.h"
-#include "ecs_component.tpp"
+#include "ecs/motion/ecs_box_collider_mesh.h"
+#include "ecs/ecs_component.tpp"
 #include "ecs_collision_mask.h"
-#include "ecs_positioned.h"
-#include "ecs_system.h"
-#include "ecs_scaled.h"
+#include "ecs/motion/ecs_positioned.h"
+#include "ecs/ecs_system.h"
+#include "ecs/motion/ecs_scaled.h"
 #include "controls.h"
-#include "entity.h"
+#include "ecs/entity.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

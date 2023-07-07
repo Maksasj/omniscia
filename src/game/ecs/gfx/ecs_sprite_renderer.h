@@ -16,16 +16,16 @@
 #include <memory>
 #include <iostream>
 
-#include "ecs_pro_renderer.h"
-#include "ecs_component.tpp"
-#include "ecs_positioned.h"
-#include "ecs_system.h"
-#include "ecs_scaled.h"
+#include "ecs/gfx/ecs_pro_renderer.h"
+#include "ecs/ecs_component.tpp"
+#include "ecs/motion/ecs_positioned.h"
+#include "ecs/ecs_system.h"
+#include "ecs/motion/ecs_scaled.h"
 #include "controls.h"
-#include "entity.h"
-#include "sprite.h"
-#include "shader.h"
-#include "ecs_sprite_flip.h"
+#include "ecs/entity.h"
+#include "gfx/sprite.h"
+#include "gfx/shader.h"
+#include "ecs/gfx/ecs_sprite_flip.h"
 
 namespace omniscia::core::ecs {
     using namespace omni::types;

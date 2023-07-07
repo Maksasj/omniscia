@@ -1,4 +1,4 @@
-#include "checkpoint.h"
+#include "ecs/prototypes/checkpoint.h"
 
 omniscia::core::Checkpoint::Checkpoint(const Vec2f& position) : Entity() {
     add<ECS_Positioned>(position.x, position.y);

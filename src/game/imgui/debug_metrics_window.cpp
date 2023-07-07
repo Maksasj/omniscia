@@ -1,4 +1,4 @@
-#include "debug_metrics_window.h"
+#include "imgui/debug_metrics_window.h"
 
 void omniscia::core::DebugMetricsWindow::render() {
     ImGuiIO& io = ImGui::GetIO();

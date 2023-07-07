@@ -1,4 +1,4 @@
-#include "shader_asset.h"
+#include "asset/shader/shader_asset.h"
 
 omni::types::u32 omniscia::core::ShaderAsset::_count = 0;
 

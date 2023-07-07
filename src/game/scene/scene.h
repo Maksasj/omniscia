@@ -13,14 +13,14 @@
 #define _SCENE_H_
 
 #include "omni_types.tpp"
-#include "player.h"
-#include "grandpa.h"
+#include "ecs/prototypes/player.h"
+#include "ecs/prototypes/grandpa.h"
 
-#include "debug_info.h"
+#include "imgui/debug_info.h"
 
 #include "omni_serializer.h"
 
-#include "cutscene.h"
+#include "scene/cutscene/cutscene.h"
 
 namespace omniscia::core {
     using namespace omni::types;

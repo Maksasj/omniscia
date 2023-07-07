@@ -17,7 +17,7 @@
 #include <memory>
 #include <vector>
 
-#include "debug_info.h"
+#include "imgui/debug_info.h"
 #include "omni_types.tpp"
 
 namespace omniscia::core::ecs {

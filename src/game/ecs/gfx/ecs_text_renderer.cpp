@@ -1,4 +1,4 @@
-#include "ecs_text_renderer.h"
+#include "ecs/gfx/ecs_text_renderer.h"
 
 omniscia::core::ecs::ECS_TextRenderer::ECS_TextRenderer(const std::string& fontId, const std::string& textToRender, const f32& lineLetterSpacing, const f32& rowLineSpacing, const u64& charactersPerRow, const u32& layer) 
         : ECS_InstancingRenderer(fontId, layer) {

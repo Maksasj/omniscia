@@ -14,8 +14,8 @@
 #include "file_explorer_result.h"
 #include "file_entry.h"
 
-#include "../gfx.h"
-#include "../types.h"
+#include "gfx.h"
+#include "types.h"
 
 namespace omniscia_editor::editor {
     using namespace omni::types;

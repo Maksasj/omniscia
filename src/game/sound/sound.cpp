@@ -1,6 +1,6 @@
-#include "sound.h"
-#include "sound_engine.h"
-#include "sound_manager.h"
+#include "sound/sound.h"
+#include "sound/sound_engine.h"
+#include "asset/sound/sound_manager.h"
 
 omniscia::core::Sound::Sound() {
     _isLoaded = false;

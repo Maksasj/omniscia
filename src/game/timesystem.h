@@ -15,7 +15,7 @@
 #include <chrono>
 #include <functional>
 
-#include "gfx.h"
+#include "gfx/gfx.h"
 #include "omni_types.tpp"
 
 namespace omniscia::core {

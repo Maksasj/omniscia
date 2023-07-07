@@ -14,10 +14,10 @@
 
 #include <iostream>
 
-#include "sound_asset.h"
-#include "manager.h"
+#include "asset/sound/sound_asset.h"
+#include "asset/manager.h"
 
-#include "sound_fx.h"
+#include "sound/sound_fx.h"
 
 namespace omniscia::core {
     using namespace omni::types;

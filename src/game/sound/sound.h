@@ -12,7 +12,7 @@
 #ifndef _SOUND_H_
 #define _SOUND_H_
 
-#include "sound_fx.h"
+#include "sound/sound_fx.h"
 #include <iostream>
 #include "omni_types.tpp"
 

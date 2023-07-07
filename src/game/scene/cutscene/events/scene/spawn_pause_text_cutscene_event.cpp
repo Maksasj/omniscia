@@ -1,4 +1,4 @@
-#include "spawn_pause_text_cutscene_event.h"
+#include "scene/cutscene/events/scene/spawn_pause_text_cutscene_event.h"
 #include "game.h"
 
 omniscia::core::CE_SpawnPauseTextEvent::CE_SpawnPauseTextEvent() {

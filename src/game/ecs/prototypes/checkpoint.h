@@ -1,8 +1,8 @@
 #ifndef _CHECKPOINT_H_
 #define _CHECKPOINT_H_
 
-#include "ecs_components.h"
-#include "entity.h"
+#include "ecs/ecs_components.h"
+#include "ecs/entity.h"
 
 namespace omniscia::core {
     using namespace omni::types;

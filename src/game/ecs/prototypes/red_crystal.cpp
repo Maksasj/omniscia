@@ -1,4 +1,4 @@
-#include "red_crystal.h"
+#include "ecs/prototypes/red_crystal.h"
 
 omniscia::core::RedCrystal::RedCrystal(const Vec2f& position) : Entity() {
     add<ECS_Positioned>(position.x, position.y);

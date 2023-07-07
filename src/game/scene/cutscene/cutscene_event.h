@@ -3,7 +3,8 @@
 
 #include "timesystem.h"
 
-#include "cutscene_datapool_type.h"
+#include "scene/cutscene/cutscene_event.h"
+#include "scene/cutscene/cutscene_datapool_type.h"
 #include "omni_types.tpp"
 
 namespace omniscia::core {

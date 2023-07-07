@@ -1,4 +1,4 @@
-#include "chapter_choose_menu_scene.h"
+#include "scene/prototypes/chapter_choose_menu_scene.h"
 #include "game.h"
 
 omniscia::core::ChapterChooseMenuScene::ChapterChooseMenuScene() : Scene() {

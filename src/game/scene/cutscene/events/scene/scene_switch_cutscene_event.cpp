@@ -1,4 +1,4 @@
-#include "scene_switch_cutscene_event.h"
+#include "scene/cutscene/events/scene/scene_switch_cutscene_event.h"
 #include "game.h"
 
 omniscia::core::CE_SceneSwitchEvent::CE_SceneSwitchEvent() {

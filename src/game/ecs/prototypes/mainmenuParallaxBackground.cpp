@@ -1,4 +1,4 @@
-#include "mainmenuParallaxBackground.h"
+#include "ecs/prototypes/mainmenuParallaxBackground.h"
 
 omniscia::core::MainMenuParallaxBackground::MainMenuParallaxBackground() : Entity() {
     add<ECS_ParallaxSpriteRendererBack>("menu_background_sky1_layer", 0, [](f32& layerOffset ) {
