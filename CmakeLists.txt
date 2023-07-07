@@ -6,6 +6,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_BUILD_TYPE debug)
 
 add_subdirectory(3dparty)
-add_subdirectory(shared)
 
 add_subdirectory(src)

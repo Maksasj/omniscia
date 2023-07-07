@@ -38,8 +38,8 @@
 	path = 3dparty/megaboost
 	url = https://github.com/scipy/boost-headers-only
 [submodule "shared/omni_reflector"]
-	path = shared/omni_reflector
+	path = src/shared/omni_reflector
 	url = https://github.com/Maksasj/omni_reflector
 [submodule "shared/omni_types"]
-	path = shared/omni_types
+	path = src/shared/omni_types
 	url = https://github.com/Maksasj/omni_types
