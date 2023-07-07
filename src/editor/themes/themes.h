@@ -1,0 +1,10 @@
+#ifndef _OMNISCIA_EDITOR_THEMES_H_
+#define _OMNISCIA_EDITOR_THEMES_H_
+
+#include "deep_dark_theme.h"
+#include "dracula_theme.h"
+#include "green_theme.h"
+#include "red_theme.h"
+#include "simple_theme.h"
+
+#endif

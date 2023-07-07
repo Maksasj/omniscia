@@ -4,4 +4,4 @@ python scripts\editor_version.py
 
 cmake --build build
 
-build\OmnisciaEditor.exe
+build\src\editor\OmnisciaEditor.exe
