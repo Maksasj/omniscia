@@ -35,6 +35,8 @@ namespace omniscia_editor::windows {
             Vec2f _screenboxPreviewSize;
 
             bool _renderMaterials;
+
+            bool _renderCollisionBoxes;
         public:
             friend class omni::reflector::FieldFriendlyScope;
             friend class omni::reflector::Reflection<LevelPreviewWindow>;

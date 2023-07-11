@@ -20,6 +20,8 @@ omniscia_editor::windows::LevelPreviewWindow::LevelPreviewWindow() {
     _screenboxPreviewSize = Vec2(256.0f, 144.0f);
 
     _renderMaterials = false;
+
+    _renderCollisionBoxes = true;
 };
 
 omni::types::Vec2f omniscia_editor::windows::LevelPreviewWindow::get_scroll() const {
@@ -133,6 +135,21 @@ void omniscia_editor::windows::LevelPreviewWindow::render_window() {
                     ImVec2((start.x - tile._position.x * _zoom) - _gridSize * _zoom,    (start.y - tile._position.y * _zoom) - _gridSize * _zoom),
                     IM_COL32(255.0f, 255.0f, 51.0f, 200.0f)
                 );
+            }
+        }
+
+        if(_renderCollisionBoxes) {
+            for(const CollisionBoxEntity& collisionBox : tileGroup._collisionBoxes) {
+                const f32 firstPointX = start.x - (collisionBox._position.x + collisionBox._xRanges.x) * _zoom;
+                const f32 firstPointY = start.y - (collisionBox._position.y + collisionBox._yRanges.x) * _zoom;
+
+                const f32 secondPointX = start.x - (collisionBox._position.x + collisionBox._xRanges.y) * _zoom;
+                const f32 secondPointY = start.y - (collisionBox._position.y + collisionBox._yRanges.y) * _zoom;
+
+                const Vec4f& color = collisionBox._collisionBoxAssociatedColor;
+
+                drawList->AddRect({firstPointX, firstPointY}, {secondPointX, secondPointY}, 
+                    IM_COL32(color.x * 255, color.y * 255, color.z * 255, color.w * 255));
             }
         }
     }

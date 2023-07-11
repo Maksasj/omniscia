@@ -9,6 +9,7 @@
 #include "tools/pencil_tool.h"
 #include "tools/selection_tool.h"
 #include "tools/move_tool.h"
+#include "tools/collision_box_tool.h"
 
 #include "systems/texture_manager.h"
 
@@ -34,6 +35,7 @@ namespace omniscia_editor::systems {
             friend class omniscia_editor::tools::PencilTool;
             friend class omniscia_editor::tools::SelectionTool;
             friend class omniscia_editor::tools::MoveTool;
+            friend class omniscia_editor::tools::CollisionBoxTool;
 
             void file_new();
             void file_open();

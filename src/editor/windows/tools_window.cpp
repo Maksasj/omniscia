@@ -3,11 +3,13 @@
 #include "tools/pencil_tool.h"
 #include "tools/selection_tool.h"
 #include "tools/move_tool.h"
+#include "tools/collision_box_tool.h"
 
 omniscia_editor::windows::ToolsWindow::ToolsWindow() {
     selectedToolIndex = 0;
     
     _tools.push_back({"Pencil",     &PencilTool::get_instance()});
+    _tools.push_back({"Collision box tool",     &CollisionBoxTool::get_instance()});
     _tools.push_back({"Selection tool",  &SelectionTool::get_instance()});
     _tools.push_back({"Move tool",       &MoveTool::get_instance()});
 };

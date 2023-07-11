@@ -1,6 +1,6 @@
 #include "version.h"
 
-#define _OMNISCIA_EDITOR_VERSION_ 1509
+#define _OMNISCIA_EDITOR_VERSION_ 1516
 
 unsigned long long get_editor_version() {
     return _OMNISCIA_EDITOR_VERSION_;
