@@ -80,7 +80,7 @@ namespace omniscia_editor::editor {
                         ImGui::Separator();
 
                         if(ImGui::MenuItem("Open", nullptr, nullptr)) {
-                            LevelManager::get_instance().file_new();
+                            LevelManager::get_instance().file_open();
                         };
 
                         if(ImGui::MenuItem("Open Recent", nullptr, nullptr)) {

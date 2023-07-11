@@ -1,24 +1,7 @@
 {
-    "_markerGroups": [
-        {
-            "_markerGroupAssociatedColor": {
-                "w": 1.0,
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-            },
-            "_markers": [
-                {
-                    "_position": {
-                        "x": -5.0,
-                        "y": 205.0
-                    }
-                }
-            ]
-        }
-    ],
-    "_screenBoxHeight": 800.0,
-    "_screenBoxWidth": 1280.0,
+    "_markerGroups": [],
+    "_screenBoxHeight": 0.0,
+    "_screenBoxWidth": 0.0,
     "_tileGroups": [
         {
             "_collisionBoxes": [
@@ -30,4205 +13,613 @@
                         "z": 1.0
                     },
                     "_isDamaging": false,
-                    "_name": "Collision box 0",
+                    "_name": "Unnamed collision box",
                     "_position": {
-                        "x": 0.0,
-                        "y": -0.0
+                        "x": -0.08860015869140625,
+                        "y": -40.136993408203125
                     },
                     "_xRanges": {
-                        "x": 400.0,
-                        "y": 550.0
+                        "x": 128.6885986328125,
+                        "y": -128.6885986328125
                     },
                     "_yRanges": {
-                        "x": 400.0,
-                        "y": 0.0
-                    }
-                },
-                {
-                    "_collisionBoxAssociatedColor": {
-                        "w": 1.0,
-                        "x": 1.0,
-                        "y": 0.0,
-                        "z": 0.0
-                    },
-                    "_isDamaging": true,
-                    "_name": "Collision box 1",
-                    "_position": {
-                        "x": 0.0,
-                        "y": -450.0
-                    },
-                    "_xRanges": {
-                        "x": 1600.0,
-                        "y": 1600.0
-                    },
-                    "_yRanges": {
-                        "x": 50.0,
-                        "y": 50.0
-                    }
-                },
-                {
-                    "_collisionBoxAssociatedColor": {
-                        "w": 1.0,
-                        "x": 1.0,
-                        "y": 1.0,
-                        "z": 1.0
-                    },
-                    "_isDamaging": false,
-                    "_name": "Collision box 2",
-                    "_position": {
-                        "x": 500.0,
-                        "y": 100.0
-                    },
-                    "_xRanges": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_yRanges": {
-                        "x": 100.0,
-                        "y": 50.0
+                        "x": 39.754119873046875,
+                        "y": -39.75412368774414
                     }
                 }
             ],
-            "_name": "Tile group #1",
+            "_name": "Unnamed tile group 0",
+            "_textureMaterialAssetId": "beach_tiles",
             "_tileGroupAssociatedColor": {
-                "w": 0.9960784316062927,
+                "w": 1.0,
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
             },
+            "_tileMaterials": [
+                {
+                    "_materialName": "Default material",
+                    "_scale": {
+                        "x": 0.125,
+                        "y": 0.125
+                    },
+                    "_textureCordsBottomLeft": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "_textureCordsBottomRight": {
+                        "x": 0.125,
+                        "y": 0.0
+                    },
+                    "_textureCordsTopLeft": {
+                        "x": 0.0,
+                        "y": 0.125
+                    },
+                    "_textureCordsTopRight": {
+                        "x": 0.125,
+                        "y": 0.125
+                    }
+                }
+            ],
             "_tiles": [
                 {
-                    "_position": {
-                        "x": -400.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
+                    "m": 0,
+                    "p": {
+                        "x": 112.0,
+                        "y": -16.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 96.0,
+                        "y": -16.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 80.0,
+                        "y": -16.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 64.0,
+                        "y": -16.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 48.0,
+                        "y": -16.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 48.0,
+                        "y": -32.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 64.0,
+                        "y": -32.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 80.0,
+                        "y": -32.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 96.0,
+                        "y": -32.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 112.0,
+                        "y": -32.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 112.0,
+                        "y": -48.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 96.0,
+                        "y": -48.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 80.0,
+                        "y": -48.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 64.0,
+                        "y": -48.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 48.0,
+                        "y": -48.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 48.0,
+                        "y": -64.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 64.0,
+                        "y": -64.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 80.0,
+                        "y": -64.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 96.0,
+                        "y": -64.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 112.0,
+                        "y": -64.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 112.0,
+                        "y": -80.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 96.0,
+                        "y": -80.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 80.0,
+                        "y": -80.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 64.0,
+                        "y": -80.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 48.0,
+                        "y": -80.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 32.0,
+                        "y": -80.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 32.0,
+                        "y": -64.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 32.0,
+                        "y": -48.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 32.0,
+                        "y": -32.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 32.0,
+                        "y": -16.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 16.0,
+                        "y": -16.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 16.0,
+                        "y": -32.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 16.0,
+                        "y": -48.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 16.0,
+                        "y": -64.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
+                        "x": 16.0,
+                        "y": -80.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
                         "x": 0.0,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
+                        "y": -80.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
                         "x": 0.0,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.125,
-                        "y": 1.0
+                        "y": -64.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -350.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
+                    "m": 0,
+                    "p": {
                         "x": 0.0,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
+                        "y": -48.0
+                    }
+                },
+                {
+                    "m": 0,
+                    "p": {
                         "x": 0.0,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.125,
-                        "y": 1.0
+                        "y": -32.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -300.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
+                    "m": 0,
+                    "p": {
                         "x": 0.0,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.0,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.125,
-                        "y": 1.0
+                        "y": -16.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -250.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.0,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.0,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.125,
-                        "y": 1.0
+                    "m": 0,
+                    "p": {
+                        "x": -16.0,
+                        "y": -16.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -200.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.0,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.0,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.125,
-                        "y": 1.0
+                    "m": 0,
+                    "p": {
+                        "x": -16.0,
+                        "y": -32.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -150.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.0,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.0,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.125,
-                        "y": 1.0
+                    "m": 0,
+                    "p": {
+                        "x": -16.0,
+                        "y": -48.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -100.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.0,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.0,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.125,
-                        "y": 1.0
+                    "m": 0,
+                    "p": {
+                        "x": -16.0,
+                        "y": -64.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -50.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.0,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.0,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.125,
-                        "y": 1.0
+                    "m": 0,
+                    "p": {
+                        "x": -16.0,
+                        "y": -80.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 0.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.0,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.0,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.125,
-                        "y": 1.0
+                    "m": 0,
+                    "p": {
+                        "x": -32.0,
+                        "y": -80.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 50.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.0,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.0,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.125,
-                        "y": 1.0
+                    "m": 0,
+                    "p": {
+                        "x": -32.0,
+                        "y": -64.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 100.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.0,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.0,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.125,
-                        "y": 1.0
+                    "m": 0,
+                    "p": {
+                        "x": -32.0,
+                        "y": -48.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 150.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.0,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.0,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.125,
-                        "y": 1.0
+                    "m": 0,
+                    "p": {
+                        "x": -32.0,
+                        "y": -32.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 200.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.0,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.0,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.125,
-                        "y": 1.0
+                    "m": 0,
+                    "p": {
+                        "x": -32.0,
+                        "y": -16.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 250.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.0,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.0,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.125,
-                        "y": 1.0
+                    "m": 0,
+                    "p": {
+                        "x": -48.0,
+                        "y": -16.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 300.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.0,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.0,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.125,
-                        "y": 1.0
+                    "m": 0,
+                    "p": {
+                        "x": -64.0,
+                        "y": -16.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 350.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.0,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.0,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.125,
-                        "y": 1.0
+                    "m": 0,
+                    "p": {
+                        "x": -80.0,
+                        "y": -16.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -400.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -96.0,
+                        "y": -16.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -350.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -112.0,
+                        "y": -16.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -300.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -128.0,
+                        "y": -16.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -250.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -128.0,
+                        "y": -32.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -200.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -128.0,
+                        "y": -48.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -150.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -128.0,
+                        "y": -64.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -100.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -128.0,
+                        "y": -80.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -50.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -112.0,
+                        "y": -80.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 0.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -112.0,
+                        "y": -64.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 50.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -112.0,
+                        "y": -48.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 100.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -112.0,
+                        "y": -32.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 150.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -96.0,
+                        "y": -32.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 200.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -96.0,
+                        "y": -48.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 250.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -96.0,
+                        "y": -64.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 300.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -96.0,
+                        "y": -80.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 350.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -80.0,
+                        "y": -80.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 350.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -80.0,
+                        "y": -64.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 300.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -80.0,
+                        "y": -48.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 250.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -80.0,
+                        "y": -32.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 200.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -64.0,
+                        "y": -32.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 150.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -64.0,
+                        "y": -48.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 100.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -64.0,
+                        "y": -80.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 50.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -64.0,
+                        "y": -64.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": 0.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -48.0,
+                        "y": -80.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -50.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -48.0,
+                        "y": -64.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -100.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -48.0,
+                        "y": -32.0
                     }
                 },
                 {
-                    "_position": {
-                        "x": -150.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -200.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -250.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -300.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -350.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -400.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -400.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -350.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -300.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -250.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -200.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -150.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -100.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -50.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 0.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 50.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 100.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 150.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 200.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 250.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 300.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 350.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 350.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 300.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 250.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 200.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 150.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 100.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 50.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 0.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -50.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -100.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -150.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -200.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -250.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -300.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -350.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -350.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -300.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -250.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -200.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -150.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -100.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -50.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 0.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 50.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 100.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 150.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 200.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 250.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 300.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 350.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 350.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 300.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 300.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 250.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 200.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 150.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 100.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 100.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 50.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 0.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -50.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -100.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -150.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -200.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -250.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -300.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -350.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -400.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -400.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -350.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -300.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -250.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -200.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -150.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -100.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -50.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 0.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 150.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 200.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 250.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 350.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 50.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -400.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": -400.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 400.0000305175781,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 1.0
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 450.0000305175781,
-                        "y": 50.000003814697266
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.375,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.5,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.375,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.5,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 450.0000305175781,
-                        "y": 100.00000762939453
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.375,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.5,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.375,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.5,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 450.0000305175781,
-                        "y": 150.00001525878906
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.375,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.5,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.375,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.5,
-                        "y": 1.0
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 700.0000610351563,
-                        "y": 50.000003814697266
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.375,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.5,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.375,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.5,
-                        "y": 1.0
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 500.0000305175781,
-                        "y": 150.00001525878906
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.5,
-                        "y": 0.875
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.625,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.5,
-                        "y": 1.0
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.625,
-                        "y": 1.0
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 500.0000305175781,
-                        "y": 100.00000762939453
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.5,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.625,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.5,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.625,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 500.0000305175781,
-                        "y": 50.000003814697266
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.5,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.625,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.5,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.625,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 500.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.5,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.625,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.5,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.625,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 500.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.5,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.625,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.5,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.625,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 500.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.5,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.625,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.5,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.625,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 500.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.5,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.625,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.5,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.625,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 500.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.5,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.625,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.5,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.625,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 500.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.5,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.625,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.5,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.625,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 500.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.5,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.625,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.5,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.625,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 500.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.5,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.625,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.5,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.625,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 450.0,
-                        "y": -0.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.375,
-                        "y": 0.625
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.5,
-                        "y": 0.625
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.375,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.5,
-                        "y": 0.75
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 400.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 400.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 400.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 400.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 400.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 400.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 400.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 450.0,
-                        "y": -350.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 450.0,
-                        "y": -300.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 450.0,
-                        "y": -250.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 450.0,
-                        "y": -200.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 450.0,
-                        "y": -150.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 450.0,
-                        "y": -100.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
-                    }
-                },
-                {
-                    "_position": {
-                        "x": 450.0,
-                        "y": -50.0
-                    },
-                    "_scale": {
-                        "x": 50.0,
-                        "y": 50.0
-                    },
-                    "_textureCordsBottomLeft": {
-                        "x": 0.125,
-                        "y": 0.75
-                    },
-                    "_textureCordsBottomRight": {
-                        "x": 0.25,
-                        "y": 0.75
-                    },
-                    "_textureCordsTopLeft": {
-                        "x": 0.125,
-                        "y": 0.875
-                    },
-                    "_textureCordsTopRight": {
-                        "x": 0.25,
-                        "y": 0.875
+                    "m": 0,
+                    "p": {
+                        "x": -48.0,
+                        "y": -48.0
                     }
                 }
             ]

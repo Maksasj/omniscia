@@ -19,26 +19,32 @@ void omniscia::core::SceneLoader::load_scene(Scene& level, const std::string& pa
 
     LevelData levelData = JsonSerializer::json_deserialize<LevelData>(jsonData);
 
-    f32 screenBoxHeight = levelData._screenBoxHeight;
+    // for(auto& markerGroup : levelData._markerGroups) {
+    //     MarkerGroupData tmpMakerGroup;
+// 
+    //     for(MarkerData marker : markerGroup._markers) {
+    //         std::vector<MarkerData>& markers = tmpMakerGroup._markers; 
+    //         markers.push_back(marker);
+    //     }
+// 
+    //     level._markerGroups.push_back(tmpMakerGroup);
+    // }
 
-    for(auto& markerGroup : levelData._markerGroups) {
-        MarkerGroupData tmpMakerGroup;
-
-        for(MarkerData marker : markerGroup._markers) {
-            std::vector<MarkerData>& markers = tmpMakerGroup._markers; 
-            markers.push_back(marker);
-        }
-
-        level._markerGroups.push_back(tmpMakerGroup);
-    }
-
-    for(const TileGroupData& tileGroupData : levelData._tileGroups) {
+    for(TileGroupData& tileGroupData : levelData._tileGroups) {
         std::shared_ptr<Entity> tileGroup = std::make_shared<Entity>();
         RawMeshDataBuilder builder;
 
         // Tiles
-        for(const TileEntity& tileData : tileGroupData._tiles) {
+        for(TileEntity& tileData : tileGroupData._tiles) {
             const std::vector<TileMaterial>& tileMaterials = tileGroupData._tileMaterials;
+
+            // TODO
+
+            /*
+            This is cringe but yes need to resolve this
+            */
+
+            tileData._position /= 64.0f;
 
             omniscia::gfx::sprite::RawMeshData mesh = RawMeshData(
                 {

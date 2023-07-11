@@ -12,7 +12,7 @@ namespace omniscia::core {
     class GameScene : public Scene {
         public:
             GameScene() : Scene() {
-                // LevelAssetManager::get_instance().get("test_level")->load_asset(*this);
+                LevelAssetManager::get_instance().get("test_level")->load_asset(*this);
 
                 // summon_static_entity_at_marker_group<Player>(0);
                 // summon_static_entity_at_marker_group<RedCrystal>(1);
