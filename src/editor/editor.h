@@ -7,7 +7,6 @@
 #include "windows/level_preview_window.h"
 #include "windows/properties_window.h"
 #include "windows/history_window.h"
-#include "windows/brush_window.h"
 #include "windows/metrics_window.h"
 #include "windows/selected_tilegroup_window.h"
 #include "windows/tilegroups_management_window.h"
@@ -62,7 +61,6 @@ namespace omniscia_editor::editor {
                 ImGui::PopStyleVar();
                 ImGui::PopStyleVar();
 
-                static bool renderBrushWindow = true;
                 static bool renderLevelPreviewWindow = true;
                 static bool renderLevelPreviewHelpWindow = true;
                 static bool renderHistroyWindow = true;
@@ -102,7 +100,6 @@ namespace omniscia_editor::editor {
                         ImGui::EndMenu();
                     }
                     if (ImGui::BeginMenu("View")) {
-                        ImGui::MenuItem("Brush", nullptr, &renderBrushWindow);
                         ImGui::MenuItem("Tools", nullptr, &renderToolsWindow);
                         ImGui::MenuItem("Level preview", nullptr, &renderLevelPreviewWindow);
                         ImGui::MenuItem("Level preview help", nullptr, &renderLevelPreviewHelpWindow);
@@ -140,7 +137,6 @@ namespace omniscia_editor::editor {
                 ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
                 ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_PassthruCentralNode);
 
-                if(renderBrushWindow) BrushWindow::get_instance().render_window();
                 if(renderToolsWindow) ToolsWindow::get_instance().render_window();
                 if(renderSelectedTileGroupWindowWindow) SelectedTileGroupWindow::get_instance().render_window();
                 if(renderTileGroupsManagementWindow) TileGroupsManagementWindow::get_instance().render_window();

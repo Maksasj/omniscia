@@ -6,7 +6,6 @@
 
 #include "app_window.h"
 
-#include "brush_window.h"
 #include "history_window.h"
 #include "level_preview_window.h"
 #include "metrics_window.h"
@@ -36,7 +35,6 @@ namespace omniscia_editor::windows {
 
             PropertiesWindow() {
                 _windows.push_back(PropertyInstance{"Tools",                &ToolsWindow::get_instance()});
-                _windows.push_back(PropertyInstance{"Brush",                &BrushWindow::get_instance()});
                 _windows.push_back(PropertyInstance{"History",              &HistoryWindow::get_instance()});
                 _windows.push_back(PropertyInstance{"Level prieview",       &LevelPreviewWindow::get_instance()});
                 _windows.push_back(PropertyInstance{"Assets view",          &AssetsViewWindow::get_instance()});
