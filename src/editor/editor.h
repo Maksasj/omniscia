@@ -27,8 +27,34 @@ namespace omniscia_editor::editor {
         private:
             std::vector<Theme*> themes;
 
+            /** Properties */
+            bool _renderLevelPreviewWindow;
+            bool _renderLevelPreviewHelpWindow;
+            bool _renderHistroyWindow;
+            bool _renderMetricsWindow;
+            bool _renderTileGroupsManagementWindow;
+            bool _renderSelectedTileGroupWindow;
+            bool _renderAssetsViewWindow;
+            bool _renderToolsWindow;
+
+            bool _renderPropertiesWindow;
+
         public:
+            friend class omni::reflector::FieldFriendlyScope;
+            friend class omni::reflector::Reflection<Editor>;
+
             Editor() {
+                _renderLevelPreviewWindow = true;
+                _renderLevelPreviewHelpWindow = true;
+                _renderHistroyWindow = true;
+                _renderMetricsWindow = true;
+                _renderTileGroupsManagementWindow = true;
+                _renderSelectedTileGroupWindow = true;
+                _renderAssetsViewWindow = true;
+                _renderToolsWindow = true;
+
+                _renderPropertiesWindow = false;
+
                 themes = {
                     new DeepDarkTheme(),
                     new DraculaTheme(),
@@ -61,16 +87,7 @@ namespace omniscia_editor::editor {
                 ImGui::PopStyleVar();
                 ImGui::PopStyleVar();
 
-                static bool renderLevelPreviewWindow = true;
-                static bool renderLevelPreviewHelpWindow = true;
-                static bool renderHistroyWindow = true;
-                static bool renderMetricsWindow = true;
-                static bool renderTileGroupsManagementWindow = true;
-                static bool renderSelectedTileGroupWindowWindow = true;
-                static bool renderAssetsViewWindow = true;
-                static bool renderToolsWindow = true;
 
-                static bool renderPropertiesWindow = false;
 
                 if (ImGui::BeginMenuBar()) {
                     if (ImGui::BeginMenu("File")) {
@@ -100,17 +117,17 @@ namespace omniscia_editor::editor {
                         ImGui::EndMenu();
                     }
                     if (ImGui::BeginMenu("View")) {
-                        ImGui::MenuItem("Tools", nullptr, &renderToolsWindow);
-                        ImGui::MenuItem("Level preview", nullptr, &renderLevelPreviewWindow);
-                        ImGui::MenuItem("Level preview help", nullptr, &renderLevelPreviewHelpWindow);
-                        ImGui::MenuItem("History", nullptr, &renderHistroyWindow);
-                        ImGui::MenuItem("Assets view", nullptr, &renderAssetsViewWindow);
+                        ImGui::MenuItem("Tools", nullptr,               &_renderToolsWindow);
+                        ImGui::MenuItem("Level preview", nullptr,       &_renderLevelPreviewWindow);
+                        ImGui::MenuItem("Level preview help", nullptr,  &_renderLevelPreviewHelpWindow);
+                        ImGui::MenuItem("History", nullptr,             &_renderHistroyWindow);
+                        ImGui::MenuItem("Assets view", nullptr,         &_renderAssetsViewWindow);
 
                         ImGui::Separator();
 
                         if (ImGui::BeginMenu("Tile groups")) {
-                            ImGui::MenuItem("Tile groups", nullptr, &renderTileGroupsManagementWindow);
-                            ImGui::MenuItem("Selected tile group", nullptr, &renderSelectedTileGroupWindowWindow);
+                            ImGui::MenuItem("Tile groups", nullptr,             &_renderTileGroupsManagementWindow);
+                            ImGui::MenuItem("Selected tile group", nullptr,     &_renderSelectedTileGroupWindow);
 
                             ImGui::EndMenu();
                         }
@@ -123,12 +140,12 @@ namespace omniscia_editor::editor {
                         }
                         ImGui::Separator();
 
-                        ImGui::MenuItem("Metrics", nullptr, &renderMetricsWindow);
+                        ImGui::MenuItem("Metrics", nullptr, &_renderMetricsWindow);
 
                         ImGui::EndMenu();
                     }
                     if (ImGui::MenuItem("Properties", nullptr, nullptr)) {
-                        renderPropertiesWindow = !renderPropertiesWindow;
+                        _renderPropertiesWindow = !_renderPropertiesWindow;
                     }
 
                     ImGui::EndMenuBar();
@@ -137,18 +154,18 @@ namespace omniscia_editor::editor {
                 ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
                 ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_PassthruCentralNode);
 
-                if(renderToolsWindow) ToolsWindow::get_instance().render_window();
-                if(renderSelectedTileGroupWindowWindow) SelectedTileGroupWindow::get_instance().render_window();
-                if(renderTileGroupsManagementWindow) TileGroupsManagementWindow::get_instance().render_window();
-                if(renderLevelPreviewWindow) LevelPreviewWindow::get_instance().render_window();
-                if(renderLevelPreviewHelpWindow) LevelPreviewHelpWindow::get_instance().render_window();
-                if(renderHistroyWindow) HistoryWindow::get_instance().render_window();
-                if(renderMetricsWindow) MetricsWindow::get_instance().render_window();
-                if(renderAssetsViewWindow) AssetsViewWindow::get_instance().render_window();
+                if(_renderToolsWindow) ToolsWindow::get_instance().render_window();
+                if(_renderSelectedTileGroupWindow) SelectedTileGroupWindow::get_instance().render_window();
+                if(_renderTileGroupsManagementWindow) TileGroupsManagementWindow::get_instance().render_window();
+                if(_renderLevelPreviewWindow) LevelPreviewWindow::get_instance().render_window();
+                if(_renderLevelPreviewHelpWindow) LevelPreviewHelpWindow::get_instance().render_window();
+                if(_renderHistroyWindow) HistoryWindow::get_instance().render_window();
+                if(_renderMetricsWindow) MetricsWindow::get_instance().render_window();
+                if(_renderAssetsViewWindow) AssetsViewWindow::get_instance().render_window();
 
-                if(renderPropertiesWindow) PropertiesWindow::get_instance().render_window();
+                if(_renderPropertiesWindow) PropertiesWindow::get_instance().render_window();
 
-                ImGui::ShowDemoWindow();
+                // ImGui::ShowDemoWindow();
 
                 ImGui::End();          
             };
@@ -159,5 +176,23 @@ namespace omniscia_editor::editor {
         }
     };
 }
+
+template<>																	               
+struct omni::reflector::Reflection<omniscia_editor::editor::Editor> {									               
+    const constexpr static std::type_info &typeInfo = typeid(omniscia_editor::editor::Editor);           
+    const constexpr static auto clearTypeName = "Editor";
+    const constexpr static auto meta = std::make_tuple(
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::editor::Editor::_renderLevelPreviewWindow, "Render level preview window"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::editor::Editor::_renderLevelPreviewHelpWindow, "Render level preview help window"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::editor::Editor::_renderHistroyWindow, "Render history window"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::editor::Editor::_renderMetricsWindow, "Render metrics window"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::editor::Editor::_renderTileGroupsManagementWindow, "Render tile groups management window"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::editor::Editor::_renderSelectedTileGroupWindow, "Render selected tile group window"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::editor::Editor::_renderAssetsViewWindow, "Render assets view window"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::editor::Editor::_renderToolsWindow, "Render tools window"),
+
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::editor::Editor::_renderPropertiesWindow, "Render properties window")
+    );																		               
+};
 
 #endif

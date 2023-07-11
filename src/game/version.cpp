@@ -1,6 +1,6 @@
 #include "version.h"
 
-#define _OMNISCIA_VERSION_ 5135
+#define _OMNISCIA_VERSION_ 5136
 
 unsigned long long get_game_version() {
     return _OMNISCIA_VERSION_;

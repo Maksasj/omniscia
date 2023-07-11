@@ -31,10 +31,10 @@
             "_name": "Unnamed tile group 0",
             "_textureMaterialAssetId": "beach_tiles",
             "_tileGroupAssociatedColor": {
-                "w": 1.0,
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
+                "w": 0.5411764979362488,
+                "x": 0.9215686321258545,
+                "y": 0.23529411852359772,
+                "z": 0.23529411852359772
             },
             "_tileMaterials": [
                 {
