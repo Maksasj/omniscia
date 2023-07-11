@@ -24,19 +24,19 @@ namespace omniscia_editor::windows {
             /* Properies */
             f32 _gridSize;
 
+            bool _renderAxis;
+            bool _renderGrid;
+            bool _renderMaterials;
+            bool _renderTiles;
+            bool _renderCollisionBoxes;
+            bool _renderScreenboxPreview;
+            
             f32 _zoomSpeed;
             f32 _maxZoom;
             f32 _minZoom;
 
-            bool _renderAxis;
-            bool _renderGrid;
-
-            bool _renderScreenboxPreview;
             Vec2f _screenboxPreviewSize;
 
-            bool _renderMaterials;
-
-            bool _renderCollisionBoxes;
         public:
             friend class omni::reflector::FieldFriendlyScope;
             friend class omni::reflector::Reflection<LevelPreviewWindow>;
@@ -66,14 +66,19 @@ struct omni::reflector::Reflection<omniscia_editor::windows::LevelPreviewWindow>
     const constexpr static auto clearTypeName = "LevelPreviewWindow";
     const constexpr static auto meta = std::make_tuple(
         omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_gridSize, "Grid size"),
+        
         omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_renderAxis, "Render axis"),
         omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_renderGrid, "Render grid"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_renderTiles, "Render tiles"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_renderCollisionBoxes, "Render collision boxes"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_renderScreenboxPreview, "Render screenbox preview"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_renderMaterials, "Render tiles materials"),
+
         omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_zoomSpeed, "Zoom zpeed"),
         omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_maxZoom, "Max zoom"),
         omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_minZoom, "Min zoom"),
-        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_renderScreenboxPreview, "Render screenbox preview"),
-        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_screenboxPreviewSize, "Screenbox preview size"),
-        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_renderMaterials, "Render tiles materials")
+
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_screenboxPreviewSize, "Screenbox preview size")
     );																		               
 };
 
