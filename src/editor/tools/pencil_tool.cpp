@@ -57,6 +57,8 @@ void omniscia_editor::tools::PencilTool::render_effect() {
     const Vec2f scaledCursorPos = _cursorPos / _gridSize;
     const Vec2f alignedCursorPos = Vec2f(floor(scaledCursorPos.x), floor(scaledCursorPos.y)) * _gridSize;
 
+    HistoryWindow::get_instance().record("Placed tile");
+
     levelData._tileGroups[selectedTileGroupIndex]._tiles.push_back(TileEntity{alignedCursorPos, 0});
 }
 

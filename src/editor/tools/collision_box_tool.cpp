@@ -76,6 +76,8 @@ void omniscia_editor::tools::CollisionBoxTool::render_effect() {
         const Vec2f& rangesX = Vec2f(position.x - startPos.x, position.x - endPos.x);
         const Vec2f& rangesY =Vec2f(position.y - startPos.y, position.y - endPos.y);
 
+        HistoryWindow::get_instance().record("Placed collision box");
+
         tileGroup._collisionBoxes.push_back(
             CollisionBoxEntity("Unnamed collision box", position, rangesX, rangesY));
     }

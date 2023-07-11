@@ -3,75 +3,48 @@
 
 #include <iostream>
 #include <string>
+#include <stack>
 
 #include "gfx.h"
 #include "types.h"
 
+#include "level_data.h"
 #include "app_window.h"
 
 namespace omniscia_editor::windows {
     using namespace omni::types;
+    using namespace omniscia::core;
 
     class HistoryWindow : public AppWindow  {
+        struct HistoryRecord {
+            LevelData _levelData;
+            std::string _label;
+        };
+
         private:
+            std::deque<HistoryRecord> _history;
+
+            /** Properties */
             f32 _visibleSteps;
             bool _autoScroll;
+
+            u64 _massiveUndoTimesMax;
 
         public:
             friend class omni::reflector::FieldFriendlyScope;
             friend class omni::reflector::Reflection<HistoryWindow>;
 
-            HistoryWindow() {
-                _visibleSteps = 8.0;
-                _autoScroll = true;
-            };
+            HistoryWindow();
 
-            void render_window() override {
-                if(!ImGui::Begin("History")) {
-                    ImGui::End();
-                    return;
-                }
+            void record(const std::string& label);
 
-                if (ImGui::BeginChild("scrolling", ImVec2(-FLT_MIN, _visibleSteps * ImGui::GetTextLineHeightWithSpacing()), true, ImGuiWindowFlags_HorizontalScrollbar)) {
-                    
-                    ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
-                        
-                    ImGuiListClipper clipper;
-                    clipper.Begin(500);
-                    while (clipper.Step())
-                        for (int line_no = clipper.DisplayStart; line_no < clipper.DisplayEnd; line_no++)
-                            ImGui::Text("[20:43:00] Added tile");
-                    clipper.End();
+            void undo(const u64& times);
 
-                    ImGui::PopStyleVar();
+            void render_window() override;
 
-                    if (_autoScroll && ImGui::GetScrollY() >= ImGui::GetScrollMaxY())
-                        ImGui::SetScrollHereY(1.0f);
+            void render_properties() override;
 
-                    ImGui::EndChild();
-                }
-
-                ImGui::Text("Auto scroll");
-                ImGui::SameLine();
-                ImGui::Checkbox("## history auto scroll checkbox", &_autoScroll);
-                
-                ImGui::SameLine(ImGui::GetWindowSize().x - 2.0f * (ImGui::CalcTextSize("Undo 5 ").x + ImGui::GetStyle().FramePadding.x * 2.0f));
-
-                ImGui::Button("Undo");
-                ImGui::SameLine();
-                ImGui::Button("Undo 5");
-
-                ImGui::End();
-            }
-
-            void render_properties() override {
-                PropertiesFieldQuery::property_window_edit_query(*this);
-            }
-
-            static HistoryWindow& get_instance() {
-                static HistoryWindow window;
-                return window;
-            }
+            static HistoryWindow& get_instance();
     };
 }
 
@@ -81,7 +54,8 @@ struct omni::reflector::Reflection<omniscia_editor::windows::HistoryWindow> {
     const constexpr static auto clearTypeName = "HistoryWindow";
     const constexpr static auto meta = std::make_tuple(
         omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::HistoryWindow::_visibleSteps, "Visible steps"),
-        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::HistoryWindow::_autoScroll, "Auto scroll")
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::HistoryWindow::_autoScroll, "Auto scroll"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::HistoryWindow::_massiveUndoTimesMax, "Huge undo count")
     );
 };
 

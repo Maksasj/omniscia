@@ -68,6 +68,8 @@ void omniscia_editor::tools::SelectionTool::render_effect() {
         const Vec2f startPos = _startPos;
         const Vec2f endPos = delta / _zoom;
 
+        HistoryWindow::get_instance().record("Made selection");
+
         for(TileEntity& tile : tileGroup._tiles) {
             const f32 minX = std::min(startPos.x, endPos.x);
             const f32 maxX = std::max(startPos.x, endPos.x);

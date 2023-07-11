@@ -1,5 +1,7 @@
 #include "level_manager.h"
 
+#include "windows/history_window.h"
+
 void omniscia_editor::systems::LevelManager::file_new() {
 
 }
@@ -12,6 +14,8 @@ void omniscia_editor::systems::LevelManager::file_open() {
     file.open("assets/levels/level.json");
 
     const auto jsonObject = json::parse(file);
+
+    windows::HistoryWindow::get_instance().record("Loaded level from file");
     
     _levelData = JsonSerializer::json_deserialize<LevelData>(jsonObject);
 

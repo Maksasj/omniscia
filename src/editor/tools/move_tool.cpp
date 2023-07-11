@@ -38,6 +38,9 @@ void omniscia_editor::tools::MoveTool::render_effect() {
         return;
     }
 
+    if(ImGui::IsMouseClicked(ImGuiMouseButton_Left))
+        HistoryWindow::get_instance().record("Moved selection");
+
     if(!ImGui::IsMouseDragging(ImGuiMouseButton_Left, 0.0f)) {
         _movedPosition = Vec2f::splat(0.0f);
         return;

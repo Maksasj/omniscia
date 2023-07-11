@@ -27,6 +27,19 @@ void omniscia_editor::windows::PropertiesFieldQuery::property_edit_field<omni::t
 }
 
 template<>
+void omniscia_editor::windows::PropertiesFieldQuery::property_edit_field<omni::types::u64>(const char* fieldName, omni::types::u64& field) {
+    auto flags = ImGuiTreeNodeFlags_DefaultOpen;
+    
+    if (ImGui::TreeNodeEx(fieldName, flags)) {
+        ImGui::Text("Value: ");
+        ImGui::SameLine();
+        ImGui::DragScalar("value: ", ImGuiDataType_U64, &field, 1u, 0);
+
+        ImGui::TreePop();
+    }
+}
+
+template<>
 void omniscia_editor::windows::PropertiesFieldQuery::property_edit_field<omni::types::Vec2f>(const char* fieldName, omni::types::Vec2f& field) {
     auto flags = ImGuiTreeNodeFlags_DefaultOpen;
     
