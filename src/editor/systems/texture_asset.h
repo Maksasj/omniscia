@@ -12,6 +12,7 @@ namespace omniscia_editor::systems {
 
         i32 _width;
         i32 _height;
+        
         u32 _texture;
 
         friend class omni::reflector::FieldFriendlyScope;

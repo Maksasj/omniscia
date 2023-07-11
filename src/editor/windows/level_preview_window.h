@@ -33,6 +33,8 @@ namespace omniscia_editor::windows {
 
             bool _renderScreenboxPreview;
             Vec2f _screenboxPreviewSize;
+
+            bool _renderMaterials;
         public:
             friend class omni::reflector::FieldFriendlyScope;
             friend class omni::reflector::Reflection<LevelPreviewWindow>;
@@ -68,7 +70,8 @@ struct omni::reflector::Reflection<omniscia_editor::windows::LevelPreviewWindow>
         omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_maxZoom, "Max zoom"),
         omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_minZoom, "Min zoom"),
         omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_renderScreenboxPreview, "Render screenbox preview"),
-        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_screenboxPreviewSize, "Screenbox preview size")
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_screenboxPreviewSize, "Screenbox preview size"),
+        omni::reflector::FieldFriendlyScope::field_registration(&omniscia_editor::windows::LevelPreviewWindow::_renderMaterials, "Render tiles materials")
     );																		               
 };
 

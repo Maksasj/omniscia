@@ -10,7 +10,7 @@ omniscia_editor::windows::LevelPreviewWindow::LevelPreviewWindow() {
 
     _gridSize = 16.0f;
     _zoomSpeed = 0.02f;
-    _maxZoom = 5.0f;
+    _maxZoom = 15.0f;
     _minZoom = 0.05f;
 
     _renderGrid = true;
@@ -18,6 +18,8 @@ omniscia_editor::windows::LevelPreviewWindow::LevelPreviewWindow() {
 
     _renderScreenboxPreview = true;
     _screenboxPreviewSize = Vec2(256.0f, 144.0f);
+
+    _renderMaterials = false;
 };
 
 omni::types::Vec2f omniscia_editor::windows::LevelPreviewWindow::get_scroll() const {
@@ -92,13 +94,38 @@ void omniscia_editor::windows::LevelPreviewWindow::render_window() {
     /* Render tiles */
     LevelData& levelData = LevelManager::get_instance()._levelData;
 
-    for(const auto& tileGroup : levelData._tileGroups) {
-        for(const auto& tile : tileGroup._tiles) {
-            drawList->AddRectFilled(
-                ImVec2((start.x - tile._position.x * _zoom),                        (start.y - tile._position.y * _zoom)),
-                ImVec2((start.x - tile._position.x * _zoom) - _gridSize * _zoom,    (start.y - tile._position.y * _zoom) - _gridSize * _zoom),
-                IM_COL32(tileGroup._tileGroupAssociatedColor.x * 255.0f, tileGroup._tileGroupAssociatedColor.y * 255.0f, tileGroup._tileGroupAssociatedColor.z * 255.0f, tileGroup._tileGroupAssociatedColor.w * 255.0f)
-            );
+    for(const TileGroupData& tileGroup : levelData._tileGroups) {
+        const u32 materialTexture = TextureManager::get_instance().get_asset(tileGroup._textureMaterialAssetId)._texture;
+
+        for(const TileEntity& tile : tileGroup._tiles) {
+            const i32& materialId = tile._materialId;
+            const TileMaterial& material = tileGroup._tileMaterials[materialId];
+
+            const f32 firstPointX = start.x - tile._position.x * _zoom;
+            const f32 firstPointY = start.y - tile._position.y * _zoom;
+
+            const f32 secondPointX = (start.x - tile._position.x * _zoom) - _gridSize * _zoom;
+            const f32 secondPointY = (start.y - tile._position.y * _zoom) - _gridSize * _zoom;
+
+            if(!_renderMaterials) {
+                drawList->AddRectFilled(
+                    ImVec2(firstPointX, firstPointY),
+                    ImVec2(secondPointX,secondPointY),
+                    IM_COL32(tileGroup._tileGroupAssociatedColor.x * 255.0f, tileGroup._tileGroupAssociatedColor.y * 255.0f, tileGroup._tileGroupAssociatedColor.z * 255.0f, tileGroup._tileGroupAssociatedColor.w * 255.0f)
+                );
+            } else {
+                drawList->AddImageQuad(
+                    (void*)(intptr_t)materialTexture, 
+                    {firstPointX, firstPointY}, 
+                    {secondPointX, firstPointY},
+                    {secondPointX, secondPointY},
+                    {firstPointX, secondPointY}, 
+                    
+                    {(material._textureCordsTopLeft.x),      (1.0f - material._textureCordsTopLeft.y)},           //  Top Left
+                    {(material._textureCordsTopRight.x),     (1.0f - material._textureCordsTopRight.y)},          //  Top Right
+                    {(material._textureCordsBottomRight.x),  (1.0f - material._textureCordsBottomRight.y)},       //  Bottom Right
+                    {(material._textureCordsBottomLeft.x),   (1.0f - material._textureCordsBottomLeft.y)});       //  Bottom Left
+            }
 
             if(tile._selected) {
                 drawList->AddRectFilled(

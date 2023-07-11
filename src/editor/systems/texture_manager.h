@@ -44,6 +44,10 @@ namespace omniscia_editor::systems {
                     file.close();
             } 
 
+            TextureAsset& get_asset(const std::string& assetId) {
+                return _data[assetId];
+            }
+
             u64 get_asset_count() override {
                 return _data.size();
             }

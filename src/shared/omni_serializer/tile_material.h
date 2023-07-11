@@ -38,11 +38,13 @@ namespace omniscia::core {
         static TileMaterial default_material() {
             return TileMaterial(
                 "Default material", 
+                
                 Vec2f::splat(1.0f), 
+
                 Vec2f::splat(1.0f), 
                 Vec2f(1.0f, 0.0f), 
-                Vec2f(0.0f, 1.0f), 
-                Vec2f::splat(0.0f)
+                Vec2f::splat(0.0f),
+                Vec2f(0.0f, 1.0f)
             );
         }
     };

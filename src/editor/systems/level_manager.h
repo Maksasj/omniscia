@@ -10,6 +10,8 @@
 #include "tools/selection_tool.h"
 #include "tools/move_tool.h"
 
+#include "systems/texture_manager.h"
+
 #include "windows/level_preview_window.h"
 #include "windows/selected_tilegroup_window.h"
 #include "windows/tilegroups_management_window.h"
