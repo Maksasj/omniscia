@@ -1,8 +1,6 @@
 #ifndef _OMNISCIA_EDITOR_EDITOR_H_
 #define _OMNISCIA_EDITOR_EDITOR_H_
 
-#include "themes/themes.h"
-
 #include "windows/level_preview_help_window.h"
 #include "windows/level_preview_window.h"
 #include "windows/properties_window.h"
@@ -12,21 +10,17 @@
 #include "windows/tilegroups_management_window.h"
 #include "windows/assets_view_window.h"
 #include "windows/tools_window.h"
+#include "windows/themes_window.h"
 
 #include "systems/level_manager.h"
 
 namespace omniscia_editor::editor {
     using namespace omni::types;
-    using namespace omniscia_editor::level_editor;
-    using namespace omniscia_editor::level_editor::themes;
-
     using namespace omniscia_editor::systems;
     using namespace omniscia_editor::windows;
 
     class Editor {
         private:
-            std::vector<Theme*> themes;
-
             /** Properties */
             bool _renderLevelPreviewWindow;
             bool _renderLevelPreviewHelpWindow;
@@ -36,6 +30,7 @@ namespace omniscia_editor::editor {
             bool _renderSelectedTileGroupWindow;
             bool _renderAssetsViewWindow;
             bool _renderToolsWindow;
+            bool _renderThemesWindow;
 
             bool _renderPropertiesWindow;
 
@@ -52,18 +47,11 @@ namespace omniscia_editor::editor {
                 _renderSelectedTileGroupWindow = true;
                 _renderAssetsViewWindow = true;
                 _renderToolsWindow = true;
+                _renderThemesWindow = false;
 
                 _renderPropertiesWindow = false;
 
-                themes = {
-                    new DeepDarkTheme(),
-                    new DraculaTheme(),
-                    new GreenTheme(),
-                    new RedTheme(),
-                    new SimpleTheme()
-                };
-
-                themes[0]->apply_theme();
+                ThemesWindow::get_instance().apply_default();   
             }
 
             void render() {
@@ -87,8 +75,6 @@ namespace omniscia_editor::editor {
                 ImGui::PopStyleVar();
                 ImGui::PopStyleVar();
 
-
-
                 if (ImGui::BeginMenuBar()) {
                     if (ImGui::BeginMenu("File")) {
                         if(ImGui::MenuItem("New", nullptr, nullptr)) {
@@ -111,7 +97,7 @@ namespace omniscia_editor::editor {
                         ImGui::Separator();
 
                         if(ImGui::MenuItem("Exit", nullptr, nullptr)) {
-                                
+
                         };
 
                         ImGui::EndMenu();
@@ -122,6 +108,7 @@ namespace omniscia_editor::editor {
                         ImGui::MenuItem("Level preview help", nullptr,  &_renderLevelPreviewHelpWindow);
                         ImGui::MenuItem("History", nullptr,             &_renderHistroyWindow);
                         ImGui::MenuItem("Assets view", nullptr,         &_renderAssetsViewWindow);
+                        ImGui::MenuItem("Themes", nullptr,              &_renderThemesWindow);
 
                         ImGui::Separator();
 
@@ -162,7 +149,8 @@ namespace omniscia_editor::editor {
                 if(_renderHistroyWindow) HistoryWindow::get_instance().render_window();
                 if(_renderMetricsWindow) MetricsWindow::get_instance().render_window();
                 if(_renderAssetsViewWindow) AssetsViewWindow::get_instance().render_window();
-
+                
+                if(_renderThemesWindow) ThemesWindow::get_instance().render_window();
                 if(_renderPropertiesWindow) PropertiesWindow::get_instance().render_window();
 
                 // ImGui::ShowDemoWindow();

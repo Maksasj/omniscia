@@ -3,7 +3,7 @@
 
 #include "theme.h"
 
-namespace omniscia_editor::level_editor::themes {
+namespace omniscia_editor::themes {
     using namespace omni::types;
 
     class DeepDarkTheme : public Theme {

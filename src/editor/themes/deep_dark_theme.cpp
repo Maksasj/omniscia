@@ -1,10 +1,10 @@
 #include "deep_dark_theme.h"
 
-omniscia_editor::level_editor::themes::DeepDarkTheme::DeepDarkTheme() : Theme("Deep dark theme", "janekb04") {
+omniscia_editor::themes::DeepDarkTheme::DeepDarkTheme() : Theme("Deep dark theme", "janekb04") {
     
 }
 
-void omniscia_editor::level_editor::themes::DeepDarkTheme::apply_theme() {
+void omniscia_editor::themes::DeepDarkTheme::apply_theme() {
     /* Source: https://github.com/ocornut/imgui/issues/707#issuecomment-917151020 */
 
     ImVec4* colors = ImGui::GetStyle().Colors;

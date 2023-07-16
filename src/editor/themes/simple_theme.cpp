@@ -1,10 +1,10 @@
 #include "simple_theme.h"
 
-omniscia_editor::level_editor::themes::SimpleTheme::SimpleTheme() : Theme("Simple theme", "codz01") {
+omniscia_editor::themes::SimpleTheme::SimpleTheme() : Theme("Simple theme", "codz01") {
     
 }
 
-void omniscia_editor::level_editor::themes::SimpleTheme::apply_theme() {
+void omniscia_editor::themes::SimpleTheme::apply_theme() {
     /* Source: https://github.com/ocornut/imgui/issues/707#issuecomment-252413954 */
 
     ImGuiStyle& style = ImGui::GetStyle();

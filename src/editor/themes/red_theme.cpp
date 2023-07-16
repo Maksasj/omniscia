@@ -1,10 +1,10 @@
 #include "red_theme.h"
 
-omniscia_editor::level_editor::themes::RedTheme::RedTheme() : Theme("Red theme", "aiekick") {
+omniscia_editor::themes::RedTheme::RedTheme() : Theme("Red theme", "aiekick") {
     
 }
 
-void omniscia_editor::level_editor::themes::RedTheme::apply_theme() {
+void omniscia_editor::themes::RedTheme::apply_theme() {
     /* Source: https://github.com/ocornut/imgui/issues/707#issuecomment-760220280 */
 
     ImVec4* colors = ImGui::GetStyle().Colors;

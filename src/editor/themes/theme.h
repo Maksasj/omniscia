@@ -6,7 +6,7 @@
 #include "omni_types.tpp"
 #include "gfx.h"
 
-namespace omniscia_editor::level_editor::themes {
+namespace omniscia_editor::themes {
     using namespace omni::types;
 
     class Theme {
@@ -17,6 +17,14 @@ namespace omniscia_editor::level_editor::themes {
         public:
             Theme(std::string name, std::string author) : _name(name), _author(author) {
 
+            }
+
+            std::string get_name() const {
+                return _name;
+            }
+    
+            std::string get_author() const {
+                return _author;
             }
 
             virtual void apply_theme() {

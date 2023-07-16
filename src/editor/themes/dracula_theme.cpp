@@ -1,10 +1,10 @@
 #include "dracula_theme.h"
 
-omniscia_editor::level_editor::themes::DraculaTheme::DraculaTheme() : Theme("Dracula theme", "Trippasch") {
+omniscia_editor::themes::DraculaTheme::DraculaTheme() : Theme("Dracula theme", "Trippasch") {
     
 }
 
-void omniscia_editor::level_editor::themes::DraculaTheme::apply_theme() {
+void omniscia_editor::themes::DraculaTheme::apply_theme() {
     /* Source: https://github.com/ocornut/imgui/issues/707#issuecomment-1372640066 */
     auto &colors = ImGui::GetStyle().Colors;
 

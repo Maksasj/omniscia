@@ -1,10 +1,10 @@
 #include "green_theme.h"
 
-omniscia_editor::level_editor::themes::GreenTheme::GreenTheme() : Theme("Green theme", "aiekick") {
+omniscia_editor::themes::GreenTheme::GreenTheme() : Theme("Green theme", "aiekick") {
     
 }
 
-void omniscia_editor::level_editor::themes::GreenTheme::apply_theme() {
+void omniscia_editor::themes::GreenTheme::apply_theme() {
     /* Source: https://github.com/ocornut/imgui/issues/707#issuecomment-760219522 */
     ImVec4* colors = ImGui::GetStyle().Colors;
 
