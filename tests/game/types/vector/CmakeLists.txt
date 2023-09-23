@@ -1,4 +1,0 @@
-add_subdirectory(division)
-add_subdirectory(minus)
-add_subdirectory(multiplication)
-add_subdirectory(sum)

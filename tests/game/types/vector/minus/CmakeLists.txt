@@ -1,3 +1,0 @@
-CREATE_TEST(OmnisiciaGame_Types_Vector2D_Minus vector2d_minus_tests.cpp)
-CREATE_TEST(OmnisiciaGame_Types_Vector3D_Minus vector3d_minus_tests.cpp)
-CREATE_TEST(OmnisiciaGame_Types_Vector4D_Minus vector4d_minus_tests.cpp)

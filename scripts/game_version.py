@@ -1,6 +1,6 @@
 version = -1
 
-with open('src/version.cpp','r') as file:
+with open('src/game/version.cpp','r') as file:
     for line in file:
         for word in line.split():
             if word.isdigit():
@@ -9,7 +9,7 @@ with open('src/version.cpp','r') as file:
 if version != -1:
     version += 1
 
-    with open('src/version.cpp', 'w') as file:
+    with open('src/game/version.cpp', 'w') as file:
         file.write("#include \"version.h\"\n")
         file.write("\n")
         file.write("#define _OMNISCIA_VERSION_ ")
@@ -18,9 +18,9 @@ if version != -1:
         file.write("unsigned long long get_game_version() {\n")
         file.write("    return _OMNISCIA_VERSION_;\n")
         file.write("}\n")
-        file.write("std::string get_game_version_string() {\n");
-        file.write("    return boost::lexical_cast<std::string>(get_game_version());\n");
-        file.write("}\n");
+        file.write("std::string get_game_version_string() {\n")
+        file.write("    return std::to_string(get_game_version());\n")
+        file.write("}\n")
         file.write("\n")
     
     print("Game version: " + str(version))

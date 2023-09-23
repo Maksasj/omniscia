@@ -1,3 +1,0 @@
-CREATE_TEST(OmnisiciaGame_Types_Vector2D_Division vector2d_division_tests.cpp)
-CREATE_TEST(OmnisiciaGame_Types_Vector3D_Division vector3d_division_tests.cpp)
-CREATE_TEST(OmnisiciaGame_Types_Vector4D_Division vector4d_division_tests.cpp)

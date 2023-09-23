@@ -1,3 +1,0 @@
-CREATE_TEST(OmnisiciaGame_ECS_ComponentContainerIndexing component_container_indexing_tests.cpp)
-CREATE_TEST(OmnisiciaGame_ECS_ComponentContainerHas component_container_has_tests.cpp)
-CREATE_TEST(OmnisiciaGame_ECS_ComponentContainerSize component_container_size_tests.cpp)

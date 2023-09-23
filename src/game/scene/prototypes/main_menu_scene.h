@@ -1,0 +1,18 @@
+#ifndef _MAIN_MENU_SCENE_
+#define _MAIN_MENU_SCENE_
+
+#include "ecs/prototypes/entity_prototypes.h"
+#include "scene/scene_loader/scene_loader.h"
+#include "game.h"
+#include "scene/scene.h"
+
+namespace omniscia::core {
+    using namespace omni::types;
+    
+    class MainMenuScene : public Scene {
+        public:
+            MainMenuScene();
+    };
+}
+
+#endif

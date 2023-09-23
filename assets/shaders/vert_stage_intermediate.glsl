@@ -13,18 +13,6 @@ uniform vec2 scale = vec2(1.0, 1.0);
 
 void main() {
    vec4 pos = vec4(vec4(aPos, 1.0f));
-   
-   pos.xy *= scale;
-   pos.xy += transform.xy;
-
-   mat2x2 rot;
-
-   rot[0].x =  cos(rotation);
-   rot[0].y = -sin(rotation);
-   rot[1].x =  sin(rotation);
-   rot[1].y =  cos(rotation);
-   
-   pos.xy *= rot;
 
    gl_Position = pos;
 

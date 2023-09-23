@@ -1,0 +1,40 @@
+cmake_minimum_required(VERSION 3.27)
+project(OmnisciaGame)
+
+find_package( OpenGL REQUIRED )
+include_directories( ${OPENGL_INCLUDE_DIRS} )
+
+# 3dparty includes
+include_directories("../../3dparty/stb")
+include_directories("../../3dparty/imgui")
+include_directories("../../3dparty/json/include")
+include_directories("../../3dparty/imgui/backends")
+include_directories("../../3dparty/miniaudio/miniaudio")
+
+# Shared code includes
+include_directories("../shared/omni_reflector/src")
+include_directories("../shared/omni_types/src")
+include_directories("../shared/omni_serializer")
+
+# Project includes
+include_directories("./")
+
+file(GLOB_RECURSE OMNISCIA-SRC *.cpp)
+
+# Imgui source files
+file(GLOB IMGUI-SRC
+    "../../3dparty/imgui/*.cpp"
+    "../../3dparty/imgui/backends/imgui_impl_glfw.cpp"
+    "../../3dparty/imgui/backends/imgui_impl_opengl3.cpp"
+)
+
+list (APPEND OMNISCIA-SRC ${IMGUI-SRC})
+
+add_executable( Omniscia ${OMNISCIA-SRC} )
+target_link_libraries(Omniscia ${OPENGL_LIBRARIES})
+target_link_libraries(Omniscia glfw)
+target_link_libraries(Omniscia glad)
+target_link_libraries(Omniscia opengl32)
+
+target_link_libraries(Omniscia omni_serializer)
+target_link_libraries(Omniscia omni_types)

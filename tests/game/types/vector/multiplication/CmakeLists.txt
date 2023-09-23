@@ -1,3 +1,0 @@
-CREATE_TEST(OmnisiciaGame_Types_Vector2D_Multiplication vector2d_multiplication_tests.cpp)
-CREATE_TEST(OmnisiciaGame_Types_Vector3D_Multiplication vector3d_multiplication_tests.cpp)
-CREATE_TEST(OmnisiciaGame_Types_Vector4D_Multiplication vector4d_multiplication_tests.cpp)

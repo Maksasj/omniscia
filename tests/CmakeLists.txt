@@ -1,4 +1,0 @@
-include_directories("./")
-
-add_subdirectory(editor)
-add_subdirectory(game)

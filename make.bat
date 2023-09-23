@@ -5,4 +5,4 @@ python scripts\game_version.py
 
 cmake --build build
 
-build\Omniscia.exe
+build\src\game\Omniscia.exe

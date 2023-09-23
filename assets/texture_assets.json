@@ -1,0 +1,145 @@
+{
+    "_data": {
+        "background_beach_beach_layer": {
+            "_filePath": "assets/textures/background/beach/beach.png"
+        },
+        "background_beach_grass_overlay_layer": {
+            "_filePath": "assets/textures/background/beach/grass_overlay.png"
+        },
+        "background_beach_sky1_layer": {
+            "_filePath": "assets/textures/background/beach/sky1.png"
+        },
+        "background_beach_sky2_layer": {
+            "_filePath": "assets/textures/background/beach/sky2.png"
+        },
+        "background_beach_terrain_layer": {
+            "_filePath": "assets/textures/background/beach/terrain.png"
+        },
+        "beach_tiles": {
+            "_filePath": "assets/textures/tiles/beach/beach_tiles.png"
+        },
+        "chapter_1_thumbnail_spritesheet": {
+            "_filePath": "assets/textures/background/chapter_choose/chapter_1_thumbnail_spritesheet.png"
+        },
+        "chapter_buttons": {
+            "_filePath": "assets/textures/background/chapter_choose/chapter_buttons.png"
+        },
+        "chapter_choose_background": {
+            "_filePath": "assets/textures/background/chapter_choose/chapter_choose_background.png"
+        },
+        "chapter_choose_background_sky1_layer": {
+            "_filePath": "assets/textures/background/chapter_choose/sky1.png"
+        },
+        "chapter_choose_background_sky2_layer": {
+            "_filePath": "assets/textures/background/chapter_choose/sky2.png"
+        },
+        "chapter_choose_background_sky3_layer": {
+            "_filePath": "assets/textures/background/chapter_choose/sky3.png"
+        },
+        "chapter_choose_background_terrain_layer": {
+            "_filePath": "assets/textures/background/chapter_choose/terrain.png"
+        },
+        "chapter_choose_menus": {
+            "_filePath": "assets/textures/background/chapter_choose/menus.png"
+        },
+        "checkpoint-spritesheet": {
+            "_filePath": "assets/textures/entities/checkpoint/checkpoint-spritesheet.png"
+        },
+        "choose_panel": {
+            "_filePath": "assets/textures/background/chapter_choose/choose_panel.png"
+        },
+        "clock-bar-spritesheet": {
+            "_filePath": "assets/textures/ui/bars/abilities/clock_bar/clock-bar-spritesheet.png"
+        },
+        "continue_button": {
+            "_filePath": "assets/textures/background/menu/continue_button.png"
+        },
+        "crab-corrupted-spritesheet": {
+            "_filePath": "assets/textures/entities/crab/crab_corrupted.png"
+        },
+        "crab-spritesheet": {
+            "_filePath": "assets/textures/entities/crab/crab.png"
+        },
+        "dialogue": {
+            "_filePath": "assets/textures/ui/dialogue.png"
+        },
+        "factorio_girl_texture": {
+            "_filePath": "assets/textures/texture.png"
+        },
+        "fireflies": {
+            "_filePath": "assets/textures/background/chapter_choose/fireflies.png"
+        },
+        "grandpa-spritesheet": {
+            "_filePath": "assets/textures/entities/characters/grandpa/grandpa.png"
+        },
+        "grandpa_test_icon": {
+            "_filePath": "assets/textures/ui/icons/grandpa_test_icon.png"
+        },
+        "jojo_texture": {
+            "_filePath": "assets/textures/jojo_texture.png"
+        },
+        "logo_green_spritesheet": {
+            "_filePath": "assets/textures/background/menu/logo_green_spritesheet.png"
+        },
+        "logo_spritesheet": {
+            "_filePath": "assets/textures/background/menu/logo_spritesheet.png"
+        },
+        "menu_background": {
+            "_filePath": "assets/textures/background/menu/menu_background.png"
+        },
+        "menu_background_girls_layer": {
+            "_filePath": "assets/textures/background/menu/girls.png"
+        },
+        "menu_background_sky1_layer": {
+            "_filePath": "assets/textures/background/menu/sky1.png"
+        },
+        "menu_background_sky2_layer": {
+            "_filePath": "assets/textures/background/menu/sky2.png"
+        },
+        "menu_background_sky3_layer": {
+            "_filePath": "assets/textures/background/menu/sky3.png"
+        },
+        "menu_background_terrain_layer": {
+            "_filePath": "assets/textures/background/menu/terrain.png"
+        },
+        "new_game_button": {
+            "_filePath": "assets/textures/background/menu/new_game_button.png"
+        },
+        "options_button": {
+            "_filePath": "assets/textures/background/menu/options_button.png"
+        },
+        "pause_text": {
+            "_filePath": "assets/textures/background/pause_screen/pause_text.png"
+        },
+        "player-spritesheet": {
+            "_filePath": "assets/textures/entities/characters/player/player.png"
+        },
+        "player_test_icon": {
+            "_filePath": "assets/textures/ui/icons/player_test_icon.png"
+        },
+        "popups": {
+            "_filePath": "assets/textures/ui/popup/popups.png"
+        },
+        "quit_game_button": {
+            "_filePath": "assets/textures/background/menu/quit_game_button.png"
+        },
+        "red-crystal-spritesheet": {
+            "_filePath": "assets/textures/entities/crystals/red/red-crystal-spritesheet.png"
+        },
+        "secrets_background": {
+            "_filePath": "assets/textures/background/secrets/secrets_background.png"
+        },
+        "secrets_button": {
+            "_filePath": "assets/textures/background/menu/secrets_button.png"
+        },
+        "selector_spritesheet": {
+            "_filePath": "assets/textures/background/chapter_choose/selector_spritesheet.png"
+        },
+        "settings_background": {
+            "_filePath": "assets/textures/background/settings/settings_background.png"
+        },
+        "star-spritesheet": {
+            "_filePath": "assets/textures/entities/star/star-spritesheet.png"
+        }
+    }
+}
